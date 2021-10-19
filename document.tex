@@ -1,0 +1,105 @@
+\begin{document}
+
+\author{Prof.~G.~Averkov\\{\small Institut für Mathematik, Fakultät 1}\\{\small Fachgebiet Algorithmische Mathematik}\\{\small Brandenburgische Technische Universität Cottbus}}
+\title{\Huge{\sc{Mathematik IT-3}}\\ \Large{\sc{Mathematik für Informatik-Studiengänge}: Analysis}}
+\date{\today}
+
+%\frontmatter
+\mainmatter
+%\maketitle
+\thispagestyle{empty}
+\begin{center}
+	\Huge{\sc{Mathematik IT-1}}\\ \Large{\sc{Diskrete Mathematik für Informatik-Studiengänge}}
+	\\ \normalsize{\today}
+	\\ {\ }
+	\\ \large{Prof.~G.~Averkov} 
+	\\{\small Institut für Mathematik, Fakultät 1}\\{\small Fachgebiet Algorithmische Mathematik}\\{\small Brandenburgische Technische Universität Cottbus-Senftenberg}
+\end{center} 
+
+\tableofcontents
+
+\chapter*{Organisatorisches} 
+
+\begin{bem}[Vorlesung] {\ } 
+	\begin{enuma} 
+		\item In Präsenz, digitale Mitschrift im Moodle, bei Bedarf Aufzeichnungen 
+		\item In der Vorlesung geht es um die Theorie und Ihre Rolle bei der Lösung von Aufgaben. 
+		\item  Theorie ist ein Werkzeug zur Lösung von Problemen und Aufgaben.
+	\end{enuma}
+\end{bem} 
+
+
+\begin{bem}[Übung]{\ } 
+	\begin{enuma} 
+		\item Zwei Übungstermine pro Woche.
+		\item Eine synchron und eine asynchron über BigBlueButton
+		\item Die Teilnehmer werden \underline{nicht} in zwei Übungsgruppen eingeteilt. Jede Woche kann eine der beiden Übungen frei gewählt werden. 
+		\item Aufgabenblatt Nummer $x$ (mit $x \ge 1$) wird in der Vorlesungswoche $x+1$ diskutiert und zum Ende der Woche $x$ abgegeben. 
+		\item Abgabe der Blätter digital über Moodle. 
+		\item Blatt Nummer $0$ wird in der ersten Woche diskutiert und wird nicht abgegeben. 
+	\end{enuma} 
+\end{bem} 
+
+
+\begin{bem}[Prüfung]{ \ } 
+	\begin{enuma} 
+		\item Zulassung zur Klausur bei mind. $50\%$ aller Punkte für die Aufgabenblätter 
+		\item Bei mind. $75\%$ aller Punkte für die Aufgabenblätter gibt es einen $10\%$ Bonus in der Klausur
+		\item Keine Rechengeräte in der Klausur zugelassen
+	\end{enuma} 
+\end{bem} 
+
+\chapter*{Einleitung}
+
+\section{Wissenschaftliche Prinzipien}
+
+\begin{bem}\ 
+\begin{itemize}
+	\item Möglichst wenig Annahmen, insb. keine überflüssigen Annahmen. 
+	\item Überprüfung von Behauptungen : Beobachtungen, Experimente, Argumente. 
+	\begin{itemize}
+		\item Schwerpunkt bei Mathe: Argumente 
+		\item Experimente bei Mathe meistens billig: Beispiele, Skizzen 
+	\end{itemize} 
+	\item Die Autorität zählt nicht (``Aber mein Lehrer hat gesagt, dass das so richtig ist''), es zählen validierte Behauptungen. 
+	\item Begriffe/Bezeichnungen werden möglichst eindeutig festgelegt (bei Mathe - extrem eindeutig),  so dass man möglichst keinen Spielraum für eine Interpretation haben soll. (``War das die wahre Liebe?'' - kann man die Liebe eindeutig definieren? Wenn nicht, dann kann man so eine Art Frage endlos diskutieren, ohne Ergebnis. ). ``Die Erde ist rund'' - was heißt genau ``die Erde''? Was heißt genau ``rund''? Begriffsklärung sehr wichtig. 
+	\item Naturwissenschaften (Reale Welt und Modelle dazu) und  Strukturwissenschaften (Modelle). 
+	\item Grundlagenwissenschaften: wenn man oft genug ``Warum?'' fragt, kommt man zu grundlegenden Fragen, deren Antworten einen bleibenden Wert und -- auf Dauer -- breite Anwendungsmöglichkeiten haben. Wichtige Frage: Warum? Warum gibt uns die $pq$-Formel das richtige Ergebnis? Die Antwort ist für die Mathe-Gemeinschaft interessanter als die Formel selbst. Das Interessante in der Mathematik ist genau das, was man in den Formeltafeln nicht findet. 
+\end{itemize} 
+\end{bem}
+
+
+\section{Mathematische Prinzipien} 
+
+\begin{bem}\ 
+\begin{itemize}
+		\item Für eine mathematische Theorie legt man Grundbegriffe und Grundbezeichnungen (eindeutig) fest. 
+		\item Auf der Basis der bereits vorhandenen Begriffen und Bezeichnungen führt man immer neue Begriffe und Bezeichnungen (eindeutig) ein. 
+		\item Mit Hilfe von vorhandenen Begriffen und Bezeichnungen werden Aussagen formuliert, die dann durch Argumentation bestätigt ($=$ bewiesen) oder widerlegt werden. 
+		\item Wahre mathematische Beweise sind widerspruchsfrei und vollständig. 
+		\item In der Theorie interessiert man sich vor allem für noch offene Aussagen, die aktuell weder bestätigt noch widerlegt worden sind. 
+		\item Mathematik $\ne$ Rechnen. Rechnen, ohne dass man versteht, was die Rechenschritte bedeuten, ist keine mathematische Tätigkeit. Wichtig ist der Sinn hinter den Rechenschritten. Erkennt man beim Rechnen den Sinn nicht, dann ist man ein menschlicher Computer (echte Computer machen weniger Fehler und sind etwas schneller beim Rechnen :)) Hatten Sie in der Schule Mathe?.. Oder nur Rechnen? 
+\end{itemize} 
+\end{bem} 
+
+\input{kapitel1.tex}
+\input{kapitel2.tex} 
+\input{kapitel3.tex} 
+\input{kapitel4.tex} 
+
+\appendix 
+
+
+
+
+
+
+%\begin{thebibliography}{AAA}
+%	\bibitem[Rud]{Rud} Walter Rudin: Analysis. 4. Auflage, Oldenbourg 2009, 408~Seiten.  (Eines der Standardlehrbücher zur Analysis. Englisches Original ``Principles of Mathematical Analysis)
+%	\bibitem[Dem]{Dem} Boris Pavlovich Demidovitch: A Collection of Problems and Exercises in Mathematical Analysis, 11. Auflage, 1995, in Russisch (Über 4000 Aufgaben zu verschiedenen Themen aus der Analysis)
+%\end{thebibliography} 
+%\bibliographystyle{amsalpha}
+%\bibliography{lit}
+% bibliography, glossary and index would go here.
+
+\end{document}

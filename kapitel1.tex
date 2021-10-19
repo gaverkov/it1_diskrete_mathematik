@@ -1,0 +1,857 @@
+\chapter{Mathematische Grundlagen}
+
+\section{Aussagen}
+
+\subsection{Aussage}
+
+\begin{defn}
+Eine Aussage ist ein Satz (eine Folge von Zeichen mit mathematischer Bedeutung), die einen eindeutigen Wahrheitswert (entweder falsch oder wahr) hat. Den Wahrheitswert kodiert man oft mit Zahlen $0$ (falsch) und $1$ (wahr). 
+\end{defn} 
+
+
+\begin{bsp}\ 
+\begin{itemize}
+	\item $ 2 < 1 $ (falsch)
+	\item $ 2 = 1 $ (falsch)
+	\item $ 2 > 1 $ (wahr)
+	\item $2$ ist eine Primzahl (wahre Aussage, Primzahl definiert). 
+	\item $2$ ist eine schöne Zahl (keine Aussage, es sei denn, die Eingeschaft einer Zahl schön zu sein, wurde definiert). 
+	\item Es gibt unendlich viele Primzahlen $n$, für welche $n+2$ ebenfalls eine Primzahl ist. (eine Aussage, Wahrheitswert ist noch nicht geklärt). 
+	\item Die Gleichung $x^2+1 =0$ hat keine Lösungen. (an sich keine Aussage, es sei denn, ein Kontext war vorher gegeben, in dem die Rolle von $x$ geklärt wuirde.)
+	\item Die Gleichung $x^2+1=0$ hat keine reellwertigen Lösungen (wahre Aussage). 
+\end{itemize}
+\end{bsp} 
+
+\subsection{Logische Verknüpfungen}
+
+\begin{defn}
+Seien $ A $ und $ B $ Aussagen. Dann definiert man anhand von $ A $ und $ B $ die folgenden Aussagen:
+\begin{itemize}
+	\item $ A \wedge B $ Konjunktion (\glqq und\grqq) ist genau dann wahr, wenn $A$ und $B$ beide wahr sind. 
+	\item $ A \vee B $ Disjunktion (\glqq oder\grqq) ist genau dann falsch, wenn $A$ und $B$ beide falsch sind. 
+	\item $ A \Rightarrow B $ Implikation ist genau dann falsch, wenn $A$ wahr und $B$ falsch ist. 
+	\item $ A \Leftrightarrow B $ Äquivalenz ist genau dann wahr, wenn die Wahrheitswerte von $A$ und $B$ gleich sind. 
+	\item $ A \:\dot{\vee}\: B $ ausschließende Disjunktion ist genau dann wahr, wenn die Wahrheitswerte von $A$ und $B$ verschieden sind. 
+	\item $ \neg A $ (wir auch als $ \bar{A} $ bezeichnet), Negation (Verneinung) ist genau dann wahr, wenn $A$ falsch ist. 
+\end{itemize}
+\end{defn}
+
+
+\begin{bsp}\
+	\begin{itemize}
+		\item Seien $ x,y \in \R$. Dann gilt die Implikation: $x = y \Rightarrow x^2 = y^2 $ (wahr)
+		\item Seien $x,y \in \R$. Dann gilt die Implikation $ x,y \in \R, x^2 = y^2 \Rightarrow x = y $ (falsch für $x=1$ und $y=-1$)	
+	\end{itemize}
+\end{bsp}
+
+\begin{bem}
+	Alternativbezeichnungen für $\Rightarrow$ und $\Leftrightarrow$ sind $\rightarrow$ bzw. $\leftrightarrow$. 
+\end{bem} 
+
+\begin{bem}
+	Wenn man in Mathe-Argumenten eine Folge von Implikationen benutzt, so schreibt man auch oft kurz so etwas wie $A \Rightarrow B \Rightarrow C$. Damit meint man  $(A \Rightarrow B) \wedge (B \Rightarrow C)$, d.h., aus $A$ folgt $B$ und aus $B$ folgt $C$. Das Gleiche auch für $\Leftrightarrow$. 
+\end{bem} 
+
+
+\begin{bem}
+	Die Aussagenlogik ist die Studie der logischen Vernknüpfungen von Aussagen. Dabei spielt die Natur in den Formeln verwendeten Aussagen, die man mit Symbolen bezeichnet, etwa $a,b, c, d, \ldots$, an sich keine Rolle. Alles, was zählt, ist der Wahrheitswert. Daher kann man auch $a,b,c,d \ldots$ als Variablen aus $\{0,1\}$ auffassen, ohne dass sich an der Studie was ändert. Mehr über die Aussagenlogik erfahren wir später in diesem Kurs. 
+\end{bem} 
+
+\clearpage
+\section{Mengen}
+
+\subsection{Menge}
+
+\begin{defn}
+	Eine Menge $X$ ist durch die Eindeutige Angabe definiert, welche Objekte Elemente der Menge sind. Man schreibt in diesem Fall $x \in X$ dafür, dass das Objekt $x$ Element der Menge $X$ ist, und $x \not\in X$ dafür, dass $x$ kein Element der Menge $x$. Mit anderen Worte: für die Angabe einer Menge $X$ soll für jedes Objekt $x$ geklärt sein, ob für dieses Objekt $x \in X$ oder $x\not \in X$ gilt. 
+\end{defn} 
+
+\begin{bem}
+	Unser Definition der Menge ist etwas intuitiv (und ist somit streng genommen keine echte Definition), sie reicht aber 	für unsere Zwecke völlig aus. Die genaue Definition einer Menge ist durch das Axiomensystem von Zermelo-Fraenkel gegeben. Dieses System legt Folgendes fest: 
+	\begin{itemize}
+		\item die Existenz der leeren Mengen, 
+		\item die Bedingung für die Gleichheit von zwei Mengen
+		\item die Möglichkeit Mengenfamilien zu vereinigen, 
+		\item die Existenz einer sogenannten Potenzmenge für eine beliebige Menge
+		\item Fundierungsaxiom (ist etwas technisch)
+		\item die Möglichkeit Mengen, durch eine Bedingung zu definieren. 
+		\item Ersetzungsaxiom (ist etwas technisch)
+	\end{itemize} 
+	Zu den obigen Axiomen nimmt man noch zusätzlich das sogenannte Auswahlaxiom dazu. 
+\end{bem} 
+
+
+\begin{bem} 
+Eine Weise, Mengen zu definieren, ist durch die Auflistung ihrer Elemente. Dabei stehen die geschweiften Klammern für Mengen, die drei Punkte bedeuten \glqq usw\grqq.
+\begin{itemize}
+	\item $ \{1,2,5,7\} $
+	\item $ \{1\} $
+	\item $ \{1,\{2,5\},\{6\}\} $
+	\item $ \{1,2,3,\ldots\} $
+\end{itemize}
+\end{bem}
+
+\begin{defn}
+Seien $ A $ und $ B $ Mengen. Dann ist $ A $ genau dann eine Teilmenge von $ B $, wenn jedes Element von $ A $ auch Element von $ B $ ist. Unsere Bezeichnung dazu: $A \subseteq B$. Die Relation $\subseteq$ nennt man die Inklusion. 
+\end{defn}
+
+\begin{bem}
+In einigen mathematischen Quellen bezeichnet man die Inklusion als $ \subset $ und nicht als $ \subseteq $. Es ist schwer zu sagen, welche Bezeichnung in der Mehrheit der Quellen benutzt wird. Es gibt aber auch Quellen, in denen $ \subset $ die strikte Inklusion bezeichnet. Daher ziehe ich persönlich $ \subseteq $ vor.
+\end{bem} 
+
+\begin{defn}
+Zwei Mengen $ A $ und $ B $ heißen genau dann gleich, wenn $ A \subseteq B $ und $ B \subseteq A $ gilt. $ A $ heißt genau dann echte Teilmenge einer Menge $ B $, wenn $ A \subseteq B $ und $ A \neq B $ erfüllt sind. Bezeichnung: $ A \varsubsetneq B $.
+\end{defn} 
+
+
+\begin{bem}[Definition durch eine Bedingung]
+Eine sehr verbreite Weise, Mengen zu definieren, ist durch Bedingungen, nach dem Format 
+$ \{ AUSDRUCK : BEDINGUNG \} $. Der Doppelpunkt bedeutet \glqq sodass\grqq, \glqq mit der Bedingung\grqq. In manchen Quellen wird ein Strich an der Stelle des Doppelpunktes benutzt. 
+\end{bem} 
+
+\begin{aufg}
+\begin{itemize}
+\item Welche der Zahlen $1,\ldots, 100$ sind Elemente der Menge $ \{ k^2 : k \in \N, k \: \text{ungerade} \} $?  
+\item Wie viele Elemente hat die Menge $\setcond{x \in \R}{x^2- 5 x + 6} $? Welche Elemente sind es genau? 
+\end{itemize}
+\end{aufg}
+
+\begin{defn}
+Die leere Menge ist die Menge, die keine Elemente enthält. Bezeichnung: $ \emptyset $.
+\end{defn} 
+
+\begin{defn}[Potenzmenge]
+Sei $ X $ eine Menge. Dann ist die Potenzmenge von $ X $ die Menge aller Teilmengen von $ X $. Bezeichnung: $ 2^X $, Formal: $ 2^X := \{ A : A \subseteq X \} $.
+\end{defn} 
+
+\begin{aufg}
+	Wenn $X$ genau $n \in \N$ Elemente hat, wie viele Elemente hat $2^X$? Was wäre Ihre Begründung dazu? 
+\end{aufg} 
+
+\begin{bem}
+	Eine weitere Bezeichnung fúr die Potenzmengen, die man in der Literatur benutzt, ist $\mathcal{P}(X)$. Ich persönlich finde $2^X$ einleuchtender (zumindest im Kontext der Kombinatorik, die im folgenden Kapitel diskutiert wird). 
+\end{bem} 
+
+\subsection{Zahlenmengen}
+
+\begin{bem}
+	Zahlenbereiche, die Sie evtl. aus der Schule schon kennen:
+\begin{itemize}
+\item[$ \N $] $ := \{ 1,2,3,\ldots \} $ natürliche Zahlen. Uns fehlt dort die Null, daher... 
+\item[$ \N_0 $] $ := \{ 0,1,2,\ldots \} $. Hier können wir nicht beliebig subtrahieren, daher... 
+\item[$ \Z $] $ := \{ 0,1,-1,2,-2,\ldots \} $ ganze Zahlen. Hier können wir nicht beliebig dividieren, daher...
+\item[$ \Q $] $ := \{ \frac{p}{q} : p \in \Z, q \in \N \} $ rationale Zahlen. In dieser Menge gibt es ``Löcher'' , die man merkt, wenn man Geometrie oder Analysis macht, daher...
+\item[$ \R $] reelle Zahlen (saubere Definition etwas trickreich)
+\item[$ \C $] komplexe Zahlen (werden demnächst diskutiert) 
+\end{itemize}
+\end{bem}
+
+\begin{bem}
+	Es gelten die Inklusionen. 
+ $ \N \subseteq \N_0 \subseteq \Z \subseteq \Q \subseteq \R \subseteq \C $
+ All diese Inklusionen sind natürlich strikt. 
+ \end{bem} 
+
+
+\begin{bem}
+Manche Quellen definieren die Menge der natürlichen Zahlen als $ \set{0,1,2,\ldots} $, es ist mittlerweile sogar die ISO-Norm 80000-2. Nach meiner Erfahrung gibt es viel mehr Quellen, wo man
+	die Menge der natürlichen Zahlen als $ \set{1,2,3,\ldots} $ definiert. Daher
+	ziehe ich die Definition $ \set{1,2,3,\ldots} $ vor.
+\end{bem}
+
+\begin{bem}
+		Die Erweiterung der  Zahlenbereiche zu immer größeren Bereichen ist durch den Wunsch nach einer Vollständigkeit motiviert.... 
+\end{bem} 
+
+\subsection{Mengenoperationen}
+
+\begin{defn}
+Seien $ A,B $ Mengen. Dann heißt
+\begin{itemize}
+\item $ A \cap B := \{ x : (x \in A) \wedge (x \in B) \} $ Durchschnitt von $ A $ und $ B $
+\item $ A \cup B := \{ x : (x \in A) \vee (x \in B) \} $ Vereinigung von $ A $ und $ B $
+\item $ A \setminus B := \{ x : (x \in A) \wedge (x \notin B) \} $ Mengendifferenz von $ A $ und $ B $
+\item $A \operatorname{\triangle} B := (A \setminus B) \cup (B \setminus A)$, Symmetrische Differenz von $A$ und $B$ 
+\end{itemize}
+\end{defn}
+
+\begin{bem}
+	Für eine Grundmenge $X$ wird die Menge $2^X$ aller Teilmengen von $X$ zu einer sogenannten booleschen Algera der Teilmengen von $X$, indem man $2^X$ mit den Verknüpfungen $A \cap B$, $A \cap B$ und der unären Verknüpfung $\overline{A} := X \setminus A$ ausstattet. 
+\end{bem} 
+
+\begin{defn}
+Seinen $ A,B $ Mengen. $ A $ und $ B $ heißen genau dann disjunkt, wenn $ A \cap B = \emptyset $. In diesem Fall wird die Vereinigung von $A$ und $B$ eine disjunkte Vereinigung genannt
+und als $A \cupdot B$ bezeichnet. 
+\end{defn}
+
+\section{Abbildungen}
+
+\subsection{Abbildung}
+
+\begin{defn}
+Seien $ X,Y $ Mengen. Eine Abbildung $ f $ von $ X $ nach $ Y $ ist eine Vorschrift, die jedem $ x \in X $ genau ein Element aus $ Y $ zuordnet. Dieses Element aus $ Y $ wird durch $ f(x) $ bezeichnet. Wenn $ f $ eine Abbildung von $ X $ nach $ Y $ ist, dann bezeichnet man das durch: $ f : X \to Y $. Die Menge $ X $ heißt der Definitionsbereich von $ f $, $ Y $ heißt der Wertebereich von $ f $.
+\end{defn} 
+
+% 16.10.2014
+
+%Beispiel:
+%\begin{enumeration}
+%\item Kekse
+%\item Nüsse
+%\item Riegel
+%\end{enumeration}
+%
+%\begin{table}[h]
+%	\begin{tabular}{c|c|c}
+%		$ X $ & $ Y $ & $ Y $ \\
+%		\hline
+%		1 & Kekse & Kekse \\
+%		2 & Kekse & Nüsse \\
+%		3 & Kekse & Riegel
+%	\end{tabular}
+%\end{table}
+
+\begin{bsp}
+\begin{itemize}
+	\item $ f : \R \to \R,\\ f(x) := x^2 -2x + 7 \:\forall\: x \in \R $
+	\item $ f : \R \setminus \{ 1 \} \to \R,\\ f(x) := \frac{1}{x-1} \:\forall\: x \in \R $
+	\item $ \sign: \R \to \R = \{ 1,0,1 \} $
+	\item $ f : 2^{\N} \to \N, f(A) := \min(A) \:\forall\: A \subseteq \N $, z.B. $ f( \{ 1,7,43 \} ) = 1 $
+	\item $ f : \N \to 2^\N, f(k) := \is{1}{k} \:\forall\: k \in \N $
+\end{itemize}
+\end{bsp} 
+
+\begin{bem}
+Zwei Abbildungen $ f,g : X \to Y $ heißen gleich, falls $ f(x) = g(x) $ für alle $ x \in X $ gilt. 
+\end{bem} 
+
+\begin{bem} 
+	Für Mengen $X$ und $Y$, 
+	bezeichnet man als $ Y^X $  die Menge aller Abbildungen von $ X $ nach $ Y $.
+\end{bem} 
+
+\begin{aufg}
+	Aus wie vielen Abbildungen besteht die Menge $\{1,2,3\}^{\{1,2\}}$? Zählen Sie diese Abbildungen auf? Was ist  mit $\{1,2\}^{\{-1,0,1\}}$?
+\end{aufg} 
+
+\subsection{Bild und Urbild}
+
+\begin{defn}
+Seien $ X,Y,A,B $ Mengen mit $ A \subseteq X $ und $ B \subseteq Y $. Sei $ f : X \to Y $. Dann heißt $ f(A) := \{ f(x) : x \in A \} $ das Bild von $ A $ bzgl. $ f $ und $ f^{-1}(B) := \{ x \in X : f(x) \in B \} $ das Urbild von $ B $ bzgl. $ f $.
+\end{defn} 
+
+\begin{bsp}
+	Sei $ f : \R \to \R $ mit $ f(x) := x^2 $ für alle $ x \in \R $.
+	\begin{itemize}
+		\item $ f( [1,2] ) = [1,4] $ $ \nearrow $ Abb. 1
+		\item $ f^{-1}( [1,4] ) = [1,2] \cup [-2,-1] $ $ \nearrow $ Abb. 2
+		\item
+		$ \begin{aligned}[t]
+			f^{-1}( [-7,8] ) &= \{ x \in \R : f(x) \in [-7,8] \} \\
+			&= \{ x \in \R : -7 \leq f(x) \leq 8 \} \\
+			&= \{ x \in \R : -7 \leq x^2 \leq 8 \} \\
+			&= \{ x \in \R : x^2 \leq 8 \} \\
+			&= \{ x \in \R : |x| \leq \sqrt{8} \} \\
+			&= [-\sqrt{8},\sqrt{8}]
+		\end{aligned} $
+\end{itemize}
+\end{bsp}
+
+\begin{bem}[Intervalle]
+	Seien $ a,b \in \R $ mit $ a \leq b $. Dann können Intervalle wie folgt definiert werden:
+	\begin{align*}
+		[a,b] &:= \{ x \in \R : a \leq x \leq b \}\\
+		(a,b) &:= \{ x \in \R : a < x < b \}\\
+		(a,b] &:= \{ x \in \R : a < x \leq b \}\\
+		[a,b) &:= \{ x \in \R : a \leq x < b \}
+	\end{align*}
+\end{bem}
+
+\subsection{Injektivität, Surjektivität und Bijektivität}
+
+\begin{defn}
+Seien $ X,Y $ Mengen und sei $ f : X \to Y $. Dann heißt $ f $:
+\begin{itemize}
+	\item injektiv, falls für alle $ x_1, x_2 \in X : x_1 \neq x_2 $ die Bedingung $ f(x_1) \neq f(x_2) $ gilt.
+	\item surjektiv, falls für jedes $ y \in Y $ ein $ x \in X $ mit der Eigenschaft $ f(x) = y $ existiert.
+	\item bijektiv, falls $ f $ injektiv und surjektiv ist.
+\end{itemize}
+\end{defn}
+
+\begin{bsp}
+	Untersuche folgende Funktionen auf Bijektivität:
+	\begin{itemize}
+		\item $ f : \R \to \R, f(x) := x^2 $ für alle $ x \in \R $\\
+		surjektiv ? nein, $ -1 \neq f(x) $ für alle $ x \in \R $\\
+		injektiv ? nein, $ f(x) = f(-x) $ für alle $ x \in \R $
+		\item $ f : \R \to [0,+\infty), f(x) := x^2 $ für alle $ x \in \R $\\
+		surjektiv ? ja\\
+		injektiv ? nein (analog)
+		\item $ f : \R \setminus \{ 0 \} \to \R, f(x) = \frac{1}{x} $ für alle $ x \in \R $\\
+		surjektiv ? nein, 0 wird nicht angenommen\\
+		injektiv ? ja
+		\item $ f : \R \to R, f(x) = 2x + 3 $ für alle $ x \in \R $\\
+		bijektiv ? ja
+	\end{itemize}
+\end{bsp}
+
+\subsection{Umkehrfunktion}
+
+\begin{defn} 
+Seien $ X,Y $ Mengen und sei $ f : X \to Y $ bijektiv. Die Abbildung, die jedem $ y \in Y $ das eindeutige $ x \in X $ mit $ f(x) = y $ zuordnet, heißt die Umkehrabbildung von $ f $ und wird durch $ f^{-1} $ bezeichnet.
+\end{defn} 
+
+\begin{aufg}
+	Was ist die Umkehrfunktion von $ f : \R \to \R : f(x) := 2x + 3 $ ?
+\end{aufg}
+
+\subsection{Komposition}
+
+\begin{defn}
+Seien $ X,Y,Z $ Mengen, $ f : X \to Y $ und $ g : Y \to Z $. Dann heißt $ g \circ f : X \to Z $ mit $ ( g \circ f )(x) := g( f(x) ) $ für alle $ x \in X $ die Komposition von $ g $ und $ f $.
+\end{defn}
+
+\begin{bsp}
+	Seien $ f : \R \to \R : f(x) = 2x + 3 $ für alle $ x \in \R $ und $ g : \R \to \R : g(x) = x^2 $ für alle $ x \in \R $. Dann ist $ ( f \circ g )(x) = 2x^2 + 3 $ und $ ( g \circ f )(x) = (2x + 3)^2 $.
+\end{bsp}
+
+\subsection{Identische Abbildung}
+
+\begin{defn}
+Sei $ X $ eine Menge. Dann heißt die Abbildung $ \id_X : X \to X $ mit $ \id_X(x) := x $ für alle $ x \in X $ die identische Abbildung auf $ X $. Man schreibt auch häufig $ \id $, wenn $ X $ nicht angegeben werden muss.
+\end{defn}
+
+\begin{bem}
+	Seien $ X,Y $ Mengen und sei $ f : X \to Y $ bijektiv. Dann gilt
+	\begin{itemize}
+		\item $ f \circ f^{-1} = \id_Y $,
+		\item $ f^{-1} \circ f = \id_X $.
+	\end{itemize}
+\end{bem} 
+
+\section{Vereinigung und Durchschnitt einer indexierten Mengenfamilie}
+
+\begin{defn}
+Seien $ I,X $ Mengen und sei $ A : I \to 2^X $. Man schreibt auch in diesem Fall $ A_i $ statt $ A(i) $ für $ i \in I $, $ (A_i)_{i \in I} $ ist eine Familie (Schar) von Teilmengen von $ X $.
+
+Für die Familie $ (A_i)_{i \in I} $ definiert man
+\begin{align*}
+	\text{den Durchschnitt} && \bigcap_{i \in I} A_i &:= \{ x \in X : x \in A_i \:\text{für alle}\: i \in I \},\\
+	\text{die Vereinigung} && \bigcup_{i \in I} A_i &:= \{ x \in X : x \in A_i \:\text{für ein}\: i \in I \}.
+\end{align*}
+\end{defn} 
+
+\begin{bsp}
+	Sei $ \alpha \in (0,\pi) $ und $ v_0 > 0 $ ($ \nearrow $ Abb. 3). $ K_\alpha $ ist die Flugbahn beim Auswurf eines Objekts mit der Anfangsgeschwindigkeit $ v_0 $ unter dem Winkel $ \alpha $ zu Erde.
+	\begin{gather*}
+		K_\alpha := \{ (x,y) \in R^2 : x = \cos(\alpha)t, y = \sin(\alpha)t - \frac{gt^2}{2}, y \geq 0, t \geq 0 \}\\
+		( K_\alpha )_{\alpha \in (0,\pi)}\\
+		\bigcap_{\alpha \in (0,\pi)} K_\alpha = \{ (0,0) \}\\
+		\bigcup_{\alpha \in (0,\pi)} K_\alpha = \text{alle Werte unter der Parabel ($ \nearrow $ Abb. 4)}
+	\end{gather*}
+\end{bsp}
+
+\section{Summen und Produkte}
+
+\begin{defn} 
+Eine Menge $ X $ heißt endlich, falls $ X = \emptyset $ oder falls eine bijektive Abbildung von $ \is{1}{n} $ nach $ X $ existiert mit $ n \in \N $. Der Wert $ n $ heißt die Anzahl der Elemente (Kardinalität) von $ X $ und wird durch $ |X| $ bezeichnet. Man setzt die Kardinalität von $ \emptyset $ gleich 0. Bei einer unendlichen Mengen $X$ setzt man $|X| = \infty$. 
+\end{defn} 
+
+\begin{bem}
+$ |X| $ ist wohl definiert, d.h. eine Menge kann nicht zwei unterschiedliche Kardinalitäten haben.
+\end{bem} 
+
+\begin{defn}
+Sei $ X $ eine nichtleere endliche Menge. Dann kann $ X $ als $ X = \is{x_1}{x_n} $ dargestellt werden mit  $ x_i \neq x_j \Leftrightarrow i \neq j $ für alle $ i,j \in \is{1}{n} $.
+
+Für eine Abbildung $ f : X \to \R $ definiert man
+\begin{align*}
+	\sum\limits_{x \in X} f(x) &:= f(x_1) + \ldots + f(x_n),
+\\
+	\prod\limits_{x \in X} f(x) &:= f(x_1) \cdot \ldots \cdot f(x_n).
+\end{align*}
+Im Fall $ X = \emptyset $ definiert man für $ f : X \to \R $ und $ \sum\limits_{x \in X} f(x) = 0 $ und $ \prod\limits_{x \in X} f(x) = 1 $.
+
+In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ der \emph{Summand} und im Produkt $\prod\limits_{x \in X} f(x)$ heißt $f(x)$ der \emph{Faktor}.  
+\end{defn}
+
+\begin{bem} 
+	Die Summe und das Produkt über eine Menge $X$ sind wohldefiniert: die beiden Werte sind von der Nummerierung $x_1,\ldots,x_n$ der Elemente von $X$ unabhängig. Das liegt daran, dass $+$ und $\cdot$ beide kommutative Operationen sind. 
+\end{bem} 
+
+
+\begin{bem}
+	$\sum\limits_{i=a}^b$ benutzt man als eine kurze Schreibweise für $\sum\limits_{i \in \{a,\ldots,b\}}$. 
+\end{bem} 
+
+\begin{bsp}
+	Für jedes $n \in \N$ gilt $S:=\sum_{i=1}^n i = \frac{1}{2} n (n+1).$ Die Abbildung $i \mapsto n+1 - i$ ist eine Bijektion von $\{1,\ldots,n\}$ nach $\{1,\ldots,n\}$. Daher gilt  $S = \sum_{i=1}^n (n+1 - i)$. Daraus ergibt sich 
+	\[
+		2 S = S +  S = \sum_{i=1}^n i + \sum_{i=1}^n (n+1 - i) = \sum_{i=1}^n ( i + n + 1 -i) = \sum_{i=1}^n (n+1) = n (n+1). 
+	\]
+	Das ergibt die gewünschte Darstellung $S = \frac{1}{2} n (n+1)$. 
+\end{bsp} 
+
+
+\section{Tupel und Kreuzprodukt}
+
+\begin{defn}[Paare und das Kreuzprodukt] 
+Für beliebige Objekte $ a,b $ kann man das \emph{(geordnete) Paar} $ (a,b) $ definieren. Das Paar $(a,b)$ besteht aus der ersten Komponente $a$ und der zweiten Komponente $b$. 
+Die Gleichheit $ (a,b) = (c,d) $ von Paaren wird durch die Gleichheit $ a=c $ und $ b=d $ der jeweiligen Komponenten definiert.  Für Mengen $ A,B $ definiert man das \emph{Kreuzprodukt} (wird auch das \emph{kartesische Produkt} genannt) $ A \times B $ als die Menge
+\[
+A \times B := \{ (a,b) \,:\, a \in A, \ b \in B \}
+\]
+aller Paare bei denen die erste Komponente in $A$ und die zweite Komponente in $B$ ist. 
+\end{defn} 
+
+\begin{defn}[Tupel und Kreuzprodukt] 
+	Komplett analog zu (geordneten) Paaren definiert man auch (geordnete) Tripel $(a,b,c)$, (geordnete) Quadrupel $(a,b,c)$ und noch allgemeiner (geordnete) $n$-Tupel $(x_1,\ldots,x_n)$ mit $n \in \N_0$. Dem entsprechend betrachtet man auch das Kreuzprodukt $A \times B \times C$ von drei Mengen, das Kreuzprodukt $A \times B \times C \times D$ von vier Mengen und allgemein auch das Kreuzprodukt 
+	\[
+		X_1 \times \ldots \times X_n := \{ (x_1,\ldots,x_n) \,:\, x_1 \in X_1, \ldots , x_n \in X_n \} 
+	\]
+	 von Mengen $ X_1,\ldots,X_n $.
+	 
+	 Das Element $ x_i $ mit $ i \in \is{1}{n} $ im $ n $-Tupel $ (x_1,\ldots,x_n) $ heißt die $ i $-te \emph{Komponente} des Tupels.
+	 
+Für eine Menge $ X $ führt man die Bezeichnung
+\begin{equation*}
+	X^n := \underbrace{X \times \ldots \times X}_{n \:\text{mal}} = \{ (x_1,\ldots,x_n) : x_1,\ldots,x_n \in X \}
+\end{equation*}
+ein. 
+\end{defn} 
+
+
+\begin{aufg} Was stellen die folgenden Kreuzprodukte geometrisch dar? Zeichnen Sie diese Mengen:
+	\begin{itemize}
+		\item $ [0,1] \times [0,2] $, $ \{ 0 \} \times [0,2] $  und $ \{ 0,1 \} \times \{ 0,2 \} $ 
+		\item $ [0,1]^3 $, $ [0,1]^2 \times \{ 0 \} $, $ [0,1]^2 \times \{ 1 \} $  und $ \{ 0 \}^2 \times [0,1] $. 
+	\end{itemize}
+\end{aufg}
+
+\section{Prädikate und Quantoren}
+
+
+\begin{defn}
+Sei $ X $ Menge. Dann heißt $ P : X \to \{ \text{falsch},\text{wahr} \} $ \emph{Prädikat} auf $ X $. 
+\end{defn} 
+
+\begin{bem}
+	Informell beschrieben ist ein Prädikat:
+	\begin{itemize}
+		\item  eine Aussage mit einer Variablen $x$ , die man mit Werten aus dem vorgegeben Bereich  $X$ belegen kann. Dabei hängt im Allgemeinen der Wahrheitswert der Aussage von der Wahl von $x$ ab. 
+		\item eine Eigenschaft, die für ein variables $x \in X$ erfüllt oder nicht erfüllt ist. 
+	\end{itemize} 
+\end{bem}
+
+\begin{bsp}
+$ P : \N \to \{ \text{falsch},\text{wahr} \}$ mit $P(k) := $ \textquote{$ k(k+1) $ ist durch $3$ teilbar}.
+\end{bsp} 
+
+\begin{bsp}
+$ P : \R^2 \to \{ \text{falsch},\text{wahr} \}$ mit $P(x,y) := $ \textquote{$ x^2 + y^2 \le 1 $}.
+\end{bsp} 
+
+\begin{bem} 
+	Für eine gegebene Menge $X$ hat man eine natürliche Bijektion zwischen der Menge $ \{ \text{falsch},\text{wahr} \}^X$ aller Prädikate auf $X$ und der Menge $2^X$ aller Teilmengen von $X$. Jedes Prädikat $P : X \to \{ \text{falsch},\text{wahr} \}$ erzeugt die Menge $\setcond{x \in X }{P(x)}$ und jede Menge $A \subseteq X$ erzeugt das Prädikat $P (x) :=$ \textquote{$x \in X$}.
+\end{bem} 
+
+
+\begin{defn}
+$ \forall\: x \in X : P(x) $ für ein Prädikat $ P $ auf eine Menge $ X $ steht für die Aussage \textquote{die Bedingung $ P(x) $ gilt für alle $ x \in X $.} $ \forall $ heißt das \emph{Allgemeinheitsquantor} (Bedeutung: für $ \forall $lle). \\[10pt]
+%
+$ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P(x) $ gilt für ein $ x \in X $.} $ \exists $ heißt \emph{Existenzquantor} (Bedeutung: es $ \exists $xistiert).
+\end{defn}
+
+\begin{bem}
+	Negierung von Aussagen:
+	\begin{enumerate}
+		\item $ \overline{\forall\: x \in X : P(x)} \Leftrightarrow \exists\: x \in X : \overline{P(x)} $
+		\item $ \overline{\exists\: x \in X : P(x)} \Leftrightarrow \forall\: x \in X : \overline{P(x)} $
+	\end{enumerate}
+\end{bem}
+
+
+\begin{bem}
+	$ \forall $ und $ \exists $ lassen sich kombinieren. Seien $X, Y$ Mengen. Wenn man ein Prädikat $ P $ auf $ X \times Y $ hat, so kann man dafür die Aussagen wie 
+	\[
+		 \forall x \in X \,\exists\: y \in Y : P(x,y), 
+	\]
+	und
+	\[\exists x \in X  \forall y \in Y : P(x,y) 
+	\]
+	usw. einführen. 
+\end{bem}
+
+
+\begin{bem}
+	In vorigen Bemerkung ist die Reihenfolge des Quantifizierens relevant. Sei $X$ eine Menge von  Personen und $A$ eine Menge von Adressen im Stadtteil Sandow. Die Aussage 
+	\[
+		\forall x \in X \, \exists a \in A \, :\, x \ \text{wohnt unter der Adresse} \  a .
+	\]
+	lautet, dass alle Personen aus $X$ irgendwo in Sandow wohnen. Die Aussage 
+	\[
+		\exists a \in A \, \forall x \in X \,:\, x \ \text{wohnt unter der Adresse} \ a.
+	\]
+	lautet dagegen, dass alle Personen aus $X$ unter einer und der selben Adresse in Sandow wohnen (z.B. als Wohngemeinschaft). Man sieht, die letztere Aussage ist eine stärkere Bedingung. 
+\end{bem} 
+
+\begin{bsp}
+	Hier ein Beispiel einer Definition aus der Analysis, die man kompakt mit Quantoren und Prädikaten einführen kann. 
+	
+	Sei $ (a_n)_{n \in \N} $ Folge reeller Zahlen (mit anderen Worten: $ a : \N \to \R $) und sei $ \alpha \in \R $. Dann heißt $ \alpha $ Grenzwert von $ (a_n)_{n \in \N} $, falls das Folgende gilt:
+	\begin{equation*}
+		\forall\: \epsilon \in \R_{>0} \:\exists\: N \in \R \:\forall\: n \in \N: \left( (n \geq N) \Rightarrow (|a_n - \alpha| < \epsilon) \right)
+	\end{equation*}
+\end{bsp} 
+
+\section{Relationen}
+
+\subsection{Relation}
+
+\begin{defn}
+Seien $ X,Y $ Mengen. Dann heißt eine Teilmenge $ R $ von $ X \times Y $ eine (binäre) \emph{Relation} zwischen $ X $ und $ Y $. Bei $X = Y$, heßt $R$ eine (binäre) Relation auf $X$. 
+\end{defn}
+
+\begin{bem}
+	Da man Prädikate auf $X \times Y$ mit Teilmengen von $X \times Y$ identifizieren kann, lassen sich Relationen auch als Prädikate auf $X \times Y$ auffassen. 
+\end{bem} 
+
+\begin{bem}
+Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so schreibt man $ x \, R \, y $. 
+\end{bem}
+
+\begin{bsp}\ % hack to force itemize to new line
+\begin{itemize}
+	\item $ X $ - Menge von Fahrzeugen\\
+	$ Y $ - Menge von Features von Fahrzeugen
+
+	\begin{tabular}{l|c|c|c|c}
+		& Ersatzrad & Radio & Navi & Automatik \\
+		\hline
+		$ f_1 $ & 1 & 1 & 1 & 1 \\
+		$ f_2 $ & 1 & 1 & 1 & 0 \\
+		$ f_3 $ & 0 & 0 & 1 & 1 \\
+		$ f_4 $ & 0 & 1 & 1 & 0
+	\end{tabular}
+	\item $ \leq, <, \geq, > $ auf $ \R $
+	\item $ \subseteq $ als Relation auf $ 2^X $ für eine Menge $ X $
+	\item Für $ a,b \in \N $ schreibt man $ a | b $, wenn $ b $ durch $ a $ ohne Rest teilbar ist.
+\end{itemize}
+\end{bsp}
+
+\subsection{Äquivalenzrelation}
+
+\begin{defn}
+Sei $ X $ Menge und $ \sim $ eine Relation auf $ X $. Dann heißt $ \sim $ eine Äquivalenzrelation, falls:
+\begin{enumerate}
+	\item $ \sim $ ist \emph{reflexiv}, d.h. $ x \sim x $ für alle $ x \in X $.
+	\item $ \sim $ ist \emph{symmetrisch}, d.h. $ x \sim y $ ist äquivalent zu $ y \sim x $ für alle $ x \in X $.
+	\item $ \sim $ ist \emph{transitiv}, d.h. aus $ x \sim y $ und $ y \sim z $ folgt $ x \sim z $ für alle $ x,y,z \in X $.
+\end{enumerate}
+Für eine Äquivalenzrelation $ \sim $ auf einer Menge $ X $ und ein $ x \in X $ heißt
+\begin{equation*}
+	[x]_\sim := \{ y \in X : x \sim y \}
+\end{equation*}
+die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklassen von $ \sim $ ist
+\begin{equation*}
+	X/{\sim} := \{ [x]_\sim : x \in X \}. % {\sim} supresses space between to "/"
+\end{equation*}
+\end{defn} 
+
+\begin{bsp}\
+\begin{itemize}
+	\item Sei $ V $ endliche Menge und sei $ \binom{V}{2} := \{ \{ u,v \} : u,v \in V, u \neq v \} $. Das Paar $ (V,E) $ mit $ E \subseteq \binom{V}{2} $ heißt \emph{Graph} mit Kantenmenge $ V $ und Knotenmenge $ E $.
+	
+	$ G = (V,E), G = \{ 1,\ldots,6 \}, E = \{ \{ 1,2 \}, \{ 2,3 \}, \{ 3,4 \}, \{ 4,1 \}, \{ 1,3 \}, \{ 5,6 \} \} $
+	
+	Für $ a,b \in V $ heißt $ b $ von $ a $ aus \emph{erreichbar} (im Graphen $ G = (V,E) $), falls ein $ k \in \N_0 $ und Elemente $ u_0,\ldots,u_k \in V $ existieren mit $ u_0 = a $, $ u_k = b $ und $ \{ u_i,u_{i+1} \} \in E $ für alle $ i \in \N_0 $ mit $ i < k $.
+	
+	Die Erreichbarkeit ist eine Äquivalenzklasse auf $ V $.	Die Äquivalenzklassen (Zusammenhangskomponenten) für dieses Beispiel sind $ \{ 1,2,3,4 \} $ und $ \{ 5,6 \} $.
+	
+	\item Sei $ m \in \N $. Für $ a,b \in \Z $ sagt man, dass $ a $ kongruent zu $ b $ modulo $ m $ ist, falls $ a-b \in m\Z $, wobei $ m\Z := \{ mz : z \in Z \} $.
+	
+	Schreibweise: $ a \equiv b \mod{m} $.
+	
+	Die Kongruenz modulo $ m $ ist eine Äquivalenzrelation auf $ \Z $.
+	
+	\item Sei $ \sim $ Relation auf $ \Z \times \N $, definiert durch $ (a,b) \sim (c,d) $ für $ a,c \in \Z, b,d \in \N $, wenn $ ad = bc $ gilt.
+	
+	Diese Relation ist eine Äquivalenzrelation (Aufgabe).
+	
+	D.h. jede rationale Zahl ist eine Äquivalenzklasse von diesem $ \sim $.
+\end{itemize}
+\end{bsp}
+
+\subsection{Partialordnungen}
+
+\begin{defn}
+	Eine Menge $X$ mit einer binären Relation $\succeq$ darauf heißt Poset (partiell geordnete Menge), wenn für alle $x,y,z \in X$ folgendes gilt: 
+	\begin{itemize}
+		\item $x \preceq x$ (Reflexivität)
+		\item $x \preceq y, \ y \preceq z$ $\Rightarrow$ $x \preceq z$ (Transitivität). 
+		\item $x \preceq y, \ y \preceq x$ $\Rightarrow$ $x = y$ (Antisymmetrie). 
+	\end{itemize} 
+	Die binäre Relation $\succeq$ heißt in diesem Fall die partielle Ordnung auf $X$. 
+\end{defn} 
+
+\begin{defn}
+	Wenn für ein Poset $(X,\succeq)$ für alle $x, y \in X$, die Bedingung $x \succeq y$ oder die Bedingung $y \succeq x$ erfüllt ist, so nennt  man $(X,\succeq)$ eine total geordnete Menge und $\succeq$ eine totale Ordnung auf $X$. 
+\end{defn} 
+
+\begin{bsp}\
+	\begin{itemize}
+		\item $2^X$ mit Inklusion. 
+		\item $\N$ mit Teilbarkeit. 
+		\item Substring-Relation auf Strings. 
+	\end{itemize} 
+\end{bsp} 
+
+
+\section{Beweisansätze} 
+
+\subsection{Vollständige Induktion} 
+
+\begin{thm}
+	Sei $P$ ein Prädikat auf $\N$. Dann sind die folgenden Bedingungen äquivalent: 
+	\begin{enuma}
+			\item $P(n)$ gilt für alle $n \in \N$. 
+			\item  $P(1)$ gilt und, aus $P(n)$ folgt $P(n+1)$, für alle $n \in \N$. 
+	\end{enuma} 
+\end{thm} 
+
+\begin{bsp}
+	Formel für $\sum_{i=1}^n i$. TODO
+\end{bsp} 
+
+\begin{bsp}
+	Formel für $\sum_{i=1}^n q^i$. 
+\end{bsp} 
+
+\begin{bsp}
+	Formel für $\sum_{i=1}^n i q^i$. 
+\end{bsp} 
+
+\begin{bsp}
+	$n \le 2^n$ für alle $n \in \N$. 
+\end{bsp} 
+
+
+\begin{bem}
+	$P(1)$ heißt Induktionsanfang. Die Annahme, $P(n)$ sei erfüllt, heißt die Induktionsvorraussetzung. Die Herleitung von $P(n+1)$ aus $P(n)$ heißt der Induktionsschritt. 
+\end{bem} 
+
+\begin{bem}
+	Ähnliches Prinzip bei Prädikaten auf $\N_0$ (Induktionsanfang $0$) und bei Prädikaten auf $\Z_{\ge k} : = \setcond{z \in \Z}{z \ge k}$ (Induktionsanfang $k$). 
+\end{bem} 
+
+\begin{thm}
+	Sei $P$ ein Prädikat auf  $\N$. Dann sind die folgenden Bedingungen äquivalent: 
+	\begin{enuma}
+			\item $P(n)$ gilt für alle $n \in \N$. 
+			\item $P(1)$ gilt und, aus der Gültigkeit aller Aussagen $P(i)$ mit $i \in \{1,\ldots,n\}$ folgt die Gültigkeit von $P(n+1)$, für alle $n \in \N$. 
+	\end{enuma} 
+\end{thm} 
+
+\begin{bsp} 
+	Wir behandeln hier die Existenzaussage im Fundamentalsatz der Arithmetik. 
+	
+	Jede Zahl $n \in \N$ ist Produkt endlich vieler Primzahlen, das bedeutet: $n$ besitzt eine Darstellung $n = \prod_{i=1}^s p_i$ mit $s \in \N_0$, bei der $p_1,\ldots,p_s$ Primzahlen sind. 
+	
+	(Man beachte: bei $s=0$ hat man das Produkt von $0$ Zahlen, also  die $1$,  und bei $s=1$ das Produkt von einer Primzahl $p_1$). 
+	
+	Beweis durch Induktion über $n \in \N$. Für $n \le 2$ stimmt die Aussage offensichtlich. 
+	Sei $n \ge 3$ und sei jede Zahl von $1$ bis $n-1$ Produkt endlich vieler Primzahlen. Ist $n$ Primzahl, so ist $n$ Produkt einer Primzahl. Ansonsten hat $n$ einen Teiler $a \in \N$ mit $2 \le a \le n-1$. Wir können als $n = a b$ schreiben, mit $b \in \N$, und mit $b \le n / a \le n /2 \le n-1$. Die Anwendung der Induktionsvoraussetzung zu $a$ und $b$ ergibt, dass $a$ und $b$ beide Produkte von endlich vielen Primzahlen sind. Somit ist auch $n$ Produkt von endlich vielen Primzahlen. 
+\end{bsp} 
+
+\subsection{Indirekter Beweis und Widerspruchsbeweis}
+
+\begin{bem}
+		Die booleschen Formeln 
+		\begin{itemize} 
+			\item $a \to b$
+			\item $\overline{b} \to \overline{a}$ 
+			\item $(a \wedge \overline{b}) \to (c \wedge \overline{c})$. 
+		\end{itemize} 
+		sind äquivalent. Anstatt $a \to b$ zu zeigen, kann man also $\overline{b} \to \overline{a}$  oder $(a \wedge \overline{b} \to (c \vee \overline{c})$ zeigen. Das führt zu einem indirekten Beweis bzw. einem Widerspruchsbeweis. 
+\end{bem} 
+
+
+\section{Algebraische Strukturen  Ring und Körper} 
+
+\subsection{Kommutativer Ring} 
+
+\begin{bem}
+	Genau so wie Bezeichnungen $a,b,c,\cdots$ in verschiedenen Kontexten verschiedene Bedeutung haben, können in Mathematik auch Operationen $+,-$ in verschiedenen Kontexten (und verschiedenen Strukturen) verschiedene Bezeichnung haben. 
+\end{bem}
+
+\begin{defn}
+	Eine Menge $R$ mit zwei binären Verknünfungen $+, -$ und zwei verschiedenen ausgezeichneten Elementen $0, 1 \in R$ heißt kommutativer Ring, wenn für alle $a,b,c \in R$ Folgendes erfüllt ist: 
+	\begin{itemize}
+		\item $a + b =b +a$ und $a \cdot b = b \cdot a$ 
+		\item $a + 0 = a$ und $a \cdot 1 = a$ 
+		\item $(a+b)+c = a+(b+c)$ und $a \cdot (b \cdot c) = (a \cdot b) \cdot c$
+		\item Es gibt ein durch $a$ eindeutig bestimmtest Element $a \in R$ mit $a+(-a)=0$
+		\item $a \cdot (b+c) = a \cdot b + a \cdot c$
+	\end{itemize} 
+\end{defn}
+
+\begin{aufg} 
+	Ist $R$ kommutativer Ring mit $1$, dann gilt $a \cdot 0=0$ für alle $a \in R$. Zeigen Sie das. 
+\end{aufg} 
+
+\begin{bsp}
+\begin{itemize}
+		\item $\N$ kein Ring. 
+		\item $\Z$ ein kommutativer Ring. 
+		\item $\Q$ ein kommutativer Ring. 
+		\item $\R$ ein kommutativer Ring. 
+\end{itemize} 
+\end{bsp} 
+
+\subsection{Körper} 
+
+\begin{defn}
+	Eine Menge $K$ mit zwei binären Verknüpfungen $+$ und $\cdot$ heißt Körper, wenn $K$ bzgl. $+$ und $\cdot$ kommutativer Ring ist und darüber hinaus für jedes $a \in K \setminus \{0\}$ ein eindeutiges Element $a^{-1} \in K$ existiert, für welches $a \cdot a^{-1}  = 1$ gilt. 
+\end{defn} 
+
+\begin{bsp}
+\begin{itemize} 
+\end{itemize} 
+\end{bsp} 
+
+\begin{defn}
+	Ein Körper $K$ heißt algebraisch abgeschlossen, wenn für jede Wahl von $d \in \N$ und alle $a_d \in K \setminus \{0\}, a_{d-1},\ldots,a_0 \in K$ die Gleichung 
+	\[
+	a_d x^d + a_{d-1} x^{d-1} + \cdots + a_0 = 0
+	\]
+	mindestens eine Lösung $x$ aus $K$ besitzt. Eine Gleichung wie oben nennt man Polynomgleichung vom Grad $d$ mit Koeffizienten in $K$. 
+\end{defn} 
+
+\begin{bsp}
+	\begin{itemize} 
+		\item $\Q$ ist nicht algebraisch abgeschlossen, vgl. die Gleichung $x^2 - 2 = 0$, mit den Koeffizienten $1, -2 \in \Q$, die keine Lösung $x$ in $\Q$ besitzt. 
+		\item $\R$ ist nicht algebraisch abgeschlossen, vgl. die Gleichung $x^2 + 1 = 0$ mit den Koeffizienten $1, 1 \in \R$, die keine Lösung $x$ in $\R$ besitzt. 
+	\end{itemize} 
+\end{bsp} 
+
+\begin{defn}
+	Ist $C$ ein Körper und $K$ eine Teilmenge von $C$ derart, dass  sich die binären Verknüpfungen von $C$  auf $K$ einschränken lassen und dass $K$ bzgl. dieser Einschränkungen ebenfalls ein Körper ist. Dann nennt man $K$ einen Unterkörper von $C$ und man nennt $C$ eine Erweiterung des Körpers $K$. 
+\end{defn} 
+
+\begin{bsp}
+	\begin{itemize}
+		\item $\R$ ist Erweiterung des Körpers $\Q$. 
+	\end{itemize} 
+\end{bsp} 
+
+\begin{thm}
+	Jeder Körper besitzt eine algebraisch abgeschlossene Körpererweiterung. 	
+\end{thm} 
+
+\begin{bem}
+	Es gilt sogar eine stärkere Aussage: jeder Körper 
+\end{bem} 
+
+
+\subsection{Der Körper der komplexen Zahlen} 
+
+\begin{defn}
+	imaginäre Einheit, $\C$, Realteil, Imaginärteil, Konjugation, Betrag. 
+\end{defn} 
+
+\begin{thm}
+		$\C$ ist ein algebraisch abgeschlossener Körper. 
+\end{thm}
+
+\begin{bem}
+	Was ist Kosinus und Sinus? Was sind Radianten und Grade? 
+\end{bem} 
+
+\begin{thm}
+	Jede komplexe Zahl $z \in \C$ besitzt eine Darstellung als 
+	\[
+		z = \rho ( \cos \phi + i \sin \phi )
+	\]
+	mit $\rho \in \R_{\ge 0}$ und $\phi \in R$. Hierbei gilt $\rho = |z|$. Bei $z \ne 0$, ist $\phi$ eindeutig durch $z$ bis auf das addieren eines Vielfachen von $2 \pi$ definiert. 
+\end{thm}
+
+\begin{defn}
+	Wir erweitern die Exponentialfunktion $e^x$ auf $\R$ auf den Bereich $\C$ der komplexen Zahlen, in dem wir 
+	\[
+		e^{x+ i y} := e^x ( \cos y + i \sin y)
+	\]
+	für alle $x, y \in \R$ festlegen. (Insbesondere, $e^{i y} = \cos y + i \sin y$). 
+\end{defn} 
+
+\begin{bem}
+	Jede Zahl $z \in \C$ besitzt eine Darstellung $z = \rho e^{i \phi}$ mit $\rho = |z|$ und $\phi \in \R$. 
+\end{bem} 
+
+\section{Asymptotische Notation}
+
+\subsection{O, $\Omega$ und $\Theta$}
+
+\begin{bem}
+Bei der Analyse von Algorithmen redet man oft von der Größenordnung von Funktionen. Eine praktische Ausdrucksweise ist die sogenannte asymptotische Notation.
+\end{bem} 
+
+\begin{defn} 
+Seien $f, g: \N \to \R$ Funktionen. 
+Man schreibt $f(n) = O(g(n))$, wenn eine Konstante $c>0$ und ein $n_0 \in \N$ existiert, so dass $|f(n)| \le c |g(n)|$ für alle $n \ge n_0$ gilt. 
+\end{defn} 
+
+\begin{bem} 
+Die Bezeichnung $f(n)=O(g(n))$ steht für `$f(n)$ hat die Größenordnung höchstens $g(n)$ bis auf eine mutliplikative Konstante' und man sagt \glqq$f(n)$ ist in Groß-O von $g(n)$\grqq. Die Schreibweise $f(n) = O(g(n))$ ist streng genommen nicht ganz korrekt, in der Literatur aber sehr verbreitet. Die korrekte Schreibweise wäre $f(n) \in O(g(n))$, d.h., $f(n)$ liegt in der Menge aller Funktionen der Größenordnung höchstens $g(n)$. In der Literatur verwendet man oft $O(g(n))$ als eine Schreibweise für eine anonyme Funktion der Größenordnung höchstens $g(n)$. In diesem Kurs spielen die Beträge in der Definition von $O(g(n))$ in der Regel keine Rolle, weil wir fast ausschließlich nichtnegative Funktionen diskutieren. 
+\end{bem} 
+
+\begin{defn}
+Man schreibt $f(n) = \Omega(g(n))$, wenn eine Konstante $c>0$ und ein $n_0 \in \N$ existieren, so dass $|f(n)| \ge c |g(n)|$ für alle $n \ge n_0$ gilt. In diesem Fall: Die Größenordnung von $f(n)$ ist mindestens $g(n)$, bis auf eine multiplikative Konstante und man sagt \glqq$f(n)$ ist in Groß-Omega von $g(n)$\grqq. 
+\end{defn} 
+
+\begin{defn} 
+Man schreibt $f(n) = \Theta(g(n))$, wenn sowohl $f(n) = O(g(n))$ als auch$f(n) = \Omega(g(n))$ gelten.
+\end{defn} 
+
+\begin{bem}
+In diesem Fall: Die Größenordnung von $f(n)$ ist genau $g(n)$ bis auf eine multiplikative Konstante, und man sagt \glqq$f(n)$ ist in Groß-Theta von $g(n)$\grqq.
+\end{bem} 
+
+\begin{bem}
+Die asymptotischen Notationen $O(g(n))$, $\Omega(g(n))$ und $\Theta(g(n))$ (und ihre weiteren Varianten) werden oft auch Landau-Symbole genannt.
+\end{bem} 
+
+\begin{bsp}
+	Sei $f : \N \to \R$ definiert durch $f(n):=\sqrt{2 n + 5 } - 10$. Es gilt $f(n) = \Theta(\sqrt{n})$, denn einerseits ist $\sqrt{2n + 5} - 10 \le \sqrt{2n + 5} \le \sqrt{ 7n} = \sqrt{7} \sqrt{n}$ für alle $n \in \N$, woraus $f(n) = O(\sqrt{n})$ folgt. Andererseits ist $\sqrt{2n + 5} - 10 \ge \sqrt{n} - 10 \ge \frac{1}{2} \sqrt{n}$ für alle $n \ge 400$, woraus $f(n) = \Omega(\sqrt{n})$ folgt.  
+\end{bsp}
+
+\begin{aufg}
+	Sind die folgenden asymptotischen Abschätzungen richtig?
+	\begin{itemize}
+		\item $n! = O(n^n)$
+		\item $n^n = \Omega(n!)$
+		\item $n! = O(2^n)$
+		\item $n^n = O(n!)$
+	\end{itemize}
+\end{aufg}
+
+
+\begin{bem}
+	Seien $f_1,f_2,g_1,g_2 : \N \to \R$ Funktionen, wobei $g_1,g_2$ nicht-negativ sind und $f_i(n) = O(g_i(n))$, für $i=1,2$, vorausgesetzt wird. Dann gilt
+	\[
+	f_1(n) + f_2(n) = O(g_1(n)+g_2(n)) = O(\max\{g_1(n),g_2(n)\}),
+	\]
+	und
+	\[
+	f_1(n) \cdot f_2(n) = O(g_1(n)\cdot g_2(n)).
+	\]
+\end{bem}
+
+\subsection{$o$ und $\omega$}
+
+\begin{defn} 
+Bei $g : \N \to \R$ steht $o(f(n))$ für die Menge aller Funktionen $f: \N \to \R$ mit der Eigenschaft, dass für jedes $c>0$ ein $n_0 \in \N$ existiert derart, dass $|f(n)| \le c |g(n)|$ für alle $n \in \N$ mit $n \ge n_0$ erfüllt ist. In der Literatur schreibt man oft $f(n) = o(g(n))$ an der Stelle von $f(n) \in o(g(n))$. 
+\end{defn} 
+
+\begin{defn}
+Die Bezeichnung $\omega(g(n))$ steht für die Menge aller Funktionen $f : \N \to \R$, für welche für alle $c>0$ ein $n_0 \in \N$ existiert derart, dass $|f(n)| \ge c|g(n)|$ für alle $n \in \N$ mit $n \ge n_0$ erfüllt ist. 
+\end{defn} 

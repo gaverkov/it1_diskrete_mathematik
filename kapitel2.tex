@@ -1,0 +1,57 @@
+\chapter{Kombinatorik} 
+
+\section{Basics} 
+
+\begin{lem}
+	Seien $A, B$ endliche disjunkte Mengen. Dann ist $|A \cupdot B| = |A| + |B|$. 
+\end{lem} 
+
+\begin{lem}
+	Seien $A_1,\ldots,A_n$ endliche paarweise disjunkte Mengen. Dann ist 
+	\[
+		\left| \bigcup_{i=1}^n A_i \right| = \sum_{i=1}^n |A_i|. 
+	\]
+\end{lem} 
+
+\begin{lem}
+	Seien $A$ und $B$ endliche Mengen. Dann gilt 
+	\[
+		|A \cup B| = |A| + |B| - |A \cap B|. 
+	\]
+\end{lem}
+
+\begin{lem}
+	Seien $A$ und $B$ endliche Menge. Dann gilt: 
+	\[
+		|A \times B| = |A| \cdot |B|. 
+	\]
+\end{lem}
+ 
+
+\section{$X^k$ und $B^A$} 
+
+
+\begin{thm}
+	Sei $X$ eine endliche Menge mit $n$ Elementen und sei $k \in \N$. Dann hat die Menge $X^k$ genau $n^k$ Elemente (d.h., $|X^k| = |X|^k)$. 
+\end{thm} 
+\begin{proof} 
+	Die Formel ist trivial für $n=0$ (d.h., $X = \emptyset$). Wir nehmen also $n \in \N$ an. Wir beweisen nun die Behauptung durch Induktion über $k$. 
+	
+	Die Formel ist trivial für $k = 1$: es gilt $|X^1| = |X|$. Sei $k \ge 2$ und sei die Formel $|X^{k-1}| = n^{k-1}$ bereits verifiziert. 
+	
+	Sei $X = \{x_1,\ldots,x_n\}$ mit paarweise verschiedenen $X$. Das letzte Element eines $k$-Tupels aus $X^k$ ist eines der $n$ Elemente $x_1,\ldots,x_n$. Daher ist die Menge $X^k$ disjukte Vereinigung der $n$ Mengen 
+	$X^{k-1} \times \{x_i\}$
+	mit $i=1,\ldots,n$. Für jede der $n$ Mengen $X^{k-1} \times \{x_i\}$ ist die Abbildung von $X^{k-1} \times \{x_i\}$ nach $X^{k-1}$, welche die letzte (fixierte) Komponente $x_i$ weglässt, eine Bijektion. Somit hat $X^{k-1} \times \{x_i\}$ genauso viele Elemente wie $X^{k-1}$. Wir haben also $X^k$ als die Disjunkte Vereinigung von $n$ Mengen dargestellt, die jeweils $n^{k-1}$ Elemente haben. Es folgt, dass $X^k$ genau $n \times n^{k-1} = n^k$ Elemente hat. 
+\end{proof} 
+
+\begin{thm}
+	Seien $A,B $ endliche Mengen. Dann gilt $|B^A| = |B|^{|A|}$. 
+\end{thm}
+\begin{proof}
+	Die Formel ist trivial, wenn $A$ oder $B$ leer ist. Seien $A$ und $B$ nicht leer. Sei Sei $|A| = k$ und $A = \{a_1,\ldots,a_k\}$. Dann ist die Abbildung $B^A \to B^k$, die jedem $f : A \to B$ das Tupel $(f(a_1),\ldots,f(a_k))$ eine Bijektion. Somit gilt 
+	$|B^A | = |B^k| = |B|^k = |B|^{|A|}$.  
+\end{proof} 
+
+\section{$\binom{X}{k}$}
+
+\section{Zählen der bijektiven und injektiven Abbildungen} 
