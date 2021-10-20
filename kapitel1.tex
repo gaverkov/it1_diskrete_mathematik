@@ -105,9 +105,13 @@ Eine sehr verbreite Weise, Mengen zu definieren, ist durch Bedingungen, nach dem
 $ \{ AUSDRUCK : BEDINGUNG \} $. Der Doppelpunkt bedeutet \glqq sodass\grqq, \glqq mit der Bedingung\grqq. In manchen Quellen wird ein Strich an der Stelle des Doppelpunktes benutzt. 
 \end{bem} 
 
-\begin{aufg}
+\begin{aufg}\ 
 \begin{itemize}
-\item Welche der Zahlen $1,\ldots, 100$ sind Elemente der Menge $ \{ k^2 : k \in \N, k \: \text{ungerade} \} $?  
+\item Bestimmen Sie, welche der Zahlen $1,\ldots, 100$ Elemente der Menge 
+\[
+	 \{ k^2 : k \in \N, k \: \text{ungerade} \} 
+\]
+sind. 
 \item Wie viele Elemente hat die Menge $\setcond{x \in \R}{x^2- 5 x + 6} $? Welche Elemente sind es genau? 
 \end{itemize}
 \end{aufg}
@@ -132,20 +136,34 @@ Sei $ X $ eine Menge. Dann ist die Potenzmenge von $ X $ die Menge aller Teilmen
 \begin{bem}
 	Zahlenbereiche, die Sie evtl. aus der Schule schon kennen:
 \begin{itemize}
-\item[$ \N $] $ := \{ 1,2,3,\ldots \} $ natürliche Zahlen. Uns fehlt dort die Null, daher... 
+\item[$ \N $] $ := \{ 1,2,3,\ldots \} $ die Menge der natürlichen Zahlen. Uns fehlt dort die Null, daher... 
 \item[$ \N_0 $] $ := \{ 0,1,2,\ldots \} $. Hier können wir nicht beliebig subtrahieren, daher... 
-\item[$ \Z $] $ := \{ 0,1,-1,2,-2,\ldots \} $ ganze Zahlen. Hier können wir nicht beliebig dividieren, daher...
-\item[$ \Q $] $ := \{ \frac{p}{q} : p \in \Z, q \in \N \} $ rationale Zahlen. In dieser Menge gibt es ``Löcher'' , die man merkt, wenn man Geometrie oder Analysis macht, daher...
-\item[$ \R $] reelle Zahlen (saubere Definition etwas trickreich)
+\item[$ \Z $] $ := \{ 0,1,-1,2,-2,\ldots \} $ die Menge der ganzen Zahlen. Hier können wir nicht beliebig dividieren, daher...
+\item[$ \Q $] $ := \{ \frac{p}{q} : p \in \Z, q \in \N \} $ die Menge der rationalen Zahlen. In dieser Menge gibt es ``Löcher'' , die man merkt, wenn man Geometrie oder Analysis macht. Gemeint ist das Folgende: betrachtet man unendliche viele rationale Zahlen $a_1 \le a_2 \le a_3 \le \cdots $ und $ \cdots \le b_3 \le b_2 \le b_1$ mit $a_n \le b_n$ für jedes $n \in \N$, so gibt es nicht immer eine \underline{rationale} Zahl $x$ die $a_n \le x \le b_n$ für alle $n \in \N$ erfüllt. Informell: zwischen zwei Schranken $a_n$ und $b_n$, die sich mit jeder ``Iteration'' $n \in \N$ immer verbessert, wird nicht immer eine rationale Zahl eingefangen. In diesem Fall kann man von einem ``Loch'' spricht. Durch reelle Zahlen werden solche Löcher gestopft. 
+\item[$ \R $] die Menge der reellen Zahlen. Format einer reellen Zahl: Vorzeichen $\pm$ endlich viele Stellen vor dem Komma, unendlich viele Nachkommastellen. Wir benutzen gerne die Computer-Formatierung mit Punkt an der Stelle von Komma (weil man in Mathe die Kommas gerne für viele andere Zwecke benutzt). Beispiele: 
+\begin{itemize}
+	\item[] $0{.}00000\cdots$ ist die $0$, 
+	\item[] $1{.}00000 \cdots$ ist die $1$ 
+	\item[] $-0{.}99999 \cdots$ ist das selbe wie $-1{.}000 \cdots$ und ist die $-1$. 
+	\item[] $0{.}1\underbrace{0}_11\underbrace{00}_21 \underbrace{ 000}_3 1 \underbrace{0000}_41 \cdots $ ist eine reelle aber keine rationale Zahl. (Warum?)
+\end{itemize} 
 \item[$ \C $] komplexe Zahlen (werden demnächst diskutiert) 
 \end{itemize}
 \end{bem}
 
 \begin{bem}
-	Es gelten die Inklusionen. 
- $ \N \subseteq \N_0 \subseteq \Z \subseteq \Q \subseteq \R \subseteq \C $
- All diese Inklusionen sind natürlich strikt. 
+	Es gelten die strikten Inklusionen. 
+$ \N \subsetneq \N_0 \subsetneq \Z \subsetneq \Q \subsetneq \R \subsetneq \C $. 
  \end{bem} 
+
+\begin{bem}
+	Für Zahlenbereiche $B  = \Z$, $B= \Q$ sowie $B= \R$ und ein $a \in \R$ benutzen wir die Bezeichnungen 
+	\begin{align*}
+			B_{\ge a}&  := \setcond{x \in B}{x \ge a},  & & B_{>a} & := \setcond{x \in B}{x > a}, 
+			\\ B_{\le a} & := \setcond{x \in B}{x \le a}, & & B_{<a} & := \setcond{x \in B}{x < a}. 
+	\end{align*} 
+\end{bem} 
+
 
 \begin{bem}[Intervalle]
 	Seien $ a,b \in \R $ mit $ a \leq b $. Dann können Intervalle wie folgt definiert werden:
@@ -595,6 +613,16 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 	\end{itemize} 
 \end{bsp} 
 
+\begin{defn}
+	Für $n \in \N$ ist eine $n$-stellige Relation auf Mengen $X_1,\ldots,X_n$ eine Teilmenge $R \subseteq X_1 \times \cdots \times X_n$. 
+\end{defn} 
+
+\begin{bsp}
+	Betrachten wir eine Tabelle, in welcher die Besucher:innen eines Hotels durch die Angaben \textbf{Name, Zimmer, Checkin-Datum, Checkout-Datum} geführt werden. Ist $S$ die Menge aller Strings und $D$ die Menge aller Daten, so kann mann die Tabelle als eine $4$-stellige Relation  $R \subseteq S \times S \times D \times D$ auffassen. Die Bedingung $(p,z,d_1,d_2) \in R$, dass $(p,z,d_1,d_2)$ sich in der Relation $R$ befinden,  bedeutet, dass die Person $p$ am Tag $d_1$ im Zimmer $z$ untergebracht wurde und am Tag $d_2$ das Hotel verlassen hat. 
+	
+	Wie man an diesem Beispiel sieht, sind die Tabellen eine Möglichkeit Relationen $R$ durch eine Aufzählung (durch die Zeilen einer Tabelle) zu beschreiben. 
+\end{bsp} 
+
 
 \section{Beweisansätze} 
 
@@ -668,7 +696,10 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 \end{bem} 
 
 \begin{thm}
-	Für jedes $n \in \N$ gilt $\sum_{i=1}^n i = \frac{1}{2} n (n+1)$. 
+	Für jedes $n \in \N$ gilt 
+	\[
+		\sum_{i=1}^n i = \frac{1}{2} n (n+1). 
+	\]
 \end{thm} 
 \begin{proof} 
 		Das Prädikat mit dem wir uns in dieser Aussage befassen ist die Gleichung $$\sum_{i=1}^n i = \frac{1}{2} n (n+1)$$ die von einem variablen $n \in \N$ abhängig ist. 
@@ -757,9 +788,10 @@ Man entwickelt auch Mittel,  neue/eigene algebraische Strukturen anzulegen. Wenn
 
 \begin{bem}[Algebraische Struktur] 
 	Eine algebraische Struktur ist in der Regel eine Menge $A$, die mit einer oder mehreren Verknüpfungen ausgestattet ist. In den allermeisten Fällen sind die Verknüpfungen, die man betrachtet, binär: sie sind Abbildungen $\ast : A \times A \rightarrow A$.  Für solche Abbildungen schreibt man dann $a \ast b$ an der Stelle von $\ast(a,b)$. Sehr oft handelt es sich auch um die Verknüpfungen, für welche (zumindest) das Assoziativgesetz $a \ast (b \ast c) = (a \ast b) \ast c$ erfüllt ist. 
+\end{bem}	
 	
-	
-	Des Weiteren benutzt man oft zum Bezeichnen der Verknüpfungen (bzw. der Verknüpfung) einer algebraischen Struktur die Symbole $+$ (Plus) und $\cdot$ (Mal). Hierbei meint man dann die Plus-Operation bzw. die Mal-Operation innerhalb der gegebenen algebraischen Struktur $A$. Das heißt, diese Operationen müssen $+$ und/oder $\cdot$ innerhalb einer algebraische Struktur $A$ nicht unbedingt mit Operation $+$ und $\cdot$ innerhalb der Menge $\R$ der reellen Zahlen etwas zu tun haben. Das bedeutet:  genau so, wie Symbole $a,b,c,d,\ldots$ in Mathematik kontextabhängig sind (können verschiedene Bedeutung in verschiedenen Kontexten haben), sind auch die Bezeichnungen wie $+$ und $\cdot$ eigentlich kontextabhängig (bzw. Strukturabhängig) und können so, wie man es sich wünscht, eingeführt werden. Wenn man also $+$ in der Struktur $A$ hat, so ist das eigentlich $+_A$ -- die Plusoperation in der Struktur $A$ -- man schreibt aber einfach nur $+$ und nimmt stillschweigend  an, dass es aus dem Kontext klar ist, welche Struktur $A$ gemeint ist. (Die Nutzung der selben Bezeichnung für verschiedene Operationen nennt man in der Programmierung der Polymorphismus.) 
+\begin{bem}[Polymorphismus in Algebra] 
+	Man benutzt oft zum Bezeichnen der Verknüpfungen (bzw. der Verknüpfung) einer algebraischen Struktur die Symbole $+$ (Plus) und $\cdot$ (Mal). Hierbei meint man dann die Plus-Operation bzw. die Mal-Operation innerhalb der gegebenen algebraischen Struktur $A$. Das heißt, diese Operationen müssen $+$ und/oder $\cdot$ innerhalb einer algebraische Struktur $A$ nicht unbedingt mit Operation $+$ und $\cdot$ innerhalb der Menge $\R$ der reellen Zahlen etwas zu tun haben. Das bedeutet:  genau so, wie Symbole $a,b,c,d,\ldots$ in Mathematik kontextabhängig sind (können verschiedene Bedeutung in verschiedenen Kontexten haben), sind auch die Bezeichnungen wie $+$ und $\cdot$  kontextabhängig (bzw. Strukturabhängig) und können so, wie man es sich wünscht, eingeführt werden. Wenn man also $+$ in der Struktur $A$ hat, so ist das streng genommen $+_A$ -- die Plusoperation aus der Struktur $A$ -- man schreibt aber einfach nur $+$ und nimmt stillschweigend  an, dass es aus dem Kontext klar ist, welche Struktur $A$ gemeint ist. Die Nutzung der selben Bezeichnungen für verschiedene Operationen nennt man in der Programmierung der Polymorphismus.
 \end{bem} 
 
 \begin{bsp}
@@ -811,12 +843,14 @@ Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine w
 	Ist $R$ kommutativer Ring mit $1$, dann gilt $a \cdot 0=0$ für alle $a \in R$. Zeigen Sie das. 
 \end{aufg} 
 
-\begin{bsp}
+\begin{bsp}\ 
 \begin{itemize}
-		\item $\N$ kein Ring. 
-		\item $\Z$ ein kommutativer Ring. 
-		\item $\Q$ ein kommutativer Ring. 
-		\item $\R$ ein kommutativer Ring. 
+		\item $(\N,+,\cdot)$ kein Ring. 
+		\item $(\N_0,+,\cdot)$ (immer noch) kein Ring. 
+		\item $(\Z,+,\cdot)$ ein kommutativer Ring. 
+		\item $(\Q,+,\cdot)$ ein kommutativer Ring. 
+		\item $(\R,+,\cdot)$ ein kommutativer Ring. 
+		\item $(\C,+,\cdot)$ ein kommutativer Ring. 
 \end{itemize} 
 \end{bsp} 
 
@@ -826,8 +860,14 @@ Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine w
 	Eine Menge $K$ mit zwei binären Verknüpfungen $+$ und $\cdot$ heißt Körper, wenn $K$ bzgl. $+$ und $\cdot$ kommutativer Ring ist und darüber hinaus für jedes $a \in K \setminus \{0\}$ ein eindeutiges Element $a^{-1} \in K$ existiert, für welches $a \cdot a^{-1}  = 1$ gilt. 
 \end{defn} 
 
-\begin{bsp}
+\begin{bsp}\ 
 \begin{itemize} 
+	\item $(\F_2,+,\cdot)$
+	\item Führen Sie auf einer dreielementigen Menge $\{0,1,a\}$ die Verknüpfungen $+$ und $\cdot$ so ein, dass die Menge mit diesen Verknüpfungen zu einem Körper wird. 
+	\item $(\Z,+,\cdot)$ kein Körper, da in $\Z \setminus \{0\}$ nichts außer $-1$ und $1$ invertierbar ist. 
+	\item $(\Q,+,\cdot)$ ein Körper. 
+	\item $(\R, + ,\cdot)$ ein Körper. 
+	\item $(\C, + ,\cdot)$ ein Körper. 
 \end{itemize} 
 \end{bsp} 
 
@@ -839,21 +879,28 @@ Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine w
 	mindestens eine Lösung $x$ aus $K$ besitzt. Eine Gleichung wie oben nennt man Polynomgleichung vom Grad $d$ mit Koeffizienten in $K$. 
 \end{defn} 
 
-\begin{bsp}
+\begin{bsp}\ 
 	\begin{itemize} 
-		\item $\Q$ ist nicht algebraisch abgeschlossen, vgl. die Gleichung $x^2 - 2 = 0$, mit den Koeffizienten $1, -2 \in \Q$, die keine Lösung $x$ in $\Q$ besitzt. 
-		\item $\R$ ist nicht algebraisch abgeschlossen, vgl. die Gleichung $x^2 + 1 = 0$ mit den Koeffizienten $1, 1 \in \R$, die keine Lösung $x$ in $\R$ besitzt. 
+		\item $\Q$ ist nicht algebraisch abgeschlossen, vgl. die Gleichung $x^2 - 2 = 0$, mit den Koeffizienten $ -2, 0 , 1 \in \Q$, die keine Lösung $x$ in $\Q$ besitzt. 
+		\item $\R$ ist nicht algebraisch abgeschlossen, vgl. die Gleichung $x^2 + 1 = 0$ mit den Koeffizienten $1, 0, 1 \in \R$, die keine Lösung $x$ in $\R$ besitzt. 
 	\end{itemize} 
 \end{bsp} 
 
+\begin{defn} 
+	Sind $A$ und $B$ Mengen mit $A \subseteq B$ und $\ast_A : A \times A \to A$ und $\ast_B : B \times B \to B$ binäre Verknüpfungen, so nennt man $\ast_B$ Erweiterung von $\ast_A$ und $\ast_A$ Einschränkung von $\ast_B$ auf $A$, wenn $x \ast_A y = x \ast_B y$ für alle $a,b \in A$ erfüllt ist (mit anderen Worten: $\ast_B$ wirkt genau so wie $\ast_A$ innerhalb von $A$). 
+\end{defn} 
+
 \begin{defn}
-	Ist $C$ ein Körper und $K$ eine Teilmenge von $C$ derart, dass  sich die binären Verknüpfungen von $C$  auf $K$ einschränken lassen und dass $K$ bzgl. dieser Einschränkungen ebenfalls ein Körper ist. Dann nennt man $K$ einen Unterkörper von $C$ und man nennt $C$ eine Erweiterung des Körpers $K$. 
+	Sind $(F,+,\cdot)$ und $(K,+,\cdot)$ Körper mit $F \subseteq K$, bei denen $+$ und $\cdot$ von $K$ Erweiterungen von $+$ bzw. $\cdot$ auf $F$ sind, so nennt man den Körper $K$ eine Erweiterung des Körpers $F$. 
 \end{defn} 
 
 \begin{bsp}
-	\begin{itemize}
-		\item $\R$ ist Erweiterung des Körpers $\Q$. 
-	\end{itemize} 
+	$\R$ ist Erweiterung von $\Q$. Es gibt aber viele Körper dazwischen. Zum Beispiel ist 
+	\[
+		\Q[\sqrt{2}] := \setcond{ a + \sqrt{2} b }{a,b \in \Q}
+	\]
+	ebenfalls ein Körper. Es gilt $\Q \varsubsetneq \Q[\sqrt{2}] \varsubsetneq \R$. 
+	Wie sieht das inverse eines Elements aus $\Q[\sqrt{2} ] \setminus \{0\}$ aus? 
 \end{bsp} 
 
 \begin{thm}
@@ -861,31 +908,85 @@ Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine w
 \end{thm} 
 
 \begin{bem}
-	Es gilt sogar eine stärkere Aussage: jeder Körper 
+	Es gilt sogar eine stärkere Aussage: jeder Körper eine (im einem bestimmten Sinn) minimale algebraisch abgeschlossene Körpererweiterung. 
 \end{bem} 
-
 
 \subsection{Der Körper der komplexen Zahlen} 
 
-\begin{defn}
-	imaginäre Einheit, $\C$, Realteil, Imaginärteil, Konjugation, Betrag. 
+\begin{defn} 
+	Die Menge $\C$ der komplexen Zahlen kann man als die Menge der formalen Ausdrücke der Form $x + \iu y$ mit $x, y \in \R$ einführen. Hierbei ist $\iu$ ein formales Element, für welches man $\iu^2 := -1$ festlegt. Das Element $\iu$ nennt man die imaginäre Einheit oder die Wurzel aus $-1$. Die Menge der reellen Zahlen $\R$ wird als eine Teilmenge von $\C$ aufgefasst, indem man $x \in \R$ als $x +  y \iu $ mit $y=0$ schreibt. 
+	
+	Nach diesen Festlegungen lassen sich die Operationen $+$ und $\cdot$ vom Körper $\R$ der reellen Zahlen auf $\C$ auf eine eindeutige Weise erweitern, wenn man fordert, dass  $\C$ mit Operationen $+$ und $\cdot$ ein kommutativer Ring sein soll, vgl. dazu die Gesetze für einen kommutativen Ring.  (Wie wir in Kürze sehen werden, ist $(\C,+,\cdot)$ sogar ein Körper.) Die Addition und Multiplikation führen wir also auf die folgende Weise eingeführt: 
+	\begin{align*}
+			(x_1 + y_1 \iu ) + (x_2 +  y_2 \iu ) & := (x_1 +y_1) +  (y_1 + y_2) \iu
+			\\ (x_1 + y_1 \iu) \cdot (x_2 + y_2 \iu) & := (x_1 x_2 - y_1 y_2) + (x_1 y_2 + x_2 y_1) \iu,
+	\end{align*} 
+für $x_1,x_2, y_1, y_2 \in \R$. 
+
+Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als $\Re(z) :=x$ und den Imaginärteil von $z$ als $\Im(z):= y$ ein; die Zahl $\overline{z} = x - y \iu$ nennen wir komplex konjugiert zu $z$; den Wert $|z| = \sqrt{x^2 + y^2}$ nennen wir den Betrag von $z$. 
 \end{defn} 
+
+\begin{bem}
+	In Algebra werden oft Strukturen formal nach ``eigenen Vorgaben'' eingeführt. Bei der Definition von komplexen Zahlen sieht man ein Beispiel dafür. 
+\end{bem} 
 
 \begin{thm}
 		$\C$ ist ein algebraisch abgeschlossener Körper. 
 \end{thm}
+\begin{proof} 
+	Dass $(\C,+,\cdot)$ ein kommutativer Ring ist, lässt sich direkt verifizieren (Aufgabe). 
+	
+	Um zu zeigen, dass $(\C,+,\cdot)$ sogar ein Körper ist, muss man verifizieren, dass jedes $z = x + y \iu$ mit $x, y \in \R$ mit $|z| \ne 0$ ein inverses Element in $\C$ besitzt. Es stellt sich heraus, dass man das inverse Element $z^{-1}$ als $z = \frac{1}{|z|^2} \bar{z}$ beschreiben kann. Mit der Verwendung der dritten binomischen Formel erhalten wir 
+	
+	\[
+		 	z z^{-1} = \frac{z \bar{z} }{|z|^2} = \frac{ ( x+ y \iu) ( x - y\iu) }{x^2 + y^2}   = \frac{ x^2 - (y \iu)^2 }{x^2 + y^2} = \frac{x^2 - y^2 \iu^2}{x^2 + y^2} = \frac{x^2 + y^2}{x^2 + y^2} = 1. 
+	\]
+	
+	Dass der Körper $(\C,+,\cdot)$ algebraisch abgeschlossen ist, ist ziemlich bemerkenswert. Bedenken Sie, dass wir nur die imaginäre Einheit $\iu$ eine formale Lösung der Polynomgleichung $z^2 + 1=0$ in einem unbekannten $z$ eingeführt haben. Die Behauptung über die algebraische Abgeschlossenheit ist, dass wird durch diese Ergänzung für eine beliebige Polynomgleichung von einem positiven Grad (un d mit Koeffizienten in $\C$) eine Lösung in $\C$ finden. Um diese Behauptung herzuleiten braucht man wissen aus der Analysis (wir geben also an dieser Stelle keinen Beweis). 
+\end{proof} 
 
-\begin{bem}
-	Was ist Kosinus und Sinus? Was sind Radianten und Grade? 
+\begin{aufg}
+	Zeigen Sie $|u v| = |u| \cdot |v|$ für alle $u, v \in \C$. 
+\end{aufg} 
+
+\begin{bem}[Der Satz von Pythagoras, Radianten und Grade, Kosinus und Sinus, und der  Taschenrechner] 
+	Für das nachfolgende Thema soll man zuerst an das folgende Wissen aus der Schule erinnern. 
+	\begin{itemize}
+		\item \emph{Der Satz des Pythagoras}. Der Abstand zwischen dem Punkt $(0,0) \in \R^2$ und dem Punkt $(x,y) \in \R^2$ ist gleich $\sqrt{x^2 + y^2}$. Wenn man diese Behauptung in einer koordinaten-freien Form mit Hilfe von rechtwinkligen Dreiecken formuliert, so nennt man sie den Satz des Pythagoras. 
+		\item \emph{Der Wirrwarr um Radianten und Grade.} Im alten Babylonien dachte man, das Jahr wäre 360 Jahre lang (das stimmt nicht, wie wir jetzt wessen). Daher teilte man den Jahreskreis in 360 Teile auf, die den Tagen entsprechen. Ein Grad steht daher für einen Tag im babylonischen Jahreskreis. Das zeigt, dass die Herkunft der Messung der Winkel in Graden nicht mathematisch ist. Sie ist anthropologisch: sie hängt mit dem Planeten Erde zusammen, auf dem wir uns befinden, und mit den Babylonier:innen, die bei der Bestimmung der Anzahl der Tage im Jahr sich ein Wenig verschätzten. Dennoch hat sich die Messung mit 360 Graden für den vollen Winkeln bis jetzt erhalten. Das liegt vielleicht daran, dass einige für uns interessante Winkel mit Graden durch eine ganze Zahl darstellbar sind ($90^\circ, 60^\circ, 30^\circ$). Die Messung mit Radianten ist eine dimensionslose Messung und sie ist intrinsisch mathematisch. Man nimmt einen Kreis mit dem Radius $1$ und misst Winkel durch die Längen der Bögen dieses Kreises. Dabei bezeichnet man die Länge einer Hälfte des Einheitskreises als $\pi$ und nennt die Zahl $\pi$ die Kreiszahl. Diese Zahl $\pi$ ist etwas größer als $3$ (das sieht man, wenn man in den Einheitskreis ein reguläres Sechseck einschreibt). 
+		
+		Ein Grad ist nichts Anderes als $1^\circ := \frac{\pi}{180}= \frac{2\pi}{360}.$ Wenn man Winkel in Radianten misst, kann man etwa $1{.}2$ Radianten aber auch einfach nur $1{.}2$ sagen, denn die Einheit Radiant ist dimensionslos. 
+		
+		An sich gibt es an der Messung der Winkel mit Graden nichts Falsches. Dieser Kommentar dient einfach nur dazu, darauf hinzuweisen, dass die Zahlen wie $360$ und $180$ in Bezug auf die Winkelmessung keine mathematische sondern eine anthropologische Natur haben. 
+		
+		\item \emph{Kosinus und Sinus.}  Man betrachte eine kreisförmige Radrennbahn mit Zentrum im Punkt $(0,0)$ vom Radius $1$. Diese Bahn ist nach dem Satz des Pythagoras durch die Gleichung $x^2 + y^2 = 1$ beschrieben. Nun legen wir den Punkt $(1,0)$ dieser Bahn als den Startpunkt fest. Von diesem Punkt aus kann man nun Strecken einer beliebigen Länge zurücklegen. Wie lang die Strecke ist und ob man sich im Gegenuhrzeiger oder im Uhrzeigersinn bewegt wird durch eine Zahl $\alpha \in \R$ notiert. Der Betrag von $\alpha$ gibt die Länge der Strecke an, die man zurücklegen will. Das Vorzeichen von $\alpha$ gibt an, ob man sich im Gegenuhrzeigersinn oder im Uhrzeigersinn bewegt (bei einem positiven Vorzeichen - im Gegenuhrzeigersinn und bei einem negativen Vorzeichen - im Uhrzeigersinn). Für jedes $\alpha \in \R$ erhält man einen Punkt $(x,y)$, in dem man sich nach dem Zurücklegen der vorgegebenen Strecke in die vorgegebene Richtung landet. Die $x$-Komponente dieses Punkts nennt man den Kosinus von $\alpha$ (Bezeichnung: $x = \cos \alpha$) und die $y$-Komponente dieses Punkts nennt man den Sinus von $\alpha$ (Bezeichnung: $y = \sin \alpha$). 
+		
+		Die Eingabe für $\cos$ und $\sin$ ist also eine reelle Zahl und die Rückgabe ist oben beschrieben. 
+		\item \emph{Kosinus und Sinus im Taschenrechner}. Wenn die Studierenden den Kosinus und Sinus (unter anderem für sehr einfache Werte $\alpha$) im Taschenrechner berechnen, so sieht man, dass es immer wieder dazu kommt, dass ihre Ergebnisse falsch sind. Das liegt daran, dass man in vielen Taschenrechnern eine Umschaltung zwischen Grad und Radianten hat. Ist der Taschenrechner auf Radianten eingestellt, so berechnet er die eigentlichen  Kosinus und Sinus, wie sie in Mathematik (und in den meisten Programmiersprachen) zu finden sind. Ist der Taschenrechner auf Grade eingestellt, so berechnet er die Funktionen $t \mapsto \cos( \frac{\pi}{180}t)$ und $t \mapsto \sin( \frac{\pi}{180})t$ an der Stelle von $\cos$ und $\sin$. Übrigens: in Excel wird die Funktion $t \mapsto \frac{\pi}{180} t$, die oben in $\cos$ und $\sin$ eingesetzt wurde, das Bogenmaß von $t$ genannt. 
+		\item Die vielen Formeln, die man für den Kosinus und Sinus und andere trigonometrische Funktionen hat, lassen sich im Rahmen der linearen Algebra (IT-3) viel besser verstehen. 
+	\end{itemize} 
 \end{bem} 
 
 \begin{thm}
 	Jede komplexe Zahl $z \in \C$ besitzt eine Darstellung als 
 	\[
-		z = \rho ( \cos \phi + i \sin \phi )
+		z = \rho ( \cos \phi + \iu \sin \phi )
 	\]
-	mit $\rho \in \R_{\ge 0}$ und $\phi \in R$. Hierbei gilt $\rho = |z|$. Bei $z \ne 0$, ist $\phi$ eindeutig durch $z$ bis auf das addieren eines Vielfachen von $2 \pi$ definiert. 
+	mit $\rho \in \R_{\ge 0}$ und $\phi \in \R$. Hierbei gilt $\rho = |z|$. Bei $z \ne 0$, ist $\phi$ eindeutig durch $z$ bis auf das addieren eines ganzzahligen Vielfachen von $2 \pi$ definiert. 
 \end{thm}
+
+\begin{proof}  
+	{\color{red} WARNUNG:} Der nachfolgende Beweis und unsere Definition von $\cos$ und $\sin$ entspricht nicht ganz den mathematischen Standards, solange wir den Begriff  Länge (eines Bogens) und Orientierung (einer Kurve), auf den  wir uns bei der Einführung von $\cos$ und $\sin$ beziehen, nicht mathematisch formal definiert haben. Wir verlassen uns also auf Intuition und darauf, dass man (später) den Begriff Länge mathematisch korrekt einführen kann (solche Begriffe führt man in der Analysis ein). Es gibt auch einen formalen nicht-geometrischen Zugang zum Kosinus und Sinus (dieser Zugang ist aber nicht wirklich intuitiv, sodass man dadurch nicht wirklich versteht, was Kosinus und Sinus eigentlich sind). 
+	
+	Da jede komplexe Zahl $z = x + y \iu$ eindeutig durch $x, y \in \R$ gegeben ist, kann man $z$ als einen Punkt $(x,y) \in \R^2$ visualisieren. Die Visualisierung von $\C$ auf diese Weise nennt man die gaußsche Zahlenebene. Dabei werden $1$ und $\i$ als die zueinander senkrechte Vektoren $(1,0)$ und $(0,1)$ dargestellt. Man sieht, dass die Menge $K := \setcond{z \in \C}{|z|=1} = \setcond{ x+ \iu y}{x^2 + y^2 =1}$ als  der Einheitskreis $K$ mit Zentrum in $0 \in \C$ in der gaußschen Zahlenebene darstellbar ist. 
+	
+	\emph{Existenz:} Ist $z \ne 0$,so ist $z / |z|$ ist ein Punkt im genannten Kreis und so hat $z$ die Darstellung $ z / |z| = \cos \phi + \iu \sin \phi$ für ein $\phi \in \R$ nach unserer Beschreibung von $\cos$ und $\sin$. Es folgt also, dass $z = \rho ( \cos \phi + \iu \sin \phi)$ mit $\rho = |z|$ gilt. Im Fall $z= 0 \in \C$ kann man $\rho =0$ und ein beliebiges $\phi$ fixieren. 
+	
+	\emph{Eindeutigkeit:} Ist $z = \rho (\cos \phi + \iu \sin \phi)$ mit $\rho \in \R_{\ge 0}$ und $\phi \in \R$ so gilt $|z| = | \rho (\cos \phi + \iu \sin \phi) | = \rho | \cos \phi + \iu \sin \phi| = \rho \sqrt{ \cos^2 \phi + \sin^2\phi } = \rho$. Ist $z \ne 0$, so ist 
+	$ z/ |z|$ der Punkt $\cos \phi + \iu \sin \phi$ auf Einheitskreis $K$. Der Punkt $\cos \phi + \iu \sin \phi$ im Kreis $K$ ändert sich nicht, wenn man zum Wert von $\phi$  ein ganzzahliges Vielfaches von $2 \pi$ dazu addiert, weil der Kreis $K$ die Länge $2\pi$ hat. So besteht die Möglichkeit als $\phi$ einen Wert aus $[0,2 \pi)$ zu wählen. 
+	
+	 Da $K$ die Länge $2\pi$ hat, ist jeder Punkt eindeutig durch die Angabe eines solchen $\phi \in [0,2 \pi)$ gegeben. 
+\end{proof} 
 
 \begin{defn}
 	Wir erweitern die Exponentialfunktion $e^x$ auf $\R$ auf den Bereich $\C$ der komplexen Zahlen, in dem wir 
@@ -904,19 +1005,19 @@ Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine w
 \subsection{O, $\Omega$ und $\Theta$}
 
 \begin{bem}
-Bei der Analyse von Algorithmen redet man oft von der Größenordnung von Funktionen. Eine praktische Ausdrucksweise ist die sogenannte asymptotische Notation.
+Bei der Analyse von Algorithmen und der Analysis redet man oft von der Größenordnung von Funktionen. Eine praktische Ausdrucksweise dafür ist die sogenannte asymptotische Notation.
 \end{bem} 
 
-\begin{defn} 
+\begin{defn}[$O$-Notation]  
 Seien $f, g: \N \to \R$ Funktionen. 
 Man schreibt $f(n) = O(g(n))$, wenn eine Konstante $c>0$ und ein $n_0 \in \N$ existiert, so dass $|f(n)| \le c |g(n)|$ für alle $n \ge n_0$ gilt. 
 \end{defn} 
 
 \begin{bem} 
-Die Bezeichnung $f(n)=O(g(n))$ steht für `$f(n)$ hat die Größenordnung höchstens $g(n)$ bis auf eine mutliplikative Konstante' und man sagt \glqq$f(n)$ ist in Groß-O von $g(n)$\grqq. Die Schreibweise $f(n) = O(g(n))$ ist streng genommen nicht ganz korrekt, in der Literatur aber sehr verbreitet. Die korrekte Schreibweise wäre $f(n) \in O(g(n))$, d.h., $f(n)$ liegt in der Menge aller Funktionen der Größenordnung höchstens $g(n)$. In der Literatur verwendet man oft $O(g(n))$ als eine Schreibweise für eine anonyme Funktion der Größenordnung höchstens $g(n)$. In diesem Kurs spielen die Beträge in der Definition von $O(g(n))$ in der Regel keine Rolle, weil wir fast ausschließlich nichtnegative Funktionen diskutieren. 
+Die Bezeichnung $f(n)=O(g(n))$ steht für ``$f(n)$ hat die Größenordnung höchstens $g(n)$ bis auf eine mutliplikative Konstante'' und man sagt \glqq$f(n)$ ist in Groß-O von $g(n)$\grqq. Die Schreibweise $f(n) = O(g(n))$ ist streng genommen nicht ganz korrekt, in der Literatur aber sehr verbreitet. Die korrekte Schreibweise wäre $f(n) \in O(g(n))$, d.h., $f(n)$ liegt in der Menge aller Funktionen der Größenordnung höchstens $g(n)$. In der Literatur verwendet man oft $O(g(n))$ als eine Schreibweise für eine anonyme Funktion der Größenordnung höchstens $g(n)$. In diesem Kurs spielen die Beträge in der Definition von $O(g(n))$ in der Regel keine Rolle, weil wir beim Anwenden der asymptotischen Notationen fast ausschließlich nichtnegative Funktionen benutzen. 
 \end{bem} 
 
-\begin{defn}
+\begin{defn}[$\Omega$-Notation] 
 Man schreibt $f(n) = \Omega(g(n))$, wenn eine Konstante $c>0$ und ein $n_0 \in \N$ existieren, so dass $|f(n)| \ge c |g(n)|$ für alle $n \ge n_0$ gilt. In diesem Fall: Die Größenordnung von $f(n)$ ist mindestens $g(n)$, bis auf eine multiplikative Konstante und man sagt \glqq$f(n)$ ist in Groß-Omega von $g(n)$\grqq. 
 \end{defn} 
 
