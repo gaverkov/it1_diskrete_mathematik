@@ -6,7 +6,7 @@
 	Seien $A, B$ endliche disjunkte Mengen. Dann ist $|A \cupdot B| = |A| + |B|$. 
 \end{lem} 
 
-\begin{lem}
+\begin{lem} \label{lem:disjunkte:vereinigung}
 	Seien $A_1,\ldots,A_n$ endliche paarweise disjunkte Mengen. Dann ist 
 	\[
 		\left| \bigcup_{i=1}^n A_i \right| = \sum_{i=1}^n |A_i|. 
@@ -31,18 +31,35 @@
 \section{$X^k$ und $B^A$} 
 
 
+
 \begin{thm}
-	Sei $X$ eine endliche Menge mit $n$ Elementen und sei $k \in \N$. Dann hat die Menge $X^k$ genau $n^k$ Elemente (d.h., $|X^k| = |X|^k)$. 
+	Sei $X$ eine endliche Menge und sei $k \in \N_0$. Dann ist $|X^k| = |X|^k$. (In dieser und den nachfolgenden kombinatorischen Formeln interpretieren wir $0^0$ als $1$.)
 \end{thm} 
 \begin{proof} 
-	Die Formel ist trivial für $n=0$ (d.h., $X = \emptyset$). Wir nehmen also $n \in \N$ an. Wir beweisen nun die Behauptung durch Induktion über $k$. 
+	Die Formel ist trivial für in den entarteten Fällen $|X|=0$ und $k=0$.
+	(für $k>0$ und $X = \emptyset$ ist $X^k$ ebenfalls die leere Menge und für $k=0$  besteht $X^k$ aus dem einzigen $0$-Tupel).  Wir nehmen also $|X| >0$ und $k>0$ an und beweisen  die Gleichung $|X^k| = |X|^k$  in diesem Fall durch Induktion über $k$. 
 	
-	Die Formel ist trivial für $k = 1$: es gilt $|X^1| = |X|$. Sei $k \ge 2$ und sei die Formel $|X^{k-1}| = n^{k-1}$ bereits verifiziert. 
+	Die Formel ist trivial für $k = 1$: es gilt $|X^1| = |X|$ wegen $X^1 = X$. Sei $k \ge 2$ und sei die Formel $|X^{k-1}| = |X|^{k-1}$ bereits verifiziert. 
 	
-	Sei $X = \{x_1,\ldots,x_n\}$ mit paarweise verschiedenen $X$. Das letzte Element eines $k$-Tupels aus $X^k$ ist eines der $n$ Elemente $x_1,\ldots,x_n$. Daher ist die Menge $X^k$ disjukte Vereinigung der $n$ Mengen 
-	$X^{k-1} \times \{x_i\}$
-	mit $i=1,\ldots,n$. Für jede der $n$ Mengen $X^{k-1} \times \{x_i\}$ ist die Abbildung von $X^{k-1} \times \{x_i\}$ nach $X^{k-1}$, welche die letzte (fixierte) Komponente $x_i$ weglässt, eine Bijektion. Somit hat $X^{k-1} \times \{x_i\}$ genauso viele Elemente wie $X^{k-1}$. Wir haben also $X^k$ als die Disjunkte Vereinigung von $n$ Mengen dargestellt, die jeweils $n^{k-1}$ Elemente haben. Es folgt, dass $X^k$ genau $n \times n^{k-1} = n^k$ Elemente hat. 
+	Sei $n:=|X|$. Dann ist $X^k$ die disjunkte Vereinigung 
+	\[
+			X^k = \bigcup_{a \in X} X^{k-1} \times \{a\}. 
+	\]
+	der $n$ Mengen $X^{k-1} \times \{a\}$. Mit anderen Worten zerlegen wir $X^k$ in $n$ paarweise disjunkte Mengen, indem wir $n$ verschiedene Möglichkeiten für die Wahl der letzten Komponente eines $k$-Tupels aus $X^k$ unterscheiden. Nach Lemma~\ref{lem:disjunkte:vereinigung} gilt dann 
+	\[
+			|X^k| = \sum_{a \in X} |X^{k-1} \times \{a\}|. 
+	\]
+	Es bleibt, für jedes feste $a \in X$, die Anzahl der Elemente in $X^{k-1} \times \{a\}$ zu bestimmen. Die Abbildung 
+	$f_a : X^{k-1} \times \{a\} \to X^{k-1}$ mit $f_a(x_1,\ldots,x_{k-1},a) = (x_1,\ldots,x_k)$, welche die letzte Komponente des Tupels $(x_1,\ldots,x_{k-1},a)$ weglässt ist eine Bijektion (begründen Sie kurz, warum). Daher hat $X^{k-1} \times \{a\}$ für jede Wahl von $a$ genauso viele Elemente wie $X^{k-1}$. Es folgt 
+	\[
+			|X^k| = \sum_{a \in X} |X^{k-1} \times \{a\}| = \sum_{a \in X} |X^{k-1}|. 
+	\]
+	Nach der Induktionsvoraussetzung erhalten wir $|X^{k-1}| = |X|^{k-1}$. Da die Summe über die $|X|$-elementige Menge geht, erhalten wir 
+	\[
+			|X^k| = |X| \cdot |X^{k-1}| = |X|^k. 
+	\]
 \end{proof} 
+
 
 \begin{thm}
 	Seien $A,B $ endliche Mengen. Dann gilt $|B^A| = |B|^{|A|}$. 

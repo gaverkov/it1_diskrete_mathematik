@@ -1,8 +1,7 @@
 \chapter{Mathematische Grundlagen}
 
-\section{Aussagen}
+\section{Aussagen und logische Verknüpfungen}
 
-\subsection{Aussage}
 
 \begin{defn}
 Eine Aussage ist ein Satz (eine Folge von Zeichen mit mathematischer Bedeutung), die einen eindeutigen Wahrheitswert (entweder falsch oder wahr) hat. Den Wahrheitswert kodiert man oft mit Zahlen $0$ (falsch) und $1$ (wahr). 
@@ -21,8 +20,6 @@ Eine Aussage ist ein Satz (eine Folge von Zeichen mit mathematischer Bedeutung),
 	\item Die Gleichung $x^2+1=0$ hat keine reellwertigen Lösungen (wahre Aussage). 
 \end{itemize}
 \end{bsp} 
-
-\subsection{Logische Verknüpfungen}
 
 \begin{defn}
 Seien $ A $ und $ B $ Aussagen. Dann definiert man anhand von $ A $ und $ B $ die folgenden Aussagen:
@@ -58,9 +55,8 @@ Seien $ A $ und $ B $ Aussagen. Dann definiert man anhand von $ A $ und $ B $ di
 \end{bem} 
 
 \clearpage
-\section{Mengen}
+\section{Mengen und Mengenoperationen}
 
-\subsection{Menge}
 
 \begin{defn}
 	Eine Menge $X$ ist durch die Eindeutige Angabe definiert, welche Objekte Elemente der Menge sind. Man schreibt in diesem Fall $x \in X$ dafür, dass das Objekt $x$ Element der Menge $X$ ist, und $x \not\in X$ dafür, dass $x$ kein Element der Menge $x$. Mit anderen Worte: für die Angabe einer Menge $X$ soll für jedes Objekt $x$ geklärt sein, ob für dieses Objekt $x \in X$ oder $x\not \in X$ gilt. 
@@ -132,7 +128,6 @@ Sei $ X $ eine Menge. Dann ist die Potenzmenge von $ X $ die Menge aller Teilmen
 	Eine weitere Bezeichnung fúr die Potenzmengen, die man in der Literatur benutzt, ist $\mathcal{P}(X)$. Ich persönlich finde $2^X$ einleuchtender (zumindest im Kontext der Kombinatorik, die im folgenden Kapitel diskutiert wird). 
 \end{bem} 
 
-\subsection{Zahlenmengen}
 
 \begin{bem}
 	Zahlenbereiche, die Sie evtl. aus der Schule schon kennen:
@@ -152,6 +147,21 @@ Sei $ X $ eine Menge. Dann ist die Potenzmenge von $ X $ die Menge aller Teilmen
  All diese Inklusionen sind natürlich strikt. 
  \end{bem} 
 
+\begin{bem}[Intervalle]
+	Seien $ a,b \in \R $ mit $ a \leq b $. Dann können Intervalle wie folgt definiert werden:
+	\begin{align*}
+		[a,b] &:= \{ x \in \R : a \leq x \leq b \}\\
+		(a,b) &:= \{ x \in \R : a < x < b \}\\
+		(a,b] &:= \{ x \in \R : a < x \leq b \}\\
+		[a,b) &:= \{ x \in \R : a \leq x < b \} \\
+		[a,\infty) & := \setcond{x \in \R}{x \ge a} \\
+		(a,\infty) &:= \setcond{x \in \R}{x > a} \\ 
+		(-\infty,a] &:= \setcond{x \in \R}{x \le a} \\
+		(-\infty,a) &:= \setcond{x \in \R}{x < a}
+	\end{align*}
+\end{bem}
+
+
 
 \begin{bem}
 Manche Quellen definieren die Menge der natürlichen Zahlen als $ \set{0,1,2,\ldots} $, es ist mittlerweile sogar die ISO-Norm 80000-2. Nach meiner Erfahrung gibt es viel mehr Quellen, wo man
@@ -163,7 +173,6 @@ Manche Quellen definieren die Menge der natürlichen Zahlen als $ \set{0,1,2,\ld
 		Die Erweiterung der  Zahlenbereiche zu immer größeren Bereichen ist durch den Wunsch nach einer Vollständigkeit motiviert.... 
 \end{bem} 
 
-\subsection{Mengenoperationen}
 
 \begin{defn}
 Seien $ A,B $ Mengen. Dann heißt
@@ -186,7 +195,6 @@ und als $A \cupdot B$ bezeichnet.
 
 \section{Abbildungen}
 
-\subsection{Abbildung}
 
 \begin{defn}
 Seien $ X,Y $ Mengen. Eine Abbildung $ f $ von $ X $ nach $ Y $ ist eine Vorschrift, die jedem $ x \in X $ genau ein Element aus $ Y $ zuordnet. Dieses Element aus $ Y $ wird durch $ f(x) $ bezeichnet. Wenn $ f $ eine Abbildung von $ X $ nach $ Y $ ist, dann bezeichnet man das durch: $ f : X \to Y $. Die Menge $ X $ heißt der Definitionsbereich von $ f $, $ Y $ heißt der Wertebereich von $ f $.
@@ -234,8 +242,6 @@ Zwei Abbildungen $ f,g : X \to Y $ heißen gleich, falls $ f(x) = g(x) $ für al
 	Aus wie vielen Abbildungen besteht die Menge $\{1,2,3\}^{\{1,2\}}$? Zählen Sie diese Abbildungen auf? Was ist  mit $\{1,2\}^{\{-1,0,1\}}$?
 \end{aufg} 
 
-\subsection{Bild und Urbild}
-
 \begin{defn}
 Seien $ X,Y,A,B $ Mengen mit $ A \subseteq X $ und $ B \subseteq Y $. Sei $ f : X \to Y $. Dann heißt $ f(A) := \{ f(x) : x \in A \} $ das Bild von $ A $ bzgl. $ f $ und $ f^{-1}(B) := \{ x \in X : f(x) \in B \} $ das Urbild von $ B $ bzgl. $ f $.
 \end{defn} 
@@ -257,17 +263,6 @@ Seien $ X,Y,A,B $ Mengen mit $ A \subseteq X $ und $ B \subseteq Y $. Sei $ f : 
 \end{itemize}
 \end{bsp}
 
-\begin{bem}[Intervalle]
-	Seien $ a,b \in \R $ mit $ a \leq b $. Dann können Intervalle wie folgt definiert werden:
-	\begin{align*}
-		[a,b] &:= \{ x \in \R : a \leq x \leq b \}\\
-		(a,b) &:= \{ x \in \R : a < x < b \}\\
-		(a,b] &:= \{ x \in \R : a < x \leq b \}\\
-		[a,b) &:= \{ x \in \R : a \leq x < b \}
-	\end{align*}
-\end{bem}
-
-\subsection{Injektivität, Surjektivität und Bijektivität}
 
 \begin{defn}
 Seien $ X,Y $ Mengen und sei $ f : X \to Y $. Dann heißt $ f $:
@@ -295,7 +290,6 @@ Seien $ X,Y $ Mengen und sei $ f : X \to Y $. Dann heißt $ f $:
 	\end{itemize}
 \end{bsp}
 
-\subsection{Umkehrfunktion}
 
 \begin{defn} 
 Seien $ X,Y $ Mengen und sei $ f : X \to Y $ bijektiv. Die Abbildung, die jedem $ y \in Y $ das eindeutige $ x \in X $ mit $ f(x) = y $ zuordnet, heißt die Umkehrabbildung von $ f $ und wird durch $ f^{-1} $ bezeichnet.
@@ -305,7 +299,6 @@ Seien $ X,Y $ Mengen und sei $ f : X \to Y $ bijektiv. Die Abbildung, die jedem 
 	Was ist die Umkehrfunktion von $ f : \R \to \R : f(x) := 2x + 3 $ ?
 \end{aufg}
 
-\subsection{Komposition}
 
 \begin{defn}
 Seien $ X,Y,Z $ Mengen, $ f : X \to Y $ und $ g : Y \to Z $. Dann heißt $ g \circ f : X \to Z $ mit $ ( g \circ f )(x) := g( f(x) ) $ für alle $ x \in X $ die Komposition von $ g $ und $ f $.
@@ -315,7 +308,6 @@ Seien $ X,Y,Z $ Mengen, $ f : X \to Y $ und $ g : Y \to Z $. Dann heißt $ g \ci
 	Seien $ f : \R \to \R : f(x) = 2x + 3 $ für alle $ x \in \R $ und $ g : \R \to \R : g(x) = x^2 $ für alle $ x \in \R $. Dann ist $ ( f \circ g )(x) = 2x^2 + 3 $ und $ ( g \circ f )(x) = (2x + 3)^2 $.
 \end{bsp}
 
-\subsection{Identische Abbildung}
 
 \begin{defn}
 Sei $ X $ eine Menge. Dann heißt die Abbildung $ \id_X : X \to X $ mit $ \id_X(x) := x $ für alle $ x \in X $ die identische Abbildung auf $ X $. Man schreibt auch häufig $ \id $, wenn $ X $ nicht angegeben werden muss.
@@ -393,7 +385,7 @@ In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ der \emph{Summand} und i
 \end{bsp} 
 
 
-\section{Tupel und Kreuzprodukt}
+\section{Tupel und Kreuzprodukte}
 
 \begin{defn}[Paare und das Kreuzprodukt] 
 Für beliebige Objekte $ a,b $ kann man das \emph{(geordnete) Paar} $ (a,b) $ definieren. Das Paar $(a,b)$ besteht aus der ersten Komponente $a$ und der zweiten Komponente $b$. 
@@ -506,7 +498,6 @@ $ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P
 
 \section{Relationen}
 
-\subsection{Relation}
 
 \begin{defn}
 Seien $ X,Y $ Mengen. Dann heißt eine Teilmenge $ R $ von $ X \times Y $ eine (binäre) \emph{Relation} zwischen $ X $ und $ Y $. Bei $X = Y$, heßt $R$ eine (binäre) Relation auf $X$. 
@@ -539,7 +530,6 @@ Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so sch
 \end{itemize}
 \end{bsp}
 
-\subsection{Äquivalenzrelation}
 
 \begin{defn}
 Sei $ X $ Menge und $ \sim $ eine Relation auf $ X $. Dann heißt $ \sim $ eine Äquivalenzrelation, falls:
@@ -582,7 +572,6 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 \end{itemize}
 \end{bsp}
 
-\subsection{Partialordnungen}
 
 \begin{defn}
 	Eine Menge $X$ mit einer binären Relation $\succeq$ darauf heißt Poset (partiell geordnete Menge), wenn für alle $x,y,z \in X$ folgendes gilt: 
@@ -609,19 +598,94 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 
 \section{Beweisansätze} 
 
-\subsection{Vollständige Induktion} 
+\subsection{Widerspruchsbeweis und Kontraposition} 
+
+\begin{bem}
+	Ein Widerspruchsbeweis ist ein Beweis, bei dem man eine Implikation $a \Rightarrow b$ folgendermaßen bestätigt. Man nimmt $a$ und $\overline{b}$ an, und leitet daraus einen Widerspruch her. Ein Widerspruch ist eine falsche Aussage. Oft hat ein Widerspruch die Form $c \wedge \overline{c}$. Das Letztere bedeutet, dass eine Aussage $c$ bestätigt aber auch gleichzeitig widerlegt wird. Der Widerspruchsbeweis basiert  auf der Äquivalenz der folgenden beiden booleschen Formeln 
+	\begin{itemize}
+		\item $a \Rightarrow b$
+		\item $a \wedge \overline{b} \Rightarrow \text{Falsch}$
+	\end{itemize} 
+	Die Äquivalenz der Formeln kann man dadurch erkennen, dass die beiden Formeln nur in einem Fall den Wahrheitswert Falsch haben: bei der ersten sowie der zweiten Formel tritt dieser genau dann Fall auf, wenn $a$ wahr und $b$ falsch ist. 
+\end{bem} 
+
+\begin{lem}
+	Für $t \in \N$ seien $p_1,\ldots,p_t \in \Z_{\ge 2}$ und sei $n := p_1 \cdots p_t + 1$. Dann ist $n$ durch keine der Zahlen $p_1,\ldots,p_t$ teilbar. 
+\end{lem} 
+\begin{proof} 
+	Angenommen, $n$ wäre durch ein $p_i$ mit $i=1,\ldots,t$ teilbar. Da aber das Produkt $p_1 \cdots p_t$ durch $p_i$ teilbar ist, ist $1 = n - p_1 \cdots p_t$ ebenfalls durch $p_i$ teilbar. Wir haben also gezeigt, dass die ganze Zahl $p_i$, mit $p_i \ge 2$, die Zahl $1$ teilt. Das ist ein Widerspruch, der uns die Behauptung unseres Lemmas bestätigt. 
+\end{proof} 
+
+\begin{bem}
+	Indirekter Beweis ist ein Beweis der auf der Äquivalenz von $a \Rightarrow b$ und $\overline{b} \Rightarrow \overline{a}$ basiert. Manche Quellen beschreiben solche Art Beweise als Beweise durch Kontraposition und nutzen den Begriff indirekter Beweis als Oberbegriff für die beiden Arten der Beweise ``Beweis durch Kontraposition'' und ``Widerspruchsbeweis''. Beweis durch Kontraposition und der Widerspruchsbeweis sind miteinander verwandt, denn einen Beweis durch Kontraposition kann man direkt in einen Widerspruchsbeweis konvertieren. 
+\end{bem} 
+
+\begin{lem} \label{lem:a:a^3}
+	Sei $a \in \N$. Dann sind die folgenden Aussagen äquivalent: 
+	\begin{enuma}
+		\item $a$ ist gerade. 
+		\item $a^3$ ist gerade. 
+	\end{enuma} 
+\end{lem} 
+\begin{proof} 
+	Wir zeigen (a) $\Rightarrow$ (b) direkt. Ist $a$ gerade, so hat $a$ die Form $a = 2 k$ mit $k \in \N$. Somit ist $a^3 = (2 k)^3 = 8 k^3$ ebenfalls gerade. 
+	
+	Die Implikation (b) $\Rightarrow$ (a) können wir durch die Kontraposition herleiten: wir zeigen also $\neg$ (a) $\Rightarrow$ $\neg$ (b). Wenn $a$ ungerade ist, so hat $a$ die Form $a = 2 k+1$ mit $k \in \N_0$. Somit ist $a^3  = (2k + 1)^3 = (2k)^3 + 3 (2k)^2 + 3 (2k) + 1 = 2 ( 4 k^3 + 6 k^2 + 6 k) + 1$ eine ungerade Zahl.  
+\end{proof} 
 
 \begin{thm}
+	Die Zahl $\sqrt[3]{2}$ ist nicht rational. 
+\end{thm} 
+\begin{proof} 
+	Angenommen, $\sqrt[3]{2}$ wäre rational. Dann hätte die Zahl die Form $\sqrt[3]{2} = \frac{a}{b}$ mit $a, b \in \N$. Darüber hinaus können wir annehmen, dass $a$ und $b$ nicht beide gerade sind, denn sonst kann man $a$ und $b$, solange sie beide gerade sind, durch $2$ teilen, wodurch sich $a$ und $b$ um Faktor zwei verkleinern. Es ist klar, dass dieser Prozess nach endlich vielen Schritten terminiert. 
+	
+	$\sqrt[3]{2} = \frac{a}{b}$ folgt $2 b^3  = a^3$. Es folgt also, dass $a^3$ gerade ist. Dann ist aber nach Lemma~\ref{lem:a:a^3} die Zahl $a$ gerade ist und somit die Form $a = 2 k$ mit $k \in \N$ hat. Dann ist $2 b^3 = a^3 = (2k)^3 = 8 k^3$, woraus $b^3= 4 k^3$ folgt. Die Zahl $b^3$ ist also gerade. Nach Lemma~\ref{lem:a:a^3}, die wir nun zur Zahl $b$ anwenden können, ist die Zahl $b$ ebenfalls gerade. Wir haben also gezeigt, dass $a$ und $b$ beide gerade sind. Unsere Annahme war aber, dass $a$ oder $b$ ungerade ist. Dieser Widerspruch zeigt, dass die Zahl $\sqrt[3]{2}$ nicht rational ist. 
+\end{proof} 
+
+
+\subsection{Vollständige Induktion} 
+
+\begin{thm}[Vollständige Induktion, Version~1] \label{thm:ind}
 	Sei $P$ ein Prädikat auf $\N$. Dann sind die folgenden Bedingungen äquivalent: 
 	\begin{enuma}
 			\item $P(n)$ gilt für alle $n \in \N$. 
 			\item  $P(1)$ gilt und, aus $P(n)$ folgt $P(n+1)$, für alle $n \in \N$. 
 	\end{enuma} 
 \end{thm} 
+\begin{proof} 
+	Die Implikation (a) $\Rightarrow$ (b) ist klar: $P(1)$ ist erfüllt und da $P(n)$ und $P(n+1)$ beide Wahr ist die Implikation $P(n) \Rightarrow P(n+1)$ für jedes $n$ eine wahre Aussage. 
+	
+	Nun zeigen wir (a) $\Rightarrow$ (b) durch Kontraposition. Angenommen, (a) ist nicht erfüllt. Dann gibt ein $n \in \N$ für welches $P(n)$ falsch ist. Wir fixieren das kleinste solche $n \in \N$. Ist unser $n=1$ so, ist (b) nicht erfüllt, weil $P(1)$ nicht erfüllt ist. Ist $n>1$ so ist (b) nicht erfüllt, weil $P(n)$ falsch und $P(n-1)$ wahr ist, wodurch die Implikation $P(n-1) \Rightarrow P(n)$ nicht erfüllt ist. 
+\end{proof} 
 
-\begin{bsp}
-	Formel für $\sum_{i=1}^n i$. TODO
-\end{bsp} 
+\begin{bem}
+	Beim Verwenden von Theorem~\ref{thm:ind} unterteilt sich die Argumentation in die folgende Schritte. 
+	\begin{itemize}
+		\item Induktionsanfang (IA): man verifiziert, dass $P(1)$ gilt. 
+		\item Induktionsvoraussetzung (IV): man macht die Annahme: sei $n \in \N$ und sei die Aussage $P(n)$ erfüllt. 
+		\item Induktionsschritt (IS): man folgert $P(n+1)$ aus der Induktionsvoraussetzung.  
+	\end{itemize} 
+\end{bem} 
+
+\begin{thm}
+	Für jedes $n \in \N$ gilt $\sum_{i=1}^n i = \frac{1}{2} n (n+1)$. 
+\end{thm} 
+\begin{proof} 
+		Das Prädikat mit dem wir uns in dieser Aussage befassen ist die Gleichung $$\sum_{i=1}^n i = \frac{1}{2} n (n+1)$$ die von einem variablen $n \in \N$ abhängig ist. 
+		
+		Diese Formel ist für $n=1$ erfüllt, denn $\sum_{i=1}^1 i = 1$ und $\frac{1}{2} 1 \cdot (1+1) = 1$. 
+		
+		Sei nun $n \in \N$ ein beliebiger Wert, für welche die Formel $\sum_{i=1}^n  i = \frac{1}{2} n (n+1)$ erfüllt ist. Wir zeigen, dass die Formel mit $n+1$ an der Stelle von $n$ ebenfalls erfüllt ist. Es gilt 
+		\[
+			\sum_{i=1}^{n+1} = \sum_{i=1}^n i  + (n+1),
+		\]
+		da wir in der Summe den Summanden zum Index $i=n+1$ abspalten können. Nach der Induktionsvoraussetzung ist $\sum_{i=1}^n i = \frac{1}{2} n (n+1)$. Somit hat man 
+		\[
+			\sum_{i=1}^{n+1} = \frac{1}{2} n (n+1) + (n+1) = \frac{1}{2} (n+1) (n+2). 
+		\]
+		Zusammenfassend: Unsere Formel gilt für $n=1$ und wenn unsere Formel für ein $n \in \N$ erfüllt ist, so ist sie auch mit $n+1$ an der Stelle von $n$ erfüllt. Aus Theorem~\ref{thm:ind} folgt, dass unsere Formel für jedes $n \in \N$ erfüllt ist. 
+\end{proof} 
+
 
 \begin{bsp}
 	Formel für $\sum_{i=1}^n q^i$. 
@@ -631,58 +695,106 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 	Formel für $\sum_{i=1}^n i q^i$. 
 \end{bsp} 
 
-\begin{bsp}
-	$n \le 2^n$ für alle $n \in \N$. 
-\end{bsp} 
-
-
 \begin{bem}
-	$P(1)$ heißt Induktionsanfang. Die Annahme, $P(n)$ sei erfüllt, heißt die Induktionsvorraussetzung. Die Herleitung von $P(n+1)$ aus $P(n)$ heißt der Induktionsschritt. 
-\end{bem} 
-
-\begin{bem}
-	Ähnliches Prinzip bei Prädikaten auf $\N_0$ (Induktionsanfang $0$) und bei Prädikaten auf $\Z_{\ge k} : = \setcond{z \in \Z}{z \ge k}$ (Induktionsanfang $k$). 
+	Durch Induktion lassen sich nicht nur Gleichung herleiten. Es gibt viele verschiedene Situationen aus diskreter Mathematik, in denen man durch die Induktion Aussagen verifizieren kann. 
 \end{bem} 
 
 \begin{thm}
+	$n \le 2^n$ gilt für alle $n \in \N$. 
+\end{thm} 
+\begin{proof} 
+	Diese Ungleichung kann man mit der Verwendung Ihrer Schulkenntnisse aus der Analysis herleiten. Der folgende Beweis durch die Induktion ist aber elementarer. 
+	
+	Die Ungleichung gilt für $n=1$, denn $1 \le 2^1$. Sei nun $n \in \N$ ein Wert, für welchen $n \le 2^n$ gilt. Im Induktionsschritt sollen wir nun $n + 1 \le 2^{n+1}$ herleiten. Da wir $n \le 2^n$ voraussetzen, gilt $n+1 \le 2^n + 1$, daher reicht es zu verifizieren, dass $2^n + 1 \le 2^{n+1}$ erfüllt ist. Das letztere ist Äquivalent zur Ungleichung $2^n \ge 1$, die trivialerweise für $n \in \N$ erfüllt ist. 
+\end{proof} 
+
+
+
+\begin{thm}[Vollständige Induktion, Version~2]
+	\label{thm:ind:ver2}
 	Sei $P$ ein Prädikat auf  $\N$. Dann sind die folgenden Bedingungen äquivalent: 
 	\begin{enuma}
 			\item $P(n)$ gilt für alle $n \in \N$. 
-			\item $P(1)$ gilt und, aus der Gültigkeit aller Aussagen $P(i)$ mit $i \in \{1,\ldots,n\}$ folgt die Gültigkeit von $P(n+1)$, für alle $n \in \N$. 
+			\item $P(1)$ gilt und, für jedes $n \in \N$, folgt aus der Gültigkeit der Aussagen $P(i)$ mit $i \in \{1,\ldots,n\}$, die Gültigkeit von $P(n+1)$. 
 	\end{enuma} 
 \end{thm} 
+\begin{proof} 
+	Es gibt zwei einfache Weisen, diese Version der vollständigen Induktion herzuleiten. Zum einen kann man den Beweis von Theorem~\ref{thm:ind} sehr geringfügig modifizieren, um dieses Theorem herzuleiten. Zum anderen kann man die Behauptung von Theorem~\ref{thm:ind} für das Prädikat $Q(n) := P(1) \wedge \cdots \wedge P(n)$ benutzen. 
+\end{proof} 
 
-\begin{bsp} 
-	Wir behandeln hier die Existenzaussage im Fundamentalsatz der Arithmetik. 
+\begin{thm}[Primfaktorzerlegung - Existenz] 
+	Für jedes $n \in \N$ existieren $t \in \N_0$ Primzahlen $p_1,\ldots,p_t$ mit 
+	\[
+		n = \prod_{i=1}^t p_i.
+	\] (Man beachte: die Zahlen $p_1,\ldots,p_t$ müssen nicht paarweise verschieden sein und bei $t=0$ ist $\prod_{i=1}^t p_i$ das Produkt von $0$ Zahlen und somit gleich $1$). 
+\end{thm} 
+\begin{proof} 
+	Die Behauptung ``es existieren $t \in \N_0$ Primzahlen $p_1,\ldots,p_t$ mit $n=\prod_{i=1}^t p_i$'' ist wahr für $n \in\{1,2\}$. Denn $n=1$ ist Produkt von $0$ Primzahlen ($t=0$) und $n=2$ ist Produkt von einer Primzahl ($t=1$ und $p_1 =2$). 
 	
-	Jede Zahl $n \in \N$ ist Produkt endlich vieler Primzahlen, das bedeutet: $n$ besitzt eine Darstellung $n = \prod_{i=1}^s p_i$ mit $s \in \N_0$, bei der $p_1,\ldots,p_s$ Primzahlen sind. 
-	
-	(Man beachte: bei $s=0$ hat man das Produkt von $0$ Zahlen, also  die $1$,  und bei $s=1$ das Produkt von einer Primzahl $p_1$). 
-	
-	Beweis durch Induktion über $n \in \N$. Für $n \le 2$ stimmt die Aussage offensichtlich. 
-	Sei $n \ge 3$ und sei jede Zahl von $1$ bis $n-1$ Produkt endlich vieler Primzahlen. Ist $n$ Primzahl, so ist $n$ Produkt einer Primzahl. Ansonsten hat $n$ einen Teiler $a \in \N$ mit $2 \le a \le n-1$. Wir können als $n = a b$ schreiben, mit $b \in \N$, und mit $b \le n / a \le n /2 \le n-1$. Die Anwendung der Induktionsvoraussetzung zu $a$ und $b$ ergibt, dass $a$ und $b$ beide Produkte von endlich vielen Primzahlen sind. Somit ist auch $n$ Produkt von endlich vielen Primzahlen. 
-\end{bsp} 
-
-\subsection{Indirekter Beweis und Widerspruchsbeweis}
+	Sei nun $n \in \N$ mit $n \ge 3$ so, dass jede Zahl $a \in \{1,\ldots,n-1\}$ Produkt von endlich vielen Primzahlen ist (im Sinne der Behauptung). Ist $n$ Primzahl, so gilt die Behauptung mit $t=1$ und $p_1 = n$. Ist $n$ keine Primzahl, so besitzt $n$ einen Teiler $a \in \{2,\ldots,n-1\}$. Es folgt $n = a b$ mit $b = n / a \in \N$ und $b \le \frac{n}{2} \le n-1$. Die Anwendung der Induktionsvoraussetzung zu $a$ und $b$ ergibt, dass man $a$ sowie $b$ als Produkt von Primzahlen darstellen hat. Es gilt also 
+	\begin{align*}
+			a & = \prod_{i=1}^{r} u_i, 
+		\\	b & = \prod_{i=1}^s  v_i.
+	\end{align*} 
+	mit $r, s \in \N$ für geweisse Primzahlen $u_1,\ldots,u_r,v_1,\ldots,v_s$ (hier ist weder $r$ noch $s$ gleich $0$, denn $a,b \ge 2$). 
+	Dann ist $n$ Produkt von $t = r+s$ Primzahlen $p_1,\ldots,p_t$ mit $p_i = u_i$ für $i \in \{1,\ldots,r\}$ und $p_i = v_{i-r}$ für $i \in \{r+1,\ldots,r+s\}$. 
+\end{proof} 
 
 \begin{bem}
-		Die booleschen Formeln 
-		\begin{itemize} 
-			\item $a \to b$
-			\item $\overline{b} \to \overline{a}$ 
-			\item $(a \wedge \overline{b}) \to (c \wedge \overline{c})$. 
-		\end{itemize} 
-		sind äquivalent. Anstatt $a \to b$ zu zeigen, kann man also $\overline{b} \to \overline{a}$  oder $(a \wedge \overline{b} \to (c \vee \overline{c})$ zeigen. Das führt zu einem indirekten Beweis bzw. einem Widerspruchsbeweis. 
+	Ein weiteres verbreitetes Element eines Beweises ist die Fallunterscheidung. Im vorigen Beweis haben wir z.B. zwischen den Fällen $n$ eine Primzahl und $n$ keine Primzahl unterschieden, und in  jedem der beiden Fällen ein anderes Argument benutzt. 
 \end{bem} 
 
 
-\section{Algebraische Strukturen  Ring und Körper} 
+\section{Schnupperstunde in Algebra} 
 
-\subsection{Kommutativer Ring} 
+\subsection{Was ist Algebra?}
 
 \begin{bem}
-	Genau so wie Bezeichnungen $a,b,c,\cdots$ in verschiedenen Kontexten verschiedene Bedeutung haben, können in Mathematik auch Operationen $+,-$ in verschiedenen Kontexten (und verschiedenen Strukturen) verschiedene Bezeichnung haben. 
-\end{bem}
+	Algebra ist die Theorie algebraischer Strukturen. Während man in der Schule mit einer relativ kleiner Anzahl algebraischer Strukturen wie $(\R,+,\cdot)$ oder dem Vektorraum $\R^3$ arbeitet, befasst man sich in Algebra mit verschiedenen Kategorien algebraischer Strukturen, wie z.B. Halbgruppen, Gruppen, Ringe, Körper und Vektorräume. 
+
+Man entwickelt auch Mittel,  neue/eigene algebraische Strukturen anzulegen. Wenn man diesen Prozess mit der Programmierung vergleicht, so ist der Prozess sehr ähnlich zur Entwicklung eigener Datenstrukturen (im Gegensatz zur Nutzung der standardmäßig vorhandenen Datenstrukturen). 
+\end{bem} 
+
+\begin{bem}[Algebraische Struktur] 
+	Eine algebraische Struktur ist in der Regel eine Menge $A$, die mit einer oder mehreren Verknüpfungen ausgestattet ist. In den allermeisten Fällen sind die Verknüpfungen, die man betrachtet, binär: sie sind Abbildungen $\ast : A \times A \rightarrow A$.  Für solche Abbildungen schreibt man dann $a \ast b$ an der Stelle von $\ast(a,b)$. Sehr oft handelt es sich auch um die Verknüpfungen, für welche (zumindest) das Assoziativgesetz $a \ast (b \ast c) = (a \ast b) \ast c$ erfüllt ist. 
+	
+	
+	Des Weiteren benutzt man oft zum Bezeichnen der Verknüpfungen (bzw. der Verknüpfung) einer algebraischen Struktur die Symbole $+$ (Plus) und $\cdot$ (Mal). Hierbei meint man dann die Plus-Operation bzw. die Mal-Operation innerhalb der gegebenen algebraischen Struktur $A$. Das heißt, diese Operationen müssen $+$ und/oder $\cdot$ innerhalb einer algebraische Struktur $A$ nicht unbedingt mit Operation $+$ und $\cdot$ innerhalb der Menge $\R$ der reellen Zahlen etwas zu tun haben. Das bedeutet:  genau so, wie Symbole $a,b,c,d,\ldots$ in Mathematik kontextabhängig sind (können verschiedene Bedeutung in verschiedenen Kontexten haben), sind auch die Bezeichnungen wie $+$ und $\cdot$ eigentlich kontextabhängig (bzw. Strukturabhängig) und können so, wie man es sich wünscht, eingeführt werden. Wenn man also $+$ in der Struktur $A$ hat, so ist das eigentlich $+_A$ -- die Plusoperation in der Struktur $A$ -- man schreibt aber einfach nur $+$ und nimmt stillschweigend  an, dass es aus dem Kontext klar ist, welche Struktur $A$ gemeint ist. (Die Nutzung der selben Bezeichnung für verschiedene Operationen nennt man in der Programmierung der Polymorphismus.) 
+\end{bem} 
+
+\begin{bsp}
+	Für $n \in \N$ heißt die Menge $S_n$ aller bijektiven Abbildungen von $\{1,\ldots,n\}$ nach $\{1,\ldots,n\}$ mit der Multiplikation 
+	\[(\sigma \cdot \tau )(i) := \sigma(\tau(i))
+	\] die symmetrische Gruppe. Was eine (allgemeine) Gruppe ist, wird in IT-2 diskutiert. 
+\end{bsp} 
+
+\begin{bsp} 
+	Die algebraische Struktur $\F_2$, welche man als Menge  $\{0,1\}$ mit den binären Operationen 
+\begin{align*}
+\begin{array}{c|cc}
+	+ & 0 & 1 \\
+	\hline 
+	0 & 0 & 1 \\
+	1 & 1 & 0
+\end{array}
+& & \text{und} & & 
+\begin{array}{c|cc}
+\cdot & 0 & 1 \\
+\hline 
+0 & 0 & 1 \\
+1 & 1 & 1
+\end{array}
+\end{align*} 
+einführt, ist ein sogenannter binärer Körper. Die Bezeichnungen $+$, $\cdot$, $0$ und $1$, die wir hier verwenden, sind polymorph. 
+
+Wir meinen $+_{\F_2}, \cdot_{\F_2}$, $0_{\F_2}$ und $1_{\F_2}$ schreiben aber in unserem Kontext von $\F_2$ vereinfachend $+, \cdot, 0, 1$. 
+
+Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine wichtige Rolle. 
+
+\end{bsp} 
+
+
+\subsection{Kommutativer Ring} 
 
 \begin{defn}
 	Eine Menge $R$ mit zwei binären Verknünfungen $+, -$ und zwei verschiedenen ausgezeichneten Elementen $0, 1 \in R$ heißt kommutativer Ring, wenn für alle $a,b,c \in R$ Folgendes erfüllt ist: 
@@ -690,7 +802,7 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 		\item $a + b =b +a$ und $a \cdot b = b \cdot a$ 
 		\item $a + 0 = a$ und $a \cdot 1 = a$ 
 		\item $(a+b)+c = a+(b+c)$ und $a \cdot (b \cdot c) = (a \cdot b) \cdot c$
-		\item Es gibt ein durch $a$ eindeutig bestimmtest Element $a \in R$ mit $a+(-a)=0$
+		\item Zu jedem $a$ gibt es ein eindeutiges Element aus $R$, das man als $-a$ bezeichnet, für welches $a+(-a)=0$ erfüllt ist. 
 		\item $a \cdot (b+c) = a \cdot b + a \cdot c$
 	\end{itemize} 
 \end{defn}
