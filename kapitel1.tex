@@ -58,12 +58,14 @@ Seien $ A $ und $ B $ Aussagen. Dann definiert man anhand von $ A $ und $ B $ di
 \section{Mengen und Mengenoperationen}
 
 
-\begin{defn}
-	Eine Menge $X$ ist durch die Eindeutige Angabe definiert, welche Objekte Elemente der Menge sind. Man schreibt in diesem Fall $x \in X$ dafür, dass das Objekt $x$ Element der Menge $X$ ist, und $x \not\in X$ dafür, dass $x$ kein Element der Menge $X$. Mit anderen Worte: für die Angabe einer Menge $X$ soll für jedes Objekt $x$ geklärt sein, ob für dieses Objekt $x \in X$ oder $x\not \in X$ gilt. 
+\begin{defn}[Intuitive ``Definition'' einer Menge] 
+	Eine Menge $X$ ist durch die Eindeutige Angabe definiert, welche Objekte Elemente der Menge sind. Man schreibt in diesem Fall $x \in X$ dafür, dass das Objekt $x$ Element der Menge $X$ ist, und $x \not\in X$ dafür, dass $x$ kein Element der Menge $X$. 
+	
+	Mit anderen Worten: für die Angabe einer Menge $X$ soll für jedes Objekt $x$ geklärt sein, ob für dieses Objekt $x \in X$ oder $x\not \in X$ gilt. 
 \end{defn} 
 
-\begin{bem}
-	Unser Definition der Menge ist etwas intuitiv (und ist somit streng genommen keine echte Definition), sie reicht aber 	für unsere Zwecke völlig aus. Die genaue Definition einer Menge ist durch das Axiomensystem von Zermelo-Fraenkel gegeben. Dieses System legt Folgendes fest: 
+\begin{bem}[Zur korrekten Definition einer Menge]
+	Unsere Definition der Menge ist etwas intuitiv und  somit streng genommen keine echte Definition); sie reicht aber vorerst für unsere Zwecke völlig aus. Die genaue Definition einer Menge ist durch das Axiomensystem von Zermelo-Fraenkel gegeben. Dieses System legt Folgendes fest: 
 	\begin{itemize}
 		\item die Existenz der leeren Mengen, 
 		\item die Bedingung für die Gleichheit von zwei Mengen
@@ -73,36 +75,40 @@ Seien $ A $ und $ B $ Aussagen. Dann definiert man anhand von $ A $ und $ B $ di
 		\item die Möglichkeit Mengen, durch eine Bedingung zu definieren. 
 		\item Ersetzungsaxiom (ist etwas technisch)
 	\end{itemize} 
-	Zu den obigen Axiomen nimmt man noch zusätzlich das sogenannte Auswahlaxiom dazu. 
+	Zu den obigen Axiomen nimmt man noch zusätzlich das sogenannte Auswahlaxiom dazu. Das Axiomensystem, das auf diese Weise entsteht, wird als ZFC (Zermelo-Fraankel axioms plus Axom of Choice) abgekürzt. 
 \end{bem} 
 
 
-\begin{bem} 
+\begin{bsp}[Definition einer Menge durch endliche/unendliche Auflistung] 
 Eine Weise, Mengen zu definieren, ist durch die Auflistung ihrer Elemente. Dabei stehen die geschweiften Klammern für Mengen, die drei Punkte bedeuten \glqq usw\grqq.
 \begin{itemize}
-	\item $ \{1,2,5,7\} $
-	\item $ \{1\} $
-	\item $ \{1,\{2,5\},\{6\}\} $
-	\item $ \{1,2,3,\ldots\} $
+	\item $ \{1,2,5,7\} $ - Menge aus den vier Elementen $1,2,5$ und $7$. 
+	\item $ \{1\} $ - Menge aus einem einzigen Element $1$. 
+	\item $ \{1,\{2,5\},\{6\}\} $ - Menge aus drei Elementen, von denen zwei Elementen selber Mengen sind. 
+	\item $ \{1,2,3,\ldots\} $ - Menge der aller positiven ganzen Zahlen. 
 \end{itemize}
-\end{bem}
+\end{bsp}
 
 \begin{defn}
-Seien $ A $ und $ B $ Mengen. Dann ist $ A $ genau dann eine Teilmenge von $ B $, wenn jedes Element von $ A $ auch Element von $ B $ ist. Unsere Bezeichnung dazu: $A \subseteq B$. Die Relation $\subseteq$ nennt man die Inklusion. 
+Seien $ A $ und $ B $ Mengen. Dann heißt $ A $ eine \textbf{Teilmenge} von $ B $, wenn jedes Element von $ A $ auch Element von $ B $ ist;  wir verwenden in diesem Fall die Bezeichnung $A \subseteq B$ und nennen die Relation $\subseteq$ \textbf{Inklusion}. 
+
+Wenn $A$ Teilmenge von $B$ aber $B$ keine Teilmengen von $A$ ist, so sagt man, dass $A$ eine \textbf{echte Teilmenge} von $B$ ist; wir verwenden in diesem Fall die Bezeichnung $A \varsubsetneq B$ und nennen die Relation $\varsubsetneq$ eine \textbf{echte} bzw. \textbf{strikte Inklusion}. 
 \end{defn}
 
 \begin{bem}
-In einigen mathematischen Quellen bezeichnet man die Inklusion als $ \subset $ und nicht als $ \subseteq $. Es ist schwer zu sagen, welche Bezeichnung in der Mehrheit der Quellen benutzt wird. Es gibt aber auch Quellen, in denen $ \subset $ die strikte Inklusion bezeichnet. Daher ziehe ich persönlich $ \subseteq $ vor.
+In einigen mathematischen Quellen bezeichnet man die Inklusion als $ \subset $ und nicht als $ \subseteq $. Es ist schwer zu sagen, welche Bezeichnung in der Mehrheit der Quellen benutzt wird. Es gibt aber auch Quellen, in denen $ \subset $ die strikte Inklusion bezeichnet. Durch die Nutzung $\subseteq$ vermeiden wir potenzielle Ambiguitäten. 
 \end{bem} 
 
 \begin{defn}
-Zwei Mengen $ A $ und $ B $ heißen genau dann gleich, wenn $ A \subseteq B $ und $ B \subseteq A $ gilt. $ A $ heißt genau dann echte Teilmenge einer Menge $ B $, wenn $ A \subseteq B $ und $ A \neq B $ erfüllt sind. Bezeichnung: $ A \varsubsetneq B $.
+	 Mengen $ A $ und $ B $ heißen \textbf{gleich}, wenn $ A \subseteq B $ und $ B \subseteq A $ gilt. 
 \end{defn} 
 
 
-\begin{bem}[Definition durch eine Bedingung]
+\begin{bem}[Definition einer Menge durch eine Bedingung]
 Eine sehr verbreite Weise, Mengen zu definieren, ist durch Bedingungen, nach dem Format 
-$ \{ AUSDRUCK : BEDINGUNG \} $. Der Doppelpunkt bedeutet \glqq sodass\grqq, \glqq mit der Bedingung\grqq. In manchen Quellen wird ein Strich an der Stelle des Doppelpunktes benutzt. 
+\[
+ \{ AUSDRUCK : BEDINGUNG \}.
+\] Der Doppelpunkt bedeutet \glqq sodass\grqq, \glqq mit der Bedingung\grqq. In manchen Quellen wird ein Strich an der Stelle des Doppelpunktes benutzt. 
 \end{bem} 
 
 \begin{aufg}\ 
@@ -117,12 +123,23 @@ sind.
 \end{aufg}
 
 \begin{defn}
-Die leere Menge ist die Menge, die keine Elemente enthält. Bezeichnung: $ \emptyset $.
+Die \textbf{leere Menge} ist die Menge, die keine Elemente enthält; sie wird als $ \emptyset $ bzw. $\varnothing$ bezeichnet. 
 \end{defn} 
 
 \begin{defn}[Potenzmenge]
-Sei $ X $ eine Menge. Dann ist die Potenzmenge von $ X $ die Menge aller Teilmengen von $ X $. Bezeichnung: $ 2^X $, Formal: $ 2^X := \{ A : A \subseteq X \} $.
+Sei $ X $ eine Menge. Dann ist die \textbf{Potenzmenge} von $ X $ die Menge aller Teilmengen von $ X $; für diese Menge benutzen wir die Bezeichnung $ 2^X $. Nach unserer Definition ist $2^X$ als  
+\[
+	 2^X := \{ A : A \subseteq X \} .
+\]
+gegeben. 
 \end{defn} 
+
+\begin{bem} Hier und im folgenden verwenden wir die Gleichung $:=$ mit Doppelpunkt, wenn es um neue Bezeichnungen geht, die festgelegt werden. Format: 
+	\[
+		\text{NEUE BEZEICHNUNG} := \text{BEDEUTUNG DER BEZEICHNUNG}
+	\]
+	Die Nutzung vom Doppelpunkt in diesem Fall ist kein Muss; man kann auch durch den Begleittext verdeutlichen, dass man eine neue Bezeichnung einführt. 
+\end{bem} 
 
 \begin{aufg}
 	Wenn $X$ genau $n \in \N$ Elemente hat, wie viele Elemente hat $2^X$? Was wäre Ihre Begründung dazu? 
@@ -147,7 +164,7 @@ Sei $ X $ eine Menge. Dann ist die Potenzmenge von $ X $ die Menge aller Teilmen
 	\item[] $-0{.}99999 \cdots$ ist das selbe wie $-1{.}000 \cdots$ und ist die $-1$. 
 	\item[] $0{.}1\underbrace{0}_11\underbrace{00}_21 \underbrace{ 000}_3 1 \underbrace{0000}_41 \cdots $ ist eine reelle aber keine rationale Zahl. (Warum?)
 \end{itemize} 
-\item[$ \C $] komplexe Zahlen (werden demnächst diskutiert) 
+	\item[$ \C $] die Menge der komplexen Zahlen (werden wir noch einführen) 
 \end{itemize}
 \end{bem}
 
@@ -157,11 +174,17 @@ $ \N \subsetneq \N_0 \subsetneq \Z \subsetneq \Q \subsetneq \R \subsetneq \C $.
  \end{bem} 
 
 \begin{bem}
-	Für Zahlenbereiche $B  = \Z$, $B= \Q$ sowie $B= \R$ und ein $a \in \R$ benutzen wir die Bezeichnungen 
+	Manche Quellen definieren die Menge der natürlichen Zahlen als $ \set{0,1,2,\ldots} $, es ist mittlerweile sogar die ISO-Norm 80000-2. Aktuell spielen aber die ISO-Normen in den mathematischen Texten keine so große Rolle. Vgl. auch den ISO-Standard 31-11, in dem man z.B. $\subset$ für die strikte Inklusion reserviert. 
+\end{bem}
+
+
+\begin{bem}
+	Für Zahlenbereiche $B  \in \{\Z,  \Q, \R\}$ und ein $a \in \R$ benutzen wir die folgenden Bezeichnungen:
 	\begin{align*}
-			B_{\ge a}&  := \setcond{x \in B}{x \ge a},  & & B_{>a} & := \setcond{x \in B}{x > a}, 
-			\\ B_{\le a} & := \setcond{x \in B}{x \le a}, & & B_{<a} & := \setcond{x \in B}{x < a}. 
+			B_{\ge a}&  := \setcond{x \in B}{x \ge a},  &  B_{>a} & := \setcond{x \in B}{x > a}, 
+			\\ B_{\le a} & := \setcond{x \in B}{x \le a}, &  B_{<a} & := \setcond{x \in B}{x < a}. 
 	\end{align*} 
+	Beispiel: $\Z_{\ge 2}$. 
 \end{bem} 
 
 
@@ -180,34 +203,27 @@ $ \N \subsetneq \N_0 \subsetneq \Z \subsetneq \Q \subsetneq \R \subsetneq \C $.
 \end{bem}
 
 
-
 \begin{bem}
-Manche Quellen definieren die Menge der natürlichen Zahlen als $ \set{0,1,2,\ldots} $, es ist mittlerweile sogar die ISO-Norm 80000-2. Nach meiner Erfahrung gibt es viel mehr Quellen, wo man
-	die Menge der natürlichen Zahlen als $ \set{1,2,3,\ldots} $ definiert. Daher
-	ziehe ich die Definition $ \set{1,2,3,\ldots} $ vor.
-\end{bem}
-
-\begin{bem}
-		Die Erweiterung der  Zahlenbereiche zu immer größeren Bereichen ist durch den Wunsch nach einer Vollständigkeit motiviert.... 
+		Die Erweiterung der  Zahlenbereiche zu immer größeren Bereichen ist durch den Wunsch nach einer (gewissen) Vollständigkeit motiviert.
 \end{bem} 
 
 
 \begin{defn}
-Seien $ A,B $ Mengen. Dann heißt
+Seien $ A,B $ Mengen. Dann heißt:
 \begin{itemize}
-\item $ A \cap B := \{ x : (x \in A) \wedge (x \in B) \} $ Durchschnitt von $ A $ und $ B $
-\item $ A \cup B := \{ x : (x \in A) \vee (x \in B) \} $ Vereinigung von $ A $ und $ B $
-\item $ A \setminus B := \{ x : (x \in A) \wedge (x \notin B) \} $ Mengendifferenz von $ A $ und $ B $
-\item $A \operatorname{\triangle} B := (A \setminus B) \cup (B \setminus A)$, Symmetrische Differenz von $A$ und $B$ 
+\item $ A \cap B := \{ x : (x \in A) \wedge (x \in B) \} $ \textbf{Durchschnitt} von $ A $ und $ B $,
+\item $ A \cup B := \{ x : (x \in A) \vee (x \in B) \} $ \textbf{Vereinigung} von $ A $ und $ B $,
+\item $ A \setminus B := \{ x : (x \in A) \wedge (x \notin B) \} $ \textbf{Mengendifferenz} von $ A $ und $ B $,
+\item $A \operatorname{\triangle} B := (A \setminus B) \cup (B \setminus A)$, \textbf{Symmetrische Differenz} von $A$ und $B$. 
 \end{itemize}
 \end{defn}
 
 \begin{bem}
-	Für eine Grundmenge $X$ wird die Menge $2^X$ aller Teilmengen von $X$ zu einer sogenannten booleschen Algera der Teilmengen von $X$, indem man $2^X$ mit den Verknüpfungen $A \cap B$, $A \cap B$ und der unären Verknüpfung $\overline{A} := X \setminus A$ ausstattet. 
+	Für eine Grundmenge $X$ wird die Menge $2^X$ aller Teilmengen von $X$ zu einer sogenannten \textbf{booleschen Algebra} der Teilmengen von $X$, indem man $2^X$ mit den Verknüpfungen $A \cap B$, $A \cap B$ und der unären Verknüpfung $\overline{A} := X \setminus A$ ausstattet. 
 \end{bem} 
 
 \begin{defn}
-Seinen $ A,B $ Mengen. $ A $ und $ B $ heißen genau dann disjunkt, wenn $ A \cap B = \emptyset $. In diesem Fall wird die Vereinigung von $A$ und $B$ eine disjunkte Vereinigung genannt
+Seinen $ A,B $ Mengen. $ A $ und $ B $ heißen genau dann \textbf{disjunkt}, wenn $ A \cap B = \emptyset $ gilt. In diesem Fall wird die Vereinigung von $A$ und $B$ eine  \textbf{disjunkte Vereinigung} genannt
 und als $A \cupdot B$ bezeichnet. 
 \end{defn}
 
@@ -215,9 +231,12 @@ und als $A \cupdot B$ bezeichnet.
 
 
 \begin{defn}
-Seien $ X,Y $ Mengen. Eine Abbildung $ f $ von $ X $ nach $ Y $ ist eine Vorschrift, die jedem $ x \in X $ genau ein Element aus $ Y $ zuordnet. Dieses Element aus $ Y $ wird durch $ f(x) $ bezeichnet. Wenn $ f $ eine Abbildung von $ X $ nach $ Y $ ist, dann bezeichnet man das durch: $ f : X \to Y $. Die Menge $ X $ heißt der Definitionsbereich von $ f $, $ Y $ heißt der Wertebereich von $ f $.
+Seien $ X,Y $ Mengen. Eine \textbf{Abbildung} $ f $ von $ X $ nach $ Y $ ist eine Vorschrift, die jedem $ x \in X $ genau ein Element aus $ Y $ zuordnet. Dieses Element aus $ Y $, das dem $x$ zugeordnet wird, wird durch $ f(x) $ bezeichnet. Wenn $ f $ eine Abbildung von $ X $ nach $ Y $ ist, dann bezeichnet man das als $ f : X \to Y $. Die Menge $ X $ heißt der \textbf{Definitionsbereich} von $ f $, $ Y $ heißt der \textbf{Wertebereich} von $ f $. Wenn der Wertebereich $Y$ von $f$ Teilmengen von $\R$ ist, so nennen wir $f : X \to Y$ eine \textbf{Funktion}. 
 \end{defn} 
 
+\begin{bem} 
+In manchen Quellen benutzt man den Begriff Funktion als ein Synonym zum Begriff Abbildung. 
+\end{bem} 
 % 16.10.2014
 
 %Beispiel:
@@ -237,13 +256,23 @@ Seien $ X,Y $ Mengen. Eine Abbildung $ f $ von $ X $ nach $ Y $ ist eine Vorschr
 %	\end{tabular}
 %\end{table}
 
-\begin{bsp}
+\begin{bsp}\ 
 \begin{itemize}
-	\item $ f : \R \to \R,\\ f(x) := x^2 -2x + 7 \:\forall\: x \in \R $
-	\item $ f : \R \setminus \{ 1 \} \to \R,\\ f(x) := \frac{1}{x-1} \:\forall\: x \in \R $
-	\item $ \sign: \R \to \R = \{ 1,0,1 \} $
-	\item $ f : 2^{\N} \to \N, f(A) := \min(A) \:\forall\: A \subseteq \N $, z.B. $ f( \{ 1,7,43 \} ) = 1 $
-	\item $ f : \N \to 2^\N, f(k) := \is{1}{k} \:\forall\: k \in \N $
+	\item $ f : \R \to \R,\\ f(x) := x^2 -2x + 7 $
+	\item $ f : \R \setminus \{ 1 \} \to \R,\\ f(x) := \frac{1}{x-1}$
+	\item Die Vorzeichen-Funktion $ \sign: \R \to \R $ wird durch die Fallunterscheidung als 
+	\[
+		\sign(x) := \begin{cases} 
+				-1 &  \text{für} \ x < 0,
+				\\ 0 & \text{für} \ x =0,
+				\\ 1 & \text{für}  \ x >0
+			\end{cases} 
+	\]
+	definiert. 
+	\item Definitions- bzw. Wertebereiche von Abbildungen müssen keine Teilmengen der Zahlenbereiche sein. 
+	
+	$ f : 2^{\N} \to \N, f(A) := \min(A) $. Die Eingabe dieser Funktion ist keine Zahl sondern eine Menge, man hat z.B. $ f( \{ 2,7,43 \} ) = 2 $.
+	\item $ f : \N \to 2^\N, f(k) := \is{1}{k}.$ Die Rückgabe dieser Abbildung ist keine Zahl sondern eine Menge, z.B. $f(3) = \{1,2,3\}$. 
 \end{itemize}
 \end{bsp} 
 
@@ -303,7 +332,7 @@ Seien $ X,Y $ Mengen und sei $ f : X \to Y $. Dann heißt $ f $:
 		\item $ f : \R \setminus \{ 0 \} \to \R, f(x) = \frac{1}{x} $ für alle $ x \in \R $\\
 		surjektiv ? nein, 0 wird nicht angenommen\\
 		injektiv ? ja
-		\item $ f : \R \to R, f(x) = 2x + 3 $ für alle $ x \in \R $\\
+		\item $ f : \R \to \R, f(x) = 2x + 3 $ für alle $ x \in \R $\\
 		bijektiv ? ja
 	\end{itemize}
 \end{bsp}
@@ -347,6 +376,7 @@ Seien $ I,X $ Mengen und sei $ A : I \to 2^X $. Man schreibt auch in diesem Fall
 Für die Familie $ (A_i)_{i \in I} $ definiert man
 \begin{align*}
 	\text{den Durchschnitt} && \bigcap_{i \in I} A_i &:= \{ x \in X : x \in A_i \:\text{für alle}\: i \in I \},\\
+	\text{und} \\ 
 	\text{die Vereinigung} && \bigcup_{i \in I} A_i &:= \{ x \in X : x \in A_i \:\text{für ein}\: i \in I \}.
 \end{align*}
 \end{defn} 
@@ -368,11 +398,11 @@ Eine Menge $ X $ heißt endlich, falls $ X = \emptyset $ oder falls eine bijekti
 \end{defn} 
 
 \begin{bem}
-$ |X| $ ist wohl definiert, d.h. eine Menge kann nicht zwei unterschiedliche Kardinalitäten haben.
+$ |X| $ ist wohldefiniert, d.h. eine Menge kann nicht zwei unterschiedliche Kardinalitäten haben.
 \end{bem} 
 
 \begin{defn}
-Sei $ X $ eine nichtleere endliche Menge. Dann kann $ X $ als $ X = \is{x_1}{x_n} $ dargestellt werden mit  $ x_i \neq x_j \Leftrightarrow i \neq j $ für alle $ i,j \in \is{1}{n} $.
+Sei $ X $ eine nichtleere endliche Menge. Dann kann $ X $ als $ X = \is{x_1}{x_n} $ dargestellt werden mit  $ x_i \neq x_j $ für alle $ i,j \in \is{1}{n} $ mit $i \ne j$. 
 
 Für eine Abbildung $ f : X \to \R $ definiert man
 \begin{align*}
@@ -391,7 +421,7 @@ In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ der \emph{Summand} und i
 
 
 \begin{bem}
-	$\sum\limits_{i=a}^b$ benutzt man als eine kurze Schreibweise für $\sum\limits_{i \in \{a,\ldots,b\}}$. 
+	$\sum\limits_{i=a}^b$ benutzt man als eine kurze Schreibweise für $\sum\limits_{i \in \{a,\ldots,b\}}$. Im entarteten Fall $a>b$ ist $\sum\limits_{i =a}^b$ eine Summe über die leere Menge. 
 \end{bem} 
 
 \begin{bsp}
@@ -436,7 +466,9 @@ ein.
 		\item $ [0,1] \times [0,2] $, $ \{ 0 \} \times [0,2] $  und $ \{ 0,1 \} \times \{ 0,2 \} $ 
 		\item $ [0,1]^3 $, $ [0,1]^2 \times \{ 0 \} $, $ [0,1]^2 \times \{ 1 \} $  und $ \{ 0 \}^2 \times [0,1] $. 
 	\end{itemize}
+	\textbf{Hinweis:} Geometrische Darstellung von Teilmengen von $\R^n$ für $n \in \{2,3\}$ im kartesischen Koordinatensystem wird in den Kursen IT-2 und IT-3 nützlich sein. 
 \end{aufg}
+
 
 \section{Prädikate und Quantoren}
 
@@ -446,11 +478,7 @@ Sei $ X $ Menge. Dann heißt $ P : X \to \{ \text{falsch},\text{wahr} \} $ \emph
 \end{defn} 
 
 \begin{bem}
-	Informell beschrieben ist ein Prädikat:
-	\begin{itemize}
-		\item  eine Aussage mit einer Variablen $x$ , die man mit Werten aus dem vorgegeben Bereich  $X$ belegen kann. Dabei hängt im Allgemeinen der Wahrheitswert der Aussage von der Wahl von $x$ ab. 
-		\item eine Eigenschaft, die für ein variables $x \in X$ erfüllt oder nicht erfüllt ist. 
-	\end{itemize} 
+	Informell beschrieben ist ein Prädikat eine Aussage über ein variables Element $x$ aus $X$. Dabei hängt im Allgemeinen der Wahrheitswert der Aussage von der Wahl von $x$ ab.  Sonst lässt sich ein Prädikat auf $X$ als eine Eigenschaft eines variablen Elements $x \in X$, die entweder vorhanden oder nicht vorhanden ist. Zum Beispiel: $P(n):=$``$n$ ist gerade'' als Eigenschaft einer natürlichen Zahl $n \in \N$. Diese Eigenschaft ist bei $n=123$ nicht vorhanden und bei $n=2020$ vorhanden. 
 \end{bem}
 
 \begin{bsp}
@@ -458,7 +486,7 @@ $ P : \N \to \{ \text{falsch},\text{wahr} \}$ mit $P(k) := $ \textquote{$ k(k+1)
 \end{bsp} 
 
 \begin{bsp}
-$ P : \R^2 \to \{ \text{falsch},\text{wahr} \}$ mit $P(x,y) := $ \textquote{$ x^2 + y^2 \le 1 $}.
+$ P : \R^2 \to \{ \text{falsch},\text{wahr} \}$ mit $P(x,y) := $ \textquote{$ x^2 + y^2 \le 1 $} ist die Eigenschaft  ``der Punkt $(x,y)$ hat den Abstand höchstens $1$ zum Punkt $(0,0)$''. 
 \end{bsp} 
 
 \begin{bem} 
@@ -467,17 +495,17 @@ $ P : \R^2 \to \{ \text{falsch},\text{wahr} \}$ mit $P(x,y) := $ \textquote{$ x^
 
 
 \begin{defn}
-$ \forall\: x \in X : P(x) $ für ein Prädikat $ P $ auf eine Menge $ X $ steht für die Aussage \textquote{die Bedingung $ P(x) $ gilt für alle $ x \in X $.} $ \forall $ heißt das \emph{Allgemeinheitsquantor} (Bedeutung: für $ \forall $lle). \\[10pt]
+$ \forall\: x \in X : P(x) $ für ein Prädikat $ P $ auf eine Menge $ X $ steht für die Aussage \textquote{die Bedingung $ P(x) $ gilt für alle $ x \in X $.} Das Symbol $ \forall $ heißt das \emph{Allgemeinheitsquantor} (Bedeutung: für $ \forall $lle). \\[10pt]
 %
 $ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P(x) $ gilt für ein $ x \in X $.} $ \exists $ heißt \emph{Existenzquantor} (Bedeutung: es $ \exists $xistiert).
 \end{defn}
 
 \begin{bem}
-	Negierung von Aussagen:
-	\begin{enumerate}
+	Negierung von quantifizierten Aussagen erfolgt auf die folgende naheliegende Weise: 
+	\begin{itemize}
 		\item $ \overline{\forall\: x \in X : P(x)} \Leftrightarrow \exists\: x \in X : \overline{P(x)} $
 		\item $ \overline{\exists\: x \in X : P(x)} \Leftrightarrow \forall\: x \in X : \overline{P(x)} $
-	\end{enumerate}
+	\end{itemize}
 \end{bem}
 
 
@@ -487,14 +515,14 @@ $ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P
 		 \forall x \in X \,\exists\: y \in Y : P(x,y), 
 	\]
 	und
-	\[\exists x \in X  \forall y \in Y : P(x,y) 
+	\[\exists x \in X  \, \forall y \in Y : P(x,y) 
 	\]
 	usw. einführen. 
 \end{bem}
 
 
 \begin{bem}
-	In vorigen Bemerkung ist die Reihenfolge des Quantifizierens relevant. Sei $X$ eine Menge von  Personen und $A$ eine Menge von Adressen im Stadtteil Sandow. Die Aussage 
+	In der vorigen Bemerkung ist die Reihenfolge des Quantifizierens relevant. Sei $X$ eine Menge von  Personen und $A$ eine Menge von Adressen im Stadtteil Sandow. Die Aussage 
 	\[
 		\forall x \in X \, \exists a \in A \, :\, x \ \text{wohnt unter der Adresse} \  a .
 	\]
@@ -526,25 +554,26 @@ Seien $ X,Y $ Mengen. Dann heißt eine Teilmenge $ R $ von $ X \times Y $ eine (
 \end{bem} 
 
 \begin{bem}
-Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so schreibt man $ x \, R \, y $. 
+Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so schreibt man $ x \, R \, y $. Das bedeutet: $x$ steht in der Relation $R$ zu $y$. 
 \end{bem}
 
 \begin{bsp}\ % hack to force itemize to new line
 \begin{itemize}
-	\item $ X $ - Menge von Fahrzeugen\\
-	$ Y $ - Menge von Features von Fahrzeugen
+	\item $ X = \{f_1,f_2,f_3,f_4\} $ - Menge von Fahrzeugen\\
+	$ Y =  \{ \text{Ersatzrad}, \text{Radio}, \text{Navi}, \text{Automatik} \}$ - Menge von Features von Fahrzeugen. Hier 
 
 	\begin{tabular}{l|c|c|c|c}
 		& Ersatzrad & Radio & Navi & Automatik \\
 		\hline
-		$ f_1 $ & 1 & 1 & 1 & 1 \\
-		$ f_2 $ & 1 & 1 & 1 & 0 \\
-		$ f_3 $ & 0 & 0 & 1 & 1 \\
-		$ f_4 $ & 0 & 1 & 1 & 0
-	\end{tabular}
-	\item $ \leq, <, \geq, > $ auf $ \R $
-	\item $ \subseteq $ als Relation auf $ 2^X $ für eine Menge $ X $
-	\item Für $ a,b \in \N $ schreibt man $ a | b $, wenn $ b $ durch $ a $ ohne Rest teilbar ist.
+		$ f_1 $ & ja & ja & ja & ja \\
+		$ f_2 $ & ja & ja & ja & nein \\
+		$ f_3 $ & nein & nein & ja & ja \\
+		$ f_4 $ & nein & ja & ja & nein
+	\end{tabular} \\ 
+	Diese Tabelle legt eine Relation auf $X \times Y$ fest. 
+	\item $ \leq, <, \geq, > $ sind binäre Relationen auf $ \R$
+	\item Sei $X$ Menge. Dann ist $ \subseteq $ ist eine binäre Relation auf $ 2^X $.
+	\item Für $ a,b \in \N $ schreibt man $ a | b $, wenn $ b $ durch $ a $ ohne Rest teilbar ist. Dies ist eine binäre Relation auf $\N$. 
 \end{itemize}
 \end{bsp}
 
@@ -605,11 +634,15 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 	Wenn für ein Poset $(X,\succeq)$ für alle $x, y \in X$, die Bedingung $x \succeq y$ oder die Bedingung $y \succeq x$ erfüllt ist, so nennt  man $(X,\succeq)$ eine total geordnete Menge und $\succeq$ eine totale Ordnung auf $X$. 
 \end{defn} 
 
-\begin{bsp}\
+\begin{bsp} Beispiele von Posets. 
 	\begin{itemize}
 		\item $2^X$ mit Inklusion. 
 		\item $\N$ mit Teilbarkeit. 
-		\item Substring-Relation auf Strings. 
+		\item Substring-Relation auf Strings. Ist $A$ eine endliche nichtleere Menge so heißt 
+		\[
+				A^\ast = \bigcup_{n \in \N_0} A^n
+		\]
+		die Menge der Strings über dem Alphabet $A$. Die Menge $\{0,1\}^\ast$ heißt die Menge der binären Strings. In diesem Kontext schreibt man oft $a_1 \cdots a_n$ an der Stelle von $(a_1,\ldots,a_n)$, etwa $10011 \in \{0,1\}^\ast$ und nicht $(1,0,1,1) \in \{0,1\}^\ast$. 
 	\end{itemize} 
 \end{bsp} 
 
@@ -626,26 +659,44 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 
 \section{Beweisansätze} 
 
-\subsection{Widerspruchsbeweis und Kontraposition} 
+\subsection{Direkter Beweis} 
 
 \begin{bem}
-	Ein Widerspruchsbeweis ist ein Beweis, bei dem man eine Implikation $a \Rightarrow b$ folgendermaßen bestätigt. Man nimmt $a$ und $\overline{b}$ an, und leitet daraus einen Widerspruch her. Ein Widerspruch ist eine falsche Aussage. Oft hat ein Widerspruch die Form $c \wedge \overline{c}$. Das Letztere bedeutet, dass eine Aussage $c$ bestätigt aber auch gleichzeitig widerlegt wird. Der Widerspruchsbeweis basiert  auf der Äquivalenz der folgenden beiden booleschen Formeln 
-	\begin{itemize}
-		\item $a \Rightarrow b$
-		\item $a \wedge \overline{b} \Rightarrow \text{Falsch}$
-	\end{itemize} 
-	Die Äquivalenz der Formeln kann man dadurch erkennen, dass die beiden Formeln nur in einem Fall den Wahrheitswert Falsch haben: bei der ersten sowie der zweiten Formel tritt dieser genau dann Fall auf, wenn $a$ wahr und $b$ falsch ist. 
+	Eine grobe Beschreibung eines direkten Beweises ist wie folgt. Ein direkter Beweis einer Implikation $a \Rightarrow b$ ist ein Beweis der auf Implikationen basiert, die von $a$ ausgehen und zum $b$ führen.
+\end{bem} 
+
+\begin{bem}
+	Man kann für $x \in \R$ die Äquivalenz: 
+	\begin{align*}
+			x^2 - 5 x + 6 & = 0  &  & \Longleftrightarrow & & x \in \{2,3\}
+	\end{align*} 
+	als zwei Implikationen ausschreiben und anschließend 
+	folgendermaßen direkt verifizieren. Ist $x^2 - 5 x + 6 = (x-2) (x-3)$. Also folgt aus $(x-2) (x-3)=0$, dass $x-2=0$ oder $x-3=0$ gilt. Im ersten Fall erhält man aus $x-2=0$, dass $x=2$ ist. Im zweiten Fall erhält man aus $x-3$, dass $x=3$ ist. Folglich hat man $x \in \{2,3\}$. Umgekehrt: ist $x \in \{2,3\}$, so hat man im Fall $x=2$ die Gleichheiten $x^2 - 5 x + 6= 2^2 - 5 \cdot 2 + 6 = 4- 10 + 6 =0$ und im Fall $x=3$ die Gleichheiten $x^2 - 5 x + 6 = 3^2 - 5 \cdot 3 + 6 = 9 - 15 + 6 = 0$. Aus $x \in \{2,3\}$ folgt also $x^2 - 5 x + 6$. 
+\end{bem} 
+
+\subsection{Indirekte Beweise} 
+
+
+\begin{bem}
+	Ein Widerspruchsbeweis ist ein Beweis, bei dem man eine Aussage $a$, die man zeigen möchte, durch die Herleitung der Implikation $\overline{a} \Rightarrow \text{falsch}$ bestätigt bzw. 
+	eine Implikation $a \Rightarrow b$, die man zeigen möchte, durch die Herleitung der Implikation $a \wedge \overline{b} \Rightarrow \text{falsch}$ bestätigt. 
+	
+	In den beiden Fällen erhält man aus einer Annahme einen sogenannten Widerspruch, d.h., eine falsche Aussage. Den Widerspruch erhält man oft in der Form $c \wedge \overline{c}$ für eine Aussage $c$. 
 \end{bem} 
 
 \begin{lem}
-	Für $t \in \N$ seien $p_1,\ldots,p_t \in \Z_{\ge 2}$ und sei $n := p_1 \cdots p_t + 1$. Dann ist $n$ durch keine der Zahlen $p_1,\ldots,p_t$ teilbar. 
+	Für $t \in \N$ seien $p_1,\ldots,p_t \in \N$ Zahlen mit $p_i \ge 2$ für alle $i \in \{1,\ldots,t\}$ und sei $n := p_1 \cdots p_t + 1$. Dann ist $n$ durch keine der Zahlen $p_1,\ldots,p_t$ teilbar. 
 \end{lem} 
 \begin{proof} 
-	Angenommen, $n$ wäre durch ein $p_i$ mit $i=1,\ldots,t$ teilbar. Da aber das Produkt $p_1 \cdots p_t$ durch $p_i$ teilbar ist, ist $1 = n - p_1 \cdots p_t$ ebenfalls durch $p_i$ teilbar. Wir haben also gezeigt, dass die ganze Zahl $p_i$, mit $p_i \ge 2$, die Zahl $1$ teilt. Das ist ein Widerspruch, der uns die Behauptung unseres Lemmas bestätigt. 
+	Angenommen, $n$ wäre durch ein $p_i$ mit $i=1,\ldots,t$ teilbar. Da aber das Produkt $p_1 \cdots p_t$ durch $p_i$ teilbar ist, ist $1 = n - p_1 \cdots p_t$ ebenfalls durch $p_i$ teilbar. Wir haben also gezeigt, dass $1$ durch die ganze Zahl $p_i$, mit $p_i \ge 2$, teilbar ist. Das ist ein Widerspruch, der uns die Behauptung unseres Lemmas bestätigt. 
 \end{proof} 
 
 \begin{bem}
-	Indirekter Beweis ist ein Beweis der auf der Äquivalenz von $a \Rightarrow b$ und $\overline{b} \Rightarrow \overline{a}$ basiert. Manche Quellen beschreiben solche Art Beweise als Beweise durch Kontraposition und nutzen den Begriff indirekter Beweis als Oberbegriff für die beiden Arten der Beweise ``Beweis durch Kontraposition'' und ``Widerspruchsbeweis''. Beweis durch Kontraposition und der Widerspruchsbeweis sind miteinander verwandt, denn einen Beweis durch Kontraposition kann man direkt in einen Widerspruchsbeweis konvertieren. 
+	Eine Beweis durch Kontraposition ist der Beweis der Implikation $a \Rightarrow b$ dadurch, dass man die Implikation $\overline{b} \Rightarrow \overline{a}$ bestätigt. Ein  Beweis durch Kontraposition und der Widerspruchsbeweis sind miteinander verwandt, denn einen Beweis durch Kontraposition kann man in einen Widerspruchsbeweis konvertieren. 
+\end{bem} 
+
+\begin{bem}
+	Beweise durch Kontraposition und Widerspruch nennt man \emph{indirekt.} 
 \end{bem} 
 
 \begin{lem} \label{lem:a:a^3}
@@ -719,15 +770,15 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 
 
 \begin{bsp}
-	Formel für $\sum_{i=1}^n q^i$. 
+	Sei $q \in \R \setminus \{1\}$ und $n \in \N_0$. Dann gilt $\sum_{i=1}^n q^i = \frac{q^{n+1} - 1}{q-1}$. Zeigen Sie diese Formel durch die Induktion über $n$. Hier ist der Induktionsanfang $n=0$. 
 \end{bsp} 
 
 \begin{bsp}
-	Formel für $\sum_{i=1}^n i q^i$. 
+	Finden Sie eine Formel für $\sum_{i=1}^n i q^i$ mit $q \in \R \setminus \{1\}$ und $n \in \N_0$ und beweisen Sie diese Formel durch Induktion. 
 \end{bsp} 
 
 \begin{bem}
-	Durch Induktion lassen sich nicht nur Gleichung herleiten. Es gibt viele verschiedene Situationen aus diskreter Mathematik, in denen man durch die Induktion Aussagen verifizieren kann. 
+	Durch Induktion lassen sich nicht nur Gleichungen herleiten. Es gibt viele verschiedene Situationen in der Mathematik (und insbesondere diskreter Mathematik), in denen man durch die Induktion Aussagen verifizieren kann. 
 \end{bem} 
 
 \begin{thm}
@@ -739,6 +790,9 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 	Die Ungleichung gilt für $n=1$, denn $1 \le 2^1$. Sei nun $n \in \N$ ein Wert, für welchen $n \le 2^n$ gilt. Im Induktionsschritt sollen wir nun $n + 1 \le 2^{n+1}$ herleiten. Da wir $n \le 2^n$ voraussetzen, gilt $n+1 \le 2^n + 1$, daher reicht es zu verifizieren, dass $2^n + 1 \le 2^{n+1}$ erfüllt ist. Das letztere ist Äquivalent zur Ungleichung $2^n \ge 1$, die trivialerweise für $n \in \N$ erfüllt ist. 
 \end{proof} 
 
+\begin{aufg} 
+	Zeigen Sie, dass $100 n \le 2^n$ für alle $n \in \N$ mit $n \ge 10$ erfüllt ist. 
+\end{aufg} 
 
 
 \begin{thm}[Vollständige Induktion, Version~2]
@@ -746,7 +800,10 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 	Sei $P$ ein Prädikat auf  $\N$. Dann sind die folgenden Bedingungen äquivalent: 
 	\begin{enuma}
 			\item $P(n)$ gilt für alle $n \in \N$. 
-			\item $P(1)$ gilt und, für jedes $n \in \N$, folgt aus der Gültigkeit der Aussagen $P(i)$ mit $i \in \{1,\ldots,n\}$, die Gültigkeit von $P(n+1)$. 
+			\item es gilt $P(1)$ und, für jedes $n \in \N$, gilt die Implikation 
+			\[
+				P(1) \wedge \cdots \wedge P(n)  \Rightarrow P(n+1).
+			\] 
 	\end{enuma} 
 \end{thm} 
 \begin{proof} 
@@ -754,13 +811,19 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 \end{proof} 
 
 \begin{thm}[Primfaktorzerlegung - Existenz] 
-	Für jedes $n \in \N$ existieren $t \in \N_0$ Primzahlen $p_1,\ldots,p_t$ mit 
+	Für jedes $n \in \N$ existieren  Primzahlen $p_1,\ldots,p_t$ ($t \in \N_0$), deren Produkt gleich $n$ ist, d.h.:  
 	\[
 		n = \prod_{i=1}^t p_i.
-	\] (Man beachte: die Zahlen $p_1,\ldots,p_t$ müssen nicht paarweise verschieden sein und bei $t=0$ ist $\prod_{i=1}^t p_i$ das Produkt von $0$ Zahlen und somit gleich $1$). 
+	\] 
 \end{thm} 
+
+\begin{bem}
+	Kommentar zur  vorigen Behauptung: man hat $\prod_{i=1}^0 p_i = 1$ im Fall $t=0$ und $\prod_{i=1}^1 p_i = p_1$ im Fall $t=0$. 
+\end{bem} 
+
+
 \begin{proof} 
-	Die Behauptung ``es existieren $t \in \N_0$ Primzahlen $p_1,\ldots,p_t$ mit $n=\prod_{i=1}^t p_i$'' ist wahr für $n \in\{1,2\}$. Denn $n=1$ ist Produkt von $0$ Primzahlen ($t=0$) und $n=2$ ist Produkt von einer Primzahl ($t=1$ und $p_1 =2$). 
+	Die Behauptung ``es existieren $t \in \N_0$ Primzahlen $p_1,\ldots,p_t$ mit $n=\prod_{i=1}^t p_i$'' ist wahr für $n \in\{1,2\}$. Denn $n=1$ ist Produkt $1= \prod_{i=1}^0 p_i = 1$ und im Fall $n=2$ ist $2 = \prod_{i=1}^1 p_i$ mit $p_1:=1$.
 	
 	Sei nun $n \in \N$ mit $n \ge 3$ so, dass jede Zahl $a \in \{1,\ldots,n-1\}$ Produkt von endlich vielen Primzahlen ist (im Sinne der Behauptung). Ist $n$ Primzahl, so gilt die Behauptung mit $t=1$ und $p_1 = n$. Ist $n$ keine Primzahl, so besitzt $n$ einen Teiler $a \in \{2,\ldots,n-1\}$. Es folgt $n = a b$ mit $b = n / a \in \N$ und $b \le \frac{n}{2} \le n-1$. Die Anwendung der Induktionsvoraussetzung zu $a$ und $b$ ergibt, dass man $a$ sowie $b$ als Produkt von Primzahlen darstellen hat. Es gilt also 
 	\begin{align*}
@@ -771,10 +834,14 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 	Dann ist $n$ Produkt von $t = r+s$ Primzahlen $p_1,\ldots,p_t$ mit $p_i = u_i$ für $i \in \{1,\ldots,r\}$ und $p_i = v_{i-r}$ für $i \in \{r+1,\ldots,r+s\}$. 
 \end{proof} 
 
-\begin{bem}
+\begin{bem}[Fallunterscheidung] 
 	Ein weiteres verbreitetes Element eines Beweises ist die Fallunterscheidung. Im vorigen Beweis haben wir z.B. zwischen den Fällen $n$ eine Primzahl und $n$ keine Primzahl unterschieden, und in  jedem der beiden Fällen ein anderes Argument benutzt. 
 \end{bem} 
 
+
+\begin{bem}[Vollständige Induktion und Algorithmen]
+	Induktionsbeweise haben oft eine algorithmische Interpretation und können zu iterativen oder rekursiven Algorithmen konvertiert werden. In diesem Fall, kann man sich die folgende Umsetzung des vorigen Beweises als Algorithmus vorstellen. Nehmen wir an, wir wollen für alle Zahlen $1,\ldots,N$ für ein gegebenes $N \in \N$, $N \ge 2$, deren Zerlegung in Primfaktoren berechnen. Dann können wir folgendermaßen vorgehen. Wir führen für jedes $n \in \{1,\ldots,N\}$, eine Liste $L[i]$ der Primfaktoren von $1,\ldots,N$ ein. Für $n=1$ ist dies eine leere Liste. Angenommen, die Liste sei bereits für die Zahlen $1,\ldots,n-1$ erzeugt. Dann können wir die Liste $L[n]$ anhand der bereits vorhanden Listen $L[1],\ldots,L[n-1]$ so generieren. Wir testen, ob $n$ Primzahl ist. Ist das der Fall so erzeugen wir $L[n]$ als Liste aus einer einzigen Zahl $n$. Ist $n$ keine Primzahl, so Faktorisieren wir $n$ als $n = ab$ mit $a,b \in \{2,\ldots,n-1\}$ und erzeugen dann $L[n]$ durch das Zusammenfügen der Listen $L[a]$ und $L[b]$. 
+\end{bem} 
 
 \section{Schnupperstunde in Algebra} 
 
@@ -813,8 +880,8 @@ Man entwickelt auch Mittel,  neue/eigene algebraische Strukturen anzulegen. Wenn
 \begin{array}{c|cc}
 \cdot & 0 & 1 \\
 \hline 
-0 & 0 & 1 \\
-1 & 1 & 1
+0 & 0 & 0 \\
+1 & 0 & 1
 \end{array}
 \end{align*} 
 einführt, ist ein sogenannter binärer Körper. Die Bezeichnungen $+$, $\cdot$, $0$ und $1$, die wir hier verwenden, sind polymorph. 
@@ -914,7 +981,7 @@ Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine w
 \subsection{Der Körper der komplexen Zahlen} 
 
 \begin{defn} 
-	Die Menge $\C$ der komplexen Zahlen kann man als die Menge der formalen Ausdrücke der Form $x + \iu y$ mit $x, y \in \R$ einführen. Hierbei ist $\iu$ ein formales Element, für welches man $\iu^2 := -1$ festlegt. Das Element $\iu$ nennt man die imaginäre Einheit oder die Wurzel aus $-1$. Die Menge der reellen Zahlen $\R$ wird als eine Teilmenge von $\C$ aufgefasst, indem man $x \in \R$ als $x +  y \iu $ mit $y=0$ schreibt. 
+	Die Menge $\C$ der komplexen Zahlen führen wir als die Menge der formalen Ausdrücke der Form $x +  y \, \iu$ mit $x, y \in \R$ ein. Hierbei ist $\iu$ ein formales Element, für welches wir $\iu^2 := -1$ festlegen. Das Element $\iu$ nennt man die \emph{imaginäre Einheit} oder die \emph{Wurzel aus $-1$}. Die Menge der reellen Zahlen $\R$ wird als eine Teilmenge von $\C$ aufgefasst, indem man $x \in \R$ als $x +  y  \, \iu$ mit $y=0$ schreibt. 
 	
 	Nach diesen Festlegungen lassen sich die Operationen $+$ und $\cdot$ vom Körper $\R$ der reellen Zahlen auf $\C$ auf eine eindeutige Weise erweitern, wenn man fordert, dass  $\C$ mit Operationen $+$ und $\cdot$ ein kommutativer Ring sein soll, vgl. dazu die Gesetze für einen kommutativen Ring.  (Wie wir in Kürze sehen werden, ist $(\C,+,\cdot)$ sogar ein Körper.) Die Addition und Multiplikation führen wir also auf die folgende Weise eingeführt: 
 	\begin{align*}
@@ -925,6 +992,10 @@ für $x_1,x_2, y_1, y_2 \in \R$.
 
 Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als $\Re(z) :=x$ und den Imaginärteil von $z$ als $\Im(z):= y$ ein; die Zahl $\overline{z} = x - y \iu$ nennen wir komplex konjugiert zu $z$; den Wert $|z| = \sqrt{x^2 + y^2}$ nennen wir den Betrag von $z$. 
 \end{defn} 
+
+\begin{aufg}
+	Berechnen Sie $(3+ 2 \iu) ( 5 - \iu)$, indem Sie eine Darstellung dieser Zahl als $x+y \iu$ mit $x, y \in \R$ bestimmen. 
+\end{aufg} 
 
 \begin{bem}
 	In Algebra werden oft Strukturen formal nach ``eigenen Vorgaben'' eingeführt. Bei der Definition von komplexen Zahlen sieht man ein Beispiel dafür. 
@@ -946,14 +1017,14 @@ Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als 
 \end{proof} 
 
 \begin{aufg}
-	Zeigen Sie $|u v| = |u| \cdot |v|$ für alle $u, v \in \C$. 
+	Zeigen Sie $|u \cdot v| = |u| \cdot |v|$ für alle $u, v \in \C$. \textbf{Hinweis:} Am besten zeigt man $|u \cdot v|^2 = |u|^2  \cdot |v|^2$, um die Wurzeln zu vermeiden. 
 \end{aufg} 
 
 \begin{bem}[Der Satz von Pythagoras, Radianten und Grade, Kosinus und Sinus, und der  Taschenrechner] 
-	Für das nachfolgende Thema soll man zuerst an das folgende Wissen aus der Schule erinnern. 
+	Für das nachfolgende Thema soll man zuerst an einige Themen aus dem Mathe-Unterricht in der Schule erinnern. 
 	\begin{itemize}
-		\item \emph{Der Satz des Pythagoras}. Der Abstand zwischen dem Punkt $(0,0) \in \R^2$ und dem Punkt $(x,y) \in \R^2$ ist gleich $\sqrt{x^2 + y^2}$. Wenn man diese Behauptung in einer koordinaten-freien Form mit Hilfe von rechtwinkligen Dreiecken formuliert, so nennt man sie den Satz des Pythagoras. 
-		\item \emph{Der Wirrwarr um Radianten und Grade.} Im alten Babylonien dachte man, das Jahr wäre 360 Jahre lang (das stimmt nicht, wie wir jetzt wessen). Daher teilte man den Jahreskreis in 360 Teile auf, die den Tagen entsprechen. Ein Grad steht daher für einen Tag im babylonischen Jahreskreis. Das zeigt, dass die Herkunft der Messung der Winkel in Graden nicht mathematisch ist. Sie ist anthropologisch: sie hängt mit dem Planeten Erde zusammen, auf dem wir uns befinden, und mit den Babylonier:innen, die bei der Bestimmung der Anzahl der Tage im Jahr sich ein Wenig verschätzten. Dennoch hat sich die Messung mit 360 Graden für den vollen Winkeln bis jetzt erhalten. Das liegt vielleicht daran, dass einige für uns interessante Winkel mit Graden durch eine ganze Zahl darstellbar sind ($90^\circ, 60^\circ, 30^\circ$). Die Messung mit Radianten ist eine dimensionslose Messung und sie ist intrinsisch mathematisch. Man nimmt einen Kreis mit dem Radius $1$ und misst Winkel durch die Längen der Bögen dieses Kreises. Dabei bezeichnet man die Länge einer Hälfte des Einheitskreises als $\pi$ und nennt die Zahl $\pi$ die Kreiszahl. Diese Zahl $\pi$ ist etwas größer als $3$ (das sieht man, wenn man in den Einheitskreis ein reguläres Sechseck einschreibt). 
+		\item \emph{Der Satz des Pythagoras}. Der Abstand zwischen dem Punkt $(0,0) \in \R^2$ und einem Punkt $(x,y) \in \R^2$ ist gleich $\sqrt{x^2 + y^2}$. Wenn man diese Behauptung in einer koordinaten-freien Form mit Hilfe von rechtwinkligen Dreiecken formuliert, so nennt man sie den Satz des Pythagoras. 
+		\item \emph{Radianten und Grade.} Im alten Babylonien dachte man, das Jahr wäre 360 Jahre lang (das stimmt nicht, wie wir jetzt wessen). Daher teilte man den Jahreskreis in 360 Teile auf, die den Tagen entsprechen. Ein Grad steht daher für einen Tag im babylonischen Jahreskreis. Das zeigt, dass die Herkunft der Messung der Winkel in Graden nicht mathematisch ist. Sie ist anthropologisch: sie hängt mit dem Planeten Erde zusammen, auf dem wir uns befinden, und mit den Babylonier:innen, die bei der Bestimmung der Anzahl der Tage im Jahr sich ein Wenig verschätzten. Dennoch hat sich die Messung mit 360 Graden für den vollen Winkeln bis jetzt erhalten. Das liegt vielleicht daran, dass einige für uns interessante Winkel mit Graden durch eine ganze Zahl darstellbar sind ($90^\circ$, $60^\circ$, $30^\circ$). Die Messung mit Radianten ist eine dimensionslose Messung und sie ist intrinsisch mathematisch. Man nimmt einen Kreis mit dem Radius $1$ und misst Winkel durch die Längen der Bögen dieses Kreises. Dabei bezeichnet man die Länge einer Hälfte des Einheitskreises als $\pi$ und nennt die Zahl $\pi$ die Kreiszahl. Diese Zahl $\pi$ ist etwas größer als $3$ (das sieht man, wenn man in den Einheitskreis ein reguläres Sechseck einschreibt). 
 		
 		Ein Grad ist nichts Anderes als $1^\circ := \frac{\pi}{180}= \frac{2\pi}{360}.$ Wenn man Winkel in Radianten misst, kann man etwa $1{.}2$ Radianten aber auch einfach nur $1{.}2$ sagen, denn die Einheit Radiant ist dimensionslos. 
 		
