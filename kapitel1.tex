@@ -1053,7 +1053,7 @@ Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als 
 	\end{itemize} 
 \end{bem} 
 
-\begin{thm}
+\begin{thm} \label{thm:z:betr:arg}
 	Jede komplexe Zahl $z \in \C$ besitzt eine Darstellung als 
 	\[
 		z = \rho ( \cos \phi + \iu \sin \phi )
@@ -1074,17 +1074,40 @@ Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als 
 	 Da $K$ die Länge $2\pi$ hat, ist jeder Punkt eindeutig durch die Angabe eines solchen $\phi \in [0,2 \pi)$ gegeben. 
 \end{proof} 
 
-\begin{defn}
-	Wir erweitern die Exponentialfunktion $e^x$ auf $\R$ auf den Bereich $\C$ der komplexen Zahlen, in dem wir 
+\begin{defn}[Definition der Exponentialfunktion durch die Euler-Formel]
+	\label{def:euler:formel}
+	Wir erweitern die \textbf{Exponentialfunktion} $e^x : \R \to \R$ in der Variablen $x \in \R$ zur Exponentialfunktion zur Funktion $e^z : \C \to \C$ in der Variablen $z \in \C$, indem wir 
 	\[
-		e^{x+ i y} := e^x ( \cos y + i \sin y)
+			e^{x+ \iu y} := e^x ( \cos y + \iu \sin y)
 	\]
-	für alle $x, y \in \R$ festlegen. (Insbesondere, $e^{i y} = \cos y + i \sin y$). 
+	für alle $x, y \in \R$ festlegen. (Insbesondere gilt im Fall $x=0$ die Gleichung $e^{\iu y} = \cos y + \iu \sin y$ laut unserer Definition). 
 \end{defn} 
 
 \begin{bem}
-	Jede Zahl $z \in \C$ besitzt eine Darstellung $z = \rho e^{i \phi}$ mit $\rho = |z|$ und $\phi \in \R$. 
+	Jede Zahl $z \in \C$ besitzt eine Darstellung $z = \rho e^{i \phi}$ mit $\rho = |z| \in \R_{\ge 0}$ und $\phi \in \R$. Das ist die Umformulierung von Theorem~\ref{thm:z:betr:arg} in den neu eingeführten Bezeichnungen. 
 \end{bem} 
+
+\begin{aufg}
+	Zeigen Sie dass bei $z_k := \rho_k e^{\iu \phi_k}$ mit $\rho_1,\rho_2 \in \R_{\ge 0}$ und $\phi_1,\phi_2 \in \R$ die Gleichung $z_1 z_2 =  \rho_1 \rho_2 e^{\iu (\phi_1 + \phi_2)}$ erfüllt ist.  Benutzen Sie dafür die Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$. Wenn Sie diese Formeln nicht kennen bzw. nicht gefunden haben, dann leiten Sie aus der Tatsache, dass $z_1 z_2 = \rho_1 \rho_2 = \rho_1 \rho_2 e^{\iu(\phi_1 + \phi_2)}$ gilt, Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$. \textbf{Kommentar:} Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$ kann man im Rahmen der Linearen Algebra (IT-2) herleiten. 
+\end{aufg} 
+
+\begin{bem}
+	A priori ist nicht klar, wieso unsere Definition der Exponentialfunktion $e^z : \C \to \C$ sinnvoll ist. Um zu verstehen, dass das die einzige richtige Weise ist, diese Funktion zu definieren, braucht man Wissen aus der Analysis (IT-3), und zwar braucht  man Potenzreihen dafür. 
+\end{bem} 
+
+\begin{defn} 
+	In Anlehnung an Definition~\ref{def:euler:formel} erweitern wir $\sin, \cos : \R \to \R$ zu Funktionen $\sin, \cos : \C \to \C$, indem wir 
+	\begin{align*}
+			\cos z  & : = \frac{e^{\iu z} + e^{-\iu z}}{2}
+			\\ \sin z & := \frac{e^{\iu z } + e^{ -\iu z}}{2 \iu}
+	\end{align*} 
+	festlegen. 
+\end{defn} 
+
+\begin{bem}
+	Die Euler-Formel ermöglicht einen Übergang von den trigonometrischen Funktionen zur Exponentialfunktion. So ein Übergang, der oft die Berechnung  erleichtert, wird gerne in Physik/Elektrotechnik benutzt, wenn man sich mit Schwingungen und Wellen beschäftigt. 
+\end{bem} 
+
 
 \section{Asymptotische Notation}
 
