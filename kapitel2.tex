@@ -2,23 +2,70 @@
 
 \section{Basics} 
 
-\begin{lem}
+\begin{bem}
+	Die Haupfrage der Kombinatorik ist ``Wie viele Elemente hat meine endliche Menge?''. Etwas formaler geht es um die Formeln für die Anzahl der Elemente verschiedener endlicher Mengen, die man in der diskreten Mathematik gerne benutzt. 
+\end{bem} 
+
+\begin{lem} \label{lem:vereinigung:zwei}
 	Seien $A, B$ endliche disjunkte Mengen. Dann ist $|A \cupdot B| = |A| + |B|$. 
 \end{lem} 
 
+\begin{proof}
+	Ist $A$ oder $B$ leer, so gilt die Formel trivialerweise: etwa bei $B = \emptyset$ gilt $|A \cup B| = | A \cup \emptyset| = |A| = |A| + 0 = |A| + | \emptyset| = |A| + |B|$. 
+	
+	 Sonst nummerieren wir alle Elemente von $A$ als $a_1,\ldots,a_s$ und $B$ als $b_1,\ldots,b_t$, das heißt, $A$ ist eine $s$-Elementige Menge $A = \{a_1,\ldots,a_s\}$ und $B$ ist eine $t$-elementige Menge $B = \{b_1,\ldots,b_t\}$ mit $s,t \in \N$. Es gilt $a_i \ne a_j$ für $i \ne j$ mit $i,j \in \{1,\ldots,s\}$ und $b_i \ne b_j$ für $i \ne j$ mit $i,j \in \{1,\ldots,t\}$. Da $A$ und $B$ disjunkt sind gilt auch $a_i \ne a_j$ für alle $i \in \{1,\ldots,s\}$ und $j \in \{1,\ldots,t\}$. Somit ist 
+	 $A \cupdot B = \{a_1,\ldots,a_s,b_1,\ldots,b_t\}$, sodass wir $A \cupdot B = \{c_1,\ldots,c_n\}$ mit $n = s + t$, $c_i = a_i$ für $i \in\{1,\ldots,s\}$ und $c_i = b_{i-s}$ für $i \in \{s+1,\ldots,n\}$ haben. Hierbei sind $c_1,\ldots,c_n$ nach der Konstruktion paarweise verschieden. Das zeigt, dass $A \cupdot B$ genau $n = s+t$ Elemente hat. 
+\end{proof}
+
 \begin{lem} \label{lem:disjunkte:vereinigung}
-	Seien $A_1,\ldots,A_n$ endliche paarweise disjunkte Mengen. Dann ist 
+	Seien $A_1,\ldots,A_n$ ($n \in \N$) endliche paarweise disjunkte Mengen. Dann ist 
 	\[
 		\left| \bigcup_{i=1}^n A_i \right| = \sum_{i=1}^n |A_i|. 
 	\]
 \end{lem} 
 
-\begin{lem}
+\begin{proof} 
+	Wir beweisen die die Formel durch Induktion über $n$. 
+	Die Formel ist rivial für $n=1$, denn $\bigcup_{i=1}^1 A_i = A_1$ und $\sum_{i=1}^n |A_i|$ ist $|A_1|$. 
+	Sei $n \in \N$ mit $n \ge 2$ gegeben und sei die Formel im Fall von $n-1$ an der Stelle von $n$ Mengen bereits verifiziert. Da die Mengen $A_1 \cup \cdots \cup A_{n-1}$ und $A_n$ paarweise disjunkt sind, erhalten wir durch die Anwendung von Lemma~\ref{lem:vereinigung:zwei} zu diesen beiden Mengen, dass 
+	\[
+		| A_1 \cup \cdots \cup A_n| = |A_1 \cup \cdots \cup A_{n-1} | + |A_n| 
+	\]
+	erfüllt ist. Aus der Induktionsvoraussetzung folgt, dass 
+	\[
+		| A_1 \cup \cdots \cup A_{n-1} | = \sum_{i=1}^{n-1} |A_i|
+	\]
+	erfüllt ist. Somit ist 
+	\[
+		| A_1 \cup \cdots \cup A_n| = \sum_{i=1}^{n-1} |A_i|  + |A_n| = \sum_{i=1}^n |A_i|. 
+	\]
+\end{proof} 
+
+\begin{lem} \label{lem:inkl:exkl:2}
 	Seien $A$ und $B$ endliche Mengen. Dann gilt 
 	\[
 		|A \cup B| = |A| + |B| - |A \cap B|. 
 	\]
 \end{lem}
+
+\begin{proof}
+		Wir können $A \cup B$ als dijsunkte Vereinigung von $A$ und $B \setminus A$ darstellen. Die Anwendung von Lemma~\ref{lem:vereinigung:zwei} zu $A$ und $B \setminus A$ ergibt 
+		\[
+			| A \cup B| = |A \cupdot (B \setminus A)| = |A | + |B \setminus A|. 
+		\]
+		Die Menge $B$ ist disjunkte Vereinigung von $B \setminus A$ und $A \cap B$. Die Anwendung von Lemma~\ref{lem:vereinigung:zwei} zu $A \cap B$ und $B \setminus A$ ergibt
+		\[
+			|B| = |B \setminus A| + |A \cap B|. 
+		\]
+		Aus den beiden Gleichungen, die wir auf diese Weise herleiten, folgt dann 
+		\[
+			| A \cup B|  = |A | + |B \setminus A| = |A| + (|B| - | A \cap B|) = |A| + |B| - | A \cap B|. 
+		\]
+\end{proof} 
+
+\begin{bem}
+	Die Intuition hinter Lemma~\ref{lem:inkl:exkl:2} ist: wir zählen alle Elemente in $A$ sowie $B$ ab. Dadurch werden die Elemente in $A \cap B$ doppelt abgezählt. Wir sollen also die Anzahl der Elemente in $A \cap B$ abbziehen, um auf die Anzahl der Elemente in $A \cup B$ zu kommen. 
+\end{bem} 
 
 \begin{lem}
 	Seien $A$ und $B$ endliche Menge. Dann gilt: 
