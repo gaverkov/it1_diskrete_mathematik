@@ -835,7 +835,11 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 \end{proof} 
 
 \begin{bem}[Fallunterscheidung] 
-	Ein weiteres verbreitetes Element eines Beweises ist die Fallunterscheidung. Im vorigen Beweis haben wir z.B. zwischen den Fällen $n$ eine Primzahl und $n$ keine Primzahl unterschieden, und in  jedem der beiden Fällen ein anderes Argument benutzt. 
+	Ein weiteres verbreitetes Element eines Beweises ist die Fallunterscheidung. Im vorigen Beweis haben wir z.B. zwischen den Fällen, dass $n$ eine Primzahl und $n$ keine Primzahl ist, unterschieden. In jedem der beiden Fällen gaben wir ein eigenes Argument, wieso $n$ in die Primfaktoren zerlegbar ist.  
+\end{bem} 
+
+\begin{bem}
+	Im vorigen Beweis setzen wir das Muster $P(1) \wedge \cdots \wedge P(n) \Rightarrow P(n+1)$ aus Theorem~\ref{thm:ind:ver2} als $P(1) \wedge \cdots \wedge P(n-1) \Rightarrow P(n)$ um. Das heißt, in Theorem~\ref{thm:ind:ver2} werden die schon abgearbeiteten Werte als $1,\ldots,n$ bezeichnet und der nächste Wert als $n+1$. In unserer Umsetzung werden die abgearbeiteten Werte als $1,\ldots,n-1$ bezeichnet und der nächste Wert als $n$. 
 \end{bem} 
 
 
