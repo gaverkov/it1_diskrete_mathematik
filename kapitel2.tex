@@ -73,10 +73,23 @@
 		|A \times B| = |A| \cdot |B|. 
 	\]
 \end{lem}
+\begin{proof} 
+	Ist $A$ oder $B$ leer, so sind die linke sowie rechte Seite der Gleichung gleich $0$. Ansonsten stellen wir die Menge $A \times B$ kann als disjunkte Vereinigung $\bigcup_{a \in A} \{a\} \times B$ da. Lemma~\ref{lem:disjunkte:vereinigung} ergibt
+	\[
+		|A \times B| = \left| \bigcup_{a \in A} \{a \} \times B \right| = \sum_{a \in A} | \{a \} \times B |.
+	\]
+	Für ein beliebiges festes $a \in A$ kann nun die Anzahl der Elemente in $\{a\} \times B$ bestimmt werden. Diese Anzahl ist $|B|$, da die Abbildung $f_a : B \to \{a\} \times B$ mit $f_a(b) := (a,b)$ bijektiv ist: denn hat man zwei verschiedene Elemente $b',b'' \in B$ so sind auch $(a,b')$ und $(a,b'')$ verschieden (Injektivität) und hat man ein beliebiges Element aus $\{a\} \times B$ fixiert, etwa $(a,b)$ mit $b \in B$, so erhält man dieses Element als $f_a(b) = (a,b)$. 
+\end{proof} 
  
 
 \section{$X^k$ und $B^A$} 
 
+\begin{thm}
+	Seien $A_1,\ldots, A_n$ endliche Mengen ($n \in \N_0$). Dann ist 
+	\[
+		|A_1 \times \cdots \times A_n|  = \prod_{i=1}^n |A_i|. 
+	\]
+\end{thm} 
 
 
 \begin{thm}
