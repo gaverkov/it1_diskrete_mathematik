@@ -67,7 +67,7 @@
 	Die Intuition hinter Lemma~\ref{lem:inkl:exkl:2} ist: wir zählen alle Elemente in $A$ sowie $B$ ab. Dadurch werden die Elemente in $A \cap B$ doppelt abgezählt. Wir sollen also die Anzahl der Elemente in $A \cap B$ abbziehen, um auf die Anzahl der Elemente in $A \cup B$ zu kommen. 
 \end{bem} 
 
-\begin{lem}
+\begin{lem} \label{lem:anzahl:prod:2}
 	Seien $A$ und $B$ endliche Menge. Dann gilt: 
 	\[
 		|A \times B| = |A| \cdot |B|. 
@@ -85,12 +85,31 @@
 \section{$X^k$ und $B^A$} 
 
 \begin{thm}
-	Seien $A_1,\ldots, A_n$ endliche Mengen ($n \in \N_0$). Dann ist 
+	Seien $A_1,\ldots, A_n$ endliche Mengen ($n \in \N$). Dann ist 
 	\[
 		|A_1 \times \cdots \times A_n|  = \prod_{i=1}^n |A_i|. 
 	\]
 \end{thm} 
+\begin{proof}
+	Wir beweisen die Gleichung durch Induktion über $n$.
+	Für $n=1$ erhalten wir eine triviale Identät. Sei die Gleichung für $n-1$ Mengen für ein $n \in \N$ mit $n \ge 2$ efüllt. Dann erhält man wegen 
+	\[
+			A_1 \times \cdots \times A_n = A_1 \times (A_2 \times \cdots \times A_n)
+	\]
+	durch die Anwendung von Lemma~\ref{lem:anzahl:prod:2} die Gleichung 
+	\[
+		|A_1 \times \cdots \times A_n | = |A_1| \cdot |A_2 \times \cdots \times A_n|. 
+	\]
+	Anschließend erhalten wir aus der Induktionsvoraussetzung 
+	\[
+		|A_2 \times \cdots \times A_n| = \prod_{i=2}^n |A_i|,
+	\]
+	woraus sich die gewünschte Gleichung für die Mengen $A_1,\ldots,A_n$ ergibt. 
+\end{proof} 
 
+\begin{bem}[Das Selbe oder das Gleiche?]
+	
+\end{bem} 
 
 \begin{thm}
 	Sei $X$ eine endliche Menge und sei $k \in \N_0$. Dann ist $|X^k| = |X|^k$. (In dieser und den nachfolgenden kombinatorischen Formeln interpretieren wir $0^0$ als $1$.)
