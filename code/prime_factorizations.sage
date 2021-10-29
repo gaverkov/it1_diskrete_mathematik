@@ -1,6 +1,6 @@
 def smallest_factor_which_is_at_least_two(n):
     """
-        der kleinster Fatkor einer natuerrlichen Zahl n>=2, der mind. 2 ist.
+        der kleinster Faktor einer natuerrlichen Zahl n>=2, der mind. 2 ist.
 
         Ist die Rueckgabe n, so ist n Primzahl.
     """

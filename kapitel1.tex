@@ -486,7 +486,7 @@ Sei $ X $ Menge. Dann heißt $ P : X \to \{ \text{falsch},\text{wahr} \} $ \emph
 \end{defn} 
 
 \begin{bem}
-	Informell beschrieben ist ein Prädikat eine Aussage über ein variables Element $x$ aus $X$. Dabei hängt im Allgemeinen der Wahrheitswert der Aussage von der Wahl von $x$ ab.  Sonst lässt sich ein Prädikat auf $X$ als eine Eigenschaft eines variablen Elements $x \in X$, die entweder vorhanden oder nicht vorhanden ist. Zum Beispiel: $P(n):=$``$n$ ist gerade'' als Eigenschaft einer natürlichen Zahl $n \in \N$. Diese Eigenschaft ist bei $n=123$ nicht vorhanden und bei $n=2020$ vorhanden. 
+	Informell beschrieben ist ein Prädikat eine Aussage über ein variables Element $x$ aus $X$. Dabei hängt im Allgemeinen der Wahrheitswert der Aussage von der Wahl von $x$ ab.  Sonst lässt sich ein Prädikat auf $X$ als eine Eigenschaft eines variablen Elements $x \in X$ beschreiben, die entweder vorhanden oder nicht vorhanden ist. Zum Beispiel: $P(n):=$``$n$ ist gerade'' als Eigenschaft einer natürlichen Zahl $n \in \N$. Diese Eigenschaft ist bei $n=123$ nicht vorhanden und bei $n=2020$ vorhanden. 
 \end{bem}
 
 \begin{bsp}
@@ -569,7 +569,7 @@ Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so sch
 \begin{itemize}
 	\item $ X = \{f_1,f_2,f_3,f_4\} $ - Menge von Fahrzeugen\\
 	$ Y =  \{ \text{Ersatzrad}, \text{Radio}, \text{Navi}, \text{Automatik} \}$ - Menge von Features von Fahrzeugen. Hier 
-
+	\begin{center} 
 	\begin{tabular}{l|c|c|c|c}
 		& Ersatzrad & Radio & Navi & Automatik \\
 		\hline
@@ -577,7 +577,8 @@ Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so sch
 		$ f_2 $ & ja & ja & ja & nein \\
 		$ f_3 $ & nein & nein & ja & ja \\
 		$ f_4 $ & nein & ja & ja & nein
-	\end{tabular} \\ 
+	\end{tabular}
+	\end{center}  
 	Diese Tabelle legt eine Relation auf $X \times Y$ fest. 
 	\item $ \leq, <, \geq, > $ sind binäre Relationen auf $ \R$
 	\item Sei $X$ Menge. Dann ist $ \subseteq $ ist eine binäre Relation auf $ 2^X $.
@@ -587,7 +588,7 @@ Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so sch
 
 
 \begin{defn}
-Sei $ X $ Menge und $ \sim $ eine Relation auf $ X $. Dann heißt $ \sim $ eine Äquivalenzrelation, falls:
+Sei $ X $ Menge und $ \sim $ eine Relation auf $ X $. Dann heißt $ \sim $ eine \textbf{Äquivalenzrelation}, falls:
 \begin{enumerate}
 	\item $ \sim $ ist \emph{reflexiv}, d.h. $ x \sim x $ für alle $ x \in X $.
 	\item $ \sim $ ist \emph{symmetrisch}, d.h. $ x \sim y $ ist äquivalent zu $ y \sim x $ für alle $ x \in X $.
@@ -681,6 +682,7 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 	als zwei Implikationen ausschreiben und anschließend 
 	folgendermaßen direkt verifizieren. Ist $x^2 - 5 x + 6 = (x-2) (x-3)$. Also folgt aus $(x-2) (x-3)=0$, dass $x-2=0$ oder $x-3=0$ gilt. Im ersten Fall erhält man aus $x-2=0$, dass $x=2$ ist. Im zweiten Fall erhält man aus $x-3$, dass $x=3$ ist. Folglich hat man $x \in \{2,3\}$. Umgekehrt: ist $x \in \{2,3\}$, so hat man im Fall $x=2$ die Gleichheiten $x^2 - 5 x + 6= 2^2 - 5 \cdot 2 + 6 = 4- 10 + 6 =0$ und im Fall $x=3$ die Gleichheiten $x^2 - 5 x + 6 = 3^2 - 5 \cdot 3 + 6 = 9 - 15 + 6 = 0$. Aus $x \in \{2,3\}$ folgt also $x^2 - 5 x + 6$. 
 \end{bem} 
+
 
 \subsection{Indirekte Beweise} 
 
@@ -856,6 +858,32 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 	
 	\lstinputlisting{code/prime_factorizations.sage}
 	
+\end{bem} 
+
+\subsection{Ein Beispiel und ein Kommentar zur Fallunterscheidung} 
+
+\begin{bsp}[Ein Beispiel zur Fallunterscheidung] 
+	Sei $M$ die Menge der Nutzer:innen eines Sozialnetzwerks. Auf $M$ ist eine binäre Relation ``befreundet sein''  definiert, welche symmetrisch ist. Wir zeigen, dass in jeder $6$-elementigen Teilmenge $P$ von $M$ drei Nutzer:innen existieren, die entweder gegenseitig befreundet sind oder gegenseitig nicht befreundet sind. 
+	
+	Wir fixieren zuerst ein beliebiges $p \in P$. Bezüglich $p$ zerlegt sich die $5$-elementige Menge $P \setminus \{p\}$ in die Menge $A$ der jenigen $a \in P \setminus \{p\}$, die mit $p$ befreundet sind, und der Mengen $B$ der jenigen $b \in P \setminus \{p\}$, die mit $p$ nicht befreundet sind. Da $A \cup B = P \setminus \{p\}$ insgesamt $5$ Elemente hat, hat eine der beiden Mengen $A$ oder $B$ mindestens $3$ Elemente: denn hätten $A$ oder $B$ beide weniger als $3$ Elemente, so hätte $A \cup B$ insgesamt höchstens $4$ Elemente, was der Tatsache widerspricht, dass $A \cup B = P \setminus \{p\}$ $5$ Elemente hat. 
+	
+	\begin{itemize} 
+		\item[] \emph{Fall~1:} $A$ hat mindestens $3$ Elemente, d.h., $p$ ist mit mindestens drei Personen aus  $P \setminus \{p\}$ befreundet. 
+		\begin{itemize} 
+			\item[] \emph{Fall~1a:}  in $A$ findet man zwei befreundete Personen $a', a''$. Dann ist $\{p,a',a''\}$ eine $3$-elementige Teilmenge von $P$, mit den Personen, die befreundet sind. 
+			\item[] \emph{Fall~1b:} in $A$ sind  keine zwei Personen befreundet. Dann sind alle Personen aus $A$ nicht gegenseitig befreundet. In $A$ hat man also drei Personen die nicht gegenseitig befreundet sind. 
+		\end{itemize} 
+		\item[] \emph{Fall~2:} $B$ hat mindestens $3$ Elemente, d.h., $p$ ist mit mindestens drei Personen aus $P \setminus \{p\}$ nicht befreundet. 
+		\begin{itemize} 
+				\item[] \emph{Fall~2a:} in $B$ findet man zwei Personen $b',b''$, die nicht befreundet sind. Dann ist $\{p,b',b''\}$ eine $3$-elementige Teilmengen von $P$, mit den Personen, die nicht befreundet sind. 
+				\item[] \emph{Fall~2b:} in $B$ sind alle Personen gegenseitig befreundet. Dann hat man in $B$ drei Personen, die gegenseitig befreundet sind. 
+		\end{itemize} 
+	\end{itemize} 
+	In jedem der möglichen Fälle, haben wir die Existenz von drei Personen in $P$ nachgewiesen, die entweder gegenseitig befreundet sind oder gegenseitig nicht befreundet sind. 
+\end{bsp} 
+
+\begin{bem}[Fallunterscheidung mit Computer] 
+	In manchen Beweisen in Mathematik benötigt man so viel Fallunterscheidung (etwa zur Abarbeitung einer endlichen Anzahl von Sonderfälle), dass man es nicht mehr schafft, all die Fälle manuell zu behandeln. Dann holt man sich oft Computer zur Hilfe. 
 \end{bem} 
 
 \section{Schnupperstunde in Algebra} 
@@ -1088,7 +1116,48 @@ Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als 
 \end{bem} 
 
 \begin{aufg}
-	Zeigen Sie dass bei $z_k := \rho_k e^{\iu \phi_k}$ mit $\rho_1,\rho_2 \in \R_{\ge 0}$ und $\phi_1,\phi_2 \in \R$ die Gleichung $z_1 z_2 =  \rho_1 \rho_2 e^{\iu (\phi_1 + \phi_2)}$ erfüllt ist.  Benutzen Sie dafür die Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$. Wenn Sie diese Formeln nicht kennen bzw. nicht gefunden haben, dann leiten Sie aus der Tatsache, dass $z_1 z_2 = \rho_1 \rho_2 = \rho_1 \rho_2 e^{\iu(\phi_1 + \phi_2)}$ gilt, Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$. \textbf{Kommentar:} Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$ kann man im Rahmen der Linearen Algebra (IT-2) herleiten. 
+	Zeigen Sie dass bei $z_k := \rho_k e^{\iu \phi_k}$ mit $\rho_1,\rho_2 \in \R_{\ge 0}$ und $\phi_1,\phi_2 \in \R$ die Gleichung $z_1 z_2 =  \rho_1 \rho_2 e^{\iu (\phi_1 + \phi_2)}$ erfüllt ist.  Benutzen Sie dafür die Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$. 
+	
+	Wenn Sie diese Formeln nicht kennen bzw. nicht gefunden haben, dann gibt es eine alternative Aufgabe: leiten Sie aus der Tatsache, dass $z_1 z_2 = \rho_1 \rho_2 = \rho_1 \rho_2 e^{\iu(\phi_1 + \phi_2)}$ gilt, Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$. 
+	
+	\textbf{Kommentar:} Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$ kann man im Rahmen der Linearen Algebra (IT-2) herleiten. 
+\end{aufg} 
+
+\begin{bem}[Merkhilfe für trigonometrische Formeln mit Hilfe von $e^{z} : \C \to \C$.]
+	Es stellt sich heraus, dass sich die Rechenregeln für $e^x : \R\to \R$ direkt auf die Rechenregel in $e^z : \C \to \C$ übertragen lassen. Das Übertragen der Rechenregel im Fall einer reellen Variablen auf den Fall einer komplexen Variablen basiert auf den (zahlreichen) trigonometrischen Formeln, die man kennt. 
+	
+	Umgekehrt gilt: die Rechenregel für $e^z : \C \to \C$ in Kombination mit der Euler-Formel ``speichern'' die trigonometrischen Formeln. Das bedeutet, dass man die trigonometrischen Formeln durch die Euler-Formel merken kann. 
+	
+	Stellen wir uns vor, wir haben die Formeln für $\cos 2 \alpha$ und $\sin 2 \alpha$ vergessen. Was wir tun können, ist Folgendes. Es gilt: 
+	\[
+			e^{2 \alpha \iu} = (e^{\iu \alpha} )^2. 
+	\]
+	Die Anwendung der Euler-Formel für die linke und rechte Seite ergibt dann 
+	\[
+		\cos 2 \alpha + \iu \sin 2 \alpha  = (\cos \alpha + \iu \sin \alpha)^2. 
+	\]
+	Für die rechte Seite können wir die zweite binomische Formel anwenden. Das ergibt: 
+	\[
+		\cos 2 \alpha + \iu \sin 2 \alpha  = \cos^2 \alpha + 2\sin \alpha \cos \alpha  \iu + \iu^2 \sin^2 \alpha. 
+	\]
+	Nach einer Vereinfachung der rechten Seite erhalten wir 
+	\[
+	\cos 2 \alpha + \iu \sin 2 \alpha  = (\cos^2 \alpha - \sin^2 \alpha ) + 2\sin \alpha \cos \alpha \iu
+\]
+Auf diese Weise kommen wir zu den Formeln
+\begin{align*}
+		\cos 2 \alpha  & = \cos^2 \alpha - \sin^2 \alpha, 
+		\\ \sin 2 \alpha & = 2 \sin \alpha \cos \alpha. 
+\end{align*} 
+\end{bem} 
+
+\begin{aufg} 
+	Welche trigonometrische Identitäten speichern die folgenden Formeln? 
+	\begin{align*}
+			e^{\iu \alpha} e^{- \iu \alpha} & =1, 
+			\\ e^{\iu (\alpha + \beta)} & = e^{\iu \alpha} e^{\iu \beta},
+			\\ e^{- \iu \alpha} & = (e^{\iu \alpha})^{-1}. 
+	\end{align*} 
 \end{aufg} 
 
 \begin{bem}
@@ -1099,7 +1168,7 @@ Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als 
 	In Anlehnung an Definition~\ref{def:euler:formel} erweitern wir $\sin, \cos : \R \to \R$ zu Funktionen $\sin, \cos : \C \to \C$, indem wir 
 	\begin{align*}
 			\cos z  & : = \frac{e^{\iu z} + e^{-\iu z}}{2}
-			\\ \sin z & := \frac{e^{\iu z } + e^{ -\iu z}}{2 \iu}
+			\\ \sin z & := \frac{e^{\iu z } - e^{ -\iu z}}{2 \iu}
 	\end{align*} 
 	festlegen. 
 \end{defn} 

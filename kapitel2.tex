@@ -1,9 +1,9 @@
 \chapter{Kombinatorik} 
 
-\section{Basics} 
+\section{Basics der Kombinatorik} 
 
 \begin{bem}
-	Die Haupfrage der Kombinatorik ist ``Wie viele Elemente hat meine endliche Menge?''. Etwas formaler geht es um die Formeln für die Anzahl der Elemente verschiedener endlicher Mengen, die man in der diskreten Mathematik gerne benutzt. 
+	Die Haupfrage der Kombinatorik ist ``Wie viele Elemente hat meine endliche Menge?''. Etwas formaler geht es um die Formeln für die Anzahl der Elemente verschiedener endlicher Mengen, welche man in der diskreten Mathematik gerne benutzt. 
 \end{bem} 
 
 \begin{lem} \label{lem:vereinigung:zwei}
@@ -67,6 +67,15 @@
 	Die Intuition hinter Lemma~\ref{lem:inkl:exkl:2} ist: wir zählen alle Elemente in $A$ sowie $B$ ab. Dadurch werden die Elemente in $A \cap B$ doppelt abgezählt. Wir sollen also die Anzahl der Elemente in $A \cap B$ abbziehen, um auf die Anzahl der Elemente in $A \cup B$ zu kommen. 
 \end{bem} 
 
+\begin{bsp}
+	In einer Klasse haben $15$ Kinder eine Playstation, $10$ Kinder eine Xbox und $3$ Kinder die beiden genannten Geräte. Wie viele Kinder haben mindestens eines der beiden Geräte? 
+	
+	Sei $P$ die Menge der Kinder, die eine Playstation haben, $X$ die Anzahl der Kinder, die eien Xbox haben. Dann gilt: 
+	\[
+		|P \cup X| = |P| + |X| - |P \cap X| = 15 + 10 - 3 = 22. 
+	\]
+\end{bsp} 
+
 \begin{lem} \label{lem:anzahl:prod:2}
 	Seien $A$ und $B$ endliche Menge. Dann gilt: 
 	\[
@@ -80,11 +89,19 @@
 	\]
 	Für ein beliebiges festes $a \in A$ kann nun die Anzahl der Elemente in $\{a\} \times B$ bestimmt werden. Diese Anzahl ist $|B|$, da die Abbildung $f_a : B \to \{a\} \times B$ mit $f_a(b) := (a,b)$ bijektiv ist: denn hat man zwei verschiedene Elemente $b',b'' \in B$ so sind auch $(a,b')$ und $(a,b'')$ verschieden (Injektivität) und hat man ein beliebiges Element aus $\{a\} \times B$ fixiert, etwa $(a,b)$ mit $b \in B$, so erhält man dieses Element als $f_a(b) = (a,b)$. 
 \end{proof} 
+
+\begin{bsp}
+	In einem Kinosaal hat man $10$ Reihen mit $16$ Plätzen pro Reihe. Jeder Platz kann also durch die Angabe der Reihe und die Nummer des Platzes in der Reihe als das Paar $(r,n)$ mit $r \in \{1,\ldots,10\}$ und $n \in \{1,\ldots,16\}$ notiert werden. Die Anzahl der Plätze ist 
+	\[
+			| \{1,\ldots,10\} \times \{1,\ldots,16\} |  = | \{1,\ldots,10\} | \times | \{1,\ldots,16\}| = 10 \cdot 16 = 160. 
+	\]
+	Dieses Beispiel ist genauso einfach wie unser Lemma~\ref{lem:anzahl:prod:2}, das die Idee hinter dem Beispiel ganz allgemein erfasst. 
+\end{bsp} 
  
 
-\section{$X^k$ und $B^A$} 
+\section{Kartesisches Produkt} 
 
-\begin{thm}
+\begin{thm} \label{thm:kreuz:produkt}
 	Seien $A_1,\ldots, A_n$ endliche Mengen ($n \in \N$). Dann ist 
 	\[
 		|A_1 \times \cdots \times A_n|  = \prod_{i=1}^n |A_i|. 
@@ -113,43 +130,335 @@
 	Im vorigen Beweis haben wir $(a_1,(a_2,\ldots,a_n))$, ein Paar, bei dem die zweite Komponente ein $(n-1)$-Tupel ist, stillschweigend mit $(a_1,\ldots,a_n)$ identifiziert. 
 \end{bem} 
 
-\begin{thm}
-	Sei $X$ eine endliche Menge und sei $k \in \N_0$. Dann ist $|X^k| = |X|^k$. (In dieser und den nachfolgenden kombinatorischen Formeln interpretieren wir $0^0$ als $1$.)
-\end{thm} 
-\begin{proof} 
-	Die Formel ist trivial für in den entarteten Fällen $|X|=0$ und $k=0$.
-	(für $k>0$ und $X = \emptyset$ ist $X^k$ ebenfalls die leere Menge und für $k=0$  besteht $X^k$ aus dem einzigen $0$-Tupel).  Wir nehmen also $|X| >0$ und $k>0$ an und beweisen  die Gleichung $|X^k| = |X|^k$  in diesem Fall durch Induktion über $k$. 
-	
-	Die Formel ist trivial für $k = 1$: es gilt $|X^1| = |X|$ wegen $X^1 = X$. Sei $k \ge 2$ und sei die Formel $|X^{k-1}| = |X|^{k-1}$ bereits verifiziert. 
-	
-	Sei $n:=|X|$. Dann ist $X^k$ die disjunkte Vereinigung 
-	\[
-			X^k = \bigcup_{a \in X} X^{k-1} \times \{a\}. 
-	\]
-	der $n$ Mengen $X^{k-1} \times \{a\}$. Mit anderen Worten zerlegen wir $X^k$ in $n$ paarweise disjunkte Mengen, indem wir $n$ verschiedene Möglichkeiten für die Wahl der letzten Komponente eines $k$-Tupels aus $X^k$ unterscheiden. Nach Lemma~\ref{lem:disjunkte:vereinigung} gilt dann 
-	\[
-			|X^k| = \sum_{a \in X} |X^{k-1} \times \{a\}|. 
-	\]
-	Es bleibt, für jedes feste $a \in X$, die Anzahl der Elemente in $X^{k-1} \times \{a\}$ zu bestimmen. Die Abbildung 
-	$f_a : X^{k-1} \times \{a\} \to X^{k-1}$ mit $f_a(x_1,\ldots,x_{k-1},a) = (x_1,\ldots,x_k)$, welche die letzte Komponente des Tupels $(x_1,\ldots,x_{k-1},a)$ weglässt ist eine Bijektion (begründen Sie kurz, warum). Daher hat $X^{k-1} \times \{a\}$ für jede Wahl von $a$ genauso viele Elemente wie $X^{k-1}$. Es folgt 
-	\[
-			|X^k| = \sum_{a \in X} |X^{k-1} \times \{a\}| = \sum_{a \in X} |X^{k-1}|. 
-	\]
-	Nach der Induktionsvoraussetzung erhalten wir $|X^{k-1}| = |X|^{k-1}$. Da die Summe über die $|X|$-elementige Menge geht, erhalten wir 
-	\[
-			|X^k| = |X| \cdot |X^{k-1}| = |X|^k. 
-	\]
-\end{proof} 
+\begin{kor} \label{kor:product} 
+	Sei $A$ endliche Menge und $n \in \N$. Dann gilt $|A^n| = |A|$. 
+\end{kor}
+\begin{proof}
+	Die Behauptung folgt durch die Anwendung von Theorem~\ref{thm:kreuz:produkt} im Fall, dass alle Mengen $A_1,\ldots,A_n$ gleich $A$ sind. 
+\end{proof}  
 
+\section{Abbildungen} 
 
 \begin{thm}
-	Seien $A,B $ endliche Mengen. Dann gilt $|B^A| = |B|^{|A|}$. 
+	Seien $X,Y $ endliche Mengen. Dann gilt $|Y^X| = |Y|^{|X|}$, wobei man bei $X= Y = \emptyset$, $|Y|^{|X|} = 0^0  =1$ setzt. 
 \end{thm}
 \begin{proof}
-	Die Formel ist trivial, wenn $A$ oder $B$ leer ist. Seien $A$ und $B$ nicht leer. Sei Sei $|A| = k$ und $A = \{a_1,\ldots,a_k\}$. Dann ist die Abbildung $B^A \to B^k$, die jedem $f : A \to B$ das Tupel $(f(a_1),\ldots,f(a_k))$ eine Bijektion. Somit gilt 
-	$|B^A | = |B^k| = |B|^k = |B|^{|A|}$.  
+	Im entarteten Fall $X = \emptyset$ gibt es nur eine Abbildung von $\emptyset$ nach $Y$. 
+	Sei $X \ne\emptyset$ und sei $n := |X|$, sodass wir alle Elemente von $x$ als $x_1,\ldots,x_n$ indexieren können. Dann entspricht jede Abbildung $f : X \to Y$ einem $n$-Tupel $(f(x_1),\ldots,f(x_n)) \in Y^n$, wobei zwei verschiedene Abbildungen von $X$ nach $Y$ zwei verschiedene Tupel erzuegen. 
+	Umkgekehrt definiert jedes $n$-Tupel $(y_1,\ldots,y_n)$ die Abbildung $f: X \to Y$ mit $f(x_i)  = y_i$ für alle $i \in \{1,\ldots,n\}$. Man sieht also, dass die Abbildung 
+	\[
+			Y^X \to Y^n,
+	\]
+	die einem $f : X \to Y$ das Tupel $(f(x_1),\ldots,f(x_n))$ zuordnet, bijektiv ist. Wir erhalten mit der Verwendung von Korollar~\ref{kor:product}
+	\[
+			|Y^X| = |Y^n| = |Y|^n = |Y|^{|X|}. 
+	\]
 \end{proof} 
 
-\section{$\binom{X}{k}$}
+\begin{bsp}
+	Wieviele Möglichkeiten gibt es drei verschiedene Aufgaben unter vier Personen zu verteilen, wenn jede Aufgabe genau einer Personen zugeordent wird? Eine Zuordnung der Aufgaben den Personen ist eine Abbildung aus einer $3$-elementigen Menge $X$ von  Aufgaben in die $4$-elementige Menge $Y$ der Personen. Wir zählen also die Abbildungen aus $Y^X$. Die Anzahl ist $|Y^X| = |Y|^{|X|} = 4^3 = 64$. 
+\end{bsp} 
 
-\section{Zählen der bijektiven und injektiven Abbildungen} 
+\section{Injektive und bijektive Abbildungen} 
+
+\begin{defn}[Fakultät]
+	Für $n \in \N_0$ ist \textbf{$n$ Fakultät} als 
+	\[n ! := \prod_{i=1}^n i
+	\] definiert. Insbesondere gilt $0!=1!=1$. 
+\end{defn} 
+
+\begin{defn}
+	Für $n, k \in \N_0$ definieren wir die \textbf{fallende Faktorielle} von $n$ der Länge $k$ als
+	\[
+		n^{\underline{k}} := n \cdot \ldots \cdot (n-k+1).
+	\]
+	Man hat insbesondere $n^{\underline{0}}=1$. 
+\end{defn} 
+
+\begin{defn}
+	Für Mengen $X, Y$ bezeichnen wir als $\Inj(X,Y)$ die Menge aller injektiven und als $\Bij(X,Y)$ die Menge aller bijektiven Abbildungen von $X$ nach $Y$. 
+\end{defn} 
+
+\begin{thm} \label{thm:inj:abbildungen}
+	Seien $X,Y$ endliche Mengen. Dann ist $|\Inj(X,Y) | = |Y|^{\underline{|X|}}$. 
+\end{thm} 
+\begin{proof} 
+	Wenn es eine injektive Abbildung $f$ von $X$ existiert $Y$ exisitert, so gilt $|X| \le |Y|$, denn $f(X)$ ist eine Teilmenge von $Y$, die genau so viele Elemente wie $X$ hat. Das bedeutet, dass die Formel iim $|X| > |Y|$ erfüllt ist, weil in diesem Fall die linke sowie rechte Seite gleich $0$ ist. Wir beweisen die Formeln im Fall $|X| \le |Y|$ durch Induktion über $|X|$. Für $X = \emptyset$ gibt es genau eine injektive Abbildung von $X= \emptyset$ nach $Y$. Also gilt die Formel für $|X|=0$. 
+	Nun betrachten wir $X$ und $Y$ mit $k=|X|$ und $k \le |Y|$ und nehmen an, dass die Formel im Fall $k-1=|X| \le |Y|$ bereits verifiziert wurde. Wir fixieren ein beliebiges $a \in X$. Jede injektive Abbildung $f$ von $X$ nach $Y$ bildet das fixierte $a$ auf eines der Elemente aus $Y$ ab. Wir können also die Menge $\Inj(X,Y)$ als disjunkte Vereinigung 
+	\[
+			\Inj(X,Y) = \bigcup_{b \in Y} \Inj_{a,b}(X,Y),
+	\]
+	mit 
+	\[
+		\Inj_{a,b} (X,Y) := \setcond{ f \in \Inj(X,Y)}{f(a) = b}. 
+	\]
+	Nach Lemma~\ref{lem:disjunkte:vereinigung} gilt 
+	\[
+			|\Inj(X,Y)| = \sum_{b \in Y} |\Inj_{a,b}(X,Y)|
+	\]
+	Jede Abbildung $f  \in \Inj_{a,b}(X,Y)$ erzeugt die Abbildung $\tilde{f} : X \setminus \{a\} \to Y \setminus \{b\}$. Da $f$ injektiv ist, ist $\tilde{f}$ ebenfalls injektiv. Auf diese Weise haben wir die Abbildung 
+	\[
+				f \mapsto \tilde{f} 
+	\]
+	von $\Inj_{a,b}(X,Y)$ nach $\Inj(X \setminus \{a\}, Y \setminus \{b\})$ erstellt. Die Abbildung $f$ ist offensichtlich eine Bijektion, sodass man $|\Inj_{a,b}(X,Y)| = |\Inj(X \setminus \{a\},Y \setminus \{b\})|$ hat. Nach der Induktionsvoraussetzung ist 
+	\[
+		|\Inj(X \setminus \{a\}, Y \setminus \{b\} | = |Y \setminus \{b\}|^{\underline{|X \setminus \{a\}}} = (|Y| -1)^{\underline{|X|-1}}.
+	\] 
+	Es folgt 
+	\begin{align*}
+	|\Inj(X,Y)| & = \sum_{b \in Y} |\Inj_{a,b}(X,Y)| 
+		\\ & = \sum_{b \in Y} (|Y| -1)^{\underline{|X|-1}} 
+		\\ & = |Y| \cdot (|Y| -1)^{\underline{|X|-1}}
+		\\ & = |Y|^{\underline{|X|}}. 
+	\end{align*}
+\end{proof} 
+
+\begin{kor}
+	 Seien $X$ und $Y$ endliche Mengen der gleichen Kardinalität $n$. Dann gilt $|\Bij(X,Y)| = n!$
+\end{kor} 
+\begin{proof}
+	Haben endliche Mengen $X$ und $Y$ die gleiche Kardinalität, so gilt die Gleichheit $\Bij(X,Y ) = \Inj(X,Y)$. Die Inklusion $\Bij(X,Y ) \subseteq \Inj(X,Y)$ ist trivial, weil jede Abbildung nach der Definition injektiv ist. Umgekehrt: Ist $f: X \to Y$ injektiv, so hat $Y \setminus f(X)$ genau $|Y| - |f(X)| = |Y| - |X| =0$ Elemente. Das bedeutet, $Y = f(X)$, sodass $f$ auch surjektiv ist. Das zeigt die Inklusion $\Inj(X,Y) \subseteq \Bij(X,Y)$. 
+	
+	Nach dieser Bemerkung folgt die Behauptung direkt aus Theorem~\ref{thm:inj:abbildungen}. 
+\end{proof} 
+
+\section{Teilmengen gegebener Kardinalität} 
+
+\begin{defn}
+Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Menge aller $k$-elementigen Teilmengen von $X$. 
+\end{defn}
+
+\begin{bsp}
+	\[
+	\binom{\{1,2,3,4\}}{2} = \Bigl\{ \{1,2\},\{1,3\}, \{1,4\}, \{2,3\}, \{2,4\} ,\{3,4\} \Bigr\}.
+	\]
+\end{bsp} 
+
+
+\begin{defn}
+	Für $n,k \in \N_0$ wird der \textbf{Binomialkoeffizient  $n$ über $k$} als 
+	\[
+		\binom{n}{k}:= \frac{n^{\underline{k}}}{k!}  = \frac{n \cdot \ldots \cdot (n-k+1)}{k!}.
+	\]
+	definiert. 
+\end{defn} 
+
+\begin{bem}
+	Im Fall $0 \le k \le n$ und $n,k \in \N_0$ hat man $\binom{n}{k} = \frac{n!}{k! (n-k)!}$. 
+\end{bem} 
+
+
+\begin{thm} \label{thm:k:elem:teilmengen} 
+		Sei $X$ endliche Menge und sei $k \in \N_0$. Dann gilt: 
+		\[
+				\left| \binom{X}{k} \right| = \binom{|X|}{k}. 
+		\]
+\end{thm} 
+\begin{proof} 
+	In den Fällen $k > |X|$ werden die beiden Seiten der Formel gleich $0$. Wir nehmen also $k \le |X|$ an. Ist $k=0$, werden die beiden Seiten der Formeln gleich $1$. Wir nehmen also $0 < k \le |X|$ an. 
+	
+	Wir zählen die injektiven Abbildungen von $I:=\{1,\ldots,k\}$ nach $X$ auf die folgende  Weise auf. Bei jeder injektiven Abbildung $f : I \to X$ ist das Bild $f(I)$ eine $k$-elementige Teilmenge von $X$. Also kann man die injektiven Abbildungen $f: I \to X$  nach der Wahl von $f(I)$ gruppieren. Mit anderen Worten ist $\Inj(I,X)$ disjunkte Vereinigung
+	\[
+		\Inj(I,X)  = \bigcup_{B \in \binom{X}{k} } \setcond{f \in \Inj(I,X)}{f(I) = B}. 
+	\]
+	Aus Lemma~\ref{lem:disjunkte:vereinigung} folgt
+	\[
+		|\Inj(I,X) | = \sum_{B \in \binom{X}{k} } | \setcond{f \in \Inj(I,X)}{f(I) = B}|. 
+	\]
+	Jeder ijectiven Abbildung $ f: I \to X$ mit einem vorgeschriebenen Bild $B$ 
+	die bijektive Abbildung $\tilde{f} : I \to B$ mit $\tilde{f}(i) = f(i)$ zuordnen kann, und die Abbildung $f \mapsto \tilde{f}$ von $\setcond{f \in \Inj(I,X)}{f(I) = B}$ nach $\Bij(I,B)$ ist bijektiv. 
+	Wir erhalten also 
+	\[
+			| \setcond{f \in \Inj(I,X)}{f(I) = B}| = |\Bij(I,B)| = k!. 
+	\]
+	Das ergibt
+	\[
+		|\Inj(I,X) | = \left| \binom{X}{k} \right| \cdot k!
+	\]
+	Nach Theorem~\ref{thm:inj:abbildungen} hat man 
+	\[
+		|\Inj(I,X)| = |X|^{\underline{k}}. 
+	\]
+	Es folgt: 
+	\[
+		\left| \binom{X}{k} \right| = \frac{|\Inj(I,X) |}{k!} = \frac{|X|^{\underline{k}}}{k!} = \binom{|X|}{k!}. 
+	\]
+\end{proof} 
+
+\begin{bem}[Doppeltes Abzählen] 
+	Im Beweis des  Theorems~\ref{thm:k:elem:teilmengen} haben wir injektive Abbildungen zwischen zwei festgelegten Mengen auf eine andere Weise als im Beweise des Theorems~\ref{thm:inj:abbildungen} abgezählt. Aus den beiden Weisen abzuzählen ergab sich dann im Beweis des Theorems~\ref{thm:inj:abbildungen} für die Anzahl der $k$-elementigen Teilmengen einer gegebenen Menge. Solchen Beweisansatz nennt man in der Kombinatorik \textbf{Doppeltes Abzählen}. 
+\end{bem} 
+
+\begin{aufg}
+	Für alle $n,k \in \N_0$ gilt $\binom{n}{k} = \binom{n}{n-k}$. Verifizieren Sie das direkt arithmetisch und kombinatorisch, indem man eine Bijektion zwischen 
+	den Mengen $\binom{X}{k}$ und $\binom{X}{|X|-k}$ für eine $n$-elementige Teilmenge $X$ erstellt. 
+\end{aufg} 
+
+\section{Teilmengen} 
+
+\begin{thm}
+	Sei $X$ endliche Menge. Dann gilt $|2^X|=2^{|X|}$. 
+\end{thm} 
+\begin{proof} 
+	Es gibt verschiedene Ansätze zum Beweis dieser Formel. Zum Beispiel kann man eine natürliche Bijektion zwischen  $2^X$ und $\{0,1\}^X$ erstellen und dann $|\{0,1\}^X| = |\{0,1\}|^{|X|} = 2^{|X|}$ nutzen (Aufgabe). 
+	
+	Wir präsentieren hier einen Beweis durch Induktion über $|X|$. Hat $X$ $0$ Elemente, so gilt $2^X = 2^\emptyset = \{\emptyset\}$. Somit ist $|2^X| = 1 = 2^0 = 2^{|X|}$. Sei $X$ Mengen mit $n$ Elementen, mit $n \ge 1$, und sei die Formel für Mengen $X$ mit $n-1$ Elementen bereits verifiziert. Wir fixieren ein $a \in X$. Die Teilmengen $A$ von $X$ zerlegen sich nach den Bedingungen $a \in A$ und $a \in A$ in zwei disjunkte Mengen. Es gilt also
+	\begin{align*}
+			2^X & = \setcond{A}{A \subseteq X, \ a \in A} \cupdot \setcond{A}{A \subseteq X, \ a \not\in A}
+			\\ & = \setcond{B \cup \{a\}}{B \subseteq X \setminus \{a\}} \cupdot 2^{X \setminus \{a\}}. 
+	\end{align*}
+	Das ergibt
+	\[
+		|2^X| = |\setcond{B \cup \{a\}}{B \subseteq X \setminus \{a\}}| + | 2^{X \setminus \{a\}}|. 
+	\]
+	Die Abbildung $B \mapsto B \cup \{a\}$ ist eine Bijektion von $2^{X \setminus \{a\}}$ nach $\setcond{B \cup \{a\}}{B \subseteq X \setminus \{a\}}$. Es folgt: 
+	\[
+		|2^X| = 2 \cdot |2^{X \setminus \{a\}}|
+	\]
+	Da $X \setminus \{a\}$ eine $(n-1)$-elementige Menge ist, folgt nach der Induktionsovraussetzung $|2^{X \setminus \{a\}}| = 2^{|X \setminus \{a\}|} = 2^{|X|-1}$. Wir erhalten somit $2^{|X|} = 2 \cdot 2^{|X|-1} = 2^{|X|}$. 
+\end{proof} 
+
+\section{Das Prinzip der Inklusion-Exklusion} 
+
+\begin{defn}
+	Seien $A,X$ Mengen mit $A \subseteq X$. Dann nennen wir die Funktion $1_A : X \to \R$ mit 
+	\[
+		1_A(x): = \begin{cases}
+				1 &  \text{für} \ x \in A, 
+			\\	0 & \text{für} \ x \not\in A
+			\end{cases} 
+	\]
+	die \textbf{charakteristische Funktion} von $A$ auf der Grundmenge $X$. (In der Regel ist die Wahl der Grundmenge aus dem Kontext klar, daher ist $X$ nicht direkt in der Bezeichnung $1_A$ vorhanden.)
+\end{defn} 
+
+\begin{bem}
+	Sind $A, X$ endliche Menge mit $A \subseteq X$ so ist $|A| = \sum_{x \in A} 1_A(x)$. Darüber hinaus gilt $1_{X \setminus A} = 1_X - 1_A$. 
+\end{bem}
+
+\begin{lem}
+	Seien $A_1,\ldots,A_n$ ($n \in \N$) endliche Teilmengen einer endlichen Menge $X$. Dann gilt 
+	\[
+			1_{A_1 \cap \cdots \cap A_n}  = 1_{A_1} \cdot \ldots \cdot 1_{A_n}. 
+	\]
+\end{lem} 
+\begin{proof}
+	Sei $x \in X$. 
+	Liegt $x$ im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt $1_{A_1 \cap \cdots \cap A_n} (x) =1$  aber auch $1_{A_i}(x)=1$ für jedes $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken und rechten Seite auf $x$  ergibt somit den Wert $1$> 
+	Ist $x$ nicht im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt $1_{A_1 \cap \cdot A_n}(x) =0$ aber auch $1_{A_i}(x)=1$ für ein $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken rechten Seite der Formel ergibt somit den Wert $0$. 
+\end{proof} 
+
+\begin{lem} \label{lem:product} 
+	Sei $n \in \N$. Dann gilt für alle $t_1,\ldots,t_n \in \R$ die Gleichung 
+	\[
+		(1 - t_1) \cdot \ldots \cdot  (1-t_n) = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I|} \prod_{i \in I} t_i.  
+	\]
+	(Deutung der rechten Seite: die Summe über alle Teilmengen $I$ von $\{1,\ldots,t\}$ und das Produkt aller $t_i$ mit $i \in I$). 
+\end{lem} 
+\begin{proof} 
+	Die Gleichung folgt durch das Ausmultiplizieren. Aus jeder der $n$ Klammern au fer linken Seite der Formel kann  beim Ausmultiplizieren unabhängig der Term $1$ oder der Term $-t_i$ gewählt werden. Die Menge $I$ kodiert also die Wahl der Terme in den Klammern durch die Angabe der Klammern, in denen man den Term $-t_i$ gewählt hat. Man hat also 
+	\[
+			(1 - t_1) \cdot \ldots \cdot  (1-t_n) = \sum_{I \subseteq \{1,\ldots,n\}}  \prod_{i \in I} (-t_i)  = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I|} \prod_{i \in I} t_i.
+	\]
+	Einen formaleren Beweis kann man zum Beispiel durch Induktion über $n$ führen (Aufgabe). 
+\end{proof} 
+
+\begin{thm}[Das Prinizip der Inklusion-Exklusion]
+	Seien $A_1,\ldots,A_n$ ($n \in \N$) endliche Mengen. Dann gilt 
+	\[
+		| A_1 \cup \cdots \cup A_n| = \sum_{\emptyset \ne J \subseteq \{1,\ldots,n\}} (-1)^{|J|+1} \left| \bigcap_{j \in J} A_i \right| 
+	\]
+\end{thm} 
+\begin{proof} 
+	Wir setzen $X := A_1 \cup \cdots \cup A_n$ und betrachten die charakteristischen Funktionen von $A_1,\ldots,A_n$ auf der Grundmenge $X$. Dann gilt die Identität
+	\[
+		  (1-1_{A_1} )  \cdots (1 -1_{A_n}) = 0
+	\]
+	auf der Menge $x$; denn für jedes $x \in X$ hat man $x \in A_i$ für ein $i \in \{1,\ldots,n\}$, woraus sich $1 - 1_{A_i}(x) = 0$ ergibt. 
+	
+	Aus Lemma~\ref{lem:product} folgt dann 
+	\[
+		 0 = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I|} \prod_{i \in I} 1_{A_i} = \sum_{i \in I} (-1)^{|I| } \, 1_{\bigcap_{i \in I} A_i},
+	\]
+	wobei wir hier $\bigcup_{i \in \emptyset} A_i$ als $X$ interpretieren. 
+	Daraus folgt: 
+	\begin{align*}
+		0  & = \sum_{x \in X} \sum_{i \in I} (-1)^{|I| } \, 1_{\bigcap_{i \in I} A_i}(x)
+		\\ & = \sum_{I \subseteq \{1,\ldots,n\} } (-1)^{|I| } \sum_{x \in X} 1_{\bigcap_{i \in I} A_i}(x)
+		\\ & = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I| } \left| \bigcap_{i \in I} A_i \right|
+	\end{align*}
+	Wir spalten in der vorigen Summer den Summanden zu $I = \emptyset$ ab und erhalten 
+	\[
+		0  = |X| + \sum_{\emptyset \ne I \subseteq \{1,\ldots,n\}} (-1)^{|I| } \left| \bigcap_{i \in I} A_i \right|,
+	\]
+	was zur Formel in der Behauptung des Theorems äquivalent ist. 
+\end{proof} 
+
+\section{Multimengen} 
+
+\begin{defn}
+Ist $X$ eine Menge, so ist eine \textbf{Multimenge} $M$ über der Grundmenge $X$ durch die Angabe der \textbf{Vielfachheitsabbildung} $\mu_M : X \to \N_0$ gegeben. Die Summe
+\[
+	\sum_{x \in X} \mu_M(x)
+\]
+nennt man die Kardinalität der Multimenge $M$ und bezeichnet diesen Wert als $|M|$.  Wir nennen die Menge $\setcond{ x \in X}{\mu_M(x)>0}$ den \textbf{Träger} von $M$.
+
+Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ haben, und für jedes $x \in T$ die Vielfachheiten von $x$ in $M$ und $N$ übereinstimmen.
+\end{defn} 
+
+\begin{bem}[Angabe von Multimengen durch die Aufzählung]
+	Bei der Angabe der Multimengen durch die Aufzählung benutzen wir die Bezeichnung $\{x_1,\ldots,x_n\}_{\ne}$. So ist z.B. 
+	\[
+			M = \{1,1,1,1,2,2,2,3\}_{\ne}
+	\]
+	eine Multimenge über $\{1,2,3\}$ mit $\mu_M(1) =4, \mu_M(2)=3$ und $\mu_M(3)=1$. Wir benutzten in der Bezeichnung für Multimengen das untergestellte $\ne$, um explizit darauf hinzuweisen, dass es sich hierbei nicht um eine Menge handelt. In vielen Quellen benutzt man aber genau die gleiche Bezeichnung wie bei Mengen. 
+\end{bem}
+
+\begin{defn}
+	Für $k \in \N_0$ bezeichnen wir als $\mbinom{X}{k}$ die Menge aller $k$-elementigen Multimengen, deren Träger in  $X$ enthalten ist. 
+
+	Für $n,k \in \N_0$ führen wir die Bezeichnung $\mbinom{n}{k} := \binom{n+k-1}{k}$ ein. 
+\end{defn} 
+
+\begin{lem} \label{lem:multimengen}
+	Seien $n \in \N$ und $k \in \N_0$. Dann gilt: 
+	\[
+		\bigl| \setcond{ (z_1,\ldots,z_n) \in \N_0^n}{z_1 + \cdots + z_n = k} \bigr| = \mbinom{n+k-1}{k}. 
+	\]
+\end{lem} 
+\begin{proof} 
+	Die Abbildung $(z_1,\ldots,z_n) \mapsto (y_1,\ldots,y_n):=(z_1+1,\ldots,z_n+1)$ ist eine Bijektion von 
+	\[
+			Z:=\setcond{ (z_1,\ldots,z_n) \in \N_0^n}{z_1 + \cdots + z_n = k}
+	\]
+	nach 
+	\[
+			Y:= \setcond{ (y_1,\ldots,y_n) \in \N^n}{y_1 + \cdots + y_n = n+ k}. 
+	\]
+	Es reicht also aus, die Anzahl der Elemente in $Y$ zu bestimmen. Eine Wahl von $(y_1,\ldots,y_n)$ lässt sich so veranschaulichen. Man zeichnet $n+k$ Punkte von links nach rechts. Zwischen diesen Punkt gibt es $n+k-1$ Lücken. Setzt man in genau $n-1$ Lücken Striche, so zerlegen sich Punkte in $n$. Bezeichnet man als $y_i$ die Anzahl der Punkte in $i$-te Gruppe, so erhält $(y_1,\ldots,y_n) \in Y$. Umgekehrt erzeugt jedes $(y_1,\ldots,y_n) \in Y$ eine Angabe, welche der $n+k-1$ Lücken mit Strichen gefüllt werden sollen. Daraus ergibt sich 
+	\[
+			|Z| = |Y|= \binom{n+k-1}{n-1} = \binom{n+k-1}{k}. 
+	\]
+	Die informelle Begründung mit Punkten, Lücken und Strichen kann mathematisch formal beschrieben werden. Es handelt sich um die Bijektion 
+	\[
+		(y_1,\ldots,y_n) \mapsto (y_1,y_1+y_2,\ldots, y_1+ \cdots +y_{n-1})
+	\] von $Y$ nach 
+	\(
+			X:=\binom{\{1,\ldots,n+k-1\}}{n-1}. 
+	\)
+	(Aufgabe: Überprüfen Sie, dass es tatsächlich eine Bijektion ist.) 
+\end{proof} 
+
+\begin{thm}
+	Sei $X$ endliche Menge und sei $k \in \N_0$. Dann gilt 
+	\[
+			\left| \mbinom{X}{k} \right| = \mbinom{|X|}{k}. 
+	\]
+	Mit anderen Worten: es gibt genau $\binom{n+k-1}{k}$ Multimengen mit $k$ Elementen, deren Träger in $X$ enthalten ist. 
+\end{thm}
+\begin{proof}
+	Es reicht den Fall $|X| >0$, $k>0$ zu betrachten. Sei $n:= |X|$. Wir nummerieren die Elemente in $X$ und schreiben $X$ als $\{x_1,\ldots,x_n\}$. Jede Multimenge $M \in \mbinom{X}{k}$ ist eindeutig durch die Angabe der Werte $z_i := \mu_M(x_i)$ mit $i \in \{1,\ldots,k\}$ gegeben. Daher folgt die Behauptung aus Lemma~\ref{lem:multimengen}. 
+\end{proof} 
+
+\section{Zählen und die Berechnung von Wahrscheinlichkeiten} 
+
+IM AUFBAU 
