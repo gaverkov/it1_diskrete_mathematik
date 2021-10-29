@@ -1063,23 +1063,70 @@ Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als 
 	Zeigen Sie $|u \cdot v| = |u| \cdot |v|$ für alle $u, v \in \C$. \textbf{Hinweis:} Am besten zeigt man $|u \cdot v|^2 = |u|^2  \cdot |v|^2$, um die Wurzeln zu vermeiden. 
 \end{aufg} 
 
-\begin{bem}[Der Satz von Pythagoras, Radianten und Grade, Kosinus und Sinus, und der  Taschenrechner] 
-	Für das nachfolgende Thema soll man zuerst an einige Themen aus dem Mathe-Unterricht in der Schule erinnern. 
-	\begin{itemize}
-		\item \emph{Der Satz des Pythagoras}. Der Abstand zwischen dem Punkt $(0,0) \in \R^2$ und einem Punkt $(x,y) \in \R^2$ ist gleich $\sqrt{x^2 + y^2}$. Wenn man diese Behauptung in einer koordinaten-freien Form mit Hilfe von rechtwinkligen Dreiecken formuliert, so nennt man sie den Satz des Pythagoras. 
-		\item \emph{Radianten und Grade.} Im alten Babylonien dachte man, das Jahr wäre 360 Jahre lang (das stimmt nicht, wie wir jetzt wessen). Daher teilte man den Jahreskreis in 360 Teile auf, die den Tagen entsprechen. Ein Grad steht daher für einen Tag im babylonischen Jahreskreis. Das zeigt, dass die Herkunft der Messung der Winkel in Graden nicht mathematisch ist. Sie ist anthropologisch: sie hängt mit dem Planeten Erde zusammen, auf dem wir uns befinden, und mit den Babylonier:innen, die bei der Bestimmung der Anzahl der Tage im Jahr sich ein Wenig verschätzten. Dennoch hat sich die Messung mit 360 Graden für den vollen Winkeln bis jetzt erhalten. Das liegt vielleicht daran, dass einige für uns interessante Winkel mit Graden durch eine ganze Zahl darstellbar sind ($90^\circ$, $60^\circ$, $30^\circ$). Die Messung mit Radianten ist eine dimensionslose Messung und sie ist intrinsisch mathematisch. Man nimmt einen Kreis mit dem Radius $1$ und misst Winkel durch die Längen der Bögen dieses Kreises. Dabei bezeichnet man die Länge einer Hälfte des Einheitskreises als $\pi$ und nennt die Zahl $\pi$ die Kreiszahl. Diese Zahl $\pi$ ist etwas größer als $3$ (das sieht man, wenn man in den Einheitskreis ein reguläres Sechseck einschreibt). 
-		
-		Ein Grad ist nichts Anderes als $1^\circ := \frac{\pi}{180}= \frac{2\pi}{360}.$ Wenn man Winkel in Radianten misst, kann man etwa $1{.}2$ Radianten aber auch einfach nur $1{.}2$ sagen, denn die Einheit Radiant ist dimensionslos. 
-		
-		An sich gibt es an der Messung der Winkel mit Graden nichts Falsches. Dieser Kommentar dient einfach nur dazu, darauf hinzuweisen, dass die Zahlen wie $360$ und $180$ in Bezug auf die Winkelmessung keine mathematische sondern eine anthropologische Natur haben. 
-		
-		\item \emph{Kosinus und Sinus.}  Man betrachte eine kreisförmige Radrennbahn mit Zentrum im Punkt $(0,0)$ vom Radius $1$. Diese Bahn ist nach dem Satz des Pythagoras durch die Gleichung $x^2 + y^2 = 1$ beschrieben. Nun legen wir den Punkt $(1,0)$ dieser Bahn als den Startpunkt fest. Von diesem Punkt aus kann man nun Strecken einer beliebigen Länge zurücklegen. Wie lang die Strecke ist und ob man sich im Gegenuhrzeiger oder im Uhrzeigersinn bewegt wird durch eine Zahl $\alpha \in \R$ notiert. Der Betrag von $\alpha$ gibt die Länge der Strecke an, die man zurücklegen will. Das Vorzeichen von $\alpha$ gibt an, ob man sich im Gegenuhrzeigersinn oder im Uhrzeigersinn bewegt (bei einem positiven Vorzeichen - im Gegenuhrzeigersinn und bei einem negativen Vorzeichen - im Uhrzeigersinn). Für jedes $\alpha \in \R$ erhält man einen Punkt $(x,y)$, in dem man sich nach dem Zurücklegen der vorgegebenen Strecke in die vorgegebene Richtung landet. Die $x$-Komponente dieses Punkts nennt man den Kosinus von $\alpha$ (Bezeichnung: $x = \cos \alpha$) und die $y$-Komponente dieses Punkts nennt man den Sinus von $\alpha$ (Bezeichnung: $y = \sin \alpha$). 
-		
-		Die Eingabe für $\cos$ und $\sin$ ist also eine reelle Zahl und die Rückgabe ist oben beschrieben. 
-		\item \emph{Kosinus und Sinus im Taschenrechner}. Wenn die Studierenden den Kosinus und Sinus (unter anderem für sehr einfache Werte $\alpha$) im Taschenrechner berechnen, so sieht man, dass es immer wieder dazu kommt, dass ihre Ergebnisse falsch sind. Das liegt daran, dass man in vielen Taschenrechnern eine Umschaltung zwischen Grad und Radianten hat. Ist der Taschenrechner auf Radianten eingestellt, so berechnet er die eigentlichen  Kosinus und Sinus, wie sie in Mathematik (und in den meisten Programmiersprachen) zu finden sind. Ist der Taschenrechner auf Grade eingestellt, so berechnet er die Funktionen $t \mapsto \cos( \frac{\pi}{180}t)$ und $t \mapsto \sin( \frac{\pi}{180})t$ an der Stelle von $\cos$ und $\sin$. Übrigens: in Excel wird die Funktion $t \mapsto \frac{\pi}{180} t$, die oben in $\cos$ und $\sin$ eingesetzt wurde, das Bogenmaß von $t$ genannt. 
-		\item Die vielen Formeln, die man für den Kosinus und Sinus und andere trigonometrische Funktionen hat, lassen sich im Rahmen der linearen Algebra (IT-3) viel besser verstehen. 
-	\end{itemize} 
+\section{Exkurs: Trigonometrie} 
+
+\begin{thm}[Der Satz des Pythagoras]
+	In einem rechtwinkligen Dreieck seien $a$ und $b$ die Längen der am rechten Winkel anliegenden Seiten und $c$ die Länge der dem rechten Winkel gegenüberliegenden Seite. Dann gilt $c^2 = a^2 + b^2$. 
+\end{thm} 
+
+\begin{kor} \label{kor:pythagoras}
+	Der Abstand zwischen dem Punkt $(0,0) \in \R^2$ und dem Punkt $(x,y) \in \R^2$ ist gleich $\sqrt{x^2 + y^2}$. 
+\end{kor} 
+\begin{proof} 
+ 	Im Fall $x =0$ oder $y=0$ ist die Behauptung klar, da sich der Punkt $(x,y)$ auf einer der beiden Koordinatenachsen befindet. Im Fall $x \ne 0$ und $y \ne 0$ ist das Dreieck mit den Ecken $(0,0), (x,0), (x,y)$ rechtwinklig und die Längen der am rechten Winkel anliegenden Seiten sind $|x|$ und $|y|$. Nach dem Satz des Pythagoras ergibt das die Länge $\sqrt{|x|^2 + |y|^2} = \sqrt{x^2 + y^2}$ für den Abstand zwischen $(0,0)$ und $(x,y)$. 
+\end{proof} 
+
+\begin{defn}
+	Sei $c \in \R^2$ und $\rho>0$. Dann heißt die Menge aller Punkte, den zum Punkt $c$ Abstand $\rho>0$ haben \textbf{Kreis} mit Zentrum in $c$ vom Radius $\rho>0$. 
+\end{defn} 
+
+\begin{bem}
+	Aus Korollar~\ref{kor:pythagoras} folgt: die Menge 
+	\[
+		\setcond{(x,y) \in \R^2}{x^2 + y^2 = 1}
+	\] ist Kreis vom Radius $1$ mit Zentrum in $(0,0)$. Diese Menge nennen wir im folgenden \textbf{den Einheitskreis}. 
 \end{bem} 
+
+\begin{bem}[Über Radianten und Grade.] 
+	Im alten Babylonien dachte man, das Jahr wäre 360 Jahre lang (das stimmt nicht, wie wir jetzt wessen). Daher teilte man den Jahreskreis in 360 Teile auf, die den Tagen entsprechen. Ein Grad steht daher für einen Tag im babylonischen Jahreskreis. Das zeigt, dass die Herkunft der Messung der Winkel in Graden nicht mathematisch ist. Sie ist anthropologisch: sie hängt mit dem Planeten Erde zusammen, auf dem wir uns befinden, und mit den Babylonier:innen, die bei der Bestimmung der Anzahl der Tage im Jahr sich ein Wenig verschätzten. Dennoch hat sich die Messung mit 360 Graden für den vollen Winkeln bis jetzt erhalten. Das liegt vielleicht daran, dass einige für uns interessante Winkel mit Graden durch eine ganze Zahl darstellbar sind ($90^\circ$, $60^\circ$, $30^\circ$). 
+	
+	Die Messung mit Radianten ist eine dimensionslose Messung und sie ist intrinsisch mathematisch. Man nimmt einen Kreis mit dem Radius $1$ und misst Winkel durch die Längen der Bögen dieses Kreises. Dabei bezeichnet man die Länge einer Hälfte des Einheitskreises als $\pi$ und nennt die Zahl $\pi$ die Kreiszahl. Diese Zahl $\pi$ ist etwas größer als $3$ (das sieht man, wenn man in den Einheitskreis ein reguläres Sechseck einschreibt). 
+	
+	Ein Grad ist nichts Anderes als 
+	\[
+		1^\circ := \frac{\pi}{180}= \frac{2\pi}{360}.
+	\] Wenn man Winkel in Radianten misst, kann man etwa $1{.}2$ Radianten aber auch einfach nur $1{.}2$ sagen, denn die Einheit Radiant ist dimensionslos. 
+	
+	An sich gibt es an der Messung der Winkel mit Graden nichts Falsches. Dieser Kommentar dient einfach nur dazu, darauf hinzuweisen, dass die Zahlen wie $360$ und $180$ in Bezug auf die Winkelmessung keine mathematische sondern eine anthropologische Natur haben.
+\end{bem} 
+
+\begin{bem}[Kosinus, Sinus und Co.] 
+ Man betrachte eine kreisförmige Radrennbahn mit Zentrum im Punkt $(0,0)$ vom Radius $1$. Diese Bahn ist nach dem Satz des Pythagoras durch die Gleichung $x^2 + y^2 = 1$ beschrieben. Nun legen wir den Punkt $(1,0)$ dieser Bahn als den Startpunkt fest. Von diesem Punkt aus kann man nun Strecken einer beliebigen Länge zurücklegen. Wie lang die Strecke ist und ob man sich im Gegenuhrzeiger oder im Uhrzeigersinn bewegt wird durch eine Zahl $\alpha \in \R$ notiert. Der Betrag von $\alpha$ gibt die Länge der Strecke an, die man zurücklegen will. Das Vorzeichen von $\alpha$ gibt an, ob man sich im Gegenuhrzeigersinn oder im Uhrzeigersinn bewegt: bei einem positiven Vorzeichen - im Gegenuhrzeigersinn und bei einem negativen Vorzeichen - im Uhrzeigersinn. Für jedes $\alpha \in \R$ erhält man einen Punkt $(x,y)$, in dem man sich nach dem Zurücklegen der vorgegebenen Strecke in die vorgegebene Richtung landet. Die $x$-Komponente dieses Punkts nennt man den Kosinus von $\alpha$ und die $y$-Komponente Sinus von $\alpha$. Bezeichnungen dazu sind: 
+ \begin{align*} 
+ 	x & = \cos \alpha
+ 	\\ y & = \sin \alpha 
+ \end{align*}	
+Sonst betrachtet man den Tangens 
+\[
+	\tan \alpha = \frac{\sin \alpha}{\cos \alpha}
+\]
+ den Kotangens 
+ \[
+ 	\cot \alpha = \frac{\cos \alpha}{\sin \alpha}
+ \] 
+ Ist $0 \le \alpha \le \pi$, so sagt man bei $x =\cos \alpha$, dass $\alpha$ Arcus Kosinus von $x$ ist. Man schreibt dann $\alpha = \arccos x$. Mit anderen Worten ist $\arccos$ die Umkehrfunktion der vom Kosinus, wenn man den Kosinus als Funktion $[0,\pi] \to [-1,1]$ auffasst. 
+ Ist $-\pi \le \alpha \le \pi$, so sagt man bei $y = \sin \alpha$, dass $\alpha$ Arcus Sinus von $y$ ist. Man schreibt dann 
+ $\alpha = \arcsin y$. Mit anderen Worte ist $\arcsin$ die Umkehrfunktion der Einschränkung vom Sinus, wenn man den Sinus als Funktion $[-\pi,\pi] \to [-1,1]$ auffasst. 
+\end{bem} 
+
+\begin{bem}[Kosinus und Sinus im Taschenrechner] Wenn Studierende den Kosinus und Sinus (unter anderem für sehr einfache Werte $\alpha$) im Taschenrechner berechnen, so sieht man, dass es immer wieder dazu kommt, dass ihre Ergebnisse falsch sind. Das liegt daran, dass man in vielen Taschenrechnern eine Umschaltung zwischen Grad und Radianten hat. Ist der Taschenrechner auf Radianten eingestellt, so berechnet er die eigentlichen  Kosinus und Sinus, wie sie in Mathematik (und in den meisten Programmiersprachen) zu finden sind. Ist der Taschenrechner auf Grade eingestellt, so berechnet er die Funktionen $t \mapsto \cos( \frac{\pi}{180}t)$ und $t \mapsto \sin( \frac{\pi}{180})t$ an der Stelle von $\cos$ und $\sin$. Übrigens: in Excel wird die Funktion $t \mapsto \frac{\pi}{180} t$, die oben in $\cos$ und $\sin$ eingesetzt wurde, das Bogenmaß von $t$ genannt. 
+\end{bem} 
+
+\begin{bem} 
+	Die vielen Formeln, die man für den Kosinus und Sinus und andere trigonometrische Funktionen hat, lassen sich im Rahmen der linearen Algebra (IT-3) viel besser verstehen. 
+\end{bem} 
+
+\section{Eulersche Formel} 
 
 \begin{thm} \label{thm:z:betr:arg}
 	Jede komplexe Zahl $z \in \C$ besitzt eine Darstellung als 
