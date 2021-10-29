@@ -12,11 +12,12 @@ macros.tex enthält selbstdefinierte Befehle
 
 packages.tex enthält die benutzten Pakete
 
-evironments.tex enthält die Umgebungen wie Theorem, Bemerkung usw. Diese sind bei der Präsentation etwas anders in
-environments_pr.tex definiert
+evironments.tex enthält die Umgebungen wie Theorem, Bemerkung usw.
 
-document.tex enthält den gesamten Text
+document.tex enthält den gesamten Text (Kapitel usw.)
 
 kapitel?.tex sind die Kapitel-Dateien.
 
 look_pr.tex legt das Layout im Format der Präsentation fest
+
+code/ enthält den Code (im Moment ist noch kaum etwas drin )
