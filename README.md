@@ -1,12 +1,16 @@
 # it1_diskrete_mathematik
 
-HAUPTDATEIEN:
+Mit Hilfe von
 
-pdflatex it1.tex generiert das Skript
+make all
 
-pdflatex it1pr.tex generiert das Skript im Format der Präsentation
+generiert man
 
-ALLE ANDEREN DATEIEN:
+it1.pdf (Skript) und it1pr.pdf (Skript als Präsentation)
+
+Makefile ist das Makefile
+
+it1.tex und it1pr.tex sind die beiden LaTeX-Hauptdatein
 
 macros.tex enthält selbstdefinierte Befehle
 
@@ -20,4 +24,4 @@ kapitel?.tex sind die Kapitel-Dateien.
 
 look_pr.tex legt das Layout im Format der Präsentation fest
 
-code/ enthält den Code (im Moment ist noch kaum etwas drin )
+Das Verzeichnis code/ enthält den Code (im Moment ist noch kaum etwas drin )
