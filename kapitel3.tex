@@ -1,1 +1,473 @@
 \chapter{Algorithmische und Programmiergrundlagen}
+
+
+
+\section{Stellenwertsysteme}
+
+\begin{bem} 
+Im Computer werden alle Daten intern mittels der Symbole $0$ und $1$ dargestellt. Es ist klar, dass man alle Daten mit ganzen Zahlen darstellen kann (denn man kann Symbole mit ganzen Zahlen nummerieren). Um also zu verstehen, wie man die Daten mit $0$ und $1$ darstellt, muss vor Allem geklärt werden, wie man die ganzen Zahlen mit $0$ und $1$ darstellt. Dafür werden wir die Stellenwertsysteme einführen. 
+
+In der Informatik benutzt man meistens die Stellenwertsysteme zu den Basen $b \in \{2,8,10,16\}$.
+\end{bem} 
+
+\begin{aufg}
+	Sei $b \in \N$ mit $b \ge 2$. Zeigen Sie, dass jede Zahl $z \in \N_0$ eine eindeutige Darstellung als 
+	\begin{equation}
+		\label{z:zur:Basis:b}
+		z = \sum_{i=0}^k z_i b^i
+	\end{equation}
+	besitzt, wobei $k \in \N_0$, $z_0,\ldots,z_k \in \{0,\ldots,b-1\}$, und $z_k \ne 0$ für $z \ne 0$ gelten. 
+\end{aufg}
+
+\begin{defn} 
+In der vorigen Aufgaben heißen die Zahlen $z_0,\ldots,z_k$ die \emph{Stellen} von $z$ im Stellenwertsystem zur Basis $b$, und wir schreiben in diesem Fall 
+${z_k\cdots z_0} \ \text{(zur Basis $b$)} = z$. 
+
+Wir nennen $z_0$ die niedrigste Stelle und $z_k$ die höchste Stelle (zur Basis $b$) von $z$. Die Zahl $z$ heißt $(k+1)$-stellige Zahl im Stellenwertsystem zur Basis $b$. Die Darstellung zur Basis $b$ von negativen ganzen Zahlen erfolgt analog (mit Vorzeichen). 
+\end{defn} 
+
+\begin{bsp}
+	Schriftliche Addition, Subtraktion, Multiplikation und Division zu einer beliebigen Basis $b$ geht analog zur gewohnten Basis $b=10$. Etwa
+	\begin{center}
+		\begin{tabular}{rl}
+			Addition zur Basis $2$:\hspace{3em} &
+			\begin{tabular}{cccc}
+				& 1 & 0 & 1
+				\\	+ & & 1 & 1
+				\\ \hline
+				1 & 0 & 0 & 0
+			\end{tabular}
+		\end{tabular}
+	\end{center}
+\end{bsp}
+
+\begin{bem}
+	Konvertierung einer Darstellung zu einer Basis $b$ zur Basis $10$. Direkt nach \eqref{z:zur:Basis:b} oder mittels des sogenannten Horner-Schemas, das einem ermöglicht, die Anzahl der Multiplikationen im Vergleich zu reduzieren: 
+	Für $k=2$,
+	\[
+	z_2 b^2 + z_1 b + z_0 = b (b z_2 + z_1) + z_0,
+	\]
+	für $k=3$,
+	\[
+	z_3 b^3 + z_2 b^2 + z_1 b + z_0 =  \underbrace{b \underbrace{( b \underbrace{(b z_3 + z_2)}_{\text{1. Runde}} + z_1 )}_{\text{2. Runde}}  + z_0,}_{\text{3. Runde}}
+	\]
+	und so fort für $k \geq 4$.
+\end{bem}
+
+\begin{bsp}
+	Die Konvertierung von der Basis $10$ zu einer anderen Basis erfolgt durch iterative Division mit Rest. Konvertieren wir zum Beispiel die Zahl $46$ in das System zur Basis $3$. Es gilt
+	\begin{align*}
+		46 & = 15 \cdot 3 + 1 = (5 \cdot 3 + 0) \cdot 3 + 1 = 5 \cdot 3^2 + 0 \cdot 3 + 1 
+		\\ & = (1 \cdot 3 + 2) \cdot 3^2 + 0 \cdot 3 + 1
+		\\ & = 1 \cdot 3^3 + 2 \cdot 3^2 + 0 \cdot 3^1 + 1 \cdot 3^0.
+	\end{align*}
+	Das heißt:
+	\[
+	46 \ \text{(zur Basis $10$)} = 1201 \ \text{(zur Basis $3$)}.
+	\]
+	Das Horner-Schema zeigt sich hier in umgekehrter Form!
+\end{bsp}
+
+\begin{bsp}
+	Die Basis $10$ benutzen Menschen, die Basis $2$ die Computer, und die Basis $16$ die Menschen, die maschinennah mit Computern arbeiten. Die Konvertierung zwischen der Basis $2$ und der Basis $16$ ist einfach, weil $16$ eine Potenz von~$2$ ist. Die Basis $16$ ermöglicht aber eine kompaktere Darstellung von Zahlen. Die Ziffern des $16$er Systems (auch \emph{Hexadezimal-System} genannt) sind die $16$ Symbole $0,\ldots,9,A,B,C,D,E,F$. Wir können diese Ziffern als Zahlen im Dezimalsystem oder Binärsystem darstellen:
+	\begin{center}
+		\scriptsize 
+		\begin{tabular}{rrr}
+			\textbf{Hexadezimal} & \textbf{Dezimal} & \textbf{Binär}
+			\\ 0 & 0 & 0000
+			\\ 1 & 1 & 0001
+			\\ 2 & 2 & 0010
+			\\ 3 & 3 & 0011
+			\\ 4 & 4 & 0100
+			\\ 5 & 5 & 0101
+			\\ 6 & 6 & 0110
+			\\ 7 & 7 & 0111
+			\\ 8 & 8 & 1000
+			\\ 9 & 9 & 1001
+			\\ A & 10 & 1010
+			\\ B & 11 & 1011
+			\\ C & 12 & 1100
+			\\ D & 13 & 1101
+			\\ E & 14 & 1110
+			\\ F & 15 & 1111
+		\end{tabular}
+	\end{center}
+	Hier ist beispielsweise $A$ zur Basis $16$ gleich der $10$ zu unserer Standardbasis $10$, und $F$ zur Basis $16$ ist gleich der $15$ zur Basis $10$. Die Zahl $BEE$ im Hexadezimal-System kann ins Binärsystem konvertiert werden indem man jede Ziffer durch ihre Binärdarstellung ersetzt. 
+	\[
+	BEE \, \text{(im Hexadezimalsystem)} = 1011 \ 1110 \ 1110 \text{(im Binärsystem)}.
+	\]
+	Um sich zu vergewissern, dass das tatsächlich stimmt, kann man sich überlegen, was diese Gleichheit im Dezimalsystem bedeutet:
+	\begin{align*}
+		& \underbrace{(2^3 + 2^1+ 2^0)}_{B} 16^2 + \underbrace{(2^3 + 2^2 + 2^1)}_{E} 16^1 + \underbrace{(2^3 + 2^2 + 2^1)}_{E} 16^0  
+		\\ = & 2^{11} + 2^9 + 2^8 + 2^7 + 2^6 + 2^5 + 2^3 + 2^2 + 2^1
+	\end{align*}
+\end{bsp}
+
+\begin{bem} 
+Um zu sehen, wie man im Computer Daten mit den Symbolen $0$ und $1$ darstellt, kann unter Linux oder Mac der hexdump-Befehl benutzt werden:
+{\small 
+	\begin{verbatim}
+		echo "aaabbbb" | hexdump -C
+	\end{verbatim}
+}
+Ausgabe:
+{\small 
+	\begin{verbatim}
+		00000000  61 61 61 62 62 62 62 0a                           |aaabbbb.|
+		00000008
+	\end{verbatim}
+}
+Hier ist $61$ die hexadezimale Unicode-Kodierung des Buchstaben $a$, $62$ die hexadezimale Unicode-Kodierung des Buchstaben $b$ und $0a$ die hexadezimale Unicode-Kodierung von `neue Zeile'. 
+\end{bem} 
+
+
+\begin{aufg}
+	Bei gebrochenen Zahlen erfolgt die Berechnung der Darstellung als Nachkommazahl zur Basis $b$ genauso wie im Dezimalsystem. Berechnen Sie die Darstellung von $1/2$, $1/3$, $1/4$, $1/5$ und $1/6$ als Nachkommazahl im Binärsystem. 
+\end{aufg}
+
+\begin{bem}
+	Wenn man im Computer nicht-negative ganze Zahlen in einem $n$-Bit-Register speichert, so gehen im Fall eines arithmetischen Überlaufs die höheren Stellen verloren. Zum Beispiel gilt
+	\[
+	11111110 + 00000010 = 100000000
+	\]
+	zur Basis $2$. (Im Dezimalsystem: $254+2 = 256$). Wenn man diese Berechnung in einem $8$-Bit-Register ausführt ist das Resultat gleich $0$. D.h., in einem $n$-bit Register werden die arithmetischen Operationen modulo $2^n$ durchgeführt. 
+\end{bem}
+
+
+
+\section{Rechenprobleme}
+\label{sect:rechenprobleme}
+
+\begin{defn} 
+Formal modelliert man \emph{Rechenprobleme} als Eingabe-Rückgabe-Relationen. So etwa beschreibt die Relation
+\[
+\setcond{ (a,p) \in \N^2 }{p \ \text{ist Primfaktor von} \ a}
+\]
+auf den natürlichen Zahlen das Rechenproblem `bestimme einen Primfaktor der gegebenen natürlichen Zahl'. Das zugrundeliegende Rechenproblem algorithmisch zu \emph{lösen} heißt, einen Algorithmus zu entwickeln, der zu jeder möglichen Eingabe eine korrekte Rückgabe bestimmt oder feststellt, dass keine korrekte Rückgabe existiert. 
+
+In unserem Beispiel ist für die Eingabe $a=10$, die Zahl $p=2$ eine korrekte Rückgabe. Die Zahl $p=5$ passt auch, denn $5$ ist ebenfalls ein Primfaktor von $10$. Für $a=1$ gibt es keine korrekte Rückgabe, so dass der Lösungsalgorithmus mit einer Meldung terminieren muss, dass es keine korrekte Rückgabe gibt. 
+\end{defn} 
+
+
+
+\begin{bem}
+Die Berechnung einer Abbildung/Funktion $f : X \to Y$ ist ein Spezialfall eines Rechenproblems. In diesem Fall ist $f(x)$ die eindeutige Rückgabe für die Eingabe $x \in X$ und damit die zugehörige Eingabe-Rückgabe-Relation gegeben durch
+\[
+\setcond{(x,f(x)) \in X \times Y}{x \in X}.
+\]
+Zum Beispiel können wir das Problem der Potenzbildung als die Funktion $f : \N^2 \to \N$ mit $f(a,b) := a^b$ modellieren. In Worten: für gegebene $a, b \in \N$ soll $a^b$ algorithmisch berechnet werden. 
+\end{bem} 
+
+\begin{defn}
+Ein weiterer Spezialfall ist die Überprüfung einer Eigenschaft. Solche Probleme nennt man \emph{Entscheidungsprobleme}. Sie können als Berechnung einer Funktion $f : X \to \{0,1\}$ interpretiert werden. Etwa: $f : \N \to \{0,1\}$ mit $f(n) = 1$, wenn $n$ eine Primzahl ist, und $f(n) =0$ sonst. In Worten: es soll überprüft werden, ob eine gegebene natürliche Zahl $n$ eine Primzahl ist. 
+\end{defn} 
+
+\section{Variablen, Zuweisungen und Kontrollstrukturen}
+
+\begin{bem} 
+Um die Programmierung unabhängig von einer konkreten Programmiersprache zu diskutieren, benutzen wir den sogenannten \emph{Pseudocode}. Pseudocode ist eine Codeskizze, die wie ein Computerprogramm aussieht, aber in der Regel menschenlesbarer und syntaktisch weniger eingeschränkt ist. Mit Pseudocode kann man Algorithmen beschreiben, ohne auf die technischen Details der Implementierung einzugehen, oder die Syntax der jeweiligen Programmiersprache beachten zu müssen.
+\end{bem} 
+
+\begin{bem} 
+Eine \emph{Programm-Variable} ist ein Behälter für Werte bzw. Daten. Der Wert der Variable kann durch eine Zuweisung festgelegt werden. Man betrachte z.B. die folgenden zwei Zeilen:
+
+\begin{center}
+	\begin{algorithmic}[1]
+		\STATE $x:=5$
+		\STATE $x:=2 \cdot x + 4$
+	\end{algorithmic}
+\end{center}
+Hier wird in der ersten Zeile einer Variablen $x$ der Wert $5$ zugewiesen. Mit dem Symbol $:=$ bezeichnen wir im Pseudocode die Zuweisung. In der zweiten Zeile wird der Variablen $x$ ein neuer Wert zugewiesen, wobei man sich bei der Zuweisung in der rechten Seite auf den aktuellen Wert bezieht. Damit kann man sich die rechte Seite als Eingabe und die linke Seite als Ausgabe der Zuweisung vorstellen.
+\end{bem} 
+
+\begin{bem}
+Um mit den Variablen und Daten zu arbeiten benutzt man sogennante \emph{Kontrollstrukturen}. Davon gibt es zwei Typen:
+\begin{itemize}
+	\item \emph{Verzweigungen}: \texttt{if-then}, \texttt{if-then-else}
+	\item \emph{Schleifen}: \texttt{for}, \texttt{while}, \texttt{repeat-until}
+\end{itemize}
+\end{bem} 
+
+\begin{bem} 
+Als erstes Beispiel sei hier ein Code angegeben, der die Werte der Variablen $x$ und $y$ vertauscht, wenn am Anfang $x>y$ gilt: 
+\begin{center}
+	\begin{algorithmic}[1]
+		\IF{$x > y$}
+		\STATE $t:=x$
+		\STATE $x:=y$
+		\STATE $y:=t$
+		\ENDIF
+	\end{algorithmic}
+\end{center}
+Das heißt, die drei Zuweisungen werden genau dann ausgeführt wenn beim Erreichen der Zeile $1$ des Codes die Bedingung $x>y$ gilt. Die Variable $t$ ist eine Zusatzvariable, die beim Vertauschen benutzt wird. 
+
+If-then-else ist analog aufgebaut. Im else-Teil stehen die Befehle, die ausgeführt werden, wenn die gegebene Bedingung \emph{nicht} erfüllt ist. 
+Die Verzweigungen lassen sich nach Belieben verschachteln um komplexere Handlungsanweisungen aufzubauen.
+\end{bem} 
+
+\begin{bem} 
+Ein \emph{Array} $A$ der Länge $n$ ist eine Liste aus $n$ Variablen, wobei die Variablen mit aufeinanderfolgenden ganzen Zahlen indiziert sind. In den allermeisten Programmiersprachen, einschließlich C und C++, werden die Arrays beginnend mit $0$ indiziert. Bei Indizierung ab $1$ (die wir im Pseudocode dieser Vorlesung benutzen) ist ein Array~$A$ der Länge $n$ aus den Variablen $A[1],\ldots,A[n]$ zusammengesetzt, auf welche man durch die Angabe des Index $i$ zugreifen kann. Die Variable $A[i]$ heißt die \emph{$i$-te Komponente}, oder das \emph{$i$-te Element} des Arrays $A$. Die Anzahl der Komponenten eines Arrays $A$ wird als \emph{Länge} von $A$ bezeichnet und mit $\Laenge[A]$ notiert.
+\end{bem} 
+
+\begin{bem} 
+Wir illustrieren nun eine andere Kontrollstruktur, die \emph{for}-Schleife, indem wir zeigen, wie man mit ihrer Hilfe die Summe der Elemente eines $n$-elementigen Arrays bestimmen kann. 
+
+\begin{center}
+	\begin{algorithmic}[1]
+		\STATE $S:=0$
+		\FOR{$i:=1,\ldots,\Laenge[A]$}
+		\STATE $S:=S+A[i]$
+		\ENDFOR
+	\end{algorithmic}
+\end{center}
+\end{bem} 
+
+\begin{bem} 
+Eine \emph{while}-Schleife ist eine Kontrollstruktur, die aus dem Rumpf und der Bedingung besteht, wobei die Befehle des \emph{Rumpfs} iterativ ausgeführt werden, solange die \emph{Bedingung} erfüllt ist. In der \emph{while}-Schliefe steht die Bedingung vor dem Rumpf, man sagt sie ist \emph{kopfgesteuert}. In manchen Programmiersprachen gibt es auch \emph{fußgesteuerte} Schleifen, wie z.B. die \emph{repeat-until}-Schleife, bei denen die Bedingung nach dem Rumpf steht.
+\end{bem} 
+
+\begin{bem} 
+Nachfolgend ein Beispiel, das zeigt wie man die Komponenten eines Arrays mit Hilfe einer while-Schleife umkehren kann:
+\begin{center}
+	\begin{algorithmic}[1]
+		\STATE $i:=1$
+		\STATE $j:=\Laenge[A]$
+		\WHILE{$i<j$}
+		\STATE $A[i]$ und $A[j]$ vertauschen 
+		\STATE $i:=i+1$ \COMMENT{zum nächsten $i$}
+		\STATE $j:=j-1$ \COMMENT{zum vorigen $j$}
+		\ENDWHILE
+	\end{algorithmic}
+\end{center}
+\end{bem} 
+
+\begin{bem} 
+Im Pseudocode nutzen wir hier das Symbol $\triangleright$ für Kommentare, die den Zweck haben einzelne Abschnitte des Codes zu erläutern.
+\end{bem} 
+
+
+\section{Prozeduren, Arten der Parameterübergabe und Rekursion}
+\label{sect:prozeduren}
+
+\begin{bem}
+Eine \emph{Prozedur} (Funktion, Unterprogramm) ist ein Code innerhalb eines Programms mit eigener Eingabe. 
+\end{bem} 
+
+\begin{bem} 
+Stellen wir uns vor, wir müssen zur Lösung einer Rechenaufgabe immer wieder testen, ob $ x \in [p,q]$ für gegebene $x,p,q \in \Z$ gilt. In diesem Fall lohnt es sich, eine sogenannte \emph{Prozedur} anzulegen, welche genau diesen Test durchführt:
+
+\begin{algorithm}[H]
+	\caption{$b=\cc{Ist-zwischen}(x,p,q)$}
+	\begin{algorithmic}
+		\IF{$p \le x \le q$ oder $q \le x \le p$}
+		\STATE $b=\true$
+		\ENDIF
+		\STATE $b=\false$
+	\end{algorithmic}
+\end{algorithm}
+
+Die Variablen $x,p,q$ heißen \emph{Eingabeparameter} der Prozedur und die Variable $b$ heißt \emph{Rückgabe-Variable}. In vielen modernen Programmiersprachen benutzt man für die Rückgabe keinen Variablennamen sondern den Befehl \texttt{return}. Das sieht dann so aus: 
+
+\begin{algorithm}[H]
+	\caption{$\cc{Ist-zwischen}(x,p,q)$}
+	\begin{algorithmic}
+		\IF{$p \le x \le q$ oder $q \le x \le p$}
+		\RETURN $\true$
+		\ENDIF
+		\RETURN $\false$
+	\end{algorithmic}
+\end{algorithm}
+Durch den Befehl \texttt{return} wird die Prozedur mit dem vorgegebenen Wert an dieser Stelle beendet.
+
+Man kann auch Prozeduren ohne Rückgabe betrachten. In C++ sind es die Funktionen mit dem Rückgabetyp \texttt{void}. 
+\end{bem} 
+
+
+\begin{bem} 
+In manchen Sprachen (wie z.B.~in C++) stehen mehrere Arten der Parameterübergabe zur Verfügung, wie z.B.~\emph{Übergabe durch Kopie} und die \emph{Übergabe durch Referenz}. Wenn zum Beispiel im vorigen Pseudocode $x$, $p$ und $q$ durch Kopie übergeben werden, so entstehen bei jedem Aufruf der Prozedur die drei Variablen $x, p$ und $q$, welche dann entsprechend initialisiert werden. Etwa, bei der Ausführung von $\cc{Ist-zwischen}(a,b,c)$ mit $x=a, p=b, q=c$. 
+\end{bem} 
+
+\begin{bem} 
+Bei der Übergabe durch Referenz, ist der Eingabeparameter lediglich ein weiterer Name für eine Variable, die bereits existiert. Wir illustrieren dies am Beispiel vom Vertauschen in konkretem C++-Code: 
+
+\begin{center}
+	\small 
+	\begin{lstlisting}[language=C++]
+		void vertauschen(int& x,int& y) {
+			int t=x;
+			x=y;
+			y=t;
+		}
+		int main() {
+			int a=2,b=3;
+			vertauschen(a,b);
+			return 0;
+		}
+	\end{lstlisting}
+\end{center}
+
+Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, müssen die Eingabeparameter $x$ und $y$ Referenzvariablen sein. In diesem Fall sind $x$ und $y$ zweite Namen für $a$ bzw. $b$. Die Variable $t$ ist eine \emph{lokale} Variable der Funktion \texttt{vertauschen}. Sie entsteht bei jeder Ausführung von \texttt{vertauschen} und verschwindet nach der Terminierung dieser Funktion. 
+\end{bem} 
+
+\begin{bem}
+	In der Beschreibung von Algorithmen im Pseudocode halten wir uns im Folgenden an die Konvention, bei der Parameterübergabe Arrays durch Referenz und einfache Datentypen durch Kopie zu übergeben.
+\end{bem}
+
+
+\begin{bem}
+Prozeduren, die sich selbst aufrufen, heißen \emph{rekursiv}. Hier ein Beispiel einer Prozedur, die $a^n$ für $a \in \Z$ und $n \in \N_0$ mittels einer Rekursion berechnet.
+\begin{algorithm}[H]
+	\caption{$p:=\cc{Potenz}(a,n)$}
+	\begin{algorithmic}
+		\IF{$n=0$}
+		\STATE $p:=1$
+		\ELSIF{$n$ gerade} 
+		\STATE $q:=\cc{Potenz}(a,n/2)$
+		\STATE $p:= q^2$
+		\ELSE
+		\STATE $q:=\cc{Potenz}(a,(n-1)/2)$
+		\STATE $p:= a q^2$
+		\ENDIF
+	\end{algorithmic}
+\end{algorithm}
+Diese rekursive Umsetzung ist in vielen Situationen besser als die nicht-rekursive iterative Umsetzung mit $O(n)$ Iterationen. 
+\end{bem} 
+
+
+\begin{bem}
+Es kann überprüft werden, dass alles was man rekursiv umsetzt auch ohne Rekursion, etwa mit Schleifen und Arrays, umgesetzt werden kann. Dies gilt auch für das Potenzieren oben. Die rekursiven Umsetzungen sind aber manchmal leichter zu verstehen und oftmals eleganter. 
+\end{bem} 
+
+
+\section{Datentypen, Datenstrukturen, Zeiger und Verbunde}
+\label{sect:datenstrukturen}
+
+%Zur Konstruktion neuer/eigener Datentypen stehen in höheren Programmiersprachen verschiedene Mittel und Bibliotheken zur Verfügung. Wir diskutieren hier keine Abstraktionsmechanismen (wie OOP oder Templates), sondern mehr die Maschinen\-ebene. 
+
+\begin{bem}
+Ein \emph{Datentyp} ist eine atomare, unstrukturierte Einheit, die sich durch das Zusammenfassen eines Wertebereichs und darauf definierter Operationen ergibt.
+Die geläufigsten Datentypen sind \texttt{boolean}, \texttt{char}, \texttt{byte}, \texttt{short}, \texttt{int}, \texttt{long}, \texttt{float} und \texttt{double}, und in jeder modernen Programmiersprache umgesetzt.
+\end{bem} 
+
+\begin{bem}
+Eine \emph{Datenstruktur} ist eine bestimmte Art der Organisation einer endlichen Menge von Daten des gleichen Datentyps (homogene Daten), die gewisse Funktionalitäten bereitstellt.
+Typische Operationen auf einer Datenstruktur sind \emph{Abfragen}, die Information über die Menge zurückgeben, und \emph{modifizierende Operationen}, die die Organisation der Daten innerhalb der Datenstruktur verändern.
+\end{bem} 
+
+\begin{bem}
+Die typischsten Operationen auf einer Datenstruktur, die eine Menge $S$ verwaltet, sind die folgenden:
+%
+\begin{itemize}
+	\item \textsc{Suchen}$(S,k)$
+	
+	Gibt ein Element aus $S$ zurück, dass den Schlüsselwert $k$ hat. Falls kein solches Element in~$S$ existiert wird \textsc{nil} zurückgegeben.
+	
+	\item \textsc{Einfügen}$(S,x)$
+	
+	Erweitert die Menge $S$ um das Element $x$. 
+	
+	\item \textsc{Löschen}$(S,x)$
+	
+	Entfernt das Element $x$ aus der Menge $S$.
+	
+	\item \textsc{Minimum}$(S)$
+	
+	Gibt ein Element aus $S$ zurück, das den kleinsten Schlüsselwert hat. 
+	
+	\item \textsc{Maximum}$(S)$
+	
+	Gibt ein Element aus $S$ zurück, das den größten Schlüsselwert hat.
+	
+	\item \textsc{Nachfolger}$(S,x)$
+	
+	Gibt das Element aus $S$ mit dem nächstgrößeren Schlüsselwert zu $x$ zurück, falls $x$ nicht bereits das Maximum von $S$ ist.
+	Ansonsten wird \textsc{nil} zurückgegeben. 
+	
+	\item \textsc{Vorgänger}$(S,x)$
+	
+	Gibt das Element aus $S$ mit dem nächstkleineren Schlüsselwert zu $x$ zurück, falls $x$ nicht bereits das Minimum von $S$ ist.
+	Ansonsten wird \textsc{nil} zurückgegeben.
+	
+\end{itemize}
+
+Man beachte hier, dass die Operationen \textsc{Minimum}, \textsc{Maximum}, \textsc{Nachfolger} und \textsc{Vorgänger} voraussetzen, dass die Menge $S$ vollständig geordnet ist. 
+\end{bem} 
+
+\begin{bem}
+Beispiele von elementaren Datenstrukturen sind Arrays, Stacks, Warteschlangen und verkettete Listen.
+Desweiteren gibt es auch eine Vielzahl von komplexeren Datenstrukturen, wie Heaps, Suchbäume, Wörterbücher und Hashtabellen.
+Komplexere Daten\emph{typen} sind oftmals implizit als Datenstruktur implementiert: \emph{Strings} sind zum Beispiel im Wesentlichen (verkettete) Listen von Zeichen. Genauso können auch \emph{Files} als Listen von Zeichen interpretiert werden (die Begriffe Datentyp und Datenstruktur überlappen sich also in manchen Kontexten).
+\end{bem}
+
+\begin{bem} 
+Bei der konkreten Umsetzung bzw.~Implementierung einer Datenstruktur werden oftmals sogenannte \emph{Zeiger} verwendet.
+Das sind Adress-Variablen, d.h., eine Zeiger-Variable speichert die Adresse eines Ortes (einer anderen Variable) im Speicher des Rechners.
+%Zeiger können in verschiedensten Situationen benutzt werden (insbesondere um verkettete Datenstrukturen zu implementieren).
+Für Zeiger gibt es zwei Grundoperationen: \textsc{Adresse} von einem Objekt, und \textsc{Objekt} unter gegebener Adresse. In vielen Programmiersprachen haben die komplexen Objekte das Zeigerverhalten (z.B.~Arrays in Python). 
+\end{bem} 
+
+\begin{bsp}
+	Eine \emph{einfach verkettete Liste} $L$ ist eine Ansammlung endlich vieler Objekte $O_1,O_2,\ldots,O_k$, die durch Zeiger miteinander verbunden sind.
+	Dabei zeigt $L$ selbst auf das erste Objekt $O_1$, und jedes Objekt $O_i$ besteht aus einem Element $e_i$ und einem Zeiger.
+	Für jeden Index $1 \leq i < k$ zeigt der Zeiger des Objektes $O_i$ auf das Objekt $O_{i+1}$ und der Zeiger von $O_k$ zeigt auf \textsc{nil}.
+	Kurz kann man eine solche Liste auch wie folgt notieren:
+	\[
+	L : e_1 \to e_2 \to \ldots \to e_k.
+	\]
+\end{bsp}
+
+\begin{bem} 
+Die algorithmische Umsetzung eines Rechenproblems ist eng mit der gewählten Datenstruktur verknüpft.
+Seien zum Beispiel ganze Zahlen $a_1,a_2,\ldots,a_n \in \N$ gegeben und einmal als Array $A$, mit Einträgen $A[i] = a_i$, für $1 \leq i \leq n$, und einmal als einfach verkettete Liste $L : a_1 \to a_2 \to \ldots \to a_n$ organisiert.
+Die Aufgabe besteht nun darin, die Elemente in umgekehrter Reihenfolge, d.h., $a_n,a_{n-1},\ldots,a_1$, auszugeben.
+Für die Liste $L$ müssen wir erst Vorüberlegungen anstellen, die uns zu einem Algorithmus führen, dessen Anzahl der Schritte dieselbe Größenordnung hat, wie der intuitive Algorithmus $A[n],A[n-1],\ldots,A[1]$ auf dem Array $A$.
+\end{bem} 
+
+\begin{bem} 
+Ein weiteres wichtiges Werkzeug für die Organisation von Daten sind die sogenannten \emph{Verbunde}, die auch Records, Klassen, oder Strukturen genannt werden.
+Im Gegensatz zu den Datenstrukturen, die homogene Daten organisieren, ermöglichen es die Verbunde, Daten verschiedener Datentypen (heterogene Daten) in einem \glqq Päckchen\grqq\ zusammenzufassen.
+Wir können uns beispielsweise einen Verbund \texttt{Auto} denken, der durch sogennante \emph{Attribute} wie Modell, Kennzeichen, Kilometerstand, usw.~definiert wird.
+Ebenso kann man einen farbigen Punkt in der Ebene als den Verbund der drei Attribute, $x$-Komponente, $y$-Komponente und Farbe ansehen. 
+\end{bem} 
+
+
+
+\section{Random Access Machine}
+\label{sect:RAM}
+
+\begin{bem} 
+Die \emph{Random Access Machine} (kurz \emph{RAM}), oder auf deutsch, \emph{Maschine mit wahlfreiem Zugriff}, wird unsere Idealisierung bzw. mathematische Abstraktion des realen Rechners sein. Alle Analysen und Entwürfe von Algorithmen in diesem Kurs werden im Rahmen der RAM durchgeführt. 
+
+Wir nehmen an, dass die Zellen unserer Maschine ganze Zahlen beliebiger Größe speichern können (d.h., die Bit-Größe der Speicherzellen ist unendlich). Die Speichergröße (d.h., die Anzahl der Speicherzellen) ist ebenfalls unbeschränkt (d.h., unendlich). Wir können desweiteren alle anderen Datentypen auf der Basis der ganzen Zahlen umsetzen. 
+
+Die Random Access Machine kann auch rein formal eingeführt werden. Wir betrachten hier (zunächst) allerdings eine etwas informelle Beschreibung, in der wir festlegen welche Datentypen, Operationen und Kontrollstrukturen für uns elementar sind. 
+
+Als \emph{Grundoperationen} erlauben wir:
+%
+\begin{itemize}
+	\item Zuweisung (für ganzzahlige Datentypen)
+	\item Addition von ganzzahligen Variablen
+	\item Multiplikation einer ganzzahligen Variablen mit einer Konstanten
+	\item Ganzzahlige Division einer ganzzahligen Variablen durch eine Konstante
+	\item Zugriff zu Speicherzellen über einen Index
+	\item Vergleichsoperationen $<$, $\le$, $=$, $\ge$, $>$ 
+	\item Kontrollstrukturen if-then-else, while, for 
+\end{itemize}
+\end{bem} 
+
+%Unsere Algorithmen werden als Pseudocode formuliert und ihre Analyse wird im Rahmen dieses Modells durchgeführt. Für Pseudocode legen wir fest, dass standardmäßig in Prozeduren alle einfachen Datentypen durch Kopie und alle komplexen Datentypen (Arrays usw.) durch Referenz übergeben werden. 
+
+\begin{bem} 
+Wir lassen die Multiplikation von zwei ganzzahligen Variablen in unserem Modell nicht als Grundoperation zu. Denn, wenn das eine Grundoperation wäre, so hätte der folgende Algorithmus die Laufzeit $O(n)$: 
+
+\begin{center}
+	\begin{algorithmic}
+		\STATE $x:=2$
+		\FOR{$i=1,\ldots,n$} 
+		\STATE $x:=x^2$
+		\ENDFOR
+	\end{algorithmic}
+\end{center}
+
+Dieser Algorithmus würde also $2^{2^n}$ in der Zeit $O(n)$ berechnen. Die Zahl $2^{2^n}$ hat allerdings $2^n+1$ Binärstellen. Wir würden also eine Zahl exponentieller Bitgröße in linearer Zeit berechnen, was wir als unrealistisch ansehen. 
+\end{bem}

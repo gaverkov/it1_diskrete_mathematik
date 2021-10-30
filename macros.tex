@@ -64,3 +64,36 @@
 \newcommand{\cupdot}{\mathbin{\mathaccent\cdot\cup}}
 \newcommand{\bigcupdot}{\operatorname{\mathaccent\cdot\bigcup}}
 
+\floatname{algorithm}{} % no names of algorithms
+\renewcommand{\algorithmiccomment}[1]{$\Diamond$ \emph{#1}}
+\renewcommand{\algorithmiccomment}[1]{ $\rhd$\emph{ #1 }} % One can also use \lhd \rhd or \Diamond
+\renewcommand{\algorithmicdo}{\textbf{:}}
+\renewcommand{\algorithmicelse}{\textbf{else:}}
+\renewcommand{\algorithmicelsif}{\textbf{else if}}
+\renewcommand{\algorithmicendfor}{\algorithmicend}
+\renewcommand{\algorithmicendif}{\algorithmicend}
+\renewcommand{\algorithmicendloop}{\algorithmicend}
+\renewcommand{\algorithmicend}{\textbf{end}}
+\renewcommand{\algorithmicendwhile}{\algorithmicend}
+\renewcommand{\algorithmicensure}{\textbf{Result:}}
+\renewcommand{\algorithmicfalse}{\textbf{Falsch}}
+\renewcommand{\algorithmicforall}{\textbf{for all}}
+\renewcommand{\algorithmicfor}{\textbf{for}}
+\renewcommand{\algorithmicif}{\textbf{if}}
+\renewcommand{\algorithmicloop}{\textbf{loop:}}
+\renewcommand{\algorithmicprint}{\textbf{print:}}
+\renewcommand{\algorithmicrepeat}{\textbf{repeat:}}
+\renewcommand{\algorithmicrequire}{\textbf{Annahme:}}
+\renewcommand{\algorithmicreturn}{\textbf{return}}
+\renewcommand{\algorithmicthen}{\textbf{:}}
+\renewcommand{\algorithmictrue}{\textbf{Wahr}}
+\renewcommand{\algorithmicuntil}{\textbf{until}}
+\renewcommand{\algorithmicwhile}{\textbf{while}}
+\renewcommand{\thealgorithm}{} % No numbering of algorithms
+
+\newcommand{\Laenge}{\ccmd{L\"ange}}
+\newcommand{\cc}[1]{\ccmd{#1}}
+\newcommand{\ccmd}[1]{\mathop{\text{\textsc{#1}}}}
+\newcommand{\true}{\cc{Wahr}}
+\newcommand{\false}{\cc{Falsch}}
+
