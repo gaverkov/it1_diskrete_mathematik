@@ -1,6 +1,6 @@
 MAINPDF = it1.pdf it1pr.pdf
 TEXFILES=document.tex environments.tex kapitel1.tex kapitel2.tex kapitel3.tex kapitel4.tex macros.tex numbering.tex packages.tex
-CODE=code/prime_factorizations.sage
+CODE=Code/prime_factorizations.sage
 
 all : $(MAINPDF)
 

@@ -1,0 +1,39 @@
+name: PdfFromLatexGeneration
+
+on:
+  # Triggers the workflow on push or pull request events
+  push:
+    branches: [ main ]  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+  # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "generatePdfFromLatex"
+  generatePdfFromLatex:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+    steps: 
+    - id: UpdateAndInstallTexlive
+      run: "sudo apt update && sudo apt install make curl hub texlive-base texlive-latex-base texlive-latex-extra texlive-science texlive-xetex texlive-latex-recommended texlive-publishers texlive-pictures texlive-lang-german -y"
+    
+    - id: CloneRepo
+      run: "hub clone it1_diskrete_mathematik"
+      
+    - id: GeneratePdfFiles
+      working-directory: "it1_diskrete_mathematik/"
+      run: "make all"
+
+    - id: CreateOrUpdateTag
+      working-directory: "it1_diskrete_mathematik/"
+      run: "commitid=$(git log --format='%H' -n 1) ; curl -X POST https://api.github.com/repos/gaverkov/it1_diskrete_mathematik/git/refs/tags/Latest -H \"Authorization: token $GITHUB_TOKEN\" -d '{\"sha\":\"'$commitid'\"}'"
+      
+    - id: RemoveEventuallyExistingRelease
+      working-directory: "it1_diskrete_mathematik/"
+      run: "hub release delete Latest || true"
+     
+    - id: CreateReleaseAndUploadPdfFiles
+      working-directory: "it1_diskrete_mathematik/"
+      run: "hub release create -a it1.pdf#Skript -a it1pr.pdf#Präsentation -m 'Skript und Präsentation' Latest"
