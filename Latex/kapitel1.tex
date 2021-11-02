@@ -856,7 +856,7 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 \begin{bem}[Vollständige Induktion und Algorithmen]
 	Induktionsbeweise haben oft eine algorithmische Interpretation und können zu iterativen oder rekursiven Algorithmen konvertiert werden. In diesem Fall, kann man sich die folgende Umsetzung des vorigen Beweises als Algorithmus vorstellen. Nehmen wir an, wir wollen für alle Zahlen $1,\ldots,N$ für ein gegebenes $N \in \N$, $N \ge 2$, deren Zerlegung in Primfaktoren berechnen. Dann können wir folgendermaßen vorgehen. Wir führen für jedes $n \in \{1,\ldots,N\}$, eine Liste $L[i]$ der Primfaktoren von $1,\ldots,N$ ein. Für $n=1$ ist dies eine leere Liste. Angenommen, die Liste sei bereits für die Zahlen $1,\ldots,n-1$ erzeugt. Dann können wir die Liste $L[n]$ anhand der bereits vorhanden Listen $L[1],\ldots,L[n-1]$ so generieren. Wir testen, ob $n$ Primzahl ist. Ist das der Fall so erzeugen wir $L[n]$ als Liste aus einer einzigen Zahl $n$. Ist $n$ keine Primzahl, so Faktorisieren wir $n$ als $n = ab$ mit $a,b \in \{2,\ldots,n-1\}$ und erzeugen dann $L[n]$ durch das Zusammenfügen der Listen $L[a]$ und $L[b]$. 
 	
-	\lstinputlisting{code/prime_factorizations.sage}
+	\lstinputlisting{Code/prime_factorizations.sage}
 	
 \end{bem} 
 
@@ -1159,8 +1159,12 @@ Sonst betrachtet man den Tangens
 \end{defn} 
 
 \begin{bem}
-	Jede Zahl $z \in \C$ besitzt eine Darstellung $z = \rho e^{i \phi}$ mit $\rho = |z| \in \R_{\ge 0}$ und $\phi \in \R$. Das ist die Umformulierung von Theorem~\ref{thm:z:betr:arg} in den neu eingeführten Bezeichnungen. 
+	Jede Zahl $z \in \C$ besitzt eine Darstellung $z = \rho e^{\iu \phi}$ mit $\rho = |z| \in \R_{\ge 0}$ und $\phi \in \R$. Das ist die Umformulierung von Theorem~\ref{thm:z:betr:arg} in den neu eingeführten Bezeichnungen. 
 \end{bem} 
+
+\begin{defn} 
+	In der (eindeutigen) Darstellung  der Zahl $z \in \C^2 \setminus \{0\}$ als $z = \rho e^{\iu \phi}$ mit $\rho \in \R_{>0}$ und $\phi = (-\pi,\pi]$  wird $\phi$ das \textbf{Argument} von $z$ gennant und als $\Arg(z)$ bezeichnet. 
+\end{defn} 
 
 \begin{aufg}
 	Zeigen Sie dass bei $z_k := \rho_k e^{\iu \phi_k}$ mit $\rho_1,\rho_2 \in \R_{\ge 0}$ und $\phi_1,\phi_2 \in \R$ die Gleichung $z_1 z_2 =  \rho_1 \rho_2 e^{\iu (\phi_1 + \phi_2)}$ erfüllt ist.  Benutzen Sie dafür die Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$. 
@@ -1223,6 +1227,18 @@ Auf diese Weise kommen wir zu den Formeln
 \begin{bem}
 	Die Euler-Formel ermöglicht einen Übergang von den trigonometrischen Funktionen zur Exponentialfunktion. So ein Übergang, der oft die Berechnung  erleichtert, wird gerne in Physik/Elektrotechnik benutzt, wenn man sich mit Schwingungen und Wellen beschäftigt. 
 \end{bem} 
+
+\begin{aufg}\ 
+	Schlagen Sie nach, wie die inversen trigonometrischen Funktionen Arcus Kosinus, Arcus Sinus und Arcus Tangens definiert sind. Der Wertebereich  vom Arcus Kosinus ist $[0,2\pi]$. Der Wertebereich vom Arcus Sinus ist dagegen in $[-\pi,\pi]$. Begründen Sie, warum die Wertebereiche so gewählt sind. \textbf{Hinweis:} Die inversen trigonometrischen Funktionen sollen eigentlich die trigonometrischen Funktionen umkehren. Was braucht man für Eigenschaften für die Umkerhbareit? Sind diese Eigenschaften für die trigonometrischen Funktionen erfüllt? 
+\end{aufg} 
+
+\begin{aufg}\
+	\begin{itemize}
+			\item Sei $n \in \N$. Was sind alle Lösungen der Gleichung $z^n =1$ in einer komplexwertigen Unbekannten $z$? Wenn Sie schwierigkeiten im Fall eines allgemeinen $n$ haben, versuchen Sie zuerst die Lösungen in den Fällen $n \in \{1,2,4\}$ zu finden. 
+			\item Bestimmen Sie alle Lösungen der Gleichung $z^2 + 2 z +  2 = 0$ in einer komplexwertigen Unbekannten $z$. 
+			\item Wie kann das Konjugieren $z \mapsto \overline{z}$ geometrisch als eine Transformation  auf der komplexen Ebene $\C$ beschreiben werden? 
+	\end{itemize} 
+\end{aufg} 
 
 
 \section{Asymptotische Notation}
