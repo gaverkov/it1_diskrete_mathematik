@@ -1,30 +1,136 @@
 \chapter{Algorithmische und Programmiergrundlagen}
 
+\section{Kodierung mit Strings} 
 
-
-\section{Stellenwertsysteme}
-
-\begin{bem} 
-Im Computer werden alle Daten intern mittels der Symbole $0$ und $1$ dargestellt. Es ist klar, dass man alle Daten mit ganzen Zahlen darstellen kann (denn man kann Symbole mit ganzen Zahlen nummerieren). Um also zu verstehen, wie man die Daten mit $0$ und $1$ darstellt, muss vor Allem geklärt werden, wie man die ganzen Zahlen mit $0$ und $1$ darstellt. Dafür werden wir die Stellenwertsysteme einführen. 
-
-In der Informatik benutzt man meistens die Stellenwertsysteme zu den Basen $b \in \{2,8,10,16\}$.
-\end{bem} 
-
-\begin{aufg}
-	Sei $b \in \N$ mit $b \ge 2$. Zeigen Sie, dass jede Zahl $z \in \N_0$ eine eindeutige Darstellung als 
-	\begin{equation}
-		\label{z:zur:Basis:b}
-		z = \sum_{i=0}^k z_i b^i
-	\end{equation}
-	besitzt, wobei $k \in \N_0$, $z_0,\ldots,z_k \in \{0,\ldots,b-1\}$, und $z_k \ne 0$ für $z \ne 0$ gelten. 
-\end{aufg}
+\begin{defn}
+Wir sagen, dass wir die Elemente der  Menge $X$ mit Hilfe der Elemente der Menge $Y$ \textbf{kodieren}, wenn wir eine  injektive Abbildung $c : X \to Y$ festlegen. Wir nennen dann $c$ eine \textbf{Kodierung} von $X$ mit $Y$ und $y=c(x)$ die \textbf{Kodierung} von $x$ als $y$ bzgl. $c$.  
+\end{defn}
 
 \begin{defn} 
-In der vorigen Aufgaben heißen die Zahlen $z_0,\ldots,z_k$ die \emph{Stellen} von $z$ im Stellenwertsystem zur Basis $b$, und wir schreiben in diesem Fall 
-${z_k\cdots z_0} \ \text{(zur Basis $b$)} = z$. 
+	Für eine endliche nichtleere Menge $A$ und ein $n \in \N_0$ nennt man die Elemente von 
+	\[
+		A^n = \underbrace{A\times\ldots\times A}_{n \ \text{mal}}
+	\]
+	\textbf{Strings} der \textbf{Länge} $n$ über dem \textbf{Alphabet}~$A$.
+	Es gibt nur einen String der Länge $0$, diesen bezeichnen wir als~$\oslash$ (diese Bezeichnung ist ähnlich zur Bezeichnung für die leere Menge steht aber für etwas anderes). 
+	Das heißt, $A^0 = \{\oslash\}$. 
+	Oft schreiben wir einen String $(x_1,\ldots,x_n) \in A^n$ auch kürzer als $x_1 \cdots x_n$ und wir nennen $x_i$ das $i$-te \textbf{Zeichen} von $x$. 
+	Die Menge aller Strings über dem Alphabet $A$ bezeichnen wir mit $A^\ast$, das heißt: 
+	\[
+		A^\ast := \bigcup_{n \in \N_0} A^n.
+	\]
+	Der Wert $n$ für einen String $x = x_1 \cdots x_n \in A^\ast$ heißt die \textbf{Länge} von $x$ und wird als $|x|$ bezeichnet. 
+\end{defn}
 
-Wir nennen $z_0$ die niedrigste Stelle und $z_k$ die höchste Stelle (zur Basis $b$) von $z$. Die Zahl $z$ heißt $(k+1)$-stellige Zahl im Stellenwertsystem zur Basis $b$. Die Darstellung zur Basis $b$ von negativen ganzen Zahlen erfolgt analog (mit Vorzeichen). 
+\begin{defn} 
+		Für zwei Strings $x=x_1 \cdots x_n$ und $y=y_1 \cdots y_k$ aus $A^\ast$ heißt der String $xy = x_1 \cdots x_n y_1 \cdots y_k = (x_1,\ldots,x_n,y_1,\ldots,y_k) \in S^\ast$ die \textbf{Verkettung} oder \textbf{Konkatenation} von~$x$ und~$y$. 
 \end{defn} 
+
+\begin{defn} 
+		Strings über dem Alphabet $\{0,1\}$ nennt man \textbf{Bit-Strings} und die Zeichen von Bit-Strings nennt man \textbf{Bits}.
+\end{defn} 
+
+\begin{bem}
+	Auf digitalen Speichermedien und in digitalen Rechengeräten werden Daten mit Hilfe von Bit-Strings kodiert. Das bedeutet, dass man für verschiedene Mengen $X$ injektive Abbildungen $c : X \to \{0,1\}^\ast$ festlegt. Die Länge des Bit-Strings $c(x)$ für $x \in X$ ist somit die Länge der Darstellung von $x$ in der Kodierung $c$. 
+\end{bem} 
+
+\begin{defn}
+	Für eine endliche Menge $A$ und $k \in \N_0$, nennen wir eine injektive Abbildung $c: A \to \{0,1\}^k$ eine \textbf{$k$-Bit-Kodierung} von $A$. 
+\end{defn} 
+
+\begin{prop}
+Sei $A$ endliche Menge und seien $k \in \N_0$. Dann sind die folgenden Bedingungen äquivalent: 
+\begin{enumi} 
+	\item $A$ besitzt eine $k$-Bit-Kodierung.
+	\item $ |A| \le 2^k$. 
+\end{enumi} 
+\end{prop} 
+\begin{proof} 
+	Für die Existenz einer injektiven Abbildung von $A$ nach $\{0,1\}^k$ ist es notwendig und hinreichend, dass $X$ höchstens so viele Elemente wie $\{0,1\}^k$ hat. Nach Korollar~\ref{kor:product}  hat $\{0,1\}^k$ genau $|\{0,1\}|^k = 2^k$ Elemente. Das zeigt die gewünschte Äquivalenz. 
+\end{proof} 
+
+\begin{bsp}
+	Da die Menge 
+	\[
+		A = \{\text{'a'},\ldots,\text{'z'}\}
+	\]
+	$26$ Elemente hat und es $2^4 < 25 \le 2^5$ gilt, besitzt $A$ eine $5$-Bit- aber keine $4$-Bit-Kodierung. 
+\end{bsp} 
+
+\begin{prop}[Kodierung von Strings durch Bit-Strings] \label{prop:beliebiges:alphabet->01}
+	Sei $A$ endliche nichtleere Menge. Dann existiert eine Injektive Abbildung von $A^\ast$ nach $\{0,1\}^\ast$. Mit anderen Worten: Strings über einem beliebigen endlichen Alphabet können als Bit-Strings kodiert werden. 
+\end{prop} 
+\begin{proof} 
+	Sei $k \in \N_0$ Wert mit $2^k \ge |A|$. Dann existiert eine Kodierung $ c : A \to \{0,1\}^k$. Diese Kodierung erzeugt die Kodierung $(x_1, \cdots ,x_n) \mapsto c(x_1) \cdots (c(x_1),\ldots,c(x_n))$ von $A^\ast$ nach $\{0,1\}^\ast$. 
+\end{proof} 
+
+
+\begin{prop}[Kodierung von Paaren] \label{kod:paare}
+	Besitzen Mengen $X$ und $Y$ Kodierungen mit Bit-Strings, so besitzt auch $X \times Y$ Kodierung mit Bit-Strings. 
+\end{prop} 
+\begin{proof}
+	Seien $ a : X \to \{0,1\}^\ast$ und $b : Y \to \{0,1\}^\ast$ Kodierungen von $X$ bzw. $Y$ mit Bit-Strings. Dann können wir ein Trennzeichen $\#$ einführen und das Paar $(x,y)$ mit $x \in X, y \in Y$ als ein String $a(x) \, \# \,  b(y) \in \{0,1,|\}^\ast$ über dem drei-elementigen Alphabet $\{0,1,\#\}$ kodieren. Nach Proposition~\ref{prop:beliebiges:alphabet->01} können Strings über einem beliebigen endlichen Alphabet als Bit-Strings kodiert werden, es gibt also eine Kodierung $c : \{0,1,\#\}^\ast \to \{0,1\}^\ast$. Das Ergibt die Kodierung $c ( a(x) \# b(y))$ von $(x,y) \in X \times Y$ mit einem Bit-String. 
+\end{proof} 
+
+\begin{kor}[Kodierung von Tupeln]
+	Besitzen Mengen $X_1,\ldots,X_n$ Kodierungen mit Bit-Strings, so besitzt auch das Produkt $X_1 \times \cdots X_n$ eine Kodierung mit Bit-Strings. 
+\end{kor} 
+\begin{proof} 
+Die Konstruktion im Beweis von \eqref{kod:paare} direkt vom Fall $n=2$ auf ein allgemeines $n$ erweitern. Alternativ kann man die Behauptung durch die Induktion nach $n$, mit dem Induktionsanfang $n=2$, aus Korollar~\ref{kod:paare} herleiten. 
+\end{proof} 
+
+
+\section{Stellenwertsysteme: Kodierung von Zahlen}
+
+\begin{thm}[Darstellung natürlicher Zahlen in einem Stellenwertsystem] \label{thm:stellenwert}
+	Sei $b \in \Z_{\ge 2}$. Dann besitzt jedes $z \in \N$ eine eindeutige Darstellung als 
+	\begin{equation}\label{z:zur:Basis:b}
+		z = \sum_{i=0}^k z_i b^i
+	\end{equation}
+	mit $k \in \N_0, z_0,\ldots,z_k \in \{0,\ldots,b-1\}$ und $z_k \ne 0$. Mit anderen Worten ist die Relation $z \mapsto (z_k,\ldots,z_0)$ für $z$ und $z_0,\ldots,z_k$ wie oben eine injektive Abbildung von $\N$ nach $\{0,\ldots,b-1\}^\ast$.
+\end{thm}
+\begin{proof}
+ 	Die Existenz und Eindeutigkeit der gewünschten Darstellung für $z$ zeigen wir durch Induktion über $z$. Bei $1 \le z \le b-1$ ist $k=1$ und $z_0=z$. Sei $z>b$ und sei die Existenz und Eindeutigkeit einer solchen Darstellung für die Zahlen $1,\ldots,z-1$ bereits gezeigt. Bei $z$ ist $z_0$ notwendigerweise der Rest der Division von $z$ durch $b$, weil die Terme $z_i b^i$ mit $i>0$ alle durch $b$ teilbar sind. Die Zahl $z-z_0$ ist positiv und durch $b$ teilbar. Somit ist $(z-z_0) / b$ eine natürliche Zahl, die echt kleiner als $z$ ist; denn $(z-z_0)/b \le z / b < z$. Die Darstellung von $z$, nach der wir suchen, kann als 
+ 	\[
+ 		(z-z_0)/b = \sum_{i=0}^{k-1} z_{i+1} b^i
+ 	\]
+ 	umformuliert werden. Die Existenz und Eindeutigkeit von $z_1,\ldots,z_k \in \{0,\ldots,b-1\}$ mit $z_k \ne 0$ folgt durch die Anwendung der Induktionsvoraussetzung zu $(z-z_0)/b$. 
+\end{proof} 
+
+\begin{defn}
+	Im Kontext von Theorem~\ref{thm:stellenwert} heißt das Tupel $(z_k,\ldots,z_0)$ die \textbf{Darstellung} von $z \in \N$ im \textbf{Stellenwertsystem zur Basis} $b$. Die Zahl $z$ mit dieser Darstellung wird als 
+	\[	
+			z_k \cdots z_0 \ {}_{b}
+	\]
+	bezeichnet. Bzgl. des Stellenwertsystems zur Basis $b$ wird $z$ eine \textbf{$(k+1)$-stellige Zahl genannt}. Hierbei nennt man $z_k$ die \textbf{höchste Stelle} und $z_0$ die \textbf{niedrigste Stelle}.  Stellenwertsysteme zu Basen $2, 10$ und $16$ nennt man \textbf{binär}, \textbf{dezimal} bzw. \textbf{hexadezimal}. 
+	
+	Die Darstellung der natürlichen Zahlen wird  erweitert, indem man die Darstellung von $0$ als $0$ festgelegt und die Darstellung von $\pm z$ als $(\pm ,z_k,\ldots,z_0) \in \{+,-\} \times \{0,\ldots,b-1\}^\ast$ mit Hilfe der Darstellung $(z_k,\ldots,z_0)$  von $z \in \N$ definiert. 
+\end{defn} 
+
+\begin{prop}
+	Sei $b \in \Z_{\ge 2}$ und $t \in \N_0$. Dann ist die Abbildung 
+	\begin{equation}
+	(z_t,\ldots,z_0) \mapsto z:= \sum_{i=0}^t z_i b^i
+	\end{equation}
+	eine Bijektion $\{0,\ldots,b-1\}^t \to \{0,\ldots,b^{t+1} -1\}$. Insbesondere ist die Umkehrung dieser Abbildung eine Kodierung von $\{0,\ldots,b^{t+1} -1\}$ mit $t$-Bit-Strings. 
+\end{prop} 
+\begin{proof}
+ Sei $(z_t,\ldots,z_0) \in \{0,\ldots,b-1\}^t$. Dann gilt $0 \le z_i  \le b-1$ für jedes $i  \in \{0,\ldots,b-1\}$, sodass die Abschätzungen
+ \[
+ 	0 \le z \le \sum_{i=0}^t (b-1) b^i = (b-1) \sum_{i=0}^t b^i = b^{t+1} -1
+ \]
+ erfüllt sind. Das zeigt, dass die Angabe des Wertebereichs $\{0,\ldots,b^{t+1} -1\}$ korrekt ist.
+ Der Definitionsbereich sowie der Wertebereich haben je $b^t$ Elemente. Um zu zeigen, dass die Abbildung bijektiv ist, reicht es zu zeigen, dass die Abbildung injektiv ist. Seien $(z_t,\ldots,z_0), (z_t',\ldots,z_0') \in \{0,\ldots,b-1\}^t$ verschieden. Dann gibt es das größte $k\in \{0,\ldots,t\}$ mit $z_k \ne z_k'$. Sei ohne Beschränkung der Allgemeinheit $z_k>z_k'$. Dann ist 
+ \begin{align*}
+ 		\sum_{i=0}^t z_i b^i - \sum_{i=0}^t z_i' b^i & = (z_k - z_k')b^k + \sum_{i=0}^{k-1} (z_i -z_i') b^i
+ 		\\ \ge b^k + \sum_{i=0}^{k-1} (0 - (b-1)) b^i 
+ 		\\ = b^k - (b-1) \sum_{i=0}^{k-1} b^i
+ 		\\ = b^k - (b^k - 1) 
+ 		\\ =1.
+ \end{align*}
+Es folgt: $\sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i $. Also ist die Abbildung tatsächlich injektiv. 
+\end{proof} 
+
 
 \begin{bsp}
 	Schriftliche Addition, Subtraktion, Multiplikation und Division zu einer beliebigen Basis $b$ geht analog zur gewohnten Basis $b=10$. Etwa
@@ -42,20 +148,24 @@ Wir nennen $z_0$ die niedrigste Stelle und $z_k$ die höchste Stelle (zur Basis 
 \end{bsp}
 
 \begin{bem}
-	Konvertierung einer Darstellung zu einer Basis $b$ zur Basis $10$. Direkt nach \eqref{z:zur:Basis:b} oder mittels des sogenannten Horner-Schemas, das einem ermöglicht, die Anzahl der Multiplikationen im Vergleich zu reduzieren: 
-	Für $k=2$,
+	Die Konvertierung einer Darstellung zu einer Basis $b$ in die Darstellung zur Basis $10$ geht  direkt mit der Verwendung von  \eqref{z:zur:Basis:b}, aber eine effizientere Konvertierung erhält man, wenn man das so genannte \textbf{Horner-Schema} benutzt. 
+		Für $k=2$, benutzt erhält man durch das Ausklammern den Ausdruck
 	\[
 	z_2 b^2 + z_1 b + z_0 = b (b z_2 + z_1) + z_0,
 	\]
-	für $k=3$,
+	 mit nur zwei Multiplikationen auf der rechten Seite;
+	für $k=3$, den Ausdruck 
 	\[
-	z_3 b^3 + z_2 b^2 + z_1 b + z_0 =  \underbrace{b \underbrace{( b \underbrace{(b z_3 + z_2)}_{\text{1. Runde}} + z_1 )}_{\text{2. Runde}}  + z_0,}_{\text{3. Runde}}
+	z_3 b^3 + z_2 b^2 + z_1 b + z_0 =  b(b (b z_3 + z_2) + z_1 ) + z_0
 	\]
-	und so fort für $k \geq 4$.
+	mit drei Multiplikationen und so fort für $k \geq 4$. Das Auswerten erfolgt dann von innen nach außen durch das Auswerten der Werte für die Klammern, etwa für $k=3$:
+	\[
+\underbrace{b \underbrace{( b \underbrace{(b z_3 + z_2)}_{\text{1. Runde}} + z_1 )}_{\text{2. Runde}}  + z_0,}_{\text{3. Runde}}
+	\]
 \end{bem}
 
 \begin{bsp}
-	Die Konvertierung von der Basis $10$ zu einer anderen Basis erfolgt durch iterative Division mit Rest. Konvertieren wir zum Beispiel die Zahl $46$ in das System zur Basis $3$. Es gilt
+	Die Konvertierung von der Basis $10$ zu einer anderen Basis erfolgt durch iterative Division mit Rest  mit der Verwendung der konstruktiven Idee des Beweises von Theorem~\ref{thm:stellenwert}. Konvertieren wir zum Beispiel die Zahl $46$ in das System zur Basis $3$. Es gilt
 	\begin{align*}
 		46 & = 15 \cdot 3 + 1 = (5 \cdot 3 + 0) \cdot 3 + 1 = 5 \cdot 3^2 + 0 \cdot 3 + 1 
 		\\ & = (1 \cdot 3 + 2) \cdot 3^2 + 0 \cdot 3 + 1
@@ -63,13 +173,15 @@ Wir nennen $z_0$ die niedrigste Stelle und $z_k$ die höchste Stelle (zur Basis 
 	\end{align*}
 	Das heißt:
 	\[
-	46 \ \text{(zur Basis $10$)} = 1201 \ \text{(zur Basis $3$)}.
+	46 \, {}_{10}  = 1201 \, {}_{3}. 
 	\]
 	Das Horner-Schema zeigt sich hier in umgekehrter Form!
 \end{bsp}
 
 \begin{bsp}
-	Die Basis $10$ benutzen Menschen, die Basis $2$ die Computer, und die Basis $16$ die Menschen, die maschinennah mit Computern arbeiten. Die Konvertierung zwischen der Basis $2$ und der Basis $16$ ist einfach, weil $16$ eine Potenz von~$2$ ist. Die Basis $16$ ermöglicht aber eine kompaktere Darstellung von Zahlen. Die Ziffern des $16$er Systems (auch \emph{Hexadezimal-System} genannt) sind die $16$ Symbole $0,\ldots,9,A,B,C,D,E,F$. Wir können diese Ziffern als Zahlen im Dezimalsystem oder Binärsystem darstellen:
+	Je geringer die Basis $b$ des Stellenwertsystems ist, desto mehr Stellen braucht man um eine Zahl $z \in \N$ im Stellenwertsystem zur Basis $b$ zu beschreiben. In digitalen Geräten benutzt man aber die kleinstmögliche Basis $b=2$. Daher nutzt man im Zusammenhang mit dem binären System auch das Hexadezimalsystem, dessen Basis $16$ eine Potenz von $2$ ist. Aufgrund dieser Tatsache gibt es einen direkten einfachen Zusammenhang zwischen den Darstellungen zur  Basis $2$ und zur Basis $16$. 
+	
+	Diesen Zusammenhang illustrieren wir an einem Beispiel. Zunächst sei bemerkt dass die 16 Ziffern des Hexadezimalsystems als $0,\ldots,9,A,B,C,D,E,F$ bezeichnet werden. Das bedeutet es gibt den folgenden Zusammenhang zwischen den Ziffern des Hexadezimalsystem und deren Darstellungen als Zahlen im Binär- und Dezimalsystem: 
 	\begin{center}
 		\scriptsize 
 		\begin{tabular}{rrr}
@@ -92,15 +204,17 @@ Wir nennen $z_0$ die niedrigste Stelle und $z_k$ die höchste Stelle (zur Basis 
 			\\ F & 15 & 1111
 		\end{tabular}
 	\end{center}
-	Hier ist beispielsweise $A$ zur Basis $16$ gleich der $10$ zu unserer Standardbasis $10$, und $F$ zur Basis $16$ ist gleich der $15$ zur Basis $10$. Die Zahl $BEE$ im Hexadezimal-System kann ins Binärsystem konvertiert werden indem man jede Ziffer durch ihre Binärdarstellung ersetzt. 
+	Hier ist beispielsweise $A$ zur Basis $16$ gleich der $10$ zu unserer Standardbasis $10$, und $F$ zur Basis $16$ ist gleich der $15$ zur Basis $10$. Die Zahl $\operatorname{BEE}$ im Hexadezimal-System kann ins Binärsystem konvertiert werden indem man jede Ziffer durch ihre Binärdarstellung ersetzt. 
 	\[
-	BEE \, \text{(im Hexadezimalsystem)} = 1011 \ 1110 \ 1110 \text{(im Binärsystem)}.
+	\operatorname{BEE} \, {}_{16} = 1011 \ 1110 \ 1110 \, {}_{2}.
 	\]
 	Um sich zu vergewissern, dass das tatsächlich stimmt, kann man sich überlegen, was diese Gleichheit im Dezimalsystem bedeutet:
+	{\scriptsize 
 	\begin{align*}
-		& \underbrace{(2^3 + 2^1+ 2^0)}_{B} 16^2 + \underbrace{(2^3 + 2^2 + 2^1)}_{E} 16^1 + \underbrace{(2^3 + 2^2 + 2^1)}_{E} 16^0  
-		\\ = & 2^{11} + 2^9 + 2^8 + 2^7 + 2^6 + 2^5 + 2^3 + 2^2 + 2^1
+		& \underbrace{(1\cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1+ 1 \cdot 2^0)}_{\operatorname{B}} 16^2 + \underbrace{(1 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0)}_{\operatorname{E}} 16^1 + \underbrace{(1 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0)}_{\operatorname{E}} 16^0  
+		\\ = & \underbrace{1 \cdot 2^{11} + 0 \cdot 2^{10} + 1 \cdot 2^9 + 1 \cdot 2^8} + \underbrace{1 \cdot 2^7 + 1\cdot 2^6 + 1 \cdot 2^5 + 0 \cdot 2^4} + \underbrace{1 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0}. 
 	\end{align*}
+	}
 \end{bsp}
 
 \begin{bem} 
@@ -122,50 +236,96 @@ Hier ist $61$ die hexadezimale Unicode-Kodierung des Buchstaben $a$, $62$ die he
 
 
 \begin{aufg}
-	Bei gebrochenen Zahlen erfolgt die Berechnung der Darstellung als Nachkommazahl zur Basis $b$ genauso wie im Dezimalsystem. Berechnen Sie die Darstellung von $1/2$, $1/3$, $1/4$, $1/5$ und $1/6$ als Nachkommazahl im Binärsystem. 
+	Bei rationalen Zahlen erfolgt die Berechnung der Darstellung als Nachkommazahl zur Basis $b$ genauso wie im Dezimalsystem. Berechnen Sie die Darstellung von $1/2$, $1/3$, $1/4$, $1/5$ und $1/6$ als Nachkommazahl im Binärsystem. 
 \end{aufg}
 
-\begin{bem}
-	Wenn man im Computer nicht-negative ganze Zahlen in einem $n$-Bit-Register speichert, so gehen im Fall eines arithmetischen Überlaufs die höheren Stellen verloren. Zum Beispiel gilt
-	\[
-	11111110 + 00000010 = 100000000
-	\]
-	zur Basis $2$. (Im Dezimalsystem: $254+2 = 256$). Wenn man diese Berechnung in einem $8$-Bit-Register ausführt ist das Resultat gleich $0$. D.h., in einem $n$-bit Register werden die arithmetischen Operationen modulo $2^n$ durchgeführt. 
-\end{bem}
+\begin{bem}[Restklassenringe] 
+	Sei $m \in \N$. Zahlen $x,y \in \Z$ nennt man kongruent modulo $m$, wenn $x-y$ durch $m$ teilbar sind (das bedeutet, die Zahlen ergeben den selben Rest $r \in \{0,\ldots,m-1\}$ bei der Division durch $m$). Die Kongruenz Modulo $m$ ist eine Äquivalenzrelation und wir bezeichnen als $[x]$ die Äquivalenzklasse von $x$ bzgl. dieser Relation, das ist also die Menge aller ganzen Zahlen, die den selben Rest als $x$ bei der Division durch $m$ ergeben. Es gibt genau $m$ solche Äquivalenzklassen, das sind die Klassen $[0],\ldots,[m-1]$. Die Menge $\{[0],\ldots,[m-1]\}$ aller Restklassen wird als $\Z /m \Z$ bezeichnet. Es stellt sich heraus, dass durch man in $\Z / m$ die Verknüpfungen $+$ und $\cdot$ durch 
+	\begin{align*}
+			[x]+ [y] & := [x+y],
+			\\ [x] \cdot [y] & := [x\cdot y]
+	\end{align*} 
+einführen kann. Mit diesen Verknüpfungen ist $\Z /  m$ ein kommutativen Ring mit der Null $[0]$ und der Eins $[1]$. 
+\end{bem} 
+
+\begin{bem}[Ganzzahlige Arithmetik mit Zahlen fester Bit-Größe]
+		Bei der Umsetzung der ganzzahligen Arithmetik für Register und Speicherzellen fester Bit-Größe $k$ ist die Register-Arithmetik eigentlich die Arithmetik des Rings $\Z / m \Z$ mit $m=2^k$. Werden durch $k$ Bits nicht-negative Zahlen im Bereich $\{0,\ldots,2^k-1\}$ dargestellt, so ergibt die Addition der Eins zu $2^k-1$ den Wert $0$. Das Entspricht der Gleichung $[m-1] + [1] = [0]$ im Ring $\Z / m \Z$. Mit anderen Worten sind die Zahlen $0,\ldots,2^k-1$ Vertreter der jeweiligen Restklassen modulo $m$. 
+		
+		Ähnlich ist die Situation mit der Darstellung von ganzen Zahlen mit dem Vorzeichen. In diesem Fall werden ganze Zahlen im Bereich  $\{-2^{k-1},\ldots,2^{k-1}  - 1\}$ durch $k$ Bits kodiert. Die Addition der Eins zu $2^{k-1}-1$ ergibt in dieser Darstellung $-2^{k-1}$. Das entspricht der Gleichung $[m/2-1] + [1] =[-m/2]$ im Ring $\Z / m \Z$. Es sei bemerkt, dass  $m/2=2^{k-1}$ ist.
+		
+		Ganze Zahlen mit fester Bit-Größe sind in den Prozessoren sowie in vielen Programmiersprachen direkt als Standarddatentypen vorhanden. In der Programmiersprache Go hat man etwa die Datentypen int8, int16, int32, int64 sowie uint8, uint16, unit32, uint64. 
+\end{bem} 
+
+\begin{bsp}\ 
+	\begin{itemize} 
+		\item Die Bit-Darstellung von $255$ in uint8 ist $11111111$. Die Addition von $255$ mit $1$ in uint8 ergibt $0$ - die Zahl, deren Bit-Darstellung in diesem Typ $00000000$ ist.  
+		\item Die Bit-Darstellung von $127$ in int8 ist $0111111$. Die Addition von $127$ und $1$ in int8 ergibt $-128$ - die Zahl, deren Bit-Darstellung in diesem Typ $11111111$ ist. 
+	\end{itemize} 
+\end{bsp}
 
 
 
 \section{Rechenprobleme}
 \label{sect:rechenprobleme}
 
-\begin{defn} 
-Formal modelliert man \emph{Rechenprobleme} als Eingabe-Rückgabe-Relationen. So etwa beschreibt die Relation
-\[
-\setcond{ (a,p) \in \N^2 }{p \ \text{ist Primfaktor von} \ a}
-\]
-auf den natürlichen Zahlen das Rechenproblem `bestimme einen Primfaktor der gegebenen natürlichen Zahl'. Das zugrundeliegende Rechenproblem algorithmisch zu \emph{lösen} heißt, einen Algorithmus zu entwickeln, der zu jeder möglichen Eingabe eine korrekte Rückgabe bestimmt oder feststellt, dass keine korrekte Rückgabe existiert. 
-
-In unserem Beispiel ist für die Eingabe $a=10$, die Zahl $p=2$ eine korrekte Rückgabe. Die Zahl $p=5$ passt auch, denn $5$ ist ebenfalls ein Primfaktor von $10$. Für $a=1$ gibt es keine korrekte Rückgabe, so dass der Lösungsalgorithmus mit einer Meldung terminieren muss, dass es keine korrekte Rückgabe gibt. 
+\begin{defn}
+	Wir fixieren die \textbf{Standard-Kodierungen} durch Bit-Strings für Mengen $\Z, \Q$ sowie $\Z^n$ und $\Q^n$ mit $n \in \N$ wie folgt: 
+	\begin{itemize}
+			\item Für $z \in \Z$ ist die Standard-Kodierung die Darstellung von $z$ im Binärsystem. Diese Kodierung hat Größe $\Theta(\log_2 (|z|+1)$. 
+			\item Jedes $q \in \Q$ kann eindeutig als $q = a/b$ mit $a \in \Z$ und $b \in \N$ fixiert werden. Danach wird das Paar $(a,b) \in \Z \times \N$ mit der Verwendung der Standardkodierungen von $a$ und $b$ kodiert (vgl. dazu den Beweis der Proposition~\eqref{kod:paare} über das Kodieren von Paaren). 
+			\item $\Z^n$ und $\Q^n$ wird in Anlehnung an die oben festgelegten Stadardkodierungen von $\Z$ und $\Q$ kodiert. 
+	\end{itemize} 
+	Für $x$ aus einer dieser Mengen ($\Z,\Q, \Z^n$ oder $\Q^n$) bezeichnen wir als $\enc{x} \in \{0,1\}^\ast$ die Standardkodierung von $x$ und als $\encl{x}$ die Länge dieser Kodierung. 
 \end{defn} 
-
-
-
-\begin{bem}
-Die Berechnung einer Abbildung/Funktion $f : X \to Y$ ist ein Spezialfall eines Rechenproblems. In diesem Fall ist $f(x)$ die eindeutige Rückgabe für die Eingabe $x \in X$ und damit die zugehörige Eingabe-Rückgabe-Relation gegeben durch
-\[
-\setcond{(x,f(x)) \in X \times Y}{x \in X}.
-\]
-Zum Beispiel können wir das Problem der Potenzbildung als die Funktion $f : \N^2 \to \N$ mit $f(a,b) := a^b$ modellieren. In Worten: für gegebene $a, b \in \N$ soll $a^b$ algorithmisch berechnet werden. 
-\end{bem} 
 
 \begin{defn}
-Ein weiterer Spezialfall ist die Überprüfung einer Eigenschaft. Solche Probleme nennt man \emph{Entscheidungsprobleme}. Sie können als Berechnung einer Funktion $f : X \to \{0,1\}$ interpretiert werden. Etwa: $f : \N \to \{0,1\}$ mit $f(n) = 1$, wenn $n$ eine Primzahl ist, und $f(n) =0$ sonst. In Worten: es soll überprüft werden, ob eine gegebene natürliche Zahl $n$ eine Primzahl ist. 
+	Ein Rechenproblem ist eine binäre Relation auf der Menge der Bit-Strings $\{0,1\}^\ast$. Mit anderen Worten ist ein Rechenproblem eine Menge 
+	\[
+		\Pi \subseteq \{0,1\}^\ast \times \{0,1\}^\ast.
+	\]
+	Die Bedeutung von $(x,y) \in \Pi$ ist dabei: $y$ ist eine mögliche Rückgabe für die Eingabe $x$. Somit ist ein Rechenproblem eine Eingabe-Rückgabe-Relation. Ein Rechenproblem $\Pi$ algorithmisch zu lösen heißt es, einen Algorithmus zu finden, der für jede Eingabe $x$ entscheidet, ob ein $y$ mit $(x,y) \in \Pi$ existiert und ggf. ein solches $y$ berechnet. 
 \end{defn} 
+
+\begin{defn}
+	Die Berechnung einer Funktion $f : \{0,1\}^\ast \to \{0,1\}^\ast$ ist ein Spezialfall eines Rechenproblems, bei dem man zu jeder Eingabe $x$ eine Eindeutige Rückgabe $f(x)$ hat. 
+\end{defn} 
+
+\begin{defn}
+	Eine Teilmenge $L \subseteq \{0,1\}^\ast$ nennt man Sprache. Eine Sprache algorithmisch zu entscheiden, heißt es einen Algorithmus zu finden, der für jedes $x \in \{0,1\}^\ast$ entscheidet, ob $x$ zu $L$ gehört oder nicht. Die Entscheidung der Sprache $L$ kann als die Berechnung der Funktion $f $ mit 
+	\[
+		f(x) := \begin{cases}
+				1 & \text{für} \ x \in L, 
+				\\ 0 & \text{für} \ x \not\in L.
+			\end{cases} 
+	\]
+	formuliert werden. Die Rechenprobleme, die durch eine Sprache definiert werden, nennt man Entscheidungsprobleme. Es handelt sich dabei, um Probleme bei denen man nur zwei mögliche Rückgabewerte hat (ja/nein bzw. wahr/falsch bzw. 1/0). 
+\end{defn}
+
+\begin{bem}
+		Die vorigen Definitionen können wir auch mit anderen Mengen an der Stelle von $\{0,1\}^\ast$ benutzen, wenn für diese Mengen eine Kodierung mit Bit-Strings zugrunde liegt. Zum Beispiel: 
+		\begin{itemize} 
+			\item Das Problem
+		\[
+		\setcond{ (a,p) \in \N \times \Z_{\ge 2} }{p \ \text{ist Primfaktor von} \ a}
+		\]
+		kann mit Worten folgendermaßen formuliert werden: entscheide, für ein gegebenes $a \in \N$, ob $a$ einen Primfaktor $p \in \Z_{\ge 2}$ besitzt und berechne ggf. einen solchen Faktor. 
+			\item Die Berechnung von $f : \Z \times \N_0 \to \N$ mit $f(a,k):= a^k$ kann mit Worten so formulieren, für gegebene $a \in \Z,k \in \N$ berechne die $k$-te Potenz von $a$. 
+			\item Das algorithmische  Problem zur Sprache der (Bit-Kodierungen von) Primzahlen ist zu entscheiden, ob die Eingabe (die Bit-Kodierung einer) Primzahl ist. Mit Worten: entscheide, ob eine gegebene Zahl $z \in \N$ eine Primzahl ist. 
+		\end{itemize} 
+\end{bem} 
 
 \section{Variablen, Zuweisungen und Kontrollstrukturen}
 
 \begin{bem} 
-Um die Programmierung unabhängig von einer konkreten Programmiersprache zu diskutieren, benutzen wir den sogenannten \emph{Pseudocode}. Pseudocode ist eine Codeskizze, die wie ein Computerprogramm aussieht, aber in der Regel menschenlesbarer und syntaktisch weniger eingeschränkt ist. Mit Pseudocode kann man Algorithmen beschreiben, ohne auf die technischen Details der Implementierung einzugehen, oder die Syntax der jeweiligen Programmiersprache beachten zu müssen.
+Zur Beschreibung von Algorithmen unabhängig von einer konkreten Programmiersprache gibt es unter anderem folgende Möglichkeiten: 
+\begin{enumerate}
+	\item Beschreibung in einer natürlichen Sprache, evtl. mit der Verwendung mathematischer Formeln und Bezeichnungen. 
+	\item Beschreibung in einem sogenannten Pseudocode. 
+	\item Umsetzung in einer Programmiersprache. 
+\end{enumerate} 
+Im Gegensatz zu einem richtigen Code, der sehr oft programmiertechnische Details einer konkreten Programmiersprache beinhaltet, kann man im Pseudocode solche Details vermeiden. Beim Pseudocode gibt es meistens nur Richtlinien und keine festen Vorgaben, welche syntaktische Konstrukte erlaubt sind. Mit Pseudocode kann man Algorithmen beschreiben, ohne auf die technischen Details der Implementierung einzugehen, oder die Syntax der jeweiligen Programmiersprache im Detail beachten zu müssen. In seiner klassischen Form ahmt der Pseudocode die Programmiersprache ALGOL 60 nach, deren Syntax viele modernere Programmiersprachen beeinflusst hat. Die bekannten Kontrollstrukturen wie if, for usw. wurden Z.B. stammen aus ALGOL. Die Beschreibung von Algorithmen in einem ALGOL-ähnlichen Pseudocode ist in wissenschaftlichen Publikationen sehr verbreitet. 
+
+Ein ziemlich wesentlicher Nachteil des Pseudocodes besteht darin, dass man ihn nicht auf einem Rechengerät ausführen kann. Des Weiteren sind die programmiertechnische Details aus der praktischen Sicht sehr wichtig: sie können  die praktische Effizienz der Algorithmen (tatsächliche Laufzeit usw.) erheblich beeinflussen. 
 \end{bem} 
 
 \begin{bem} 
@@ -181,7 +341,7 @@ Hier wird in der ersten Zeile einer Variablen $x$ der Wert $5$ zugewiesen. Mit d
 \end{bem} 
 
 \begin{bem}
-Um mit den Variablen und Daten zu arbeiten benutzt man sogennante \emph{Kontrollstrukturen}. Davon gibt es zwei Typen:
+Um mit den Variablen und Daten zu arbeiten benutzt man sogenannte \emph{Kontrollstrukturen}. Davon gibt es zwei Typen:
 \begin{itemize}
 	\item \emph{Verzweigungen}: \texttt{if-then}, \texttt{if-then-else}
 	\item \emph{Schleifen}: \texttt{for}, \texttt{while}, \texttt{repeat-until}
@@ -246,7 +406,7 @@ Im Pseudocode nutzen wir hier das Symbol $\triangleright$ für Kommentare, die d
 \end{bem} 
 
 
-\section{Prozeduren, Arten der Parameterübergabe und Rekursion}
+\section{Prozeduren und Arten der Parameterübergabe}
 \label{sect:prozeduren}
 
 \begin{bem}
@@ -312,6 +472,8 @@ Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, mü
 \begin{bem}
 	In der Beschreibung von Algorithmen im Pseudocode halten wir uns im Folgenden an die Konvention, bei der Parameterübergabe Arrays durch Referenz und einfache Datentypen durch Kopie zu übergeben.
 \end{bem}
+
+\section{Rekursion an einem Beispiel}
 
 
 \begin{bem}

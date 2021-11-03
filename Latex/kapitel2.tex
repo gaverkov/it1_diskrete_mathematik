@@ -1,6 +1,6 @@
 \chapter{Kombinatorik} 
 
-\section{Basics der Kombinatorik} 
+\section{Vereinigung und Kreuzprodukt von zwei Mengen} 
 
 \begin{bem}
 	Die Haupfrage der Kombinatorik ist ``Wie viele Elemente hat meine endliche Menge?''. Etwas formaler geht es um die Formeln für die Anzahl der Elemente verschiedener endlicher Mengen, welche man in der diskreten Mathematik gerne benutzt. 
@@ -11,10 +11,22 @@
 \end{lem} 
 
 \begin{proof}
-	Ist $A$ oder $B$ leer, so gilt die Formel trivialerweise: etwa bei $B = \emptyset$ gilt $|A \cup B| = | A \cup \emptyset| = |A| = |A| + 0 = |A| + | \emptyset| = |A| + |B|$. 
+	Ist $A$ oder $B$ leer, so gilt die Formel trivialerweise. Etwa, für $B = \emptyset$ gilt 
+	\[
+		|A \cup B| = | A \cup \emptyset| = |A| = |A| + 0 = |A| + | \emptyset| = |A| + |B|. 
+	\]
 	
-	 Sonst nummerieren wir alle Elemente von $A$ als $a_1,\ldots,a_s$ und $B$ als $b_1,\ldots,b_t$, das heißt, $A$ ist eine $s$-Elementige Menge $A = \{a_1,\ldots,a_s\}$ und $B$ ist eine $t$-elementige Menge $B = \{b_1,\ldots,b_t\}$ mit $s,t \in \N$. Es gilt $a_i \ne a_j$ für $i \ne j$ mit $i,j \in \{1,\ldots,s\}$ und $b_i \ne b_j$ für $i \ne j$ mit $i,j \in \{1,\ldots,t\}$. Da $A$ und $B$ disjunkt sind gilt auch $a_i \ne a_j$ für alle $i \in \{1,\ldots,s\}$ und $j \in \{1,\ldots,t\}$. Somit ist 
-	 $A \cupdot B = \{a_1,\ldots,a_s,b_1,\ldots,b_t\}$, sodass wir $A \cupdot B = \{c_1,\ldots,c_n\}$ mit $n = s + t$, $c_i = a_i$ für $i \in\{1,\ldots,s\}$ und $c_i = b_{i-s}$ für $i \in \{s+1,\ldots,n\}$ haben. Hierbei sind $c_1,\ldots,c_n$ nach der Konstruktion paarweise verschieden. Das zeigt, dass $A \cupdot B$ genau $n = s+t$ Elemente hat. 
+	 Sonst nummerieren wir alle Elemente von $A$ als $a_1,\ldots,a_s$ und $B$ als $b_1,\ldots,b_t$. Das heißt, $A$ ist eine $s$-Elementige Menge $A = \{a_1,\ldots,a_s\}$ und $B$ ist eine $t$-elementige Menge $B = \{b_1,\ldots,b_t\}$ mit $s,t \in \N$. Es gilt $a_i \ne a_j$ für $i,j \in \{1,\ldots,s\}$ mit $i \ne j$   und $b_i \ne b_j$ für  $i,j \in \{1,\ldots,t\}$ mit $i \ne j$. Da $A$ und $B$ disjunkt sind gilt auch $a_i \ne b_j$ für alle $i \in \{1,\ldots,s\}$ und $j \in \{1,\ldots,t\}$. 
+	 
+	 Somit ist 
+	 $A \cupdot B = \{a_1,\ldots,a_s,b_1,\ldots,b_t\}$, sodass wir $A \cupdot B = \{c_1,\ldots,c_n\}$ mit $n = s + t$ und 
+	 \[
+	 	c_i = \begin{cases}
+	 		 a_i, & \text{für} \ i \in\{1,\ldots,s\}
+	 		 \\b_{i-s}  &  \text{für} \ i \in \{s+1,\ldots,n\}
+	 		\end{cases}.
+ 	\] 
+ 	Hierbei sind $c_1,\ldots,c_n$ nach der Konstruktion paarweise verschieden. Das zeigt, dass $A \cupdot B$ genau $n = s+t$ Elemente hat. 
 \end{proof}
 
 \begin{lem} \label{lem:disjunkte:vereinigung}
@@ -222,7 +234,7 @@
 	Nach dieser Bemerkung folgt die Behauptung direkt aus Theorem~\ref{thm:inj:abbildungen}. 
 \end{proof} 
 
-\section{Teilmengen gegebener Kardinalität} 
+\section{Teilmengen} 
 
 \begin{defn}
 Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Menge aller $k$-elementigen Teilmengen von $X$. 
@@ -294,7 +306,6 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	den Mengen $\binom{X}{k}$ und $\binom{X}{|X|-k}$ für eine $n$-elementige Teilmenge $X$ erstellt. 
 \end{aufg} 
 
-\section{Teilmengen} 
 
 \begin{thm}
 	Sei $X$ endliche Menge. Dann gilt $|2^X|=2^{|X|}$. 

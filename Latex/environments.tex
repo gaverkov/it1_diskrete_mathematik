@@ -10,6 +10,8 @@
 \newtheorem{AUFG}[THM]{Aufg}
 \newtheorem{LEM}[THM]{Lem}
 \newtheorem{KOR}[THM]{Kor}
+\newtheorem{PROP}[THM]{Prop}
+\newtheorem{THMDEFN}[THM]{Thm und Def}
 
 \definecolor{DefnColor}{rgb}{0.8,1,0.8}
 \definecolor{ThmColor}{rgb}{0.9,0.9,1}
@@ -26,6 +28,11 @@
 	\condclearpage\begin{mdframed}[linecolor=white,backgroundcolor=ThmColor]\begin{LEM}}{\end{LEM}\end{mdframed}}
 \newenvironment{kor}{
 	\condclearpage\begin{mdframed}[linecolor=white,backgroundcolor=ThmColor]\begin{KOR}}{\end{KOR}\end{mdframed}}
+\newenvironment{prop}{
+	\condclearpage\begin{mdframed}[linecolor=white,backgroundcolor=ThmColor]\begin{PROP}}{\end{PROP}\end{mdframed}}
+\newenvironment{thmdefn}{
+	\condclearpage\begin{mdframed}[linecolor=white,backgroundcolor=ThmColor]\begin{THMDEFN}}{\end{THMDEFN}\end{mdframed}}
+
 
 %\theoremstyle{theorem}
 %\swapnumbers

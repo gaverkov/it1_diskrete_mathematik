@@ -123,7 +123,7 @@ sind.
 \end{aufg}
 
 \begin{defn}
-Die \textbf{leere Menge} ist die Menge, die keine Elemente enthält; sie wird als $ \emptyset $ bzw. $\varnothing$ bezeichnet. 
+Die \textbf{leere Menge} ist die Menge, die keine Elemente enthält; sie wird als $ \emptyset $ bezeichnet. 
 \end{defn} 
 
 \begin{defn}[Potenzmenge]
@@ -227,11 +227,57 @@ Seinen $ A,B $ Mengen. $ A $ und $ B $ heißen genau dann \textbf{disjunkt}, wen
 und als $A \cupdot B$ bezeichnet. 
 \end{defn}
 
+\section{Tupel und Kreuzprodukte}
+
+\begin{defn}[Paare und das Kreuzprodukt] 
+	Für beliebige Objekte $ a,b $ kann man das \emph{(geordnete) Paar} $ (a,b) $ definieren. Das Paar $(a,b)$ besteht aus der ersten Komponente $a$ und der zweiten Komponente $b$. 
+	Die Gleichheit $ (a,b) = (c,d) $ von Paaren wird durch die Gleichheit $ a=c $ und $ b=d $ der jeweiligen Komponenten definiert.  Für Mengen $ A,B $ definiert man das \emph{Kreuzprodukt} (wird auch das \emph{kartesische Produkt} genannt) $ A \times B $ als die Menge
+	\[
+	A \times B := \{ (a,b) \,:\, a \in A, \ b \in B \}
+	\]
+	aller Paare bei denen die erste Komponente in $A$ und die zweite Komponente in $B$ ist. 
+\end{defn} 
+
+\begin{defn}[Tupel und Kreuzprodukt] 
+	Komplett analog zu (geordneten) Paaren definiert man auch (geordnete) Tripel $(a,b,c)$, (geordnete) Quadrupel $(a,b,c)$ und noch allgemeiner (geordnete) $n$-Tupel $(x_1,\ldots,x_n)$ mit $n \in \N_0$. Dem entsprechend betrachtet man auch das Kreuzprodukt $A \times B \times C$ von drei Mengen, das Kreuzprodukt $A \times B \times C \times D$ von vier Mengen und allgemein auch das Kreuzprodukt 
+	\[
+	X_1 \times \ldots \times X_n := \{ (x_1,\ldots,x_n) \,:\, x_1 \in X_1, \ldots , x_n \in X_n \} 
+	\]
+	von Mengen $ X_1,\ldots,X_n $.
+	
+	Das Element $ x_i $ mit $ i \in \is{1}{n} $ im $ n $-Tupel $ (x_1,\ldots,x_n) $ heißt die $ i $-te \emph{Komponente} des Tupels.
+	
+	Für eine Menge $ X $ führt man die Bezeichnung
+	\begin{equation*}
+		X^n := \underbrace{X \times \ldots \times X}_{n \:\text{mal}} = \{ (x_1,\ldots,x_n) : x_1,\ldots,x_n \in X \}
+	\end{equation*}
+	ein. 
+\end{defn} 
+
+
+\begin{aufg} Was stellen die folgenden Kreuzprodukte geometrisch dar? Zeichnen Sie diese Mengen:
+	\begin{itemize}
+		\item $ [0,1] \times [0,2] $, $ \{ 0 \} \times [0,2] $  und $ \{ 0,1 \} \times \{ 0,2 \} $ 
+		\item $ [0,1]^3 $, $ [0,1]^2 \times \{ 0 \} $, $ [0,1]^2 \times \{ 1 \} $  und $ \{ 0 \}^2 \times [0,1] $. 
+	\end{itemize}
+	\textbf{Hinweis:} Geometrische Darstellung von Teilmengen von $\R^n$ für $n \in \{2,3\}$ im kartesischen Koordinatensystem wird in den Kursen IT-2 und IT-3 nützlich sein. 
+\end{aufg}
+
+\begin{aufg}
+	Beim bekannten Spiel ``Schiffe versenken'' lässt sich das Spielfeld als die Menge $\{1,\ldots,10\}^2$ beschreiben, weil jedes Kästschen eines Feldes durch die Angabe von einem Paar $(x,y)$ mit $x,y \in \{1,\ldots,10\}$  beshcrieben werden können. Eine Platzierung eines 4er-Schiffs lässt sich dann als eine vierelementige Teilmengen von $\{1,\ldots,10\}^2$ beschreiben. Z.B.: 
+	\[ \{(1,2), (1,3),(1,4),(1,5)\}
+	\] und 
+	\[ \{(5,6),(6,6),(7,6),(8,6)\}
+	\] sind zwei mögliche Platzierungen. Beschreiben Sie die Menge aller möglichen Platzierungen eines 4er-Schiffs mit Hilfe der mathematischen Bezeichnungen, die Sie oben gelernt haben. 
+\end{aufg} 
+
+
 \section{Abbildungen}
 
 
 \begin{defn}
-Seien $ X,Y $ Mengen. Eine \textbf{Abbildung} $ f $ von $ X $ nach $ Y $ ist eine Vorschrift, die jedem $ x \in X $ genau ein Element aus $ Y $ zuordnet. Dieses Element aus $ Y $, das dem $x$ zugeordnet wird, wird durch $ f(x) $ bezeichnet. Wenn $ f $ eine Abbildung von $ X $ nach $ Y $ ist, dann bezeichnet man das als $ f : X \to Y $. Die Menge $ X $ heißt der \textbf{Definitionsbereich} von $ f $, $ Y $ heißt der \textbf{Wertebereich} von $ f $. Wenn der Wertebereich $Y$ von $f$ Teilmengen von $\R$ ist, so nennen wir $f : X \to Y$ eine \textbf{Funktion}. 
+Seien $ X,Y $ Mengen. Eine \textbf{Abbildung} $ f $ von $ X $ nach $ Y $ ist eine Vorschrift, die jedem $ x \in X $ genau ein Element aus $ Y $ zuordnet. Dieses Element aus $ Y $, das dem $x$ zugeordnet wird, wird durch $ f(x) $ bezeichnet. 
+Wenn $ f $ eine Abbildung von $ X $ nach $ Y $ ist, dann bezeichnet man das als $ f : X \to Y $. Die Menge $ X $ heißt der \textbf{Definitionsbereich} von $ f $, die Menge $ Y $ heißt der \textbf{Wertebereich} von $ f $. Wenn der Wertebereich $Y$ von $f$ Teilmengen von $\R$ ist, so nennen wir $f : X \to Y$ eine \textbf{Funktion}. Bei der Beschreibung von Abbildungen benutzt man auch die Bezeichnung $x \mapsto f(x)$, um zu verdeutlichen, dass $x$ auf $f(x)$ abgebildet wird. 
 \end{defn} 
 
 \begin{bem} 
@@ -273,6 +319,8 @@ In manchen Quellen benutzt man den Begriff Funktion als ein Synonym zum Begriff 
 	
 	$ f : 2^{\N} \to \N, f(A) := \min(A) $. Die Eingabe dieser Funktion ist keine Zahl sondern eine Menge, man hat z.B. $ f( \{ 2,7,43 \} ) = 2 $.
 	\item $ f : \N \to 2^\N, f(k) := \is{1}{k}.$ Die Rückgabe dieser Abbildung ist keine Zahl sondern eine Menge, z.B. $f(3) = \{1,2,3\}$. 
+	\item $(x,y) \mapsto (x,-y)$ ist eine vertikale Spiegelung $\R^2 \to \R^2$. 
+	\item $(x,y) \mapsto (-x,y)$ ist eine horizontale Spiegelung $\R^2 \to \R^2$. 
 \end{itemize}
 \end{bsp} 
 
@@ -296,8 +344,8 @@ Seien $ X,Y,A,B $ Mengen mit $ A \subseteq X $ und $ B \subseteq Y $. Sei $ f : 
 \begin{bsp}
 	Sei $ f : \R \to \R $ mit $ f(x) := x^2 $ für alle $ x \in \R $.
 	\begin{itemize}
-		\item $ f( [1,2] ) = [1,4] $ $ \nearrow $ Abb. 1
-		\item $ f^{-1}( [1,4] ) = [1,2] \cup [-2,-1] $ $ \nearrow $ Abb. 2
+		\item $ f( [1,2] ) = [1,4] $. 
+		\item $ f^{-1}( [1,4] ) = [1,2] \cup [-2,-1] $. 
 		\item
 		$ \begin{aligned}[t]
 			f^{-1}( [-7,8] ) &= \{ x \in \R : f(x) \in [-7,8] \} \\
@@ -323,7 +371,8 @@ Seien $ X,Y $ Mengen und sei $ f : X \to Y $. Dann heißt $ f $:
 \begin{bsp}
 	Untersuche folgende Funktionen auf Bijektivität:
 	\begin{itemize}
-		\item $ f : \R \to \R, f(x) := x^2 $ für alle $ x \in \R $\\
+		\item $ f : \R \to \R, f(x) := x^2 $
+		für alle $ x \in \R $\\
 		surjektiv ? nein, $ -1 \neq f(x) $ für alle $ x \in \R $\\
 		injektiv ? nein, $ f(x) = f(-x) $ für alle $ x \in \R $
 		\item $ f : \R \to [0,+\infty), f(x) := x^2 $ für alle $ x \in \R $\\
@@ -357,7 +406,7 @@ Seien $ X,Y,Z $ Mengen, $ f : X \to Y $ und $ g : Y \to Z $. Dann heißt $ g \ci
 
 
 \begin{defn}
-Sei $ X $ eine Menge. Dann heißt die Abbildung $ \id_X : X \to X $ mit $ \id_X(x) := x $ für alle $ x \in X $ die identische Abbildung auf $ X $. Man schreibt auch häufig $ \id $, wenn $ X $ nicht angegeben werden muss.
+Sei $ X $ eine Menge. Dann heißt die Abbildung $ \id_X : X \to X $ mit $ \id_X(x) := x $ für alle $ x \in X $ die identische Abbildung auf $ X $. Man schreibt auch häufig $ \id $, wenn die Wahl von  $ X $ aus dem Kontext klar ist. 
 \end{defn}
 
 \begin{bem}
@@ -368,28 +417,46 @@ Sei $ X $ eine Menge. Dann heißt die Abbildung $ \id_X : X \to X $ mit $ \id_X(
 	\end{itemize}
 \end{bem} 
 
-\section{Vereinigung und Durchschnitt einer indexierten Mengenfamilie}
+\section{Vereinigung und Durchschnitt von Mengenfamilien}
 
 \begin{defn}
-Seien $ I,X $ Mengen und sei $ A : I \to 2^X $. Man schreibt auch in diesem Fall $ A_i $ statt $ A(i) $ für $ i \in I $, $ (A_i)_{i \in I} $ ist eine Familie (Schar) von Teilmengen von $ X $.
+Seien $ I,X $ Mengen und sei $ A : I \to 2^X $. Man schreibt auch in diesem Fall $ A_i $ statt $ A(i) $ für $ i \in I $, $ (A_i)_{i \in I} $ ist eine \textbf{Familie} (bzw. \textbf{Schar}) von Teilmengen von $ X $.
 
-Für die Familie $ (A_i)_{i \in I} $ definiert man
+Für die Familie $ (A_i)_{i \in I} $ definiert man den \textbf{Durchschnitt} der Familie als 
 \begin{align*}
-	\text{den Durchschnitt} && \bigcap_{i \in I} A_i &:= \{ x \in X : x \in A_i \:\text{für alle}\: i \in I \},\\
-	\text{und} \\ 
-	\text{die Vereinigung} && \bigcup_{i \in I} A_i &:= \{ x \in X : x \in A_i \:\text{für ein}\: i \in I \}.
+	\bigcap_{i \in I} A_i &:= \{ x \in X : x \in A_i \:\text{für alle}\: i \in I \},
+\end{align*}
+und die \textbf{Vereinigung} der Familie als 
+\begin{align*}
+	\bigcup_{i \in I} A_i &:= \{ x \in X : x \in A_i \:\text{für ein}\: i \in I \}.
 \end{align*}
 \end{defn} 
 
-\begin{bsp}
-	Sei $ \alpha \in (0,\pi) $ und $ v_0 > 0 $ ($ \nearrow $ Abb. 3). $ K_\alpha $ ist die Flugbahn beim Auswurf eines Objekts mit der Anfangsgeschwindigkeit $ v_0 $ unter dem Winkel $ \alpha $ zu Erde.
-	\begin{gather*}
-		K_\alpha := \{ (x,y) \in R^2 : x = \cos(\alpha)t, y = \sin(\alpha)t - \frac{gt^2}{2}, y \geq 0, t \geq 0 \}\\
-		( K_\alpha )_{\alpha \in (0,\pi)}\\
-		\bigcap_{\alpha \in (0,\pi)} K_\alpha = \{ (0,0) \}\\
-		\bigcup_{\alpha \in (0,\pi)} K_\alpha = \text{alle Werte unter der Parabel ($ \nearrow $ Abb. 4)}
-	\end{gather*}
-\end{bsp}
+\begin{bsp} 
+	Die Familie $(T_a)_{a \in \R}$ mit 
+	\[
+		T_a := \setcond{ (x,y) }{x \in \R, \ y =  a^2 + 2  a (x-a)}
+	\]
+	ist die Familie aller Tangenten zur Parabel 
+	\[
+	 	P = \setcond{ (x,y) }{x \in \R, \ y = x^2}. 
+	 \]
+	 Für die Vereinigung dieser Familie gilt
+	 \[
+	 	\bigcup_{a \in \R} T_a  = \setcond{ (x,y)}{x \in \R, \ y \le x^2},
+	 \]
+	 die Vereinigung ist somit die Menge aller Punkte, die unterhalb oder auf der Parabel $P$ liegen. 
+	 
+	 Man betrachte noch die Familie $(H_a)_{a \in \R}$ der Halbräume 
+	 \[
+	 		H_a := \setcond{(x,y)}{x \in \R, \ y \ge a^2 + 2 a (x-a)}. 
+	 \]
+	 Hierbei ist $H_a$, die Menge aller Punkte die oberhalb oder auf der Tangente $T_a$ liegen. Für den Durchschnitt dieser Familie gilt 
+	 \[
+	 		\bigcap_{a \in \R} H_a := \setcond{ (x,y) }{y \ge x^2},
+	 \]
+	 dieser Durchschnitt ist somit die Menge aller Punkte, die oberhalb oder auf der Parabel $P$ liegen. 
+\end{bsp} 
 
 \section{Summen und Produkte}
 
@@ -433,49 +500,6 @@ In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ der \emph{Summand} und i
 \end{bsp} 
 
 
-\section{Tupel und Kreuzprodukte}
-
-\begin{defn}[Paare und das Kreuzprodukt] 
-Für beliebige Objekte $ a,b $ kann man das \emph{(geordnete) Paar} $ (a,b) $ definieren. Das Paar $(a,b)$ besteht aus der ersten Komponente $a$ und der zweiten Komponente $b$. 
-Die Gleichheit $ (a,b) = (c,d) $ von Paaren wird durch die Gleichheit $ a=c $ und $ b=d $ der jeweiligen Komponenten definiert.  Für Mengen $ A,B $ definiert man das \emph{Kreuzprodukt} (wird auch das \emph{kartesische Produkt} genannt) $ A \times B $ als die Menge
-\[
-A \times B := \{ (a,b) \,:\, a \in A, \ b \in B \}
-\]
-aller Paare bei denen die erste Komponente in $A$ und die zweite Komponente in $B$ ist. 
-\end{defn} 
-
-\begin{defn}[Tupel und Kreuzprodukt] 
-	Komplett analog zu (geordneten) Paaren definiert man auch (geordnete) Tripel $(a,b,c)$, (geordnete) Quadrupel $(a,b,c)$ und noch allgemeiner (geordnete) $n$-Tupel $(x_1,\ldots,x_n)$ mit $n \in \N_0$. Dem entsprechend betrachtet man auch das Kreuzprodukt $A \times B \times C$ von drei Mengen, das Kreuzprodukt $A \times B \times C \times D$ von vier Mengen und allgemein auch das Kreuzprodukt 
-	\[
-		X_1 \times \ldots \times X_n := \{ (x_1,\ldots,x_n) \,:\, x_1 \in X_1, \ldots , x_n \in X_n \} 
-	\]
-	 von Mengen $ X_1,\ldots,X_n $.
-	 
-	 Das Element $ x_i $ mit $ i \in \is{1}{n} $ im $ n $-Tupel $ (x_1,\ldots,x_n) $ heißt die $ i $-te \emph{Komponente} des Tupels.
-	 
-Für eine Menge $ X $ führt man die Bezeichnung
-\begin{equation*}
-	X^n := \underbrace{X \times \ldots \times X}_{n \:\text{mal}} = \{ (x_1,\ldots,x_n) : x_1,\ldots,x_n \in X \}
-\end{equation*}
-ein. 
-\end{defn} 
-
-
-\begin{aufg} Was stellen die folgenden Kreuzprodukte geometrisch dar? Zeichnen Sie diese Mengen:
-	\begin{itemize}
-		\item $ [0,1] \times [0,2] $, $ \{ 0 \} \times [0,2] $  und $ \{ 0,1 \} \times \{ 0,2 \} $ 
-		\item $ [0,1]^3 $, $ [0,1]^2 \times \{ 0 \} $, $ [0,1]^2 \times \{ 1 \} $  und $ \{ 0 \}^2 \times [0,1] $. 
-	\end{itemize}
-	\textbf{Hinweis:} Geometrische Darstellung von Teilmengen von $\R^n$ für $n \in \{2,3\}$ im kartesischen Koordinatensystem wird in den Kursen IT-2 und IT-3 nützlich sein. 
-\end{aufg}
-
-\begin{aufg}
-	Beim bekannten Spiel ``Schiffe versenken'' lässt sich das Spielfeld als die Menge $\{1,\ldots,10\}^2$ beschreiben, weil jedes Kästschen eines Feldes durch die Angabe von einem Paar $(x,y)$ mit $x,y \in \{1,\ldots,10\}$  beshcrieben werden können. Eine Platzierung eines 4er-Schiffs lässt sich dann als eine vierelementige Teilmengen von $\{1,\ldots,10\}^2$ beschreiben. Z.B.: 
-	\[ \{(1,2), (1,3),(1,4),(1,5)\}
-	\] und 
-	\[ \{(5,6),(6,6),(7,6),(8,6)\}
-	\] sind zwei mögliche Platzierungen. Beschreiben Sie die Menge aller möglichen Platzierungen eines 4er-Schiffs mit Hilfe der mathematischen Bezeichnungen, die Sie oben gelernt haben. 
-\end{aufg} 
 
 
 \section{Prädikate und Quantoren}
@@ -490,15 +514,29 @@ Sei $ X $ Menge. Dann heißt $ P : X \to \{ \text{falsch},\text{wahr} \} $ \emph
 \end{bem}
 
 \begin{bsp}
-$ P : \N \to \{ \text{falsch},\text{wahr} \}$ mit $P(k) := $ \textquote{$ k(k+1) $ ist durch $3$ teilbar}.
+$ P : \N \to \{ \false,\true \}$ mit 
+\[
+	P(k) :=  \text{``$k(k+1)$ ist durch  $ 3$  teilbar''}. 
+\]
 \end{bsp} 
 
 \begin{bsp}
-$ P : \R^2 \to \{ \text{falsch},\text{wahr} \}$ mit $P(x,y) := $ \textquote{$ x^2 + y^2 \le 1 $} ist die Eigenschaft  ``der Punkt $(x,y)$ hat den Abstand höchstens $1$ zum Punkt $(0,0)$''. 
+$ P : \R^2 \to \{ \false , \true \}$ mit 
+\[
+	P(x,y) := \text{``Es gilt $x^2 + y^2 \le 1$''}.
+\] 
+ist die Eigenschaft  ``der Punkt $(x,y)$ hat den Abstand höchstens $1$ zum Punkt $(0,0)$''. 
 \end{bsp} 
 
 \begin{bem} 
-	Für eine gegebene Menge $X$ hat man eine natürliche Bijektion zwischen der Menge $ \{ \text{falsch},\text{wahr} \}^X$ aller Prädikate auf $X$ und der Menge $2^X$ aller Teilmengen von $X$. Jedes Prädikat $P : X \to \{ \text{falsch},\text{wahr} \}$ erzeugt die Menge $\setcond{x \in X }{P(x)}$ und jede Menge $A \subseteq X$ erzeugt das Prädikat $P (x) :=$ \textquote{$x \in X$}.
+	Für eine gegebene Menge $X$ hat man eine natürliche Bijektion 
+	\[
+		 \{ \false,\true \}^X \to 2^X
+	\] 
+	Jedes Prädikat $P : X \to \{ \false,\true \}$ erzeugt die Menge $A:=\setcond{x \in X }{P(x)}$. Umgekehrt entspricht jede Menge $A \subseteq X$ dem Prädikat 
+	\[
+		P (x) := \text{``Es gilt $x \in A$''}. 
+	\]
 \end{bem} 
 
 
@@ -588,7 +626,7 @@ Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so sch
 
 
 \begin{defn}
-Sei $ X $ Menge und $ \sim $ eine Relation auf $ X $. Dann heißt $ \sim $ eine \textbf{Äquivalenzrelation}, falls:
+Sei $ X $ Menge und $ \sim $ eine Relation auf $ X $. Dann heißt $ \sim $ eine \textbf{Äquivalenz\-relation}, falls Folgendes gilt: 
 \begin{enumerate}
 	\item $ \sim $ ist \emph{reflexiv}, d.h. $ x \sim x $ für alle $ x \in X $.
 	\item $ \sim $ ist \emph{symmetrisch}, d.h. $ x \sim y $ ist äquivalent zu $ y \sim x $ für alle $ x \in X $.
@@ -598,22 +636,14 @@ Für eine Äquivalenzrelation $ \sim $ auf einer Menge $ X $ und ein $ x \in X $
 \begin{equation*}
 	[x]_\sim := \{ y \in X : x \sim y \}
 \end{equation*}
-die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklassen von $ \sim $ ist
+die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklassen von $ \sim $ ist
 \begin{equation*}
 	X/{\sim} := \{ [x]_\sim : x \in X \}. % {\sim} supresses space between to "/"
 \end{equation*}
 \end{defn} 
 
 \begin{bsp}\
-\begin{itemize}
-	\item Sei $ V $ endliche Menge und sei $ \binom{V}{2} := \{ \{ u,v \} : u,v \in V, u \neq v \} $. Das Paar $ (V,E) $ mit $ E \subseteq \binom{V}{2} $ heißt \emph{Graph} mit Kantenmenge $ V $ und Knotenmenge $ E $.
-	
-	$ G = (V,E), G = \{ 1,\ldots,6 \}, E = \{ \{ 1,2 \}, \{ 2,3 \}, \{ 3,4 \}, \{ 4,1 \}, \{ 1,3 \}, \{ 5,6 \} \} $
-	
-	Für $ a,b \in V $ heißt $ b $ von $ a $ aus \emph{erreichbar} (im Graphen $ G = (V,E) $), falls ein $ k \in \N_0 $ und Elemente $ u_0,\ldots,u_k \in V $ existieren mit $ u_0 = a $, $ u_k = b $ und $ \{ u_i,u_{i+1} \} \in E $ für alle $ i \in \N_0 $ mit $ i < k $.
-	
-	Die Erreichbarkeit ist eine Äquivalenzklasse auf $ V $.	Die Äquivalenzklassen (Zusammenhangskomponenten) für dieses Beispiel sind $ \{ 1,2,3,4 \} $ und $ \{ 5,6 \} $.
-	
+\begin{itemize}	
 	\item Sei $ m \in \N $. Für $ a,b \in \Z $ sagt man, dass $ a $ kongruent zu $ b $ modulo $ m $ ist, falls $ a-b \in m\Z $, wobei $ m\Z := \{ mz : z \in Z \} $.
 	
 	Schreibweise: $ a \equiv b \mod{m} $.
@@ -624,7 +654,7 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 	
 	Diese Relation ist eine Äquivalenzrelation (Aufgabe).
 	
-	D.h. jede rationale Zahl ist eine Äquivalenzklasse von diesem $ \sim $.
+	Formal kann man die Menge der rationalen Zahlen als die Menge der Äquivalenzklassen bzgl. dieser Äquivalenzrelation umsetzen. 
 \end{itemize}
 \end{bsp}
 
@@ -647,11 +677,6 @@ die Äquivalenzklasse von $ x $ bzgl. $ \sim $. Die Menge aller Äquivalenzklass
 	\begin{itemize}
 		\item $2^X$ mit Inklusion. 
 		\item $\N$ mit Teilbarkeit. 
-		\item Substring-Relation auf Strings. Ist $A$ eine endliche nichtleere Menge so heißt 
-		\[
-				A^\ast = \bigcup_{n \in \N_0} A^n
-		\]
-		die Menge der Strings über dem Alphabet $A$. Die Menge $\{0,1\}^\ast$ heißt die Menge der binären Strings. In diesem Kontext schreibt man oft $a_1 \cdots a_n$ an der Stelle von $(a_1,\ldots,a_n)$, etwa $10011 \in \{0,1\}^\ast$ und nicht $(1,0,1,1) \in \{0,1\}^\ast$. 
 	\end{itemize} 
 \end{bsp} 
 
