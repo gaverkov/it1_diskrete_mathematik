@@ -20,7 +20,7 @@ jobs:
       run: "sudo apt update && sudo apt install make curl hub texlive-base texlive-latex-base texlive-latex-extra texlive-science texlive-xetex texlive-latex-recommended texlive-publishers texlive-pictures texlive-lang-german -y"
     
     - id: CloneRepo
-      run: "hub clone it1_diskrete_mathematik"
+      run: "git clone https://github.com/gaverkov/it1_diskrete_mathematik.git"
       
     - id: GeneratePdfFiles
       working-directory: "it1_diskrete_mathematik/Latex/"
