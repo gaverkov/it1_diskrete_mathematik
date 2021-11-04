@@ -7,7 +7,7 @@ Wir sagen, dass wir die Elemente der  Menge $X$ mit Hilfe der Elemente der Menge
 \end{defn}
 
 \begin{defn} 
-	Für eine endliche nichtleere Menge $A$ und ein $n \in \N_0$ nennt man die Elemente von 
+	Für eine nichtleere Menge $A$ und ein $n \in \N_0$ nennt man die Elemente von 
 	\[
 		A^n = \underbrace{A\times\ldots\times A}_{n \ \text{mal}}
 	\]
@@ -80,7 +80,7 @@ Die Konstruktion im Beweis von \eqref{kod:paare} direkt vom Fall $n=2$ auf ein a
 \end{proof} 
 
 
-\section{Stellenwertsysteme: Kodierung von Zahlen}
+\section{Stellenwertsysteme: Darstellung von Zahlen}
 
 \begin{thm}[Darstellung natürlicher Zahlen in einem Stellenwertsystem] \label{thm:stellenwert}
 	Sei $b \in \Z_{\ge 2}$. Dann besitzt jedes $z \in \N$ eine eindeutige Darstellung als 
@@ -218,20 +218,21 @@ Es folgt: $\sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i $. Also ist die Abbildun
 \end{bsp}
 
 \begin{bem} 
-Um zu sehen, wie man im Computer Daten mit den Symbolen $0$ und $1$ darstellt, kann unter Linux oder Mac der hexdump-Befehl benutzt werden:
-{\small 
+Um zu sehen, wie man im Computer Daten mit den Symbolen $0$ und $1$ darstellt, kann unter Linux oder Mac der hexdump-Befehl benutzt werden. Zum Befehl
+{\scriptsize 
 	\begin{verbatim}
-		echo "aaabbbb" | hexdump -C
+echo "abcdefghijklmnopqrstuvwxyz" | hexdump -C
 	\end{verbatim}
 }
-Ausgabe:
-{\small 
+erhält man die Ausgabe 
+{\scriptsize 
 	\begin{verbatim}
-		00000000  61 61 61 62 62 62 62 0a                           |aaabbbb.|
-		00000008
+00000000  61 62 63 64 65 66 67 68  69 6a 6b 6c 6d 6e 6f 70  |abcdefghijklmnop|
+00000010  71 72 73 74 75 76 77 78  79 7a 0a                 |qrstuvwxyz.|
+0000001b
 	\end{verbatim}
 }
-Hier ist $61$ die hexadezimale Unicode-Kodierung des Buchstaben $a$, $62$ die hexadezimale Unicode-Kodierung des Buchstaben $b$ und $0a$ die hexadezimale Unicode-Kodierung von `neue Zeile'. 
+Hier ist $61$ die hexadezimale Kodierung des Buchstaben $a$, $62$ die hexadezimale Unicode-Kodierung des Buchstaben $b$ und $0a$ die hexadezimale Unicode-Kodierung von `neue Zeile'. 
 \end{bem} 
 
 
@@ -302,17 +303,25 @@ einführen kann. Mit diesen Verknüpfungen ist $\Z /  m$ ein kommutativen Ring m
 \end{defn}
 
 \begin{bem}
-		Die vorigen Definitionen können wir auch mit anderen Mengen an der Stelle von $\{0,1\}^\ast$ benutzen, wenn für diese Mengen eine Kodierung mit Bit-Strings zugrunde liegt. Zum Beispiel: 
-		\begin{itemize} 
-			\item Das Problem
+		Die vorigen drei Definitionen werden wir auch mit anderen Mengen an der Stelle von $\{0,1\}^\ast$ benutzen, unter der Voraussetzung, dass für diese Mengen eine Kodierung mit Bit-Strings festgelegt ist:
+		\begin{itemize}
+				\item Ein Rechenproblem ist eine Eingabe-Rückgabe-Relation $\Pi \subseteq  X \times Y$ für die Menge $X$ aller möglichen Eingaben (mit einer festgelegten Kodierung der Eingabe) und die Menge $Y$ aller möglichen Rückgaben (mit einer festgelegten Kodierung der Rückgabe). 
+				\item Analog kann das Problem der algorithmischen Berechnung einer Abbildung $f : X \to Y$ beschrieben werden, sobald Kodierungen für $X$ und $Y$ festgelegt sind. 
+				\item Entscheidungsprobleme entsprechen der algorithmischen Berechnung der Prädikate $P : X \to \{\false,\true\}$. 
+		\end{itemize} 
+\end{bem} 
+
+\begin{bsp}\ 
+	\begin{itemize} 
+		\item Das Problem
 		\[
 		\setcond{ (a,p) \in \N \times \Z_{\ge 2} }{p \ \text{ist Primfaktor von} \ a}
 		\]
 		kann mit Worten folgendermaßen formuliert werden: entscheide, für ein gegebenes $a \in \N$, ob $a$ einen Primfaktor $p \in \Z_{\ge 2}$ besitzt und berechne ggf. einen solchen Faktor. 
-			\item Die Berechnung von $f : \Z \times \N_0 \to \N$ mit $f(a,k):= a^k$ kann mit Worten so formulieren, für gegebene $a \in \Z,k \in \N$ berechne die $k$-te Potenz von $a$. 
-			\item Das algorithmische  Problem zur Sprache der (Bit-Kodierungen von) Primzahlen ist zu entscheiden, ob die Eingabe (die Bit-Kodierung einer) Primzahl ist. Mit Worten: entscheide, ob eine gegebene Zahl $z \in \N$ eine Primzahl ist. 
-		\end{itemize} 
-\end{bem} 
+		\item Die Berechnung von $f : \Z \times \N_0 \to \N$ mit $f(a,k):= a^k$ kann mit Worten so formulieren, für gegebene $a \in \Z,k \in \N$ berechne die $k$-te Potenz von $a$. 
+		\item Das algorithmische  Problem zur Sprache der (Bit-Kodierungen von) Primzahlen ist zu entscheiden, ob die Eingabe (die Bit-Kodierung einer) Primzahl ist. Mit Worten: entscheide, ob eine gegebene Zahl $z \in \N$ eine Primzahl ist. 
+	\end{itemize} 
+\end{bsp} 
 
 \section{Variablen, Zuweisungen und Kontrollstrukturen}
 
@@ -323,33 +332,103 @@ Zur Beschreibung von Algorithmen unabhängig von einer konkreten Programmierspra
 	\item Beschreibung in einem sogenannten Pseudocode. 
 	\item Umsetzung in einer Programmiersprache. 
 \end{enumerate} 
-Im Gegensatz zu einem richtigen Code, der sehr oft programmiertechnische Details einer konkreten Programmiersprache beinhaltet, kann man im Pseudocode solche Details vermeiden. Beim Pseudocode gibt es meistens nur Richtlinien und keine festen Vorgaben, welche syntaktische Konstrukte erlaubt sind. Mit Pseudocode kann man Algorithmen beschreiben, ohne auf die technischen Details der Implementierung einzugehen, oder die Syntax der jeweiligen Programmiersprache im Detail beachten zu müssen. In seiner klassischen Form ahmt der Pseudocode die Programmiersprache ALGOL 60 nach, deren Syntax viele modernere Programmiersprachen beeinflusst hat. Die bekannten Kontrollstrukturen wie if, for usw. wurden Z.B. stammen aus ALGOL. Die Beschreibung von Algorithmen in einem ALGOL-ähnlichen Pseudocode ist in wissenschaftlichen Publikationen sehr verbreitet. 
+Im Gegensatz zu einem richtigen Code, der sehr oft programmiertechnische Details einer konkreten Programmiersprache beinhaltet, kann man im Pseudocode solche Details vermeiden. Beim Pseudocode gibt es meistens nur Richtlinien und keine festen Vorgaben darüber, welche syntaktische Konstrukte eingesetzt werden. In seiner klassischen Form ahmt der Pseudocode die Programmiersprache ALGOL 60 nach, deren Syntax die allermeisten der heutzutage verbreiteten Programmiersprachen beeinflusst hat. Die bekannten Kontrollstrukturen wie if, for usw.  stammen z.B. aus ALGOL. Die Beschreibung von Algorithmen in einem ALGOL-ähnlichen Pseudocode ist in wissenschaftlichen Publikationen sehr verbreitet. 
 
-Ein ziemlich wesentlicher Nachteil des Pseudocodes besteht darin, dass man ihn nicht auf einem Rechengerät ausführen kann. Des Weiteren sind die programmiertechnische Details aus der praktischen Sicht sehr wichtig: sie können  die praktische Effizienz der Algorithmen (tatsächliche Laufzeit usw.) erheblich beeinflussen. 
+Ein Nachteil des Pseudocodes besteht darin, dass man ihn nicht auf einem Computer testen bzw. ausführen kann. Des Weiteren sind programmiertechnische Details aus der praktischen Sicht wichtig: sie können  die praktische Effizienz der Algorithmen (tatsächliche Laufzeit usw.) erheblich beeinflussen. 
 \end{bem} 
 
-\begin{bem} 
-Eine \emph{Programm-Variable} ist ein Behälter für Werte bzw. Daten. Der Wert der Variable kann durch eine Zuweisung festgelegt werden. Man betrachte z.B. die folgenden zwei Zeilen:
+\begin{defn} 
+Eine \textbf{Algorithmus}- bzw. \textbf{Programm-Variable} ist ein Behälter für Werte bzw. andere Daten, die man mit Hilfe von Bit-Strings darstellen kann. 
 
+Da man auch mit Variablen arbeiten kann, deren Wert keine Zahl ist, nennt man Variablen auch allgemeiner \textbf{Objekte} und deren Wert nennt man auch gerne den \textbf{Zustand} eines Objektes. 
+
+Man beachte, dass man den Begriff Objekt nicht nur in der objektorientierten Programmierung sondern auch allgemein in der Programmierung in dem oben beschriebenen allgemein Sinn benutzt. Der Zustand eines Objekts kann während der Ausführung mit Hilfe von verschiedenen Befehlen und Operationen geändert werden. 
+
+Der Zustand eines Objekts kann durch eine Zuweisung geändert werden. Diese hat das Format: 
+Die Zuweisung hat das Format: 
+\begin{align*}
+	\text{OBJEKT} := \text{AUSDRUCK} 
+\end{align*} 
+Hierbei kann die linke Seite der Name des Objekts sein oder auch ein Ausdruck, der ein Objekt festlegt. Die rechte ist ein Ausdruck, der ausgewertet werden kann. Eine weitere Bezeichnung, die man im Pseudocode für die Zuweisung benutzt ist $\leftarrow$. 
+\end{defn} 
+
+
+\begin{bsp} Wir führen den folgenden sehr kurzen Pseudocode manuell aus: 
 \begin{center}
 	\begin{algorithmic}[1]
-		\STATE $x:=5$
+		\STATE $x:=5$ 
 		\STATE $x:=2 \cdot x + 4$
 	\end{algorithmic}
 \end{center}
-Hier wird in der ersten Zeile einer Variablen $x$ der Wert $5$ zugewiesen. Mit dem Symbol $:=$ bezeichnen wir im Pseudocode die Zuweisung. In der zweiten Zeile wird der Variablen $x$ ein neuer Wert zugewiesen, wobei man sich bei der Zuweisung in der rechten Seite auf den aktuellen Wert bezieht. Damit kann man sich die rechte Seite als Eingabe und die linke Seite als Ausgabe der Zuweisung vorstellen.
-\end{bem} 
+
+Hier wird in der ersten Zeile einer Variablen $x$ der Wert $5$ zugewiesen. 
+In der zweiten Zeile wird der Variablen $x$ ein neuer Wert zugewiesen, wobei man sich bei der Zuweisung in der rechten Seite auf den aktuellen Wert bezieht. Der Verlauf der Ausführung ist somit wie folgt. 
+
+Nach der Ausführung der ersten Zeile ist ein Objekt mit dem Namen $x$ entstanden, dessen aktueller Wert gleich $5$ ist: 
+
+\begin{center} 
+\begin{tabular}{r|l}
+	Variable & Wert
+	\\ \hline 
+	$x$ & $5$ 
+\end{tabular} 
+\end{center} 
+
+Nach der Auswertung der rechten Seite in der zweiten Zeile ist ein Objekt ohne Namen und mit dem Wert $2 \cdot 5 + 4 = 14$ entstanden. 
+
+\begin{center} 
+\begin{tabular}{r|l}
+	Variable & Wert
+	\\ \hline 
+	$x$ & $5$  \\
+	 & $14$ 
+\end{tabular} 
+\end{center} 
+
+Nach der Ausführung der Zuweisung in der zweiten Zeile hat man dann
+
+\begin{center} 
+	\begin{tabular}{r|l}
+		Variable & Wert
+		\\ \hline 
+		$x$ & $14$  
+	\end{tabular} 
+\end{center} 
+\end{bsp} 
+
+
+\begin{defn}
+	Programmiersprachen, bei denen die Berechnungen auf den Objekten basieren, deren Zustand sich während der Ausführung ändert nennt man \textbf{imperativ}. 
+\end{defn} 
 
 \begin{bem}
-Um mit den Variablen und Daten zu arbeiten benutzt man sogenannte \emph{Kontrollstrukturen}. Davon gibt es zwei Typen:
-\begin{itemize}
-	\item \emph{Verzweigungen}: \texttt{if-then}, \texttt{if-then-else}
-	\item \emph{Schleifen}: \texttt{for}, \texttt{while}, \texttt{repeat-until}
-\end{itemize}
+	Die interne Sprache der Prozessoren (Assembly) ist imperativ, da sie auf den Befehlen basiert, die den Zustand der Register im Speicher und im Prozessor ändern. 
 \end{bem} 
 
-\begin{bem} 
-Als erstes Beispiel sei hier ein Code angegeben, der die Werte der Variablen $x$ und $y$ vertauscht, wenn am Anfang $x>y$ gilt: 
+\begin{defn} \label{def:kontroll:strukt}
+Die \textbf{Kontrollstrukturen} einer imperativen Sprache unterteilen sich in die folgenden Arten: 
+\begin{itemize}
+	\item \emph{Verzweigungen}: 
+		\begin{itemize} 
+			\item[] \texttt{if-then}: Ausführung des Then-Blocks, nur wenn die If-Bedingung erfüllt ist. 
+			\item[] \texttt{if-then-else}.  Ausführung des Then-Blocks, nur wenn die If-Bedingung erfüllt ist, und Ausführung des Else-Blocks, nur wenn die If-Bedingung nicht erfüllt ist. 
+		\end{itemize} 
+	\item \emph{Schleifen}: 
+		\begin{itemize} 
+			\item[] \texttt{for}: Iterieren über aufeinanderfolgende ganzzahlige Werte $a,\ldots,b$. Bei einer Schleife mit $i:=a,\ldots,b$ wird der For-Block (auch Rumpf der For-Schleife genannt) für alle $i$ von $a$ bis $b$ (in dieser Reihenfolge) ausgeführt. 
+			\item[] \texttt{while}: Solange die While-Bedingung erfüllt ist, den While-Block ausführen.
+			\item[] \texttt{repeat-until}: Den Repeat-Block ausführen. Wenn die Until-Bedingung wahr ist, zur nächsten Zeile kommen. Ansonsten wieder den Repeat-Block ausführen usw. 
+		\end{itemize} 
+	\item \emph{Sprungbefehl} \texttt{goto}: Übergang zur gegebenen Zeile des Programms/Algorithmus. 
+\end{itemize}
+\end{defn} 
+
+\begin{bem}
+	Es stellt sich heraus, dass man \texttt{goto} und \texttt{if-then} alle anderen Kontrollstrukturen aus Definition~\ref{def:kontroll:strukt} umsetzen kann. Das Ziel der redundanten Kontrollstrukturen ist, die Lesbarkeit des Codes bzw. der Algorithmen zu erhöhen. 
+\end{bem} 
+
+\begin{bsp} 
+Hier ist ein Pseudocode, der die Werte der Variablen $x$ und $y$ vertauscht, wenn am Anfang $x>y$ gilt: 
 \begin{center}
 	\begin{algorithmic}[1]
 		\IF{$x > y$}
@@ -363,35 +442,35 @@ Das heißt, die drei Zuweisungen werden genau dann ausgeführt wenn beim Erreich
 
 If-then-else ist analog aufgebaut. Im else-Teil stehen die Befehle, die ausgeführt werden, wenn die gegebene Bedingung \emph{nicht} erfüllt ist. 
 Die Verzweigungen lassen sich nach Belieben verschachteln um komplexere Handlungsanweisungen aufzubauen.
-\end{bem} 
+\end{bsp} 
 
-\begin{bem} 
-Ein \emph{Array} $A$ der Länge $n$ ist eine Liste aus $n$ Variablen, wobei die Variablen mit aufeinanderfolgenden ganzen Zahlen indiziert sind. In den allermeisten Programmiersprachen, einschließlich C und C++, werden die Arrays beginnend mit $0$ indiziert. Bei Indizierung ab $1$ (die wir im Pseudocode dieser Vorlesung benutzen) ist ein Array~$A$ der Länge $n$ aus den Variablen $A[1],\ldots,A[n]$ zusammengesetzt, auf welche man durch die Angabe des Index $i$ zugreifen kann. Die Variable $A[i]$ heißt die \emph{$i$-te Komponente}, oder das \emph{$i$-te Element} des Arrays $A$. Die Anzahl der Komponenten eines Arrays $A$ wird als \emph{Länge} von $A$ bezeichnet und mit $\Laenge[A]$ notiert.
-\end{bem} 
+\begin{defn} 
+Ein \textbf{Array} $A$ der Länge $n$ ist eine Liste aus $n$ Variablen, wobei die Variablen mit aufeinanderfolgenden ganzen Zahlen indiziert sind. In den allermeisten Programmiersprachen werden die Arrays beginnend mit $0$ indiziert. Bei Indizierung ab $0$ ist ein Array~$A$ der Länge $n$ aus den Variablen $A[0],\ldots,A[n-1]$ zusammengesetzt, auf welche man durch die Angabe des Index $i$ zugreifen kann. Die Variable $A[i]$ heißt die \emph{$i$-te Komponente}, oder das \emph{$i$-te Element} des Arrays $A$. Die Anzahl der Komponenten eines Arrays $A$ wird als \emph{Länge} von $A$ bezeichnet und mit $\Laenge[A]$ notiert.
+\end{defn} 
 
-\begin{bem} 
+\begin{bsp} 
 Wir illustrieren nun eine andere Kontrollstruktur, die \emph{for}-Schleife, indem wir zeigen, wie man mit ihrer Hilfe die Summe der Elemente eines $n$-elementigen Arrays bestimmen kann. 
 
 \begin{center}
 	\begin{algorithmic}[1]
 		\STATE $S:=0$
-		\FOR{$i:=1,\ldots,\Laenge[A]$}
+		\FOR{$i:=0,\ldots,\Laenge[A]-1$}
 		\STATE $S:=S+A[i]$
 		\ENDFOR
 	\end{algorithmic}
 \end{center}
-\end{bem} 
+\end{bsp} 
 
-\begin{bem} 
-Eine \emph{while}-Schleife ist eine Kontrollstruktur, die aus dem Rumpf und der Bedingung besteht, wobei die Befehle des \emph{Rumpfs} iterativ ausgeführt werden, solange die \emph{Bedingung} erfüllt ist. In der \emph{while}-Schliefe steht die Bedingung vor dem Rumpf, man sagt sie ist \emph{kopfgesteuert}. In manchen Programmiersprachen gibt es auch \emph{fußgesteuerte} Schleifen, wie z.B. die \emph{repeat-until}-Schleife, bei denen die Bedingung nach dem Rumpf steht.
-\end{bem} 
+%\begin{bem} 
+%Eine \emph{while}-Schleife ist eine Kontrollstruktur, die aus dem Rumpf und der Bedingung besteht, wobei die Befehle des \emph{Rumpfs} iterativ ausgeführt werden, solange die \emph{Bedingung} erfüllt ist. In der \emph{while}-Schliefe steht die Bedingung vor dem Rumpf, man sagt sie ist \emph{kopfgesteuert}. In manchen Programmiersprachen gibt es auch \emph{fußgesteuerte} Schleifen, wie z.B. die \emph{repeat-until}-Schleife, bei denen die Bedingung nach dem Rumpf steht.
+%\end{bem} 
 
-\begin{bem} 
+\begin{bsp} 
 Nachfolgend ein Beispiel, das zeigt wie man die Komponenten eines Arrays mit Hilfe einer while-Schleife umkehren kann:
 \begin{center}
 	\begin{algorithmic}[1]
-		\STATE $i:=1$
-		\STATE $j:=\Laenge[A]$
+		\STATE $i:=0$
+		\STATE $j:=\Laenge[A]-1$
 		\WHILE{$i<j$}
 		\STATE $A[i]$ und $A[j]$ vertauschen 
 		\STATE $i:=i+1$ \COMMENT{zum nächsten $i$}
@@ -399,7 +478,7 @@ Nachfolgend ein Beispiel, das zeigt wie man die Komponenten eines Arrays mit Hil
 		\ENDWHILE
 	\end{algorithmic}
 \end{center}
-\end{bem} 
+\end{bsp} 
 
 \begin{bem} 
 Im Pseudocode nutzen wir hier das Symbol $\triangleright$ für Kommentare, die den Zweck haben einzelne Abschnitte des Codes zu erläutern.
@@ -409,9 +488,9 @@ Im Pseudocode nutzen wir hier das Symbol $\triangleright$ für Kommentare, die d
 \section{Prozeduren und Arten der Parameterübergabe}
 \label{sect:prozeduren}
 
-\begin{bem}
-Eine \emph{Prozedur} (Funktion, Unterprogramm) ist ein Code innerhalb eines Programms mit eigener Eingabe. 
-\end{bem} 
+\begin{defn}
+Eine \textbf{Prozedur} bzw. eine \textbf{Programm-Funktion} bzw. ein \textbf{Unterprogramm} ist ein Code innerhalb eines Programms mit eigener Eingabe und Rückgabe. Prozeduren ohne Rückgabe sind auch möglich. 
+\end{defn} 
 
 \begin{bem} 
 Stellen wir uns vor, wir müssen zur Lösung einer Rechenaufgabe immer wieder testen, ob $ x \in [p,q]$ für gegebene $x,p,q \in \Z$ gilt. In diesem Fall lohnt es sich, eine sogenannte \emph{Prozedur} anzulegen, welche genau diesen Test durchführt:
@@ -426,7 +505,7 @@ Stellen wir uns vor, wir müssen zur Lösung einer Rechenaufgabe immer wieder te
 	\end{algorithmic}
 \end{algorithm}
 
-Die Variablen $x,p,q$ heißen \emph{Eingabeparameter} der Prozedur und die Variable $b$ heißt \emph{Rückgabe-Variable}. In vielen modernen Programmiersprachen benutzt man für die Rückgabe keinen Variablennamen sondern den Befehl \texttt{return}. Das sieht dann so aus: 
+Die Variablen $x,p,q$ heißen \textbf{Eingabeparameter} der Prozedur und die Variable $b$ heißt \textbf{Rückgabe-Variable}. In vielen modernen Programmiersprachen benutzt man für die Rückgabe keinen Variablennamen sondern den Befehl \texttt{return}. Das sieht dann so aus: 
 
 \begin{algorithm}[H]
 	\caption{$\cc{Ist-zwischen}(x,p,q)$}
@@ -438,16 +517,14 @@ Die Variablen $x,p,q$ heißen \emph{Eingabeparameter} der Prozedur und die Varia
 	\end{algorithmic}
 \end{algorithm}
 Durch den Befehl \texttt{return} wird die Prozedur mit dem vorgegebenen Wert an dieser Stelle beendet.
-
-Man kann auch Prozeduren ohne Rückgabe betrachten. In C++ sind es die Funktionen mit dem Rückgabetyp \texttt{void}. 
 \end{bem} 
 
 
 \begin{bem} 
-In manchen Sprachen (wie z.B.~in C++) stehen mehrere Arten der Parameterübergabe zur Verfügung, wie z.B.~\emph{Übergabe durch Kopie} und die \emph{Übergabe durch Referenz}. Wenn zum Beispiel im vorigen Pseudocode $x$, $p$ und $q$ durch Kopie übergeben werden, so entstehen bei jedem Aufruf der Prozedur die drei Variablen $x, p$ und $q$, welche dann entsprechend initialisiert werden. Etwa, bei der Ausführung von $\cc{Ist-zwischen}(a,b,c)$ mit $x=a, p=b, q=c$. 
+In manchen Sprachen (wie z.B.~in C++) stehen mehrere Arten der Parameterübergabe zur Verfügung, wie z.B.~\textbf{Übergabe durch Kopie} und die \textbf{Übergabe durch Referenz}. Wenn zum Beispiel im vorigen Pseudocode $x$, $p$ und $q$ durch Kopie übergeben werden, so entstehen bei jedem Aufruf der Prozedur die drei Variablen $x, p$ und $q$, welche dann entsprechend initialisiert werden. Etwa, bei der Ausführung von $\cc{Ist-zwischen}(a,b,c)$ mit $x=a, p=b, q=c$. 
 \end{bem} 
 
-\begin{bem} 
+\begin{bsp} 
 Bei der Übergabe durch Referenz, ist der Eingabeparameter lediglich ein weiterer Name für eine Variable, die bereits existiert. Wir illustrieren dies am Beispiel vom Vertauschen in konkretem C++-Code: 
 
 \begin{center}
@@ -467,7 +544,7 @@ Bei der Übergabe durch Referenz, ist der Eingabeparameter lediglich ein weitere
 \end{center}
 
 Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, müssen die Eingabeparameter $x$ und $y$ Referenzvariablen sein. In diesem Fall sind $x$ und $y$ zweite Namen für $a$ bzw. $b$. Die Variable $t$ ist eine \emph{lokale} Variable der Funktion \texttt{vertauschen}. Sie entsteht bei jeder Ausführung von \texttt{vertauschen} und verschwindet nach der Terminierung dieser Funktion. 
-\end{bem} 
+\end{bsp} 
 
 \begin{bem}
 	In der Beschreibung von Algorithmen im Pseudocode halten wir uns im Folgenden an die Konvention, bei der Parameterübergabe Arrays durch Referenz und einfache Datentypen durch Kopie zu übergeben.
@@ -476,131 +553,124 @@ Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, mü
 \section{Rekursion an einem Beispiel}
 
 
-\begin{bem}
-Prozeduren, die sich selbst aufrufen, heißen \emph{rekursiv}. Hier ein Beispiel einer Prozedur, die $a^n$ für $a \in \Z$ und $n \in \N_0$ mittels einer Rekursion berechnet.
+\begin{defn}
+Prozeduren, die sich selbst aufrufen, heißen \textbf{rekursiv}. 
+\end{defn} 
+
+\begin{bsp}
+Hier ein Beispiel einer Prozedur, die $a^n$ für $a \in \Z$ und $n \in \N_0$ mittels einer Rekursion mit Hilfe von $\Theta(\log n)$ arithmetischen Operationen berechnet.
 \begin{algorithm}[H]
 	\caption{$p:=\cc{Potenz}(a,n)$}
 	\begin{algorithmic}
-		\IF{$n=0$}
+		\IF{$n=0$ \COMMENT{Abbruchbedingung} } 
 		\STATE $p:=1$
 		\ELSIF{$n$ gerade} 
-		\STATE $q:=\cc{Potenz}(a,n/2)$
-		\STATE $p:= q^2$
+		\STATE $q:=\cc{Potenz}(a,n/2)$ \COMMENT{$q$ setzt man gleich $a^{n/2}$} 
+		\STATE $p:= q^2$ \COMMENT{$p$ setzt man gleich $q^2 = (a^{n/2})^2 = a^n$} 
 		\ELSE
-		\STATE $q:=\cc{Potenz}(a,(n-1)/2)$
-		\STATE $p:= a q^2$
+		\STATE $q:=\cc{Potenz}(a,(n-1)/2)$ \COMMENT{$q$ setzt man gleich $a^{(n-1)/2}$}
+		\STATE $p:= a \cdot q^2$ \COMMENT{$p$ setzt man gleich $a \cdot q^2 = a \cdot (a^{(n-1)/2})^2 = a^n$}
 		\ENDIF
 	\end{algorithmic}
 \end{algorithm}
-Diese rekursive Umsetzung ist in vielen Situationen besser als die nicht-rekursive iterative Umsetzung mit $O(n)$ Iterationen. 
-\end{bem} 
+Diese rekursive Prozedur ist in vielen Situationen besser als die nicht-rekursive iterative Umsetzung mit Hilfe  $\Theta(n)$ arithmetischen Operationen berechnet: 
+\begin{algorithm}[H]
+	\caption{$p:=\cc{Potenz-Langsam}(a,n)$}
+\begin{algorithmic}
+	\STATE $p:=1$
+	\FOR{$i:=1,\ldots,n$}
+	\STATE \COMMENT{An dieser Stelle gilt $p = a^{i-1}$ -- die Invariante der Schleife} 
+	\STATE $p:=p \cdot a$
+	\ENDFOR 
+\end{algorithmic}
+\end{algorithm} 
+\end{bsp} 
 
 
 \begin{bem}
-Es kann überprüft werden, dass alles was man rekursiv umsetzt auch ohne Rekursion, etwa mit Schleifen und Arrays, umgesetzt werden kann. Dies gilt auch für das Potenzieren oben. Die rekursiven Umsetzungen sind aber manchmal leichter zu verstehen und oftmals eleganter. 
+Es kann überprüft werden, dass die rekursiven Algorithmen auch ohne Rekursion, etwa mit Schleifen und Arrays, umgesetzt werden können. Dies gilt auch für das Potenzieren oben. Die rekursiven Umsetzungen sind aber manchmal leichter zu verstehen und oftmals eleganter. 
 \end{bem} 
 
 
-\section{Datentypen, Datenstrukturen, Zeiger und Verbunde}
+\section{Datentypen und Datenstrukturen}
 \label{sect:datenstrukturen}
 
-%Zur Konstruktion neuer/eigener Datentypen stehen in höheren Programmiersprachen verschiedene Mittel und Bibliotheken zur Verfügung. Wir diskutieren hier keine Abstraktionsmechanismen (wie OOP oder Templates), sondern mehr die Maschinen\-ebene. 
+\begin{defn}
+	Ein \textbf{Datentyp} bzw. eine \textbf{Datenstruktur} $T$ ist durch die folgenden Angaben definiert: 
+	\begin{itemize} 
+		\item[] der \textbf{Wertebereich} für den Zustand der Objekt des Datentyps $T$
+		\item[] das \textbf{Interface:} Prozeduren (unter anderem die Grundoperationen, -Relationen) für den Datentyp $T$, durch welche man den Zustand der Objekte vom Typ $T$ ablesen und ändern kann. 
+	\end{itemize}  
+\end{defn} 
 
 \begin{bem}
-Ein \emph{Datentyp} ist eine atomare, unstrukturierte Einheit, die sich durch das Zusammenfassen eines Wertebereichs und darauf definierter Operationen ergibt.
-Die geläufigsten Datentypen sind \texttt{boolean}, \texttt{char}, \texttt{byte}, \texttt{short}, \texttt{int}, \texttt{long}, \texttt{float} und \texttt{double}, und in jeder modernen Programmiersprache umgesetzt.
+	Neben den Angaben des Wertebereiches und des Interface macht man auch oft die Vorgaben zur \textbf{Effizienz} 	(der Speicheraufwand und die Laufzeiten der Prozeduren im Interface). Zum Beispiel wäre ein Stack keine wertvolle Datenstruktur, wenn die Grundoperationen PUSH und POP dafür Resourcen-aufwändig wären. 
 \end{bem} 
 
 \begin{bem}
-Eine \emph{Datenstruktur} ist eine bestimmte Art der Organisation einer endlichen Menge von Daten des gleichen Datentyps (homogene Daten), die gewisse Funktionalitäten bereitstellt.
-Typische Operationen auf einer Datenstruktur sind \emph{Abfragen}, die Information über die Menge zurückgeben, und \emph{modifizierende Operationen}, die die Organisation der Daten innerhalb der Datenstruktur verändern.
+	Man unterscheidet zwischen \textbf{einfachen} und \textbf{zusammengesetzten Datentypen}. Das Objekt eines zusammengesetzten Datentyps ist aus den Objekten einfacherer Datentypen zusammengesetzt.  
 \end{bem} 
 
 \begin{bem}
-Die typischsten Operationen auf einer Datenstruktur, die eine Menge $S$ verwaltet, sind die folgenden:
-%
-\begin{itemize}
-	\item \textsc{Suchen}$(S,k)$
-	
-	Gibt ein Element aus $S$ zurück, dass den Schlüsselwert $k$ hat. Falls kein solches Element in~$S$ existiert wird \textsc{nil} zurückgegeben.
-	
-	\item \textsc{Einfügen}$(S,x)$
-	
-	Erweitert die Menge $S$ um das Element $x$. 
-	
-	\item \textsc{Löschen}$(S,x)$
-	
-	Entfernt das Element $x$ aus der Menge $S$.
-	
-	\item \textsc{Minimum}$(S)$
-	
-	Gibt ein Element aus $S$ zurück, das den kleinsten Schlüsselwert hat. 
-	
-	\item \textsc{Maximum}$(S)$
-	
-	Gibt ein Element aus $S$ zurück, das den größten Schlüsselwert hat.
-	
-	\item \textsc{Nachfolger}$(S,x)$
-	
-	Gibt das Element aus $S$ mit dem nächstgrößeren Schlüsselwert zu $x$ zurück, falls $x$ nicht bereits das Maximum von $S$ ist.
-	Ansonsten wird \textsc{nil} zurückgegeben. 
-	
-	\item \textsc{Vorgänger}$(S,x)$
-	
-	Gibt das Element aus $S$ mit dem nächstkleineren Schlüsselwert zu $x$ zurück, falls $x$ nicht bereits das Minimum von $S$ ist.
-	Ansonsten wird \textsc{nil} zurückgegeben.
-	
-\end{itemize}
-
-Man beachte hier, dass die Operationen \textsc{Minimum}, \textsc{Maximum}, \textsc{Nachfolger} und \textsc{Vorgänger} voraussetzen, dass die Menge $S$ vollständig geordnet ist. 
+	Verschiedene Operationen und Konstruktion für Mengen, die wir eingeführt haben entsprechen verschiedenen Datentypen, die man in vielen Programmiersprachen findet: 
+	\begin{center} 
+		\small  
+	\begin{tabular}{l|l|l}
+			Mathe-Begriff & Menge & Datenstruktur
+			\\ \hline 
+			Element einer endlichen Menge & $\{x_1,\ldots,x_n\}$ & Aufzählung 
+			\\ $n$-Tupel mit Komponenten in $T$ & $T^n$ & Array der Länge $n$ über $T$ 
+			\\ String über $T$ & $T^\ast$ & Array über $T$
+			\\ $n$-Tupel & $X_1 \times \cdots \times X_n$ & Verbund mit $n$ Komponenten
+			\\ Abbildung &  & Wörterbuch mit 
+			\\ & & Schlüsseln in $K$ und Werten in $V$
+			\\ Menge & & Menge
+			\\ Multimenge & & Multimenge 
+	\end{tabular} 
+	\end{center}
+Arrays werden in der Programmierung auch Listen oder Felder genannt. Die Verunde nennt man auch Structures oder Records. Während man die Komponenten eines $n$-Tupels mit Zahlen $1,\ldots,n$ indexiert, werden für die Komponenten eines Verbunds Namen festgelegt.  Wörterbücher werden auch Maps genannt. 
 \end{bem} 
 
-\begin{bem}
-Beispiele von elementaren Datenstrukturen sind Arrays, Stacks, Warteschlangen und verkettete Listen.
-Desweiteren gibt es auch eine Vielzahl von komplexeren Datenstrukturen, wie Heaps, Suchbäume, Wörterbücher und Hashtabellen.
-Komplexere Daten\emph{typen} sind oftmals implizit als Datenstruktur implementiert: \emph{Strings} sind zum Beispiel im Wesentlichen (verkettete) Listen von Zeichen. Genauso können auch \emph{Files} als Listen von Zeichen interpretiert werden (die Begriffe Datentyp und Datenstruktur überlappen sich also in manchen Kontexten).
-\end{bem}
+\begin{aufg}
+	Schlagen Sie nach, wie die folgenden Datenstrukturen definiert sind und umgesetzt werden können: 
+	\begin{itemize}
+			\item Stack, Warteschlange und Deque
+			\item Heap 
+			\item Wörterbuch ($=$ Map)
+	\end{itemize} 
+\end{aufg} 
+
 
 \begin{bem} 
 Bei der konkreten Umsetzung bzw.~Implementierung einer Datenstruktur werden oftmals sogenannte \emph{Zeiger} verwendet.
 Das sind Adress-Variablen, d.h., eine Zeiger-Variable speichert die Adresse eines Ortes (einer anderen Variable) im Speicher des Rechners.
 %Zeiger können in verschiedensten Situationen benutzt werden (insbesondere um verkettete Datenstrukturen zu implementieren).
-Für Zeiger gibt es zwei Grundoperationen: \textsc{Adresse} von einem Objekt, und \textsc{Objekt} unter gegebener Adresse. In vielen Programmiersprachen haben die komplexen Objekte das Zeigerverhalten (z.B.~Arrays in Python). 
-\end{bem} 
-
-\begin{bsp}
-	Eine \emph{einfach verkettete Liste} $L$ ist eine Ansammlung endlich vieler Objekte $O_1,O_2,\ldots,O_k$, die durch Zeiger miteinander verbunden sind.
-	Dabei zeigt $L$ selbst auf das erste Objekt $O_1$, und jedes Objekt $O_i$ besteht aus einem Element $e_i$ und einem Zeiger.
-	Für jeden Index $1 \leq i < k$ zeigt der Zeiger des Objektes $O_i$ auf das Objekt $O_{i+1}$ und der Zeiger von $O_k$ zeigt auf \textsc{nil}.
-	Kurz kann man eine solche Liste auch wie folgt notieren:
-	\[
-	L : e_1 \to e_2 \to \ldots \to e_k.
-	\]
-\end{bsp}
-
-\begin{bem} 
-Die algorithmische Umsetzung eines Rechenproblems ist eng mit der gewählten Datenstruktur verknüpft.
-Seien zum Beispiel ganze Zahlen $a_1,a_2,\ldots,a_n \in \N$ gegeben und einmal als Array $A$, mit Einträgen $A[i] = a_i$, für $1 \leq i \leq n$, und einmal als einfach verkettete Liste $L : a_1 \to a_2 \to \ldots \to a_n$ organisiert.
-Die Aufgabe besteht nun darin, die Elemente in umgekehrter Reihenfolge, d.h., $a_n,a_{n-1},\ldots,a_1$, auszugeben.
-Für die Liste $L$ müssen wir erst Vorüberlegungen anstellen, die uns zu einem Algorithmus führen, dessen Anzahl der Schritte dieselbe Größenordnung hat, wie der intuitive Algorithmus $A[n],A[n-1],\ldots,A[1]$ auf dem Array $A$.
-\end{bem} 
-
-\begin{bem} 
-Ein weiteres wichtiges Werkzeug für die Organisation von Daten sind die sogenannten \emph{Verbunde}, die auch Records, Klassen, oder Strukturen genannt werden.
-Im Gegensatz zu den Datenstrukturen, die homogene Daten organisieren, ermöglichen es die Verbunde, Daten verschiedener Datentypen (heterogene Daten) in einem \glqq Päckchen\grqq\ zusammenzufassen.
-Wir können uns beispielsweise einen Verbund \texttt{Auto} denken, der durch sogennante \emph{Attribute} wie Modell, Kennzeichen, Kilometerstand, usw.~definiert wird.
-Ebenso kann man einen farbigen Punkt in der Ebene als den Verbund der drei Attribute, $x$-Komponente, $y$-Komponente und Farbe ansehen. 
+Für Zeiger gibt es zwei Grundoperationen: 
+\begin{itemize}
+	\item \textsc{Adresse} von einem Objekt, und 
+	\item \textsc{Objekt} unter gegebener Adresse.
+\end{itemize} 	
+Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung. 
+	 In vielen höheren Programmiersprachen haben die komplexen Objekte das Zeigerverhalten (z.B.~Listen in Python), auch wenn die Zeiger in solchen Sprachen nicht direkt vorhanden sind. 
 \end{bem} 
 
 
+\begin{aufg} 
+	Schlagen Sie nach wie die folgenden Datenstrukturen auf den Zeigern basierend umgesetzt werden: 
+	\begin{itemize}
+			\item Einfach verkette Listen (linear und zyklisch)
+			\item Doppelt verkette Listen  (linear und zyklisch)
+			\item Binäre Bäume
+	\end{itemize} 
+\end{aufg} 
 
 \section{Random Access Machine}
 \label{sect:RAM}
 
 \begin{bem} 
-Die \emph{Random Access Machine} (kurz \emph{RAM}), oder auf deutsch, \emph{Maschine mit wahlfreiem Zugriff}, wird unsere Idealisierung bzw. mathematische Abstraktion des realen Rechners sein. Alle Analysen und Entwürfe von Algorithmen in diesem Kurs werden im Rahmen der RAM durchgeführt. 
+Die \textbf{Random Access Machine} (kurz \textbf{RAM}), oder auf deutsch, \textbf{Maschine mit wahlfreiem Zugriff}, wird unsere Idealisierung bzw. mathematische Abstraktion des realen Rechners sein. Alle Analysen und Entwürfe von Algorithmen in diesem Kurs werden im Rahmen der RAM durchgeführt. 
 
-Wir nehmen an, dass die Zellen unserer Maschine ganze Zahlen beliebiger Größe speichern können (d.h., die Bit-Größe der Speicherzellen ist unendlich). Die Speichergröße (d.h., die Anzahl der Speicherzellen) ist ebenfalls unbeschränkt (d.h., unendlich). Wir können desweiteren alle anderen Datentypen auf der Basis der ganzen Zahlen umsetzen. 
+Wir nehmen an, dass die Zellen unserer Maschine ganze Zahlen beliebiger Größe speichern können (d.h., die Bit-Größe der Speicherzellen ist unendlich). Die Speichergröße (d.h., die Anzahl der Speicherzellen) ist ebenfalls unbeschränkt (d.h., unendlich). Wir können des Weiteren alle anderen Datentypen auf der Basis der ganzen Zahlen umsetzen. 
 
 Die Random Access Machine kann auch rein formal eingeführt werden. Wir betrachten hier (zunächst) allerdings eine etwas informelle Beschreibung, in der wir festlegen welche Datentypen, Operationen und Kontrollstrukturen für uns elementar sind. 
 
@@ -631,5 +701,5 @@ Wir lassen die Multiplikation von zwei ganzzahligen Variablen in unserem Modell 
 	\end{algorithmic}
 \end{center}
 
-Dieser Algorithmus würde also $2^{2^n}$ in der Zeit $O(n)$ berechnen. Die Zahl $2^{2^n}$ hat allerdings $2^n+1$ Binärstellen. Wir würden also eine Zahl exponentieller Bitgröße in linearer Zeit berechnen, was wir als unrealistisch ansehen. 
+Dieser Algorithmus würde also $2^{2^n}$ in der Zeit $O(n)$ berechnen. Die Zahl $2^{2^n}$ hat allerdings $2^n+1$ Binärstellen. Wir würden also eine Zahl exponentieller Bit-Größe in linearer Zeit berechnen, was wir als unrealistisch ansehen. 
 \end{bem}
