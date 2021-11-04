@@ -1,0 +1,537 @@
+\subsection{Der Prim-Algorithmus}
+
+In diesem Abschnitt sei $G=(V,E,w)$, mit Gewichtsfunktion $w : E \to \R$, stets ein gewichteter aber ungerichteter Graph, der weiterhin als \emph{zusammenhängend} angenommen wird.
+
+Ein Baum $T=(V',E')$ heißt \emph{Spannbaum} von~$G$, falls $V=V'$ und $E' \subseteq E$ gelten.
+Für jeden Teilgraphen $G' = (V', E')$ von~$G$ definieren wir sein \emph{Gewicht} als
+\[
+w(G') := \sum_{e \in E'} w(e).
+\]
+%
+Ein Spannbaum $T=(V,E')$ heißt \emph{minimaler Spannbaum} von~$G$, wenn~$T$ unter allen Spannbäumen von~$G$ minimales Gewicht hat.
+
+Unser Ziel ist es, das \emph{Problem des minimalen Spannbaums} möglichst effizient zu lösen.
+Das heißt, gegeben einen zusammenhängenden gewichteten Graphen~$G$, finde einen minimalen Spannbaum von~$G$.
+
+Beachten Sie, dass die bereits diskutierten Algorithmen der Tiefen- und Breitensuche, und die Algorithmen von Bellman-Ford und Dijkstra für das Bestimmen der kürzesten Pfade mit Startknoten, mittels der Vorgängerabbildung stets einen Spannbaum von~$G$ erzeugen.
+Dieser muss allerdings nicht minimal sein.
+
+Das Bestimmen eines \emph{minimalen} Spannbaums ist in verschiedenen Problemen in der Praxis relevant:
+%
+\begin{itemize}
+ \item Bei elektronischen Schaltkreisen will man eine Menge von Kontakten verdrahten, um diese auf das gleiche Potenzial zu legen.
+ \item \emph{Spanning tree protocol} (Übersendung von Paketen in einem Netzwerk).
+ \item Approximationslösung für das Problem des \emph{Handlungsreisenden}.
+\end{itemize}
+
+Wir legen Ihnen nahe, sich mit diesen Anwendungen selbst etwas vertraut zu machen und nachzuvollziehen, inwiefern das Finden eines minimalen Spannbaums in jedem dieser Beispiele von Nutzen ist.
+
+\begin{beobachtung}
+Sind alle Kantengewichte positiv, so ist das Problem des minimalen Spannbaums äquivalent zum Problem der Bestimmung eines zusammenhängenden Teilgraphen $G'= (V',E')$ von $G$ mit $V=V'$ und dem kleinsten Gewicht.
+\end{beobachtung}
+
+In der Literatur gibt es eine ganze Reihe von Algorithmen zur Lösung des Problems des minimalen Spannbaums.
+Wir diskutieren hier den sogennanten \emph{Prim-Algorithmus} der im Jahr 1957 in einer Arbeit von Robert C.~Prim erschien und zwei Jahre später von Dijkstra neu beschrieben wurde.
+Beiden Autoren (und allgemein der westlichen Forschergemeinschaft) war anscheinend die Arbeit von Vojt\v{e}ch Jarn\'{i}k aus dem Jahr 1930 nicht bekannt, die die Vorgehensweise bereits lange zuvor diskutierte.
+
+Der Prim-Algorithmus basiert auf der einfachen Idee einen Spannbaum sukzessive \glqq von Null auf\grqq\ durch das Hinzufügen von Kanten kleinstmöglichen Gewichtes wachsen zu lassen.
+Genauer gesagt starten wir mit einem Startbaum~$T_0$, der aus einem beliebigen Knoten~$s$ von~$G$ besteht.
+Diesen erweitern wir dann durch eine zu~$s$ adjazente Kante kleinsten Gewichtes zu dem Teilbaum~$T_1$.
+Im nächsten Schritt wählen wir wieder eine Kante kleinsten Gewichtes unter den verbleibenden Kanten in~$G$ aus, die zu $T_1$ hinzugefügt werden kann und dabei die Baumeigenschaft erhält.
+Wir bekommen dadurch den Teilbaum~$T_2$, der nun aus zwei Kanten besteht.
+Führen wir dies Schritt für Schritt weiter gelangen wir zu einem Teilbaum~$T_{|V|-1}$ der aus $|V|-1$ Kanten besteht und ein aufspannender Baum von~$G$ ist.
+Der Clou ist nun, dass dieser aufspannende Baum minimales Gewicht unter allen Spannbäumen von~$G$ hat.
+
+\pagebreak
+\begin{beispiel}
+\label{bsp:prim}
+Gegeben sei der folgende gewichtete zusammenhängende Graph:
+%
+\begin{center}
+\begin{tikzpicture}[scale=1.6]
+\tikzstyle{V}=
+ =[
+ fill=gray!20, rounded corners, draw=black
+ ]
+
+\node[V] (1) at (0,0) {$1$};
+\node[V] (2) at (1,0) {$2$};
+\node[V] (3) at (2,0) {$3$};
+\node[V] (4) at (0,1) {$4$};
+\node[V] (5) at (1,1) {$5$};
+\node[V] (6) at (2,1) {$6$};
+\node[V] (7) at (0,2) {$7$};
+\node[V] (8) at (1,2) {$8$};
+\node[V] (9) at (2,2) {$9$};
+	
+\draw[line width=0.3mm] 
+ (1) edge node[midway,above]{$1$} (2)  
+ (2) edge node[midway,above]{$2$} (3) 
+ (4) edge node[midway,above]{$11$} (5) 
+ (5) edge node[midway,above]{$3$} (6) 
+ (7) edge node[midway,above]{$5$} (8)
+ (8) edge node[midway,above]{$1$} (9)
+ (1) edge node[midway,left]{$3$} (4)
+ (2) edge node[midway,left]{$4$} (5)
+ (3) edge node[midway,left]{$8$} (6)
+ (4) edge node[midway,left]{$10$} (7)
+ (5) edge node[midway,left]{$1$} (8)
+ (6) edge node[midway,left]{$9$} (9)
+;
+\end{tikzpicture}	
+\end{center}
+%
+Beginnend vom Startknoten~$s=1$ illustrieren wir die Vorgehensweise des Prim-Algorithmus.
+Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i$ in rot und die in Frage kommenden Kanten für die Erweiterung zum Teilbaum $T_{i+1}$ in grün:
+\begin{center}
+\hfill
+\begin{tikzpicture}[scale=1.6]
+\tikzstyle{V}=
+ =[
+ fill=gray!20, rounded corners, draw=black
+ ]
+\tikzstyle{R}=
+ =[
+ fill=red!50, rounded corners, draw=black
+ ]
+
+\node[R] (1) at (0,0) {$1$};
+\node[V] (2) at (1,0) {$2$};
+\node[V] (3) at (2,0) {$3$};
+\node[V] (4) at (0,1) {$4$};
+\node[V] (5) at (1,1) {$5$};
+\node[V] (6) at (2,1) {$6$};
+\node[V] (7) at (0,2) {$7$};
+\node[V] (8) at (1,2) {$8$};
+\node[V] (9) at (2,2) {$9$};
+	
+\draw[line width=0.3mm] 
+ (1) edge[green] node[midway,above]{$1$} (2)  
+ (2) edge node[midway,above]{$2$} (3) 
+ (4) edge node[midway,above]{$11$} (5) 
+ (5) edge node[midway,above]{$3$} (6) 
+ (7) edge node[midway,above]{$5$} (8)
+ (8) edge node[midway,above]{$1$} (9)
+ (1) edge[green] node[midway,left]{$3$} (4)
+ (2) edge node[midway,left]{$4$} (5)
+ (3) edge node[midway,left]{$8$} (6)
+ (4) edge node[midway,left]{$10$} (7)
+ (5) edge node[midway,left]{$1$} (8)
+ (6) edge node[midway,left]{$9$} (9)
+;
+\end{tikzpicture}	
+\hfill
+\begin{tikzpicture}[scale=1.6]
+\tikzstyle{V}=
+ =[
+ fill=gray!20, rounded corners, draw=black
+ ]
+\tikzstyle{R}=
+ =[
+ fill=red!50, rounded corners, draw=black
+ ]
+
+\node[R] (1) at (0,0) {$1$};
+\node[R] (2) at (1,0) {$2$};
+\node[V] (3) at (2,0) {$3$};
+\node[V] (4) at (0,1) {$4$};
+\node[V] (5) at (1,1) {$5$};
+\node[V] (6) at (2,1) {$6$};
+\node[V] (7) at (0,2) {$7$};
+\node[V] (8) at (1,2) {$8$};
+\node[V] (9) at (2,2) {$9$};
+	
+\draw[line width=0.3mm] 
+ (1) edge[red] node[midway,above]{$1$} (2)  
+ (2) edge[green] node[midway,above]{$2$} (3) 
+ (4) edge node[midway,above]{$11$} (5) 
+ (5) edge node[midway,above]{$3$} (6) 
+ (7) edge node[midway,above]{$5$} (8)
+ (8) edge node[midway,above]{$1$} (9)
+ (1) edge[green] node[midway,left]{$3$} (4)
+ (2) edge[green] node[midway,left]{$4$} (5)
+ (3) edge node[midway,left]{$8$} (6)
+ (4) edge node[midway,left]{$10$} (7)
+ (5) edge node[midway,left]{$1$} (8)
+ (6) edge node[midway,left]{$9$} (9)
+;
+\end{tikzpicture}	
+\hfill\,
+\end{center}
+\begin{center}
+\hfill
+\begin{tikzpicture}[scale=1.6]
+\tikzstyle{V}=
+ =[
+ fill=gray!20, rounded corners, draw=black
+ ]
+\tikzstyle{R}=
+ =[
+ fill=red!50, rounded corners, draw=black
+ ]
+
+\node[R] (1) at (0,0) {$1$};
+\node[R] (2) at (1,0) {$2$};
+\node[R] (3) at (2,0) {$3$};
+\node[V] (4) at (0,1) {$4$};
+\node[V] (5) at (1,1) {$5$};
+\node[V] (6) at (2,1) {$6$};
+\node[V] (7) at (0,2) {$7$};
+\node[V] (8) at (1,2) {$8$};
+\node[V] (9) at (2,2) {$9$};
+	
+\draw[line width=0.3mm] 
+ (1) edge[red] node[midway,above]{$1$} (2)  
+ (2) edge[red] node[midway,above]{$2$} (3) 
+ (4) edge node[midway,above]{$11$} (5) 
+ (5) edge node[midway,above]{$3$} (6) 
+ (7) edge node[midway,above]{$5$} (8)
+ (8) edge node[midway,above]{$1$} (9)
+ (1) edge[green] node[midway,left]{$3$} (4)
+ (2) edge[green] node[midway,left]{$4$} (5)
+ (3) edge[green] node[midway,left]{$8$} (6)
+ (4) edge node[midway,left]{$10$} (7)
+ (5) edge node[midway,left]{$1$} (8)
+ (6) edge node[midway,left]{$9$} (9)
+;
+\end{tikzpicture}	
+\hfill
+\begin{tikzpicture}[scale=1.6]
+\tikzstyle{V}=
+ =[
+ fill=gray!20, rounded corners, draw=black
+ ]
+\tikzstyle{R}=
+ =[
+ fill=red!50, rounded corners, draw=black
+ ]
+
+\node[R] (1) at (0,0) {$1$};
+\node[R] (2) at (1,0) {$2$};
+\node[R] (3) at (2,0) {$3$};
+\node[R] (4) at (0,1) {$4$};
+\node[V] (5) at (1,1) {$5$};
+\node[V] (6) at (2,1) {$6$};
+\node[V] (7) at (0,2) {$7$};
+\node[V] (8) at (1,2) {$8$};
+\node[V] (9) at (2,2) {$9$};
+	
+\draw[line width=0.3mm] 
+ (1) edge[red] node[midway,above]{$1$} (2)  
+ (2) edge[red] node[midway,above]{$2$} (3) 
+ (4) edge[green] node[midway,above]{$11$} (5) 
+ (5) edge node[midway,above]{$3$} (6) 
+ (7) edge node[midway,above]{$5$} (8)
+ (8) edge node[midway,above]{$1$} (9)
+ (1) edge[red] node[midway,left]{$3$} (4)
+ (2) edge[green] node[midway,left]{$4$} (5)
+ (3) edge[green] node[midway,left]{$8$} (6)
+ (4) edge[green] node[midway,left]{$10$} (7)
+ (5) edge node[midway,left]{$1$} (8)
+ (6) edge node[midway,left]{$9$} (9)
+;
+\end{tikzpicture}	
+\hfill\,
+\end{center}
+\begin{center}
+\hfill
+\begin{tikzpicture}[scale=1.6]
+\tikzstyle{V}=
+ =[
+ fill=gray!20, rounded corners, draw=black
+ ]
+\tikzstyle{R}=
+ =[
+ fill=red!50, rounded corners, draw=black
+ ]
+
+\node[R] (1) at (0,0) {$1$};
+\node[R] (2) at (1,0) {$2$};
+\node[R] (3) at (2,0) {$3$};
+\node[R] (4) at (0,1) {$4$};
+\node[R] (5) at (1,1) {$5$};
+\node[V] (6) at (2,1) {$6$};
+\node[V] (7) at (0,2) {$7$};
+\node[V] (8) at (1,2) {$8$};
+\node[V] (9) at (2,2) {$9$};
+	
+\draw[line width=0.3mm] 
+ (1) edge[red] node[midway,above]{$1$} (2)  
+ (2) edge[red] node[midway,above]{$2$} (3) 
+ (4) edge node[midway,above]{$11$} (5) 
+ (5) edge[green] node[midway,above]{$3$} (6) 
+ (7) edge node[midway,above]{$5$} (8)
+ (8) edge node[midway,above]{$1$} (9)
+ (1) edge[red] node[midway,left]{$3$} (4)
+ (2) edge[red] node[midway,left]{$4$} (5)
+ (3) edge[green] node[midway,left]{$8$} (6)
+ (4) edge[green] node[midway,left]{$10$} (7)
+ (5) edge[green] node[midway,left]{$1$} (8)
+ (6) edge node[midway,left]{$9$} (9)
+;
+\end{tikzpicture}	
+\hfill
+\begin{tikzpicture}[scale=1.6]
+\tikzstyle{V}=
+ =[
+ fill=gray!20, rounded corners, draw=black
+ ]
+\tikzstyle{R}=
+ =[
+ fill=red!50, rounded corners, draw=black
+ ]
+
+\node[R] (1) at (0,0) {$1$};
+\node[R] (2) at (1,0) {$2$};
+\node[R] (3) at (2,0) {$3$};
+\node[R] (4) at (0,1) {$4$};
+\node[R] (5) at (1,1) {$5$};
+\node[V] (6) at (2,1) {$6$};
+\node[V] (7) at (0,2) {$7$};
+\node[R] (8) at (1,2) {$8$};
+\node[V] (9) at (2,2) {$9$};
+	
+\draw[line width=0.3mm] 
+ (1) edge[red] node[midway,above]{$1$} (2)  
+ (2) edge[red] node[midway,above]{$2$} (3) 
+ (4) edge node[midway,above]{$11$} (5) 
+ (5) edge[green] node[midway,above]{$3$} (6) 
+ (7) edge[green] node[midway,above]{$5$} (8)
+ (8) edge[green] node[midway,above]{$1$} (9)
+ (1) edge[red] node[midway,left]{$3$} (4)
+ (2) edge[red] node[midway,left]{$4$} (5)
+ (3) edge[green] node[midway,left]{$8$} (6)
+ (4) edge[green] node[midway,left]{$10$} (7)
+ (5) edge[red] node[midway,left]{$1$} (8)
+ (6) edge node[midway,left]{$9$} (9)
+;
+\end{tikzpicture}	
+\hfill\,
+\end{center}
+\begin{center}
+\hfill
+\begin{tikzpicture}[scale=1.6]
+\tikzstyle{V}=
+ =[
+ fill=gray!20, rounded corners, draw=black
+ ]
+\tikzstyle{R}=
+ =[
+ fill=red!50, rounded corners, draw=black
+ ]
+
+\node[R] (1) at (0,0) {$1$};
+\node[R] (2) at (1,0) {$2$};
+\node[R] (3) at (2,0) {$3$};
+\node[R] (4) at (0,1) {$4$};
+\node[R] (5) at (1,1) {$5$};
+\node[V] (6) at (2,1) {$6$};
+\node[V] (7) at (0,2) {$7$};
+\node[R] (8) at (1,2) {$8$};
+\node[R] (9) at (2,2) {$9$};
+	
+\draw[line width=0.3mm] 
+ (1) edge[red] node[midway,above]{$1$} (2)  
+ (2) edge[red] node[midway,above]{$2$} (3) 
+ (4) edge node[midway,above]{$11$} (5) 
+ (5) edge[green] node[midway,above]{$3$} (6) 
+ (7) edge[green] node[midway,above]{$5$} (8)
+ (8) edge[red] node[midway,above]{$1$} (9)
+ (1) edge[red] node[midway,left]{$3$} (4)
+ (2) edge[red] node[midway,left]{$4$} (5)
+ (3) edge[green] node[midway,left]{$8$} (6)
+ (4) edge[green] node[midway,left]{$10$} (7)
+ (5) edge[red] node[midway,left]{$1$} (8)
+ (6) edge[green] node[midway,left]{$9$} (9)
+;
+\end{tikzpicture}	
+\hfill
+\begin{tikzpicture}[scale=1.6]
+\tikzstyle{V}=
+ =[
+ fill=gray!20, rounded corners, draw=black
+ ]
+\tikzstyle{R}=
+ =[
+ fill=red!50, rounded corners, draw=black
+ ]
+
+\node[R] (1) at (0,0) {$1$};
+\node[R] (2) at (1,0) {$2$};
+\node[R] (3) at (2,0) {$3$};
+\node[R] (4) at (0,1) {$4$};
+\node[R] (5) at (1,1) {$5$};
+\node[R] (6) at (2,1) {$6$};
+\node[V] (7) at (0,2) {$7$};
+\node[R] (8) at (1,2) {$8$};
+\node[R] (9) at (2,2) {$9$};
+	
+\draw[line width=0.3mm] 
+ (1) edge[red] node[midway,above]{$1$} (2)  
+ (2) edge[red] node[midway,above]{$2$} (3) 
+ (4) edge node[midway,above]{$11$} (5) 
+ (5) edge[red] node[midway,above]{$3$} (6) 
+ (7) edge[green] node[midway,above]{$5$} (8)
+ (8) edge[red] node[midway,above]{$1$} (9)
+ (1) edge[red] node[midway,left]{$3$} (4)
+ (2) edge[red] node[midway,left]{$4$} (5)
+ (3) edge node[midway,left]{$8$} (6)
+ (4) edge[green] node[midway,left]{$10$} (7)
+ (5) edge[red] node[midway,left]{$1$} (8)
+ (6) edge node[midway,left]{$9$} (9)
+;
+\end{tikzpicture}	
+\hfill\,
+\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=1.6]
+\tikzstyle{V}=
+ =[
+ fill=gray!20, rounded corners, draw=black
+ ]
+\tikzstyle{R}=
+ =[
+ fill=red!50, rounded corners, draw=black
+ ]
+
+\node[R] (1) at (0,0) {$1$};
+\node[R] (2) at (1,0) {$2$};
+\node[R] (3) at (2,0) {$3$};
+\node[R] (4) at (0,1) {$4$};
+\node[R] (5) at (1,1) {$5$};
+\node[R] (6) at (2,1) {$6$};
+\node[R] (7) at (0,2) {$7$};
+\node[R] (8) at (1,2) {$8$};
+\node[R] (9) at (2,2) {$9$};
+	
+\draw[line width=0.3mm] 
+ (1) edge[red] node[midway,above]{$1$} (2)  
+ (2) edge[red] node[midway,above]{$2$} (3) 
+ (4) edge node[midway,above]{$11$} (5) 
+ (5) edge[red] node[midway,above]{$3$} (6) 
+ (7) edge[red] node[midway,above]{$5$} (8)
+ (8) edge[red] node[midway,above]{$1$} (9)
+ (1) edge[red] node[midway,left]{$3$} (4)
+ (2) edge[red] node[midway,left]{$4$} (5)
+ (3) edge node[midway,left]{$8$} (6)
+ (4) edge node[midway,left]{$10$} (7)
+ (5) edge[red] node[midway,left]{$1$} (8)
+ (6) edge node[midway,left]{$9$} (9)
+;
+\end{tikzpicture}	
+\end{center}
+\end{beispiel}
+
+Die Umsetzung dieser simplen Idee erfolgt nun über den im nachfolgenden Pseudocode gegebenen Algorithmus.
+Darin ist die Vorgängerabbildung wieder durch das Attribut~$\pi[v]$ eines jeden Knotens~$v \in V$ beschrieben.
+Der aktuelle Teilbaum, der nach obiger Idee sukzessive zu einem minimalen Spannbaum erweitert wird, hat zu jedem Zeitpunkt der Ausführung die Knotenmenge $V' = V \setminus Q$ und die Kantenmenge $E' = \left\{\{\pi[v],v\} : v \in V' \setminus \{s\}\right\}$.
+Für alle Knoten~$v \in Q$ mit $\pi[v] \neq \cc{nil}$ ist das Attribut~$\ell[v] < \infty$ und entspricht dem Gewicht der Kante~$\{\pi[v],v\}$.
+Diese Kante ist eine Kante mit aktuell kleinstem Gewicht, die den Knoten~$v$ mit dem aktuellen Teilbaum $(V',E')$ verbindet.
+
+\begin{algorithm}[H]
+\caption{$\cc{Prim}()$}
+\begin{algorithmic}[1]
+ \STATE Ein beliebiges $s \in V$ fixieren.
+ \STATE\COMMENT{Initialisierung}
+ \FOR{$v \in V$}
+  \STATE $\ell[v] := \infty$
+  \STATE $\pi[v] := \cc{nil}$
+ \ENDFOR
+ \STATE $\ell[s] := 0$
+ \STATE $Q := $ Prioritätswarteschlange mit $\ell$ als Schlüssel, die alle Knoten $v \in V$ enthält.
+ \STATE\COMMENT{Iteratives Aktualisieren der Kanten}
+ \WHILE{$Q \neq \emptyset$}
+  \STATE $u := \cc{Minimum-Entfernen}(Q)$ 
+  \FOR{$v \in N[u]$}
+   \STATE $\cc{Prim-Update}(u,v)$
+  \ENDFOR
+ \ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+Es fällt auf, dass die Struktur des Prim-Algorithmus exakt dieselbe ist wie beim Dijkstra-Algorithmus aus dem vorigen Abschnitt.
+Die beiden Algorithmen unterscheiden sich darin, dass zum einen der Prim-Algorithmus einen beliebigen Startknoten~$s$ wählt, und zum anderen die Hilfsfunktion $\cc{Prim-Update}(u,v)$ zur Aktualisierung der Schlüsel für die Prioritätswarteschlange eine andere ist.
+
+\begin{algorithm}[H]
+	\caption{$\cc{Prim-Update}(u,v)$}
+	\begin{algorithmic}[1]
+		\IF{$v \in Q$ und $w(u,v) < \ell[v]$}
+		\STATE $\ell[v]:=w(u,v)$
+		\STATE $\pi[v] := u$
+		\ENDIF
+	\end{algorithmic}
+\end{algorithm}
+
+Damit in dieser Hilfsprozedur der Test \glqq Ist $v \in Q$?\grqq\ schnell, das heißt, in konstanter Zeit, durchgeführt werden kann, verwalten wir ein Array, das für jeden Knoten $v \in V$ notiert, ob der Knoten aktuell in~$Q$ enthalten ist oder nicht. 
+
+\begin{aufgabe}
+Verfolgen Sie die Arbeitsweise von $\cc{Prim}()$ anhand der Dynamiken der involvierten Objekte~$Q$, $\ell$ und~$\pi$ auf dem gewichteten Graphen in Beispiel~\ref{bsp:prim}.
+\end{aufgabe}
+
+Nach erfolgter Ausführung des Prim-Algorithmus entspricht der letzte aktuelle Teilbaum $(V',E')$ dem \emph{Vorgängerteilgraphen} $G_\pi := (V,E_\pi)$ von~$G$ mit Kantenmenge $E_\pi := \setcond{ \{\pi(v),v\}}{v \in V \setminus \{s\}}$.
+Wie oben bereits erwähnt stellt sich heraus, dass dieser Vorgängerteilgraph tatsächlich ein minimaler Spannbaum von~$G$ ist:
+
+\begin{theorem}
+\label{thm:prim-korrektheit}
+Sei $G=(V,E,w)$ ein zusammenhängender gewichteter Graph, der durch eine Adjazenzliste gegeben ist. 
+Der Algorithmus $\cc{Prim}()$ löst das Problem des minimalen Spannbaums korrekt, das heißt, der Vorgängerteilgraph~$G_\pi$ ist ein minimaler Spannbaum von~$G$.
+
+Ist die Prioritätswarteschlange auf der Basis von Heaps umgesetzt, so beträgt die Laufzeit des Verfahrens $O(|E| \log |V|)$. 
+\end{theorem}
+
+\begin{proof}
+Schauen wir zuerst auf die Laufzeit von $\cc{Prim}()$.
+Die Initialisierung verläuft in Zeit $\Theta(|V|)$.
+Beachten Sie dabei lediglich, dass der Min-Heap für die Prioritätswarteschlange~$Q$ in linearer Zeit initialisert werden kann, da die Schlüssel für die Knoten $v \neq s$ alle gleich $\infty$ sind.
+Die Initialisierung kann also durch ein Array $[s,v_1,\ldots,v_k]$ erfolgen, wobei $v_1,\ldots,v_k$ eine beliebige Anordnung der Knoten in $V \setminus \{s\}$ ist.
+
+Nach erfolgter Initialisierung wird die \texttt{while}-Schleife exakt $|V|$ Mal aufgerufen, ein Mal für jeden Knoten von~$G$.
+Die Prozedur $\cc{Minimum-Entfernen}(Q)$ benötigt bei der Umsetzung mittels Heaps, höchstens $O(\log |V|)$ Zeiteinheiten, und damit zusammengefasst über die ganze Laufzeit von $\cc{Prim}()$ höchstens $O(|V|\log|V|)$ Zeit.
+Die \texttt{for}-Schleife wird über den gesamten Algorithmus $O(|E|)$ oft ausgeführt, da jede Kante genau~$2$ Knoten hat.
+Die Hilfsprozedur $\cc{Prim-Update}(u,v)$ hat den Anschein in konstanter Zeit zu arbeiten.
+Beachten Sie aber, dass nach der Ausführung der Zuweisung $\ell[v]:=w(u,v)$ der Schlüssel von~$v$ in der Prioritätswarteschlange~$Q$ mittels $\cc{Schlüssel-Verkleinern}(Q,v,\ell[v])$ verkleinert werden muss, was $O(\log|V|)$ Zeiteinheiten erfordert.
+Insgesamt werden für die Rechenschritte in der \texttt{for}-Schleife damit $O(|E|\log|V|)$ Zeiteinheiten benötigt.
+
+Die Gesamtlaufzeit von $\cc{Prim}()$ ergibt sich nun durch Addition der oben bestimmten Teillaufzeiten und damit zu $\Theta(|V|)+O(|V|\log|V|)+O(|E|\log|V|) = O(|E|\log|V|)$.
+
+Wir beweisen nun die Korrektheit des Algorithmus.
+Man überzeugt sich leicht davon, dass die beiden folgenden Bedingungen eine Schleifeninvariante für die \texttt{while}-Schleife bilden: 
+%
+\begin{itemize}
+ \item Der Wert $\ell[v]$ für $v \in Q$ ist das kleinste Gewicht einer Kante die den Knoten~$v$ mit einem Knoten aus $V \setminus Q$ verbindet.
+ (Die Existenz einer verbindenden Kante ist durch $\ell[v] < \infty$ angezeigt.) 
+ \item Der Teilgraph $G'=(V',E')$ mit $V' = V \setminus Q$ und $E' = \left\{\{\pi[v],v\} : v \in V' \setminus \{s\}\right\}$ ist ein Baum. 
+\end{itemize}
+%
+Nach der Terminierung des Algorithmus ist der obige Teilgraph gleich dem Vorgängerteilgraphen $G' = G_\pi$ und nach der zweiten Eigenschaft oben ein Spannbaum von~$G$.
+
+Wir zeigen nun, dass $G_\pi$ minimales Gewicht unter allen Spannbäumen von~$G$ hat.
+Für einen beliebigen Spannbaum~$S_1$ von $G$ wollen wir also $w(G_\pi) \le w(S_1)$ zeigen.
+Ist $S_1=G_\pi$, so ist die Behauptung trivial. 
+Ansonsten, existiert eine Kante die zu~$G_\pi$ aber nicht zu~$S_1$ gehört.
+Wir betrachten~$G_\pi$ vor dem ersten Moment der Ausführung, in dem eine solche Kante $e \not\in S_1$ zu~$G_\pi$ hinzugefügt wurde. 
+	
+In $S_1$ existiert ein eindeutiger Pfad~$p$, der einen Knoten im aktuellen Teilgraphen~$G'$ mit einem Knoten außerhalb von $G'$ verbindet (es gibt mindestens einen Pfad, weil~$S_1$ zusammenhängend und aufspannend ist, und es gibt nicht mehr als einen Pfad, weil~$S_1$ ansonsten Zyklen hätte).
+Dieser Pfad~$p$ enthält eine Kante $e_1$ von $S_1$ mit einem Endknoten in $V'$ und einem Endknoten außerhalb von $V'$.
+Durch das Entfernen der Kante $e_1$ aus $S_1$ und das Hinzufügen der Kante~$e$ entsteht ein Spannbaum~$S_2$ von $G$. 
+Nach der Beschreibung des Prim-Algorithmus hat die Kante~$e$ das kleinste Gewicht unter allen Kanten, die einen Knoten aus~$V'$ mit einem Knoten außerhalb von~$V'$ verbinden.
+Daher gilt $w(e_1) \ge w(e)$ und somit $w(S_2) \le w(S_1)$.
+Weiterhin haben am Ende der Ausführung des Algorithmus $S_2$ und $G_\pi$ mehr Kanten gemeinsam als $S_1$ und $G_\pi$.
+
+Wiederholen wir dieses Argument iterativ so entsteht eine endliche Folge von Spannbäumen $S_1, S_2,\ldots, S_k$ mit $w(S_1) \ge w(S_2) \ge \ldots \geq w(S_k)$, in der das letzte Element~$S_k$ ein Spannbaum ist, dessen alle Kanten zu~$G_\pi$ gehören.
+Somit gilt $S_k=G_\pi$ und wir haben $w(S_1) \ge w(G_\pi)$ wie gewünscht bewiesen.
+\end{proof}
+
+
+\begin{remark}\
+\begin{enumerate}[(a)]
+ \item Benutzt man anstelle eines Min-Heaps einen sogenannten \emph{Fibonacci-Heap} als Grundlage für die Prioritätswarteschlange~$Q$, so verbessert sich die Laufzeit auf $O(|E|+|V|\log|V|)$.
+
+ \item Ein alternativer Algorithmus zum Bestimmen eines minimalen Spannbaums ist Kruskal's Algorithmus.
+Dieser verfolgt die Strategie einen Wald sukzessive mit Kanten zu einem Baum zu füllen, und dabei wie bei $\cc{Prim}()$ in jedem Schritt eine zulässige Kante mit kleinstem Gewicht zu wählen.
+Die Laufzeit ist auch hier $O(|E|\log|V|)$ bei geeigneter Umsetzung der involvierten Datenstrukturen.
+
+Die Korrektheit des Kruskal-Algorithmus ist etwas weniger direkt zu beweisen als die des Prim-Algorithmus, da man sicherstellen muss, dass zum Wald hinzugefügte Kanten keine Kreise erzeugen.
+
+\end{enumerate}
+\end{remark}
