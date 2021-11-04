@@ -343,6 +343,63 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	Da $X \setminus \{a\}$ eine $(n-1)$-elementige Menge ist, folgt nach der Induktionsovraussetzung $|2^{X \setminus \{a\}}| = 2^{|X \setminus \{a\}|} = 2^{|X|-1}$. Wir erhalten somit $2^{|X|} = 2 \cdot 2^{|X|-1} = 2^{|X|}$. 
 \end{proof} 
 
+\begin{thm}[Binomischer Lehrsatz] 
+	Für $x, y \in \R$ und $n \in \N$ gilt 
+	\[
+			(x+y)^n = \sum_{i=0}^n \binom{n}{i} x^i y^{n-i}. 
+	\]
+\end{thm} 
+\begin{proof}
+	Es gibt einen direkten kombinatorischen Beweis dieser Formel. Beim Auflösen der Klammern im Ausdruck 
+	\[
+			(x+y)^n = \underbrace{(x+y) \cdots \ldots \cdot (x+y)}_{n \ \text{mal}}
+	\]
+	erhält man $2^n$ Terme, indem man aus jeder der $n$ Klammern $x$ oder $y$ wählt und die so gewählten Werte miteinander multipliziert. Wenn wir durch $I$ die Nummern der Klammern bezeichnen, aus denen der Wert $x$ gewählt wurde, erhalten wir 
+	\[
+			(x+y)^n = \sum_{I \subseteq \{1,\ldots,n\}} x^{|I|} y^{n - |I|}. 
+	\]
+	Nun können wir die Teilmengen von $\{1,\ldots,n\}$ nach ihrer Kardinalität Gruppieren. Wir erhalten 
+	\begin{align*}
+			(x+y)^n & =\sum_{i=0}^n \sum_{I \in \binom{\{1,\ldots,n\}}{i}} x^i y^{n-i} 
+			\\ & = \sum_{i=0}^n \left| \binom{\{1,\ldots,n\}}{i} \right| x^i y^{n-i}. 
+			\\ & = \sum_{i=0}^n \left| \binom{n}{i} \right| x^i y^{n-i}
+	\end{align*} 
+	
+	wird aus jeder der $n$ Klammern entweder $x$ oder $y$ gewählt und a
+\end{proof} 
+
+\begin{thm} \label{pascals:triangle} 
+	Für alle $n \in \N$ und $i \in \N_0$ hat man $\binom{n}{i}  = \binom{n-1}{i}  + \binom{n-1}{i-1}$. 
+\end{thm} 
+\begin{proof} 
+	Wir beschränken uns auf den nichttrivialen Fall $1 \le i \le n$. 
+	Man kann einen rein arithmetischen Beweis anhand der expliziten Formel für die Binomailkoeffizienten geben. Alternativ geben wir hier einen kombinatorischen Beweis. Sei $X$ eine $n$-elementige Menge. Wir fixieren ein Element $p\in X$ in dieser Menge. Die Menge $\binom{X}{i}$ der $i$-elementigen Teilmengen ist disjunkte Vereinigung 
+	\[
+		\binom{X}{i} = \setcond{ A \in \binom{X}{i}}{p \in A} \cupdot \setcond{A \in \binom{X}{i}}{p \not\in A}. 
+	\]
+	Hierbei ist 
+	\[
+			\setcond{A \in \binom{X}{i}}{p \not\in A} = \binom{X \setminus \{p\}}{i}
+	\]
+	und $\setcond{ A \in \binom{X}{i}}{p \in A}$ kann bijektiv auf 
+	\[
+			\binom{X \setminus \{p\}}{i-1}
+	\]
+	abgebildet werden, indem man $A$ auf $A \setminus \{p\}$ abbildet. Auf diese Weise erhält man 
+	\begin{align*}
+		\binom{n}{i} = \left| \binom{X}{i} \right| & = \left| \binom{X \setminus \{p\}}{i} \right| + \left| \binom{X \setminus \{p\}}{i-1}\right| 
+		\\ & = \binom{n-1}{i} + \binom{n-1}{i-1}. 
+	\end{align*} 
+\end{proof} 
+
+\begin{bem}
+	Die Formel in Theorem~\ref{pascals:triangle} wird oft als das sogenannte pascalsche Dreieck visualisiert. 
+\end{bem} 
+
+\begin{aufg}
+	Beweisen Sie den binomischen Lehrsatz durch Induktion über $n$ mit der Verwendung von Theorem~\ref{pascals:triangle}. 
+\end{aufg} 
+
 \section{Das Prinzip der Inklusion-Exklusion} 
 
 \begin{defn}

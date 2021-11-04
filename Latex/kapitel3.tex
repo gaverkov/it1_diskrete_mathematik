@@ -1,5 +1,7 @@
 \chapter{Algorithmische und Programmiergrundlagen}
 
+Viel mehr zum Thema dieses Kapitels findet man im Kurs Entwicklung von Softwaresystemen, vgl. auch das umfangreiche Buch \cite{GS11}. 
+
 \section{Kodierung mit Strings} 
 
 \begin{defn}
@@ -604,7 +606,7 @@ Es kann überprüft werden, dass die rekursiven Algorithmen auch ohne Rekursion,
 \end{defn} 
 
 \begin{bem}
-	Neben den Angaben des Wertebereiches und des Interface macht man auch oft die Vorgaben zur \textbf{Effizienz} 	(der Speicheraufwand und die Laufzeiten der Prozeduren im Interface). Zum Beispiel wäre ein Stack keine wertvolle Datenstruktur, wenn die Grundoperationen PUSH und POP dafür Resourcen-aufwändig wären. 
+	Neben den Angaben des Wertebereiches und des Interface macht man auch oft die Vorgaben zur \textbf{Effizienz} 	(der Speicheraufwand und die Laufzeiten der Prozeduren im Interface). Zum Beispiel wäre ein Stack keine wertvolle Datenstruktur, wenn die Grundoperationen PUSH und POP dafür Ressourcen-aufwändig wären. 
 \end{bem} 
 
 \begin{bem}
@@ -674,7 +676,7 @@ Wir nehmen an, dass die Zellen unserer Maschine ganze Zahlen beliebiger Größe 
 
 Die Random Access Machine kann auch rein formal eingeführt werden. Wir betrachten hier (zunächst) allerdings eine etwas informelle Beschreibung, in der wir festlegen welche Datentypen, Operationen und Kontrollstrukturen für uns elementar sind. 
 
-Als \emph{Grundoperationen} erlauben wir:
+Als \textbf{Grundoperationen} für unsere RAM erlauben wir:
 %
 \begin{itemize}
 	\item Zuweisung (für ganzzahlige Datentypen)
@@ -685,6 +687,8 @@ Als \emph{Grundoperationen} erlauben wir:
 	\item Vergleichsoperationen $<$, $\le$, $=$, $\ge$, $>$ 
 	\item Kontrollstrukturen if-then-else, while, for 
 \end{itemize}
+
+Eine genauere Beschreibung einer RAM findet man bei \cite[Sect.~1.3]{Lov20}.
 \end{bem} 
 
 %Unsere Algorithmen werden als Pseudocode formuliert und ihre Analyse wird im Rahmen dieses Modells durchgeführt. Für Pseudocode legen wir fest, dass standardmäßig in Prozeduren alle einfachen Datentypen durch Kopie und alle komplexen Datentypen (Arrays usw.) durch Referenz übergeben werden. 
