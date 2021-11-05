@@ -1,7 +1,10 @@
-\subsection{Der Prim-Algorithmus}
+\section{Der Prim-Algorithmus}
 
+\begin{bem}
 In diesem Abschnitt sei $G=(V,E,w)$, mit Gewichtsfunktion $w : E \to \R$, stets ein gewichteter aber ungerichteter Graph, der weiterhin als \emph{zusammenhängend} angenommen wird.
+\end{bem}
 
+\begin{defn}
 Ein Baum $T=(V',E')$ heißt \emph{Spannbaum} von~$G$, falls $V=V'$ und $E' \subseteq E$ gelten.
 Für jeden Teilgraphen $G' = (V', E')$ von~$G$ definieren wir sein \emph{Gewicht} als
 \[
@@ -9,12 +12,11 @@ w(G') := \sum_{e \in E'} w(e).
 \]
 %
 Ein Spannbaum $T=(V,E')$ heißt \emph{minimaler Spannbaum} von~$G$, wenn~$T$ unter allen Spannbäumen von~$G$ minimales Gewicht hat.
+\end{defn} 
 
+\begin{bem} 
 Unser Ziel ist es, das \emph{Problem des minimalen Spannbaums} möglichst effizient zu lösen.
 Das heißt, gegeben einen zusammenhängenden gewichteten Graphen~$G$, finde einen minimalen Spannbaum von~$G$.
-
-Beachten Sie, dass die bereits diskutierten Algorithmen der Tiefen- und Breitensuche, und die Algorithmen von Bellman-Ford und Dijkstra für das Bestimmen der kürzesten Pfade mit Startknoten, mittels der Vorgängerabbildung stets einen Spannbaum von~$G$ erzeugen.
-Dieser muss allerdings nicht minimal sein.
 
 Das Bestimmen eines \emph{minimalen} Spannbaums ist in verschiedenen Problemen in der Praxis relevant:
 %
@@ -23,17 +25,22 @@ Das Bestimmen eines \emph{minimalen} Spannbaums ist in verschiedenen Problemen i
  \item \emph{Spanning tree protocol} (Übersendung von Paketen in einem Netzwerk).
  \item Approximationslösung für das Problem des \emph{Handlungsreisenden}.
 \end{itemize}
-
 Wir legen Ihnen nahe, sich mit diesen Anwendungen selbst etwas vertraut zu machen und nachzuvollziehen, inwiefern das Finden eines minimalen Spannbaums in jedem dieser Beispiele von Nutzen ist.
+\end{bem} 
 
-\begin{beobachtung}
+
+
+\begin{bem}
 Sind alle Kantengewichte positiv, so ist das Problem des minimalen Spannbaums äquivalent zum Problem der Bestimmung eines zusammenhängenden Teilgraphen $G'= (V',E')$ von $G$ mit $V=V'$ und dem kleinsten Gewicht.
-\end{beobachtung}
+\end{bem}
 
+\begin{bem} 
 In der Literatur gibt es eine ganze Reihe von Algorithmen zur Lösung des Problems des minimalen Spannbaums.
 Wir diskutieren hier den sogennanten \emph{Prim-Algorithmus} der im Jahr 1957 in einer Arbeit von Robert C.~Prim erschien und zwei Jahre später von Dijkstra neu beschrieben wurde.
 Beiden Autoren (und allgemein der westlichen Forschergemeinschaft) war anscheinend die Arbeit von Vojt\v{e}ch Jarn\'{i}k aus dem Jahr 1930 nicht bekannt, die die Vorgehensweise bereits lange zuvor diskutierte.
+\end{bem} 
 
+\begin{bem}
 Der Prim-Algorithmus basiert auf der einfachen Idee einen Spannbaum sukzessive \glqq von Null auf\grqq\ durch das Hinzufügen von Kanten kleinstmöglichen Gewichtes wachsen zu lassen.
 Genauer gesagt starten wir mit einem Startbaum~$T_0$, der aus einem beliebigen Knoten~$s$ von~$G$ besteht.
 Diesen erweitern wir dann durch eine zu~$s$ adjazente Kante kleinsten Gewichtes zu dem Teilbaum~$T_1$.
@@ -41,9 +48,10 @@ Im nächsten Schritt wählen wir wieder eine Kante kleinsten Gewichtes unter den
 Wir bekommen dadurch den Teilbaum~$T_2$, der nun aus zwei Kanten besteht.
 Führen wir dies Schritt für Schritt weiter gelangen wir zu einem Teilbaum~$T_{|V|-1}$ der aus $|V|-1$ Kanten besteht und ein aufspannender Baum von~$G$ ist.
 Der Clou ist nun, dass dieser aufspannende Baum minimales Gewicht unter allen Spannbäumen von~$G$ hat.
+\end{bem} 
 
-\pagebreak
-\begin{beispiel}
+
+\begin{bsp}
 \label{bsp:prim}
 Gegeben sei der folgende gewichtete zusammenhängende Graph:
 %
@@ -420,8 +428,9 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
 ;
 \end{tikzpicture}	
 \end{center}
-\end{beispiel}
+\end{bsp}
 
+\begin{bem}
 Die Umsetzung dieser simplen Idee erfolgt nun über den im nachfolgenden Pseudocode gegebenen Algorithmus.
 Darin ist die Vorgängerabbildung wieder durch das Attribut~$\pi[v]$ eines jeden Knotens~$v \in V$ beschrieben.
 Der aktuelle Teilbaum, der nach obiger Idee sukzessive zu einem minimalen Spannbaum erweitert wird, hat zu jedem Zeitpunkt der Ausführung die Knotenmenge $V' = V \setminus Q$ und die Kantenmenge $E' = \left\{\{\pi[v],v\} : v \in V' \setminus \{s\}\right\}$.
@@ -463,21 +472,24 @@ Die beiden Algorithmen unterscheiden sich darin, dass zum einen der Prim-Algorit
 \end{algorithm}
 
 Damit in dieser Hilfsprozedur der Test \glqq Ist $v \in Q$?\grqq\ schnell, das heißt, in konstanter Zeit, durchgeführt werden kann, verwalten wir ein Array, das für jeden Knoten $v \in V$ notiert, ob der Knoten aktuell in~$Q$ enthalten ist oder nicht. 
+\end{bem}
 
-\begin{aufgabe}
+\begin{aufg}
 Verfolgen Sie die Arbeitsweise von $\cc{Prim}()$ anhand der Dynamiken der involvierten Objekte~$Q$, $\ell$ und~$\pi$ auf dem gewichteten Graphen in Beispiel~\ref{bsp:prim}.
-\end{aufgabe}
+\end{aufg}
 
+\begin{bem}
 Nach erfolgter Ausführung des Prim-Algorithmus entspricht der letzte aktuelle Teilbaum $(V',E')$ dem \emph{Vorgängerteilgraphen} $G_\pi := (V,E_\pi)$ von~$G$ mit Kantenmenge $E_\pi := \setcond{ \{\pi(v),v\}}{v \in V \setminus \{s\}}$.
 Wie oben bereits erwähnt stellt sich heraus, dass dieser Vorgängerteilgraph tatsächlich ein minimaler Spannbaum von~$G$ ist:
+\end{bem} 
 
-\begin{theorem}
+\begin{thm}
 \label{thm:prim-korrektheit}
 Sei $G=(V,E,w)$ ein zusammenhängender gewichteter Graph, der durch eine Adjazenzliste gegeben ist. 
 Der Algorithmus $\cc{Prim}()$ löst das Problem des minimalen Spannbaums korrekt, das heißt, der Vorgängerteilgraph~$G_\pi$ ist ein minimaler Spannbaum von~$G$.
 
 Ist die Prioritätswarteschlange auf der Basis von Heaps umgesetzt, so beträgt die Laufzeit des Verfahrens $O(|E| \log |V|)$. 
-\end{theorem}
+\end{thm}
 
 \begin{proof}
 Schauen wir zuerst auf die Laufzeit von $\cc{Prim}()$.
@@ -523,8 +535,8 @@ Somit gilt $S_k=G_\pi$ und wir haben $w(S_1) \ge w(G_\pi)$ wie gewünscht bewies
 \end{proof}
 
 
-\begin{remark}\
-\begin{enumerate}[(a)]
+\begin{bem}\
+\begin{enuma}
  \item Benutzt man anstelle eines Min-Heaps einen sogenannten \emph{Fibonacci-Heap} als Grundlage für die Prioritätswarteschlange~$Q$, so verbessert sich die Laufzeit auf $O(|E|+|V|\log|V|)$.
 
  \item Ein alternativer Algorithmus zum Bestimmen eines minimalen Spannbaums ist Kruskal's Algorithmus.
@@ -533,5 +545,5 @@ Die Laufzeit ist auch hier $O(|E|\log|V|)$ bei geeigneter Umsetzung der involvie
 
 Die Korrektheit des Kruskal-Algorithmus ist etwas weniger direkt zu beweisen als die des Prim-Algorithmus, da man sicherstellen muss, dass zum Wald hinzugefügte Kanten keine Kreise erzeugen.
 
-\end{enumerate}
-\end{remark}
+\end{enuma}
+\end{bem}
