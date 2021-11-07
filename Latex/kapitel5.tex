@@ -6,7 +6,11 @@
 	Eine \textbf{Boolesche Variable} ist eine Variable mit den Werten aus 
 	\[
 		\{\false,\true\}.
-	\] Wir benutzen die Standard-Identifizierung von $\false \mapsto 0, \true \mapsto 1$, die uns ermöglichst die kürzere Schreibweise mit $0$ und $1$ zu nutzen. 
+	\] Wir benutzen die Standard-Identifizierung $\{\false,\true\} \to \{0,1\}$ mit 
+	\begin{align*}
+		 \false & \mapsto 0 & \true & \mapsto 1,
+	\end{align*}
+ welche uns ermöglicht, die kürzere Schreibweise mit $0$ und $1$ zu nutzen. 
 \end{defn} 
 
 \begin{defn}
@@ -126,32 +130,55 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 \end{defn} 
 
 
-\begin{bem}
-	Für eine boolesche Variable $x$, benutzen wir die Bezeichnung 
-	\[
-	x^a := \begin{cases} 
+\begin{lem}
+	Für alle $x, a \in \{0,1\}$ gilt
+	\begin{equation} \label{equiv:x:no:x}
+	x \leftrightarrow a = \begin{cases} 
 		x & \text{für} \ a=1,
 		\\				\overline{x} & \text{für} \ a=0
 	\end{cases} 
-	\]
-	mit $a \in \{0,1\}$, um die beiden Literale $x$ und $\overline{x}$ zu beschreiben. 
-	Es bemerkt, dass der Wert von $x^a$ genau dann $1$ ist, wenn $x=a$ gilt. 
-\end{bem} 
+	\end{equation}
+	und 
+	\begin{equation} \label{neg:equiv} 
+		\overline{x \leftrightarrow a} = x \leftrightarrow \overline{a}. 
+	\end{equation}
+\end{lem} 
+\begin{proof} 
+	Man kann alle vier Möglichkeiten für $(x,a) \in \{0,1\}^2$ durchprobieren. 
+\end{proof} 
 
 \begin{thm}
 	Jede boolesche Funktion $ f: \{0,1\}^n \to \{0,1\}$ kann durch eine DNF beschrieben werden. 
 \end{thm} 
 \begin{proof}
-	Sei 
+	Wir betrachten die Belegungen von $(x_1,\ldots,x_n)$, auf denen $f$ zu $1$ ausgewertet wird: 
+	sei 
 	\[
 	W := \setcond{ (a_1,\ldots,a_n) \in \{0,1\}^n}{f(a_1,\ldots,a_n) = 1}. 
 	\]
-	Es gilt: 
-	\[
-	f(x_1,\ldots,x_n) = \bigvee_{ (a_1,\ldots,a_n) \in W} x_1^{a_1} \cdots x_n^{a_n}. 
-	\]
-	Es reichte zu zeigen, dass die rechte Seite genau dann wahr ist, wenn $(x_1,\ldots,x_n) \in W$ gilt. Die rechte Seite ist genau dann wahr, wenn einer der EKs wahr ist. Die EK $x_1^{a_1} \cdots x_n^{a_n}$ ist aber genau dann wahr wenn $x_i = a_i$ für alle $i \in\{1,\ldots,n\}$ gilt. Das zeigt die Behauptung. 
+	Es gilt:
+	\begin{equation}
+		\label{dnf}
+		f(x_1,\ldots,x_n) = \bigvee_{ (a_1,\ldots,a_n) \in W} \ \, \bigwedge_{i=1}^n \, (x_i \leftrightarrow a_i). 
+	\end{equation} 
+	Um das zu sehen argumentieren wir wie folgt. Für alle $x_1,\ldots,x_n \in \{0,1\}$ gilt:
+	\begin{align*}
+		& & 	& f(x_1,\ldots,x_n) \ \text{ist wahr}  
+	\\	& \Leftrightarrow &  & (x_1,\ldots,x_n) \in W
+	\\	& \Leftrightarrow & & \text{es gibt ein $(a_1,\ldots,a_n) \in W$ mit $x_i=a_i$ für alle $i=1,\ldots,n$} 
+	\\  & \Leftrightarrow & & \text{es gibt ein $(a_1,\ldots,a_n) \in W$, für welches $\bigwedge_{i=1}^n (x_i \leftrightarrow a_i)$ wahr ist}
+	\\  & \Leftrightarrow & & \bigvee_{ (a_1,\ldots,a_n) \in W} \ \, \bigwedge_{i=1}^n \, (x_i \leftrightarrow a_i) \ \text{ist wahr}. 
+	\end{align*} 
+
+	Wegen \eqref{equiv:x:no:x} ist der Ausdruck $x_i \leftrightarrow a_i$ in \eqref{dnf} je nach dem Wert von $a_i$ entweder $x_i$ oder $\overline{x_i}$. Mit dieser Interpretation ist die rechte Seite von \eqref{dnf} eine DNF.
 \end{proof} 
+
+\begin{bem} \label{dnf:rezept}
+	\eqref{dnf} ist ein Rezept der Konstruktion einer Darstellung als DNF für ein gegebenes $f$. Für jede Belegung $(a_1,\ldots,a_n)$, bei der $f$ wahr wird, füge die Elementarkonjunktion hinzu deren Literale für jedes $i=1,\ldots,n$ folgendermaßen  gewählt werden: $x_i$ bei $a_i=1$ und $\overline{x_i}$ bei $a_i=0$. 
+\end{bem} 
+
+
+\section{Dualität der booleschen Funktionen und Formeln} 
 
 \begin{defn}
 	Sei $f : \{0,1\}^n \to \{0,1\}$. Dann definieren wir die duale Funktion $f^\ast : \{0,1\}^n \to \{0,1\}$ zu $f$ durch 
@@ -160,7 +187,6 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 	\]
 \end{defn} 
 
-\section{Dualität der booleschen Funktionen und Formeln} 
 
 \begin{defn}
 	Als duale Formel zu einer booleschen Formel $F$ definieren wir die Formel $F^\ast$ die aus $F$ entsteht, indem in der Formel die Operatioen $\wedge$ und $\vee$ sowie die Konstanten $0$ und $1$ vertauscht. Mit anderen Worten ensteht die duale Formeln nach durch die folgenden Regeln:
@@ -173,7 +199,7 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 \end{defn} 
 
 \begin{thm}
-	Sei $F$ boolesche Formel. Dann ist die duale Funktion zur Funktion von $F$ gleich der Funktion zur dualen Formeln $F^\ast$. 
+	Sei $F$ boolesche Formel. Dann ist die duale Funktion zur Funktion von $F$ gleich der Funktion zur dualen Formel $F^\ast$. 
 \end{thm}
 \begin{proof} 
 	Die Behauptung folgt aus der Tatsache, dass für die Operation $f \mapsto f^\ast$ für boolesche Funktionen $f,g : \{0,1\}^n \to \{0,1\}$ die folgenden Regeln gelten: 
@@ -190,6 +216,37 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 
 
 
-\section{Darstellung durch eine DNF}
+\section{Darstellung durch eine KNF}
+
+\begin{thm}
+	Jede boolesche Funktion $f : \{0,1\}^n \to \{0,1\}$ kann durch eine KNF gegeben werden. 
+\end{thm} 
+\begin{proof}
+		Wir starten mit der Darstellung von $f^\ast$ als 
+		\[
+			f^\ast(x_1,\ldots,x_n) = \bigvee_{f^\ast(a_1,\ldots,a_n)=1} \ \, \bigwedge_{i=1}^n \, (x_i \leftrightarrow a_i).
+		\]
+		Das ergibt 
+		\[
+			\overline{ f(\overline{x_1},\ldots,\overline{x_n})} = \bigvee_{f(\overline{a_1},\ldots,\overline{a_n}) = 0} \ \, \bigwedge_{i=1}^n  \, (x_i \leftrightarrow a_i). 
+		\]
+		Nun negieren wir die linke und rechte Seite. De Morganasche Gesetze ergeben die Darstellung 
+		\[	
+				f(\overline{x_1},\ldots,\overline{x_n}) = \bigwedge_{f(\overline{a_1},\ldots,\overline{a_n})=0} \ \, \bigwedge_{i=1}^n  \, (\overline{x_i} \leftrightarrow a_i). 
+		\]
+		Substitution von $x_i$ durch $\overline{x_i}$ ergibt 
+		\[
+				f(x_1,\ldots,x_n) = \bigwedge_{f(\overline{a_1},\ldots,\overline{a_n})=0} \ \, \bigwedge_{i=1}^n  \, (x_i \leftrightarrow a_i)
+		\]
+		Substitution von $a_i$ durch $\overline{b_i}$ ergibt
+		\begin{equation} \label{knf} 
+			f(x_1,\ldots,x_n) = \bigwedge_{f(b_1,\ldots,b_n)=0} \ \, \bigwedge_{i=1}^n  \, (x_i \leftrightarrow \overline{b_i})
+		\end{equation}
+		Wegen \eqref{equiv:x:no:x} kann $x_i \leftrightarrow \overline{b_i}$ je nach dem Wert von $b_i$ entweder durch $x_i$ oder durch $\overline{x_i}$. Mit dieser Interpretation ist die rechte Seite von \eqref {knf} eine KNF. 
+\end{proof} 
+
+\begin{bem}
+	\eqref{knf} ist ein Rezept zur Konstruktion einer Darstellung als KNF für ein gegebenes $f$. Für jede Belegung $(b_1,\ldots,b_n)$, bei der $f$ falsch wird, füge die folgende Elementardijsunktion hinzu, deren Literarale für jedes $i=1,\ldots,n$, folgendermaßen fixiert werden: $x_i$ bei $b_i=0$ und $\overline{x_i}$ bei $b_i=1$. Dieses Rezept ist die ``Dualisierung'' des Rezepts \eqref{dnf:rezept} zur Konstruktion, das dadurch entsteht, dass man die Rollen von $0$ und $1$ vertauscht. 
+\end{bem} 
 
 
