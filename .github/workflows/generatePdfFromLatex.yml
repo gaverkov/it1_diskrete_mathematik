@@ -36,4 +36,4 @@ jobs:
      
     - id: CreateReleaseAndUploadPdfFiles
       working-directory: "it1_diskrete_mathematik/Latex/"
-      run: "hub release create -a it1.pdf#Skript -a it1pr.pdf#Präsentation -m 'Skript und Präsentation' Latest"
+      run: "releases=\"\"; for entry in *.pdf; do releases+=\" -a $entry#$(basename $entry)\"; done; hub release create $releases -m 'Skripte und Präsentationen' Latest"
