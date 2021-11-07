@@ -3,15 +3,19 @@
 \section{Boolesche Funktionen und Formeln} 
 
 \begin{defn}
-	Eine \textbf{Boolesche Variable} ist eine Variable mit den Werten aus 
+	Eine \textbf{boolesche Variable} ist eine Variable mit den Werten aus 
 	\[
 		\{\false,\true\}.
-	\] Wir benutzen die Standard-Identifizierung $\{\false,\true\} \to \{0,1\}$ mit 
-	\begin{align*}
-		 \false & \mapsto 0 & \true & \mapsto 1,
-	\end{align*}
- welche uns ermöglicht, die kürzere Schreibweise mit $0$ und $1$ zu nutzen. 
+	\] 
 \end{defn} 
+
+\begin{bem}
+Wir benutzen die Standard-Identifizierung $\{\false,\true\} \to \{0,1\}$ mit 
+\begin{align*}
+	\false & \mapsto 0 & \true & \mapsto 1,
+\end{align*}
+welche uns ermöglicht, die kürzere Schreibweise mit $0$ und $1$ zu nutzen. 
+\end{bem}
 
 \begin{defn}
 	Für $n \in \N$ nennen wir $f: \{0,1\}^n \to \{0,1\}$ \textbf{boolesche Funktion} in $n$ Variablen. 
@@ -98,7 +102,7 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 
 \begin{prop}
 	Für alle $a,b,c \in \{0,1\}$ gelten die folgenden Gleichungen: 
-	{ \small 
+	\footnotesize
 		\begin{align*}
 			a \wedge b & = b \wedge a &  a \vee b & = b \vee a & & \text{Kommutativgesetze} 
 			\\ (a \wedge b) \wedge c & = a \wedge (b \wedge c) &  (a \vee b) \vee c& = a \vee (b \vee c) & & \text{Distributivgesetze} 
@@ -112,7 +116,6 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 			\\ \overline{0} & = 1 & \overline{1} & = 0 & & \text{Dualitätsgesetze} 
 			\\ a \vee (a \wedge b) & = a & a \wedge (a \wedge b) & = a & & \text{Absorptionsgesetze}
 		\end{align*} 
-	}
 \end{prop} 
 
 
@@ -216,7 +219,7 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 
 
 
-\section{Darstellung durch eine KNF}
+\section{Darstellung durch KNF}
 
 \begin{thm}
 	Jede boolesche Funktion $f : \{0,1\}^n \to \{0,1\}$ kann durch eine KNF gegeben werden. 
@@ -230,7 +233,7 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 		\[
 			\overline{ f(\overline{x_1},\ldots,\overline{x_n})} = \bigvee_{f(\overline{a_1},\ldots,\overline{a_n}) = 0} \ \, \bigwedge_{i=1}^n  \, (x_i \leftrightarrow a_i). 
 		\]
-		Nun negieren wir die linke und rechte Seite. De Morganasche Gesetze ergeben die Darstellung 
+		Nun negieren wir die linke und rechte Seite. Die beiden De Morgansche Gesetze ergeben die Darstellung 
 		\[	
 				f(\overline{x_1},\ldots,\overline{x_n}) = \bigwedge_{f(\overline{a_1},\ldots,\overline{a_n})=0} \ \, \bigwedge_{i=1}^n  \, (\overline{x_i} \leftrightarrow a_i). 
 		\]
@@ -242,7 +245,7 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 		\begin{equation} \label{knf} 
 			f(x_1,\ldots,x_n) = \bigwedge_{f(b_1,\ldots,b_n)=0} \ \, \bigwedge_{i=1}^n  \, (x_i \leftrightarrow \overline{b_i})
 		\end{equation}
-		Wegen \eqref{equiv:x:no:x} kann $x_i \leftrightarrow \overline{b_i}$ je nach dem Wert von $b_i$ entweder durch $x_i$ oder durch $\overline{x_i}$. Mit dieser Interpretation ist die rechte Seite von \eqref {knf} eine KNF. 
+		Wegen \eqref{equiv:x:no:x} kann $x_i \leftrightarrow \overline{b_i}$ je nach dem Wert von $b_i$ entweder durch $x_i$ oder durch $\overline{x_i}$ ersetzt werden. Mit dieser Interpretation ist die rechte Seite von \eqref {knf} eine KNF. 
 \end{proof} 
 
 \begin{bem}

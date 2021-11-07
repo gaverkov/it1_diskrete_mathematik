@@ -1,19 +1,40 @@
+% Encoding and language 
 \usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+
+% Active links and addresses 
 \usepackage[hidelinks]{hyperref} % active links
+\usepackage{url}
+
+% Graphics and plotting
 \usepackage{graphicx} % include graphics
-\usepackage{amssymb,amsmath,amsthm} % enhance mathematics
-\usepackage{mathtools} % enhance mathematics
-\usepackage{enumitem} % customizable enumerate
-\usepackage[german]{babel} % language
+\usepackage{tikz} % tikz pictures 
+\usepackage{tikzsymbols}
+
+% Mathematics
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm} % math theorems and other environments 
+\usepackage{mathtools} 
+
+% Division of polynomials
+\usepackage{polynom}
+\polyset{style=C} % \polylongdiv rules! Styles B und C sehen gut aus!
+
+
+% Enumeration environments 
+\usepackage{enumitem} 
+
+
+% Frames
 \usepackage{framed}
 \usepackage{mdframed}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{tikz}
-\usepackage{tikzsymbols}
+
+
+% Algorithms and Programming
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{listings}
-\usepackage{url}
 \lstset{
 		language=Python,
 		basicstyle=\footnotesize,
@@ -21,6 +42,5 @@
 		backgroundcolor=\color{black!12!white},
 		tabsize=3
 } 
-\usepackage{polynom}
-\polyset{style=C} % \polylongdiv rules! Styles B und C sehen gut aus!
+
 \usepackage{csquotes}
