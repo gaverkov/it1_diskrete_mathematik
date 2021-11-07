@@ -1,0 +1,195 @@
+\chapter{Boolesche Algebra}
+
+\section{Boolesche Funktionen und Formeln} 
+
+\begin{defn}
+	Eine \textbf{Boolesche Variable} ist eine Variable mit den Werten aus 
+	\[
+		\{\false,\true\}.
+	\] Wir benutzen die Standard-Identifizierung von $\false \mapsto 0, \true \mapsto 1$, die uns ermöglichst die kürzere Schreibweise mit $0$ und $1$ zu nutzen. 
+\end{defn} 
+
+\begin{defn}
+	Für $n \in \N$ nennen wir $f: \{0,1\}^n \to \{0,1\}$ \textbf{boolesche Funktion} in $n$ Variablen. 
+\end{defn} 
+
+\begin{bem} Es gibt genau vier boolesche Funktionen in einer Variablen: 
+	\begin{center}
+			\begin{tabular}{c|cccc}
+				$x$ & $0$ & $x$  & $\overline{x}$ & $1$ 
+				\\ \hline 
+				$0$ & $0$ & $0$ &  $1$ & $1$
+				\\ $1$ & $0$ & $1$ & $0$ & $1$ 
+			\end{tabular} 
+	\end{center} 
+\end{bem} 
+
+\begin{bsp}\
+	\begin{enuma} 
+		\item Die \textbf{Mehrheitsfunktion}:
+		\[
+		f (x_1,\ldots,x_n) := \begin{cases} 
+			1 & \text{wenn mindestens $n/2$ der Variablen}
+			\\ & 		\text{ $x_1,\ldots,x_n$ gleich $1$ gesetzt sind}, 
+			\\ 0 & \text{sonst}. 
+		\end{cases} 
+		\]
+		\item Die \textbf{Parity-Funktion}: 
+		\[
+		f (x_1,\ldots,x_n) := \begin{cases} 
+			1 & \text{wenn ungerade viele Variablen}
+			\\ & 		\text{ $x_1,\ldots,x_n$ gleich $1$ gesetzt sind}, 
+			\\ 0 & \text{sonst}. 
+		\end{cases} 
+		\]
+		\item Sei $V$ endliche Menge. Dann lässt sich jeder Graph $G = (V,E)$ mit der Knotenmenge $V$ als die characteristische Funktion $1_E \in \{0,1\}^{\binom{V}{2}}$ der Menge der Kanten kodieren. Verscheidene Eigenschaften von Graphen mit der Knotenmenge $V$ können dann als boolesche Funktionen auf $\{0,1\}^{\binom{V}{2}}$ beschrieben weren. Etwa 
+		\[
+			f(x) := \begin{cases} 1 & \text{der Graph $(V,E)$ mit $1_E=x$} 
+				\\ & \text{ist zusamenhängend}, 
+				\\0  & \text{sonst}.
+				\end{cases} 
+		\]
+		\item Der Operator
+		\[
+			  x \, ?\, y \, :\, z = \begin{cases}
+			  			y, & \text{für} \ x =1,
+			  			\\ z, & \text{für} \  x=0,
+			  	\end{cases} 
+		\]
+		der in C/C++ und Java verfügbar ist, ist im Fall $y,z \in \{0,1\}$ eine boolesche Funktion in drei Variablen. 
+	\end{enuma}
+\end{bsp}
+
+\begin{defn}
+	Eine \textbf{boolesche Formel} ist ein Ausddruck der aus endlich vielen booleschen Variablen, den Verknüpfungen $\neg$, $\vee$, $\wedge$ und Konstanen $0,1$ konstruiert ist. Eine boolesche Formel, die auf den Variablen  $x_1,\ldots,x_n$ $(n \in \N$) definiert ist, ergibt durch das Auswerten die boolesche Funktion $f : \{0,1\}^n \to \{0,1\}$ zu dieser Formel. 
+\end{defn} 
+
+\begin{bem}
+In den booleschen Formel schreiben wir oft auch $a \cdot b$ oder $a b$ an der Stelle von $a \wedge b$ und setzten dabei die Priorität von $\cdot$ höher als die Priorität von $\vee$. 
+\end{bem} 
+
+\begin{defn}
+Zwei Formeln nennen wir identisch, wenn sie dieselbe boolesche Funktion definieren. 
+\end{defn} 
+
+\begin{defn}
+	Die selber boolesche Funktion kann durch verschiedene Formeln gegeben werde. Etwa, 
+	\[
+		x \, \overline{y}\vee y= x \vee y.  
+	\]
+\end{defn} 
+
+\begin{bem}
+	Wenn zwei Formeln $F$ und $G$ identisch sind, so bezeichnet man das in manchen Quellen als $F \equiv G$, wir nutzen aber hier (wie in \cite{Lov20}) die Bezeichnung $F = G$ (die wir ja auch sonst, etwa für die  Gleichheit von Funktionen benutzen). 
+\end{bem} 
+
+\begin{defn} 
+Wir nennen eine boolesche Formel in $n$ Variablen \textbf{erfüllbar}, wenn sie eine eine boolesche Funktion $f  : \{0,1\}^n \to \{0,1\}$ definiert, die nicht identisch gleich $0$ ist. Das bedeutet, dass die Formel bei einer Belegung von Variablen zu $1$ ausgewertet wird. 
+\end{defn} 
+
+\begin{defn} 
+Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn sie eine boolsche Funktion $f: \{0,1\}^n \to \{0,1\}$, die identisch gleich $1$ ist. Das bedeutet, dass die Formel bei jeder Belegung von Variablen zu $0$ ausgewertet wird. 
+\end{defn} 
+
+
+\begin{prop}
+	Für alle $a,b,c \in \{0,1\}$ gelten die folgenden Gleichungen: 
+	{ \small 
+		\begin{align*}
+			a \wedge b & = b \wedge a &  a \vee b & = b \vee a & & \text{Kommutativgesetze} 
+			\\ (a \wedge b) \wedge c & = a \wedge (b \wedge c) &  (a \vee b) \vee c& = a \vee (b \vee c) & & \text{Distributivgesetze} 
+			\\ a \wedge a & = a  & a \vee a & = a  & & \text{Idempotenzgesetze} 
+			\\ a \wedge (b \vee c) & = (a \wedge b) \vee (a \wedge c) &  a \vee (b \wedge c) & = (a \vee b) \wedge (a \vee c)  && \text{Distributivgesetze} 
+			\\ a \wedge 1 & = a  & a \vee 0 & = a  & & \text{Neutralitätsgesetze} 
+			\\ a \wedge 0 & = 0 &  a \vee 1 & = 1 & & \text{Extremalgesetze} 
+			\\ \overline{\overline{a}} & = a & & & & \text{Doppelnegationsgesetz}			
+			\\ \overline{a \wedge b} & = \overline{a} \vee \overline{b}  & \overline{a \vee b} & = \overline{a} \wedge \overline{b} & & \text{De Morgansche Gesetze} 
+			\\ a \wedge \overline{a} & = 0  & a \vee \overline{a} & = 1 & & \text{Komplementärgesetze}
+			\\ \overline{0} & = 1 & \overline{1} & = 0 & & \text{Dualitätsgesetze} 
+			\\ a \vee (a \wedge b) & = a & a \wedge (a \wedge b) & = a & & \text{Absorptionsgesetze}
+		\end{align*} 
+	}
+\end{prop} 
+
+
+
+
+
+\section{Darstellung durch DNF} 
+
+\begin{defn}
+	Ist $x$ eine boolesche Variable, so nennen wir die Formeln $x$ und $\overline{x}$ \textbf{Literale}. 
+	
+	Wir nennen Disjunktion endlich vieler Literale eine Elementardisjunktion (kurz ED) und Konjunktion endlich vieler Literale eine Elementarkonjunktion (kurz EK). 
+	
+	Des Weiteren nennen wir Konjunktion endlich vieler EDs eine konjunktive Normalform (kurz KNF) und Disjunktion endlich vieeler EDs eine dijsunktive Normalform. 
+\end{defn} 
+
+
+\begin{bem}
+	Für eine boolesche Variable $x$, benutzen wir die Bezeichnung 
+	\[
+	x^a := \begin{cases} 
+		x & \text{für} \ a=1,
+		\\				\overline{x} & \text{für} \ a=0
+	\end{cases} 
+	\]
+	mit $a \in \{0,1\}$, um die beiden Literale $x$ und $\overline{x}$ zu beschreiben. 
+	Es bemerkt, dass der Wert von $x^a$ genau dann $1$ ist, wenn $x=a$ gilt. 
+\end{bem} 
+
+\begin{thm}
+	Jede boolesche Funktion $ f: \{0,1\}^n \to \{0,1\}$ kann durch eine DNF beschrieben werden. 
+\end{thm} 
+\begin{proof}
+	Sei 
+	\[
+	W := \setcond{ (a_1,\ldots,a_n) \in \{0,1\}^n}{f(a_1,\ldots,a_n) = 1}. 
+	\]
+	Es gilt: 
+	\[
+	f(x_1,\ldots,x_n) = \bigvee_{ (a_1,\ldots,a_n) \in W} x_1^{a_1} \cdots x_n^{a_n}. 
+	\]
+	Es reichte zu zeigen, dass die rechte Seite genau dann wahr ist, wenn $(x_1,\ldots,x_n) \in W$ gilt. Die rechte Seite ist genau dann wahr, wenn einer der EKs wahr ist. Die EK $x_1^{a_1} \cdots x_n^{a_n}$ ist aber genau dann wahr wenn $x_i = a_i$ für alle $i \in\{1,\ldots,n\}$ gilt. Das zeigt die Behauptung. 
+\end{proof} 
+
+\begin{defn}
+	Sei $f : \{0,1\}^n \to \{0,1\}$. Dann definieren wir die duale Funktion $f^\ast : \{0,1\}^n \to \{0,1\}$ zu $f$ durch 
+	\[
+	f^\ast(x_1,\ldots,x_n) := \overline{ f(\overline{x_1},\ldots,\overline{x_n})}. 
+	\]
+\end{defn} 
+
+\section{Dualität der booleschen Funktionen und Formeln} 
+
+\begin{defn}
+	Als duale Formel zu einer booleschen Formel $F$ definieren wir die Formel $F^\ast$ die aus $F$ entsteht, indem in der Formel die Operatioen $\wedge$ und $\vee$ sowie die Konstanten $0$ und $1$ vertauscht. Mit anderen Worten ensteht die duale Formeln nach durch die folgenden Regeln:
+	\begin{itemize} 
+		\item $L^\ast := L$ für jedes Literal $L$, 
+		\item $0^\ast = 1$ und $1^\ast = 0$ 
+		\item $(A \vee B)^\ast = A^\ast \wedge B^\ast$ und $(A \wedge B)^\ast = A^\ast \vee B^\ast$.
+		\item $(\overline{A})^\ast = \overline{A}$
+	\end{itemize}  
+\end{defn} 
+
+\begin{thm}
+	Sei $F$ boolesche Formel. Dann ist die duale Funktion zur Funktion von $F$ gleich der Funktion zur dualen Formeln $F^\ast$. 
+\end{thm}
+\begin{proof} 
+	Die Behauptung folgt aus der Tatsache, dass für die Operation $f \mapsto f^\ast$ für boolesche Funktionen $f,g : \{0,1\}^n \to \{0,1\}$ die folgenden Regeln gelten: 
+	\begin{align*}
+		0^\ast & = 1
+		\\ 1^\ast & = 0
+		\\ (x_i)^\ast & = x_i
+		\\ (\neg{f})^\ast & = \neg{f^\ast}
+		\\ (f \vee g)^\ast & = f ^\ast\wedge g^\ast
+		\\ (f \wedge g)^\ast & = f ^\ast\vee g^\ast
+	\end{align*} 
+	Diese Regeln entsprechen genau den Regeln, die man benutzt, wenn man eine boolsche Formel dualisiert. 
+\end{proof} 
+
+
+
+\section{Darstellung durch eine DNF}
+
+

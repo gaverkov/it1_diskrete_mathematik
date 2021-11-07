@@ -1,17 +1,21 @@
-%\documentclass[a5paper,12pt,landscape]{book}
-\documentclass[20pt,a4paper,landscape,openany]{extbook} % openany start chapter anywhere as opposed to openright to start on the right page
+\documentclass[20pt,a4paper,landscape,openany]{extbook} 
+% extbook to allow 20pt size fonts in a book layout. 
+% openany to start chapter anywhere as opposed to 
+% openright to start a chapter on the right page (=page with an even number)
+
 \input{packages.tex}
 
+% layout of the page 
 \usepackage[left=2em,right=2em,top=10ex,bottom=10ex]{geometry}
-%\usepackage[paperheight=120mm,paperwidth=169mm,left=2em,right=2em,top=10ex,bottom=10ex]{geometry}
 
-\newcommand{\condclearpage}{\clearpage} % conditional clear page 
+\newcommand{\condclearpage}{\clearpage} 
+% conditional clear page. there is a clear page
+% with this command in the presentation file 
 
 \input{look_pr.tex}
 \input{macros.tex}
 \input{environments.tex}
 \input{numbering.tex}
-
 
 \input{document.tex}
 

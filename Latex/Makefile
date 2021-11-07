@@ -1,5 +1,21 @@
 MAINPDF = it1.pdf it1pr.pdf
-TEXFILES=document.tex environments.tex kapitel1.tex kapitel2.tex kapitel3.tex kapitel4.tex macros.tex numbering.tex packages.tex
+TEXFILES=document.tex \
+	kapitel1.tex \
+	kapitel2.tex \
+	kapitel3.tex \
+	kapitel4.tex \
+	frontpage.tex \
+	environments.tex \
+	macros.tex \
+	numbering.tex \
+	packages.tex \
+	Graphen_Begriffe.tex \
+	Tiefensuche.tex \
+	Breitensuche.tex \
+	Prim.tex \
+	Literatur.tex \
+	Prinzipien.tex \
+	Mitwirkende.tex 
 CODE=Code/prime_factorizations.sage
 
 all : $(MAINPDF)

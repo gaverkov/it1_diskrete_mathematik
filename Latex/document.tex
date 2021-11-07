@@ -1,131 +1,17 @@
 \begin{document}
 
-\author{Prof.~G.~Averkov\\{\small Institut für Mathematik, Fakultät 1}\\{\small Fachgebiet Algorithmische Mathematik}\\{\small Brandenburgische Technische Universität Cottbus}}
-\title{\Huge{\sc{Mathematik IT-3}}\\ \Large{\sc{Mathematik für Informatik-Studiengänge}: Analysis}}
-\date{\today}
-
-%\frontmatter
-\mainmatter
-%\maketitle
-\thispagestyle{empty}
-\begin{center}
-	\Huge{\sc{Mathematik IT-1}}\\ \Large{\sc{Diskrete Mathematik für Informatik-Studiengänge}}
-	\\ \normalsize{\today}
-	\\ {\ }
-	\\ \large{Prof.~G.~Averkov} 
-	\\{\small Institut für Mathematik, Fakultät 1}\\{\small Fachgebiet Algorithmische Mathematik}\\{\small Brandenburgische Technische Universität Cottbus-Senftenberg}
-\end{center} 
+\input{frontpage.tex} 
 
 \tableofcontents
+\clearpage 
 
-%\chapter*{Organisatorisches} 
-
-%\begin{bem}[Vorlesung] {\ } 
-%	\begin{enuma} 
-%		\item In Präsenz, digitale Mitschrift im Moodle, bei Bedarf Aufzeichnungen 
-%		\item In der Vorlesung geht es um die Theorie und Ihre Rolle bei der Lösung von Aufgaben. 
-%		\item  Theorie ist ein Werkzeug zur Lösung von Problemen und Aufgaben.
-%	\end{enuma}
-%\end{bem} 
-
-
-%\begin{bem}[Übung]{\ } 
-%	\begin{enuma} 
-%		\item Zwei Übungstermine pro Woche.
-%		\item Eine synchron und eine asynchron über BigBlueButton
-%		\item Die Teilnehmer werden \underline{nicht} in zwei Übungsgruppen eingeteilt. Jede Woche kann eine der beiden Übungen frei gewählt werden. 
-%		\item Aufgabenblatt Nummer $x$ (mit $x \ge 1$) wird in der Vorlesungswoche $x+1$ diskutiert und zum Ende der Woche $x$ abgegeben. 
-%		\item Abgabe der Blätter digital über Moodle. 
-%		\item Blatt Nummer $0$ wird in der ersten Woche diskutiert und wird nicht abgegeben. 
-%	\end{enuma} 
-%\end{bem} 
-
-
-%\begin{bem}[Prüfung]{ \ } 
-%	\begin{enuma} 
-%		\item Zulassung zur Klausur bei mind. $50\%$ aller Punkte für die Aufgabenblätter 
-%		\item Bei mind. $75\%$ aller Punkte für die Aufgabenblätter gibt es einen $10\%$ Bonus in der Klausur
-%		\item Keine Rechengeräte in der Klausur zugelassen
-%	\end{enuma} 
-%\end{bem} 
-
-\subsection*{Mitwirkende}
-
-Teile des Kapitels zu mathematischen Grundlagen enstanden aus Teilen der Tex-Mitschrit von Jonas Schulze zu meiner Vorlesung ``Lineare Algebra'', die ich an der Otto-von-Guericke-Universität Mageburg hielt. Das Kapitel zu algorithmischen und Programmiergrundlagen basiert auf einem entsprechenden Kapitel zum Skript ``Algorithmische Diskrete Mathematik'', welches in Zusammenarbeit mit Matthias Schymura entstanden ist. 
-
-\chapter*{Einleitung}
-
-\section{Naturwissenschaftliche Prinzipien}
-
-\begin{bem}\ 
-\begin{itemize}
-	\item Nur begründete bzw. verifizierte Annahmen. 
-	\item Überprüfung von Behauptungen durch Beobachtungen/Experimente und Argumente. 
-	\begin{itemize}
-		\item Schwerpunkt bei Mathe: Argumente 
-		\item Experimente bei Mathe meistens billig: Beispiele, Skizzen 
-	\end{itemize} 
-	\item Die Autorität zählt nicht (``Aber mein Lehrer hat gesagt, dass das so richtig ist''), es zählen validierte Behauptungen. 
-	\item Begriffe/Bezeichnungen werden möglichst eindeutig festgelegt (bei Mathe - extrem eindeutig),  so dass man möglichst keinen Spielraum für eine Interpretation haben soll. (``War das die wahre Liebe?'' - kann man die Liebe eindeutig definieren? Wenn nicht, dann kann man so eine Art Frage endlos diskutieren, ohne Ergebnis. ). ``Die Erde ist rund'' - was heißt genau ``die Erde''? Was heißt genau ``rund''? Begriffsklärung sehr wichtig. 
-	\item Naturwissenschaften (Reale Welt und Modelle dazu) und  Strukturwissenschaften (Modelle). 
-	\item Grundlagenwissenschaften: wenn man oft genug ``Warum?'' fragt, kommt man zu grundlegenden Fragen, deren Antworten einen bleibenden Wert und -- auf Dauer -- breite Anwendungsmöglichkeiten haben. Wichtige Frage: Warum? Warum gibt uns die $pq$-Formel das richtige Ergebnis? Die Antwort ist für die Mathe-Gemeinschaft interessanter als die Formel selbst. Das Interessante in der Mathematik ist genau das, was man in den Formeltafeln nicht findet. 
-	\item Modelle vs. Situationen in der realen Welt: 
-	\begin{itemize}
-			\item Verschiedene Modelle für die selbe Situation möglich (diskrete Zeit, kontinuirliche Zeit usw.) $\rightsquigarrow$ Modelle beschreiben die reale Situation nur annähernd. Wenn wir ein Modell verstanden haben, heißt es noch nicht, dass wir die reale Situation dazu komplett verstanden haben. Das ergibt eine natürliche Unterteilung (Expert:innen mit Schwerpunkt bei Modellen, Expert:innen mit Schwerpunkt bei der realen Welt). 
-			%
-			\item Gleiche Modelle für verschiedene Situationen möglich (Wachstum von Bakterien, Wachstum in der Wirtschaft usw.) $\rightsquigarrow$ Wir können gleiche Modelle in sehr unterschiedlichen Kontexten einsetzen. Daher ist die Studie der Modelle an sich (nicht gebunden an die konkrete reale Situation) oft sinnvoll. In Mathematik/Informatik macht man genau das. 
-	\end{itemize} 
-\end{itemize} 
-\end{bem}
-
-
-\section{Mathematische Prinzipien} 
-
-\begin{bem}\ 
-\begin{itemize}
-		\item Für eine mathematische Theorie legt man Grundbegriffe und Grundbezeichnungen (eindeutig) fest. 
-		\item Auf der Basis der bereits vorhandenen Begriffen und Bezeichnungen führt man immer neue Begriffe und Bezeichnungen (eindeutig) ein. 
-		\item Mit Hilfe von vorhandenen Begriffen und Bezeichnungen werden Aussagen formuliert, die dann durch Argumentation bestätigt ($=$ bewiesen) oder widerlegt werden. 
-		\item Wahre mathematische Beweise sind widerspruchsfrei und vollständig. 
-		\item In der Theorie interessiert man sich vor allem für noch offene Aussagen, die aktuell weder bestätigt noch widerlegt worden sind. 
-		\item Mathematik ist ungleich Rechnen. Rechnen, ohne dass man versteht, was die Rechenschritte bedeuten, ist keine mathematische Tätigkeit. Wichtig ist der Sinn hinter den Rechenschritten. Erkennt man beim Rechnen den Sinn nicht, dann ist man ein menschlicher Computer. Dabei soll man bedenken, dass echte Computer  weniger Fehler und  etwas schneller beim Rechnen sind :) 
-		\item Mathematik ist keine Ansammlung von Formeltafeln oder Aufzählung von mathematischen Aussagen. Formeltafeln sind Nebenprodukt davon, was man verstanden hat. Mathematische Aussagen sind ebenfalls ein Produkt, was in Mathematik viel mehr zählt sind die Begründungen ($=$ Beweise). 
-\end{itemize} 
-\end{bem} 
-
+\input{Mitwirkende.tex}
+\input{Prinzipien.tex} 
 \input{kapitel1.tex}
 \input{kapitel2.tex} 
 \input{kapitel3.tex} 
 \input{kapitel4.tex} 
-
-\appendix 
-
-\begin{thebibliography}{AAAA}
-		\bibitem[Ber17]{Ber17} Berghammer: Mathematik für Informatiker. Grundlegende Begriffe und Strukturen. Springer Vieweg 2017
-		\bibitem[Ber19]{Ber19} Berghammer: Mathematik für Informatiker. Grundlegende Begriffe und Strukturen und ihre Anwendung. Springer Vieweg 2019
-		\bibitem[Big05]{Big05} Discrete mathematics. Oxford University Press 2005
-		\bibitem[Bri01]{Bri01} Mathematik für Inforamtiker. Einführung an praktischen Beispielen aus der Welt der Computer. München: Hanser 2001
-		\bibitem[GR14]{GR14} Goebbels, Rethmann. Mathematik für Informatiker: eine aus der Informatik motivierte Einführung mit zahlreichen Anwendungs- und Programmbeispielen. Springer Vieweg 2014
-		\bibitem[GS11]{GS11} Heinz Peter Gumm, Manfred Sommer. Einführung in die Informatik, Oldenbourg Verlag 2011
-		\bibitem[KK15]{KK15} Knauer, Knauer. Diskrete und algebraische Strukturen - kurz gefasst. Springer Spektrum 2015. 
-		\bibitem[KP09]{KP09} Kreußler, Pfister. Mathematik für Informatiker: Algebra, Analysis, Diskrete Strukturen. Springer 2009. 
-		\bibitem[LLM21]{LLM21} Lehman, Leighton, Meyer. Mathematics for Computer Science. Lecture notes at MIT. \url{https://courses.csail.mit.edu/6.042/spring18/mcs.pdf} 
-		\bibitem[Lov20]{Lov20} Lov\'asz, L\'aszl\'o. Complexity of Algorithms. Lecture Notes. 2020. \url{https://web.cs.elte.hu/~kiraly/complexity.pdf} 
-		\bibitem[Sch12]{Sch12} Schubert. Mathematik für Informatiker: ausführlich erklärt mit vielen Programmbeispielen und Aufgaben.  
-		\bibitem[Ste01]{Ste01} Steger. Diskrete Strukturen 1. Kombinatorik, Graphentheorie, Algebra. Springer 2001
-		\bibitem[Tit19]{Tit19} Peter Tittmann. Einführung in die Kombinatorik, 3. Auflage, Springer 2019
-\end{thebibliography} 
-
-
-
-
-
-%\begin{thebibliography}{AAA}
-%	\bibitem[Rud]{Rud} Walter Rudin: Analysis. 4. Auflage, Oldenbourg 2009, 408~Seiten.  (Eines der Standardlehrbücher zur Analysis. Englisches Original ``Principles of Mathematical Analysis)
-%	\bibitem[Dem]{Dem} Boris Pavlovich Demidovitch: A Collection of Problems and Exercises in Mathematical Analysis, 11. Auflage, 1995, in Russisch (Über 4000 Aufgaben zu verschiedenen Themen aus der Analysis)
-%\end{thebibliography} 
-%\bibliographystyle{amsalpha}
-%\bibliography{lit}
-% bibliography, glossary and index would go here.
+\input{kapitel5.tex} 
+\input{Literatur.tex}
 
 \end{document}
