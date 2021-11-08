@@ -79,6 +79,46 @@
 	Die Intuition hinter Lemma~\ref{lem:inkl:exkl:2} ist: wir zählen alle Elemente in $A$ sowie $B$ ab. Dadurch werden die Elemente in $A \cap B$ doppelt abgezählt. Wir sollen also die Anzahl der Elemente in $A \cap B$ abbziehen, um auf die Anzahl der Elemente in $A \cup B$ zu kommen. 
 \end{bem} 
 
+
+\begin{bsp}
+	Wie viele dreistellige Zahlen gibt es, bei denen zwei benachbarte Stellen gleich sind? 
+	
+	Wir identifizieren die dreistelligen Zahlen mit den  den Tripeln $(s_1,s_2,s_3)$ mit $s_1 \in \{1,\ldots,9\}$ und $s_2,s_3 \in \{0,\ldots,9\}$. Daher arbeiten wir innerhalb der Menge
+	\[
+			X = \{1,\ldots,9\} \times  \{0,\ldots,9\} \times \{0,\ldots,9\}
+	\]
+	Dann entspricht die Menge 
+	\[
+		A := \setcond{ (s_1,s_2,s_3) \in X}{s_1=s_2}
+	\]
+	der Menge der dreistelligen Zahlen, bei denen die $100$er und die $10$er Stelle gleich sind, und die Menge
+	\[
+		B:= \setcond{ (s_1,s_2,s_3)}{s_2=s_3}
+	\]
+	der Menge der dreistelligen Zahlen, bei denen die $10$er und die $1$er Stelle gleich sind. Wir sind also an der Anzahl der Elemente in der Vereinigung $A \cup B$ interessiert. Wegen 
+	\[
+			| A \cup B| = |A| + |B|  - |A \cap B|
+	\]
+	reicht es aus, die Anzahl der Elemente in $A$, $B$ und $A \cap B$ zu bestimmen. 	
+	Der Durchschnitt 
+	\[	
+		A \cap B = \setcond{ (s_1,s_2,s_3) \in X}{s_1=s_2=s_3}
+	\]
+	entspricht der Menge der dreistelligen Zahlen, bei denen alle drei Stellen gleich sind. Die Menge $A$ hat genau $9 \cdot 10$ Elemente. Das lässt sich folgendermaßen verifizieren:  
+	\begin{itemize} 
+		\item es gibt für die $100$er Stelle $9$ Möglichkeiten hat;
+		\item unabhängig von der $100$er Stelle gibt es für die $1$er Stelle $10$ Möglichkeiten
+		\item Die $10$er Stelle bei den Zahlen, die den Elementen aus $A$ entsprechen, ist gleich der $100$er Stelle. 
+	\end{itemize} 
+	Ganz analog sieht man, dass die Menge $B$ ebenfalls genau $9 \cdot 10$ Elemente hat. Die Menge $A\cap B$ hat $9$ Elemente. Es folgt: 
+	\[
+		|A \cup B| = 90 + 90 - 9 = 171. 
+	\]	
+	Hier ein Python-Code, der all die Möglichkeiten auflistet: 
+	\lstinputlisting{Code/komb171.py}
+\end{bsp} 
+
+
 \begin{bsp}
 	In einer Klasse haben $15$ Kinder eine Playstation, $10$ Kinder eine Xbox und $3$ Kinder die beiden genannten Geräte. Wie viele Kinder haben mindestens eines der beiden Geräte? 
 	

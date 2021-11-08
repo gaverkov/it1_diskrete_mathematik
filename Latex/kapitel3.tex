@@ -707,3 +707,52 @@ Wir lassen die Multiplikation von zwei ganzzahligen Variablen in unserem Modell 
 
 Dieser Algorithmus würde also $2^{2^n}$ in der Zeit $O(n)$ berechnen. Die Zahl $2^{2^n}$ hat allerdings $2^n+1$ Binärstellen. Wir würden also eine Zahl exponentieller Bit-Größe in linearer Zeit berechnen, was wir als unrealistisch ansehen. 
 \end{bem}
+
+\section{Polynomialzeit-Berechenbarkeit} 
+
+
+
+\begin{defn} 
+	Sei $A$ Algorithmus im Rahmen eines Rechenmodells, dessen Schritte als Grundoperationen im gegebenen Rechenmodell beschrieben sind. 
+
+Die \textbf{Laufzeit} $L(A,x)$ von~$A$ auf der Eingabeinstanz $x$ ist die Anzahl der Schritte des Algorithmus $A$ auf der Eingabe $x$ bis zur Terminierung. 
+
+Die \textbf{Laufzeitfunktion} $L_A : \N \to \N$ von~$A$ ist definiert als
+\[
+L_A(n) := \max \setcond{  L(A,x) }{x \ \text{Eingabe für} \ A  \ \text{mit} \ \encl{x} \le n}.
+\]
+Das heißt, $L_A(n)$ ist die maximale Laufzeit auf allen Eingaben, deren Eingabelänge höchstens $n$ ist. 
+\end{defn} 
+
+\begin{defn}
+	Eine Funktion $p : \R \to \R$ heißt \textbf{Polynomfunktion} vom Grad $d \in \N_0$, falls~$p$ die Form \[
+		p(t)= c_0 + c_1 t + c_2 xt2 + \ldots + c_d t^d
+	\]
+	hat, mit $c_0,\ldots,c_d \in \R$ und $c_d \ne 0$. 
+\end{defn} 
+
+\begin{defn} 
+Wir nennen einen Algorithmus~$A$ \textbf{polynomial} oder \textbf{Polynomialzeit-Algorithmus} (bezüglich des zugrundeliegenden Rechenmodells und Kodierungsschemas für die Eingabe), falls eine Polynomfunktion~$p$ existiert, so dass $L_A(n) \leq p(n)$ für alle $n \in \N_0$ gilt.
+\end{defn} 
+
+\begin{bem}
+	Ein Polynomialzeit-Algorithmus $A$ ist ein Algorithmust mit der Laufzeitfunktion der Ordnung $ O(n^d)$ für ein $d \in \N_0$. 
+\end{bem} 
+
+\begin{bem}
+	In der Theorie nennt man Polynomialzeit-Algorithmen oft auch effiziente Algorithmen. Welche Algorithmen aus der praktischen Sicht effizient sind, lässt sich schwer formal beschreiben.
+\end{bem} 
+
+\begin{defn}
+	Ein Rechenproblem heißt \textbf{Polynomialzeit-berechenbar}, wenn es ein Polynomialzeit-Algorithmus existiert, der das Rechenproblem löst. 
+	
+	Ein Entscheidungsproblem bzw. eine Sprache heißt \textbf{Polynomialzeit-\-ent\-scheid\-bar}, wenn es ein Polynomialzeit-Algorithmus existiert, der das Problem bzw. die Sprache entscheidet. 
+\end{defn} 
+
+\begin{defn}
+	Die Menge aller Polynomialzeit-entscheidbaren Sprachen $L \subseteq \{0,1\}^\ast$ wird die Komplexitätsklasse $\operatorname{P}$ genannt. Als Formel: 
+	\[
+			\operatorname{P}:= \setcond{L \subseteq \{0,1\}^\ast }{L \ \text{Polynomialzeit-entscheidbar} } 
+	\]
+\end{defn} 
+
