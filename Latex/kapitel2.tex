@@ -131,13 +131,13 @@
 \begin{bem}[Kombinatorik und Wahrscheinlichkeiten] 
 	Die Berechnung von Wahrscheinlichkeiten reduziert sich im Fall von endlichen Wahrscheinlichkeitsräumen oft zur Berechnung von Quotienten 
 	\begin{align*}
-			\frac{\text{der Anzahl der günstigens Fälle}}{\text{die Anzahl aller Fälle}}
+			\frac{\text{die Anzahl der günstigen Fälle}}{\text{die Anzahl aller Fälle}}
 	\end{align*} 
 	uns somit zur Lösung von kombinatorischen Aufgaben, vgl. auch \cite{Tit19}. 
 \end{bem} 
 
 \begin{aufg}
-	Alice wirf zwei Spielwürfel und Bob wirft einen Spielwürfel. Mit welcher Wahrscheinlichkeit ist die Augenzahl bei Bob gleich einer der Augenzahlen bei Alice? 
+	Alice wirft zwei Spielwürfel und Bob wirft einen Spielwürfel. Mit welcher Wahrscheinlichkeit ist die Augenzahl bei Bob gleich einer der Augenzahlen bei Alice? 
 \end{aufg} 
 
 \begin{lem} \label{lem:anzahl:prod:2}
@@ -412,6 +412,10 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	Da $X \setminus \{a\}$ eine $(n-1)$-elementige Menge ist, folgt nach der Induktionsovraussetzung $|2^{X \setminus \{a\}}| = 2^{|X \setminus \{a\}|} = 2^{|X|-1}$. Wir erhalten somit $2^{|X|} = 2 \cdot 2^{|X|-1} = 2^{|X|}$. 
 \end{proof} 
 
+\begin{aufg}
+	Wie wahrscheinlich ist es, beim viermaligen Werfen einer fairen Münze, genau $2$ mal den Kopf zu werfen?
+\end{aufg} 
+
 \begin{thm}[Binomischer Lehrsatz] 
 	Für $x, y \in \R$ und $n \in \N$ gilt 
 	\[
@@ -544,6 +548,10 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	was zur Formel in der Behauptung des Theorems äquivalent ist. 
 \end{proof} 
 
+\begin{aufg}
+	Wie viele dreistellige Zahlen gibt es, bei denen zwei Stellen gleich sind? 
+\end{aufg} 
+
 \section{Multimengen} 
 
 \begin{defn}
@@ -609,4 +617,8 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 \begin{proof}
 	Es reicht den Fall $|X| >0$, $k>0$ zu betrachten. Sei $n:= |X|$. Wir nummerieren die Elemente in $X$ und schreiben $X$ als $\{x_1,\ldots,x_n\}$. Jede Multimenge $M \in \mbinom{X}{k}$ ist eindeutig durch die Angabe der Werte $z_i := \mu_M(x_i)$ mit $i \in \{1,\ldots,k\}$ gegeben. Daher folgt die Behauptung aus Lemma~\ref{lem:multimengen}. 
 \end{proof} 
+
+\begin{aufg}
+	In einer Bäckerei wollen Sie Brötchen holen. Zur Auswahl haben Sie dabei die folgenden Sorten: Weizenbrötchen, Vollkornbrötchen, Laugenbrötchen und Kürbiskern\-brötchen. Wie viele Möglichkeiten haben Sie beim Kauf von $10$ Brötchen? 
+\end{aufg} 
 
