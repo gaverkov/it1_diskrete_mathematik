@@ -63,7 +63,10 @@ Sei $A$ endliche Menge und seien $k \in \N_0$. Dann sind die folgenden Bedingung
 	Sei $A$ endliche nichtleere Menge. Dann existiert eine Injektive Abbildung von $A^\ast$ nach $\{0,1\}^\ast$. Mit anderen Worten: Strings über einem beliebigen endlichen Alphabet können als Bit-Strings kodiert werden. 
 \end{prop} 
 \begin{proof} 
-	Sei $k \in \N_0$ Wert mit $2^k \ge |A|$. Dann existiert eine Kodierung $ c : A \to \{0,1\}^k$. Diese Kodierung erzeugt die Kodierung $(x_1, \cdots ,x_n) \mapsto c(x_1) \cdots (c(x_1),\ldots,c(x_n))$ von $A^\ast$ nach $\{0,1\}^\ast$. 
+	Sei $k \in \N_0$ Wert mit $2^k \ge |A|$. Dann existiert eine Kodierung $ c : A \to \{0,1\}^k$. Diese Kodierung erzeugt die Kodierung  von $A^\ast$ nach $\{0,1\}^\ast$ mit
+	\[
+		(x_1, \cdots ,x_n) \in A^n \mapsto (c(x_1),\ldots,c(x_n)) \in \{0,1\}^{nk}.
+	\]
 \end{proof} 
 
 
@@ -71,7 +74,13 @@ Sei $A$ endliche Menge und seien $k \in \N_0$. Dann sind die folgenden Bedingung
 	Besitzen Mengen $X$ und $Y$ Kodierungen mit Bit-Strings, so besitzt auch $X \times Y$ Kodierung mit Bit-Strings. 
 \end{prop} 
 \begin{proof}
-	Seien $ a : X \to \{0,1\}^\ast$ und $b : Y \to \{0,1\}^\ast$ Kodierungen von $X$ bzw. $Y$ mit Bit-Strings. Dann können wir ein Trennzeichen $\#$ einführen und das Paar $(x,y)$ mit $x \in X, y \in Y$ als ein String $a(x) \, \# \,  b(y) \in \{0,1,|\}^\ast$ über dem drei-elementigen Alphabet $\{0,1,\#\}$ kodieren. Nach Proposition~\ref{prop:beliebiges:alphabet->01} können Strings über einem beliebigen endlichen Alphabet als Bit-Strings kodiert werden, es gibt also eine Kodierung $c : \{0,1,\#\}^\ast \to \{0,1\}^\ast$. Das Ergibt die Kodierung $c ( a(x) \# b(y))$ von $(x,y) \in X \times Y$ mit einem Bit-String. 
+	Seien $ a : X \to \{0,1\}^\ast$ und $b : Y \to \{0,1\}^\ast$ Kodierungen von $X$ bzw. $Y$ mit Bit-Strings. Dann können wir ein Trennzeichen $\# \not\in \{0,1\}$ einführen und das Paar $(x,y)$ mit $x \in X, y \in Y$ als ein String $a(x) \, \# \,  b(y) \in \{0,1,\#\}^\ast$ über dem drei-elementigen Alphabet $\{0,1,\#\}$ kodieren. Nach Proposition~\ref{prop:beliebiges:alphabet->01} können Strings über einem beliebigen endlichen Alphabet als Bit-Strings kodiert werden, es gibt also eine Kodierung $c : \{0,1,\#\}^\ast \to \{0,1\}^\ast$.
+
+	 Das ergibt die Kodierung 
+	 \[
+	 		(x,y) \mapsto c ( a(x) \# b(y))
+	 \] 
+	 von $X \times Y$ nach $\{0,1\}^\ast$. 
 \end{proof} 
 
 \begin{kor}[Kodierung von Tupeln]
@@ -80,6 +89,20 @@ Sei $A$ endliche Menge und seien $k \in \N_0$. Dann sind die folgenden Bedingung
 \begin{proof} 
 Die Konstruktion im Beweis von \eqref{kod:paare} direkt vom Fall $n=2$ auf ein allgemeines $n$ erweitern. Alternativ kann man die Behauptung durch die Induktion nach $n$, mit dem Induktionsanfang $n=2$, aus Korollar~\ref{kod:paare} herleiten. 
 \end{proof} 
+
+\begin{bsp}
+	Eine mögliche Kodierung von Folgen/Tupeln nichtnegativer ganzer Zahlen als Bit-Strings kann durch die folgenden Schritte erfolgen: 
+	\begin{align*}
+		(0, 6,3,7) & \mapsto (0,110,11,111)  & & \text{(Binärdarstellung)} 
+		\\ & \mapsto 0 \mathbf{\#} 110 \mathbf{\#} 11 \mathbf{\#} 111 & & \text{(Trennzeichen)} 		
+		\\ & \mapsto  00 \, \mathbf{11} \,  01 \,  01 \, 00 \, \mathbf{11 }\, 01 \, 01 \, \mathbf{11} \, 01 01 01.
+	\end{align*}
+	Im letzten Schritt nutzt man die Kodierung 
+	\begin{align*}
+		0 & \mapsto 00, & 1& \mapsto 01, &  \# & \mapsto 11
+	\end{align*}
+	von $\{0,1,\#\}$ mit $2$-Bit-Strings. 
+\end{bsp} 
 
 
 \section{Stellenwertsysteme: Darstellung von Zahlen}
