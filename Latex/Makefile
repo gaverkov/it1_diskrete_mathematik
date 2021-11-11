@@ -1,11 +1,5 @@
-MAINPDF := \
-$(shell find . -maxdepth 1 -iname "it1*.tex" -exec basename {}  \; | sed 's|.tex|.pdf|g')
+all :
+	python3 tex_makefile_creator.py > Makefile_Tex
+	make all -f Makefile_Tex
 
-TEXFILES := \
-$(shell find . -maxdepth 1 -type f \( -iname "*.tex" -and -not -iname "it1*.tex" \) -exec basename {} \;)
-
-all : $(MAINPDF)
-
-%.pdf : %.tex $(TEXFILES)
-	pdflatex $(basename $@ .pdf).tex
-	pdflatex $(basename $@ .pdf).tex
+.PHONY : all
