@@ -317,6 +317,16 @@
 ergibt $6$ Möglichkeiten. 
 \end{bem} 
 
+\begin{aufg}[Geburtstage]\
+	\begin{enuma}
+		\item Mit welcher Wahrscheinlichkeit haben $2$ zufällig gewählte Personen den gleichen Geburtstag? 
+		\item Mit welcher Wahrscheinlichkeit gibt es unter $3$ zufällig gewählten Personen zwei mit dem gleichen Geburstag?
+		\item Mit welcher Wahrscheinlichkeit gibt es unter $25$ zufällig gewählten Personen zwei mit dem gleichen Geburstag?
+		\item Mit welcher Wahrscheinlichkeit gibt es unter $366$ zufällig gewählten Personen zwei mit dem gleichen Geburstag? 
+	\end{enuma}
+	Bemerkung: Wir ignorieren Einfachheit halber die Problematik mit den Schaltjahren und gehen davon aus, dass das Jahr $365$ hat. 
+\end{aufg} 
+
 \section{Teilmengen} 
 
 \begin{defn}
@@ -364,7 +374,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	die bijektive Abbildung $\tilde{f} : I \to B$ mit $\tilde{f}(i) = f(i)$ zuordnen kann, und die Abbildung $f \mapsto \tilde{f}$ von $\setcond{f \in \Inj(I,X)}{f(I) = B}$ nach $\Bij(I,B)$ ist bijektiv. 
 	Wir erhalten also 
 	\[
-			| \setcond{f \in \Inj(I,X)}{f(I) = B}| = |\Bij(I,B)| = k!. 
+			| \setcond{f \in \Inj(I,X)}{f(I) = B}| = |\Bij(I,B)| = k!
 	\]
 	Das ergibt
 	\[
@@ -416,7 +426,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	Wie wahrscheinlich ist es, beim viermaligen Werfen einer fairen Münze, genau $2$ mal den Kopf zu werfen?
 \end{aufg} 
 
-\begin{thm}[Binomischer Lehrsatz] 
+\begin{thm}[Binomialsatz] 
 	Für $x, y \in \R$ und $n \in \N$ gilt 
 	\[
 			(x+y)^n = \sum_{i=0}^n \binom{n}{i} x^i y^{n-i}. 
@@ -431,14 +441,12 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	\[
 			(x+y)^n = \sum_{I \subseteq \{1,\ldots,n\}} x^{|I|} y^{n - |I|}. 
 	\]
-	Nun können wir die Teilmengen von $\{1,\ldots,n\}$ nach ihrer Kardinalität Gruppieren. Wir erhalten 
+	Anschließend gruppieren wir die Teilmengen $I \subseteq \{1,\ldots,n\}$ nach ihrer Kardinalität und erhalten
 	\begin{align*}
 			(x+y)^n & =\sum_{i=0}^n \sum_{I \in \binom{\{1,\ldots,n\}}{i}} x^i y^{n-i} 
-			\\ & = \sum_{i=0}^n \left| \binom{\{1,\ldots,n\}}{i} \right| x^i y^{n-i}. 
-			\\ & = \sum_{i=0}^n \left| \binom{n}{i} \right| x^i y^{n-i}
+			\\ & = \sum_{i=0}^n \left| \binom{\{1,\ldots,n\}}{i} \right| x^i y^{n-i} 
+			\\ & = \sum_{i=0}^n \left| \binom{n}{i} \right| x^i y^{n-i}.
 	\end{align*} 
-	
-	wird aus jeder der $n$ Klammern entweder $x$ oder $y$ gewählt und a
 \end{proof} 
 
 \begin{thm} \label{pascals:triangle} 
@@ -446,7 +454,10 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 \end{thm} 
 \begin{proof} 
 	Wir beschränken uns auf den nichttrivialen Fall $1 \le i \le n$. 
-	Man kann einen rein arithmetischen Beweis anhand der expliziten Formel für die Binomailkoeffizienten geben. Alternativ geben wir hier einen kombinatorischen Beweis. Sei $X$ eine $n$-elementige Menge. Wir fixieren ein Element $p\in X$ in dieser Menge. Die Menge $\binom{X}{i}$ der $i$-elementigen Teilmengen ist disjunkte Vereinigung 
+	
+	Man kann für die Formel in der Behauptung einen rein arithmetischen Beweis anhand der expliziten Formel für die Binomailkoeffizienten geben. 
+	
+	Alternativ geben wir hier einen kombinatorischen Beweis. Sei $X$ eine $n$-elementige Menge. Wir fixieren ein Element $p\in X$ in dieser Menge. Die Menge $\binom{X}{i}$ der $i$-elementigen Teilmengen ist disjunkte Vereinigung 
 	\[
 		\binom{X}{i} = \setcond{ A \in \binom{X}{i}}{p \in A} \cupdot \setcond{A \in \binom{X}{i}}{p \not\in A}. 
 	\]
@@ -465,9 +476,23 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	\end{align*} 
 \end{proof} 
 
-\begin{bem}
+\begin{aufg}
 	Die Formel in Theorem~\ref{pascals:triangle} wird oft als das sogenannte pascalsche Dreieck visualisiert. 
-\end{bem} 
+	\begin{center}
+	\begin{tabular}{rrrrrrrrr}
+1\\
+1 & 1\\
+1 & 2 & 1\\
+1 & 3 & 3 & 1\\
+1 & 4 & 6 & 4 & 1\\
+1 & 5 & 10 & 10 & 5 & 1\\
+1 & 6 & 15 & 20 & 15 & 6 & 1\\
+1 & 7 & 21 & 35 & 35 & 21 & 7 & 1\\
+1 & 8 & 28 & 56 & 70 & 56 & 28 & 8 & 1
+	\end{tabular}
+\end{center}
+Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie wie $(x+y)^6$ oder zum Beispiel $(x+y)^9$ auszumultiplizieren. 
+\end{aufg} 
 
 \begin{aufg}
 	Beweisen Sie den binomischen Lehrsatz durch Induktion über $n$ mit der Verwendung von Theorem~\ref{pascals:triangle}. 
@@ -483,11 +508,24 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 			\\	0 & \text{für} \ x \not\in A
 			\end{cases} 
 	\]
-	die \textbf{charakteristische Funktion} von $A$ auf der Grundmenge $X$. (In der Regel ist die Wahl der Grundmenge aus dem Kontext klar, daher ist $X$ nicht direkt in der Bezeichnung $1_A$ vorhanden.)
+	die \textbf{charakteristische Funktion} von $A$ auf der Grundmenge $X$. 
+	
+	In der Regel ist die Wahl der Grundmenge aus dem Kontext klar, daher ist $X$ nicht direkt in der Bezeichnung $1_A$ vorhanden.
 \end{defn} 
 
 \begin{bem}
-	Sind $A, X$ endliche Menge mit $A \subseteq X$ so ist $|A| = \sum_{x \in A} 1_A(x)$. Darüber hinaus gilt $1_{X \setminus A} = 1_X - 1_A$. 
+	Andere Bezeichnungen für die charakteristische Funktion von $A$, die man in der Literatur benutzt, sind $f_A$, $\chi_A$ und $[A]$. Die charakteristische Funktion wird auch die \textbf{Indikator-Funktion} genannt. 
+\end{bem} 
+
+\begin{bem}
+	Sind $A, X$ endliche Menge mit $A \subseteq X$ so ist 
+	\[	
+			|A| = \sum_{x \in A} 1_A(x)
+	\] 
+	Darüber hinaus gilt 
+	\[	
+		1_{X \setminus A} = 1_X - 1_A. 
+	\]
 \end{bem}
 
 \begin{lem}
@@ -498,7 +536,9 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 \end{lem} 
 \begin{proof}
 	Sei $x \in X$. 
-	Liegt $x$ im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt $1_{A_1 \cap \cdots \cap A_n} (x) =1$  aber auch $1_{A_i}(x)=1$ für jedes $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken und rechten Seite auf $x$  ergibt somit den Wert $1$> 
+	Liegt $x$ im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt 
+	\[ 1_{A_1 \cap \cdots \cap A_n} (x) =1
+	\]  aber auch $1_{A_i}(x)=1$ für jedes $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken und rechten Seite auf $x$  ergibt somit den Wert $1$
 	Ist $x$ nicht im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt $1_{A_1 \cap \cdot A_n}(x) =0$ aber auch $1_{A_i}(x)=1$ für ein $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken rechten Seite der Formel ergibt somit den Wert $0$. 
 \end{proof} 
 
@@ -593,19 +633,23 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 	\[
 			Y:= \setcond{ (y_1,\ldots,y_n) \in \N^n}{y_1 + \cdots + y_n = n+ k}. 
 	\]
-	Es reicht also aus, die Anzahl der Elemente in $Y$ zu bestimmen. Eine Wahl von $(y_1,\ldots,y_n)$ lässt sich so veranschaulichen. Man zeichnet $n+k$ Punkte von links nach rechts. Zwischen diesen Punkt gibt es $n+k-1$ Lücken. Setzt man in genau $n-1$ Lücken Striche, so zerlegen sich Punkte in $n$. Bezeichnet man als $y_i$ die Anzahl der Punkte in $i$-te Gruppe, so erhält $(y_1,\ldots,y_n) \in Y$. Umgekehrt erzeugt jedes $(y_1,\ldots,y_n) \in Y$ eine Angabe, welche der $n+k-1$ Lücken mit Strichen gefüllt werden sollen. Daraus ergibt sich 
+	Es reicht also aus, die Anzahl der Elemente in $Y$ zu bestimmen. Eine Wahl von $(y_1,\ldots,y_n)$ lässt sich so veranschaulichen. Man zeichnet $n+k$ Punkte von links nach rechts. Zwischen diesen Punkten gibt es $n+k-1$ Lücken. Setzt man in genau $n-1$ Lücken Striche, so zerlegen sich Punkte in $n$ Gruppen. Bezeichnet man als $y_i$ die Anzahl der Punkte in $i$-te Gruppe, so erhält man $(y_1,\ldots,y_n) \in Y$. Umgekehrt erzeugt jedes $(y_1,\ldots,y_n) \in Y$ eine Angabe, welche der $n+k-1$ Lücken mit Strichen gefüllt werden sollen. Daraus ergibt sich 
 	\[
 			|Z| = |Y|= \binom{n+k-1}{n-1} = \binom{n+k-1}{k}. 
 	\]
 	Die informelle Begründung mit Punkten, Lücken und Strichen kann mathematisch formal beschrieben werden. Es handelt sich um die Bijektion 
-	\[
+	\begin{equation}\label{y->x}
 		(y_1,\ldots,y_n) \mapsto (y_1,y_1+y_2,\ldots, y_1+ \cdots +y_{n-1})
-	\] von $Y$ nach 
+	\end{equation}
+	 von $Y$ nach 
 	\(
 			X:=\binom{\{1,\ldots,n+k-1\}}{n-1}. 
 	\)
-	(Aufgabe: Überprüfen Sie, dass es tatsächlich eine Bijektion ist.) 
 \end{proof} 
+
+\begin{aufg}
+	Überprüfen Sie, dass im Beweis des vorigen Theorems die Vorschrift \eqref{y->x} tatsächlich eine Bijektion von $Y$ nach $X$ ist. 
+\end{aufg} 
 
 \begin{thm}
 	Sei $X$ endliche Menge und sei $k \in \N_0$. Dann gilt 
@@ -619,6 +663,34 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 \end{proof} 
 
 \begin{aufg}
-	In einer Bäckerei wollen Sie Brötchen holen. Zur Auswahl haben Sie dabei die folgenden Sorten: Weizenbrötchen, Vollkornbrötchen, Laugenbrötchen und Kürbiskern\-brötchen. Wie viele Möglichkeiten haben Sie beim Kauf von $10$ Brötchen? 
+	In einer Bäckerei wollen Sie Brötchen holen. Zur Auswahl haben Sie dabei in ausreichenden Mengen die folgenden Sorten: Weizenbrötchen, Vollkornbrötchen, Laugenbrötchen und Kürbiskern\-brötchen. Wie viele Möglichkeiten haben Sie beim Kauf von $10$ Brötchen? 
 \end{aufg} 
 
+\section{Kombinatorische Formeln und das Ziehen}
+
+\begin{bem}
+	Für eine Menge $X$ und $k \in \N$ verwendet man oft die folgende ``Zieh-Terminologie'' in Bezug auf einige der vorigen Formeln. 
+\end{bem}
+
+\begin{bem} $\binom{X}{k}$ beschriebt das \textbf{ungeordnete Ziehen} von $k$ Elementen aus der Menge $X$.  Etwa: wie viele Varianten gibt es dafür, dass in einer Klasse aus $20$ Schüler:innen $3$ fehlen. Antwort: $\binom{20}{3} = \frac{20 \cdot 19 \cdot 18}{1 \cdot 2 \cdot 3}$. Bei den fehlenden Schüler:innen gibt es keine Reihenfolge (daher ``ungeordnet''). 
+\end{bem}
+
+\begin{bem} $\Inj(\{1,\ldots,k\},X)$ beschreibt das \textbf{geordnete Ziehen ohne Zurücklegen} von $k$ Elementen aus der Menge $X$. Etwa: In einer Eisdiele, in der $10$ Sorten Eis angeboten werden, bestellen Sie $3$ Eiskugeln verschiedener Sorten. Dabei werden die $3$ Kugeln in einer großen Waffel übereinander gestapelt. Die Reihenfolge der Kugeln in der Waffel ist Ihnen wichtig. Wie viele Möglichkeiten gibt es dafür, die Waffel mit $3$ Kugeln verschiedener Sorten zu füllen? Antwort: $10 \cdot 9 \cdot 8$. Das Ziehen hier ist geordnet (Reihenfolge wichtig) und ohne Zurücklegen (alle $3$ Kugeln haben eine andere Sorte). 
+\end{bem}
+
+\begin{bem}
+	 $X^k$ sowie $X^{\{1,\ldots,k\}}$ beschreibt das \textbf{geordnete Ziehen mit Zurücklegen}. In einer $3$er WG mit den Mitgliedern Alice, Bob und Carola wird $10$ Tage lang verfolgt, wer am Ende des Tages den Müll rausbringt. Das Protokoll dafür ist dann eine Abbildung von $\{1,\ldots,10\}$ nach $\{\text{Alice},\text{Bob},\text{Carola} \}$.  Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die $10$  Tage sind durchnummeriert) mit Zurücklegen (wer den Müllrausgebracht hat, verschwindet  nicht aus der WG und darf es ruhig nochmal an einem anderen Tag machen). 
+\end{bem}
+
+\begin{bem}
+		 Die Menge $\mbinom{X}{k}$ beschreibt das \textbf{ungeordenete Ziehen mit Zurücklegen}. Um das zu illustrieren modifizieren wir das Beispiel mit der WG wie folgt. $10$ Tage lang sammelt Alice, Bob und Carola auf die folgende Weise Daten ein, wer am Ende des Tages den Müll rausbringt. Es wird eine Liste mit drei Namen (Alice, Bob und Carola) erstellt. Das Mitglied der WG, das am Ende des Tages den Müll rausbringt, setzt einen Strich in der Liste bei seinem Namen. Das Protokoll am Ende der $10$ Tage ist eine $10$-elementige Multimenge auf der Grundmenge $\{ \text{Alice}, \text{Bob}, \text{Carola}\}$.  Hier hat man wieder das Ziehen mit Zurücklegen (wer Müll rausbringt, darf es nochmal machen), aber im Gegensatz zum Beispiel davor ungeordnet: jeder der $10$ Tage entspricht einem Strich auf der Liste, an einem Strich kann man aber am Ende nicht mehr sehen, an welchem Tag der gesetzt wurde. 
+\end{bem} 
+
+
+\section{Partitionen}
+
+TODO: Nach \cite[Abschnitt~1.4]{Tit19}. 
+
+\section{Verteilungen} 
+
+TODO: Nach \cite[Abschnitt~1.5]{Tit19}. 
