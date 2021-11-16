@@ -32,6 +32,7 @@ print()
 
 for filename in sorted(os.listdir()):
     if is_texfile(filename):
+        Inclusions=inclusions(filename)
         if is_main(filename):
             print(filename[:-3]+"pdf : "+filename,end=" ")
             for inc in Inclusions:
@@ -39,7 +40,6 @@ for filename in sorted(os.listdir()):
             print("\n\tpdflatex",filename)
             print("\tpdflatex",filename)
         else:
-            Inclusions=inclusions(filename)
             if len(Inclusions)>0:
                 print(filename," : "," ".join(Inclusions))
 

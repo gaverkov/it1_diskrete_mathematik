@@ -406,7 +406,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 \begin{proof} 
 	Es gibt verschiedene Ansätze zum Beweis dieser Formel. Zum Beispiel kann man eine natürliche Bijektion zwischen  $2^X$ und $\{0,1\}^X$ erstellen und dann $|\{0,1\}^X| = |\{0,1\}|^{|X|} = 2^{|X|}$ nutzen (Aufgabe). 
 	
-	Wir präsentieren hier einen Beweis durch Induktion über $|X|$. Hat $X$ $0$ Elemente, so gilt $2^X = 2^\emptyset = \{\emptyset\}$. Somit ist $|2^X| = 1 = 2^0 = 2^{|X|}$. Sei $X$ Mengen mit $n$ Elementen, mit $n \ge 1$, und sei die Formel für Mengen $X$ mit $n-1$ Elementen bereits verifiziert. Wir fixieren ein $a \in X$. Die Teilmengen $A$ von $X$ zerlegen sich nach den Bedingungen $a \in A$ und $a \in A$ in zwei disjunkte Mengen. Es gilt also
+	Wir präsentieren hier einen Beweis durch Induktion über $|X|$. Hat $X$ $0$ Elemente, so gilt $2^X = 2^\emptyset = \{\emptyset\}$. Somit ist $|2^X| = 1 = 2^0 = 2^{|X|}$. Sei $X$ Mengen mit $n$ Elementen, mit $n \ge 1$, und sei die Formel für Mengen $X$ mit $n-1$ Elementen bereits verifiziert. Wir fixieren ein $a \in X$. Die Teilmengen $A$ von $X$ zerlegen sich nach den Bedingungen $a \in A$ und $a \not\in A$ in zwei disjunkte Mengen. Es gilt also
 	\begin{align*}
 			2^X & = \setcond{A}{A \subseteq X, \ a \in A} \cupdot \setcond{A}{A \subseteq X, \ a \not\in A}
 			\\ & = \setcond{B \cup \{a\}}{B \subseteq X \setminus \{a\}} \cupdot 2^{X \setminus \{a\}}. 
@@ -419,12 +419,18 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	\[
 		|2^X| = 2 \cdot |2^{X \setminus \{a\}}|
 	\]
-	Da $X \setminus \{a\}$ eine $(n-1)$-elementige Menge ist, folgt nach der Induktionsovraussetzung $|2^{X \setminus \{a\}}| = 2^{|X \setminus \{a\}|} = 2^{|X|-1}$. Wir erhalten somit $2^{|X|} = 2 \cdot 2^{|X|-1} = 2^{|X|}$. 
+	Da $X \setminus \{a\}$ eine $(n-1)$-elementige Menge ist, folgt nach der Induktionsovraussetzung $|2^{X \setminus \{a\}}| = 2^{|X \setminus \{a\}|} = 2^{|X|-1}$. Wir erhalten somit $|2^{X}| = 2 \cdot 2^{|X|-1} = 2^{|X|}$. 
 \end{proof} 
+
+\begin{bem} Aufzählungscode der dem vorigen Beweis entspricht: 
+\lstinputlisting{Code/Teilmengen.py}
+\end{bem} 
 
 \begin{aufg}
 	Wie wahrscheinlich ist es, beim viermaligen Werfen einer fairen Münze, genau $2$ mal den Kopf zu werfen?
 \end{aufg} 
+
+
 
 \begin{thm}[Binomialsatz] 
 	Für $x, y \in \R$ und $n \in \N$ gilt 
@@ -445,7 +451,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	\begin{align*}
 			(x+y)^n & =\sum_{i=0}^n \sum_{I \in \binom{\{1,\ldots,n\}}{i}} x^i y^{n-i} 
 			\\ & = \sum_{i=0}^n \left| \binom{\{1,\ldots,n\}}{i} \right| x^i y^{n-i} 
-			\\ & = \sum_{i=0}^n \left| \binom{n}{i} \right| x^i y^{n-i}.
+			\\ & = \sum_{i=0}^n \binom{n}{i}  x^i y^{n-i}.
 	\end{align*} 
 \end{proof} 
 
@@ -589,7 +595,7 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 \end{proof} 
 
 \begin{aufg}
-	Wie viele dreistellige Zahlen gibt es, bei denen zwei Stellen gleich sind? 
+	Wie viele Zahlen in $\{1,\ldots,10000\}$ gibt es, die durch $2$, $3$ oder $5$ teilbar sind? 
 \end{aufg} 
 
 \section{Multimengen} 
@@ -613,9 +619,19 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 \end{bem}
 
 \begin{defn}
-	Für $k \in \N_0$ bezeichnen wir als $\mbinom{X}{k}$ die Menge aller $k$-elementigen Multimengen, deren Träger in  $X$ enthalten ist. 
+	Für $k \in \N_0$ bezeichnen wir als $\mbinom{X}{k}$ die Menge aller $k$-elementigen Multimengen, deren Träger in  $X$ als Teilmenge enthalten ist. 
+\end{defn} 
 
-	Für $n,k \in \N_0$ führen wir die Bezeichnung $\mbinom{n}{k} := \binom{n+k-1}{k}$ ein. 
+\begin{defn}
+		Für $n,k \in \N_0$ führen wir die Bezeichnung $\mbinom{n}{k} := \binom{n+k-1}{k}$ ein. Dieser Wert lässt sich auch als 
+		\[
+			\mbinom{n}{k} =\frac{ n^{\overline{k}}}{k!}
+		\]
+		mit Hilfe der sogenannten \textbf{steigenden Faktoriellen} von $n$ der Länge $k$ beschreiben, welche folgendermaßen definiert wird: 
+		\[
+				n^{\overline{k}} := \frac{n \cdot (n+1) \ldots \cdot (n+k-1)}{k!}
+		\]
+		
 \end{defn} 
 
 \begin{lem} \label{lem:multimengen}
@@ -663,7 +679,7 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 \end{proof} 
 
 \begin{aufg}
-	In einer Bäckerei wollen Sie Brötchen holen. Zur Auswahl haben Sie dabei in ausreichenden Mengen die folgenden Sorten: Weizenbrötchen, Vollkornbrötchen, Laugenbrötchen und Kürbiskern\-brötchen. Wie viele Möglichkeiten haben Sie beim Kauf von $10$ Brötchen? 
+	In einer Bäckerei wollen Sie Brötchen holen. Zur Auswahl haben Sie dabei in ausreichenden Mengen die folgenden Sorten: Weizenbrötchen, Vollkornbrötchen, Laugenbrötchen und Kürbiskern\-brötchen. Wie viele Möglichkeiten haben Sie beim Kauf von $8$ Brötchen? 
 \end{aufg} 
 
 \section{Kombinatorische Formeln und das Ziehen}
@@ -672,7 +688,7 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 	Für eine Menge $X$ und $k \in \N$ verwendet man oft die folgende ``Zieh-Terminologie'' in Bezug auf einige der vorigen Formeln. 
 \end{bem}
 
-\begin{bem} $\binom{X}{k}$ beschriebt das \textbf{ungeordnete Ziehen} von $k$ Elementen aus der Menge $X$.  Etwa: wie viele Varianten gibt es dafür, dass in einer Klasse aus $20$ Schüler:innen $3$ fehlen. Antwort: $\binom{20}{3} = \frac{20 \cdot 19 \cdot 18}{1 \cdot 2 \cdot 3}$. Bei den fehlenden Schüler:innen gibt es keine Reihenfolge (daher ``ungeordnet''). 
+\begin{bem} $\binom{X}{k}$ beschriebt das \textbf{ungeordnete Ziehen ohne Zurücklegen} von $k$ Elementen aus der Menge $X$.  Etwa: wie viele Varianten gibt es dafür, dass in einer Klasse aus $20$ Schüler:innen $3$ fehlen. Antwort: $\binom{20}{3} = \frac{20 \cdot 19 \cdot 18}{1 \cdot 2 \cdot 3}$. Bei den fehlenden Schüler:innen gibt es keine Reihenfolge (daher ``ungeordnet''). 
 \end{bem}
 
 \begin{bem} $\Inj(\{1,\ldots,k\},X)$ beschreibt das \textbf{geordnete Ziehen ohne Zurücklegen} von $k$ Elementen aus der Menge $X$. Etwa: In einer Eisdiele, in der $10$ Sorten Eis angeboten werden, bestellen Sie $3$ Eiskugeln verschiedener Sorten. Dabei werden die $3$ Kugeln in einer großen Waffel übereinander gestapelt. Die Reihenfolge der Kugeln in der Waffel ist Ihnen wichtig. Wie viele Möglichkeiten gibt es dafür, die Waffel mit $3$ Kugeln verschiedener Sorten zu füllen? Antwort: $10 \cdot 9 \cdot 8$. Das Ziehen hier ist geordnet (Reihenfolge wichtig) und ohne Zurücklegen (alle $3$ Kugeln haben eine andere Sorte). 
@@ -686,11 +702,268 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 		 Die Menge $\mbinom{X}{k}$ beschreibt das \textbf{ungeordenete Ziehen mit Zurücklegen}. Um das zu illustrieren modifizieren wir das Beispiel mit der WG wie folgt. $10$ Tage lang sammelt Alice, Bob und Carola auf die folgende Weise Daten ein, wer am Ende des Tages den Müll rausbringt. Es wird eine Liste mit drei Namen (Alice, Bob und Carola) erstellt. Das Mitglied der WG, das am Ende des Tages den Müll rausbringt, setzt einen Strich in der Liste bei seinem Namen. Das Protokoll am Ende der $10$ Tage ist eine $10$-elementige Multimenge auf der Grundmenge $\{ \text{Alice}, \text{Bob}, \text{Carola}\}$.  Hier hat man wieder das Ziehen mit Zurücklegen (wer Müll rausbringt, darf es nochmal machen), aber im Gegensatz zum Beispiel davor ungeordnet: jeder der $10$ Tage entspricht einem Strich auf der Liste, an einem Strich kann man aber am Ende nicht mehr sehen, an welchem Tag der gesetzt wurde. 
 \end{bem} 
 
+\section{Doppeltes Abzählen an Beispielen} 
 
-\section{Partitionen}
+\begin{bem}
+	Beim doppelten Abzählen zählte man Elemente einer Menge auf zwei verschiedene Weisen und erhält dadurch eine Gleichung. 
+\end{bem} 
 
-TODO: Nach \cite[Abschnitt~1.4]{Tit19}. 
+\subsection{Beispiel aus der Kombinatorik}
 
-\section{Verteilungen} 
+\begin{prop} \label{doppeltes:abzaehlen} 
+	Für $n \in \N$ gilt $\sum_{k=1}^n k \binom{n}{k} = n 2^{n-1}.$ 
+\end{prop} 
+\begin{proof}
+	Sei $X$ eine $n$-elementige Menge. Wie viele Möglichkeiten gibt es eine nichtleere Teilmenge $A \subseteq X$ und ein Element $p \in A$ in dieser Teilmenge zu wählen? Einerseits kann man zuerst $p \in X$ auf $n$ mögliche Weisen fixieren und dann die Menge $A \setminus \{p\}$. Da $A \setminus \{p\}$ eine Teilmenge der $(n-1)$-elementigen Menge $X \setminus \{p\}$ ist, gibt bei einem festgelegten $p$ $2^{n-1}$ Möglichkeiten $A \setminus \{p\}$ zu fixieren. Es gibt insgesamt $n 2^{n-1}$ zu Möglichkeiten $(p,A)$ mit $p \in A \subseteq X$ zu fixieren. 
+	
+	Die zweite Weise zu zählen ist wie folgt: die Teilmengen $A$ hat $1$ bis $n$ Elemente. Wir könne also zuerst die gewünschte Anzahl $k \in \{1,\ldots,n\}$ der Elemente in $A$ fixieren und dann eine beliebige $k$-elementige Teilmenge $A$ von $X$ fixieren. Sobald das $k$-elementige $A$ festgelegt ist, kann man das $p \in A$ auf $k$ mögliche Weisen wählen. So ergibt sich insgesamt $\sum_{k=1}^n k \binom{n}{k}$ Möglichkeiten für die Wahl von $(p, A)$ mit $P \in A \subseteq X$. 
+\end{proof} 
 
-TODO: Nach \cite[Abschnitt~1.5]{Tit19}. 
+\begin{bsp}
+	Alice, Bob, Carola, Dennis und Eric müssen entscheiden, wer unter ihnen bei einem Weihnachtskonzert als Weihnachtsmann und Elfe auftreten wird.  Jemand  muss dabei unbedingt Weihnachtsmann sein (Geschlecht egal), die Elfe sind dagegen optional (es können also $1$ bis $4$ Elfe geben, da sie $5$ Personen sind und genau eine Person den Weihnachtsmann spielt). Wie viel Möglichkeiten gibt es, eine solche Truppe aus dem Weihnachtsmann und Elfen  aufzustellen?  
+	
+	Eine Weise zu zählen ist wie folgt: Eine der fünf Personen übernimmt die Rolle des Weihnachtsmanns. Unter den übrigen vier Personen gibt es dann $2^4$ Möglichkeiten eine Menge der Elfe zu fixieren. Insgesamt sind es $5 \cdot 2^4 = 80$ Varianten, eine Truppe aus dem Weihnachtsmann und Elfen zu fixieren. 
+	
+	Eine weitere Weise zu zählen ist wie folgt. Die Anzahl der Mitglieder der Truppe ist $1$ bis $5$. Man kann also die Truppen der Größen $1$ bis $5$ getrennt zählen. Bei einer Truppe der Größe $k \in \{1,\ldots,5\}$ gibt es $\binom{5}{k}$ Möglichkeiten Mitglieder der Truppe zu fixieren. Sobald die Mitglieder fixiert sind, gibt es genau $k$ Möglichkeiten innerhalb der Truppe die Rolle des Weihnachtsmanns zu vergeben. Wir kommen auf diese Weise auf  die Formel
+	\[
+			\sum_{k=1}^5 k \binom{5}{k}. 
+	\]
+\end{bsp} 
+
+\begin{bem}
+	Die Formel in Proposition~\ref{doppeltes:abzaehlen} hat auch eine Interpretation im Rahmen der Wahrscheinlichkeitstheorie. Wir können die Formel als 
+	\[
+		\sum_{k=0}^n k \cdot \frac{\binom{n}{k}}{2^k} =  \frac{n}{2}
+	\]
+	umformulieren. Hierbei ist $\frac{\binom{n}{k}}{2^k}$ ist die Wahrscheinlichkeit bei einem $n$-maligen Werfen einer fairen Münze genau $k$ mal den Kopf zu werfen. Die linke Seite ist also der Erwartungswert für die Anzahl der Köpfe bei einem $n$-mailigen Werfen einer fairen Münze. Die rechte Seite verrät uns, was dieser Erwartungswert genau ist: $\frac{n}{2}$. Die Formel ist intuitiv klar: wenn wir eine faire Münze $n$ mal werfen, so kriegen wir im Durchschnitt $n/2$ Köpfe. 
+\end{bem} 
+
+\subsection{Beispiel aus der Zahlentheorie} 
+
+\begin{defn}
+	Wir bezeichnen als $t : \N \to \N$ die Funktion, welche die Anzahl der Teiler von $n \in \N$ beschreibt:
+	\[
+			t(n) := | \setcond{j \in \N}{j  \ \text{teilt} \ n} |.
+	\]
+\end{defn}
+
+\begin{bem}
+	Das Verhalten der Funktion $t$ ist sehr ``unregelmäßig'' (beim sukzessiven inkrementieren von $n$ geht $t(n)$ hoch unter runter).  
+	\begin{center}
+			\includegraphics[width=10cm]{Pics/t_plot.pdf}
+	\end{center} 
+\end{bem}
+
+\begin{defn}
+	Sei $\bar{t} : \N \to \R$ die Funktion
+	\[
+			\bar{t} (n) := \frac{1}{n} \sum_{j=1}^n t(j).
+	\]
+\end{defn} 
+
+\begin{bem}
+	Das Verhalten von $\bar{t}$ erschient viel regelmäßiger zu sein. 
+	\begin{center}
+	\includegraphics[width=10cm]{Pics/t_bar_plot.pdf}
+\end{center} 
+\end{bem} 
+
+\begin{defn}
+	Für $n \in \N$ nennt man $H_n := \sum_{i=1}^n \frac{1}{i}$ die $n$-te \textbf{harmonische Zahl}. 
+\end{defn} 
+
+\begin{thm}
+	Es gilt
+	\[
+		 H_n - 1 \le \bar{t}(n) \le H_n 
+	\]
+	für alle $n \in \N$. 
+\end{thm} 
+\begin{proof}
+	Man hat 
+	\begin{align*} 
+		\bar{t} (n) & = \frac{1}{n} \sum_{k=1}^n t(k) 
+		\\ & = \frac{1}{n} \sum_{k=1}^n | \setcond{i \in \N}{i \ \text{teilt} \ k}. 
+		\\ & = \frac{1}{n} | \setcond{(i,k)}{i,k \in \{1,\ldots,n\}, i \ \text{teilt}  \ k}. 
+		\\ & = \frac{1}{n} \sum_{i=1}^n \floor{ \frac{n}{i}}. 
+	\end{align*}  
+	Aus 
+	\[
+			\bar{t} (n) = \frac{1}{n} \sum_{i=1}^n \floor{ \frac{n}{i}}
+	\]
+	ergibt sich einerseits wegen $\floor{ \frac{n}{i}} \le \frac{n}{i}$ die Ungleichung 
+	\[
+			\bar{t}(n) \le H_n
+	\]
+	und andererseits wegen $\floor{ \frac{n}{i} } \ge \frac{n}{i} - 1$ die Ungleichung 
+	\[
+			\bar{t}(n) \ge H_n -1. 
+	\]
+\end{proof} 
+
+\begin{bem}
+	Mit Hilfe der Analysis (IT-3) kann gezeigt werden, dass $H_n= \Theta(\ln n)$ gilt. Also ist 
+	\[
+		\bar{t}(n) = \Theta(\ln n). 
+	\]
+\end{bem} 
+
+\begin{bem}
+	Der vorige Beweis basiert auf der Präsentation in \cite[Kap.~25, Abs.~4]{AZ02}. 
+\end{bem} 
+
+\section{Schubfachprinzip} 
+
+\subsection{Das Prinzip} 
+
+\begin{bem}
+	Das Schubfachprinzip ist ein nützliches Mittel, kombinatorische und diskrete  Existenzaussagen zu verifizieren. 
+\end{bem} 
+
+\begin{defn}
+	Aufrunden und Abrunden sind Abbildungen $\R \to \Z$, die folgendermaßen definieren werden: 
+	\begin{align*}
+			\ceiling{x} & := \min \setcond{k \in \Z}{x \le k}
+			\\ \floor{x} & := \max \setcond{k \in \Z}{x \ge k}. 
+	\end{align*} 
+\end{defn} 
+
+
+\begin{prop}[Schubfachprinzip: starke Form] \label{prop:schubfach:stark}
+	Seien $X, Y$ nichtleere endliche Mengen. Dann gibt es für jede Abbildung $f: X \to Y$ ein $y \in Y$ mit 
+	\[
+		|f^{-1} (\{y\})|  \ge  \ceiling{\frac{|X|}{|Y|}} 
+	\]
+\end{prop} 
+\begin{proof} $X$ ist disjunkte Vereinigung der Mengen 
+	\[
+			X = \bigcup_{y \in Y} f^{-1}(\{y\}) 
+	\]
+	Somit ist 
+	\[
+		|X| = \sum_{y \in Y} | f^{-1}(\{y\}) | 
+	\]
+	Es folgt: 
+	\[
+		|X| \le |Y| \max_{y \in Y} |f^{-1}(\{y\}) |. 
+	\]
+	Das bedeutet, dass für das $y \in Y$ mit der maximalen Kardinalität $|f^{-1}(\{y\}) |$, die Ungleichung 
+	\[
+			|f^{-1}(\{y\})| \ge \frac{|X|}{|Y|}
+	\]
+	erfüllt ist. Da die Kardinalität auf der linken Seite eine ganze Zahl ist, kann die Ungleichung durch das Aufrunden des Quotienten auf der rechten Seite verstärkt werden: 
+	\[
+			|f^{-1}(\{y\})| \ge \ceiling{\frac{|X|}{|Y|}}.
+	\]
+\end{proof} 
+
+
+\begin{bsp}
+	In einem Haus mit $10$ Wohungen und insgesamt $21$ Bewohner:innen, wohnt in einer Wohnung mindestens $3$ Bewohner:innen. 
+\end{bsp} 
+
+\begin{kor}[Schubfachprinzip: schwache Form] 
+	Seien $X, Y$ endliche Mengen mit $|X| > |Y| >0$. Dann gibt es für jede Abbildung $f : X \to Y$ verschiedene $x',x''\in X$ mit $f(x')=f(x'')$. 
+\end{kor} 
+\begin{proof}
+	Die Behauptung folgt durch eine direkte Anwendung von Proposition~\ref{prop:schubfach:stark}.
+\end{proof} 
+
+\subsection{Einfache Beispiele} 
+
+\begin{aufg}
+	Zeigen Sie, dass jede Färbung der Seitenflächen eines (dreidimensionalen) Würfels mit zwei Farben ein Paar von Seitenflächen besitzt	die benachbart sind ($=$ eine gemeinsame Kante haben) und die gleiche Farbe haben. 
+\end{aufg}
+
+\begin{aufg}
+	Zeigen Sie, dass jede Färbung der Seitenflächen eines (dreidimensionalen) Würfels mit zwei Farben vier Seitenflächen $A,B,C,D$ besitzt, bei denen $A$ und $B$ sowie $C$ und $D$ gleich gefärbt wurden. 
+\end{aufg} 
+
+\begin{aufg}
+	$30$ Schüler:innen, darunter auch Fritzchen, haben eine Klassenarbeit geschrieben. In der Klassenarbeit hat Fritzchen $13$ Fehler gemacht, und alle anderen Schülerinnen weniger. Zeigen Sie, dass drei der Schüler:innen die gleiche Anzahl der Fehler gemacht haben. 
+\end{aufg}  
+
+\begin{aufg}
+	Zeigen Sie, dass in einem Fußballturnier mit $n \in \N$ Mannschaften ($n \ge 2$) in jedem Zeitpunkt man zwei Mannschaften findet, die zu diesem Zeitpunkt die gleiche Anzahl der Spiele gespielt haben. 
+\end{aufg} 
+
+\subsection{Der Satz von Erd\H{os}-Szekeres}
+
+
+\begin{thm}[Erd\H{os}-Szekeres] 
+	Seien $m, n \in \N$, sei $k=mn+1$ und sei $a_1,\ldots,a_k$ Folge paarweise verschiedener reeller Zahlen. Dann besitzt die Folge eine ansteigende Teilfolge 
+	\[
+			a_{i_1}  < a_{i_2} < \cdots < a_{i_{m+1}} \qquad (1 \le i_1 < \cdots < i_{m+1} \le k)
+	\]
+	der Länge $m+1$ oder eine absteigende Teilfolge 
+	\[
+		 a_{j_1} > a_{j_2} > \cdots > a_{j_{n+1}} \qquad (1 \le j_1 < \cdots < j_{n+1} \le k)
+	\]
+	der  Länge $n+1$. 
+\end{thm} 
+\begin{proof}
+	Sei $t_i$ die Länge der längesten ansteigenden Teilfolge, die mit $a_i$ anfängt. Gilt für ein $a_i$ die Ungleichung $t_i \ge m+1$, so besitzt unsere Folge eine ansteigende Teilfolge der Länge $m$. Wir nehmen also an, dass $t_i \le m$ für alle $i=1,\ldots, k$ gilt. Das ergibt dann die Abbildung $a_i \mapsto t_i$, welche die $k$-elementige Menge $\{a_1,\ldots,a_k\}$ auf die Menge $\{1,\ldots,m\}$  Wegen $k=mn+1$ hat man ein einen Wert $s \in \{1,\ldots,m\}$, so dass $f(a_i) = s$ für $n+1$ Zahlen $a_i$ gilt. Seien $a_{j_1}, \cdots ,  a_{j_{n+1}}$ diese $n+1$ Zahlen mit $1 \le j_1 < \cdots < j_{n+1} \le k$. Wir vergleichen nun $a_{j_t}$ und $a_{j_{t+1}}$. Wäre $a_{j_t} < a_{j_{t+1}}$, so hätten wir eine ansteigende Folge der Länge $s+1$ die mit $a_{j_t}$ beginnt, was der Wahl von $a_{j_t}$ widerspricht. Also hat man $a_{j_t} > a_{j_{t+1}}$. Wir erhalten 
+	\[
+		a_{j_1} > \cdots > a_{j_{n+1}}.
+	\]
+	Das ist eine absteigende Teilfolge der Länge $n+1$. 
+\end{proof} 
+
+\begin{bem}
+	``Complete disorder is impossible'' (Theodore S. Motzkin). 
+\end{bem} 
+
+\begin{bem}
+	Der vorige Beweis basiert auf der Präsentation in \cite{AZ02}. 
+\end{bem} 
+
+%\subsection{Untere Scrhanken an Ramsey-Zahlen} 
+
+%\begin{defn}
+%	Für eine Menge $V$ heißt ein Paar $G=(V,E)$ mit $E \subseteq \binom{V}{2}$ ein (ungerichteter) Graph mit Knotenmenge $V$ und der Kantenmenge $E$. 
+%\end{defn} 
+
+%\begin{defn}
+%		Ist $E= \binom{V}{2}$, so nennt man den Graphen $G$ vollständig. Einen vollständigen Graphen auf $n \in \N$ knoten bezeichnet man oft als $K_n$. 
+%\end{defn} 
+
+%\begin{defn} 
+%		Gelten für Graphen $G_1 = (V_1,E_2)$ und $G_2= (V_2,E_2)$ die Inklusionen $V_1 \subseteq V_2$ und $E_1 \subseteq E_2$, so heißt $G_1$ Teilgraph von $G_2$. 
+%\end{defn} 
+
+%\begin{defn} 
+%		Eine Abbildung $c : E \to \{1,\ldots,t\}$ mit $t \in \N$ nennt man Färbung der Kanten von $G=(V,E)$ mit $t$ Farben. Gilt für einen Teilgraphen $G'= (V',E')$ von $G$, dass alle Kanten von $G'$ die gleiche Farben bzgl. $c$ haben, so nennt man den Teilgraphen $G'$ monochromatisch. 
+%\end{defn} 
+
+%\begin{defn} 
+%	Die Ramsey Zahl $R(t,t)$ ist die kleinste Zahl $n \in \N$ derart, dass jede Färbung von $K_n$ mit zwei Farben eine monochromatische Kopie von $K_t$ besitzt. 
+%\end{defn} 
+
+%\begin{bem}
+%	A priori ist nicht klar, ob ein solches $n \in \N$ überhaupt existiert, aber das wurde gezeigt (vgl. Ramsey-Theorem unten). 
+%\end{bem} 
+
+%\begin{bsp}
+%	$R(3,3) = 6$. 
+%\end{bsp} 
+
+%\begin{thm}[Ramsey-Theorem]
+%	Es gilt $R(t,t) < 4^{t-1}$ für alle $t \in \N$. 
+%\end{thm} 
+
+%\begin{bem}
+%	``Complete disorder is impossible'' (Theodore S. Motzkin). 
+%\end{bem} 
+
+
+%\begin{thm}
+%	Es gilt $R(t,t) > \floor{2^{t/2}}$ für alle $t \in \N$. 
+%\end{thm} 
+%\begin{proof} IM AUFBAU 
+%\end{proof} 
+
+%\section{Weitere Themen}
+
+%Partitionen in\cite[Abschnitt~1.4]{Tit19} und Verteilungen in  \cite[Abschnitt~1.5]{Tit19}. 
+
+
