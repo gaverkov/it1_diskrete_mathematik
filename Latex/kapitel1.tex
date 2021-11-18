@@ -111,6 +111,33 @@ Eine sehr verbreite Weise, Mengen zu definieren, ist durch Bedingungen, nach dem
 \] Der Doppelpunkt bedeutet so viel wie \glqq sodass\grqq oder \glqq mit der Bedingung\grqq. In manchen Quellen wird ein Strich an der Stelle des Doppelpunktes benutzt. 
 \end{bem} 
 
+\begin{bem} In der Programmiersprache Python hat man den Datentyp Menge sowie syntaktische Strukturen zur Konstruktion von Mengen und Listen, die analog zu mathematischen Bezeichnungen sind: 
+\begin{center}
+	\small 
+	\begin{tabular}{l|l}
+		Mathematik & Python 
+\\ \hline	$\{1,2,5,7\}$ 
+& \begin{lstlisting}[language=Python,backgroundcolor=\color{white}]
+set([1,2,5,7])
+\end{lstlisting} 
+\\ $\setcond{i \in \Z}{0 \le i < 6}$ & 
+\begin{lstlisting}[language=Python,backgroundcolor=\color{white}]
+set(range(6))
+\end{lstlisting} 
+\\ $\setcond{i ^2}{i \in \Z, \ 0 \le i < 6}$
+&  
+\begin{lstlisting}[language=Python,backgroundcolor=\color{white}]
+set([i**2 for i in range(6)])
+\end{lstlisting} 
+\\ $\setcond{i^2}{i \in \Z, \ 0 \le i < 6, \ i \ \text{ungerade}}$
+& 
+\begin{lstlisting}[language=Python,backgroundcolor=\color{white}]
+set([i**2 for i in range(6) if i%2==1])
+\end{lstlisting} 
+\end{tabular}
+\end{center}  
+\end{bem} 
+
 \begin{aufg}\ 
 \begin{itemize}
 \item Bestimmen Sie, welche der Zahlen $1,\ldots, 100$ Elemente der Menge 

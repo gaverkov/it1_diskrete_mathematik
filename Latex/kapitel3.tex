@@ -156,6 +156,29 @@ Die Konstruktion im Beweis von \eqref{kod:paare} direkt vom Fall $n=2$ auf ein a
 Es folgt: $\sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i $. Also ist die Abbildung tatsächlich injektiv. 
 \end{proof} 
 
+\begin{bem}\
+	Die Intuition hinter den Stellenwertsystemen ist wie folgt: man führt die Ziffernbezeichnungen für die $b$ Ziffern des Stellenwertsystems ein und rechnet dann im Rahmen dieses Stellenwertsystems schriftlich, so wie es für das System mit der Basis $b=10$ in der Schule gelernt haben. Hier ein Vergleich von $b=10$ und $b=2$: 
+	\begin{center} 
+		\begin{tabular}{l|l} 
+			Bezeichnungen bzgl. der Basis $10$ & Bezeichnungen bzgl. Basis $2$ 
+			\\ \hline $0$ ist die Null & $0$ ist die Null
+			\\ $1$ ist die Eins & $1$ ist die Eins
+			\\ $2:=1+1$ & $10:=1+1$
+			\\ $3:=2+1$ & 
+			\\ $4:=3+1$ & 
+			\\ $5:=4+1$ & 
+			\\ $6:=5+1$ & 
+			\\ $7:= 6+1$ & 
+			\\ $8:=7+1$ & 
+			\\ $9:=8+1$ & 
+			\\ $10:=9+1$  
+		\end{tabular} 
+	\end{center} 
+	Stellen Sie sich einfach vor, Sie würden die Ziffern des Dezimalsystems nicht kennen. Denn würde die linke Seite der Tabelle Ihnen Erklären, was für eine Bedeutung die Ziffern haben $1,\ldots,9$ sowie die Zahl $10$ haben. Danach könnte man Ihnen auch erklären, dass $100 = 10 \cdot 10$, $1000 = 10 \cdot 10 \cdot 10$ ist usw. und dass z.B. $1425 = 1000 + 4 \cdot 100 + 2 \cdot 10 + 5$ ist. Nach diesen Erklärungen sind die Darstellungen aller nichnegativen ganzen Zahlen festgelegt. 
+	
+	Wenn Sie die Ziffern des Dezimalsystems nicht kennen würden, könnte man Sie genauso in das Binärsystem einführen, indem man Ihnen erklären würde, dass $10:=1+1$ ist, dass $100 = 10 \cdot 10$, $1000 = 10 \cdot 10 \cdot 10$ ist usw. und dass z.B. $101011= 100000 + 1000 + 10 + 1$ ist. 
+\end{bem} 
+
 
 \begin{bsp}
 	Schriftliche Addition, Subtraktion, Multiplikation und Division zu einer beliebigen Basis $b$ geht analog zur gewohnten Basis $b=10$. Etwa
@@ -171,6 +194,7 @@ Es folgt: $\sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i $. Also ist die Abbildun
 		\end{tabular}
 	\end{center}
 \end{bsp}
+
 
 \begin{bem}
 	Die Konvertierung einer Darstellung zu einer Basis $b$ in die Darstellung zur Basis $10$ geht  direkt mit der Verwendung von  \eqref{z:zur:Basis:b}, aber eine effizientere Konvertierung erhält man, wenn man das so genannte \textbf{Horner-Schema} benutzt. 

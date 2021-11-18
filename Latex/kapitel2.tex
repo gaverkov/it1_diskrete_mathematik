@@ -131,7 +131,7 @@
 \begin{bem}[Kombinatorik und Wahrscheinlichkeiten] 
 	Die Berechnung von Wahrscheinlichkeiten reduziert sich im Fall von endlichen Wahrscheinlichkeitsräumen oft zur Berechnung von Quotienten 
 	\begin{align*}
-			\frac{\text{die Anzahl der günstigen Fälle}}{\text{die Anzahl aller Fälle}}
+			\frac{\text{die Anzahl der besonderen Fälle}}{\text{die Anzahl aller Fälle}}
 	\end{align*} 
 	uns somit zur Lösung von kombinatorischen Aufgaben, vgl. auch \cite{Tit19}. 
 \end{bem} 
@@ -329,6 +329,8 @@ ergibt $6$ Möglichkeiten.
 
 \section{Teilmengen} 
 
+\subsection{$k$-elementige Teilmengen} 
+
 \begin{defn}
 Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Menge aller $k$-elementigen Teilmengen von $X$. 
 \end{defn}
@@ -399,6 +401,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	den Mengen $\binom{X}{k}$ und $\binom{X}{|X|-k}$ für eine $n$-elementige Teilmenge $X$ erstellt. 
 \end{aufg} 
 
+\subsection{Alle Teilmengen} 
 
 \begin{thm}
 	Sei $X$ endliche Menge. Dann gilt $|2^X|=2^{|X|}$. 
@@ -430,7 +433,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	Wie wahrscheinlich ist es, beim viermaligen Werfen einer fairen Münze, genau $2$ mal den Kopf zu werfen?
 \end{aufg} 
 
-
+\subsection{Binomialsatz}
 
 \begin{thm}[Binomialsatz] 
 	Für $x, y \in \R$ und $n \in \N$ gilt 
@@ -441,7 +444,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 \begin{proof}
 	Es gibt einen direkten kombinatorischen Beweis dieser Formel. Beim Auflösen der Klammern im Ausdruck 
 	\[
-			(x+y)^n = \underbrace{(x+y) \cdots \ldots \cdot (x+y)}_{n \ \text{mal}}
+			(x+y)^n = \underbrace{(x+y) \cdot \ldots \cdot (x+y)}_{n \ \text{mal}}
 	\]
 	erhält man $2^n$ Terme, indem man aus jeder der $n$ Klammern $x$ oder $y$ wählt und die so gewählten Werte miteinander multipliziert. Wenn wir durch $I$ die Nummern der Klammern bezeichnen, aus denen der Wert $x$ gewählt wurde, erhalten wir 
 	\[
@@ -454,6 +457,31 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 			\\ & = \sum_{i=0}^n \binom{n}{i}  x^i y^{n-i}.
 	\end{align*} 
 \end{proof} 
+
+\begin{bsp}
+	Illustration der Idee des vorigen Beweises am Beispiel $n=3$: 
+	\[
+	(x+y)^3 = \underbrace{ (x+y) }_{\text{1. Klammer}} \cdot \underbrace{ (x+y) }_{\text{2. Klammer}} \cdot \underbrace{ (x+y) }_{\text{3. Klammer}}.
+	\]
+	Aus jeder der Klammern wählt man beim Ausmultiplizieren $x$ oder $y$. Es entstehen die folgenden Terme: 
+	\begin{center} 
+		\begin{tabular}{ll}
+			Wahl von $x$ aus den Klammern & Term dazu 
+			\\ \hline \hline 
+			1,2,3 & $x^3$
+			\\ \hline 1,2 &  $x^2 y$
+			\\ 1,3 &  $x^2 y$
+			\\ 2,3 &  $x^2 y$
+			\\ \hline 1 & $x y^2$
+			\\ 2 &  $x y^2$
+			\\ 3 & $ x y^2$
+			\\ \hline & $y^3$
+		\end{tabular} 
+	\end{center} 
+	Man erhält $(x+y)^3 = x^3+ 3 x^2 y + 3 x y^2 + y^3$, wobei hier die Koeffizienten $1,3,3,1$ die Binomialkoeffizienten $\binom{3}{k}$ mit $i=0,1,2,3$ sind. 
+\end{bsp} 
+
+\subsection{Rekursion für Binomialkoeffizienten} 
 
 \begin{thm} \label{pascals:triangle} 
 	Für alle $n \in \N$ und $i \in \N_0$ hat man $\binom{n}{i}  = \binom{n-1}{i}  + \binom{n-1}{i-1}$. 
@@ -482,8 +510,9 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	\end{align*} 
 \end{proof} 
 
+
 \begin{aufg}
-	Die Formel in Theorem~\ref{pascals:triangle} wird oft als das sogenannte pascalsche Dreieck visualisiert. 
+	Die Formel in Theorem~\ref{pascals:triangle} wird oft als das sogenannte \textbf{pascalsche Dreieck} visualisiert. 
 	\begin{center}
 	\begin{tabular}{rrrrrrrrr}
 1\\
@@ -501,7 +530,7 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 \end{aufg} 
 
 \begin{aufg}
-	Beweisen Sie den binomischen Lehrsatz durch Induktion über $n$ mit der Verwendung von Theorem~\ref{pascals:triangle}. 
+	Beweisen Sie den Binomialsatz durch Induktion über $n$ mit der Verwendung von Theorem~\ref{pascals:triangle}. 
 \end{aufg} 
 
 \section{Das Prinzip der Inklusion-Exklusion} 
@@ -516,7 +545,7 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 	\]
 	die \textbf{charakteristische Funktion} von $A$ auf der Grundmenge $X$. 
 	
-	In der Regel ist die Wahl der Grundmenge aus dem Kontext klar, daher ist $X$ nicht direkt in der Bezeichnung $1_A$ vorhanden.
+	(In der Regel ist die Wahl der Grundmenge aus dem Kontext klar. Daher ist $X$ nicht direkt in der Bezeichnung $1_A$ vorhanden.)
 \end{defn} 
 
 \begin{bem}
@@ -526,13 +555,48 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 \begin{bem}
 	Sind $A, X$ endliche Menge mit $A \subseteq X$ so ist 
 	\[	
-			|A| = \sum_{x \in A} 1_A(x)
+			|A| = \sum_{x \in X} 1_A(x)
 	\] 
 	Darüber hinaus gilt 
 	\[	
-		1_{X \setminus A} = 1_X - 1_A. 
+		1_{X \setminus A} = 1 - 1_A. 
 	\]
 \end{bem}
+
+\begin{bem} Wir erstellen ein ``Wörterbuch'' zwischen Teilmengen von $X$ und Funktionen auf $X$: 
+	\begin{align*}
+		\text{``Sprache'' der Mengen} & \longleftrightarrow \text{``Sprache'' der Funktionen} 
+		\\ A & \longleftrightarrow 1_A
+		\\ |A| & =\joinrel=\joinrel= \sum_{x \in X} 1_A(x)
+		\\ \overline{A}:=X \setminus A & \longleftrightarrow 1 - 1_A
+	\end{align*}
+	Bei einer festgelegten Grundmenge $X$, nennt man $\overline{A}$ das Komplement von $A$ (innerhalb von $X$). 
+\end{bem} 
+
+\begin{bem}[Idee der Nutzung von charakteristischen Funktionen] 
+	Wir Idee der Nutzung des Wörterbuchs zwischen Mengen und Funktionen zum Beweis der Formel für die Kardinalität der Vereinigung am Beispiel von zwei Mengen. Für zwei Mengen habe wir bereits diese Formel bewiesen. Es gilt: 
+	\[
+			|A \cup B| = |A| + |B| - |A \cap B|.
+	\]
+	Wir zeigen diese Formel mit Hilfe des Wörterbuchs. 
+	Die Durchschnittsoperation kann man direkt in die Sprache der Funktionen übersetzen: 
+	\[	
+		1_{A \cap B} = 1_A \cdot 1_B
+	\] 
+	Die Situation mit der Vereinigung ist ein wenig trickreich, aber wir können die Vereinigung mit Hilfe des Durchschnitts und des Komplements beschreiben: 
+	\[
+		A \cup B = \overline{\overline{ A } \cap \overline{B} }
+	\]
+	Mit Worten: $x$ gehört genau dann nicht zu $A \cup B$, wenn $x$ weder zu $A$ noch zu $B$ gehört. Die Übersetzung dieser Darstellung der Vereinigung führt zur Gleichung 
+	\[
+		1_{A \cup B} = 1 - (1 - 1_A) \cdot (1-1_B). 
+	\]
+	Das Ausmultiplizieren ergibt 
+	\[
+		1_{A \cup B} = 1_A + 1_B - 1_A \cdot 1_B
+	\]
+	Das Bedeutet $1_{A \cup B} (x) = 1_{A}(x) + 1_B(x) - 1_A(x) 1_B(x)$ gilt für $x \in X$. Das Aufsummieren all dieser Gleichungen für $x \in X$ ergibt $|A \cup B| = |A| + |B| - |A \cap B|$. 
+\end{bem} 
 
 \begin{lem}
 	Seien $A_1,\ldots,A_n$ ($n \in \N$) endliche Teilmengen einer endlichen Menge $X$. Dann gilt 
@@ -545,7 +609,7 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 	Liegt $x$ im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt 
 	\[ 1_{A_1 \cap \cdots \cap A_n} (x) =1
 	\]  aber auch $1_{A_i}(x)=1$ für jedes $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken und rechten Seite auf $x$  ergibt somit den Wert $1$
-	Ist $x$ nicht im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt $1_{A_1 \cap \cdot A_n}(x) =0$ aber auch $1_{A_i}(x)=1$ für ein $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken rechten Seite der Formel ergibt somit den Wert $0$. 
+	Ist $x$ nicht im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt $1_{A_1 \cap \cdots \cap A_n}(x) =0$ aber auch $1_{A_i}(x)=1$ für ein $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken rechten Seite der Formel ergibt somit den Wert $0$. 
 \end{proof} 
 
 \begin{lem} \label{lem:product} 
@@ -563,7 +627,7 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 	Einen formaleren Beweis kann man zum Beispiel durch Induktion über $n$ führen (Aufgabe). 
 \end{proof} 
 
-\begin{thm}[Das Prinizip der Inklusion-Exklusion]
+\begin{thm}[Das Prinizip der Inklusion-Exklusion] \label{thm:ink:exkl}
 	Seien $A_1,\ldots,A_n$ ($n \in \N$) endliche Mengen. Dann gilt 
 	\[
 		| A_1 \cup \cdots \cup A_n| = \sum_{\emptyset \ne J \subseteq \{1,\ldots,n\}} (-1)^{|J|+1} \left| \bigcap_{j \in J} A_i \right| 
@@ -594,6 +658,17 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 	was zur Formel in der Behauptung des Theorems äquivalent ist. 
 \end{proof} 
 
+\begin{bem}
+	Das Prinzip der Inklusion-Exklusion wird auch die \textbf{Siebformel} genannt. 
+\end{bem} 
+
+\begin{bem}
+	Wenn man $I$ als $\{i_1,\ldots,i_k\}$ mit $1 \le i_1 < \cdots < i_k \le n$ führt, so kann man die Formel aus Theorem~\ref{thm:ink:exkl} auch so umformulieren: 
+	\[
+		|A_1 \cup \cdots \cup A_n| = \sum_{k=1}^n (-1)^{k+1} \sum_{1 \le i_1 < \cdots < i_k \le n} | A_{i_1} \cap \cdots \cap A_{i_k}|. 
+	\]
+\end{bem} 
+
 \begin{aufg}
 	Wie viele Zahlen in $\{1,\ldots,10000\}$ gibt es, die durch $2$, $3$ oder $5$ teilbar sind? 
 \end{aufg} 
@@ -601,13 +676,17 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 \section{Multimengen} 
 
 \begin{defn}
-Ist $X$ eine Menge, so ist eine \textbf{Multimenge} $M$ über der Grundmenge $X$ durch die Angabe der \textbf{Vielfachheitsabbildung} $\mu_M : X \to \N_0$ gegeben. Die Summe
+Ist $X$ eine Menge, so ist eine \textbf{Multimenge} $M$ über der Grundmenge $X$ durch die Angabe der \textbf{Vielfachheitsabbildung} $\mu_M : X \to \N_0$ gegeben. Den Wert 
 \[
-	\sum_{x \in X} \mu_M(x)
+	|M|:=\sum_{x \in X} \mu_M(x)
 \]
-nennt man die Kardinalität der Multimenge $M$ und bezeichnet diesen Wert als $|M|$.  Wir nennen die Menge $\setcond{ x \in X}{\mu_M(x)>0}$ den \textbf{Träger} von $M$.
+nennt man die \textbf{Kardinalität} der Multimenge $M$.  Wir nennen die Menge 
+\[
+	\setcond{ x \in X}{\mu_M(x)>0}
+\]
+den \textbf{Träger} von $M$.
 
-Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ haben, und für jedes $x \in T$ die Vielfachheiten von $x$ in $M$ und $N$ übereinstimmen.
+Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Träger $T$ haben und für jedes $x \in T$ die Vielfachheiten von $x$ in $M$ und $N$ übereinstimmen.
 \end{defn} 
 
 \begin{bem}[Angabe von Multimengen durch die Aufzählung]
@@ -615,7 +694,7 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 	\[
 			M = \{1,1,1,1,2,2,2,3\}_{\ne}
 	\]
-	eine Multimenge über $\{1,2,3\}$ mit $\mu_M(1) =4, \mu_M(2)=3$ und $\mu_M(3)=1$. Wir benutzten in der Bezeichnung für Multimengen das untergestellte $\ne$, um explizit darauf hinzuweisen, dass es sich hierbei nicht um eine Menge handelt. In vielen Quellen benutzt man aber genau die gleiche Bezeichnung wie bei Mengen. 
+	eine Multimenge mit dem Träger $\{1,2,3\}$ und mit den Vielfachheiten $\mu_M(1) =4, \mu_M(2)=3$ und $\mu_M(3)=1$ der Elemente des Trägers. Wir benutzten in der Bezeichnung für Multimengen das untergestellte $\ne$, um explizit darauf hinzuweisen, dass es sich hierbei nicht um eine Menge handelt. In vielen Quellen benutzt man aber genau die gleiche Bezeichnung wie bei Mengen. 
 \end{bem}
 
 \begin{defn}
@@ -623,7 +702,10 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 \end{defn} 
 
 \begin{defn}
-		Für $n,k \in \N_0$ führen wir die Bezeichnung $\mbinom{n}{k} := \binom{n+k-1}{k}$ ein. Dieser Wert lässt sich auch als 
+		Für $n,k \in \N_0$ führen wir die \textbf{Multimengen-Binomialkoeffizienten} $n$ über $k$ als 
+		\[
+			\mbinom{n}{k} := \binom{n+k-1}{k}
+		\] ein. Dieser Wert lässt sich auch als 
 		\[
 			\mbinom{n}{k} =\frac{ n^{\overline{k}}}{k!}
 		\]
@@ -631,14 +713,31 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 		\[
 				n^{\overline{k}} := \frac{n \cdot (n+1) \ldots \cdot (n+k-1)}{k!}
 		\]
-		
 \end{defn} 
+
+\begin{bem}[Das Zählen der $k$-elementigen Multimengen: Idee]
+ 	Multimengen über einer $n$-elementigen Grundmenge $X = \{x_1,\ldots,x_n\}$ sind eindeutig durch die Angabe der nicht-negativen ganzzahligen Vielfachheiten $z_i$ von $x_i$, für jedes $i=1,\ldots,n$, gegeben. Hierbei ist die Kardinalität der Multimenge nichts anderes als die Summe $z_1 + \cdots + z_n$. Das Zählen der Multimengen einer gegebener Kardinalität $k$ über einer $n$-elementigen Menge $X$  reduziert sich daher zum Zählen der Anzahl der nicht-negativen ganzzahligen Lösungen der $n$-variaten Gleichung $z_1 + \cdots + z_n = k$. 
+ 	
+ 	Hier Beispiele der Lösungsmengen für $n=3$ und $k \in \{1,2,3\}$: 
+ 	\begin{center} 
+ 	\begin{tabular}{l|l}
+ 			& Lösungsmenge für $z_1 + \cdots + z_n =k$ 
+ 			\\ \hline 
+ 		$n=3, k=1$ & $\{(1,0,0), (0,1,0), (0,0,1)\}$ 
+ 		\\ $n=3, k=2$ & $\{(2,0,0)(0,2,0),(0,0,2), (1,1,0),(1,0,1), (0,1,1)\}$
+ 		\\ $n=3, k=3$ & $\{(3,0,0),(0,3,0),(0,0,3)$
+ 		\\ & $\phantom{\{}(2,1,0),(1,2,0),(0,2,1),(0,1,2),(2,0,1),(1,0,2)$
+ 		\\ & $\phantom{\{} (1,1,1)\}$
+ 	\end{tabular} 
+ 	\end{center} 
+\end{bem} 
 
 \begin{lem} \label{lem:multimengen}
 	Seien $n \in \N$ und $k \in \N_0$. Dann gilt: 
 	\[
-		\bigl| \setcond{ (z_1,\ldots,z_n) \in \N_0^n}{z_1 + \cdots + z_n = k} \bigr| = \mbinom{n+k-1}{k}. 
+		\biggl| \setcond{ (z_1,\ldots,z_n) \in \N_0^n}{z_1 + \cdots + z_n = k} \biggr| = \mbinom{n}{k} := \binom{n+k-1}{k}. 
 	\]
+	Mit Worten: die Gleichung $z_1 + \cdots + z_n = k$ mit nicht-negativen ganzzahligen Variablen $z_1,\ldots,z_n$ hat genau $\binom{n+k-1}{k}$ Lösungen $(z_1,\ldots,z_n)$. 
 \end{lem} 
 \begin{proof} 
 	Die Abbildung $(z_1,\ldots,z_n) \mapsto (y_1,\ldots,y_n):=(z_1+1,\ldots,z_n+1)$ ist eine Bijektion von 
@@ -688,24 +787,74 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 	Für eine Menge $X$ und $k \in \N$ verwendet man oft die folgende ``Zieh-Terminologie'' in Bezug auf einige der vorigen Formeln. 
 \end{bem}
 
-\begin{bem} $\binom{X}{k}$ beschriebt das \textbf{ungeordnete Ziehen ohne Zurücklegen} von $k$ Elementen aus der Menge $X$.  Etwa: wie viele Varianten gibt es dafür, dass in einer Klasse aus $20$ Schüler:innen $3$ fehlen. Antwort: $\binom{20}{3} = \frac{20 \cdot 19 \cdot 18}{1 \cdot 2 \cdot 3}$. Bei den fehlenden Schüler:innen gibt es keine Reihenfolge (daher ``ungeordnet''). 
+\begin{bem} $\binom{X}{k}$ beschriebt das \textbf{ungeordnete Ziehen ohne Zurücklegen} von $k$ Elementen aus der Menge $X$.  
 \end{bem}
 
-\begin{bem} $\Inj(\{1,\ldots,k\},X)$ beschreibt das \textbf{geordnete Ziehen ohne Zurücklegen} von $k$ Elementen aus der Menge $X$. Etwa: In einer Eisdiele, in der $10$ Sorten Eis angeboten werden, bestellen Sie $3$ Eiskugeln verschiedener Sorten. Dabei werden die $3$ Kugeln in einer großen Waffel übereinander gestapelt. Die Reihenfolge der Kugeln in der Waffel ist Ihnen wichtig. Wie viele Möglichkeiten gibt es dafür, die Waffel mit $3$ Kugeln verschiedener Sorten zu füllen? Antwort: $10 \cdot 9 \cdot 8$. Das Ziehen hier ist geordnet (Reihenfolge wichtig) und ohne Zurücklegen (alle $3$ Kugeln haben eine andere Sorte). 
+\begin{bsp}
+Wie viele Varianten gibt es dafür, dass in einer Klasse aus $20$ Schüler:innen $3$ fehlen. Antwort: $\binom{20}{3} = \frac{20 \cdot 19 \cdot 18}{1 \cdot 2 \cdot 3}$.
+
+Fehlende Schüler:innen sind ungeordnet. 
+
+Fehlen ist eine Eigenschaft ohne Vielfachheit. Man ist an einem Tag entweder da oder man fehlt; man kann  nicht doppelt fehlen. Daher: ohne Zurücklegen. 
+\end{bsp} 
+
+\begin{bem} $\Inj(\{1,\ldots,k\},X)$ beschreibt das \textbf{geordnete Ziehen ohne Zurücklegen} von $k$ Elementen aus der Menge $X$. 
 \end{bem}
+
+\begin{bsp}
+In einer Eisdiele, in der $10$ Sorten Eis angeboten werden, bestellen Sie $3$ Eiskugeln verschiedener Sorten. Dabei werden die $3$ Kugeln in einer großen Waffel übereinander gestapelt. Die Reihenfolge der Kugeln in der Waffel ist Ihnen wichtig. Wie viele Möglichkeiten gibt es dafür, die Waffel mit $3$ Kugeln verschiedener Sorten zu füllen? Antwort: $10 \cdot 9 \cdot 8$. Das Ziehen hier ist geordnet (Reihenfolge wichtig) und ohne Zurücklegen (alle $3$ Kugeln haben eine andere Sorte). 
+\end{bsp} 
 
 \begin{bem}
-	 $X^k$ sowie $X^{\{1,\ldots,k\}}$ beschreibt das \textbf{geordnete Ziehen mit Zurücklegen}. In einer $3$er WG mit den Mitgliedern Alice, Bob und Carola wird $10$ Tage lang verfolgt, wer am Ende des Tages den Müll rausbringt. Das Protokoll dafür ist dann eine Abbildung von $\{1,\ldots,10\}$ nach $\{\text{Alice},\text{Bob},\text{Carola} \}$.  Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die $10$  Tage sind durchnummeriert) mit Zurücklegen (wer den Müllrausgebracht hat, verschwindet  nicht aus der WG und darf es ruhig nochmal an einem anderen Tag machen). 
+	 $X^k$ sowie $X^{\{1,\ldots,k\}}$ beschreibt das \textbf{geordnete Ziehen mit Zurücklegen} aus der Menge $X$. 
 \end{bem}
 
+\begin{bsp} \label{wg:muell} 
+In einer $3$er WG mit den Mitgliedern Alice, Bob und Carola wird $10$ Tage lang verfolgt, wer am Ende des Tages den Müll rausbringt. Das Protokoll dafür ist dann eine Abbildung von $\{1,\ldots,10\}$ nach $\{\text{Alice},\text{Bob},\text{Carola} \}$.  Etwa: 
+\begin{center}
+\begin{tabular}{r|l}
+	Tag & Hero of the day
+	\\  \hline 
+	 1 & Carola
+	\\ 2 & Alice
+	\\ 3 & Carola
+	\\ 4 & Alice
+	\\ 5 & Alice
+	\\ 6 & Bob
+	\\ 7 & Alice
+	\\ 8 & Bob
+	\\ 9 & Carola
+	\\ 10 & Alice
+\end{tabular} 
+\end{center} 
+
+Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die $10$  Tage sind durchnummeriert) mit Zurücklegen (wer den Müllrausgebracht hat, verschwindet  nicht aus der WG und darf es ruhig nochmal an einem anderen Tag machen). 
+\end{bsp} 
+
 \begin{bem}
-		 Die Menge $\mbinom{X}{k}$ beschreibt das \textbf{ungeordenete Ziehen mit Zurücklegen}. Um das zu illustrieren modifizieren wir das Beispiel mit der WG wie folgt. $10$ Tage lang sammelt Alice, Bob und Carola auf die folgende Weise Daten ein, wer am Ende des Tages den Müll rausbringt. Es wird eine Liste mit drei Namen (Alice, Bob und Carola) erstellt. Das Mitglied der WG, das am Ende des Tages den Müll rausbringt, setzt einen Strich in der Liste bei seinem Namen. Das Protokoll am Ende der $10$ Tage ist eine $10$-elementige Multimenge auf der Grundmenge $\{ \text{Alice}, \text{Bob}, \text{Carola}\}$.  Hier hat man wieder das Ziehen mit Zurücklegen (wer Müll rausbringt, darf es nochmal machen), aber im Gegensatz zum Beispiel davor ungeordnet: jeder der $10$ Tage entspricht einem Strich auf der Liste, an einem Strich kann man aber am Ende nicht mehr sehen, an welchem Tag der gesetzt wurde. 
+		 Die Menge $\mbinom{X}{k}$ beschreibt das \textbf{ungeordenete Ziehen mit Zurücklegen} aus der Menge $X$. 
 \end{bem} 
+
+\begin{bsp}
+	Um das Ungeordnete Ziehen mit Zurücklegen zu illustrieren, modifizieren wir  Beispiel~\ref{wg:muell} mit der WG wie folgt. $10$ Tage lang sammeln Alice, Bob und Carola auf die folgende Weise Daten ein, wer am Ende des Tages den Müll rausbringt. Es wird eine Liste mit drei Namen (Alice, Bob und Carola) erstellt. Das Mitglied der WG, das am Ende des Tages den Müll rausbringt, setzt einen Strich in der Liste bei seinem Namen. Das Protokoll am Ende der $10$ Tage kann dann ungefähr so aussehen: 
+	\begin{center}
+	\begin{tabular}{ll}
+			Alice & $| \  | \ | \  | \ | $ 
+			\\ Bob &  $| $ 
+			\\ Carola & $| \ | \  | \  |$ 
+	\end{tabular} 
+	\end{center} 
+	
+	
+	Das ist eine $10$-elementige Multimenge auf der Grundmenge $\{ \text{Alice}, \text{Bob}, \text{Carola}\}$.  Hier hat man wieder das Ziehen mit Zurücklegen (wer Müll rausbringt, darf es nochmal machen), aber im Gegensatz zum Beispiel davor ungeordnet: jeder der $10$ Tage entspricht einem Strich auf der Liste, an einem Strich kann man aber am Ende nicht mehr sehen, an welchem Tag der gesetzt wurde. 
+\end{bsp} 
 
 \section{Doppeltes Abzählen an Beispielen} 
 
 \begin{bem}
-	Beim doppelten Abzählen zählte man Elemente einer Menge auf zwei verschiedene Weisen und erhält dadurch eine Gleichung. 
+	Beim doppelten Abzählen zählt man Elemente einer Menge auf zwei verschiedene Weisen und erhält dadurch eine Gleichung, in der die linke und rechte Seite die beiden Zählweisen darstellen. 
+	
+	Mit anderen Worten: viele Gleichungen in der Kombinatorik und diskreter Mathematik haben eine kombinatorische ``Geschichte'' im Hintergrund. 
 \end{bem} 
 
 \subsection{Beispiel aus der Kombinatorik}
@@ -720,22 +869,30 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 \end{proof} 
 
 \begin{bsp}
-	Alice, Bob, Carola, Dennis und Eric müssen entscheiden, wer unter ihnen bei einem Weihnachtskonzert als Weihnachtsmann und Elfe auftreten wird.  Jemand  muss dabei unbedingt Weihnachtsmann sein (Geschlecht egal), die Elfe sind dagegen optional (es können also $1$ bis $4$ Elfe geben, da sie $5$ Personen sind und genau eine Person den Weihnachtsmann spielt). Wie viel Möglichkeiten gibt es, eine solche Truppe aus dem Weihnachtsmann und Elfen  aufzustellen?  
+	Alice, Bob, Carola, Dennis und Eric müssen entscheiden, wer unter ihnen bei einem Weihnachtskonzert als Weihnachtsmann und Elfe auftreten wird.  Jemand  muss dabei unbedingt Weihnachtsmann sein (Geschlecht egal), die Elfe sind dagegen optional (es können also $0$ bis $4$ Elfe geben, da sie $5$ Personen sind und genau eine Person den Weihnachtsmann spielt). Wie viel Möglichkeiten gibt es, eine solche Truppe aus dem Weihnachtsmann und Elfen  aufzustellen?  
 	
-	Eine Weise zu zählen ist wie folgt: Eine der fünf Personen übernimmt die Rolle des Weihnachtsmanns. Unter den übrigen vier Personen gibt es dann $2^4$ Möglichkeiten eine Menge der Elfe zu fixieren. Insgesamt sind es $5 \cdot 2^4 = 80$ Varianten, eine Truppe aus dem Weihnachtsmann und Elfen zu fixieren. 
+	Eine Weise zu zählen ist wie folgt. Eine der fünf Personen übernimmt die Rolle des Weihnachtsmanns. Unter den übrigen vier Personen gibt es dann $2^4$ Möglichkeiten eine Menge der Elfe zu fixieren. Insgesamt sind es $5 \cdot 2^4 = 80$ Varianten, eine Truppe aus dem Weihnachtsmann und Elfen zu fixieren. 
 	
 	Eine weitere Weise zu zählen ist wie folgt. Die Anzahl der Mitglieder der Truppe ist $1$ bis $5$. Man kann also die Truppen der Größen $1$ bis $5$ getrennt zählen. Bei einer Truppe der Größe $k \in \{1,\ldots,5\}$ gibt es $\binom{5}{k}$ Möglichkeiten Mitglieder der Truppe zu fixieren. Sobald die Mitglieder fixiert sind, gibt es genau $k$ Möglichkeiten innerhalb der Truppe die Rolle des Weihnachtsmanns zu vergeben. Wir kommen auf diese Weise auf  die Formel
 	\[
 			\sum_{k=1}^5 k \binom{5}{k}. 
+	\]
+	Man hat also die Gleichung 
+	\[
+			\sum_{k=1}^5 k \binom{5}{k} = 5 \cdot 2^4.
 	\]
 \end{bsp} 
 
 \begin{bem}
 	Die Formel in Proposition~\ref{doppeltes:abzaehlen} hat auch eine Interpretation im Rahmen der Wahrscheinlichkeitstheorie. Wir können die Formel als 
 	\[
-		\sum_{k=0}^n k \cdot \frac{\binom{n}{k}}{2^k} =  \frac{n}{2}
+		\sum_{k=0}^n k \cdot \frac{\binom{n}{k}}{2^n} =  \frac{n}{2}
 	\]
-	umformulieren. Hierbei ist $\frac{\binom{n}{k}}{2^k}$ ist die Wahrscheinlichkeit bei einem $n$-maligen Werfen einer fairen Münze genau $k$ mal den Kopf zu werfen. Die linke Seite ist also der Erwartungswert für die Anzahl der Köpfe bei einem $n$-mailigen Werfen einer fairen Münze. Die rechte Seite verrät uns, was dieser Erwartungswert genau ist: $\frac{n}{2}$. Die Formel ist intuitiv klar: wenn wir eine faire Münze $n$ mal werfen, so kriegen wir im Durchschnitt $n/2$ Köpfe. 
+	umformulieren. Hierbei ist $\frac{\binom{n}{k}}{2^n}$ ist die Wahrscheinlichkeit bei einem $n$-maligen Werfen einer fairen Münze genau $k$ mal den Kopf zu werfen.
+	
+	 Die linke Seite ist also der Erwartungswert für die Anzahl der Köpfe bei einem $n$-mailigen Werfen einer fairen Münze (Erinnerung an den Schulstoff: der Erwartungswert einer diskreten Zufallsvariable ist die Summe der Terme Möglicher Wert $\times $ Wahrscheinlichkeit dieses Werts). 
+	 
+	 Die rechte Seite verrät uns, was dieser Erwartungswert genau ist: $\frac{n}{2}$. Die Formel ist intuitiv klar: wenn wir eine faire Münze $n$ mal werfen, so kriegen wir im Durchschnitt $n/2$ Köpfe. 
 \end{bem} 
 
 \subsection{Beispiel aus der Zahlentheorie} 
@@ -802,7 +959,7 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 \end{proof} 
 
 \begin{bem}
-	Mit Hilfe der Analysis (IT-3) kann gezeigt werden, dass $H_n= \Theta(\ln n)$ gilt. Also ist 
+	Mit Hilfe der Analysis (vgl.~IT-3) kann gezeigt werden, dass $H_n= \Theta(\ln n)$ gilt. Also ist 
 	\[
 		\bar{t}(n) = \Theta(\ln n). 
 	\]
@@ -847,7 +1004,7 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 	\[
 		|X| \le |Y| \max_{y \in Y} |f^{-1}(\{y\}) |. 
 	\]
-	Das bedeutet, dass für das $y \in Y$ mit der maximalen Kardinalität $|f^{-1}(\{y\}) |$, die Ungleichung 
+	Das bedeutet, dass für ein $y \in Y$ mit der maximalen Kardinalität $|f^{-1}(\{y\}) |$, die Ungleichung 
 	\[
 			|f^{-1}(\{y\})| \ge \frac{|X|}{|Y|}
 	\]
@@ -866,7 +1023,11 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 	Seien $X, Y$ endliche Mengen mit $|X| > |Y| >0$. Dann gibt es für jede Abbildung $f : X \to Y$ verschiedene $x',x''\in X$ mit $f(x')=f(x'')$. 
 \end{kor} 
 \begin{proof}
-	Die Behauptung folgt durch eine direkte Anwendung von Proposition~\ref{prop:schubfach:stark}.
+	Die Behauptung folgt durch eine direkte Anwendung von Proposition~\ref{prop:schubfach:stark}, denn für ein $y \in Y$ hat man 
+	\[
+		| f^{-1}(\{y\}) | \ge \ceiling{\frac{|X|}{|Y|}} \ge 2,
+	\]
+	sodass verschiedene $x',x'' \in X$ mit $f(x') = f(x'') =y$ existieren. 
 \end{proof} 
 
 \subsection{Einfache Beispiele} 
@@ -880,11 +1041,11 @@ Zwei Multimengen $M$ und $N$ nennen wir gleich, wenn sie den selben Träger $T$ 
 \end{aufg} 
 
 \begin{aufg}
-	$30$ Schüler:innen, darunter auch Fritzchen, haben eine Klassenarbeit geschrieben. In der Klassenarbeit hat Fritzchen $13$ Fehler gemacht, und alle anderen Schülerinnen weniger. Zeigen Sie, dass drei der Schüler:innen die gleiche Anzahl der Fehler gemacht haben. 
+	$30$ Kinder, darunter auch Fritzchen, haben eine Klassenarbeit geschrieben. In der Klassenarbeit hat Fritzchen $13$ Fehler gemacht, und alle anderen Kinder weniger Fehler als Fritzchen. Zeigen Sie, dass drei Kinder die gleiche Anzahl der Fehler gemacht haben. 
 \end{aufg}  
 
 \begin{aufg}
-	Zeigen Sie, dass in einem Fußballturnier mit $n \in \N$ Mannschaften ($n \ge 2$) in jedem Zeitpunkt man zwei Mannschaften findet, die zu diesem Zeitpunkt die gleiche Anzahl der Spiele gespielt haben. 
+	In einem Fußballturnier mit $n \in \N$ Mannschaften ($n \ge 2$), spielen je zwei Mannschaften höchstens ein mal miteinander. Zeigen Sie, dass in jedem Zeitpunkt zwei Mannschaften existieren, die zu diesem Zeitpunkt die gleiche Anzahl der Spiele gespielt haben. 
 \end{aufg} 
 
 \subsection{Der Satz von Erd\H{os}-Szekeres}
