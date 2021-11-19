@@ -18,7 +18,7 @@ Eine verbreitete und nützliche Möglichkeit ist das \glqq Zeichnen\grqq\ in die
 Ein Digraph mit Doppelkante zwischen den Knoten $1$ und $3$ und Schlinge um den Knoten $7$ sei zum Beispiel wie folgt dargestellt:
 
 \begin{center}
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=1.5,scale=1.5]
  \node[circle,draw=black] (1) at (0,0) {$1$};
  \node[circle,draw=black] (2) at (0,2) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -27,8 +27,8 @@ Ein Digraph mit Doppelkante zwischen den Knoten $1$ und $3$ und Schlinge um den 
  \node[circle,draw=black] (6) at (4,2) {$6$};
  \node[circle,draw=black] (7) at (6,2) {$7$};
 		
- \draw[->,line width=0.3mm] (4) edge (1) (3) edge (2) (3) to[bend left] (1) (3) edge (5) (5) edge (6) (7) edge (5);
- \draw[->,line width=0.3mm] (1) to[bend left] (3) (7) edge[loop right] (7);
+ \draw[->] (4) edge (1) (3) edge (2) (3) to[bend left] (1) (3) edge (5) (5) edge (6) (7) edge (5);
+ \draw[->] (1) to[bend left] (3) (7) edge[loop right] (7);
 \end{tikzpicture}
 \end{center}
 \end{bsp} 
@@ -64,7 +64,7 @@ Digraphen ohne Zyklen heißen \emph{azyklisch}.
 Im Beispieldigraphen von oben markieren wir den Weg $(4,1,3,5,6)$ in blau:
 
 \begin{center}
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \node[circle,draw=black] (1) at (0,0) {$1$};
  \node[circle,draw=black] (2) at (0,2) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -73,9 +73,9 @@ Im Beispieldigraphen von oben markieren wir den Weg $(4,1,3,5,6)$ in blau:
  \node[circle,draw=black] (6) at (4,2) {$6$};
  \node[circle,draw=black] (7) at (6,2) {$7$};
 		
- \draw[->,line width=0.3mm] (3) edge (2) (3) to[bend left] (1) (7) edge (5);
- \draw[->,line width=0.3mm] (7) edge[loop right] (7);
- \draw[->,line width=0.3mm,blue] (4) edge (1) (1) to[bend left] (3) (3) edge (5) (5) edge (6);
+ \draw[->] (3) edge (2) (3) to[bend left] (1) (7) edge (5);
+ \draw[->] (7) edge[loop right] (7);
+ \draw[->,blue] (4) edge (1) (1) to[bend left] (3) (3) edge (5) (5) edge (6);
  
 \end{tikzpicture}
 \end{center}
@@ -87,9 +87,10 @@ Wird eine solche Orientierung nicht benötigt, so vereinfachen sich manche Begri
 \end{bem} 
 
 \begin{defn} 
-Sei dazu $V$ wieder eine endliche Menge und sei $E$ nun eine Teilmenge der ungeordneten Paare $\binom{V}{2}:= \setcond{\{a,b\}}{a, b \in V, a \ne b} $ von Elementen aus~$V$.
+Sei dazu $V$ wieder eine endliche Menge und sei $E$ nun eine Teilmenge der Menge $\binom{V}{2}= \setcond{\{a,b\}}{a, b \in V, a \ne b} $. 
+
 Das Paar $G=(V,E)$ heißt \emph{Graph} mit \emph{Knotenmenge} $V$ und \emph{Kantenmenge}~$E$.
-Die Elemente von $V$ heißen wieder \emph{Knoten} und die Elemente von $E$ heißen \emph{Kanten} (engl.~\emph{edges}) von~$G$.
+Die Elemente von $V$ heißen \emph{Knoten} und die Elemente von $E$ heißen \emph{Kanten} (engl.~\emph{edges}) von~$G$.
 Ist $\{a,b\} \in E$ eine Kante, so nennen wir~$a$ und~$b$ ihre \emph{Endknoten}.
 Wiederum sagen wir, dass die Knoten $a$ und $b$ \emph{benachbart} und die Kante $\{a,b\}$ \emph{inzident} zu~$a$ und $b$ ist.
 \end{defn} 
@@ -118,7 +119,7 @@ Ein Wald ist ein Graph bei dem jede Zusammenhangskomponente ein Baum ist.
 Die folgende Abbildung zeigt einen Graphen mit zwei Zusammenhangskomponenten:
 
 \begin{center}
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \node[circle,draw=black] (1) at (0,0) {$1$};
  \node[circle,draw=black] (2) at (0,2) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -127,8 +128,8 @@ Die folgende Abbildung zeigt einen Graphen mit zwei Zusammenhangskomponenten:
  \node[circle,draw=black] (6) at (4,2) {$6$};
  \node[circle,draw=black] (7) at (6,2) {$7$};
 		
- \draw[-,line width=0.3mm] (3) edge (2) (3) edge (1) (3) edge (5);
- \draw[-,line width=0.3mm] (4) edge (6) (6) edge (7) (7) edge (4);
+ \draw[-] (3) edge (2) (3) edge (1) (3) edge (5);
+ \draw[-] (4) edge (6) (6) edge (7) (7) edge (4);
 \end{tikzpicture}
 \end{center}
 \end{bsp} 
@@ -148,25 +149,25 @@ Sobald $E$ nicht leer ist, gibt es stets mindestens zwei Digraphen, denen~$G$ zu
 Die folgende Abbildung zeigt einen (schleifenfreien) Digraphen und den dazugehörigen zugrundeliegenden Graphen:
 \begin{center}
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \node[circle,draw=black] (1) at (0,0) {$1$};
  \node[circle,draw=black] (2) at (0,2) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
  \node[circle,draw=black] (4) at (2,0) {$4$};
  \node[circle,draw=black] (5) at (4,0) {$5$};
 		
- \draw[->,line width=0.3mm] (4) edge (1) (3) edge (2) (3) to[bend left] (1) (3) edge (5);
- \draw[->,line width=0.3mm] (1) to[bend left] (3);
+ \draw[->] (4) edge (1) (3) edge (2) (3) to[bend left] (1) (3) edge (5);
+ \draw[->] (1) to[bend left] (3);
 \end{tikzpicture}
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \node[circle,draw=black] (1) at (0,0) {$1$};
  \node[circle,draw=black] (2) at (0,2) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
  \node[circle,draw=black] (4) at (2,0) {$4$};
  \node[circle,draw=black] (5) at (4,0) {$5$};
 		
- \draw[-,line width=0.3mm] (1) edge (4) (3) edge (2) (3) edge (1) (3) edge (5);
+ \draw[-] (1) edge (4) (3) edge (2) (3) edge (1) (3) edge (5);
 \end{tikzpicture}
 \hfill\,
 \end{center}
@@ -176,51 +177,58 @@ Beachten Sie, dass die beiden in entgegengesetzten Richtungen orientierten Kante
 \begin{defn} 
 Halten wir noch ein paar wichtige spezielle Graphenklassen und deren Bezeichnungen fest: Sei dazu im Folgenden $G=(V,E)$ ein Graph mit $n$ Knoten und $m$ Kanten.
 \begin{itemize}
- \item Ist $E=\binom{V}{2}$, so heißt $G$ \emph{vollständig}.
+ \item Ist $E=\binom{V}{2}$, so heißt $G$ \textbf{vollständig}.
  Ein vollständiger Graph mit $n$ Knoten wird oft mit~$K_n$ bezeichnet.
 
- \item Ist $E=\emptyset$, so heißt $G$ \emph{leer}.
+ \item Ist $E=\emptyset$, so heißt $G$ \textbf{leer}.
  Ein leerer Graph mit $n$ Knoten wird oft mit~$\bar K_n$ bezeichnet.
 
- \item Ist $V$ eine disjunkte Vereinigung zweier Mengen $A$ und $B$ und hat jede Kante von~$G$ die Form $\{a,b\}$ mit $a \in A$ und $b \in B$, so heißt $G$ \emph{bipartit}.
- Die Mengen~$A$ und $B$ heißen dann \emph{Partitionsklassen} von $G$.
+ \item Ist $V$ eine disjunkte Vereinigung zweier Mengen $A$ und $B$ und hat jede Kante von~$G$ die Form $\{a,b\}$ mit $a \in A$ und $b \in B$, so heißt $G$ \textbf{bipartit}.
+ Die Mengen~$A$ und $B$ heißen dann \textbf{Partitionsklassen} von $G$.
  
- \item Ist $G$ bipartit und gilt darüber hinaus, dass jedes $\{a,b\}$ mit $a \in A$ und $b \in B$ eine Kante von $G$ ist, so heißt $G$ \emph{vollständig bipartit}.
+ \item Ist $G$ bipartit und gilt darüber hinaus, dass jedes $\{a,b\}$ mit $a \in A$ und $b \in B$ eine Kante von $G$ ist, so heißt $G$ \textbf{vollständig bipartit}.
  Ein vollständig bipartiter Graph, deren Partitionsklassen die Größe~$r$ und~$s$ haben, wird oft mit~$K_{r,s}$ bezeichnet.
  Natürlich gilt $n = r + s$.
  
  \item Eine \emph{Einbettung} von~$G$ in die Ebene~$\R^2$ ist eine Menge $P=\{p_1,\ldots,p_n\} \subseteq \R^2$ von Punkten zusammen mit einer Menge $S=\{S_1,\ldots,S_m\}$ von Streckensegmenten, so dass es eine Bijektion $f:V \to P$ gibt mit der Eigenschaft, dass $\{u,v\}$ genau dann eine Kante von~$G$ ist, wenn die Punkte $f(u)$ und $f(v)$ Eckpunkte desselben Streckensegmentes~$S_i$ sind.
- Besitzt ein Graph eine Einbettung bei der je zwei verschiedene Streckensegmente sich höchstens in Eckpunkten schneiden, so heißt dieser Graph \emph{planar}.
- 
- Beispiele: $K_n$ ist planar genau dann wenn $n\leq4$ ist; $K_{3,3}$ ist nicht planar.
-\end{itemize}
+ Besitzt ein Graph eine Einbettung bei der je zwei verschiedene Streckensegmente sich höchstens in Eckpunkten schneiden, so heißt dieser Graph \textbf{planar}.
+ \end{itemize}
 \end{defn} 
+
+\begin{bsp}\
+	\begin{itemize} 
+	\item  $K_n$ mit $n\leq4$ sind planar. 
+	 \item $K_{n,m}$ mit $n \le 2$ und $m \le 3$ sind auch planar. 
+	 \item $K_{3,3}$ ist nicht planar. (Beweis durch Widerspruch)
+	 \item $K_5$ ist nicht planar. (Beweis durch Widerspruch) 
+	 \end{itemize} 
+\end{bsp} 
 
 \begin{bsp}
 Die nachfolgende Illustration zeigt zwei Darstellungen des $K_4$:
 \begin{center}
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
 \tikzset{every loop/.style={}} % no arrows in loops
  \node[circle,draw=black] (1) at (0,0) {$1$};
  \node[circle,draw=black] (2) at (0,2) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
  \node[circle,draw=black] (4) at (2,0) {$4$};
 		
- \draw[-,line width=0.3mm] (1) edge (2) (1) edge (3) (1) edge (4) (2) edge (3) (2) edge (4) (3) edge (4);
+ \draw[-] (1) edge (2) (1) edge (3) (1) edge (4) (2) edge (3) (2) edge (4) (3) edge (4);
 		% (4) edge[loop right] (4);		
 \end{tikzpicture}
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
 \tikzset{every loop/.style={}} % no arrows in loops
  \node[circle,draw=black] (1) at (0,0) {$1$};
  \node[circle,draw=black] (2) at (2,0) {$2$};
  \node[circle,draw=black] (3) at (4,0) {$3$};
  \node[circle,draw=black] (4) at (6,0) {$4$};
 		
- \draw[-,line width=0.3mm] (1) edge (2) (2) edge (3) (3) edge (4);
- \draw[-,line width=0.3mm] (1) to[bend right] (3) (1) to[bend right] (4);
- \draw[-,line width=0.3mm] (2) to[bend left] (4);		
+ \draw[-] (1) edge (2) (2) edge (3) (3) edge (4);
+ \draw[-] (1) to[bend right] (3) (1) to[bend right] (4);
+ \draw[-] (2) to[bend left] (4);		
 \end{tikzpicture}
 \hfill\,
 \end{center}
@@ -229,10 +237,28 @@ Warum nicht?
 Finden Sie eine Darstellung, die dies illustriert!
 \end{bsp}
 
+\begin{defn}
+	Ein Digraph $D=(V,A)$  heißt \textbf{gerichteter bzgl. gewurzelter Baum} (engl., out-tree oder arborescence) mit Wurzel $w \in V$, wenn der unterichtete Graph zu $D$ ein Baum ist, der Eingangsgrad von $w$ gleich $0$ ist und der Eingangsgrad aller anderen Knoten $v \in V \setminus \{w\}$ gleich $1$ ist. 
+\end{defn} 
+
+\begin{prop}
+	Zu jedem ungerichteten Baum $G=(V,E)$ und jedem $w \in V$ gibt es genau einen gerichteten Baum zu $G$ mit der Wurzel $w$. 
+\end{prop} 
+\begin{proof}
+	Aufgabe. 
+\end{proof} 
+
+\begin{defn}
+	Ein Digraph $D=(V,A)$ heißt \textbf{gerichteter Wald}, wenn $V$ disjunkte Vereinigung von Mengen $V_1,\ldots,V_t$ ist, bei denen $D_{V_i}$ für jedes $i=1,\ldots,t$ ein gerichteter Baum ist. 
+\end{defn} 
+
+\begin{defn}
+	In einem gerichteten Baum/Wald $D=(V,A)$ nennen wir $v \in V$ \textbf{Nachfahre} von $u \in V$ und $u$ \textbf{Vorfahre} von $v$, wenn ein $(u,v)$-Pfad existiert. Wenn $(u,v) \in A$ ist, so nennen wir $v$ \textbf{Kind} oder \textbf{direkter Nachfahre} von $u$ und $u$ \textbf{Vater/Mutter/Elter} von $v$.
+\end{defn} 
 
 
 \begin{bem}
-In der Graphentheorie ist die Bezeichnung der Hautbegriffe nicht einheitlich.
+In der Graphentheorie ist die Bezeichnung der Hauptbegriffe nicht einheitlich.
 Von Quelle zu Quelle unterscheiden sich die Definitionen geringfügig und insbesondere in Bezug auf die Namensgebung gibt es teilweise große Unterschiede.
 Zu diesem Zweck listen wir hier die geläufigsten Synonyme um mögliche Verwirrungen beim Lesen unterschiedlicher Quellen zu vermeiden:
 \begin{align*}
@@ -249,6 +275,8 @@ Zu diesem Zweck listen wir hier die geläufigsten Synonyme um mögliche Verwirru
 \end{align*}
 \end{bem}
 
+\section{Speicherung von Graphen} 
+
 \begin{bem}
 Zum Abschluss dieser Einführung in die Grundbegriffe schauen wir uns noch verschiedene Möglichkeiten an, wie man einen gegebenen (Di)Graphen im Rechner darstellt, das heißt, in welcher Form man die Beziehungen zwischen Knoten und (gerichteten) Kanten verwalten kann.
 
@@ -256,13 +284,13 @@ Sei dazu ein Graph oder ein Digraph gegeben und zur Vereinheitlichung im Folgend
 \end{bem} 
 
 \begin{defn}
-{\bfseries Kantenliste:} Liste/Array der Kanten von $G$. 
+Die {\bfseries Kantenliste} von $G$ ist die Liste der Kanten von $G$. 
 \end{defn}
 
 \begin{bsp}\ 
 \begin{center}
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \node[circle,draw=black] (1) at (0,0) {$1$};
  \node[circle,draw=black] (2) at (0,2) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -270,12 +298,12 @@ Sei dazu ein Graph oder ein Digraph gegeben und zur Vereinheitlichung im Folgend
  \node[circle,draw=black] (5) at (4,2) {$5$};
 % \node[black] (G) at (2,3.5) {$G=(V,E)$};
 		
- \draw[->,line width=0.3mm] (1) edge (2) (3) edge (2) (3) edge (4) (3) to[bend left] (5) (4) edge (5);
- \draw[->,line width=0.3mm] (5) to[bend left] (3);
+ \draw[->] (1) edge (2) (3) edge (2) (3) edge (4) (3) to[bend left] (5) (4) edge (5);
+ \draw[->] (5) to[bend left] (3);
 \end{tikzpicture}
 \hfill
 \begin{tikzpicture}[]
- \node[black] (1) at (0,0) {$(1,2),(3,2),(3,4),(3,5),(4,5),(5,3)$};
+ \node[black] (1) at (0,0) {$[ (1,2),(3,2),(3,4),(3,5),(4,5),(5,3) ]$};
  \node[black] (1) at (0,-1) {$ $};
 \end{tikzpicture}
 \hfill\,
@@ -283,83 +311,116 @@ Sei dazu ein Graph oder ein Digraph gegeben und zur Vereinheitlichung im Folgend
 \end{bsp}
 
 \begin{defn} 
-{\bfseries Adjazenzliste:} Hier speichern wir die Knotenmenge $V$ als Liste und jedem Element $u \in V$ der Liste wird eine Liste aller Knoten $v \in V$ mit $uv \in E$ zugeordnet.
-Der Speicherplatzbedarf für diese Darstellung ist offensichtlich $\Theta(|V|+|E|)$.
+In der {\bfseries Adjazenzliste} von $G$ speichert man die Knotenmenge $V$ als Liste und jedem Element $u \in V$ der Liste wird eine Liste aller Knoten $v \in V$ mit $uv \in E$ zugeordnet.
+(Der Speicherplatzbedarf für diese Darstellung ist offensichtlich $\Theta(|V|+|E|)$.)
 \end{defn}
 
 \begin{bsp} \ 
-\begin{center}
-\hfill
-\begin{tikzpicture}[]
- \node[circle,draw=black] (1) at (0,0) {$1$};
- \node[circle,draw=black] (2) at (0,2) {$2$};
- \node[circle,draw=black] (3) at (2,2) {$3$};
- \node[circle,draw=black] (4) at (2,0) {$4$};
- \node[circle,draw=black] (5) at (4,2) {$5$};
-% \node[black] (G) at (2,3.5) {$G=(V,E)$};
-		
- \draw[->,line width=0.3mm] (1) edge (2) (3) edge (2) (3) edge (4) (3) to[bend left] (5) (4) edge (5);
- \draw[->,line width=0.3mm] (5) to[bend left] (3);
-\end{tikzpicture}
-\hfill
-\begin{tikzpicture}[]
- \node[rounded corners,draw=black] (1) at (0,0) {$1$};
- \node[rounded corners,draw=black] (L1) at (2,0) {$2$};
- \node[rounded corners,draw=black] (2) at (0,-.7) {$2$};
- \node[rounded corners,draw=black] (L2) at (2,-.7) {$\textsc{nil}$};
- \node[rounded corners,draw=black] (3) at (0,-1.4) {$3$};
- \node[rounded corners,draw=black] (L3) at (2,-1.4) {$2,4,5$};
- \node[rounded corners,draw=black] (4) at (0,-2.1) {$4$};
- \node[rounded corners,draw=black] (L4) at (2,-2.1) {$5$};
- \node[rounded corners,draw=black] (5) at (0,-2.8) {$5$};
- \node[rounded corners,draw=black] (L5) at (2,-2.8) {$3$};
-		
- \draw[->,line width=0.3mm] (1) edge (L1) (2) edge (L2) (3) edge (L3) (4) edge (L4) (5) edge (L5);
-\end{tikzpicture}
-\hfill\,
-\end{center}
+	\begin{center}
+		\hfill
+		\begin{tikzpicture}[line width=2,scale=1.5]
+			\node[circle,draw=black] (1) at (0,0) {$1$};
+			\node[circle,draw=black] (2) at (0,2) {$2$};
+			\node[circle,draw=black] (3) at (2,2) {$3$};
+			\node[circle,draw=black] (4) at (2,0) {$4$};
+			\node[circle,draw=black] (5) at (4,2) {$5$};
+			% \node[black] (G) at (2,3.5) {$G=(V,E)$};
+			
+			\draw[->] (1) edge (2) (3) edge (2) (3) edge (4) (3) to[bend right] (5) (4) edge (5);
+			\draw[->] (5) edge (3);
+			\draw[->] (5) to[bend right] (2);
+		\end{tikzpicture}
+		\hfill
+		\begin{tikzpicture}[line width=2,scale=2]
+			\draw[fill=black!5!white,rounded corners] (-0.5,-3.2) rectangle (0.5,0.5) ;
+			\node[rounded corners,draw=black] (1) at (0,0) {$1$};
+			\node (L1) at (2,0) {$[2]$};
+			\node[rounded corners,draw=black] (2) at (0,-.7) {$2$};
+			\node (L2) at (2,-.7) {$[\ ]$};
+			\node[rounded corners,draw=black] (3) at (0,-1.4) {$3$};
+			\node (L3) at (2,-1.4) {$[2,4,5]$};
+			\node[rounded corners,draw=black] (4) at (0,-2.1) {$4$};
+			\node (L4) at (2,-2.1) {$[5]$};
+			\node[rounded corners,draw=black] (5) at (0,-2.8) {$5$};
+			\node (L5) at (2,-2.8) {$[2,3]$};
+			
+			\draw[->] (1) edge (L1) (2) edge (L2) (3) edge (L3) (4) edge (L4) (5) edge (L5);
+		\end{tikzpicture}
+		\hfill\,
+	\end{center}
 \end{bsp} 
 
+
+\begin{bem}
+	Typische Fragen auf Graphen, deren algorithmische Behandlung grundlegend für viele Anwendungen ist, sind zum Beispiel die folgenden:
+	\begin{itemize}
+		\item Ist der Graph zusammenhängend?
+		\item Gibt es einen Pfad im Graphen von einem Knoten $s$ zu einem Knoten $z$?
+		\item Wieviele Zusammenhangskomponenten hat der Graph?
+		\item Gibt es Kreise oder Zyklen im Graphen?
+		\item Was ist der Grad eines gegebenen Knotens?
+	\end{itemize}
+	
+	Ein allgemeines Prinzip um diese Art Fragen zu beantworten ist die sogenannte \emph{Graphendurchmusterung}, deren Ziel es ist alle Knoten und Kanten des gegebenen Graphen zu \glqq erkunden\grqq\ und dabei nützliche Informationen über den Graphen zu sammeln. In Graphendurchmusterungen wird der (Di)Graph in der Regel durch seine Adjazenzliste gegeben. 
+\end{bem} 
+
+
+
+\begin{defn}
+	\textbf{Matrizen} mit $m \in \N$ Zeilen und $n \in \N$ Spalten und mit Komponenten in einer Menge $K$  entsprechen den Abbildungen $A : \{1,\ldots,m\} \times \{1,\ldots,n\} \to K$. Das bedeutet, dass für die Angabe einer Matrix $A$ für alle $i \in \{1,\ldots,m\}$ und $j \in \{1,\ldots,n\}$ die Komponente $A(i,j)$ der Matrix in der Zeile $i$ und Spalte $j$ festgelegt werden muss. 
+	
+	An der Stelle von $A(i,j)$ benutzt man traditionell eine Bezeichnung mit einem kleinen Buchstaben und untergestellten Indizes $i$ und $j$. 
+	
+	So schreibt man zum Beispiel
+	\[
+		A = \bigl (a_{i,j} \bigr)_{\substack{i=1,\ldots,m \\ j=1,\ldots,n}} \in K^{m \times n}
+	\]
+	wenn man eine Matrix $A$ der Größe $(m,n)$ führen möchte, deren Komponente in der Position $(i,j)$  als $a_{i,j}$ bezeichnet wird. 
+\end{defn} 
+
 \begin{defn} 
-{\bfseries Adjazenzmatrix:} Sei $V=\{v_1,\ldots,v_n\}$.
-Die Adjazenzmatrix von~$G$ ist die Matrix $A=(a_{i,j}) \in \R^{n \times n}$ mit Einträgen
+Sei $|V|=n$ und $V=\{v_1,\ldots,v_n\}$.
+Die \textbf{Adjazenzmatrix} von~$G$ ist die Matrix $A=(a_{i,j}) \in \R^{n \times n}$ mit Einträgen
 \[
 a_{i,j} = \begin{cases}1&,\text{ falls }\{v_i,v_j\} \in E \text{ bzw.~falls }(v_i,v_j) \in E,\\ 0&,\text{ sonst}.\end{cases}
 \]
 Der Speicherplatzbedarf (bei direkter Implementierung von Matrizen) ist $\Theta(|V|^2)$.
-
-\begin{center}
-\hfill
-\begin{tikzpicture}[]
- \node[circle,draw=black] (1) at (0,0) {$1$};
- \node[circle,draw=black] (2) at (0,2) {$2$};
- \node[circle,draw=black] (3) at (2,2) {$3$};
- \node[circle,draw=black] (4) at (2,0) {$4$};
- \node[circle,draw=black] (5) at (4,2) {$5$};
-% \node[black] (G) at (2,3.5) {$G=(V,E)$};
-		
- \draw[->,line width=0.3mm] (1) edge (2) (3) edge (2) (3) edge (4) (3) to[bend left] (5) (4) edge (5);
- \draw[->,line width=0.3mm] (5) to[bend left] (3);
-\end{tikzpicture}
-\hfill
-\begin{tikzpicture}[]
- \node[black] (1) at (0,0) {$A=\left(\begin{array}{ccccc}
-0 & 1 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 \\
-0 & 1 & 0 & 1 & 1 \\
-0 & 0 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0 & 0
-\end{array}\right)$
-};
-\end{tikzpicture}
-\hfill\,
-\end{center}
 \end{defn} 
 
+\begin{bsp}\
+\begin{center}
+	\hfill
+	\begin{tikzpicture}[line width=2,scale=1.5]
+		\node[circle,draw=black] (1) at (0,0) {$1$};
+		\node[circle,draw=black] (2) at (0,2) {$2$};
+		\node[circle,draw=black] (3) at (2,2) {$3$};
+		\node[circle,draw=black] (4) at (2,0) {$4$};
+		\node[circle,draw=black] (5) at (4,2) {$5$};
+		% \node[black] (G) at (2,3.5) {$G=(V,E)$};
+		
+		\draw[->] (1) edge (2) (3) edge (2) (3) edge (4) (3) to[bend left] (5) (4) edge (5);
+		\draw[->] (5) to[bend left] (3);
+	\end{tikzpicture}
+	\hfill
+	\begin{tikzpicture}[]
+		\node[black] (1) at (0,0) {$A=\left(\begin{array}{ccccc}
+				0 & 1 & 0 & 0 & 0 \\
+				0 & 0 & 0 & 0 & 0 \\
+				0 & 1 & 0 & 1 & 1 \\
+				0 & 0 & 0 & 0 & 1 \\
+				0 & 0 & 1 & 0 & 0
+			\end{array}\right)$
+		};
+	\end{tikzpicture}
+	\hfill\,
+\end{center}
+
+\end{bsp} 
+
 \begin{defn}
-{\bfseries Inzidenzmatrix:} Sei $V=\{v_1,\ldots,v_n\}$ und $E=\{e_1,\ldots,e_m\}$.
+Sei $G=(V,E)$ Digraph mit $m=|E|$ und $n=|V|$ und sei $V=\{v_1,\ldots,v_n\}$ und $E=\{e_1,\ldots,e_m\}$.
 Sei weiterhin $G$ zunächst als gerichteter Graph ohne Schleifen angenommen.
-Die Inzidenzmatrix von~$G$ ist die Matrix $B=(b_{i,j}) \in \R^{n \times m}$ mit Einträgen
+Die \textbf{Inzidenzmatrix} von~$G$ ist die Matrix $B=(b_{i,j}) \in \R^{n \times m}$ mit Einträgen
 \[
 b_{i,j} = \begin{cases}1&,\text{ falls }v_i\text{ Startknoten von }e_j\text{ ist},\\ -1&,\text{ falls }v_i\text{ Endknoten von }e_j\text{ ist},\\ 0&,\text{ sonst}.\end{cases}
 \]
@@ -373,7 +434,7 @@ Der Speicherplatzbedarf (bei direkter Implementierung von Matrizen) ist $\Theta(
 \begin{bsp} \ 
 \begin{center}
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \node[circle,draw=black] (1) at (0,0) {$1$};
  \node[circle,draw=black] (2) at (0,2) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -381,8 +442,8 @@ Der Speicherplatzbedarf (bei direkter Implementierung von Matrizen) ist $\Theta(
  \node[circle,draw=black] (5) at (4,2) {$5$};
 % \node[black] (G) at (2,3.5) {$G=(V,E)$};
 		
- \draw[->,line width=0.3mm] (1) edge (2) (3) edge (2) (3) edge (4) (3) to[bend left] (5) (4) edge (5);
- \draw[->,line width=0.3mm] (5) to[bend left] (3);
+ \draw[->] (1) edge (2) (3) edge (2) (3) edge (4) (3) to[bend left] (5) (4) edge (5);
+ \draw[->] (5) to[bend left] (3);
 \end{tikzpicture}
 \hfill
 \begin{tikzpicture}[]

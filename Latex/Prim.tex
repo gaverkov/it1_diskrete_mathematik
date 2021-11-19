@@ -56,7 +56,7 @@ Der Clou ist nun, dass dieser aufspannende Baum minimales Gewicht unter allen Sp
 Gegeben sei der folgende gewichtete zusammenhängende Graph:
 %
 \begin{center}
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[line width=2,scale=2.5]
 \tikzstyle{V}=
  =[
  fill=gray!20, rounded corners, draw=black
@@ -93,7 +93,7 @@ Beginnend vom Startknoten~$s=1$ illustrieren wir die Vorgehensweise des Prim-Alg
 Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i$ in rot und die in Frage kommenden Kanten für die Erweiterung zum Teilbaum $T_{i+1}$ in grün:
 \begin{center}
 \hfill
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[line width=2,scale=2.5]
 \tikzstyle{V}=
  =[
  fill=gray!20, rounded corners, draw=black
@@ -114,13 +114,13 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
 \node[V] (9) at (2,2) {$9$};
 	
 \draw[line width=0.3mm] 
- (1) edge[green] node[midway,above]{$1$} (2)  
+ (1) edge[green!60!black] node[midway,above]{$1$} (2)  
  (2) edge node[midway,above]{$2$} (3) 
  (4) edge node[midway,above]{$11$} (5) 
  (5) edge node[midway,above]{$3$} (6) 
  (7) edge node[midway,above]{$5$} (8)
  (8) edge node[midway,above]{$1$} (9)
- (1) edge[green] node[midway,left]{$3$} (4)
+ (1) edge[green!60!black] node[midway,left]{$3$} (4)
  (2) edge node[midway,left]{$4$} (5)
  (3) edge node[midway,left]{$8$} (6)
  (4) edge node[midway,left]{$10$} (7)
@@ -129,7 +129,7 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
 ;
 \end{tikzpicture}	
 \hfill
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[line width=2,scale=2.5]
 \tikzstyle{V}=
  =[
  fill=gray!20, rounded corners, draw=black
@@ -151,13 +151,13 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
 	
 \draw[line width=0.3mm] 
  (1) edge[red] node[midway,above]{$1$} (2)  
- (2) edge[green] node[midway,above]{$2$} (3) 
+ (2) edge[green!60!black] node[midway,above]{$2$} (3) 
  (4) edge node[midway,above]{$11$} (5) 
  (5) edge node[midway,above]{$3$} (6) 
  (7) edge node[midway,above]{$5$} (8)
  (8) edge node[midway,above]{$1$} (9)
- (1) edge[green] node[midway,left]{$3$} (4)
- (2) edge[green] node[midway,left]{$4$} (5)
+ (1) edge[green!60!black] node[midway,left]{$3$} (4)
+ (2) edge[green!60!black] node[midway,left]{$4$} (5)
  (3) edge node[midway,left]{$8$} (6)
  (4) edge node[midway,left]{$10$} (7)
  (5) edge node[midway,left]{$1$} (8)
@@ -168,7 +168,7 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
 \end{center}
 \begin{center}
 \hfill
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[line width=2,scale=2.5]
 \tikzstyle{V}=
  =[
  fill=gray!20, rounded corners, draw=black
@@ -195,16 +195,16 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
  (5) edge node[midway,above]{$3$} (6) 
  (7) edge node[midway,above]{$5$} (8)
  (8) edge node[midway,above]{$1$} (9)
- (1) edge[green] node[midway,left]{$3$} (4)
- (2) edge[green] node[midway,left]{$4$} (5)
- (3) edge[green] node[midway,left]{$8$} (6)
+ (1) edge[green!60!black] node[midway,left]{$3$} (4)
+ (2) edge[green!60!black] node[midway,left]{$4$} (5)
+ (3) edge[green!60!black] node[midway,left]{$8$} (6)
  (4) edge node[midway,left]{$10$} (7)
  (5) edge node[midway,left]{$1$} (8)
  (6) edge node[midway,left]{$9$} (9)
 ;
 \end{tikzpicture}	
 \hfill
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[line width=2,scale=2.5]
 \tikzstyle{V}=
  =[
  fill=gray!20, rounded corners, draw=black
@@ -227,14 +227,14 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
 \draw[line width=0.3mm] 
  (1) edge[red] node[midway,above]{$1$} (2)  
  (2) edge[red] node[midway,above]{$2$} (3) 
- (4) edge[green] node[midway,above]{$11$} (5) 
+ (4) edge[green!60!black] node[midway,above]{$11$} (5) 
  (5) edge node[midway,above]{$3$} (6) 
  (7) edge node[midway,above]{$5$} (8)
  (8) edge node[midway,above]{$1$} (9)
  (1) edge[red] node[midway,left]{$3$} (4)
- (2) edge[green] node[midway,left]{$4$} (5)
- (3) edge[green] node[midway,left]{$8$} (6)
- (4) edge[green] node[midway,left]{$10$} (7)
+ (2) edge[green!60!black] node[midway,left]{$4$} (5)
+ (3) edge[green!60!black] node[midway,left]{$8$} (6)
+ (4) edge[green!60!black] node[midway,left]{$10$} (7)
  (5) edge node[midway,left]{$1$} (8)
  (6) edge node[midway,left]{$9$} (9)
 ;
@@ -243,7 +243,7 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
 \end{center}
 \begin{center}
 \hfill
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[line width=2,scale=2.5]
 \tikzstyle{V}=
  =[
  fill=gray!20, rounded corners, draw=black
@@ -267,19 +267,19 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
  (1) edge[red] node[midway,above]{$1$} (2)  
  (2) edge[red] node[midway,above]{$2$} (3) 
  (4) edge node[midway,above]{$11$} (5) 
- (5) edge[green] node[midway,above]{$3$} (6) 
+ (5) edge[green!60!black] node[midway,above]{$3$} (6) 
  (7) edge node[midway,above]{$5$} (8)
  (8) edge node[midway,above]{$1$} (9)
  (1) edge[red] node[midway,left]{$3$} (4)
  (2) edge[red] node[midway,left]{$4$} (5)
- (3) edge[green] node[midway,left]{$8$} (6)
- (4) edge[green] node[midway,left]{$10$} (7)
- (5) edge[green] node[midway,left]{$1$} (8)
+ (3) edge[green!60!black] node[midway,left]{$8$} (6)
+ (4) edge[green!60!black] node[midway,left]{$10$} (7)
+ (5) edge[green!60!black] node[midway,left]{$1$} (8)
  (6) edge node[midway,left]{$9$} (9)
 ;
 \end{tikzpicture}	
 \hfill
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[line width=2,scale=2.5]
 \tikzstyle{V}=
  =[
  fill=gray!20, rounded corners, draw=black
@@ -303,13 +303,13 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
  (1) edge[red] node[midway,above]{$1$} (2)  
  (2) edge[red] node[midway,above]{$2$} (3) 
  (4) edge node[midway,above]{$11$} (5) 
- (5) edge[green] node[midway,above]{$3$} (6) 
- (7) edge[green] node[midway,above]{$5$} (8)
- (8) edge[green] node[midway,above]{$1$} (9)
+ (5) edge[green!60!black] node[midway,above]{$3$} (6) 
+ (7) edge[green!60!black] node[midway,above]{$5$} (8)
+ (8) edge[green!60!black] node[midway,above]{$1$} (9)
  (1) edge[red] node[midway,left]{$3$} (4)
  (2) edge[red] node[midway,left]{$4$} (5)
- (3) edge[green] node[midway,left]{$8$} (6)
- (4) edge[green] node[midway,left]{$10$} (7)
+ (3) edge[green!60!black] node[midway,left]{$8$} (6)
+ (4) edge[green!60!black] node[midway,left]{$10$} (7)
  (5) edge[red] node[midway,left]{$1$} (8)
  (6) edge node[midway,left]{$9$} (9)
 ;
@@ -318,7 +318,7 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
 \end{center}
 \begin{center}
 \hfill
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[line width=2,scale=2.5]
 \tikzstyle{V}=
  =[
  fill=gray!20, rounded corners, draw=black
@@ -342,19 +342,19 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
  (1) edge[red] node[midway,above]{$1$} (2)  
  (2) edge[red] node[midway,above]{$2$} (3) 
  (4) edge node[midway,above]{$11$} (5) 
- (5) edge[green] node[midway,above]{$3$} (6) 
- (7) edge[green] node[midway,above]{$5$} (8)
+ (5) edge[green!60!black] node[midway,above]{$3$} (6) 
+ (7) edge[green!60!black] node[midway,above]{$5$} (8)
  (8) edge[red] node[midway,above]{$1$} (9)
  (1) edge[red] node[midway,left]{$3$} (4)
  (2) edge[red] node[midway,left]{$4$} (5)
- (3) edge[green] node[midway,left]{$8$} (6)
- (4) edge[green] node[midway,left]{$10$} (7)
+ (3) edge[green!60!black] node[midway,left]{$8$} (6)
+ (4) edge[green!60!black] node[midway,left]{$10$} (7)
  (5) edge[red] node[midway,left]{$1$} (8)
- (6) edge[green] node[midway,left]{$9$} (9)
+ (6) edge[green!60!black] node[midway,left]{$9$} (9)
 ;
 \end{tikzpicture}	
 \hfill
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[line width=2,scale=2.5]
 \tikzstyle{V}=
  =[
  fill=gray!20, rounded corners, draw=black
@@ -379,12 +379,12 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
  (2) edge[red] node[midway,above]{$2$} (3) 
  (4) edge node[midway,above]{$11$} (5) 
  (5) edge[red] node[midway,above]{$3$} (6) 
- (7) edge[green] node[midway,above]{$5$} (8)
+ (7) edge[green!60!black] node[midway,above]{$5$} (8)
  (8) edge[red] node[midway,above]{$1$} (9)
  (1) edge[red] node[midway,left]{$3$} (4)
  (2) edge[red] node[midway,left]{$4$} (5)
  (3) edge node[midway,left]{$8$} (6)
- (4) edge[green] node[midway,left]{$10$} (7)
+ (4) edge[green!60!black] node[midway,left]{$10$} (7)
  (5) edge[red] node[midway,left]{$1$} (8)
  (6) edge node[midway,left]{$9$} (9)
 ;
@@ -392,7 +392,7 @@ Im jedem Graphen der folgenden Sequenz markieren wir den aktuellen Teilbaum~$T_i
 \hfill\,
 \end{center}
 \begin{center}
-\begin{tikzpicture}[scale=1.6]
+\begin{tikzpicture}[line width=2,scale=2.5]
 \tikzstyle{V}=
  =[
  fill=gray!20, rounded corners, draw=black

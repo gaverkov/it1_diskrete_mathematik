@@ -1,17 +1,9 @@
 \section{Breitensuche}
 
-\begin{bem}
-In diesem Abschnitt diskutieren wir eine alternative Methode zur Graphendurchmusterung.
-Im Gegensatz zur Tiefensuche besteht der Ansatz darin, zuerst die ganze direkte Nachbarschaft eines Knotens abzusuchen, bevor man tiefer in den Graphen hineinsieht.
-Daher wird die Methode als \emph{Breitensuche} bezeichnet, und nach dem englischen Begriff \emph{depth first search} oft einfach \emph{BFS} genannt.
-
-Wie wir sehen werden erlaubt uns diese Strategie andere Eigenschaften des betrachteten (Di)Graphen zu erkunden.
-Die wichtigste unter ihnen ist sicherlich das Bestimmen der Länge und das Auffinden von kürzesten Pfaden, die ausgehend von einem festgelegten Startknoten einen anderen Knoten im (Di)Graphen verbinden.
-\end{bem}
 
 \begin{bem}
-Die Eingabe für die Breitensuche ist ein Digraph $D=(V,A)$, der wie bei der Tiefensuche in Form einer Adjazenzliste gegeben ist.
-Auf ungerichteten Graphen ist die Vorgehensweise wiederum analog und wir diskutieren (fast ausschließlich) die gerichtete Variante.
+Die Eingabe für die Breitensuche ist ein Digraph $D=(V,A)$ in Form einer Adjazenzliste.
+Auf ungerichteten Graphen ist die Vorgehensweise analog und wir diskutieren (fast ausschließlich) die gerichtete Variante.
 \end{bem}
 
 \begin{defn}
@@ -52,6 +44,7 @@ Wir verwalten weiterhin wie bei der Tiefensuche das Farbattribut $\cc{Farbe}[u]$
 Auch die Vorgängerabbildung~$\pi$ kommt wieder zum Einsatz.
 \end{bem} 
 
+
 \begin{bem} 
 Wir fassen die Initialisierungen zu einer eigenen Hilfsprozedur zusammen:
 
@@ -73,12 +66,18 @@ Wir fassen die Initialisierungen zu einer eigenen Hilfsprozedur zusammen:
 \end{bem}
 
 \begin{bem}
-Sobald diese Vorbereitung abgeschlossen ist, verläuft die Breitensuche nun wie folgt:
-Ausgehend vom Startknoten~$s$ werden zunächst alle Knoten in Abstand~$1$ untersucht, in die Warteschlange eingefügt, und grau gefärbt.
-Anschließend wird der erste Nachbarknoten von~$s$ als Ausgangspunkt für die weitere Durchmusterung benutzt, bei der zuerst all seine direkten und noch nicht bereits entdeckten Nachbarn in die Warteschlange eingefügt werden.
-Bevor diese Nachbarn genauer untersucht werden, arbeitet der Algorithmus aber erst alle anderen Nachbarn von~$s$ entsprechend ab.
-Iterativ werden somit erst alle Knoten mit Distanz~$k$ zu~$s$ besucht, bevor irgendein Knoten in Distanz~$k+1$ untersucht wird.
-Das Farbattribut dient zur Unterscheidung der Zustände der Knoten, insbesondere stellen alle aktuell grauen Knoten die jeweilige Front zwischen den entdeckten und den noch unentdeckten Knoten dar.
+Die Breitensuche ist so umgesetzt, dass das ``Leben'' eines jeden Knotens $u$ als der folgender Ablauf zusammengefasst werden kann: 
+\begin{center}
+	\begin{tikzpicture}[line width=1.5,scale=0.9] 
+		\node (W) at (0,0) {WEISS} ;
+		\node (G) at (7,0) {GRAU};
+		\node(So) at (16,0) {Sondierung von $N[u]$} ;
+		\node (S) at (25,0) {SCHWARZ};
+		\draw[->] (W) edge node[above] {$u$ kommt in $Q$} (G) (G) edge node[above] {$u$ verlässt $Q$} (So) (So) edge (S);
+	\end{tikzpicture} 
+\end{center} 
+Beim Sondieren von $N[u]$ werden werden weiße Knoten entdeckt: sie kommen in $Q$ und werden grau gefärbt. Die Breitensuche ist durch die Wahl des Containers $Q$ als Warteschlange ausgezeichnet. Durch diese Wahl ``simuliert'' die Breitensuche die Ausbreitung einer Welle in einem Medium. Stellen Sie sich vor: in $s$ kommt es zu einer Explosion; die Schallwelle breitet sich in $G$ entlang der Kanten aus und erreicht mit der Zeit immer mehr Knoten. Wie sich die Front der Schallwelle durch die Knoten ausbreitet wird durch die Warteschlange $Q$ ``modelliert''. 
+
 
 \begin{algorithm}[H]
 \caption{$\cc{Breitensuche}(s)$}
@@ -100,11 +99,6 @@ Das Farbattribut dient zur Unterscheidung der Zustände der Knoten, insbesondere
 \end{algorithmic}
 \end{algorithm}
 \end{bem}
-
-\begin{bem}
-Beachten Sie, dass wir, im Gegensatz zur in Abschnitt~\ref{sect:tiefensuche} diskutierten Tiefensuche, die Breitensuche hier nur \glqq lokal\grqq\ von einem Startknoten~$s$ aus betrachten, und nicht vollständig auf dem gesamten Digraphen betreiben.
-Gibt es mehrere (starke) Zusammenhangskomponenten im Digraphen, dann kann die Breitensuche natürlich ausgehend von einem Knoten einer jeden weiteren Komponente neu gestartet werden.
-\end{bem} 
 
 \begin{bsp}
 \label{bsp:breitensuche}
@@ -430,25 +424,26 @@ Die Laufzeit von $\cc{Breitensuche}(s)$ ist $\Theta(|V|+|A|)$.
 \end{thm}
 
 \begin{proof}
-Der Aufwand für die Initialisierung $\cc{Breitensuche-initialisieren}(D,s)$ ist direkt als $\Theta(|V|)$ festzustellen.
-
-Nach der Initialisierung wird nie mehr ein Knoten weiß gefärbt und der Test in Zeile~\ref{line:breitensuche-if} von $\cc{Breitensuche}(s)$ stellt sicher, dass jeder Knoten~$v$ nur ein Mal in die Warteschlange eingefügt und aus ihr entnommen wird.
-Da die Operationen $\cc{Dequeue}(Q)$ und $\cc{Enqueue}(Q,v)$ konstanten Aufwand haben, benötigen wir für alle Warteschlangenoperationen zusammen $\Theta(|V|)$ Zeiteinheiten.
-
-Desweiteren wird die Nachbarschaft $N[u]$ eines Knotens~$u$ nur dann durchsucht, wenn~$u$ aus der Warteschlange entnommen wird.
-Die Adjazenzliste wird daher nur ein Mal durchsucht, was einen zusätzlichen Aufwand von $\Theta(|A|)$ ergibt. 
+Der Aufwand für die Initialisierung $\cc{Breitensuche-initialisieren}(D,s)$ ist direkt als $\Theta(|V|)$ festzustellen. Der Aufwand von $\cc{Breitensuche}(s)$ kann aus dem Diagramm zur Bearbeitung von Knoten $u \in V$ abgelesen werden: 
+\vspace{1ex}
+\begin{center}
+	\begin{tikzpicture}[line width=1.5,scale=0.9] 
+		\node (W) at (0,0) {WEISS} ;
+		\node (G) at (7,0) {GRAU};
+		\node(So) at (16,0) {Sondierung von $N[u]$} ;
+		\node (S) at (25,0) {SCHWARZ};
+		\draw[->] (W) edge node[above] {$u$ kommt in $Q$} (G) (G) edge node[above] {$u$ verlässt $Q$} (So) (So) edge (S);
+	\end{tikzpicture} 
+\end{center} 
+Der Aufwand pro Knoten, der entdeckt wird ist konstant: der Aufwand  besteht aus der Aufnahme in $Q$,  der Färbung von Weiß zu Grau und von Grau zu Schwarz. Der Aufwand pro Kante $(u,v)$, die sondiert wird, ist ebenfalls konstant: jede Kante $(u,v)$ wird höchstens ein mal sondiert, denn die Sondierung erfolgt nach der Entfernung von $u$ aus der Warteschlange. Nach der Entfernung von $u$ wird $u$ schwarz gefärbt und daher nicht mehr in $Q$ aufgenommen. 
 
 Zusammenfassend erhalten wir also  wie behauptet einen Zeitaufwand von $\Theta(|V|) + \Theta(|V|) + \Theta(|A|) = \Theta(|V|+|A|)$.
 \end{proof}
 
 
-\subsection{Eigenschaften der Breitensuche}
-\label{sect:breitensuche-eigenschaften}
-
-\begin{bem}
-Nachfolgend studieren wir wichtige Eigenschaften der Breitensuche, mit deren Hilfe wir beweisen werden, dass die Breitensuche die Distanzen $\delta(s,v)$ vom Startknoten~$s$ zu allen anderen Knoten des gegebenen Digraphen $D=(V,A)$ korrekt bestimmt.
+\begin{defn}
 Wir nennen einen $(s,v)$-Pfad der Länge $\delta(s,v)$ einen \emph{kürzesten Pfad} von~$s$ nach~$v$ in~$D$.
-\end{bem}
+\end{defn}
 
 \begin{lem}
 \label{lem:breitensuche-pfad-dreieck}
@@ -464,8 +459,6 @@ Falls $u$ von $s$ aus erreichbar ist, dann ist es auch~$v$.
 In diesem Fall ist der kürzeste $(s,v)$-Pfad nicht länger als der kürzeste $(s,u)$-Pfad, verlängert um die Kante $(u,v)$, und die Ungleichung gilt.
 Ist~$u$ nicht von~$s$ aus erreichbar, so ist $\delta(s,u)=\infty$, und die Ungleichung ist trivialerweise erfüllt.
 \end{proof}
-
-Auf der Grundlage dieser einfachen Eigenschaft lässt sich zunächst einmal zeigen, dass das Attribut $d[v]$ stets eine obere Schranke an die Länge eines kürzesten $(s,v)$-Pfades liefert.
 
 \begin{lem}
 \label{lem:breitensuche-d-geq-delta}
@@ -487,9 +480,9 @@ d[v] = d[u] + 1 \geq \delta(s,u) + 1 \geq \delta(s,v).
 Der Knoten~$v$ wird in die Warteschlange~$Q$ eingefügt, und da er zu diesem Zeitpunkt grau gefärbt wurde, ändert sich der Wert $d[v]$ nicht mehr und die Ungleichung bleibt bis zur Terminierung des Algorithmus gültig.
 \end{proof}
 
-Bevor wir die umgekehrte Ungleichung beweisen können, müssen wir die Arbeitsweise der Warteschlange~$Q$ besser verstehen.
-Es zeigt sich, dass~$Q$ zu jedem Zeitpunkt nur höchstens zwei verschiedene Werte von~$d$ enthält.
+\begin{bem} 
 Wir fassen dafür die Warteschlange als Liste oder Array $[v_1,\ldots,v_r]$ auf, wobei $v_1$ der Kopf und $v_r$ das Ende von~$Q$ ist.
+\end{bem} 
 
 \begin{lem}
 \label{lem:breitensuche-warteschlange-monotonie}
@@ -497,20 +490,26 @@ Zu jedem Zeitpunkt der Ausführung von $\cc{Breitensuche}(s)$ erfüllt die Warte
 \[
 d[v_1] \leq d[v_2] \leq \ldots \leq d[v_r] \leq d[v_1] + 1.
 \]
+Mit anderen Worten: die Liste 
+\[
+	Q_d:=[d[v_1],\ldots,d[v_r]]
+\] der Distanzen der Knoten von $Q$ hat die Form $[t,\ldots,t]$ oder die Form $[t,\ldots,t,t+1,\ldots,t+1]$ mit $t \in \N_0$ (die Liste $Q_d$ enthält einen Wert oder zwei aufeinanderfolgende ganzzahlige Werte und sie ist aufsteigend sortiert). 
 \end{lem}
 
 \begin{proof}
 Ganz am Anfang der Breitensuche enthält~$Q$ nur den Startknoten~$s$ und die Aussage gilt trivialerweise.
 
-Wir zeigen nun, dass wenn die behauptete Bedingung zu einem Zeitpunkt gilt, dass sie auch dann gültig bleibt, wenn eine Warteschlangenoperation ausgeführt wird.
+Wir zeigen, dass wenn die behauptete Bedingung zu einem Zeitpunkt gilt, dass sie auch dann gültig bleibt, wenn eine Warteschlangenoperation ausgeführt wird.
 (Das heißt, wir argumentieren mittels vollständiger Induktion über die Anzahl der ausgeführten Warteschlangenoperationen.)
 
-Sei zunächst wie angenommen $Q=[v_1,\ldots,v_r]$ und führen wir $\cc{Dequeue}(Q)$ aus.
-Das heißt, $v_1$ wird aus $Q$ entfernt und $v_2$ wird der neue Kopf der Warteschlange.
-Da nach Annahme $d[v_1] \leq d[v_2]$ gilt, haben wir $d[v_r] \leq d[v_1]+1 \leq d[v_2]+1$.
-Da außerdem alle anderen Ungleichungen unverändert bleiben, gilt die behauptete Kette von Ungleichungen für die neue Warteschlange $Q'=[v_2,\ldots,v_r]$.
+\condclearpage 
 
-Schauen wir uns nun an was passiert wenn in Zeile~\ref{line:breitensuche-enqueue} von $\cc{Breitensuche}(s)$ die Operation $\cc{Enqueue}(Q,v)$ ausgeführt wird.
+Sei zunächst wie angenommen $Q=[v_1,\ldots,v_r]$ und führen wir $\cc{Dequeue}(Q)$ aus.
+Hat die Liste $Q_d$ die Form $[t,\ldots,t]$ so, hat sie nach der Entfernung von $v_1$ immer noch die Form $[t,\ldots,t]$ (und Länge um eins kleiner).  Hat die Liste $Q_d$ die Form $[t,\ldots,t,t+1,\ldots,t+1]$ so, hat hat sie nach der Entfernung von $v_1$ die Form $[t,\ldots,t,t+1,\ldots,t+1]$ mit dem Block $t,\ldots,t$, dessen Länge um eins geringer geworden ist, oder die Form $[t+1,\ldots,t+1]$. 
+
+\condclearpage 
+
+Schauen wir uns an, was passiert, wenn in Zeile~\ref{line:breitensuche-enqueue} von $\cc{Breitensuche}(s)$ die Operation $\cc{Enqueue}(Q,v)$ ausgeführt wird.
 Der Knoten~$v$ wird zum Ende der neuen Warteschlange $Q'=[v_1,\ldots,v_r,v]$ und zum Zeitpunkt dieser Operation durchsucht der Algorithmus die Nachbarschaft des Knotens~$u$, der zuvor aus der Warteschlange entfernt wurde.
 Daher gilt nach Annahme die Ungleichung $d[u] \leq d[v_i]$ für alle $1 \leq i \leq r$ und nach Zeile~\ref{line:breitensuche-d} weiterhin $d[v] = d[u]+1 \leq d[v_1]+1$.
 Es gilt außerdem, dass $d[v_r] \leq d[u]+1=d[v]$, da wie bereits erwähnt, $u$ zuvor aus der Schlange entfernt wurde, und nach Annahme die Aussage des Lemmas vor der Operation $\cc{Enqueue}(Q,v)$ gilt.
@@ -523,17 +522,15 @@ wie gewünscht.
 
 \begin{kor}
 \label{cor:breitensuche-warteschlange}
-Nehmen wir an die Knoten~$v_i$ und $v_j$ würden während der Ausführung von $\cc{Breitensuche}(s)$ in die Warteschlange~$Q$ eingefügt, und nehmen wir weiterhin an, dass~$v_i$ vor $v_j$ eingefügt wird.
-Dann gilt $d[v_i] \leq d[v_j]$ zum Zeitpunkt des Einfügens von~$v_j$.
+Seien $v'$ und $v''$ Knoten die während der Ausführung von $\cc{Breitensuche}(s)$ in $Q$ eingefügt werden, und nehmen wir weiterhin an, dass~$v'$ vor $v''$ eingefügt wird.
+Dann gilt $d[v'] \leq d[v'']$ zum Zeitpunkt des Einfügens von~$v''$.
 \end{kor}
 
 \begin{proof}
-Die Aussage folgt direkt aus Lemma~\ref{lem:breitensuche-warteschlange-monotonie} und der Beobachtung, dass jeder Knoten während der Ausführung von $\cc{Breitensuche}(s)$ höchstens einmal einen endlichen Wert für~$d$ zugewiesen bekommt.
+Aus Lemma~\ref{lem:breitensuche-warteschlange-monotonie} folgt: solange $Q$ nicht leer ist, wächst das Maximum von $Q_d$ monoton während der Ausführung der Breitensuche (monotones Wachstum im nicht-strikten Sinn). Die Entfernung des Kopfs verändert $Q_d$ nicht, solange die Schlange $Q$ nicht leer ist. Beim Hinzufügen eines neuen Elements zu $Q$ bleibt das Maximum im Fall $Q_d=[t,\ldots,t,t+1,\ldots,t+1]$ unverändert und es wächst um eine Einheit bei $Q_d=[t,\ldots,t]$, weil nach dem Hinzufügen $Q_d = [t,\ldots,t,t+1]$ ist. 
 \end{proof}
 
-\begin{bem}
-Wir sind nun in der Lage die Korrektheit des Algorithmus zur Breitensuche zu beweisen und die Bestimmung der Abstände $\delta(s,v)$, für $v \in V$, zu vervollständigen.
-\end{bem}
+
 
 \begin{thm}
 \label{thm:breitensuche}
@@ -561,27 +558,52 @@ Wir unterscheiden danach, welche Farbe $\cc{Farbe}[v]$ der Knoten~$v$ zu diesem 
 Ist $\cc{Farbe}[v]=\cc{weiss}$, so wird in Zeile~\ref{line:breitensuche-d} $d[v]=d[u]+1$ gesetzt und danach im Algorithmus nicht mehr verändert.
 Dies steht im Widerspruch zu~\eqref{eqn:breitensuche-korrekt}.
 
-Ist $\cc{Farbe}[v]=\cc{grau}$, so ist er beim Entfernen eines anderen Knotens~$w$ aus der Warteschlange grau gefärbt worden.
+Ist $\cc{Farbe}[v]=\cc{grau}$, so ist $v$ beim Sondieren eines anderen Knotens~$w$  grau gefärbt worden.
 Dieser Knoten wurde früher als~$u$ aus der Warteschlange entfernt und es wurde $d[v]=d[w]+1$ gesetzt.
 Nach Korollar~\ref{cor:breitensuche-warteschlange} gilt daher $d[w] \leq d[u]$ und damit $d[v]=d[w]+1 \leq d[u]+1$, im Widerspruch zu~\eqref{eqn:breitensuche-korrekt}.
 
 Ist $\cc{Farbe}[v]=\cc{schwarz}$, so wurde~$v$ bereits aus der Warteschlange entfernt und nach Korollar~\ref{cor:breitensuche-warteschlange} gilt $d[v] \leq d[u]$, im Widerspruch zu~\eqref{eqn:breitensuche-korrekt}.
 
 Zusammenfassend erhalten wir in jedem Fall einen Widerspruch zu~\eqref{eqn:breitensuche-korrekt} und damit gilt also $d[v]=\delta(s,v)$, für alle Knoten $v \in V$.
+
 Alle von~$s$ aus erreichbaren Knoten werden bei der Breitensuche entdeckt, da für einen ansonsten unentdeckten Knoten~$v$ der Initialwert $d[v]=\infty$ größer als $\delta(s,v)$ wäre.
 Abschließend bemerken wir noch, dass die Verwaltung der Vorgängerabbildung~$\pi$ und des Abstandsattributs~$d$ in den Zeilen~\ref{line:breitensuche-pi} und~\ref{line:breitensuche-d} von $\cc{Breitensuche}(s)$ impliziert, dass $\delta(s,v)=d[v]=d[\pi[v]]+1=\delta(s,\pi[v])+1$ gilt und somit jeder kürzeste $(s,\pi[v])$-Pfad über die Kante $(\pi[v],v)$ zu einem kürzesten $(s,v)$-Pfad erweitert werden kann.
 \end{proof}
 
-\begin{bem} 
-Analog zur Tiefensuche erzeugt die Vorgängerabbildung $\pi$ auch bei der Breitensuche auf einem Digraphen $D=(V,A)$, die von einem Startknoten~$s \in V$ ausgeht, einen \emph{Vorgängerteilgraphen} $D_\pi = (V_\pi,A_\pi)$, der durch
-\[
-V_\pi := \left\{ v \in V : \pi[v] \neq \cc{nil}\right\} \cup \{s\} \quad \text{ und } \quad A_\pi := \left\{ (\pi[v],v) : v \in V_\pi \setminus \{s\}\right\}
-\]
-definiert ist.
+\begin{defn} 
+	Die Vorgängerabbildung $\pi$ aus der Breitensuche erzeugt auf einem Digraphen $D=(V,A)$, die von einem Startknoten~$s \in V$ ausgeht, einen \emph{Vorgängerteilgraphen} $D_\pi = (V_\pi,A_\pi)$, der durch
+	\[
+	V_\pi := \left\{ v \in V : \pi[v] \neq \cc{nil}\right\} \cup \{s\} \quad \text{ und } \quad A_\pi := \left\{ (\pi[v],v) : v \in V_\pi \setminus \{s\}\right\}
+	\]
+	definiert ist.
+	
+	Es kann gezeigt, werden dass $D_\pi$ ein gerichteter Baum mit Wurzel $s$ ist. Dieser Baum nennt man den \textbf{Breitensuchbaum} der Breitensuche. die  Kanten von $D_\pi$ werden die \textbf{Baumkanten} der Breitensuche genannt.
+\end{defn}
 
-Da $D_\pi$ nach Definition zusammenhängend ist und da die Gleichung $|A_\pi|=|V_\pi|-1$ besteht, ist der Vorgängerteilgraph stets ein Baum.
-Daher nennen wir die Kanten in $A_\pi \subseteq A$ wieder \emph{Baumkanten} der Breitensuche und den Graphen~$D_\pi$ den zugehörigen \emph{Breitensuchbaum}.
+\begin{bem}Zur Berechnung der kürzesten Pfade kann die folgende Prozedur benutzt werden: 
+	\begin{algorithm}[H]
+	\caption{$\cc{Pfad-Ausgeben}(v)$}
+	\begin{algorithmic}[1]
+		\IF{$v=s$}
+		\STATE print $s$
+		\ELSE
+		\STATE $\cc{Pfad-Ausgeben}(s,\pi[v])$
+		\STATE print $v$
+		\ENDIF
+	\end{algorithmic}
+\end{algorithm}
 \end{bem}
+
+\begin{prop}
+	Ist $\pi$ die Vorgängerabbildung zur Breitensuche auf $G=(V,A)$ mit dem Startknoten $s$, so gibt die Prozedur $\cc{Pfad-Ausgeben}(v)$ folgende Algorithmus für jedes $v \in V$ mit $\delta(s,v)<\infty$ einen kürzesten $(s,v)$-Pfad aus. 
+\end{prop}
+\begin{proof} 
+Außerdem wissen wir, dass nach der Terminierung der Breitensuche $d[v]=\delta(s,v)$ für alle $v \in V$ gilt. Dass die Prozedur $\cc{Pfad-Ausgeben}(v)$ terminiert und einen kürzesten $(s,v)$-Pfad ausgibt kann durch Induktion über $\delta(s,v)$ gezeigt werden. ist $\delta(s,v)=0$ so ist $v=0$ und die Behauptung ist klar. Angenommen, die Behauptung gelte für alle $v \in V$ mit $\delta(s,v)=t-1$ für ein $t \in \N$. 
+
+Wir betrachten ein $v \in V$ mit $\delta(s,v)$. 	In der Breitensuche setzt man  $\pi[v] := u$ gleichzeitig mit $d[v] = d[u]+1$ für $v \in N[u]$. Daher hat man $t = d[v] = d[\pi[u]] + 1 $, sodass $d[\pi[u]]=t-1$ gilt. Nach der Induktionsvoraussetzung  gibt $\cc{Pfad-Ausgeben}(s,\pi[v])$ den $(s,\pi[v])$-Pfad der Lange $\delta(s,\pi[u]) = d[\pi[u]]  = t-1$ aus. Also gibt $\cc{Pfad-Ausgeben}(v)$ den $(s,v)$-Pfad der Länge $t = d[v] = \delta(s,v)$ aus, was die Korrektheit und die Terminierung der Ausführung Prozedur $\cc{Pfad-Ausgeben}$  auf dem Knoten $v$ bestätigt. 
+\end{proof} 
+
+
 
 \begin{bsp}
 Sammeln wir die Daten zur Vorgängerabbildung und zu den Distanzen während der Breitensuche in Beispiel~\ref{bsp:breitensuche}, so erhalten wir nach Abschluss von $\cc{Breitensuche}(3)$ die folgenden Werte:
@@ -598,8 +620,8 @@ Sammeln wir die Daten zur Vorgängerabbildung und zu den Distanzen während der 
 
 Daraus ergibt sich der nachfolgende Breitensuchbaum, in dem der kürzeste $(3,7)$-Pfad in blau markiert ist:
 
-\hfill
-\begin{tikzpicture}[]
+\begin{center} 
+\begin{tikzpicture}[line width=1.5,scale=1.5]
  \node[circle,draw=black] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -611,58 +633,15 @@ Daraus ergibt sich der nachfolgende Breitensuchbaum, in dem der kürzeste $(3,7)
 % \node[circle,draw=black] (9) at (6.5,0) {$9$};
 % \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm] (1) edge (2);
- \draw[->,line width=0.3mm] (3) edge (4);
- \draw[->,line width=0.3mm] (3) edge (1) ;
- \draw[->,line width=0.3mm] (5) edge (8); 
- \draw[->,line width=0.3mm,blue] (3) edge (5) (5) edge (6) (6) edge (7);
+ \draw[->] (1) edge (2);
+ \draw[->] (3) edge (4);
+ \draw[->] (3) edge (1) ;
+ \draw[->] (5) edge (8); 
+ \draw[->,blue] (3) edge (5) (5) edge (6) (6) edge (7);
 \end{tikzpicture}
-\hfill\,
+\end{center} 
 
 Beachten Sie, dass die Knoten $9$ und $10$ nicht im Breitensuchbaum auftreten, da diese vom Startknoten~$s=3$ aus nicht erreichbar sind.
 \end{bsp}
 
-\begin{bem}
-Eine weitere wichtige Eigenschaft des Breitensuchbaumes ist, dass er kürzeste Pfade von~$s$ zu allen erreichbaren Knoten enthält:
-\end{bem}
 
-\begin{aufg}
-Der Breitensuchbaum~$D_\pi$ besteht aus genau den Knoten in~$V$, die von $s$ aus erreichbar sind, und für jeden Knoten $v \in V_\pi$ enthält~$D_\pi$ einen einzigen Weg von~$s$ nach~$v$, der zugleich ein kürzester $(s,v)$-Pfad in~$D$ ist.
-\end{aufg}
-
-\begin{bem}
-Um einen solchen kürzesten $(s,v)$-Pfad zu bestimmen kann man die Vorgänger-Abbildung~$\pi$ rekursiv benutzen um \glqq sich von~$v$ zurück zu~$s$ zu hangeln\grqq.
-Die folgende Prozedur gibt die Knoten entlang eines solchen Pfades aus, wenn er denn existiert:
-
-\begin{algorithm}[H]
-\caption{$\cc{Pfad-Ausgeben}(D,s,v)$}
-\begin{algorithmic}[1]
- \IF{$v=s$}
-  \STATE print $s$
- \ELSIF{$\pi[v]=\cc{nil}$}
-  \STATE print \glqq Es gibt keinen Pfad von $s$ nach $v$.\grqq
- \ELSE
-  \STATE $\cc{Pfad-Ausgeben}(D,s,\pi[v])$
-  \STATE print $v$
- \ENDIF
-\end{algorithmic}
-\end{algorithm}
-
-Die Laufzeit dieser Prozedur ist proportional zu der Anzahl der Knoten auf dem ausgegebenen $(s,v)$-Pfad, da jeder rekursive Aufruf für einen Pfad erfolgt, der einen Knoten kürzer ist.
-Das heißt, die Laufzeit ist~$\Theta(\delta(s,v)) \subseteq O(|V|)$, falls~$v$ von~$s$ aus erreichbar ist, und $\Theta(1)$ sonst.
-\end{bem}
-
-\begin{bem}
-Analog zur diskutierten Breitensuche kann man eine \emph{Tiefensuche} auch ohne Rekursion umsetzen.
-(Dies hat gewisse Vorteile, weil der Programmstack nicht zu sehr belastet wird.)
-Dazu ersetzt man die Warteschlange $Q$ durch einen sogennanten \emph{Stack} (oder \emph{Stapel}). 
-
-Ein Stack ist eine Liste $S=[s_1,\ldots,s_k]$ mit ebenfalls zwei Grundoperationen:
-\begin{itemize}
- \item $\cc{Pop}(S)$: Das \emph{letzte} Element~$s_k$ von~$S$ wird zurückgegeben und entfernt.
-
- \item $\cc{Push}(S,x)$: Das Element~$x$ wird am \emph{Ende} von~$S$ hinzugefügt.
-\end{itemize}
-
-Ein Stack arbeitet also nach dem LIFO-Prinzip (Last In - First Out).
-\end{bem}

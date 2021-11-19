@@ -1,6 +1,26 @@
 \chapter{Algorithmische und Programmiergrundlagen}
 
+\section{Berechnungen in der Theorie und Praxis} 
+
+\begin{bem} 
 Viel mehr zum Thema dieses Kapitels findet man im Kurs Entwicklung von Softwaresystemen, vgl. auch das umfangreiche Buch \cite{GS11}. 
+\end{bem} 
+
+\begin{bem} Wer mit den Theorie und der Praxis der  Computer-Berechnungen zu tun hat, muss sich in der Regel auch mit den folgenden Konzepten und Aspekten auseinandersetzen: 
+	\begin{center} 
+			\begin{tabular}{l|l} 
+				Algorithmische Theorie& Reale Berechnungen 
+				\\ \hline\hline 
+				Rechenmodell  & Hardware 
+				\\  & Betriebsysteme 
+				\\  Rechenmodell & reale Programmiersprache 
+				\\ \hline Algorithmen und deren Analyse & Umsetzung von Algorithmen
+				\\ \hline Klassifikation von Rechenproblemen, & Analyse algorithmischer 
+				\\ etwa nach dem Schwierigkeitsgrad  & Fragestellungen aus der Praxis 
+			\end{tabular} 
+	\end{center} 
+	Im Prinzip ist es möglich -- aber nicht unbedingt sinnvoll -- die theoretischen Aspekte komplett getrennt von der Praxis zu behandeln, denn Theorie ist für die Praxis entwickelt. Um die Theorie sinnvoll einsetzen zu können, braucht man auch praktisches Wissen. 
+\end{bem} 
 
 \section{Kodierung mit Strings} 
 
@@ -599,47 +619,6 @@ Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, mü
 	In der Beschreibung von Algorithmen im Pseudocode halten wir uns im Folgenden an die Konvention, bei der Parameterübergabe Arrays durch Referenz und einfache Datentypen durch Kopie zu übergeben.
 \end{bem}
 
-\section{Rekursion an einem Beispiel}
-
-
-\begin{defn}
-Prozeduren, die sich selbst aufrufen, heißen \textbf{rekursiv}. 
-\end{defn} 
-
-\begin{bsp}
-Hier ein Beispiel einer Prozedur, die $a^n$ für $a \in \Z$ und $n \in \N_0$ mittels einer Rekursion mit Hilfe von $\Theta(\log n)$ arithmetischen Operationen berechnet.
-\begin{algorithm}[H]
-	\caption{$p:=\cc{Potenz}(a,n)$}
-	\begin{algorithmic}
-		\IF{$n=0$ \COMMENT{Abbruchbedingung} } 
-		\STATE $p:=1$
-		\ELSIF{$n$ gerade} 
-		\STATE $q:=\cc{Potenz}(a,n/2)$ \COMMENT{$q$ setzt man gleich $a^{n/2}$} 
-		\STATE $p:= q^2$ \COMMENT{$p$ setzt man gleich $q^2 = (a^{n/2})^2 = a^n$} 
-		\ELSE
-		\STATE $q:=\cc{Potenz}(a,(n-1)/2)$ \COMMENT{$q$ setzt man gleich $a^{(n-1)/2}$}
-		\STATE $p:= a \cdot q^2$ \COMMENT{$p$ setzt man gleich $a \cdot q^2 = a \cdot (a^{(n-1)/2})^2 = a^n$}
-		\ENDIF
-	\end{algorithmic}
-\end{algorithm}
-Diese rekursive Prozedur ist in vielen Situationen besser als die nicht-rekursive iterative Umsetzung mit Hilfe  $\Theta(n)$ arithmetischen Operationen berechnet: 
-\begin{algorithm}[H]
-	\caption{$p:=\cc{Potenz-Langsam}(a,n)$}
-\begin{algorithmic}
-	\STATE $p:=1$
-	\FOR{$i:=1,\ldots,n$}
-	\STATE \COMMENT{An dieser Stelle gilt $p = a^{i-1}$ -- die Invariante der Schleife} 
-	\STATE $p:=p \cdot a$
-	\ENDFOR 
-\end{algorithmic}
-\end{algorithm} 
-\end{bsp} 
-
-
-\begin{bem}
-Es kann überprüft werden, dass die rekursiven Algorithmen auch ohne Rekursion, etwa mit Schleifen und Arrays, umgesetzt werden können. Dies gilt auch für das Potenzieren oben. Die rekursiven Umsetzungen sind aber manchmal leichter zu verstehen und oftmals eleganter. 
-\end{bem} 
-
 
 \section{Datentypen und Datenstrukturen}
 \label{sect:datenstrukturen}
@@ -712,6 +691,76 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 			\item Binäre Bäume
 	\end{itemize} 
 \end{aufg} 
+
+\section{Rekursion}
+
+
+\begin{defn}
+	Prozeduren, die sich selbst aufrufen, heißen \textbf{rekursiv}. 
+\end{defn} 
+
+\begin{bsp}
+	Hier ein Beispiel einer Prozedur, die $a^n$ für $a \in \Z$ und $n \in \N_0$ mittels einer Rekursion mit Hilfe von $\Theta(\log n)$ arithmetischen Operationen berechnet.
+	\begin{algorithm}[H]
+		\caption{$p:=\cc{Potenz}(a,n)$}
+		\begin{algorithmic}
+			\IF{$n=0$ \COMMENT{Abbruchbedingung} } 
+			\STATE $p:=1$
+			\ELSIF{$n$ gerade} 
+			\STATE $q:=\cc{Potenz}(a,n/2)$ \COMMENT{$q$ setzt man gleich $a^{n/2}$} 
+			\STATE $p:= q^2$ \COMMENT{$p$ setzt man gleich $q^2 = (a^{n/2})^2 = a^n$} 
+			\ELSE
+			\STATE $q:=\cc{Potenz}(a,(n-1)/2)$ \COMMENT{$q$ setzt man gleich $a^{(n-1)/2}$}
+			\STATE $p:= a \cdot q^2$ \COMMENT{$p$ setzt man gleich $a \cdot q^2 = a \cdot (a^{(n-1)/2})^2 = a^n$}
+			\ENDIF
+		\end{algorithmic}
+	\end{algorithm}
+	Diese rekursive Prozedur ist in vielen Situationen besser als die nicht-rekursive iterative Umsetzung mit Hilfe  $\Theta(n)$ arithmetischen Operationen berechnet: 
+	\begin{algorithm}[H]
+		\caption{$p:=\cc{Potenz-Langsam}(a,n)$}
+		\begin{algorithmic}
+			\STATE $p:=1$
+			\FOR{$i:=1,\ldots,n$}
+			\STATE \COMMENT{An dieser Stelle gilt $p = a^{i-1}$ -- die Invariante der Schleife} 
+			\STATE $p:=p \cdot a$
+			\ENDFOR 
+		\end{algorithmic}
+	\end{algorithm} 
+\end{bsp} 
+
+
+\begin{bem}
+	Es kann überprüft werden, dass die rekursiven Algorithmen auch ohne Rekursion, etwa mit Schleifen und Arrays, umgesetzt werden können. Dies gilt auch für das Potenzieren oben. Die rekursiven Umsetzungen sind aber manchmal leichter zu verstehen oder intuitiver als das nicht-rekursive Analogon dazu. 
+\end{bem} 
+
+\begin{defn}
+	Zur Ausführung einer rekursiven Prozedur $P$ auf einer Eingabe $x$ definiert man den \textbf{Rekursionsbaum} als das Paar $(V,A)$, in dem $V$ die Menge aller Aufrufe von $P$ während der Ausführung von $P$ auf $x$ ist und $A$ ist die Menge aller paare $(u,v)$ derart, dass der Aufruf $v$ direkt aus $u$ stattgefunden hat. Das größte $k$ mit $(a_0,a_1),\ldots, (a_{k-1},a_k) \in A$ für gewisse $a_0,\ldots,a_k$ nennt man die \textbf{Rekursionstiefe} der Ausführung von $P$ auf $x$. Den Aufruf von $P$ auf $x$ nennt man die Wurzel des Baums. 
+\end{defn} 
+
+\begin{bsp} 
+	Der Rekursionsbaum von $\cc{Potenz}(a,n)$ ist ein Baum ohne Verzweigungen. 
+	\begin{center} 
+		\begin{tikzpicture}[line width=1.2,scale=1.5]
+			\node (10) at (0,0) {$\cc{Potenz}(a,10)$};
+			\node(5) at (0,-1) {$\cc{Potenz}(a,5)$};
+			\node(2) at (0,-2) {$\cc{Potenz}(a,2)$};
+			\node(1) at (0,-3) {$\cc{Potenz}(a,1)$};
+			\node(0) at (0,-4) {$\cc{Potenz}(a,0)$};
+			\draw[<-] (0) edge (1) (1) edge  (2)  (2) edge  (5) (5) edge (10);
+		\end{tikzpicture}
+	\end{center} 
+	Rekursionsbäume mit Verzweigungen erhält man, wenn während der Ausführung einer rekursiven Prozedur mehr als ein rekursiver Aufruf stattfindet. 
+\end{bsp} 
+
+\begin{bem}
+	Auf der praktischen Seite erfolgt die Umsetzung der Aufrufe von Prozeduren und, insbesondere rekursiven Prozeduren, in Betriebssystemen und Programmiersprachen mit Hilfe des sogenannten Programmstacks. Bei jedem Aufruf wird (intern,auf der Ebene der Maschinensprache) die Stelle im Programm notiert, zu der man nach der Ausführung  der Prozedur zurückkehren soll. Außerdem werden durch einen Aufruf potenziell neue Variablen eingeführt (lokale Variablen der Prozedur, Eingabeparameter). All diese Daten werden auf dem sogenannten \textbf{Aufrufstapel} (engl. call stack, procedure stack) aufgehoben. Die Größe des Aufrufstapels ist standardmäßig ziemlich eingeschränkt, sodass es bei der Ausführung von reksuriven Prozeduren mit einer großen Rekursionstiefe zu einem Überlauf des Aufrufstapels kommen kann. 
+	
+	In höheren Programmiersprache, bei denen die Rekursion nicht unbedingt direkt durch den Aufrufstapel umgesetzt wird, wird oft trotzdem das Maximum der Rekursionstiefe festgelegt. 	Hier ein Beispiel eines Python-Codes, der diese Problematik illustriert: 
+	\lstinputlisting{Code/dive.py}
+	
+	Auf meinem Computer führt der Aufruf von dive auf der Eingabe $0$ zum eine Stacküberlauf  in der Rekursionstiefe $995$. Die maximale Rekursionstiefe kann oft manuell erhöht werden, und es gibt auch Sprachen, die in gewissen Situationen die rekursiven Prozeduren in nicht-rekursiven Maschinencode übersetzen können. Generell gilt aber: wenn man eine rekursive Prozedur mit einer hohen Rekursionstiefe hat, soll man sich Gedanken darüber machen, wie man diese Prozedur in eine nicht-rekursiv umsetzen könnte. Sehr oft kann man dabei seinen eigenen Stapel anlegen. 
+\end{bem} 
+
 
 \section{Random Access Machine}
 \label{sect:RAM}

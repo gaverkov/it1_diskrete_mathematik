@@ -1,24 +1,8 @@
 \section{Tiefensuche}
 \label{sect:tiefensuche}
 
-\begin{bem}
-Typische Fragen auf Graphen, deren algorithmische Behandlung grundlegend für viele Anwendungen ist, sind zum Beispiel die folgenden:
-\begin{itemize}
- \item Ist der Graph zusammenhängend?
- \item Gibt es einen Pfad im Graphen von einem Knoten $s$ zu einem Knoten $z$?
- \item Wieviele Zusammenhangskomponenten hat der Graph?
- \item Gibt es Kreise oder Zyklen im Graphen?
- \item Was ist der Grad eines gegebenen Knotens?
-\end{itemize}
-
-Ein allgemeines Prinzip um diese Art Fragen zu beantworten ist die sogenannte \emph{Graphendurchmusterung}, deren Ziel es ist alle Knoten und Kanten des gegebenen Graphen zu \glqq erkunden\grqq\ und dabei nützliche Informationen über den Graphen zu sammeln.
-Die Arbeitsweise und die Effizienz der jeweiligen Algorithmen zur Graphendurchmusterung hängen natürlich stark von der Wahl der Darstellung (Kantenliste, Adjazenzliste, Adjazenzmatrix, Inzidenzmatrix) des Graphen ab.
-
-\end{bem} 
 
 \begin{bem} 
-In diesem Abschnitt lernen wir die Durchmusterungsmethode der \emph{Tiefensuche} kennen, die im Englischen \emph{depth first search} heißt und daher oft \emph{DFS} genannt wird.
-
 Die Eingabe für die hier diskutierte Tiefensuche ist ein Digraph $D=(V,A)$.
 Ist der Graph ungerichtet, so ist die Vorgehensweise vollkommen analog und daher diskutieren wir hier (fast ausschließlich) die gerichtete Variante.
 Der Digraph $D$ ist durch seine Adjazenzliste $N$ gegeben, das heißt, für jeden Knoten $u \in V$ ist $N[u]$ eine Liste aller $v \in V$ mit $(u,v) \in A$.
@@ -266,7 +250,7 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
 \hfill
 \begin{tikzpicture}[]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+\tikzset{snode/.style ={fill=black!70!,circle,draw}}
 
  \node[gnode] (1) at (0,2) {$1$};
  \node[gnode] (2) at (0,0) {$2$};
@@ -609,8 +593,8 @@ Er ist aus einem oder mehreren \emph{Tiefensuchbäumen} zusammengesetzt.
 In Beispiel~\ref{bsp:tiefensuche} ist die Vorgängerabbildung nach abgeschlossener Tiefensuche durch $\pi=[3,1,\cc{nil},2,3,5,6,5,\cc{nil},9]$ gegeben.
 Der zugehörige Tiefensuchwald ist also
 
-\hfill
-\begin{tikzpicture}[]
+\begin{center} 
+\begin{tikzpicture}[line width=1.5,scale=1.5]
  \node[circle,draw=black] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -622,13 +606,14 @@ Der zugehörige Tiefensuchwald ist also
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm] (1) edge (2);
- \draw[->,line width=0.3mm] (2) edge (4);
- \draw[->,line width=0.3mm] (3) edge (1) (3) edge (5);
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm] (6) edge (7);
- \draw[->,line width=0.3mm] (9) edge (10);
+ \draw[->] (1) edge (2);
+ \draw[->] (2) edge (4);
+ \draw[->] (3) edge (1) (3) edge (5);
+ \draw[->] (5) edge (6) (5) edge (8); 
+ \draw[->] (6) edge (7);
+ \draw[->] (9) edge (10);
 \end{tikzpicture}
+\end{center} 
 \end{bsp} 
 
 \begin{bem}
@@ -771,7 +756,7 @@ Wir schauen uns wiederum die Tiefensuche aus Beispiel~\ref{bsp:tiefensuche} an u
 Dabei sind Baumkanten schwarz, Rückwärtskanten rot, Vorwärtskanten blau und Querkanten grün markiert.
 
 \begin{center} 
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \node[circle,draw=black] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -784,22 +769,22 @@ Dabei sind Baumkanten schwarz, Rückwärtskanten rot, Vorwärtskanten blau und Q
  \node[circle,draw=black] (10) at (8,0) {$10$};
 
 % Baumkanten
- \draw[->,line width=0.3mm] (1) edge (2);
- \draw[->,line width=0.3mm] (2) edge (4);
- \draw[->,line width=0.3mm] (3) edge (1) (3) edge (5);
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm] (6) to[bend left] (7);
- \draw[->,line width=0.3mm] (9) edge (10);
+ \draw[->] (1) edge (2);
+ \draw[->] (2) edge (4);
+ \draw[->] (3) edge (1) (3) edge (5);
+ \draw[->] (5) edge (6) (5) edge (8); 
+ \draw[->] (6) to[bend left] (7);
+ \draw[->] (9) edge (10);
 
 % Rückwärtskanten
- \draw[->,line width=0.3mm,red] (4) edge (1);
- \draw[->,line width=0.3mm,red] (7) to[bend left] (6);
- \draw[->,line width=0.3mm,red] (8) to[bend right] (3);
+ \draw[->,red] (4) edge (1);
+ \draw[->,red] (7) to[bend left] (6);
+ \draw[->,red] (8) to[bend right] (3);
 
 % Vorwärtskanten
- \draw[->,line width=0.3mm,blue] (3) edge (4);
- \draw[->,line width=0.3mm,blue] (9) edge (8);
- \draw[->,line width=0.3mm,blue] (10) edge (8); 
+ \draw[->,blue] (3) edge (4);
+ \draw[->,blue] (9) edge (8);
+ \draw[->,blue] (10) edge (8); 
 	
 % Querkanten (keine vorhanden..)
 	
@@ -1138,3 +1123,18 @@ Weiterhin müssen nach Induktionsannahme und Lemma~\ref{lem:komponenten-zeitpunk
 Damit wird kein Knoten außerhalb von~$K$ ein Nachfahre von~$u$ bei der Tiefensuche auf~$D^T$.
 Das heißt, dass die Knoten des Tiefensuchbaumes von~$D^T$, der von~$u$ ausgeht, eine starke Zusammenhangskomponente bilden, und der Induktionsschritt ist gezeigt.
 \end{proof}
+
+\begin{bem}
+	Analog zur diskutierten Breitensuche kann man eine \emph{Tiefensuche} auch ohne Rekursion umsetzen.
+	(Dies hat gewisse Vorteile, weil der Programmstack nicht zu sehr belastet wird.)
+	Dazu ersetzt man die Warteschlange $Q$ durch einen sogenannten \emph{Stack} (oder \emph{Stapel}). 
+	
+	Ein Stack ist eine Liste $S=[s_1,\ldots,s_k]$ mit ebenfalls zwei Grundoperationen:
+	\begin{itemize}
+		\item $\cc{Pop}(S)$: Das \emph{letzte} Element~$s_k$ von~$S$ wird zurückgegeben und entfernt.
+		
+		\item $\cc{Push}(S,x)$: Das Element~$x$ wird am \emph{Ende} von~$S$ hinzugefügt.
+	\end{itemize}
+	
+	Ein Stack arbeitet also nach dem LIFO-Prinzip (Last In - First Out).
+\end{bem}
