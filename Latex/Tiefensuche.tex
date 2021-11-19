@@ -6,26 +6,36 @@
 Die Eingabe für die hier diskutierte Tiefensuche ist ein Digraph $D=(V,A)$.
 Ist der Graph ungerichtet, so ist die Vorgehensweise vollkommen analog und daher diskutieren wir hier (fast ausschließlich) die gerichtete Variante.
 Der Digraph $D$ ist durch seine Adjazenzliste $N$ gegeben, das heißt, für jeden Knoten $u \in V$ ist $N[u]$ eine Liste aller $v \in V$ mit $(u,v) \in A$.
-Wir werden sehen, dass die Darstellung von $D$ als Adjazenzliste eine Durchmusterung mit der optimalen Laufzeit $\Theta(|V|+|A|)$ erlaubt.
+Die Darstellung von $D$ als Adjazenzliste eine Durchmusterung mit der optimalen Laufzeit $\Theta(|V|+|A|)$ erlaubt.
 \end{bem}
 
+
 \begin{bem} 
-Die Strategie der Tiefensuche besteht darin, einen Startknoten auszuwählen und von diesem ausgehend den Graphen \glqq der Tiefe nach\grqq\ zu durchsuchen.
-Das heißt, es werden stets Kanten untersucht, die von dem zuletzt entdeckten Knoten ausgehen, der noch keine bereits untersuchten ausgehenden Kanten hat.
-Sobald alle ausgehenden Kanten eines Knotens~$v$ untersucht wurden, geht das Vorgehen einen Schritt zurück und untersucht die Kanten, die von dem Knoten ausgehen, von dem aus~$v$ entdeckt wurde.
+	Die Tiefensuche ist ein ``reiselustiger'' Algorithmus zur Durchmusterung von Graphen. Wenn wir Knoten als Orte auffassen und $N[u]$ als die Umgebung des Ortes $u$, so können wir das Grundgerüst der Tiefensuche so beschreiben. Man will alle noch nicht gesehenen Orte erkunden, die man von einem gegebenen Ort $u$ aus erreichen kann. Man kann dazu das folgende Vorgehen benutzen: 
+	\begin{itemize} 
+			\item Man schaut sich die Umgebung von $u$ durch. 
+			\item Sobald man einen  noch nicht besuchten Ort $v$ sieht, erkundet man alle noch nicht gesehene Orte, die man von $v$ aus erreichen kann. 
+	\end{itemize} 
+	Wie man sieht ist der Grundgedanke  der Tiefensuche rekursiv: man erkundet neue Orte von $u$ aus, indem man die Orte in der Nachbarschaft von $u$ erkundet. Die ``Reiselust'' dieser Durchmusterung besteht darin, dass sich die Erkundung der Orte \emph{sofort} einen neuen Ort versetzt, wenn dieser gefunden wird.  
+	
+	
+	Bei rekursiven Algorithmen soll man sich darum kümmern, dass der Algorithmus terminiert. Daher soll man bei der Durchmusterung die Orte, an die man kommt, gleich als ``gesehen'' markieren.  Stellen Sie sich einfach vor, dass Sie ein Stück Kreide nehmen und da, wo Sie angekommen sind, gleich schreiben ``hier war ich schon''. Sollten Sie bei Ihrer Wanderung durch den Graphen noch ein mal an diesen Ort kommen,  so werden Sie merken, dass Sie an diesem Ort bereits waren. Auf diese Weise werden Sie nicht endlos im Kreis herumlaufen, wenn etwa Ihre Graph ein Kreis ist oder einen Kreis enthält. 
+	
+	Die Umsetzung der oben beschriebenen Strategie basiert auf Farbattributen der Knoten, die man im Laufe der Durchmusterung sukzessiv zuerst als weiß ($=$ noch nicht gesehen), dann als  grau ($=$ gesehen aber noch nicht abgearbeitet) und schließlich als  schwarz ($=$ abgearbeitet) setzt. 
+	
+	Wenn die Suche entlang einer Kante verläuft, die in einen weißen Knoten endet, dann sagen wir, dass der entsprechende Knoten \textbf{entdeckt} wird.
 
-Die Umsetzung dieser Strategie basiert auf Farbattributen der Knoten (weiß, grau, schwarz), die im Laufe der Durchmusterung geeignet verändert werden.
-Am Anfang des Verfahrens ist jeder Knoten weiß und wenn die Suche entlang einer Kante verläuft, die in einen weißen Knoten endet, dann sagen wir, dass der entsprechende Knoten \emph{entdeckt} wird.
-
-Die Farben der Knoten haben die folgende Bedeutung: 
+Hier die Zusammenfassung der Bedeutung der Farben: 
 \begin{itemize}
 \setlength{\itemindent}{30pt}
-	\item[{\bfseries weiß:}] Der Knoten wurde noch nicht entdeckt. 
-	\item[{\bfseries grau:}] Der Knoten wurde entdeckt und die Tiefensuche für den Knoten läuft gerade.
-	\item[{\bfseries schwarz:}] Der Knoten wurde entdeckt und die Tiefensuche für den Knoten ist bereits beendet.
+	\item[] {\bfseries weiß:} Der Knoten wurde noch nicht entdeckt. 
+	\item[] {\bfseries grau:} Der Knoten wurde entdeckt und die Tiefensuche für den Knoten läuft gerade.
+	\item[] {\bfseries schwarz:} Der Knoten wurde entdeckt und die Tiefensuche für den Knoten ist bereits beendet.
 \end{itemize}
 
-Wird ein Knoten schwarz gefärbt, so sagen wir auch das er \emph{abgearbeitet} wurde.
+Wird ein Knoten schwarz gefärbt, so sagen wir auch das er \textbf{abgearbeitet} wurde.
+
+Durch die Tiefensuche können verschiedene Aufgaben erledigt werden. Nicht alle diese Aufgaben benötigen alle drei Farbattributen der Knoten. Bei manchen Aufgaben reicht auch die Unterscheidung zwischen ``entdeckt'' (weiß) und ``nicht entdeckt'' (grau oder schwarz) aus. 
 \end{bem}
 
 \begin{bem}
@@ -100,7 +110,7 @@ Sind alle Kanten, die von $u$ ausgehen sondiert, so ist der Knoten~$u$ abgearbei
 Wir illustrieren die Tiefensuche am Digraphen
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \node[circle,draw=black] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -112,16 +122,16 @@ Wir illustrieren die Tiefensuche am Digraphen
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm] (1) edge (2);
- \draw[->,line width=0.3mm] (2) edge (4);
- \draw[->,line width=0.3mm] (3) edge (1) (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm] (4) edge (1);
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm] (6) to[bend left] (7);
- \draw[->,line width=0.3mm] (7) to[bend left] (6);
- \draw[->,line width=0.3mm] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->] (1) edge (2);
+ \draw[->] (2) edge (4);
+ \draw[->] (3) edge (1) (3) edge (4) (3) edge (5);
+ \draw[->] (4) edge (1);
+ \draw[->] (5) edge (6) (5) edge (8); 
+ \draw[->] (6) to[bend left] (7);
+ \draw[->] (7) to[bend left] (6);
+ \draw[->] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
@@ -129,9 +139,9 @@ Wir wählen als Startknoten den Knoten~$3$ und treffen ansonsten jede Wahl aufst
 Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Digraphen gegeben, wobei die Knotenfarbe dem aktuellen Farbattribut entspricht und die bereits sondierten Kanten rot markiert sind:
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[circle,draw=black] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
@@ -144,23 +154,23 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm] (1) edge (2);
- \draw[->,line width=0.3mm] (2) edge (4);
- \draw[->,line width=0.3mm] (3) edge (1) (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm] (4) edge (1);
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm] (6) to[bend left] (7);
- \draw[->,line width=0.3mm] (7) to[bend left] (6);
- \draw[->,line width=0.3mm] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->] (1) edge (2);
+ \draw[->] (2) edge (4);
+ \draw[->] (3) edge (1) (3) edge (4) (3) edge (5);
+ \draw[->] (4) edge (1);
+ \draw[->] (5) edge (6) (5) edge (8); 
+ \draw[->] (6) to[bend left] (7);
+ \draw[->] (7) to[bend left] (6);
+ \draw[->] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[gnode] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
@@ -173,24 +183,24 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm] (1) edge (2);
- \draw[->,line width=0.3mm] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm] (4) edge (1);
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm] (6) to[bend left] (7);
- \draw[->,line width=0.3mm] (7) to[bend left] (6);
- \draw[->,line width=0.3mm] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->] (1) edge (2);
+ \draw[->] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->] (3) edge (4) (3) edge (5);
+ \draw[->] (4) edge (1);
+ \draw[->] (5) edge (6) (5) edge (8); 
+ \draw[->] (6) to[bend left] (7);
+ \draw[->] (7) to[bend left] (6);
+ \draw[->] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[gnode] (1) at (0,2) {$1$};
  \node[gnode] (2) at (0,0) {$2$};
@@ -203,24 +213,24 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm] (4) edge (1);
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm] (6) to[bend left] (7);
- \draw[->,line width=0.3mm] (7) to[bend left] (6);
- \draw[->,line width=0.3mm] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->] (3) edge (4) (3) edge (5);
+ \draw[->] (4) edge (1);
+ \draw[->] (5) edge (6) (5) edge (8); 
+ \draw[->] (6) to[bend left] (7);
+ \draw[->] (7) to[bend left] (6);
+ \draw[->] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[gnode] (1) at (0,2) {$1$};
  \node[gnode] (2) at (0,0) {$2$};
@@ -233,24 +243,24 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm,red] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm] (4) edge (1);
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm] (6) to[bend left] (7);
- \draw[->,line width=0.3mm] (7) to[bend left] (6);
- \draw[->,line width=0.3mm] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->,red] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->] (3) edge (4) (3) edge (5);
+ \draw[->] (4) edge (1);
+ \draw[->] (5) edge (6) (5) edge (8); 
+ \draw[->] (6) to[bend left] (7);
+ \draw[->] (7) to[bend left] (6);
+ \draw[->] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
-\tikzset{snode/.style ={fill=black!70!,circle,draw}}
+\tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[gnode] (1) at (0,2) {$1$};
  \node[gnode] (2) at (0,0) {$2$};
@@ -263,24 +273,24 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm,red] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm,red] (4) edge (1);
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm] (6) to[bend left] (7);
- \draw[->,line width=0.3mm] (7) to[bend left] (6);
- \draw[->,line width=0.3mm] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->,red] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->] (3) edge (4) (3) edge (5);
+ \draw[->,red] (4) edge (1);
+ \draw[->] (5) edge (6) (5) edge (8); 
+ \draw[->] (6) to[bend left] (7);
+ \draw[->] (7) to[bend left] (6);
+ \draw[->] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[gnode] (1) at (0,2) {$1$};
  \node[snode] (2) at (0,0) {$2$};
@@ -293,26 +303,26 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm,red] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm,red] (4) edge (1);
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm] (6) to[bend left] (7);
- \draw[->,line width=0.3mm] (7) to[bend left] (6);
- \draw[->,line width=0.3mm] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->,red] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->] (3) edge (4) (3) edge (5);
+ \draw[->,red] (4) edge (1);
+ \draw[->] (5) edge (6) (5) edge (8); 
+ \draw[->] (6) to[bend left] (7);
+ \draw[->] (7) to[bend left] (6);
+ \draw[->] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 Wir steigen zum Zeitpunkt $\cc{Schwarz}[8]=14$ mit der Illustration wieder ein:
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[snode] (1) at (0,2) {$1$};
  \node[snode] (2) at (0,0) {$2$};
@@ -325,24 +335,24 @@ Wir steigen zum Zeitpunkt $\cc{Schwarz}[8]=14$ mit der Illustration wieder ein:
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm,red] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm,red] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm,red] (4) edge (1);
- \draw[->,line width=0.3mm,red] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm,red] (6) to[bend left] (7);
- \draw[->,line width=0.3mm,red] (7) to[bend left] (6);
- \draw[->,line width=0.3mm,red] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->,red] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->,red] (3) edge (4) (3) edge (5);
+ \draw[->,red] (4) edge (1);
+ \draw[->,red] (5) edge (6) (5) edge (8); 
+ \draw[->,red] (6) to[bend left] (7);
+ \draw[->,red] (7) to[bend left] (6);
+ \draw[->,red] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[snode] (1) at (0,2) {$1$};
  \node[snode] (2) at (0,0) {$2$};
@@ -355,24 +365,24 @@ Wir steigen zum Zeitpunkt $\cc{Schwarz}[8]=14$ mit der Illustration wieder ein:
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm,red] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm,red] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm,red] (4) edge (1);
- \draw[->,line width=0.3mm,red] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm,red] (6) to[bend left] (7);
- \draw[->,line width=0.3mm,red] (7) to[bend left] (6);
- \draw[->,line width=0.3mm,red] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->,red] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->,red] (3) edge (4) (3) edge (5);
+ \draw[->,red] (4) edge (1);
+ \draw[->,red] (5) edge (6) (5) edge (8); 
+ \draw[->,red] (6) to[bend left] (7);
+ \draw[->,red] (7) to[bend left] (6);
+ \draw[->,red] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[snode] (1) at (0,2) {$1$};
  \node[snode] (2) at (0,0) {$2$};
@@ -385,26 +395,26 @@ Wir steigen zum Zeitpunkt $\cc{Schwarz}[8]=14$ mit der Illustration wieder ein:
  \node[circle,draw=black] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm,red] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm,red] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm,red] (4) edge (1);
- \draw[->,line width=0.3mm,red] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm,red] (6) to[bend left] (7);
- \draw[->,line width=0.3mm,red] (7) to[bend left] (6);
- \draw[->,line width=0.3mm,red] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->,red] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->,red] (3) edge (4) (3) edge (5);
+ \draw[->,red] (4) edge (1);
+ \draw[->,red] (5) edge (6) (5) edge (8); 
+ \draw[->,red] (6) to[bend left] (7);
+ \draw[->,red] (7) to[bend left] (6);
+ \draw[->,red] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 Nun muss ein neuer Knoten gewählt werden (Knoten $9$) um die Tiefensuche für den ganzen Digraphen zu beenden:
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[snode] (1) at (0,2) {$1$};
  \node[snode] (2) at (0,0) {$2$};
@@ -417,24 +427,24 @@ Nun muss ein neuer Knoten gewählt werden (Knoten $9$) um die Tiefensuche für d
  \node[gnode] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm,red] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm,red] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm,red] (4) edge (1);
- \draw[->,line width=0.3mm,red] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm,red] (6) to[bend left] (7);
- \draw[->,line width=0.3mm,red] (7) to[bend left] (6);
- \draw[->,line width=0.3mm,red] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->,red] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->,red] (3) edge (4) (3) edge (5);
+ \draw[->,red] (4) edge (1);
+ \draw[->,red] (5) edge (6) (5) edge (8); 
+ \draw[->,red] (6) to[bend left] (7);
+ \draw[->,red] (7) to[bend left] (6);
+ \draw[->,red] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[snode] (1) at (0,2) {$1$};
  \node[snode] (2) at (0,0) {$2$};
@@ -447,24 +457,24 @@ Nun muss ein neuer Knoten gewählt werden (Knoten $9$) um die Tiefensuche für d
  \node[gnode] (9) at (6.5,0) {$9$};
  \node[gnode] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm,red] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm,red] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm,red] (4) edge (1);
- \draw[->,line width=0.3mm,red] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm,red] (6) to[bend left] (7);
- \draw[->,line width=0.3mm,red] (7) to[bend left] (6);
- \draw[->,line width=0.3mm,red] (8) to[bend right] (3);
- \draw[->,line width=0.3mm,red] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->,red] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->,red] (3) edge (4) (3) edge (5);
+ \draw[->,red] (4) edge (1);
+ \draw[->,red] (5) edge (6) (5) edge (8); 
+ \draw[->,red] (6) to[bend left] (7);
+ \draw[->,red] (7) to[bend left] (6);
+ \draw[->,red] (8) to[bend right] (3);
+ \draw[->,red] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[snode] (1) at (0,2) {$1$};
  \node[snode] (2) at (0,0) {$2$};
@@ -477,24 +487,24 @@ Nun muss ein neuer Knoten gewählt werden (Knoten $9$) um die Tiefensuche für d
  \node[gnode] (9) at (6.5,0) {$9$};
  \node[snode] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm,red] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm,red] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm,red] (4) edge (1);
- \draw[->,line width=0.3mm,red] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm,red] (6) to[bend left] (7);
- \draw[->,line width=0.3mm,red] (7) to[bend left] (6);
- \draw[->,line width=0.3mm,red] (8) to[bend right] (3);
- \draw[->,line width=0.3mm,red] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm,red] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->,red] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->,red] (3) edge (4) (3) edge (5);
+ \draw[->,red] (4) edge (1);
+ \draw[->,red] (5) edge (6) (5) edge (8); 
+ \draw[->,red] (6) to[bend left] (7);
+ \draw[->,red] (7) to[bend left] (6);
+ \draw[->,red] (8) to[bend right] (3);
+ \draw[->,red] (9) edge (8) (9) edge (10);
+ \draw[->,red] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
- \tikzset{snode/.style ={fill=black!70!,circle,draw}}
+ \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
  \node[snode] (1) at (0,2) {$1$};
  \node[snode] (2) at (0,0) {$2$};
@@ -507,17 +517,17 @@ Nun muss ein neuer Knoten gewählt werden (Knoten $9$) um die Tiefensuche für d
  \node[snode] (9) at (6.5,0) {$9$};
  \node[snode] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm,red] (1) edge (2);
- \draw[->,line width=0.3mm,red] (2) edge (4);
- \draw[->,line width=0.3mm,red] (3) edge (1);
- \draw[->,line width=0.3mm,red] (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm,red] (4) edge (1);
- \draw[->,line width=0.3mm,red] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm,red] (6) to[bend left] (7);
- \draw[->,line width=0.3mm,red] (7) to[bend left] (6);
- \draw[->,line width=0.3mm,red] (8) to[bend right] (3);
- \draw[->,line width=0.3mm,red] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm,red] (10) edge (8); 
+ \draw[->,red] (1) edge (2);
+ \draw[->,red] (2) edge (4);
+ \draw[->,red] (3) edge (1);
+ \draw[->,red] (3) edge (4) (3) edge (5);
+ \draw[->,red] (4) edge (1);
+ \draw[->,red] (5) edge (6) (5) edge (8); 
+ \draw[->,red] (6) to[bend left] (7);
+ \draw[->,red] (7) to[bend left] (6);
+ \draw[->,red] (8) to[bend right] (3);
+ \draw[->,red] (9) edge (8) (9) edge (10);
+ \draw[->,red] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 
@@ -924,7 +934,7 @@ Das heißt, die Knoten $u$ und $v$ sind vom jeweils anderen aus erreichbar.
 Die starken Zusammenhangskomponenten des Digraphen aus Beispiel~\ref{bsp:tiefensuche} bestehen aus den Knoten gleicher Farbe in folgender Abbildung:
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \node[fill=blue,circle,draw] (1) at (0,2) {$1$};
  \node[fill=blue,circle,draw] (2) at (0,0) {$2$};
  \node[fill=red,circle,draw] (3) at (2,2) {$3$};
@@ -936,16 +946,16 @@ Die starken Zusammenhangskomponenten des Digraphen aus Beispiel~\ref{bsp:tiefens
  \node[fill=green,circle,draw] (9) at (6.5,0) {$9$};
  \node[circle,draw=black] (10) at (8,0) {$10$};
 		
- \draw[->,line width=0.3mm] (1) edge (2);
- \draw[->,line width=0.3mm] (2) edge (4);
- \draw[->,line width=0.3mm] (3) edge (1) (3) edge (4) (3) edge (5);
- \draw[->,line width=0.3mm] (4) edge (1);
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (8); 
- \draw[->,line width=0.3mm] (6) to[bend left] (7);
- \draw[->,line width=0.3mm] (7) to[bend left] (6);
- \draw[->,line width=0.3mm] (8) to[bend right] (3);
- \draw[->,line width=0.3mm] (9) edge (8) (9) edge (10);
- \draw[->,line width=0.3mm] (10) edge (8); 
+ \draw[->] (1) edge (2);
+ \draw[->] (2) edge (4);
+ \draw[->] (3) edge (1) (3) edge (4) (3) edge (5);
+ \draw[->] (4) edge (1);
+ \draw[->] (5) edge (6) (5) edge (8); 
+ \draw[->] (6) to[bend left] (7);
+ \draw[->] (7) to[bend left] (6);
+ \draw[->] (8) to[bend right] (3);
+ \draw[->] (9) edge (8) (9) edge (10);
+ \draw[->] (10) edge (8); 
 \end{tikzpicture}
 \hfill\,
 \end{bsp}
@@ -1008,7 +1018,7 @@ Der Komponentengraph~$D^K$ ensteht also aus~$D$ indem wir alle Kanten kontrahier
 Der Komponentengraph des Digraphen aus Beispiel~\ref{bsp:starke-zusammenhangskomponenten} in derselben Farbkodierung:
 
 \hfill
-\begin{tikzpicture}[]
+\begin{tikzpicture}[line width=2,scale=1.5]
  \node[fill=blue,circle,draw] (1) at (1,2) {$\phantom{1}$};
 % \node[fill=blue,circle,draw] (2) at (0,0) {$2$};
 % \node[fill=red,circle,draw] (3) at (2,2) {$3$};
@@ -1020,9 +1030,9 @@ Der Komponentengraph des Digraphen aus Beispiel~\ref{bsp:starke-zusammenhangskom
  \node[fill=green,circle,draw] (9) at (6.5,0) {$\phantom{9}$};
  \node[circle,draw=black] (10) at (8,0) {$\phantom{0}$};
 		
- \draw[->,line width=0.3mm] (5) edge (6) (5) edge (1); 
- \draw[->,line width=0.3mm] (9) edge (5) (9) edge (10);
- \draw[->,line width=0.3mm] (10) to[bend right] (5); 
+ \draw[->] (5) edge (6) (5) edge (1); 
+ \draw[->] (9) edge (5) (9) edge (10);
+ \draw[->] (10) to[bend right] (5); 
 \end{tikzpicture}
 \hfill\,
 \end{bsp}
@@ -1126,15 +1136,36 @@ Das heißt, dass die Knoten des Tiefensuchbaumes von~$D^T$, der von~$u$ ausgeht,
 
 \begin{bem}
 	Analog zur diskutierten Breitensuche kann man eine \emph{Tiefensuche} auch ohne Rekursion umsetzen.
-	(Dies hat gewisse Vorteile, weil der Programmstack nicht zu sehr belastet wird.)
-	Dazu ersetzt man die Warteschlange $Q$ durch einen sogenannten \emph{Stack} (oder \emph{Stapel}). 
+	Dies hat praktische Vorteile, weil der Programmstack nicht  belastet wird.
+	Dazu ersetzt man die Warteschlange $Q$ durch einen sogenannten \emph{Stack} (oder \emph{Stapel}). Es gibt mehre Möglichkeiten eine Umsetzung mit Stacks. 
 	
-	Ein Stack ist eine Liste $S=[s_1,\ldots,s_k]$ mit ebenfalls zwei Grundoperationen:
-	\begin{itemize}
-		\item $\cc{Pop}(S)$: Das \emph{letzte} Element~$s_k$ von~$S$ wird zurückgegeben und entfernt.
-		
-		\item $\cc{Push}(S,x)$: Das Element~$x$ wird am \emph{Ende} von~$S$ hinzugefügt.
-	\end{itemize}
+	Hier eine ziemlich direkte Konvertierung der rekursiven Umsetzung. Wir gehen von einem zugrundeliegenden Stack $S$ aus. Durch $\cc{Top}(S)$ können wir auf das oberste Element des Stacks zugreifen, durch $\cc{Pop}(S)$ können wir das oberste Element entfernen und durch $\cc{Push}(S,u)$ ein neues Element $u$ auf den Stack legen. Die Elemente $N[u]$ indexieren wir mit Zahlen $0$ bis $\deg(u)-1$. Wir führen ein Array $\cc{i}$ ein, in dem durch $\cc{ind}[u]$ notiert wird, dass beim sondieren der Nachbarn von $u \in V$  der Knoten $v=N[u][\cc{ind}[u]]$ als  nächster dran ist. Ist $v= \deg(u)$, so hat man alle Nachbarn von $u$ sondiert. Wir setzen am Anfang $\cc{ind}[u]=0$ für alle $u \in V$, färben den Startknoten $s$ grau und legen $s$ auf $S$. Danach kann man folgendermaßen vorgehen: 
 	
-	Ein Stack arbeitet also nach dem LIFO-Prinzip (Last In - First Out).
+
+	Danach kann man folgendermaßen vorgehen: 
+	
+\begin{algorithm}[H]
+	\begin{algorithmic}[1]
+		\WHILE{$S$ nicht leer }
+			\STATE $u:= \cc{top}(S)$
+			\IF{$\cc{ind}[u] = \deg(u)$} 
+				\STATE $\cc{pop}(S)$ 
+				\STATE $\cc{Farbe}[u] := \cc{SCHWARZ}$
+				\ELSE
+				\STATE $v=N[u][\cc{ind}[u]]$
+				\STATE $\cc{ind}[u]:=\cc{ind}[u]+1$				
+				\IF{$\cc{Farbe}[v] = \cc{WEISS}$}
+					\STATE $\cc{Farbe}[v] = \cc{GRAU}$
+					\STATE $\cc{push}(S,v)$
+				\ENDIF 
+				\ENDIF 
+		\ENDWHILE  
+	\end{algorithmic}
+\end{algorithm}
+	
+	Die weiteren Daten, die man im Rahmen der rekursiven Tiefensuche berechnen kann, kann man auch in der obigen iterativen Version an den entsprechenden Stellen berechnen. 
 \end{bem}
+
+\begin{bem}
+	Die Präsentation der Tiefensuche hier basiert auf  \cite{CLRS17}.
+\end{bem} 
