@@ -22,12 +22,13 @@ Die Darstellung von $D$ als Adjazenzliste eine Durchmusterung mit der optimalen 
 	Bei rekursiven Algorithmen soll man sich darum kümmern, dass der Algorithmus terminiert. Daher soll man bei der Durchmusterung die Orte, an die man kommt, gleich als ``gesehen'' markieren.  Stellen Sie sich einfach vor, dass Sie ein Stück Kreide nehmen und da, wo Sie angekommen sind, gleich schreiben ``hier war ich schon''. Sollten Sie bei Ihrer Wanderung durch den Graphen noch ein mal an diesen Ort kommen,  so werden Sie merken, dass Sie an diesem Ort bereits waren. Auf diese Weise werden Sie nicht endlos im Kreis herumlaufen, wenn etwa Ihre Graph ein Kreis ist oder einen Kreis enthält. 
 	
 	Die Umsetzung der oben beschriebenen Strategie basiert auf Farbattributen der Knoten, die man im Laufe der Durchmusterung sukzessiv zuerst als weiß ($=$ noch nicht gesehen), dann als  grau ($=$ gesehen aber noch nicht abgearbeitet) und schließlich als  schwarz ($=$ abgearbeitet) setzt. 
-	
+\end{bem}
+
+\begin{bem}
 	Wenn die Suche entlang einer Kante verläuft, die in einen weißen Knoten endet, dann sagen wir, dass der entsprechende Knoten \textbf{entdeckt} wird.
 
-Hier die Zusammenfassung der Bedeutung der Farben: 
+Hier eine Zusammenfassung der Bedeutung der Farben der Knoten.  
 \begin{itemize}
-\setlength{\itemindent}{30pt}
 	\item[] {\bfseries weiß:} Der Knoten wurde noch nicht entdeckt. 
 	\item[] {\bfseries grau:} Der Knoten wurde entdeckt und die Tiefensuche für den Knoten läuft gerade.
 	\item[] {\bfseries schwarz:} Der Knoten wurde entdeckt und die Tiefensuche für den Knoten ist bereits beendet.
@@ -36,20 +37,56 @@ Hier die Zusammenfassung der Bedeutung der Farben:
 Wird ein Knoten schwarz gefärbt, so sagen wir auch das er \textbf{abgearbeitet} wurde.
 
 Durch die Tiefensuche können verschiedene Aufgaben erledigt werden. Nicht alle diese Aufgaben benötigen alle drei Farbattributen der Knoten. Bei manchen Aufgaben reicht auch die Unterscheidung zwischen ``entdeckt'' (weiß) und ``nicht entdeckt'' (grau oder schwarz) aus. 
-\end{bem}
+\end{bem} 
 
 \begin{bem}
-Algorithmen zur Tiefensuche -- bzw.~zur Graphendurchmusterung im Allgemeinen -- sammeln zusätzlich nützliche Informationen über die Struktur und die Zusammenhänge im Eingabegraphen auf.
-Die Variante der Tiefensuche, die wir hier untersuchen, sammelt Daten in Form der Vorgängerabbildung und den Zeitstempeln:
-%
-\begin{itemize}
- \item Die \emph{Vorgängerabbildung} ist ein Array~$\pi$ mit $|V|$ Komponenten.
- Durch $\pi[v]$ wird notiert von welchem Knoten aus der Knoten $v$ entdeckt wurde.
- Zum Beginn der Tiefensuche setzt man $\pi[v]=\cc{nil}$ für alle Knoten $v \in V$.
+	Die \emph{Vorgängerabbildung} ist ein Array~$\pi$ mit $|V|$ Komponenten.
+	Durch $\pi[v]$ wird notiert von welchem Knoten aus der Knoten $v$ entdeckt wurde.
+	Zum Beginn der Tiefensuche setzt man $\pi[v]=\cc{nil}$ für alle Knoten $v \in V$.
+\end{bem} 
 
- Die Vorgängerabbildung ermöglicht es zum Beispiel, ausgehend von einem Knoten $s \in V$, für alle erreichbaren Knoten $v \in V$ auch einen $(s,v)$-Pfad auszurechnen.
-Setzt man $\pi[v]:=u$ so heißt das, dass jeder $(s,u)$-Pfad $(v_0,\ldots,v_k)$ zu einem $(s,v)$-Pfad $(v_0,\ldots,v_k,v)$ erweitert werden kann.
- \item Jeder Knoten $v \in V$ wird während der Tiefensuche mit zwei \emph{Zeitstempeln} versehen: Der erste Zeitstempel $\cc{Grau}[v]$ zeichnet auf, wann der Knoten grau gefärbt wird, das heißt, wann er das erste Mal entdeckt wird.
+\begin{bem} 
+	Nach diesen Vorbereitungen können wir nun die oben bereits diskutierte Vorgehensweise der Tiefensuche algorithmisch exakt umsetzen.	
+	\begin{algorithm}[H]
+		\caption{$\cc{Vollständige-Tiefensuche}(D)$}
+		\begin{algorithmic}[1]
+			\FOR{$u \in V$}
+			\STATE $\cc{Farbe}[u]=\cc{weiß}$
+			\STATE $\pi[u]=\cc{nil}$
+			\ENDFOR
+			\STATE $t := 0$ \  \COMMENT{Variable für das Zeitstempeln}
+			\FOR{$u \in V$}\label{line:tiefensuche-hauptschleife-start}
+			\IF{$\cc{Farbe}[u]=\cc{weiß}$}
+			\STATE $\cc{Tiefensuche}(u)$
+			\ENDIF 
+			\ENDFOR\label{line:tiefensuche-hauptschleife-ende}
+		\end{algorithmic}
+	\end{algorithm}
+\end{bem}
+
+\begin{bem}\ 
+\begin{algorithm}[H]
+	\caption{$\cc{Tiefensuche}(u)$}
+	\begin{algorithmic}[1]
+		\STATE $\cc{Farbe}[u]:=\cc{grau}$ \ \COMMENT{$u$ als entdeckt notiert} 
+		\FOR{$v \in N[u]$}
+		\STATE  \COMMENT{Die Kante $(u,v)$ wird sondiert}
+		\IF{$\cc{Farbe}[v]=\cc{weiß}$}
+		\STATE $\pi[v]:=u$   \ \COMMENT{Knoten $v$ wurde entdeckt} 
+		\STATE $\cc{Tiefensuche}(v)$
+		\ENDIF
+		\ENDFOR
+		\STATE $\cc{Farbe}[u]:=\cc{schwarz}$ 
+	\end{algorithmic}
+\end{algorithm}
+\end{bem}
+
+
+
+
+
+\begin{bem}[Variante mit Zeitstempeln] 
+ Jeder Knoten $v \in V$ kann während der Tiefensuche mit zwei \emph{Zeitstempeln} versehen werden: Der erste Zeitstempel $\cc{Grau}[v]$ zeichnet auf, wann der Knoten grau gefärbt wird, das heißt, wann er das erste Mal entdeckt wird.
 Der zweite Zeitstempel $\cc{Schwarz}[v]$ hingegen, speichert den Zeitpunkt der Schwarzfärbung von~$v$, das heißt, den Moment in dem der Knoten abgearbeitet ist.
 
 Im Algorithmus werden beide Zeitstempel ganze Zahlen zwischen $1$ und $2 |V|$ sein, da es für jeden Knoten $v \in V$ genau einen Zeitpunkt der Entdeckung (Graufärbung) und einen Zeitpunkt der Abarbeitung (Schwarzfärbung) gibt.
@@ -57,34 +94,6 @@ Im Algorithmus werden beide Zeitstempel ganze Zahlen zwischen $1$ und $2 |V|$ se
 Für jedes $v \in V$ gilt $\cc{Grau}[v] < \cc{Schwarz}[v]$.
 Weiterhin ist $v$ vor dem Zeitpunkt $\cc{Grau}[v]$ weiß, während der Zeitpunkte $\cc{Grau}[v],\ldots,\cc{Schwarz}[v]-1$ grau, und ab dem Zeitpunkt $\cc{Schwarz}[v]$ schwarz.
 
-\end{itemize}
-\end{bem}
-
-\begin{bem} 
-Nach diesen Vorbereitungen können wir nun die oben bereits diskutierte Vorgehensweise der Tiefensuche algorithmisch exakt umsetzen.
-
-
-\begin{algorithm}[H]
-	\caption{$\cc{Vollständige-Tiefensuche}(D)$}
-	\begin{algorithmic}[1]
-		\FOR{$u \in V$}
-		 \STATE $\cc{Farbe}[u]=\cc{weiß}$
-		 \STATE $\pi[u]=\cc{nil}$
-		\ENDFOR
-		\STATE $t := 0$ $\quad$ \COMMENT{Globale Variable für das Zeitstempeln}
-		\FOR{$u \in V$}\label{line:tiefensuche-hauptschleife-start}
- 		 \IF{$\cc{Farbe}[u]=\cc{weiß}$}
- 		  \STATE $\cc{Tiefensuche}(u)$
- 		 \ENDIF 
-		\ENDFOR\label{line:tiefensuche-hauptschleife-ende}
-	\end{algorithmic}
-\end{algorithm}
-\end{bem}
-
-\begin{bem} 
-Die Prozedur $\cc{Tiefensuche}(u)$ ändert die Farbe des weißen Knotens~$u$ zu grau und \emph{sondiert} anschließend alle Kanten im Graphen, die $u$ als Startknoten haben.
-Für den entsprechenden Endknoten $v$ wird die Tiefensuche dann rekursiv aufgerufen.
-Sind alle Kanten, die von $u$ ausgehen sondiert, so ist der Knoten~$u$ abgearbeitet und wird schwarz gefärbt.
 
 \begin{algorithm}[H]
 	\caption{$\cc{Tiefensuche}(u)$}
@@ -94,7 +103,7 @@ Sind alle Kanten, die von $u$ ausgehen sondiert, so ist der Knoten~$u$ abgearbei
 		\STATE $\cc{Farbe}[u]:=\cc{grau}$
 		\FOR{$v \in N[u]$}
 		\IF{$\cc{Farbe}[v]=\cc{weiß}$}
-		 \STATE $\pi[v]:=u$ $\qquad\qquad$ \COMMENT{Die Kante $(u,v)$ wird sondiert}
+		 \STATE $\pi[v]:=u$  
 		\STATE $\cc{Tiefensuche}(v)$
 		\ENDIF
 		\ENDFOR
