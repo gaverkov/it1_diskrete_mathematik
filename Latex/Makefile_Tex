@@ -1,0 +1,52 @@
+all :  it1.pdf it1_kapitel1.pdf it1_kapitel2.pdf it1_kapitel3.pdf it1_kapitel4.pdf it1_kapitel5.pdf it1pr_kapitel1.pdf it1pr_kapitel2.pdf it1pr_kapitel3.pdf it1pr_kapitel4.pdf it1pr_kapitel5.pdf 
+it1.pdf : it1.tex lectnotes_preamble.tex frontpage.tex Mitwirkende.tex Prinzipien.tex kapitel1.tex kapitel2.tex kapitel3.tex kapitel4.tex kapitel5.tex Literatur.tex 
+	pdflatex it1.tex
+	pdflatex it1.tex
+it1.tex  :  lectnotes_preamble.tex frontpage.tex Mitwirkende.tex Prinzipien.tex kapitel1.tex kapitel2.tex kapitel3.tex kapitel4.tex kapitel5.tex Literatur.tex
+it1_kapitel1.pdf : it1_kapitel1.tex lectnotes_preamble.tex frontpage.tex kapitel1.tex Literatur.tex 
+	pdflatex it1_kapitel1.tex
+	pdflatex it1_kapitel1.tex
+it1_kapitel1.tex  :  lectnotes_preamble.tex frontpage.tex kapitel1.tex Literatur.tex
+it1_kapitel2.pdf : it1_kapitel2.tex lectnotes_preamble.tex frontpage.tex kapitel2.tex Literatur.tex 
+	pdflatex it1_kapitel2.tex
+	pdflatex it1_kapitel2.tex
+it1_kapitel2.tex  :  lectnotes_preamble.tex frontpage.tex kapitel2.tex Literatur.tex
+it1_kapitel3.pdf : it1_kapitel3.tex lectnotes_preamble.tex frontpage.tex kapitel3.tex Literatur.tex 
+	pdflatex it1_kapitel3.tex
+	pdflatex it1_kapitel3.tex
+it1_kapitel3.tex  :  lectnotes_preamble.tex frontpage.tex kapitel3.tex Literatur.tex
+it1_kapitel4.pdf : it1_kapitel4.tex lectnotes_preamble.tex frontpage.tex kapitel4.tex Literatur.tex 
+	pdflatex it1_kapitel4.tex
+	pdflatex it1_kapitel4.tex
+it1_kapitel4.tex  :  lectnotes_preamble.tex frontpage.tex kapitel4.tex Literatur.tex
+it1_kapitel5.pdf : it1_kapitel5.tex lectnotes_preamble.tex frontpage.tex kapitel5.tex Literatur.tex 
+	pdflatex it1_kapitel5.tex
+	pdflatex it1_kapitel5.tex
+it1_kapitel5.tex  :  lectnotes_preamble.tex frontpage.tex kapitel5.tex Literatur.tex
+it1pr_kapitel1.pdf : it1pr_kapitel1.tex presentation_preamble.tex frontpage.tex kapitel1.tex Literatur.tex 
+	pdflatex it1pr_kapitel1.tex
+	pdflatex it1pr_kapitel1.tex
+it1pr_kapitel1.tex  :  presentation_preamble.tex frontpage.tex kapitel1.tex Literatur.tex
+it1pr_kapitel2.pdf : it1pr_kapitel2.tex presentation_preamble.tex frontpage.tex kapitel2.tex Literatur.tex 
+	pdflatex it1pr_kapitel2.tex
+	pdflatex it1pr_kapitel2.tex
+it1pr_kapitel2.tex  :  presentation_preamble.tex frontpage.tex kapitel2.tex Literatur.tex
+it1pr_kapitel3.pdf : it1pr_kapitel3.tex presentation_preamble.tex frontpage.tex kapitel3.tex Literatur.tex 
+	pdflatex it1pr_kapitel3.tex
+	pdflatex it1pr_kapitel3.tex
+it1pr_kapitel3.tex  :  presentation_preamble.tex frontpage.tex kapitel3.tex Literatur.tex
+it1pr_kapitel4.pdf : it1pr_kapitel4.tex presentation_preamble.tex frontpage.tex kapitel4.tex Literatur.tex 
+	pdflatex it1pr_kapitel4.tex
+	pdflatex it1pr_kapitel4.tex
+it1pr_kapitel4.tex  :  presentation_preamble.tex frontpage.tex kapitel4.tex Literatur.tex
+it1pr_kapitel5.pdf : it1pr_kapitel5.tex presentation_preamble.tex frontpage.tex kapitel5.tex Literatur.tex 
+	pdflatex it1pr_kapitel5.tex
+	pdflatex it1pr_kapitel5.tex
+it1pr_kapitel5.tex  :  presentation_preamble.tex frontpage.tex kapitel5.tex Literatur.tex
+kapitel1.tex  :  Code/prime_factorizations.sage
+kapitel2.tex  :  Code/komb171.py Code/Abb.py Code/Abb_demo.py Code/Inj.py Code/Inj_demo.py Code/Teilmengen.py
+kapitel3.tex  :  Code/dive.py
+kapitel4.tex  :  Graphen_Begriffe.tex Breitensuche.tex Tiefensuche.tex Prim.tex
+lectnotes_preamble.tex  :  packages.tex macros.tex environments.tex numbering.tex
+presentation_preamble.tex  :  packages.tex look_pr.tex macros.tex environments.tex numbering.tex
+.PHONY : all

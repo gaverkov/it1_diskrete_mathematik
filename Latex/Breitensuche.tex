@@ -44,6 +44,11 @@ Wir verwalten weiterhin wie bei der Tiefensuche das Farbattribut $\cc{Farbe}[u]$
 Auch die Vorgängerabbildung~$\pi$ kommt wieder zum Einsatz.
 \end{bem} 
 
+\begin{defn}
+	Die \textbf{Vorgängerabbildung} ist ein Array~$\pi$ mit $|V|$ Komponenten.
+	Durch $\pi[v]$ wird notiert von welchem Knoten aus der Knoten $v$ entdeckt wurde.
+\end{defn} 
+
 
 \begin{bem} 
 Wir fassen die Initialisierungen zu einer eigenen Hilfsprozedur zusammen:
@@ -67,15 +72,15 @@ Wir fassen die Initialisierungen zu einer eigenen Hilfsprozedur zusammen:
 
 \begin{bem}
 Die Breitensuche ist so umgesetzt, dass das ``Leben'' eines jeden Knotens $u$ als der folgender Ablauf zusammengefasst werden kann: 
-\begin{center}
-	\begin{tikzpicture}[line width=1.5,scale=0.9] 
-		\node (W) at (0,0) {WEISS} ;
-		\node (G) at (7,0) {GRAU};
-		\node(So) at (16,0) {Sondierung von $N[u]$} ;
-		\node (S) at (25,0) {SCHWARZ};
-		\draw[->] (W) edge node[above] {$u$ kommt in $Q$} (G) (G) edge node[above] {$u$ verlässt $Q$} (So) (So) edge (S);
-	\end{tikzpicture} 
-\end{center} 
+\begin{equation*}
+	\cc{weiss} 
+	\ \xrightarrow{\text{$u$ kommt in $Q$}} \ 
+	\cc{grau}
+	\  \xrightarrow{\text{$u$ verlässt $Q$}} \ 
+	\ \xrightarrow{\text{Sondierung von $N[u]$}} \ 
+	\cc{schwarz} 
+\end{equation*} 
+
 Beim Sondieren von $N[u]$ werden werden weiße Knoten entdeckt: sie kommen in $Q$ und werden grau gefärbt. Die Breitensuche ist durch die Wahl des Containers $Q$ als Warteschlange ausgezeichnet. Durch diese Wahl ``simuliert'' die Breitensuche die Ausbreitung einer Welle in einem Medium. Stellen Sie sich vor: in $s$ kommt es zu einer Explosion; die Schallwelle breitet sich in $G$ entlang der Kanten aus und erreicht mit der Zeit immer mehr Knoten. Wie sich die Front der Schallwelle durch die Knoten ausbreitet wird durch die Warteschlange $Q$ ``modelliert''. 
 
 
@@ -100,12 +105,16 @@ Beim Sondieren von $N[u]$ werden werden weiße Knoten entdeckt: sie kommen in $Q
 \end{algorithm}
 \end{bem}
 
+\begin{bem}\ Hier eine Umsetzung der BFS in Sage/Python: 
+\lstinputlisting[language=Python]{Code/bfs.sage}
+\end{bem} 
+
 \begin{bsp}
 \label{bsp:breitensuche}
 Zum Vergleich mit der Tiefensuche sehen wir uns die Arbeitsweise der Breitensuche wieder auf dem Digaphen aus Beispiel~\ref{bsp:tiefensuche} an:
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \node[circle,draw=black] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -133,8 +142,8 @@ Zum Vergleich mit der Tiefensuche sehen wir uns die Arbeitsweise der Breitensuch
 Als Startknoten wählen wir wieder~$s=3$ und treffen ansonsten jede Wahl aufsteigend in der Reihenfolge der Knotenindizes.
 Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beispiel~\ref{bsp:tiefensuche}:
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -162,8 +171,8 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -192,8 +201,8 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -223,8 +232,8 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -254,8 +263,8 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -285,8 +294,8 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -316,8 +325,8 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -348,8 +357,8 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -381,8 +390,8 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
 
 Da die Knoten~$9$ und~$10$ nicht vom Startknoten $s=3$ aus erreichbar sind, ist der Endzustand nach dem Abschluss von $\cc{Breitensuche}(3)$ der folgende:
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -425,16 +434,15 @@ Die Laufzeit von $\cc{Breitensuche}(s)$ ist $\Theta(|V|+|A|)$.
 
 \begin{proof}
 Der Aufwand für die Initialisierung $\cc{Breitensuche-initialisieren}(D,s)$ ist direkt als $\Theta(|V|)$ festzustellen. Der Aufwand von $\cc{Breitensuche}(s)$ kann aus dem Diagramm zur Bearbeitung von Knoten $u \in V$ abgelesen werden: 
-\vspace{1ex}
-\begin{center}
-	\begin{tikzpicture}[line width=1.5,scale=0.9] 
-		\node (W) at (0,0) {WEISS} ;
-		\node (G) at (7,0) {GRAU};
-		\node(So) at (16,0) {Sondierung von $N[u]$} ;
-		\node (S) at (25,0) {SCHWARZ};
-		\draw[->] (W) edge node[above] {$u$ kommt in $Q$} (G) (G) edge node[above] {$u$ verlässt $Q$} (So) (So) edge (S);
-	\end{tikzpicture} 
-\end{center} 
+\begin{equation*}
+	\cc{weiss} 
+	\ \xrightarrow{\text{$u$ kommt in $Q$}} \ 
+	 \cc{grau}
+	 \  \xrightarrow{\text{$u$ verlässt $Q$}} \ 
+	 \text{Sondierung von $N[u]$}
+	 \ \xrightarrow{} \ 
+	 \cc{schwarz} 
+\end{equation*} 
 Der Aufwand pro Knoten, der entdeckt wird ist konstant: der Aufwand  besteht aus der Aufnahme in $Q$,  der Färbung von Weiß zu Grau und von Grau zu Schwarz. Der Aufwand pro Kante $(u,v)$, die sondiert wird, ist ebenfalls konstant: jede Kante $(u,v)$ wird höchstens ein mal sondiert, denn die Sondierung erfolgt nach der Entfernung von $u$ aus der Warteschlange. Nach der Entfernung von $u$ wird $u$ schwarz gefärbt und daher nicht mehr in $Q$ aufgenommen. 
 
 Zusammenfassend erhalten wir also  wie behauptet einen Zeitaufwand von $\Theta(|V|) + \Theta(|V|) + \Theta(|A|) = \Theta(|V|+|A|)$.
@@ -448,7 +456,7 @@ Wir nennen einen $(s,v)$-Pfad der Länge $\delta(s,v)$ einen \emph{kürzesten Pf
 \begin{lem}
 \label{lem:breitensuche-pfad-dreieck}
 Sei $D=(V,A)$ ein Digraph und sei $s \in V$ ein beliebiger Startknoten.
-Dann gilt für jede Kante $(u,v) \in A$, dass
+Dann  gilt für jede Kante $(u,v) \in A$, dass
 \[
 \delta(s,v) \leq \delta(s,u) + 1.
 \]
@@ -497,7 +505,7 @@ Mit anderen Worten: die Liste
 \end{lem}
 
 \begin{proof}
-Ganz am Anfang der Breitensuche enthält~$Q$ nur den Startknoten~$s$ und die Aussage gilt trivialerweise.
+Am Anfang der Breitensuche enthält~$Q$ nur den Startknoten~$s$ und die Aussage gilt trivialerweise.
 
 Wir zeigen, dass wenn die behauptete Bedingung zu einem Zeitpunkt gilt, dass sie auch dann gültig bleibt, wenn eine Warteschlangenoperation ausgeführt wird.
 (Das heißt, wir argumentieren mittels vollständiger Induktion über die Anzahl der ausgeführten Warteschlangenoperationen.)
@@ -535,9 +543,11 @@ Aus Lemma~\ref{lem:breitensuche-warteschlange-monotonie} folgt: solange $Q$ nich
 \begin{thm}
 \label{thm:breitensuche}
 Sei $D=(V,A)$ ein Digraph und sei $s \in V$ ein beliebiger Knoten.
-Dann entdeckt die Prozedur $\cc{Breitensuche}(s)$ während ihrer Ausführung jeden Knoten, der von~$s$ aus erreichbar ist, und bei der Terminierung gilt $d[v] = \delta(s,v)$, für alle $v \in V$.
+Dann entdeckt $\cc{Breitensuche}(s)$ während ihrer Ausführung jeden Knoten, der von~$s$ aus erreichbar ist. 
 
-Außerdem besteht für jeden von~$s$ aus erreichbaren Knoten $v \neq s$, einer der kürzesten $(s,v)$-Pfade aus einem kürzesten $(s,\pi[v])$-Pfad und der Kante $(\pi[v],v)$.
+Bei der Terminierung gilt $d[v] = \delta(s,v)$, für alle $v \in V$.
+
+Außerdem besteht für jeden von~$s$ aus erreichbaren Knoten $v \in V \setminus \{ s\}$, einer der kürzesten $(s,v)$-Pfade aus einem kürzesten $(s,\pi[v])$-Pfad und der Kante $(\pi[v],v)$.
 \end{thm}
 
 \begin{proof}
@@ -571,7 +581,7 @@ Abschließend bemerken wir noch, dass die Verwaltung der Vorgängerabbildung~$\p
 \end{proof}
 
 \begin{defn} 
-	Die Vorgängerabbildung $\pi$ aus der Breitensuche erzeugt auf einem Digraphen $D=(V,A)$, die von einem Startknoten~$s \in V$ ausgeht, einen \emph{Vorgängerteilgraphen} $D_\pi = (V_\pi,A_\pi)$, der durch
+	Die Vorgängerabbildung $\pi$ aus der Breitensuche erzeugt auf einem Digraphen $D=(V,A)$, die von einem Startknoten~$s \in V$ ausgeht, den \textbf{Vorgängerteilgraphen} $D_\pi = (V_\pi,A_\pi)$, der durch
 	\[
 	V_\pi := \left\{ v \in V : \pi[v] \neq \cc{nil}\right\} \cup \{s\} \quad \text{ und } \quad A_\pi := \left\{ (\pi[v],v) : v \in V_\pi \setminus \{s\}\right\}
 	\]
@@ -579,6 +589,14 @@ Abschließend bemerken wir noch, dass die Verwaltung der Vorgängerabbildung~$\p
 	
 	Es kann gezeigt, werden dass $D_\pi$ ein gerichteter Baum mit Wurzel $s$ ist. Dieser Baum nennt man den \textbf{Breitensuchbaum} der Breitensuche. die  Kanten von $D_\pi$ werden die \textbf{Baumkanten} der Breitensuche genannt.
 \end{defn}
+
+\begin{prop}
+	Zu jeder Zeit der Ausführung der Breitensuche auf einem Digraphen $D=(V,A)$ ist $D_\pi$ ein gerichteter Baum. 
+\end{prop} 
+\begin{proof} 
+	Die Aussage kann durch Induktion über die Anzahl der Färbungen von weißen Knoten mit der grauen Farbe beweisen werden. 
+	Nach der ersten Färbung ist $D_\pi$ der Baum mit einem einzigen Knoten $s$. Nach jeder neuen Färbung von einem weißen Knoten $v$ wird ein Knoten $v$, der außerhalb von $D_\pi $ liegt $D_\pi$ hinzugefügt und es entsteht eine neue Kante $(u,v)$ zwischen einem Knoten $u$, der bereits in $D_\pi$ liegt, und dem neu hinzugefügten Knoten $v$. Man sieht, dass $D_\pi$ nach diesem Update ein gerichteter Baum bleibt. 
+\end{proof} 
 
 \begin{bem}Zur Berechnung der kürzesten Pfade kann die folgende Prozedur benutzt werden: 
 	\begin{algorithm}[H]
@@ -621,7 +639,7 @@ Sammeln wir die Daten zur Vorgängerabbildung und zu den Distanzen während der 
 Daraus ergibt sich der nachfolgende Breitensuchbaum, in dem der kürzeste $(3,7)$-Pfad in blau markiert ist:
 
 \begin{center} 
-\begin{tikzpicture}[line width=2,scale=1.5]
+\begin{tikzpicture}[line width=2,scale=1.2]
  \node[circle,draw=black] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -644,6 +662,15 @@ Daraus ergibt sich der nachfolgende Breitensuchbaum, in dem der kürzeste $(3,7)
 Beachten Sie, dass die Knoten $9$ und $10$ nicht im Breitensuchbaum auftreten, da diese vom Startknoten~$s=3$ aus nicht erreichbar sind.
 \end{bsp}
 
+\begin{bem} Mögliche Anwendungen der Breitensuche: 
+	\begin{itemize} 
+		\item Bestimmung der Zusammenhangskomponente des Knotens $s$ bei einem ungerichteten Graphen $G$. 
+		\item Umsetzung von Web-Crawlern, die das Umfeld einer Webseite $s$ bestimmen, als die Menge von Webseiten, die innerhalb von gegebener Anzahl von Klicks $k$ von $s$ aus erreichbar sind. 
+		\item Die Erstellung von Endspieldatenbanken im Schach basiert auf einem ähnlichen Prinzip wie die Breitensuche. 
+		\item Wie auch andere Arten der Graphdurchmusterung kann die Breitensuche als Hilfsmittel zur Lösung verschiedener Spiele (im Spieltheoretischen Sinn) benutzt werden. 
+	\end{itemize} 
+\end{bem} 
+
 \begin{bem}
-	Die Präsentation der Breitensuche hier basiert auf \cite{CLRS17}. 
+	Die hier gegebene Präsentation der Breitensuche basiert auf \cite{CLRS17}. 
 \end{bem} 

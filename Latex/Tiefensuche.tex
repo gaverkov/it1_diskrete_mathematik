@@ -13,7 +13,7 @@ Die Darstellung von $D$ als Adjazenzliste eine Durchmusterung mit der optimalen 
 \begin{bem} 
 	Die Tiefensuche ist ein ``reiselustiger'' Algorithmus zur Durchmusterung von Graphen. Wenn wir Knoten als Orte auffassen und $N[u]$ als die Umgebung des Ortes $u$, so können wir das Grundgerüst der Tiefensuche so beschreiben. Man will alle noch nicht gesehenen Orte erkunden, die man von einem gegebenen Ort $u$ aus erreichen kann. Man kann dazu das folgende Vorgehen benutzen: 
 	\begin{itemize} 
-			\item Man schaut sich die Umgebung von $u$ durch. 
+			\item Man sucht die Umgebung von $u$ durch. 
 			\item Sobald man einen  noch nicht besuchten Ort $v$ sieht, erkundet man alle noch nicht gesehene Orte, die man von $v$ aus erreichen kann. 
 	\end{itemize} 
 	Wie man sieht ist der Grundgedanke  der Tiefensuche rekursiv: man erkundet neue Orte von $u$ aus, indem man die Orte in der Nachbarschaft von $u$ erkundet. Die ``Reiselust'' dieser Durchmusterung besteht darin, dass sich die Erkundung der Orte \emph{sofort} einen neuen Ort versetzt, wenn dieser gefunden wird.  
@@ -24,8 +24,8 @@ Die Darstellung von $D$ als Adjazenzliste eine Durchmusterung mit der optimalen 
 	Die Umsetzung der oben beschriebenen Strategie basiert auf Farbattributen der Knoten, die man im Laufe der Durchmusterung sukzessiv zuerst als weiß ($=$ noch nicht gesehen), dann als  grau ($=$ gesehen aber noch nicht abgearbeitet) und schließlich als  schwarz ($=$ abgearbeitet) setzt. 
 \end{bem}
 
-\begin{bem}
-	Wenn die Suche entlang einer Kante verläuft, die in einen weißen Knoten endet, dann sagen wir, dass der entsprechende Knoten \textbf{entdeckt} wird.
+\begin{defn}
+	Wenn die Tiefensuche entlang einer Kante verläuft, die in einen weißen Knoten endet, dann sagen wir, dass der entsprechende Knoten \textbf{entdeckt} wird.
 
 Hier eine Zusammenfassung der Bedeutung der Farben der Knoten.  
 \begin{itemize}
@@ -37,13 +37,8 @@ Hier eine Zusammenfassung der Bedeutung der Farben der Knoten.
 Wird ein Knoten schwarz gefärbt, so sagen wir auch das er \textbf{abgearbeitet} wurde.
 
 Durch die Tiefensuche können verschiedene Aufgaben erledigt werden. Nicht alle diese Aufgaben benötigen alle drei Farbattributen der Knoten. Bei manchen Aufgaben reicht auch die Unterscheidung zwischen ``entdeckt'' (weiß) und ``nicht entdeckt'' (grau oder schwarz) aus. 
-\end{bem} 
+\end{defn} 
 
-\begin{bem}
-	Die \emph{Vorgängerabbildung} ist ein Array~$\pi$ mit $|V|$ Komponenten.
-	Durch $\pi[v]$ wird notiert von welchem Knoten aus der Knoten $v$ entdeckt wurde.
-	Zum Beginn der Tiefensuche setzt man $\pi[v]=\cc{nil}$ für alle Knoten $v \in V$.
-\end{bem} 
 
 \begin{bem} 
 	Nach diesen Vorbereitungen können wir nun die oben bereits diskutierte Vorgehensweise der Tiefensuche algorithmisch exakt umsetzen.	
@@ -98,7 +93,7 @@ Weiterhin ist $v$ vor dem Zeitpunkt $\cc{Grau}[v]$ weiß, während der Zeitpunkt
 \begin{algorithm}[H]
 	\caption{$\cc{Tiefensuche}(u)$}
 	\begin{algorithmic}[1]
-		\STATE $t := t + 1$ 
+		\STATE $t := t + 1$ $\quad$ \COMMENT{Die Uhr tickt vor jeder Färbung} 
 		\STATE $\cc{Grau}[u] := t$ $\quad$ \COMMENT{Der Knoten $u$ wurde gerade entdeckt}
 		\STATE $\cc{Farbe}[u]:=\cc{grau}$
 		\FOR{$v \in N[u]$}
@@ -107,7 +102,7 @@ Weiterhin ist $v$ vor dem Zeitpunkt $\cc{Grau}[v]$ weiß, während der Zeitpunkt
 		\STATE $\cc{Tiefensuche}(v)$
 		\ENDIF
 		\ENDFOR
-		\STATE $t := t + 1$ 
+		\STATE $t := t + 1$ $\quad$ \COMMENT{Die Uhr tickt vor jeder Färbung} 
 		\STATE\label{line:schwarzfaerbung-in-tiefensuche} $\cc{Schwarz}[u] := t$ $\quad$ \COMMENT{Der Knoten $u$ wurde gerade abgearbeitet}
 		\STATE $\cc{Farbe}[u]:=\cc{schwarz}$
 	\end{algorithmic}
@@ -119,7 +114,7 @@ Weiterhin ist $v$ vor dem Zeitpunkt $\cc{Grau}[v]$ weiß, während der Zeitpunkt
 Wir illustrieren die Tiefensuche am Digraphen
 
 \hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\begin{tikzpicture}[line width=2,scale=1.2]
  \node[circle,draw=black] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -147,8 +142,9 @@ Wir illustrieren die Tiefensuche am Digraphen
 Wir wählen als Startknoten den Knoten~$3$ und treffen ansonsten jede Wahl aufsteigend in der Reihenfolge der Knotenindizes.
 Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Digraphen gegeben, wobei die Knotenfarbe dem aktuellen Farbattribut entspricht und die bereits sondierten Kanten rot markiert sind:
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -176,8 +172,9 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -206,8 +203,8 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -236,8 +233,8 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -266,8 +263,8 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
 \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -296,8 +293,8 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -328,8 +325,8 @@ Die ersten sechs Zeitschritte sind durch die folgende Sequenz von gefärbten Dig
 
 Wir steigen zum Zeitpunkt $\cc{Schwarz}[8]=14$ mit der Illustration wieder ein:
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -358,8 +355,8 @@ Wir steigen zum Zeitpunkt $\cc{Schwarz}[8]=14$ mit der Illustration wieder ein:
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -388,8 +385,8 @@ Wir steigen zum Zeitpunkt $\cc{Schwarz}[8]=14$ mit der Illustration wieder ein:
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -420,8 +417,8 @@ Wir steigen zum Zeitpunkt $\cc{Schwarz}[8]=14$ mit der Illustration wieder ein:
 
 Nun muss ein neuer Knoten gewählt werden (Knoten $9$) um die Tiefensuche für den ganzen Digraphen zu beenden:
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -450,8 +447,8 @@ Nun muss ein neuer Knoten gewählt werden (Knoten $9$) um die Tiefensuche für d
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -480,8 +477,8 @@ Nun muss ein neuer Knoten gewählt werden (Knoten $9$) um die Tiefensuche für d
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -510,8 +507,8 @@ Nun muss ein neuer Knoten gewählt werden (Knoten $9$) um die Tiefensuche für d
 \end{tikzpicture}
 \hfill\,
 
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\condclearpage 
+\begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
 
@@ -596,16 +593,14 @@ Der Gesamtaufwand von $\cc{Vollständige-Tiefensuche}(D)$ ist somit $\Theta(|V|+
 %\end{proof}
 %
 
-\subsection{Eigenschaften der Tiefensuche}
-
 \begin{defn} 
-Die Vorgängerabbildung $\pi$ erzeugt den sogenannten \emph{Vorgängerteilgraphen} eines Digraphen $D=(V,A)$, der formal durch $D_\pi=(V,A_\pi)$ mit
+Die Vorgängerabbildung $\pi$ erzeugt den sogenannten \textbf{Vor\-gänger\-teil\-graphen} eines Digraphen $D=(V,A)$, der formal durch $D_\pi=(V,A_\pi)$ mit
 \[
 A_\pi = \left\{(\pi[v],v) : v \in V \text{ und } \pi[v] \neq \cc{nil}\right\}
 \]
 definiert ist.
-Für jede Tiefensuche ist der Vorgängerteilgraph ein Wald, und wird daher im Folgenden als \emph{Tiefensuchwald} bezeichnet.
-Er ist aus einem oder mehreren \emph{Tiefensuchbäumen} zusammengesetzt.
+Für jede Tiefensuche ist der Vorgängerteilgraph ein Wald, und wird daher im Folgenden als \textbf{Tiefensuchwald} bezeichnet.
+Er ist aus einem oder mehreren \textbf{Tiefensuchbäumen} zusammengesetzt.
 \end{defn} 
 
 \begin{bsp} 
@@ -613,7 +608,7 @@ In Beispiel~\ref{bsp:tiefensuche} ist die Vorgängerabbildung nach abgeschlossen
 Der zugehörige Tiefensuchwald ist also
 
 \begin{center} 
-\begin{tikzpicture}[line width=1.5,scale=1.5]
+\begin{tikzpicture}[line width=1.5,scale=1.2]
  \node[circle,draw=black] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -634,6 +629,44 @@ Der zugehörige Tiefensuchwald ist also
 \end{tikzpicture}
 \end{center} 
 \end{bsp} 
+
+
+\begin{thm} \label{thm:erreichbarkeit:ts} 
+	Sei $D=(V,A)$ Digraph, der durch eine Adjazenzliste gegeben ist. Sei $s \in V$. Dann gilt für die Tiefensuche auf $D$ mit dem Startknoten $s$:
+	\begin{enuma}
+		\item Die Laufzeit des Verfahrens ist $O(|A|+|V|)$.
+		\item Die Menge aller Knoten von $D$, die von $s$ aus durch einen Pfad erreichbar sind ist genau die Menge der Knoten, die während der Ausführung entdeckt werden. 
+		\item $D$ enthält genau dann einen von $s$ aus erreichbaren Zyklus, wenn während der Ausführung beim Sondieren einer der Kanten $(u,v)$ die Farbe von $v$ grau ist. 
+	\end{enuma} 
+\end{thm}
+\begin{proof}
+	Wir bezeichnen die Tiefensuche kurz als TS. 
+	
+	(a):  Während der Ausführung werden für Knoten folgende Operationen in dieser Reihenfolge ausgeführt: 
+	\begin{equation*}
+		\cc{weiss} 
+		\ \xrightarrow{\text{$TS(u)$ Start}} \ 
+		\cc{grau}
+		\ \xrightarrow{\text{Sondierung von $N[u]$}} \
+		\cc{schwarz} 
+		\ \xrightarrow{\text{$TS(u)$ Ende}} \ 
+	\end{equation*} 
+	
+		Jeder entdeckte Knoten ändert seine Farbe von weiß zu grau und anschließend zu schwarz. Da eine TS nur für einen weißen Knoten gestartet wird, wird die TS für jeden Knoten höchstens ein mal ausgeführt. Somit dauert die Bearbeitung von jedem Knoten (Farbenänderung, Aufruf der TS) $O(1)$ Zeiteinheiten. Eine Kante $(u,v)$ wird genau dann sondiert, wenn die TS für $u$ aufgerufen wird. Somit kann jede Kante höchstens ein mal sondiert werden. Das Sondieren jeder Kante beträgt dadurch höchstens $O(1)$ Zeiteinheiten. Der Gesamtaufwand der TS mit dem Startknoten $s$ ist somit $O(|A|+|V|)$. 
+	
+	\condclearpage 
+	
+	(b): Seien $u_1,\ldots,u_k$ alle Knoten, die während der Ausführung entdeckt werden und seien $u_1,\ldots,u_k$ in dieser Reihenfolge entdeckt. Dann ist $u_1$ von $s$ aus erreichbar, denn $u_1=s$. Die TS für einen Knoten $u_j$ mit $j > 1$ wird aus einer TS für einen Knoten $u_i$ aufgerufen, der im Moment des Aufrufs von $TS(u_j)$ bereits entdeckt ist. Man hat also $j< i$. Wenn $u_j$ von $s$ aus erreichbar ist, so ist auch $u_i$ von $s$ aus erreichbar, da $(u_i,u_j)$ eine Kante von $G$ ist. Somit folgt durch Induktion über $j$, das jeder Knoten $u_j$ von $s$ aus erreichbar ist. 
+	
+	\condclearpage 
+	
+	Umgekehrt zeigen wir nun, dass jeder Knoten $v \in V$, der von $s$ aus erreichbar ist, während der Ausführung entdeckt wird. Sei $(v_0,\ldots,v_k)$ ein Pfad von $s$ nach $v$. Wir zeigen, dass jeder Knoten $v_j$ dieses Pfades entdeckt wird. Für $v_0=s$ gilt die Aussage offensichtlich. Wird ein Knoten $v_j$ mit $j < k$ entdeckt, so entdeckt man den Knoten $v_{j+1}$ spätestens beim Sondieren der Kante $(v_j,v_{j+1})$ innerhalb der TS für $v_j$. Es kann als durch Induktion über $j$ gezeigt werden, dass alle $v_j$ und insbesondere auch $v_k=v$ entdeckt werden.
+	
+	\condclearpage 
+	
+	(c): Der Beweis von (c) ist analog zum Beweis von (b) und wird hier nicht angeführt. (Aufgabe)
+\end{proof}
+
 
 \begin{bem}
 Eine erste wichtige Eigenschaft der Tiefensuche ist der Zusammenhang von Entdeckungszeit und Abarbeitungszeit eines Knotens.
@@ -662,36 +695,32 @@ ablesen.
 Eine andere Möglichkeit diese Klammerstruktur auszudrücken ist im folgenden Satz festgehalten:
 \end{bsp} 
 
+\begin{defn}
+	Bzgl. einer vollständigen Tiefensuche auf $D=(V,A)$ mit Startknoten $s$ definieren die \textbf{Lebenszeitintervall} eines Knoten $v \in V$ als die Menge
+	\[
+			I_u:=\setcond{t \in \Z}{ \cc{Grau}[u] \le t \le \cc{Schwarz}[u]}. 
+	\]
+\end{defn} 
+
 \begin{thm}[Klammerungstheorem]
 \label{thm:klammerung}
-Bei der Tiefensuche auf einem Digraphen $D=(V,A)$ ist für jedes Paar von Knoten $u$ und $v$ genau eine der drei folgenden Bedingungen erfüllt:
+Bei der vollständigen Tiefensuche auf einem Digraphen $D=(V,A)$ ist für jedes Paar von Knoten $u$ und $v$ genau eine der drei folgenden Bedingungen erfüllt:
 \begin{enuma}
 
- \item Die Intervalle $\left[\cc{Grau}[u],\cc{Schwarz}[u]\right]$ und $[\cc{Grau}[v],\cc{Schwarz}[v]]$ sind disjunkt und weder $u$ noch $v$ ist im Tiefensuchwald ein Nachfahre des anderen.
+ \item $I_u \cap I_v = \emptyset$  und weder $u$ noch $v$ ist im Tiefensuchwald ein Nachfahre des anderen.
 
- \item Das Intervall $\left[\cc{Grau}[u],\cc{Schwarz}[u]\right]$ ist im Intervall $[\cc{Grau}[v],\cc{Schwarz}[v]]$ enthalten und $u$ ist im Tiefensuchwald ein Nachfahre von $v$.
+ \item $I_u \subseteq I_v$ und $u$ ist im Tiefensuchwald ein Nachfahre von $v$.
 
- \item Das Intervall $\left[\cc{Grau}[v],\cc{Schwarz}[v]\right]$ ist im Intervall $[\cc{Grau}[u],\cc{Schwarz}[u]]$ enthalten und $v$ ist im Tiefensuchwald ein Nachfahre von $u$.
+ \item $I_v \subseteq I_u$ und $v$ ist im Tiefensuchwald ein Nachfahre von $u$.
 
 \end{enuma}
 \end{thm}
-
 \begin{proof}
-Betrachten wir zunächst den Fall, dass $\cc{Grau}[u] < \cc{Grau}[v]$ ist.
-Wir müssen zwei Teilfälle unterscheiden:
-
-\emph{Teilfall 1} ($\cc{Grau}[v] < \cc{Schwarz}[u]$):
-Hier wurde also der Knoten~$v$ entdeckt als~$u$ noch grau war.
-Demzufolge ist~$v$ ein Nachfahre von~$u$.
-Da~$v$ später als~$u$ entdeckt wurde, sind weiterhin alle aus~$v$ austretenden Kanten sondiert und~$v$ ist abgearbeitet, bevor die Tiefensuche zu~$u$ zurückkehrt und diesen Knoten fertig abarbeitet.
-Das Intervall $\left[\cc{Grau}[v],\cc{Schwarz}[v]\right]$ ist damit vollständig im Intervall $[\cc{Grau}[u],\cc{Schwarz}[u]]$ enthalten und wir sind im Fall (c) des Theorems.
-
-\emph{Teilfall 2} ($\cc{Grau}[v] > \cc{Schwarz}[u]$):
-Da nach Definition für jeden Knoten $r \in V$ die Ungleichung $\cc{Grau}[r] < \cc{Schwarz}[r]$ gilt, sehen wir sofort, dass die Intervalle $\left[\cc{Grau}[u],\cc{Schwarz}[u]\right]$ und $[\cc{Grau}[v],\cc{Schwarz}[v]]$ disjunkt sind.
-Daher wurde auch keiner der beiden Knoten entdeckt, während der andere grau war, was nichts anderes heißt, als dass keiner der beiden Knoten Nachfahre des jeweils anderen ist.
-Wir sind also im Fall (a) des Theorems.
-
-Im Falle, dass $\cc{Grau}[u] > \cc{Grau}[v]$ ist, argumentieren wir vollkommen analog zu oben; wir müssen lediglich die Rollen von~$u$ und~$v$ vertauschen.
+	Die Aussage ist symmetrisch bzgl. $u$ und $v$. Wir  nehmen also ohne Beschränkung der Allgemeinheit an, dass während der Ausführung der vollständigen Tiefensuche der Knoten $u$ als erster entdeckt wurde. Ist die Tiefensuche für $v$ nach der Terminierung der Tiefensuche für $u$ aufgerufen worden, so gilt $I_u \cap I_v = \emptyset$. Ansonsten ist die Tiefensuche für $v$ vor der Terminierung der Tiefensuche für $u$ aufgerufen worden. Das bedeutet, dass der Knoten $v$ während der Ausführung von $u$ entdeckt worden ist. Der Aufruf von $TS(v)$ erfolgt also durch eine Folge der geschachtelten rekursiven Aufrufen 
+	\[
+		TS(u) \xrightarrow{} \cdots \xrightarrow{} TS(v) 
+	\] 
+	Somit terminiert $TS(v)$ vor $TS(u)$. Es gilt also $I_v \subseteq I_u$ ist $v$ ist Nachfahre von $u$. 
 \end{proof}
 
 \begin{bem}
@@ -714,21 +743,9 @@ Eine alternative Charakterisierung der Nachfahreneigenschaft in Tiefensuchwälde
 \label{thm:weisse-pfade-thm}
 Der Knoten $v$ ist in einem Tiefensuchwald eines Digraphen $D=(V,A)$ genau dann ein Nachfahre eines Knotens $u$, wenn es zum Zeitpunkt $\cc{Grau}[u]$, zu dem die Durchmusterung den Knoten~$u$ entdeckt hat, einen Pfad von $u$ nach $v$ gibt, der, bis auf den Knoten $u$, nur aus weißen Knoten besteht.
 \end{thm}
-
-\begin{proof}
-\glqq $\Longrightarrow$\grqq: Ist $v=u$, so enthält der Pfad von~$u$ nach~$v$ nur den grauen Knoten~$u$ und die Aussage des Theorems gilt.
-Ist $v$ ein echter Nachfahre von~$u$ im Tiefensuchwald, so gilt nach Korollar~\ref{cor:nachfahre-tiefenwald}, dass $\cc{Grau}[u] < \cc{Grau}[v]$.
-Der Knoten~$v$ ist somit zum Zeitpunkt $\cc{Grau}[u]$ weiß.
-Da~$v$ ein beliebiger Nachfolger von~$u$ ist, sind also alle Knoten auf dem einzigen Weg von $u$ nach $v$ im Tiefensuchwald weiß, mit Ausnahme vom Startknoten~$u$ selbst.
-
-\glqq $\Longleftarrow$\grqq: Zum Zwecke eines Widerspruches nehmen wir an, dass es zum Zeitpunkt $\cc{Grau}[u]$ einen Pfad im Tiefensuchwald von $u$ nach $v$ gibt, der bis auf den Startknoten~$u$ nur aus weißen Knoten besteht, \emph{aber}~$v$ kein Nachfahre des Knotens~$u$ ist.
-Sei weiterhin angenommen, dass jeder andere Knoten auf diesem Pfad von $u$ nach~$v$ ein Nachfahre von $u$ ist (andernfalls sei der letzte Nichtnachfahre mit~$v$ bezeichnet).
-Sei nun~$w$ der Vorgänger von~$v$ auf dem Pfad; und damit ein Nachfahre von~$u$.
-Nach Korollar~\ref{cor:nachfahre-tiefenwald} gilt nun $\cc{Schwarz}[w] \leq \cc{Schwarz}[u]$ (es könnte $w=u$ sein).
-Da~$v$ entdeckt wird nachdem~$u$ entdeckt wurde, aber bevor~$w$ abgearbeitet ist, gilt $\cc{Grau}[u] < \cc{Grau}[v] < \cc{Schwarz}[v] < \cc{Schwarz}[w] \leq \cc{Schwarz}[u]$.
-Damit ist also das Intervall $\left[\cc{Grau}[v],\cc{Schwarz}[v]\right]$ in $[\cc{Grau}[u],\cc{Schwarz}[u]]$ enthalten und nach Theorem~\ref{thm:klammerung} ist~$v$ ein Nachfahre von $u$ im Tiefensuchwald.
-Mit diesem Widerspruch endet der Beweis.
-\end{proof}
+\begin{proof} 
+Komplett analog zum Beweis von Theorem~\ref{thm:erreichbarkeit:ts}(b). 
+\end{proof} 
 
 
 \begin{bem} 
@@ -775,7 +792,7 @@ Wir schauen uns wiederum die Tiefensuche aus Beispiel~\ref{bsp:tiefensuche} an u
 Dabei sind Baumkanten schwarz, Rückwärtskanten rot, Vorwärtskanten blau und Querkanten grün markiert.
 
 \begin{center} 
-\begin{tikzpicture}[line width=2,scale=1.5]
+\begin{tikzpicture}[line width=2,scale=1.2]
  \node[circle,draw=black] (1) at (0,2) {$1$};
  \node[circle,draw=black] (2) at (0,0) {$2$};
  \node[circle,draw=black] (3) at (2,2) {$3$};
@@ -833,6 +850,39 @@ Falls nun die Durchmusterung die Kante zuerst in der Richtung von~$v$ nach~$u$ s
 \end{proof}
 
 
+\begin{bem}
+	Analog zur diskutierten Breitensuche kann man eine \emph{Tiefensuche} auch ohne Rekursion umsetzen.
+	Dies hat praktische Vorteile, weil der Programmstack nicht  belastet wird.
+	Dazu ersetzt man die Warteschlange $Q$ durch einen sogenannten \emph{Stack} (oder \emph{Stapel}). Es gibt mehre Möglichkeiten eine Umsetzung mit Stacks. 
+	
+	Hier eine ziemlich direkte Konvertierung der rekursiven Umsetzung. Wir gehen von einem zugrundeliegenden Stack $S$ aus. Durch $\cc{Top}(S)$ können wir auf das oberste Element des Stacks zugreifen, durch $\cc{Pop}(S)$ können wir das oberste Element entfernen und durch $\cc{Push}(S,u)$ ein neues Element $u$ auf den Stack legen. Die Elemente $N[u]$ indexieren wir mit Zahlen $0$ bis $\deg(u)-1$. Wir führen ein Array $\cc{i}$ ein, in dem durch $\cc{ind}[u]$ notiert wird, dass beim sondieren der Nachbarn von $u \in V$  der Knoten $v=N[u][\cc{ind}[u]]$ als  nächster dran ist. Ist $v= \deg(u)$, so hat man alle Nachbarn von $u$ sondiert. Wir setzen am Anfang $\cc{ind}[u]=0$ für alle $u \in V$, färben den Startknoten $s$ grau und legen $s$ auf $S$. Danach kann man folgendermaßen vorgehen: 
+	
+	
+	Danach kann man folgendermaßen vorgehen: 
+	
+	\begin{algorithm}[H]
+		\begin{algorithmic}[1]
+			\WHILE{$S$ nicht leer }
+			\STATE $u:= \cc{top}(S)$
+			\IF{$\cc{ind}[u] = \deg(u)$} 
+			\STATE $\cc{pop}(S)$ 
+			\STATE $\cc{Farbe}[u] := \cc{SCHWARZ}$
+			\ELSE
+			\STATE $v=N[u][\cc{ind}[u]]$
+			\STATE $\cc{ind}[u]:=\cc{ind}[u]+1$				
+			\IF{$\cc{Farbe}[v] = \cc{WEISS}$}
+			\STATE $\cc{Farbe}[v] = \cc{GRAU}$
+			\STATE $\cc{push}(S,v)$
+			\ENDIF 
+			\ENDIF 
+			\ENDWHILE  
+		\end{algorithmic}
+	\end{algorithm}
+	
+	Die weiteren Daten, die man im Rahmen der rekursiven Tiefensuche berechnen kann, kann man auch in der obigen iterativen Version an den entsprechenden Stellen berechnen. 
+\end{bem}
+
+
 
 
 \subsection{Anwendung I -- Topologisches Sortieren}
@@ -855,80 +905,30 @@ Als Konsequenz ergibt sich:
 Ein Digraph besitzt genau dann eine topologische Sortierung, wenn er azyklisch ist.
 \end{prop}
 
+\begin{bem}
+	Eine Anwendung des topologischen Sortierens ist \textbf{makefile}. Die Kanten des Diagraphen sind durch  die Paare target-prerequisite gegeben. Die targets sollen in einer topologisch sortierten Reihenfolge abgearbeitet werden. 
+\end{bem} 
+
+
 \begin{bem} 
 Das topologische Sortieren kann also als Methode verstanden werden, um zu testen ob es Zyklen im Eingabegraphen gibt.
 Eine andere Anwendung ist das Sequenzieren von Aufträgen (engl.~\emph{scheduling}).
 Zum Beispiel hilft die topologische Sortierung zu entscheiden, in welcher Reihenfolge einzelne Teilprojekte in einem großen Programmierprojekt kompiliert werden sollten.
 \end{bem} 
 
-\begin{bem} 
-Eine vollständige Tiefensuche wird zu einer Methode zum topologischen Sortieren, indem man während der Suche den jeweils nächsten abgearbeiteten Knoten notiert.
-Konkret wird das gewöhnlich mittels des Verwaltens einer einfach verketteten Liste implementiert:
 
-\begin{algorithm}[H]
-\caption{$\cc{Topologisches-Sortieren}(D)$}
- \begin{algorithmic}[1]
-  \STATE $L:=\cc{nil}$ $\quad$ \COMMENT{Eine leere einfach verkettete Liste anlegen}
-  \STATE $\cc{Vollständige-Tiefensuche}(D)$ mit folgender Modifikation:
-  \STATE $\qquad$ nach Zeile~\ref{line:schwarzfaerbung-in-tiefensuche} in $\cc{Tiefensuche}(u)$: Füge $u$ am Kopf von $L$ hinzu.
- \end{algorithmic}
-\end{algorithm}
-\end{bem} 
-
-\begin{bem}
-Der Algorithmus sortiert die Knoten von~$D$ also absteigend nach den Einträgen im Array $\cc{Schwarz}$.
-Wir könnten also auch erst eine vollständige Tiefensuche auf~$D$ ausführen, und dann das Array $\cc{Schwarz}$ absteigend sortieren um eine topologische Sortierung zu erhalten.
-Da nach unserem Wissensstand das Sortieren eines Arrays der Länge $|V|$ im schlechtesten Fall eine Laufzeit von $\Theta(|V|\log|V|)$ hat, würden wir auf diese Weise einen Algorithmus mit der Laufzeit $\Theta(|V|\log|V| + |A|)$ erhalten.
-Das Aufbauen der topologisch sortierten Liste während der Tiefensuche führt zu optimaler linearer Laufzeit:
-\end{bem} 
 
 \begin{thm}
-Ist ein azyklischer Digraph $D=(V,A)$ als Adjazenzliste gegeben, so benötigt der Algorithmus $\cc{Topologisches-Sortieren}(D)$ genau $\Theta(|V|+|A|)$ Zeiteinheiten.
+	Nach der Ausführung der vollständigen Tiefensuche auf einem azyklischen Digraphen $D=(V,A)$ ist die Anordnung der Knoten $u \in V$ in der absteigenden Reihenfolge nach $\cc{Schwarz}[u]$ eine topologische Sortierung. Diese Anordnung kann während der Tiefensuche in der Zeit $\Theta(|V|+|A|)$ berechnet werden. 
 \end{thm}
 
 \begin{proof}
-Nach Theorem~\ref{thm:laufzeit-tiefensuche} wissen wir, dass die vollständige Tiefensuche auf~$D$ die Laufzeit $\Theta(|V|+|A|)$ hat.
-Die topologische Sortierung erfolgt durch das Einfügen des Knotens~$v$ an den Kopf einer einfach verketteten Liste, sobald der Zeitstempel $\cc{Schwarz}[v]$ gesetzt wird.
-Ein solches Einfügen erfordert $\Theta(1)$ Zeiteinheiten.
-Da jeder Knoten genau einmal in die Liste eingefügt wird, ist der gesamte zusätzliche Aufwand $\Theta(|V|)$ und wir sind fertig.
+	Wir betrachten eine Kante $(u,v)$. Ist $v$ vor $u$ entdeckt worden, so wird während der Ausführung von $TS(u)$ der Knoten $u$ nicht entdeckt, denn sonst gäbe es einen $(v,u)$-Pfad und somit auch einen Zyklus in $D$. Das bedeutet, dass in diesem Fall $TS(v)$ vor $TS(u)$ terminiert. Es gilt also $\cc{Schwarz}[v] \le \cc{Schwarz}[u]$. 
+	
+	Wird $u$ vor $v$ entdeckt, so wird $v$ während der Ausführung von $TS(u)$ spätestens beim Sondieren von $(u,v)$ entdeckt. In diesem Fall terminiert $TS(v)$ ebenfalls vor $TS(u)$. Somit gilt auch in diesem Fall $\cc{Schwarz}[v] \le \cc{Schwarz}[u]$.
 \end{proof}
 
-\begin{bem} 
-Um die Korrektheit des topologischen Sortierens über die oben beschriebene Tiefensuche zu beweisen, benutzen wir unser Wissen über die Charakterisierung der Kanten.
-\end{bem} 
 
-\begin{lem}
-\label{lem:azyklisch-rueckwarts}
-Ein Digraph $D=(V,A)$ ist genau dann azyklisch, wenn eine Tiefensuche auf $D$ keine Rückwärtskanten produziert.
-\end{lem}
-
-\begin{proof}
-\glqq $\Longrightarrow$\grqq: Angenommen eine Tiefensuche auf~$D$ produziert eine Rückwärtskante $(u,v)$.
-Dann ist $v$ ein Vorfahre von $u$ im zugehörigen Tiefensuchwald.
-Somit enthält~$D$ einen Pfad von $v$ nach $u$, der zusammen mit der Kante $(u,v)$ einen Zyklus ergibt.
-
-\glqq $\Longleftarrow$\grqq: Nehmen wir hier zum Widerspruch an, dass~$D$ einen Zyklus $Z$ enthält.
-Sei~$v$ der erste Knoten, der im Zyklus $Z$ bei der Tiefensuche entdeckt wird, und sei $(u,v)$ die Kante von $Z$, die $v$ als Endknoten hat.
-Zum Zeitpunkt $\cc{Grau}[v]$ bilden die Knoten in $Z$ einen Pfad, der bis auf den Knoten~$v$ nur aus weißen Knoten besteht.
-Nach dem Theorem der weißen Pfade (Theorem~\ref{thm:weisse-pfade-thm}), ist dann $u$ Nachfahre von $v$ im Tiefensuchwald.
-Mit anderen Worten, $(u,v)$ ist eine Rückwärtskante.
-\end{proof}
-
-\begin{thm}
-Der Algorithmus $\cc{Topologisches-Sortieren}(D)$ erzeugt für jeden azyklischen Digraphen~$D=(V,A)$ eine korrekte topologische Sortierung.
-\end{thm}
-
-\begin{proof}
-Wie oben diskutiert, besteht das topologische Sortieren mittels der Tiefensuche lediglich darin, einmal den Algorithmus $\cc{Vollständige-Tiefensuche}(D)$ auszuführen und dann die Knoten in absteigender Reihenfolge nach Zeitpunkten der Abarbeitung ($=$ Schwarzfärbung) auszugeben.
-Wir müssen also zeigen, dass die Ungleichung $\cc{Schwarz}[v] < \cc{Schwarz}[u]$ für jede Kante $(u,v) \in A$ nach dem Abschluss der Tiefensuche gilt.
-
-Sei dazu $(u,v) \in A$ eine beliebige Kante in~$D$.
-Während $(u,v)$ sondiert wird, kann~$v$ nicht grau sein, da sonst~$v$ ein Vorfahre von~$u$ im Tiefensuchwald und damit $(u,v)$ eine Rückwärtskante wäre - im Widerspruch zur Zyklenfreiheit von~$D$ und Lemma~\ref{lem:azyklisch-rueckwarts}.
-Der Knoten~$v$ ist beim Sondieren von $(u,v)$ also entweder weiß oder schwarz.
-Falls~$v$ weiß ist, so wird er ein Nachfahre von~$u$ sein, und damit $\cc{Schwarz}[v] < \cc{Schwarz}[u]$ gelten.
-Ist~$v$ schwarz, so ist der Knoten bereits abgearbeitet und der Zeitstempel $\cc{Schwarz}[v]$ bereits gesetzt.
-Da bei der Sondierung von $(u,v)$ der Knoten~$u$ noch grau ist, wird in diesem Fall also auch $\cc{Schwarz}[v] < \cc{Schwarz}[u]$ gelten.
-\end{proof}
 
 
 \subsection{Anwendung II -- Starke Zusammenhangskomponenten}
@@ -943,7 +943,7 @@ Das heißt, die Knoten $u$ und $v$ sind vom jeweils anderen aus erreichbar.
 Die starken Zusammenhangskomponenten des Digraphen aus Beispiel~\ref{bsp:tiefensuche} bestehen aus den Knoten gleicher Farbe in folgender Abbildung:
 
 \hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\begin{tikzpicture}[line width=2,scale=1.2]
  \node[fill=blue,circle,draw] (1) at (0,2) {$1$};
  \node[fill=blue,circle,draw] (2) at (0,0) {$2$};
  \node[fill=red,circle,draw] (3) at (2,2) {$3$};
@@ -1027,7 +1027,7 @@ Der Komponentengraph~$D^K$ ensteht also aus~$D$ indem wir alle Kanten kontrahier
 Der Komponentengraph des Digraphen aus Beispiel~\ref{bsp:starke-zusammenhangskomponenten} in derselben Farbkodierung:
 
 \hfill
-\begin{tikzpicture}[line width=2,scale=1.5]
+\begin{tikzpicture}[line width=2,scale=1.2]
  \node[fill=blue,circle,draw] (1) at (1,2) {$\phantom{1}$};
 % \node[fill=blue,circle,draw] (2) at (0,0) {$2$};
 % \node[fill=red,circle,draw] (3) at (2,2) {$3$};
@@ -1143,38 +1143,7 @@ Damit wird kein Knoten außerhalb von~$K$ ein Nachfahre von~$u$ bei der Tiefensu
 Das heißt, dass die Knoten des Tiefensuchbaumes von~$D^T$, der von~$u$ ausgeht, eine starke Zusammenhangskomponente bilden, und der Induktionsschritt ist gezeigt.
 \end{proof}
 
-\begin{bem}
-	Analog zur diskutierten Breitensuche kann man eine \emph{Tiefensuche} auch ohne Rekursion umsetzen.
-	Dies hat praktische Vorteile, weil der Programmstack nicht  belastet wird.
-	Dazu ersetzt man die Warteschlange $Q$ durch einen sogenannten \emph{Stack} (oder \emph{Stapel}). Es gibt mehre Möglichkeiten eine Umsetzung mit Stacks. 
-	
-	Hier eine ziemlich direkte Konvertierung der rekursiven Umsetzung. Wir gehen von einem zugrundeliegenden Stack $S$ aus. Durch $\cc{Top}(S)$ können wir auf das oberste Element des Stacks zugreifen, durch $\cc{Pop}(S)$ können wir das oberste Element entfernen und durch $\cc{Push}(S,u)$ ein neues Element $u$ auf den Stack legen. Die Elemente $N[u]$ indexieren wir mit Zahlen $0$ bis $\deg(u)-1$. Wir führen ein Array $\cc{i}$ ein, in dem durch $\cc{ind}[u]$ notiert wird, dass beim sondieren der Nachbarn von $u \in V$  der Knoten $v=N[u][\cc{ind}[u]]$ als  nächster dran ist. Ist $v= \deg(u)$, so hat man alle Nachbarn von $u$ sondiert. Wir setzen am Anfang $\cc{ind}[u]=0$ für alle $u \in V$, färben den Startknoten $s$ grau und legen $s$ auf $S$. Danach kann man folgendermaßen vorgehen: 
-	
-
-	Danach kann man folgendermaßen vorgehen: 
-	
-\begin{algorithm}[H]
-	\begin{algorithmic}[1]
-		\WHILE{$S$ nicht leer }
-			\STATE $u:= \cc{top}(S)$
-			\IF{$\cc{ind}[u] = \deg(u)$} 
-				\STATE $\cc{pop}(S)$ 
-				\STATE $\cc{Farbe}[u] := \cc{SCHWARZ}$
-				\ELSE
-				\STATE $v=N[u][\cc{ind}[u]]$
-				\STATE $\cc{ind}[u]:=\cc{ind}[u]+1$				
-				\IF{$\cc{Farbe}[v] = \cc{WEISS}$}
-					\STATE $\cc{Farbe}[v] = \cc{GRAU}$
-					\STATE $\cc{push}(S,v)$
-				\ENDIF 
-				\ENDIF 
-		\ENDWHILE  
-	\end{algorithmic}
-\end{algorithm}
-	
-	Die weiteren Daten, die man im Rahmen der rekursiven Tiefensuche berechnen kann, kann man auch in der obigen iterativen Version an den entsprechenden Stellen berechnen. 
-\end{bem}
 
 \begin{bem}
-	Die Präsentation der Tiefensuche hier basiert auf  \cite{CLRS17}.
+	Die Präsentation der Tiefensuche basiert auf  \cite{CLRS17}.
 \end{bem} 
