@@ -1,0 +1,35 @@
+\section{Färbung} 
+
+\begin{defn}
+	Fur einen Graphen $ G = (V,E)$ und eine $k$-elementige Menge $C$ heißt eine Abbildung $ f : V\to C$ eine \textbf{$k$-Färbung} wenn $f(u) \ne f(v)$ für alle $\{u,v\} \in E$ gilt. 
+	
+	Das minimale $k$, für welches $G$ eine $k$-Färbung nennt man die \textbf{chromatische Zahl} von $G$ und bezeichnet diesen Wert als $\chi(G)$. 
+\end{defn} 
+
+\begin{prop}[Brute-Force-Färbung] \label{brute-force-faerbung}
+	Es gibt einen Algorithmus, der für einen (als Adjazenz- oder Kantenliste) gegebenen Graphen $G=(V,E)$ und ein $k \in \N$ in der Zeit $T$ mit $O(k^{|V|} \cdot |V| \cdot |E|)$ entscheidet, ob $G$ eine $k$-Färbung besitzt. 
+\end{prop} 
+\begin{proof} 
+	Sei $k \ge 2$, denn der Fall $k=1$ ist trivial. 
+	Es gibt $k^{|V|}$ Abbildungen $V \to \{0,\ldots,k-1\}$, die man alle algorithmisch aufzählen kann. Zur Aufzählung kann man solche Abbildung als Darstellungen der Zahlen aus $\{0,\ldots,k^{|V|} -1\}$ im Stellenwertsystem zur Basis $k$ auffassen und all diese Darstellungen von der Darstellung von $0$ beginnend durch das sukzessive Inkrementieren aufzählen. Eine Inkremtinierung benötigt $O(|V|)$ Elementaroperationen, sodass man beim Aufzählen auf Insgesamt $O(k^{|V|} |V|)$ Elementaroperationen kommt. Für jede Abbildung kann durch das Iterieren über alle Kanten überprüft werden, ob die Abbildung eine $k$-Färbung ist. 
+\end{proof} 
+
+
+\begin{bem}
+	Der Algorithmus aus Proposition~\ref{brute-force-faerbung} ist kein Polynomialzeit-Algorithmus: denn im Fall $k \ge 2$ hat die Laufzeit des Algorithmus die Ordnung mindestens $
+k^|V| \ge  2^{|V|}$. Das heißt, es ist kein effizienter Algorithmus. 
+	
+	Im Spezialfall $k=2$, gibt es aber einen effizienten Algorithmus.
+\end{bem} 
+
+\begin{prop}
+		Es gibt einen Algorithmus der für einen als Adjazenzliste gegebenen Graphen $G=(V,E)$ in der Zeit $\Theta(|V|+|E|)$, ob $G$ eine $2$-Färbung besitzt. 
+\end{prop} 
+\begin{proof}
+	Graphen mit $2$-Färbung nennt man auch bipartit. Ob ein Graph bipartit ist, kann mit Hilfe der Tiefensuche oder Breitesuche entschieden werden (Aufgabe). 
+\end{proof} 
+
+\begin{bem}
+	Es ist kein effizienter Test der $3$-Färbbarkeit bekannt. Man vermutet, es gibt keinen solchen Test. 
+	In der Theorie und Anwendungen gibt es Tausende von Rechenproblemen, die zur Entscheidung der $3$-Färbarkeit äquivalent sind, wobei man in diesem Zussammenhang die Äquivalenz in einem bestimmten genau definierbaren Sinn einführt. Das bedeutet: Die $3$-Färbbarkeit gehört zu den sogennanten $NP$-vollständigen Problemen. 
+\end{bem} 

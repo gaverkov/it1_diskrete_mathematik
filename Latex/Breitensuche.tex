@@ -169,7 +169,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\,
+\hfill\, $Q: \ \not 3 $
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -199,7 +199,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\,
+\hfill\, $Q: \ \not 3 1 $ 
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -230,7 +230,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\,
+\hfill\, $Q: \ \not 3 1 4$ 
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -261,7 +261,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\,
+\hfill\, $Q: \ \not 3 1 4 5$ 
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -292,7 +292,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\,
+\hfill\, $Q: \ \not 3 \not1 4 5 2$ 
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -323,7 +323,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\,
+\hfill\, $Q: \ \not 3 \not1 \not4 5 2$
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -355,7 +355,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\,
+\hfill\, $Q: \ \not 3 \not1 \not4 \not5 2 6$
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -386,7 +386,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\,
+\hfill\, $Q: \ \not 3 \not1 \not4 \not5 2 6 8$
 
 Da die Knoten~$9$ und~$10$ nicht vom Startknoten $s=3$ aus erreichbar sind, ist der Endzustand nach dem Abschluss von $\cc{Breitensuche}(3)$ der folgende:
 
@@ -418,7 +418,9 @@ Da die Knoten~$9$ und~$10$ nicht vom Startknoten $s=3$ aus erreichbar sind, ist 
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\,
+\hfill\, $Q: \ \not 3 \not1 \not4 \not5 \not2 \not6 \not8$
+
+Weitere Beispiele können mit \verb#bfs_demo.sage# generiert werden.
 \end{bsp}
 
 \begin{bem}
@@ -439,9 +441,8 @@ Der Aufwand für die Initialisierung $\cc{Breitensuche-initialisieren}(D,s)$ ist
 	\ \xrightarrow{\text{$u$ kommt in $Q$}} \ 
 	 \cc{grau}
 	 \  \xrightarrow{\text{$u$ verlässt $Q$}} \ 
-	 \text{Sondierung von $N[u]$}
-	 \ \xrightarrow{} \ 
-	 \cc{schwarz} 
+	 \ \xrightarrow{\text{Sondierung von $N[u]$}}
+	\ \cc{schwarz} 
 \end{equation*} 
 Der Aufwand pro Knoten, der entdeckt wird ist konstant: der Aufwand  besteht aus der Aufnahme in $Q$,  der Färbung von Weiß zu Grau und von Grau zu Schwarz. Der Aufwand pro Kante $(u,v)$, die sondiert wird, ist ebenfalls konstant: jede Kante $(u,v)$ wird höchstens ein mal sondiert, denn die Sondierung erfolgt nach der Entfernung von $u$ aus der Warteschlange. Nach der Entfernung von $u$ wird $u$ schwarz gefärbt und daher nicht mehr in $Q$ aufgenommen. 
 
@@ -616,7 +617,7 @@ Abschließend bemerken wir noch, dass die Verwaltung der Vorgängerabbildung~$\p
 	Ist $\pi$ die Vorgängerabbildung zur Breitensuche auf $G=(V,A)$ mit dem Startknoten $s$, so gibt die Prozedur $\cc{Pfad-Ausgeben}(v)$ folgende Algorithmus für jedes $v \in V$ mit $\delta(s,v)<\infty$ einen kürzesten $(s,v)$-Pfad aus. 
 \end{prop}
 \begin{proof} 
-Außerdem wissen wir, dass nach der Terminierung der Breitensuche $d[v]=\delta(s,v)$ für alle $v \in V$ gilt. Dass die Prozedur $\cc{Pfad-Ausgeben}(v)$ terminiert und einen kürzesten $(s,v)$-Pfad ausgibt kann durch Induktion über $\delta(s,v)$ gezeigt werden. ist $\delta(s,v)=0$ so ist $v=0$ und die Behauptung ist klar. Angenommen, die Behauptung gelte für alle $v \in V$ mit $\delta(s,v)=t-1$ für ein $t \in \N$. 
+ Dass die Prozedur $\cc{Pfad-Ausgeben}(v)$ terminiert und einen kürzesten $(s,v)$-Pfad ausgibt kann durch Induktion über $\delta(s,v)$ gezeigt werden. ist $\delta(s,v)=0$ so ist $v=0$ und die Behauptung ist klar. Angenommen, die Behauptung gelte für alle $v \in V$ mit $\delta(s,v)=t-1$ für ein $t \in \N$. 
 
 Wir betrachten ein $v \in V$ mit $\delta(s,v)$. 	In der Breitensuche setzt man  $\pi[v] := u$ gleichzeitig mit $d[v] = d[u]+1$ für $v \in N[u]$. Daher hat man $t = d[v] = d[\pi[u]] + 1 $, sodass $d[\pi[u]]=t-1$ gilt. Nach der Induktionsvoraussetzung  gibt $\cc{Pfad-Ausgeben}(s,\pi[v])$ den $(s,\pi[v])$-Pfad der Lange $\delta(s,\pi[u]) = d[\pi[u]]  = t-1$ aus. Also gibt $\cc{Pfad-Ausgeben}(v)$ den $(s,v)$-Pfad der Länge $t = d[v] = \delta(s,v)$ aus, was die Korrektheit und die Terminierung der Ausführung Prozedur $\cc{Pfad-Ausgeben}$  auf dem Knoten $v$ bestätigt. 
 \end{proof} 
@@ -662,14 +663,23 @@ Daraus ergibt sich der nachfolgende Breitensuchbaum, in dem der kürzeste $(3,7)
 Beachten Sie, dass die Knoten $9$ und $10$ nicht im Breitensuchbaum auftreten, da diese vom Startknoten~$s=3$ aus nicht erreichbar sind.
 \end{bsp}
 
-\begin{bem} Mögliche Anwendungen der Breitensuche: 
+\begin{bem} Einige Anwendungen der Breitensuche: 
 	\begin{itemize} 
 		\item Bestimmung der Zusammenhangskomponente des Knotens $s$ bei einem ungerichteten Graphen $G$. 
 		\item Umsetzung von Web-Crawlern, die das Umfeld einer Webseite $s$ bestimmen, als die Menge von Webseiten, die innerhalb von gegebener Anzahl von Klicks $k$ von $s$ aus erreichbar sind. 
-		\item Die Erstellung von Endspieldatenbanken im Schach basiert auf einem ähnlichen Prinzip wie die Breitensuche. 
+		\item Die Generierung von Endspieldatenbanken im Schach basiert im Wesentlichen auf der Breitensuche. Vgl. den Abschnitt Generating Tablebases in  \url{https://en.wikipedia.org/wiki/Endgame_tablebase}. 
 		\item Wie auch andere Arten der Graphdurchmusterung kann die Breitensuche als Hilfsmittel zur Lösung verschiedener Spiele (im Spieltheoretischen Sinn) benutzt werden. 
 	\end{itemize} 
 \end{bem} 
+
+\begin{aufg} 
+	Wie kann man auf der Basis der Breitensuche testen, ob ein gegebener Graph bipartit ist? 
+\end{aufg} 
+
+\begin{aufg}
+	Implementieren Sie die Breitensuche. Testen Sie die Laufzeit Ihrer Implementierung auf den Graphen den realen Straßennetzwerken, die in der 9th DIMACS Implementation Challenge benutzt wurden. Die Graphen sind unter 
+	\url{http://www.diag.uniroma1.it/challenge9/download.shtml}  verfügbar. Diese Graphen sind gewichtet: für den Test Ihrer Implementierung können Sie die Gewichte ignorieren. 
+\end{aufg} 
 
 \begin{bem}
 	Die hier gegebene Präsentation der Breitensuche basiert auf \cite{CLRS17}. 

@@ -1,3 +1,7 @@
+\section{Exkurs in Heap-basierte Prioritätsschlangen}
+
+IM AUFBAU  
+
 \section{Der Prim-Algorithmus}
 
 \begin{bem}
@@ -458,8 +462,7 @@ Diese Kante ist eine Kante mit aktuell kleinstem Gewicht, die den Knoten~$v$ mit
 \end{algorithmic}
 \end{algorithm}
 
-Es fällt auf, dass die Struktur des Prim-Algorithmus exakt dieselbe ist wie beim Dijkstra-Algorithmus aus dem vorigen Abschnitt.
-Die beiden Algorithmen unterscheiden sich darin, dass zum einen der Prim-Algorithmus einen beliebigen Startknoten~$s$ wählt, und zum anderen die Hilfsfunktion $\cc{Prim-Update}(u,v)$ zur Aktualisierung der Schlüsel für die Prioritätswarteschlange eine andere ist.
+Die Hilfsprozedur $\cc{Prim-Update}(u,v)$ ist wie folgt umgesetzt:
 
 \begin{algorithm}[H]
 	\caption{$\cc{Prim-Update}(u,v)$}
@@ -471,7 +474,7 @@ Die beiden Algorithmen unterscheiden sich darin, dass zum einen der Prim-Algorit
 	\end{algorithmic}
 \end{algorithm}
 
-Damit in dieser Hilfsprozedur der Test \glqq Ist $v \in Q$?\grqq\ schnell, das heißt, in konstanter Zeit, durchgeführt werden kann, verwalten wir ein Array, das für jeden Knoten $v \in V$ notiert, ob der Knoten aktuell in~$Q$ enthalten ist oder nicht. 
+Damit in dieser Hilfsprozedur der Test \glqq Ist $v \in Q$?\grqq\ schnell, das heißt, in konstanter Zeit, durchgeführt werden kann, verwalten wir ein Array, das für jeden Knoten $v \in V$ notiert, ob der Knoten aktuell in~$Q$ enthalten ist oder nicht. So ein Array entspricht dem Array mit Farbattributen in der Breiten- und der Tiefensuche. 
 \end{bem}
 
 \begin{aufg}
@@ -551,3 +554,7 @@ Die Korrektheit des Kruskal-Algorithmus ist etwas weniger direkt zu beweisen als
 \begin{bem}
 	Die Präsentation des  Primalgorithmus hier basiert auf  \cite{CLRS17}. 
 \end{bem} 
+
+
+
+

@@ -704,14 +704,16 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 	\begin{algorithm}[H]
 		\caption{$p:=\cc{Potenz}(a,n)$}
 		\begin{algorithmic}
-			\IF{$n=0$ \COMMENT{Abbruchbedingung} } 
+			\IF{$n=0$ \COMMENT{Terminierungsbedingung} } 
 			\STATE $p:=1$
+			\ELSIF{$n=1$ \COMMENT{Terminierungsbedingung} }
+			\STATE $p:=a$
 			\ELSIF{$n$ gerade} 
 			\STATE $q:=\cc{Potenz}(a,n/2)$ \COMMENT{$q$ setzt man gleich $a^{n/2}$} 
-			\STATE $p:= q^2$ \COMMENT{$p$ setzt man gleich $q^2 = (a^{n/2})^2 = a^n$} 
+			\STATE $p:= q \cdot q$ \quad \COMMENT{$p$ setzt man gleich $q^2 = (a^{n/2})^2 = a^n$} 
 			\ELSE
-			\STATE $q:=\cc{Potenz}(a,(n-1)/2)$ \COMMENT{$q$ setzt man gleich $a^{(n-1)/2}$}
-			\STATE $p:= a \cdot q^2$ \COMMENT{$p$ setzt man gleich $a \cdot q^2 = a \cdot (a^{(n-1)/2})^2 = a^n$}
+			\STATE $q:=\cc{Potenz}(a,(n-1)/2)$ \quad \COMMENT{$q$ setzt man gleich $a^{(n-1)/2}$}
+			\STATE $p:= a \cdot q \cdot q$ \quad \COMMENT{$p$ setzt man gleich $a \cdot q^2 = a \cdot (a^{(n-1)/2})^2 = a^n$}
 			\ENDIF
 		\end{algorithmic}
 	\end{algorithm}
@@ -727,6 +729,36 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 		\end{algorithmic}
 	\end{algorithm} 
 \end{bsp} 
+
+\begin{prop}
+	Die rekursive Prozedur $\cc{Potenz}(a,n)$ berechnet $a^n$ mit Hilfe von $\Theta(\log_2 n)$ Multiplikationen.
+\end{prop} 
+\begin{proof} 
+	Wir zeigen zuerst durch Induktion über $n$, dass $\cc{Potenz}(a,n)$ für jedes $n \in \N_0$ mit der Rückgabe $a^n$ terminiert. 
+	Diese Behauptung ist in den Fällen $n=0$ und $n=1$ klar. Angenommen, $n>1$ und es ist bereits verifiziert worden, dass $\cc{Potenz}(a,k)$ für jedes $k=0,\ldots,n-1$ mit der Rückgabe $a^k$ terminiert. Ist $n$ gerade, so ist $n/2$ ganze Zahl, die kleiner als $n$ ist, und es gilt $a^n = (a^{n/2})^2$. Nach der Induktionsvoraussetzung terminiert $\cc{Potenz}(a,n/2)$ mit der Rückgabe $a^{n/2}$, sodass $\cc{Potenz}(a,n)$ mit der Rückgabe $(a^{n/2})^2 = a^n$ terminiert. Ist $n$ ungerade, so ist $(n-1)/2$ ganze Zahl, die ebenfalls kleiner als $n$ ist, und es gilt $a^n = a \cdot (a^{(n-1)/2})^2$. Nach der Induktionsvoraussetzung terminiert $\cc{Potenz}(a,(n-1)/2)$ mit der Rückgabe $a^{(n-1)/2}$, sodass $\cc{Potenz}(a,n)$ mit der Rückgabe $a \cdot (a^{(n-1)/2})^2 = a^n$ terminiert. 
+	
+	Es bleibt zu zeigen, dass die Anzahl der Multiplikation, die in $\cc{Potenz}(a,n)$ benutzt wird die Ordnung $\Theta(\log_2 n)$ hat. Dafür zeigen wir durch Induktion über $n$, dass die Anzahl der Multiplikation $M(n)$ bei der Ausführung von $\cc{Potenz}(a,n)$ für jedes $n \in \N$ mit $n \ge 2$ 
+	die Bedingung
+	\[
+			 \frac{1}{2} \log_2 n \le M(n) \le  2 \log_2 n
+	\]
+	erfüllt. Für $n=2$ ist das klar: $\cc{Potenz}(a,2)$ multipliziert $a$ mit $q = \cc{Potenz}(a,1)$ und $\cc{Potenz}(a,1)$ macht keine Multiplikationen. Sei $n \ge 3$ und sei die Ungleichung $\log_2 k \le M(k) \le 2 \log_2 k$ für alle $k=1,\ldots,n-1$ verifiziert. Ist $n$ gerade, so haben wir $M(n) = M(n/2)+ 1$. Da $n/2 \in \{1,\ldots,n-1\}$ gilt, erhalten wir aus der Induktionsvoraussetzung einerseits
+	\[
+			M(n) = M(n/2) + 1 \ge 1 + \frac{1}{2} \log_2 (n/2) = \frac{1}{2} \log_2 n
+	\]
+	und andererseits 
+	\[
+		M(n) \le M(n/2) + 1 \le 1 + 2 \log_2 n/2 + 1 = -1 +  2 \log_2 n \le  2 \log_2 n. 
+	\]
+	Ist $n$ ungerade, so haben wir $M(n) = M((n-1)/2) + 2$. Da $(n-1)/2 \in \{1,\ldots,n-1\}$ gilt, erhalten wir aus der Induktionsvoraussetzung einerseits 
+	\[
+		M(n) = M((n-1)/2) + 2 \ge 2 + \frac{1}{2} \log_2 ((n-1)/2) \ge \frac{1}{2} \log_2 n
+	\]
+	und andererseits 
+	\[
+		M(n) = M((n-1)/2)+2 \le 2 + 2 \log_2 ((n-1)/2))  = 2 \log_2 (n-1) \le 2 \log_2 n. 
+	\]
+\end{proof} 
 
 
 \begin{bem}
@@ -745,8 +777,7 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 			\node(5) at (0,-1) {$\cc{Potenz}(a,5)$};
 			\node(2) at (0,-2) {$\cc{Potenz}(a,2)$};
 			\node(1) at (0,-3) {$\cc{Potenz}(a,1)$};
-			\node(0) at (0,-4) {$\cc{Potenz}(a,0)$};
-			\draw[<-] (0) edge (1) (1) edge  (2)  (2) edge  (5) (5) edge (10);
+			\draw[<-]  (1) edge  (2)  (2) edge  (5) (5) edge (10);
 		\end{tikzpicture}
 	\end{center} 
 	Rekursionsbäume mit Verzweigungen erhält man, wenn während der Ausführung einer rekursiven Prozedur mehr als ein rekursiver Aufruf stattfindet. 
@@ -760,6 +791,48 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 	
 	Auf meinem Computer führt der Aufruf von dive auf der Eingabe $0$ zum eine Stacküberlauf  in der Rekursionstiefe $995$. Die maximale Rekursionstiefe kann oft manuell erhöht werden, und es gibt auch Sprachen, die in gewissen Situationen die rekursiven Prozeduren in nicht-rekursiven Maschinencode übersetzen können. Generell gilt aber: wenn man eine rekursive Prozedur mit einer hohen Rekursionstiefe hat, soll man sich Gedanken darüber machen, wie man diese Prozedur in eine nicht-rekursiv umsetzen könnte. Sehr oft kann man dabei seinen eigenen Stapel anlegen. 
 \end{bem} 
+
+\begin{bsp}[Türme von Hanoi] 
+	Gegeben sind drei Stäbe: Startstab, Hilfsstab und Zielstab. Auf dem Startstab sind $n$ Scheiben der Größen $1$ bis $n$ aufgestapelt, so dass die Scheiben von oben nach unten betrachtet nach der Größe steigend sortiert sind. Die Rechenaufgabe besteht darin, eine Folge von Schritten zu bestimmen, mit denen man alle $n$ Scheiben vom Startstab auf den Zielstab derart versetzt, dass in jedem Schritt die Scheiben von jedem der drei Stäbe sortiert sind (von oben nach unten betrachtet aufsteigend nach der Größe). 
+	
+	Eine rekursive Lösung dieser Aufgabe sieht so aus: das Ziel ist $n$ Scheiben vom Start $s$ nach Ziel $z$ mit Hilfe von $h$ als Hilfsstab zu versetzen. Wir versetzen die $n-1$ Scheiben vom Start- auf den Hilfsstab, indem wir das Zielstab als Hilfsstab benutzen. Danach wird die größte Scheibe verfügbar: sie kann auf den Zielstab versetzt werden. Danach ist der Startstab frei und kann bei der Versetzung der $n-1$ Scheiben vom Hilfs- auf den Zielstab als Hilfsstab benutzt werden. 
+	
+	\begin{algorithm}[H]
+	\caption{$\cc{Hanoi-Schritte}(n,s,h,z)$}
+	\begin{algorithmic}
+		\IF{$n=1$ \COMMENT{Terminierungsbedingung} } 
+		\PRINT von $s$ nach $z$ 
+		\ELSE
+		\STATE $\cc{Hanoi-Schritte}(n-1,s,z,h)$ \COMMENT{alle bis auf die größte Scheibe auf $h$}
+		\STATE \COMMENT{Wir verschieben die oberste Scheibe endgültig:} 
+		\PRINT von $s$ nach $z$ 
+		\STATE  $\cc{Hanoi-Schritte}(n-1,h,s,z)$ \COMMENT{die restlichen $n-1$ Scheiben auf $z$} 
+		\ENDIF 
+	\end{algorithmic}
+\end{algorithm}
+	Der Rekursionsbaum für $n=3$ ist wie folgt: 
+\begin{center} 
+	\begin{tikzpicture}[line width=1.2,scale=1.5]
+		\node (root) at (0,0) {$\cc{HS}(3)$};
+		\node (L) at (-3,-1) {$\cc{HS}(2)$};
+		\node (R) at (3,-1) {$\cc{HS}(2)$};
+		\node (LL) at (-4,-2)  {$\cc{HS}(1)$};
+		\node (LR) at (-2,-2)  {$\cc{HS}(1)$};
+		\node (RL) at (2,-2)  {$\cc{HS}(1)$};
+		\node (RR) at (4,-2)  {$\cc{HS}(1)$};
+		\draw[->]  (root) edge  (L) (root) edge (R) (L) edge (LR) (L) edge (LL) (R) edge (RR) (R) edge (RL);
+	\end{tikzpicture}
+\end{center} 
+
+	Hierbei steht $\cc{HS}(k)$ für $\cc{Hanoi-Schritte}(k, s,h,z)$ mit irgendeiner Wahl von $s,h,z$. 
+	
+	Hier Umsetzung in Python mit der Verwendung von Iteratoren: 
+\lstinputlisting{Code/hanoi.py}
+
+	Die Demo-Datei für $4$ Türme: \scriptsize{ 
+	\url{https://de.wikipedia.org/wiki/T%C3%BCrme_von_Hanoi#/media/Datei:Tower_of_Hanoi_4.gif} } 
+
+\end{bsp} 
 
 
 \section{Random Access Machine}
