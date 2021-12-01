@@ -667,10 +667,16 @@ Beachten Sie, dass die Knoten $9$ und $10$ nicht im Breitensuchbaum auftreten, d
 	\begin{itemize} 
 		\item Bestimmung der Zusammenhangskomponente des Knotens $s$ bei einem ungerichteten Graphen $G$. 
 		\item Umsetzung von Web-Crawlern, die das Umfeld einer Webseite $s$ bestimmen, als die Menge von Webseiten, die innerhalb von gegebener Anzahl von Klicks $k$ von $s$ aus erreichbar sind. 
-		\item Die Generierung von Endspieldatenbanken im Schach basiert im Wesentlichen auf der Breitensuche. Vgl. den Abschnitt Generating Tablebases in  \url{https://en.wikipedia.org/wiki/Endgame_tablebase}. 
-		\item Wie auch andere Arten der Graphdurchmusterung kann die Breitensuche als Hilfsmittel zur Lösung verschiedener Spiele (im Spieltheoretischen Sinn) benutzt werden. 
+		\item Bei verschiedenen Arten von Spielen lässt sich die Frage stelle: kann man den Gewinn von einer gegebenen Position aus erzwingen und ggf. wie? Dafür benutzt man etwa im Schach die sogenannten Endspieldatenbanken. 
+		Die Generierung von Endspieldatenbanken basiert im Wesentlichen auf der Breitensuche. Vgl. den Abschnitt Generating Tablebases in  \url{https://en.wikipedia.org/wiki/Endgame_tablebase}. Endspieldatenbanken kann man für verschiedene Spiele generieren (Treblecross, Hex, Go, Nim usw.), die Anzahl der Positionen ist aber ein mögliches praktisches Hindernis, da der Graph der Endspiele, den man kann erzeugt, potenziell extrem groß sein kann.   
 	\end{itemize} 
 \end{bem} 
+
+\begin{aufg}\ Hier der Graph des Spiels Nim für die Anfangspositionen $(2,2,2)$. Es gibt zwei Startpositionen (für den Fall, dass $A$ beginnt und für den Fall, dass $B$ beginnt). Die Gewinnstrategie für dieses Spiel ist zwar bekannt, man kann den Graphen trotzdem als Illustration zur Lösung der Spiele mit Hilfe von (End)spieldatenbanken benutzen. Berechnen Sie mit Hilfe des Graphen alle Positionen, von denen $A$ (bzw. $B$ ) den Sieg erzwingen kann. Bei den Positionen, die mit $a$ bzw. $b$ marikiert sind, ist $A$ bzw. $B$ dran. Bei Standard-Nim ist die Endopisition $b000$ der Sieg für $A$ und $a000$ der Sieg für $B$ (bei Mis\'ere-Nim ist das genau umgekehrt). 
+\begin{center}
+			\includegraphics[width=0.4\textwidth]{Code/nim_222.pdf}
+	\end{center} 
+\end{aufg}
 
 \begin{aufg} 
 	Wie kann man auf der Basis der Breitensuche testen, ob ein gegebener Graph bipartit ist? 
