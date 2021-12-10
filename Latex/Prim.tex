@@ -1,8 +1,26 @@
-\section{Exkurs in Heap-basierte Prioritätsschlangen}
-
-IM AUFBAU  
 
 \section{Der Prim-Algorithmus}
+
+\begin{defn}
+	Seien $X$ und $K$ Mengen. 
+	Wir definieren die \textbf{Prioritätsschlange} bzgl. $X$ und $K$ als eine Datenstruktur zur Speicherung von Multimengen der Wert-Schlüssel-Paare $(x,k)$ mit $x \in X$ und $k \in K$, welche die folgende Schnittstelle zur Bearbeitung der gespeicherten Multimenge zur Verfügung stellt: 
+	\begin{enuma}
+			\item Initialisierung: Erzeugung einer leeren Prioritätschlange $S$ zur Speicherung von höchstens $n \in \N$ Elementen.
+			\item Aufnahme eines neuen Wert-Schlüssel Paares $(x,k)$ in $S$. 
+			\item Entfernung und Rückgabe eines Paares $(x,k)$ für, welches der Schlüssel $k$ innerhalb von $S$ minimal ist. 
+			\item Änderung des Schlüssels für ein Paar $(x,k)$. (Die Änderung ist eine redundante Operation, die der Enfernung von $x$ und der Aufnahme von $y$ entspricht.) 
+	\end{enuma}  
+	Hierbei wird vorausgesetzt, dass der Schlüssel $k$ aus einer zugrundeliegenden Totalgeordentenmenge $(K,\le)$ gewählt wird, sodass man Schlüssel $k,k'$ mit Hilfe von $k \le k'$ vergleichen kann. (In vielen praktischen Situationen reicht es als $(K,\le)$ die geordnete Menge $(\Z,\le)$ der ganzen Zahlen zu wählen.)
+\end{defn} 
+
+
+\begin{bem}
+	Bei einer direkten/naiven Umsetzung der Prioritätsschlangen auf der Basis von Arrays beträgt der Aufwand zur Aufname eines Elements $\Theta(1)$ Elementaroperationen, während man für die Entfernung von eines Elements im Worst-Case $\Theta(n)$ Elementaroperation benötigt. Wenn man also $n$ Elemente bei einer solchen Umsetzung in die Schlange hinzufügt und dann all diese Elemente wieder entfernt, so hat man im Worst-Case den Gesamtaufwand von $\Theta(n^2)$ Elementaroperation bei einem solchen Ablauf.
+\end{bem} 
+
+\begin{bem}
+	Mit Hilfe von sogenannten Heaps lässt sich die Prioritätsschlange so umsetzen, dass für die Durchführung von jeder Grundoperationen nur $O(\log n)$ Elementaroperationen benötigt. Mehr dazu im Modul ``Algorithmieren und Programmieren''. Wir nennen solche Prioritätsschlangen \textbf{Heap-basiert}. 
+\end{bem} 
 
 \begin{bem}
 In diesem Abschnitt sei $G=(V,E,w)$, mit Gewichtsfunktion $w : E \to \R$, stets ein gewichteter aber ungerichteter Graph, der weiterhin als \emph{zusammenhängend} angenommen wird.

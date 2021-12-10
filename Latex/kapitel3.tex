@@ -1,6 +1,5 @@
 \chapter{Algorithmische und Programmiergrundlagen}
 
-\section{Berechnungen in der Theorie und Praxis} 
 
 \begin{bem} 
 Viel mehr zum Thema dieses Kapitels findet man im Kurs Entwicklung von Softwaresystemen, vgl. auch das umfangreiche Buch \cite{GS11}. 
@@ -11,9 +10,9 @@ Viel mehr zum Thema dieses Kapitels findet man im Kurs Entwicklung von Softwares
 			\begin{tabular}{l|l} 
 				Algorithmische Theorie& Reale Berechnungen 
 				\\ \hline\hline 
-				Rechenmodell  & Hardware 
+				Rechenmodell (Rechner) & Hardware 
 				\\  & Betriebsysteme 
-				\\  Rechenmodell & reale Programmiersprache 
+				\\  Rechenmodell (Algorithmus) & reale Programmiersprache 
 				\\ \hline Algorithmen und deren Analyse & Umsetzung von Algorithmen
 				\\ \hline Klassifikation von Rechenproblemen, & Analyse algorithmischer 
 				\\ etwa nach dem Schwierigkeitsgrad  & Fragestellungen aus der Praxis 
@@ -22,7 +21,9 @@ Viel mehr zum Thema dieses Kapitels findet man im Kurs Entwicklung von Softwares
 	Im Prinzip ist es möglich -- aber nicht unbedingt sinnvoll -- die theoretischen Aspekte komplett getrennt von der Praxis zu behandeln, denn Theorie ist für die Praxis entwickelt. Um die Theorie sinnvoll einsetzen zu können, braucht man auch praktisches Wissen. 
 \end{bem} 
 
-\section{Kodierung mit Strings} 
+\section{Darstellung von Daten in der Theorie und Praxis} 
+
+\subsection{Kodierung mit Strings} 
 
 \begin{defn}
 Wir sagen, dass wir die Elemente der  Menge $X$ mit Hilfe der Elemente der Menge $Y$ \textbf{kodieren}, wenn wir eine  injektive Abbildung $c : X \to Y$ festlegen. Wir nennen dann $c$ eine \textbf{Kodierung} von $X$ mit $Y$ und $y=c(x)$ die \textbf{Kodierung} von $x$ als $y$ bzgl. $c$.  
@@ -125,7 +126,7 @@ Die Konstruktion im Beweis von \eqref{kod:paare} direkt vom Fall $n=2$ auf ein a
 \end{bsp} 
 
 
-\section{Stellenwertsysteme: Darstellung von Zahlen}
+\subsection{Stellenwertsysteme: Darstellung von Zahlen}
 
 \begin{thm}[Darstellung natürlicher Zahlen in einem Stellenwertsystem] \label{thm:stellenwert}
 	Sei $b \in \Z_{\ge 2}$. Dann besitzt jedes $z \in \N$ eine eindeutige Darstellung als 
@@ -334,65 +335,9 @@ einführen kann. Mit diesen Verknüpfungen ist $\Z /  m$ ein kommutativen Ring m
 \end{bsp}
 
 
+\section{Programmieren} 
 
-\section{Rechenprobleme}
-\label{sect:rechenprobleme}
-
-\begin{defn}
-	Wir fixieren die \textbf{Standard-Kodierungen} durch Bit-Strings für Mengen $\Z, \Q$ sowie $\Z^n$ und $\Q^n$ mit $n \in \N$ wie folgt: 
-	\begin{itemize}
-			\item Für $z \in \Z$ ist die Standard-Kodierung die Darstellung von $z$ im Binärsystem. Diese Kodierung hat Größe $\Theta(\log_2 (|z|+1)$. 
-			\item Jedes $q \in \Q$ kann eindeutig als $q = a/b$ mit $a \in \Z$ und $b \in \N$ fixiert werden. Danach wird das Paar $(a,b) \in \Z \times \N$ mit der Verwendung der Standardkodierungen von $a$ und $b$ kodiert (vgl. dazu den Beweis der Proposition~\eqref{kod:paare} über das Kodieren von Paaren). 
-			\item $\Z^n$ und $\Q^n$ wird in Anlehnung an die oben festgelegten Stadardkodierungen von $\Z$ und $\Q$ kodiert. 
-	\end{itemize} 
-	Für $x$ aus einer dieser Mengen ($\Z,\Q, \Z^n$ oder $\Q^n$) bezeichnen wir als $\enc{x} \in \{0,1\}^\ast$ die Standardkodierung von $x$ und als $\encl{x}$ die Länge dieser Kodierung. 
-\end{defn} 
-
-\begin{defn}
-	Ein Rechenproblem ist eine binäre Relation auf der Menge der Bit-Strings $\{0,1\}^\ast$. Mit anderen Worten ist ein Rechenproblem eine Menge 
-	\[
-		\Pi \subseteq \{0,1\}^\ast \times \{0,1\}^\ast.
-	\]
-	Die Bedeutung von $(x,y) \in \Pi$ ist dabei: $y$ ist eine mögliche Rückgabe für die Eingabe $x$. Somit ist ein Rechenproblem eine Eingabe-Rückgabe-Relation. Ein Rechenproblem $\Pi$ algorithmisch zu lösen heißt es, einen Algorithmus zu finden, der für jede Eingabe $x$ entscheidet, ob ein $y$ mit $(x,y) \in \Pi$ existiert und ggf. ein solches $y$ berechnet. 
-\end{defn} 
-
-\begin{defn}
-	Die Berechnung einer Funktion $f : \{0,1\}^\ast \to \{0,1\}^\ast$ ist ein Spezialfall eines Rechenproblems, bei dem man zu jeder Eingabe $x$ eine Eindeutige Rückgabe $f(x)$ hat. 
-\end{defn} 
-
-\begin{defn}
-	Eine Teilmenge $L \subseteq \{0,1\}^\ast$ nennt man Sprache. Eine Sprache algorithmisch zu entscheiden, heißt es einen Algorithmus zu finden, der für jedes $x \in \{0,1\}^\ast$ entscheidet, ob $x$ zu $L$ gehört oder nicht. Die Entscheidung der Sprache $L$ kann als die Berechnung der Funktion $f $ mit 
-	\[
-		f(x) := \begin{cases}
-				1 & \text{für} \ x \in L, 
-				\\ 0 & \text{für} \ x \not\in L.
-			\end{cases} 
-	\]
-	formuliert werden. Die Rechenprobleme, die durch eine Sprache definiert werden, nennt man Entscheidungsprobleme. Es handelt sich dabei, um Probleme bei denen man nur zwei mögliche Rückgabewerte hat (ja/nein bzw. wahr/falsch bzw. 1/0). 
-\end{defn}
-
-\begin{bem}
-		Die vorigen drei Definitionen werden wir auch mit anderen Mengen an der Stelle von $\{0,1\}^\ast$ benutzen, unter der Voraussetzung, dass für diese Mengen eine Kodierung mit Bit-Strings festgelegt ist:
-		\begin{itemize}
-				\item Ein Rechenproblem ist eine Eingabe-Rückgabe-Relation $\Pi \subseteq  X \times Y$ für die Menge $X$ aller möglichen Eingaben (mit einer festgelegten Kodierung der Eingabe) und die Menge $Y$ aller möglichen Rückgaben (mit einer festgelegten Kodierung der Rückgabe). 
-				\item Analog kann das Problem der algorithmischen Berechnung einer Abbildung $f : X \to Y$ beschrieben werden, sobald Kodierungen für $X$ und $Y$ festgelegt sind. 
-				\item Entscheidungsprobleme entsprechen der algorithmischen Berechnung der Prädikate $P : X \to \{\false,\true\}$. 
-		\end{itemize} 
-\end{bem} 
-
-\begin{bsp}\ 
-	\begin{itemize} 
-		\item Das Problem
-		\[
-		\setcond{ (a,p) \in \N \times \Z_{\ge 2} }{p \ \text{ist Primfaktor von} \ a}
-		\]
-		kann mit Worten folgendermaßen formuliert werden: entscheide, für ein gegebenes $a \in \N$, ob $a$ einen Primfaktor $p \in \Z_{\ge 2}$ besitzt und berechne ggf. einen solchen Faktor. 
-		\item Die Berechnung von $f : \Z \times \N_0 \to \N$ mit $f(a,k):= a^k$ kann mit Worten so formulieren, für gegebene $a \in \Z,k \in \N$ berechne die $k$-te Potenz von $a$. 
-		\item Das algorithmische  Problem zur Sprache der (Bit-Kodierungen von) Primzahlen ist zu entscheiden, ob die Eingabe (die Bit-Kodierung einer) Primzahl ist. Mit Worten: entscheide, ob eine gegebene Zahl $z \in \N$ eine Primzahl ist. 
-	\end{itemize} 
-\end{bsp} 
-
-\section{Variablen, Zuweisungen und Kontrollstrukturen}
+\subsection{Variablen, Zuweisungen und Kontrollstrukturen}
 
 \begin{bem} 
 Zur Beschreibung von Algorithmen unabhängig von einer konkreten Programmiersprache gibt es unter anderem folgende Möglichkeiten: 
@@ -554,7 +499,7 @@ Im Pseudocode nutzen wir hier das Symbol $\triangleright$ für Kommentare, die d
 \end{bem} 
 
 
-\section{Prozeduren und Arten der Parameterübergabe}
+\subsection{Prozeduren und Arten der Parameterübergabe}
 \label{sect:prozeduren}
 
 \begin{defn}
@@ -620,7 +565,7 @@ Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, mü
 \end{bem}
 
 
-\section{Datentypen und Datenstrukturen}
+\subsection{Datentypen und Datenstrukturen}
 \label{sect:datenstrukturen}
 
 \begin{defn}
@@ -692,7 +637,7 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 	\end{itemize} 
 \end{aufg} 
 
-\section{Rekursion}
+\subsection{Rekursion}
 
 
 \begin{defn}
@@ -834,8 +779,9 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 
 \end{bsp} 
 
+\section{Algorithmen, Rechenprobleme und Komplexität}
 
-\section{Random Access Machine}
+\subsection{Random Access Machine}
 \label{sect:RAM}
 
 \begin{bem} 
@@ -853,7 +799,7 @@ Als \textbf{Grundoperationen} für unsere RAM erlauben wir:
 	\item Multiplikation einer ganzzahligen Variablen mit einer Konstanten
 	\item Ganzzahlige Division einer ganzzahligen Variablen durch eine Konstante
 	\item Zugriff zu Speicherzellen über einen Index
-	\item Vergleichsoperationen $<$, $\le$, $=$, $\ge$, $>$ 
+	\item Vergleichsoperationen $<$, $\le$, $=$, $\ge$, $>$ für ganze Zahlen
 	\item Kontrollstrukturen if-then-else, while, for 
 \end{itemize}
 
@@ -877,25 +823,106 @@ Wir lassen die Multiplikation von zwei ganzzahligen Variablen in unserem Modell 
 Dieser Algorithmus würde also $2^{2^n}$ in der Zeit $O(n)$ berechnen. Die Zahl $2^{2^n}$ hat allerdings $2^n+1$ Binärstellen. Wir würden also eine Zahl exponentieller Bit-Größe in linearer Zeit berechnen, was wir als unrealistisch ansehen. 
 \end{bem}
 
-\section{Polynomialzeit-Berechenbarkeit} 
 
+\subsection{Rechenprobleme und Sprachen}
+\label{sect:rechenprobleme}
 
+\begin{defn}
+	Wir fixieren die \textbf{Standard-Kodierungen} durch Bit-Strings für Mengen $\Z, \Q$ sowie $\Z^n$ und $\Q^n$ mit $n \in \N$ wie folgt: 
+	\begin{itemize}
+		\item Für $z \in \Z$ ist die Standard-Kodierung die Darstellung von $z$ im Binärsystem. Diese Kodierung hat Größe $\Theta(\log_2 (|z|+1)$. 
+		\item Jedes $q \in \Q$ kann eindeutig als $q = a/b$ mit $a \in \Z$ und $b \in \N$ fixiert werden. Danach wird das Paar $(a,b) \in \Z \times \N$ mit der Verwendung der Standardkodierungen von $a$ und $b$ kodiert (vgl. dazu den Beweis der Proposition~\eqref{kod:paare} über das Kodieren von Paaren). 
+		\item $\Z^n$ und $\Q^n$ wird in Anlehnung an die oben festgelegten Stadardkodierungen von $\Z$ und $\Q$ kodiert. 
+	\end{itemize} 
+	Für $x$ aus einer dieser Mengen ($\Z,\Q, \Z^n$ oder $\Q^n$) bezeichnen wir als $\enc{x} \in \{0,1\}^\ast$ die Standardkodierung von $x$ und als $\encl{x}$ die Länge dieser Kodierung. 
+\end{defn} 
+
+\begin{defn}
+	Ein Rechenproblem ist eine binäre Relation auf der Menge der Bit-Strings $\{0,1\}^\ast$. Mit anderen Worten ist ein Rechenproblem eine Menge 
+	\[
+	\Pi \subseteq \{0,1\}^\ast \times \{0,1\}^\ast.
+	\]
+	Die Bedeutung von $(x,y) \in \Pi$ ist dabei: $y$ ist eine mögliche Rückgabe für die Eingabe $x$. Somit ist ein Rechenproblem eine Eingabe-Rückgabe-Relation. Ein Rechenproblem $\Pi$ algorithmisch zu lösen heißt es, einen Algorithmus zu finden, der für jede Eingabe $x$ entscheidet, ob ein $y$ mit $(x,y) \in \Pi$ existiert und ggf. ein solches $y$ berechnet. 
+\end{defn} 
+
+\begin{defn}
+	Die Berechnung einer Funktion $f : \{0,1\}^\ast \to \{0,1\}^\ast$ ist ein Spezialfall eines Rechenproblems, bei dem man zu jeder Eingabe $x$ eine Eindeutige Rückgabe $f(x)$ hat. 
+\end{defn} 
+
+\begin{defn}
+	Eine Teilmenge $L \subseteq \{0,1\}^\ast$ nennt man \textbf{Sprache}. Eine Sprache algorithmisch zu entscheiden, heißt es einen Algorithmus zu finden, der für jedes $x \in \{0,1\}^\ast$ entscheidet, ob $x$ zu $L$ gehört oder nicht. Die Entscheidung der Sprache $L$ kann als die Berechnung der Funktion $f $ mit 
+	\[
+	f(x) := \begin{cases}
+		1 & \text{für} \ x \in L, 
+		\\ 0 & \text{für} \ x \not\in L.
+	\end{cases} 
+	\]
+	formuliert werden. Die Rechenprobleme, die durch eine Sprache definiert werden, nennt man Entscheidungsprobleme. Es handelt sich dabei, um Probleme bei denen man nur zwei mögliche Rückgabewerte hat (ja/nein bzw. wahr/falsch bzw. 1/0). 
+\end{defn}
+
+\begin{bem}
+	Die vorigen drei Definitionen werden wir auch mit anderen Mengen an der Stelle von $\{0,1\}^\ast$ benutzen, unter der Voraussetzung, dass für diese Mengen eine Kodierung mit Bit-Strings festgelegt ist:
+	\begin{itemize}
+		\item Ein Rechenproblem ist eine Eingabe-Rückgabe-Relation $\Pi \subseteq  X \times Y$ für die Menge $X$ aller möglichen Eingaben (mit einer festgelegten Kodierung der Eingabe) und die Menge $Y$ aller möglichen Rückgaben (mit einer festgelegten Kodierung der Rückgabe). 
+		\item Analog kann das Problem der algorithmischen Berechnung einer Abbildung $f : X \to Y$ beschrieben werden, sobald Kodierungen für $X$ und $Y$ festgelegt sind. 
+		\item Entscheidungsprobleme entsprechen der algorithmischen Berechnung der Prädikate $P : X \to \{\false,\true\}$. 
+	\end{itemize} 
+\end{bem} 
+
+\begin{bsp}\ 
+	\begin{itemize} 
+		\item Das Problem
+		\[
+		\setcond{ (a,p) \in \N \times \Z_{\ge 2} }{p \ \text{ist Primfaktor von} \ a}
+		\]
+		kann mit Worten folgendermaßen formuliert werden: entscheide, für ein gegebenes $a \in \N$, ob $a$ einen Primfaktor $p \in \Z_{\ge 2}$ besitzt und berechne ggf. einen solchen Faktor. 
+		\item Die Berechnung von $f : \Z \times \N_0 \to \N$ mit $f(a,k):= a^k$ kann mit Worten so formulieren, für gegebene $a \in \Z,k \in \N$ berechne die $k$-te Potenz von $a$. 
+		\item Das algorithmische  Problem zur Sprache der (Bit-Kodierungen von) Primzahlen ist zu entscheiden, ob die Eingabe (die Bit-Kodierung einer) Primzahl ist. Mit Worten: entscheide, ob eine gegebene Zahl $z \in \N$ eine Primzahl ist. 
+	\end{itemize} 
+\end{bsp} 
+
+\subsection{Entscheidbarkeit}
+
+\begin{defn}
+	Eine Sprache $L$ heißt entscheidbar, wenn ein Algorithmus existiert, der die Sprache $L$ entscheidet. 
+\end{defn} 
+
+\begin{lem} \label{lem:X:2^X}
+	Sei $X$ Menge. Dann ist keine Abbildung $F : X \to 2^X$ surjektiv. 
+\end{lem}
+\begin{proof}
+	Man betrachte die Menge $Y := \setcond{x \in X}{x \not\in F(x)}$. Wir zeigen durch ein Widerspruchsargument, dass kein $a \in X$ mit $F(a) =Y$ existiert. Angenommen, es gäbe ein solches $a$. 
+	
+	Hat man $a \in Y$, so ist $a \in F(a)$, weil $Y=F(a)$ ist. Aber andererseits besteht $Y$ aus allen $x \in X$, für die $x \not\in F(x)$ gilt, sodass man wegen $a \in Y$ auch gleichzeitig $a \not\in F(x)$ hat. Widerspruch. 
+	
+	Hat man $a \not\in Y$, so ist $a \not\in F(a)$, weil $Y=F(a)$ ist. Aber anderseits besteht $Y$ genau aus den $x \in X$ mit $x \not\in F(x)$.Wegen $a \not\in Y$ hat man also $a \in F(a)$. Widerspruch. 
+\end{proof} 
+
+\begin{thm}
+	Es existieren Sprachen, die nicht entscheidbar sind. 
+\end{thm} 
+\begin{proof} 
+		Ein Algorithmus ist durch seine ``Quellencode'' darstellbar. Denn ein jeder Algorithmus ist eine Auflistung von Grundbefehlen, die man alle mit Hilfe von Strings über einem endlichen Alphabet darstellen kann. Somit kann  man jeden Algorithmus als ein String über einem endlichen Alphabet kodieren. Wir identifizieren also die Algorithmen mit Elementen von $\{0,1\}^\ast$. Die Menge aller Sprachen über dem Alphabet $\{0,1\}^\ast$ ist die Menge $2^{\{0,1\}^\ast}$. Wäre jeder Sprache entscheidbar, so könnte man für jede Sprache $L \in 2^{\{0,1\}^\ast}$ einen Algorithmus (genauer: Quellcode eines Algorithmus) $A_L \in \{0,1\}^\ast$ fixieren, der die Sprache $L$ entscheidet. Wir können also eine Abbildung $F : \{0,1\}^\ast \to 2^{\{0,1\}^\ast}$ so fixieren, dass $F(A_L) = L$ für alle $L \in 2^{\{0,1\}^\ast}$ gilt. Die Abbildung $F$ ist surjektiv. Die Existenz der Abbildung $F$ widerspricht aber der Behauptung von Lemma~\ref{lem:X:2^X}.
+\end{proof} 
+
+\subsection{Komplexität in Hinblick auf die Laufzeit} 
 
 \begin{defn} 
 	Sei $A$ Algorithmus im Rahmen eines Rechenmodells, dessen Schritte als Grundoperationen im gegebenen Rechenmodell beschrieben sind. 
 
 Die \textbf{Laufzeit} $L(A,x)$ von~$A$ auf der Eingabeinstanz $x$ ist die Anzahl der Schritte des Algorithmus $A$ auf der Eingabe $x$ bis zur Terminierung. 
 
-Die \textbf{Laufzeitfunktion} $L_A : \N \to \N$ von~$A$ ist definiert als
+Für eine Menge $X$ von Eingabe-Instanze, heißt $\max_{x \in A} L(A,x)$ die \textbf{Worst-Case-Laufzeit} von $A$ auf $X$. 
+
+Die \textbf{Laufzeitfunktion} $L_A : \N \to \N$ von~$A$ beschreibt die Worst-Case-Laufzeit in Abhängigkeit von einer oberen Schranke an die Länge der Eingabe: 
 \[
 L_A(n) := \max \setcond{  L(A,x) }{x \ \text{Eingabe für} \ A  \ \text{mit} \ \encl{x} \le n}.
 \]
-Das heißt, $L_A(n)$ ist die maximale Laufzeit auf allen Eingaben, deren Eingabelänge höchstens $n$ ist. 
 \end{defn} 
 
 \begin{defn}
 	Eine Funktion $p : \R \to \R$ heißt \textbf{Polynomfunktion} vom Grad $d \in \N_0$, falls~$p$ die Form \[
-		p(t)= c_0 + c_1 t + c_2 xt2 + \ldots + c_d t^d
+		p(t)= c_0 + c_1 t + c_2 t^2 + \ldots + c_d t^d
 	\]
 	hat, mit $c_0,\ldots,c_d \in \R$ und $c_d \ne 0$. 
 \end{defn} 
@@ -913,15 +940,45 @@ Wir nennen einen Algorithmus~$A$ \textbf{polynomial} oder \textbf{Polynomialzeit
 \end{bem} 
 
 \begin{defn}
-	Ein Rechenproblem heißt \textbf{Polynomialzeit-berechenbar}, wenn es ein Polynomialzeit-Algorithmus existiert, der das Rechenproblem löst. 
+	Für $T: \N_0 \to \N$ heißt ein Rechenproblem heißt \textbf{in der Zeit $T(n)$} berechenbar, wenn es ein Algorithmus $A$ existiert, der das Problem löst und für welchen die Laufzeit-Funktion die Bedingung $L_A(n) \le T(n)$ für alle $n \in \N_0$ erfüllt. Im Fall von Sprachen sagt man `ìn der Zeit $T(n)$ entscheidbar''. 
+	
+	Ein Rechenproblem heißt \textbf{Polynomialzeit-berechenbar}, wenn es ein Po\-ly\-no\-mi\-al\-zeit-Algorithmus existiert, der das Rechenproblem löst. 
 	
 	Ein Entscheidungsproblem bzw. eine Sprache heißt \textbf{Polynomialzeit-\-ent\-scheid\-bar}, wenn es ein Polynomialzeit-Algorithmus existiert, der das Problem bzw. die Sprache entscheidet. 
 \end{defn} 
 
+\begin{bem}
+	Die Berechenbarkeit in der Zeit $T(n)$ bezieht sich auf ein zugrundeliegendes Rechenmodell. Das ist RAM in unserem Fall, es gibt aber auch andere Rechenmodelle (z.B. Modelle, die nur einen sequentiellen Zugriff zu den Speicherzellen ermöglichen). 
+\end{bem} 
+
 \begin{defn}
 	Die Menge aller Polynomialzeit-entscheidbaren Sprachen $L \subseteq \{0,1\}^\ast$ wird die Komplexitätsklasse $\operatorname{P}$ genannt. Als Formel: 
 	\[
-			\operatorname{P}:= \setcond{L \subseteq \{0,1\}^\ast }{L \ \text{Polynomialzeit-entscheidbar} } 
+			\DP := \setcond{L \subseteq \{0,1\}^\ast }{L \ \text{Polynomialzeit-entscheidbar} } 
 	\]
 \end{defn} 
+
+\begin{defn}
+	Als $\EXP$ bezeichnet man die Menge aller Sprachen $L$, für die ein Polynom $p$ existiert, sodass $L$  in der Zeit $2^{p(n)}$ entscheidbar ist. 
+\end{defn} 
+
+\begin{bem}
+	Es gilt $\DP\subseteq \EXP$ und man kann sogar zeigen, dass diese Inklusion strikt ist. 
+\end{bem} 
+
+\subsection{Übersetzungen und Vergleiche von Sprachen}
+
+\begin{defn}
+	Seien $L$ und $M$ Sprachen über dem Alphabet $\{0,1\}$. Man nennt $L$ \textbf{Polynomialzeit-Karp-reduzierbar} zu $M$ (Bezeichnung: $L \le_{\DP} M$) wenn eine Polynomialzeit-Berechenbare Abbildung $f : \{0,1\}^\ast \to \{0,1\}^\ast$ existiert mit 
+	\[
+		L = \setcond{x \in \{0,1\}^\ast}{ f(x) \in M}.
+	\]  
+	Man nennt dabei $f$ bzw. den Algorithmus zur Berechnung von $f$ die \textbf{Polynomialzeit-Karp-Reduktion} von $L$ zu $M$. 
+\end{defn} 
+
+\begin{prop}
+	Ist $M \in \DP$ und $L \le_{\DP} M$, so ist auch $L \in \DP$. 
+\end{prop} 
+
+IM AUFBAU 
 

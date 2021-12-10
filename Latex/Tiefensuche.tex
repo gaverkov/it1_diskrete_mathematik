@@ -662,57 +662,57 @@ Der zugehörige Tiefensuchwald ist also
 \end{center} 
 \end{bsp} 
 
-
-\begin{thm} \label{thm:erreichbarkeit:ts} 
-	Sei $D=(V,A)$ Digraph, der durch eine Adjazenzliste gegeben ist. Sei $s \in V$. Dann gilt für die Tiefensuche auf $D$ mit dem Startknoten $s$:
-	\begin{enuma}
-		\item Die Menge aller Knoten von $D$, die von $s$ aus durch einen Pfad erreichbar sind ist genau die Menge der Knoten, die während der Ausführung entdeckt werden. 
-		\item $D$ enthält genau dann einen von $s$ aus erreichbaren Zyklus, wenn während der Ausführung beim Sondieren einer der Kanten $(u,v)$ die Farbe von $v$ grau ist. 
-	\end{enuma} 
-\end{thm}
-\begin{proof}
-	Wir bezeichnen die Tiefensuche kurz als TS.
-		
-	\condclearpage 
-	
-	(a): Seien $u_1,\ldots,u_k$ alle Knoten, die während der Ausführung entdeckt werden und seien $u_1,\ldots,u_k$ in dieser Reihenfolge entdeckt. Dann ist $u_1$ von $s$ aus erreichbar, denn $u_1=s$. Die TS für einen Knoten $u_j$ mit $j > 1$ wird aus einer TS für einen Knoten $u_i$ aufgerufen, der im Moment des Aufrufs von $TS(u_j)$ bereits entdeckt ist. Man hat also $j< i$. Wenn $u_j$ von $s$ aus erreichbar ist, so ist auch $u_i$ von $s$ aus erreichbar, da $(u_i,u_j)$ eine Kante von $G$ ist. Somit folgt durch Induktion über $j$, das jeder Knoten $u_j$ von $s$ aus erreichbar ist. 
-	
-	\condclearpage 
-	
-	Umgekehrt zeigen wir, dass jeder Knoten $v \in V$, der von $s$ aus erreichbar ist, während der Ausführung entdeckt wird. Sei $(v_0,\ldots,v_k)$ ein Pfad von $s$ nach $v$. Wir zeigen, dass jeder Knoten $v_j$ dieses Pfades entdeckt wird. Für $v_0=s$ gilt die Aussage offensichtlich. Wird ein Knoten $v_j$ mit $j < k$ entdeckt, so entdeckt man den Knoten $v_{j+1}$ spätestens beim Sondieren der Kante $(v_j,v_{j+1})$ innerhalb der TS für $v_j$. Es kann als durch Induktion über $j$ gezeigt werden, dass alle $v_j$ und insbesondere auch $v_k=v$ entdeckt werden.
-	
-	\condclearpage 
-	
-	(b): Der Beweis von (b) ist analog zum Beweis von (a) und wird hier nicht angeführt. (Aufgabe)
-\end{proof}
-
-
 \begin{bem}
-Eine erste wichtige Eigenschaft der Tiefensuche ist der Zusammenhang von Entdeckungszeit und Abarbeitungszeit eines Knotens.
-Es stellt sich heraus, dass diese Zeitpunkte im folgenden Sinne eine \emph{Klammerstruktur} aufweisen:
-Stellen wir die Entdeckungszeit eines Knotens $u$ durch den Ausdruck \glqq $(u$\grqq\ und die Abarbeitungszeit von~$u$ durch den Ausdruck \glqq $u)$\grqq\ dar, dann ergibt die gesamte Historie, über alle Knoten des (Di)Graphen hinweg gesehen, einen korrekt geklammerten Ausdruck.
+		Wir bezeichnen die Tiefensuche kurz als $\cc{TS}$, die vollständige Tiefensuche als $\cc{VTS}$ und die Intialisierung der Tiefensuche als $\cc{TSI}$. 
 \end{bem} 
 
-\begin{bsp} 
-Zur Illustration dieses Zusammenhangs sehen wir uns wieder die Tiefensuche aus Beispiel~\ref{bsp:tiefensuche} an.
-Die Daten der Zeitstempel sind in folgender Tabelle zusammengefasst:
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
-\textbf{Knoten $u$}        & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} \\ \hline
-\textbf{$\cc{Grau}[u]$}    & 2          & 3          & 1          & 4          & 8          & 9          & 10         & 13         & 17         & 18          \\ \hline
-\textbf{$\cc{Schwarz}[u]$} & 7          & 6          & 16         & 5          & 15         & 12         & 11         & 14         & 20         & 19          \\ \hline
-\end{tabular}
-\end{table}
-Nach obiger Vorschrift können wir damit den zugehörigen Klammerausdruck
-\[
-(3\ (1\ (2\ (4\ 4)\ 2)\ 1)\ (5\ (6\ (7\ 7)\ 6)\ (8\ 8)\ 5)\ 3)\ (9\ (10\ 10)\ 9)
-\]
-ablesen.
+\begin{lem} \label{ts:key:lemma} 
+	Sei $D=(V,A)$ Digraph, sei $s \in V$ und man betrachte die Ausführung von $\cc{TS}(s)$ nach einer Initialisierung der Tiefensuche für $D$. Während der Ausführung ist  nach jeder Knotenfärbung  Folgendes erfüllt:
+	\begin{enuma} 
+		\item Die Menge der grauen Knoten bildet einen gerichteten Weg $(u_0,\ldots,u_m)$ in $D_\pi$, der im Knoten $u_0=s$ beginnt. 
+		\item Der Kontrollfluss befindet sich im Aufruf von $\cc{TS}(u_m)$. 
+		\item Für jedes $i=1,\ldots,m$ wurde $\cc{TS}(u_i)$  aus $\cc{TS}(u_{i-1})$ aufgerufen und die Aufrufe $\cc{TS}(u_1),\ldots,\cc{TS}(u_m)$ sind noch nicht zu Ende ausgeführt. 
+	\end{enuma} 
+	Darüber hinaus gilt: ein Knoten $v$ wird während Ausführung genau dann entdeckt, wenn in $D$ ein $(s,v)$-Pfad existiert. 
+\end{lem} 
+\begin{proof}
+	Für Behauptungen (a)--(c) benutzen wir die Induktion über die Anzahl der Färbungen während der Ausführung von $\cc{TS}(s)$. Die erste Färbung ist die Färbung von $s$ mit Grau. In diesem Moment der Ausführung gilt die Behauptung für  den Weg der Länge $0$, der aus dem Knoten $s$ besteht. Angenommen, die Behauptungen gelten nach $k \in\N$ Färbungen. Man betrachten den Pfad $(u_0,\ldots,u_m)$, für den die Behauptungen gelten. 
+	
+	Wird während der Ausführung von $\cc{TS}(u_m)$, ein weißer Knoten $v$ entdeckt, so wird $\cc{TS}(v)$ aufgerufen, in der $v$ grau gefärbt wird, sodass nach $k+1$ Färbungen die Behauptung für den Pfad $(u_0,\ldots,u_m,v)$ erfüllt wird. 
+	
+	Sind während der Ausführung von $\cc{TS}(u_m)$ alle von $u_m$ ausgehende Kanten sondiert, so wird $u_m$ schwarz gefärbt, die Ausführung von $\cc{TS}(u_m)$ terminiert und der Kontrollfluss kehrt zum Aufruf $\cc{TS}(u_{m-1})$. In diesem Fall gelten die Behauptungen nach $k+1$ Färbungen für den Pfad $(u_0,\ldots,u_{m-1})$. 
+	
+	Nun zeigen wir die letzte Behauptung: wenn ein Knoten $v$ entdeckt wird, dann bilden laut der Behauptung (a) die Knoten, die im Moment der Entdeckung von $v$ grau sind, einen $(s,v)$-Pfad. Umgekehrt, sei $v \in V$ ein Knoten, für welchen ein $(s,v)$-Pfad $(v_0,\ldots,v_t)$ in $D$ existiert. Wir zeigen, dass der Knoten $v$ entdeckt. Angenommen, das wäre falsch. Wir zeigen durch Induktion über $i=1,\ldots,t$, dass der Knoten $v_i$ entdeckt wird. Der Knoten $v_0=s$ wird entdeckt. Sei also $1 \le i < t$ und wir nehmen an, dass $v_0,\ldots,v_{i-1}$ entdeckt werden. Da $v_{i-1}$ entdeckt wird, wird die Kanten $(v_{i-1},v_i)$ sondiert, sodass $v_i$ spätestens beim Sondieren der Kante $(v_{i-1},v_i)$ entdeckt wird. 
+\end{proof} 
 
-Eine andere Möglichkeit diese Klammerstruktur auszudrücken ist im folgenden Satz festgehalten:
-\end{bsp} 
+\begin{kor} \label{kor:weisse:pfade} 
+	Sei $D=(V,A)$ Digraph und sei $u \in V$.
+	Sind die Farbattribute der Knoten von $V$ auf weiß/grau/schwarz gesetzt, und ist $u$ ein weißer Knoten, für den man $\cc{TS}(u)$ startet, so wird ein weißer Knoten $v \in V$ während der Ausführung von $\cc{TS}(u)$ genau dann entdeckt, wenn vor der Ausführung von $\cc{TS}(u)$ ein $(u,v)$-Pfad aus weißen Knoten existiert. 
+\end{kor} 
+\begin{proof}
+	Bei der Ausführung von $\cc{TS}(u)$, wird die TS für Knoten, die vor der Ausführung grau oder schwarz waren, nicht aufgerufen. Somit entspricht der Ausführung von $\cc{TS}(u)$ einer Ausführung auf dem Teilgraphen von $D$, der durch Knoten induziert ist, welche vor der Ausführung weiß waren. Die Behauptung folgt also aus der letzten Behauptung von Lemma~\ref{ts:key:lemma}. 
+\end{proof} 
+
+\begin{lem}
+	Sei $D= (V,A)$ Digraph. 
+	Nach der Initialisierung der Tiefensuche und während der Ausführung von der vollständige Tiefensuche der Graph $D_\pi$ stets ein gerichteter Wald. Die Wurzel der Bäume dieses Waldes sind genau die Knoten $u \in V$, für welche $\cc{TS}(u)$ direkt aus der vollständigen Tiefensuche aufgerufen wurde. 
+\end{lem} 
+\begin{proof} 
+	Die Anzahl der Knoten, die während der Ausführung entdeckt werden nimmt während der Ausführung zu. Am Anfang der Ausführung wird der Knoten $s$ entdeckt und grau gefärbt. Die Behauptung gilt also am Anfang der Ausführung. Wir führen Induktion nach der Anzahl der Färbungen mit der Farben Grau. Am Anfang ist kein Knoten grau gefärbt und kein Vorgänger gesetzt, sodass $D_\pi$ ein Wald ohne Kanten ist. 
+\end{proof} 
+
+\begin{thm} \label{thm:ts:und:zyklen} 
+	Sei $D=(V,A)$ Digraph, sei $s \in V$ und man betrachte die Ausführung von $\cc{TS}(s)$ nach einer Initialisierung der Tiefensuche für $D$. Der Digraph $D$ enthält genau dann einen von $s$ aus erreichbaren Zyklus, wenn während der Ausführung beim Sondieren einer der Kanten $(u,v)$ die Farbe von $v$ grau ist. 
+\end{thm}
+\begin{proof}	
+	Sei während der Ausführung beim Sondieren eine Kante $(u,v)$ die Farbe von $v$ grau. Nach Lemma~\ref{ts:key:lemma} bildet die Menge der Knoten, die Grau gefärbt sind einen $(s,u)$-Weg $(u_0,\ldots,u_m)$ mit $u_0=s$ und $u=u_m$. Der Knoten $v$ ist also ein Knoten $u_j$ auf diesem Weg. Somit ist $(u_j,\ldots,u_m,u_j)$ ein Zyklus in $D$. 
+	
+	Umgekehrt sei $Z$ ein Zyklus, der von $s$ aus durch einen Pfad erreichbar ist. Wir zeigen, dass während der bei der Sondierung einer Kante der Endknoten der Kante grau ist. Sei $u$ der Knoten im Zyklus $Z$, der während der Ausführung unter allen Knoten von $Z$ als erster entdeckt wird. Nach der Färbung von $u$ mit Grau existiert nach Lemma~\ref{ts:key:lemma} ein $(s,u)$-Pfad $(u_0,\ldots,u_m)$ mit $s=u_0$ und $u_m=u$, der keinen anderen Knoten von $Z$ außer $u$ enthält. Wir schreiben $Z$ als $(v_0,\ldots,v_t,v_0)$ mit $v_0=u$.  
+	
+	Unmittelbar vor der Entdeckung ist $v_0,\ldots,v_t$ ein Pfad aus weißen Knoten. Nach Korollar~\ref{kor:weisse:pfade} wird während der Ausführung von $\cc{TS}(u)$ der Knoten $v_t$ entdeckt. Wir wenden das Lemma~\ref{ts:key:lemma} zum Teilgraphen an, der durch die Knoten induziert wird, die unmittelbar vor der Entdeckung von $u$ weiß sind. Da  $(v_0,\ldots,v_t)$ ein Pfad in diesem Teilgraphen ist, wird $v_t$ während der Ausführung von $\cc{TS}(u)$ entdeckt. Bei der Entdeckung von $v_t$ gibt es zwei Arten von grauen Knoten.  Die Knoten, welche vor dem Aufruf von $\cc{TS}(u)$ grau gefärbt wurden, sind $u_0,\ldots,u_m$. Die Knoten, die während der Ausführung von $\cc{TS}(u)$ und bis zum Aufruf von $\cc{TS}(v_t)$ grau gefärbt wurden, bilden einen $(u,v_t)$-Weg. 
+	
+	Es folgt:  nach der Entdeckung von $v_t$ hat der Weg aus grauen Knoten die Form $(u_0,\ldots,u_m, w_1,\ldots,w_\ell)$ mit $w_\ell =v_t$ hat. Beim sondieren der Kante $(v_t,u)$ ist also die Farbe von $u=u_m$ grau. 
+\end{proof}
 
 \begin{defn}
 	Bzgl. einer vollständigen Tiefensuche auf $D=(V,A)$ mit Startknoten $s$ definieren die \textbf{Lebenszeitintervall} eines Knoten $v \in V$ als die Menge
@@ -742,6 +742,30 @@ Bei der vollständigen Tiefensuche auf einem Digraphen $D=(V,A)$ ist für jedes 
 	Somit terminiert $TS(v)$ vor $TS(u)$. Es gilt also $I_v \subseteq I_u$ ist $v$ ist Nachfahre von $u$. 
 \end{proof}
 
+
+\begin{bsp} 
+	Die Relation der Lebenszeit Intervallen zu einander kann durch geklammerte Ausdrücke dargestellt werden. 
+	Zur Illustration dieses Zusammenhangs sehen wir uns wieder die Tiefensuche aus Beispiel~\ref{bsp:tiefensuche} an.
+	Die Daten der Zeitstempel sind in folgender Tabelle zusammengefasst:
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			\textbf{Knoten $u$}        & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} \\ \hline
+			\textbf{$\cc{Grau}[u]$}    & 2          & 3          & 1          & 4          & 8          & 9          & 10         & 13         & 17         & 18          \\ \hline
+			\textbf{$\cc{Schwarz}[u]$} & 7          & 6          & 16         & 5          & 15         & 12         & 11         & 14         & 20         & 19          \\ \hline
+		\end{tabular}
+	\end{table}
+	Nach obiger Vorschrift können wir damit den zugehörigen Klammerausdruck
+	\[
+	(3\ (1\ (2\ (4\ 4)\ 2)\ 1)\ (5\ (6\ (7\ 7)\ 6)\ (8\ 8)\ 5)\ 3)\ (9\ (10\ 10)\ 9)
+	\]
+	ablesen.
+	
+	Eine andere Möglichkeit diese Klammerstruktur auszudrücken ist im folgenden Satz festgehalten:
+\end{bsp} 
+
+
 \begin{bem}
 Als direkte Konsequenz des Klammerungstheorems erhalten wir eine Charakterisierung der Nachfahren im Tiefensuchwald eines gegebenen Knotens.
 \end{bem} 
@@ -756,16 +780,7 @@ Der Knoten $v$ ist in einem Tiefensuchwald eines Digraphen genau dann ein echter
 
 \begin{bem} 
 Eine alternative Charakterisierung der Nachfahreneigenschaft in Tiefensuchwäldern, die allerdings über die Farben der Knoten während der Suche geht, wird uns später bei den Anwendungen der Tiefensuche nützlich sein. 
-\end{bem} 
-
-\begin{thm}[Theorem der weißen Pfade]
-\label{thm:weisse-pfade-thm}
-Der Knoten $v$ ist in einem Tiefensuchwald eines Digraphen $D=(V,A)$ genau dann ein Nachfahre eines Knotens $u$, wenn es zum Zeitpunkt $\cc{Grau}[u]$, zu dem die Durchmusterung den Knoten~$u$ entdeckt hat, einen Pfad von $u$ nach $v$ gibt, der, bis auf den Knoten $u$, nur aus weißen Knoten besteht.
-\end{thm}
-\begin{proof} 
-Komplett analog zum Beweis von Theorem~\ref{thm:erreichbarkeit:ts}(b). 
-\end{proof} 
-
+\end{bem}
 
 
 \begin{defn}
@@ -877,7 +892,7 @@ Falls nun die Durchmusterung die Kante zuerst in der Richtung von~$v$ nach~$u$ s
 	Dies hat praktische Vorteile, weil der Programmstack nicht  belastet wird.
 	Dazu ersetzt man die Warteschlange $Q$ durch einen sogenannten \emph{Stack} ($=$ \emph{Stapel}). Für die Tiefensuche kann ein Stack auf der Basis von einem Array umgesetzt werden. 
 	
-	Hier eine ziemlich direkte Konvertierung der rekursiven Umsetzung. Wir gehen von einem zugrundeliegenden Stack $S$ aus. Als $\cc{Top}(S)$ bezeichnen wir das oberste Element des Stacks . Durch $\cc{Pop}(S)$ erfolgt die Entfernung und Rückgabe des obersten Elements. Durch $\cc{Push}(S,u)$ wird ein neues Element $u$ auf den Stack gelegt. Die Elemente $N[u]$ indexieren wir mit Zahlen $0$ bis $\deg(u)-1$, wobei hier $\deg(u)$ der Grad des Knotens $u$ ist. Wir führen ein Array $\cc{ind}$ ein, in dem durch $\cc{ind}[u]$ notiert wird, dass beim sondieren der Nachbarn von $u \in V$  der Knoten $v=N[u][\cc{ind}[u]]$ als  nächster dran ist. Ist $v= \deg(u)$, so hat man alle Nachbarn von $u$ sondiert. Wir setzen am Anfang $\cc{ind}[u]=0$ für alle $u \in V$, färben den Startknoten $s$ grau und legen $s$ auf $S$. Auf diese Weise lassen sich mit Hilfe von $S$ und $\cc{ind}$ die gerade laufenden rekursiven Aufrufe der Tiefensuche simulieren: 
+	Hier eine ziemlich direkte Konvertierung der rekursiven Umsetzung. Wir gehen von einem zugrundeliegenden Stack $S$ aus. Als $\cc{Top}(S)$ bezeichnen wir das oberste Element des Stacks . Durch $\cc{Pop}(S)$ erfolgt die Entfernung und Rückgabe des obersten Elements. Durch $\cc{Push}(S,u)$ wird ein neues Element $u$ auf den Stack gelegt. Die Elemente $N[u]$ indexieren wir mit Zahlen $0$ bis $\deg(u)-1$, wobei hier $\deg(u)$ der Grad des Knotens $u$ ist. Wir führen ein Array $\cc{ind}$ ein, in dem durch $\cc{ind}[u]$ notiert wird, dass beim Sondieren der Nachbarn von $u \in V$  der Knoten $v=N[u][\cc{ind}[u]]$ als  nächster dran ist. Ist $\cc{ind}[u]= \deg(u)$, so hat man alle Nachbarn von $u$ sondiert. Wir setzen am Anfang $\cc{ind}[u]=0$ für alle $u \in V$, färben den Startknoten $s$ grau und legen $s$ auf $S$. Auf diese Weise lassen sich mit Hilfe von $S$ und $\cc{ind}$ die gerade laufenden rekursiven Aufrufe der Tiefensuche simulieren: 
 	
 	\begin{algorithm}[H]
 		\caption{$\cc{Tiefensuche-mit-Stack}(s)$} 
@@ -933,15 +948,9 @@ Ein Digraph besitzt genau dann eine topologische Sortierung, wenn er azyklisch i
 
 \begin{bem}
 	Eine Anwendung des topologischen Sortierens ist \textbf{makefile}. Die Kanten des Diagraphen sind durch  die Paare target-prerequisite gegeben. Die targets sollen in einer topologisch sortierten Reihenfolge abgearbeitet werden. 
-\end{bem} 
-
-
-\begin{bem} 
-Das topologische Sortieren kann also als Methode verstanden werden, um zu testen ob es Zyklen im Eingabegraphen gibt.
-Eine andere Anwendung ist das Sequenzieren von Aufträgen (engl.~\emph{scheduling}).
-Zum Beispiel hilft die topologische Sortierung zu entscheiden, in welcher Reihenfolge einzelne Teilprojekte in einem großen Programmierprojekt kompiliert werden sollten.
-\end{bem} 
-
+	
+	Eine andere Anwendung ist das Sequenzieren von Aufträgen (engl.~\emph{scheduling}).
+\end{bem}
 
 
 \begin{thm}
@@ -960,214 +969,115 @@ Zum Beispiel hilft die topologische Sortierung zu entscheiden, in welcher Reihen
 \subsection{Anwendung II -- Starke Zusammenhangskomponenten}
 
 \begin{defn}
-Eine inklusionsmaximale Teilmenge $K \subseteq V$ der Knoten eines gegebenen Digraphen $D=(V,A)$ heißt \emph{starke Zusammenhangskomponente}, wenn es für jedes Paar von Knoten $u,v \in K$ sowohl einen $(u,v)$-Pfad als auch einen $(v,u)$-Pfad in~$D$ gibt.
-Das heißt, die Knoten $u$ und $v$ sind vom jeweils anderen aus erreichbar.
+	Knoten $u,v \in V$ eines Digraphen $D=(V,A)$ heißen \textbf{gegenseitig erreichbar} wenn ein $(u,v)$-Pfad sowie ein $(v,u)$-Pfad existiert. Gegenseitige Erreichbarkeit ist eine Äquivalenzrelation auf $V$. Die Äquivalenzklassen bzgl. dieser Relation nennt man \textbf{starke Zusammenhangskomponenten} (SZK) von $D$. 
 \end{defn} 
 
 \begin{bsp}
-\label{bsp:starke-zusammenhangskomponenten}
-Die starken Zusammenhangskomponenten des Digraphen aus Beispiel~\ref{bsp:tiefensuche} bestehen aus den Knoten gleicher Farbe in folgender Abbildung:
-
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.2]
- \node[fill=blue,circle,draw] (1) at (0,2) {$1$};
- \node[fill=blue,circle,draw] (2) at (0,0) {$2$};
- \node[fill=red,circle,draw] (3) at (2,2) {$3$};
- \node[fill=blue,circle,draw] (4) at (2,0) {$4$};
- \node[fill=red,circle,draw] (5) at (4.25,2) {$5$};
- \node[fill=yellow,circle,draw] (6) at (3.5,0) {$6$};
- \node[fill=yellow,circle,draw] (7) at (5,0) {$7$};
- \node[fill=red,circle,draw] (8) at (7.25,2) {$8$};
- \node[fill=green,circle,draw] (9) at (6.5,0) {$9$};
- \node[circle,draw=black] (10) at (8,0) {$10$};
-		
- \draw[->] (1) edge (2);
- \draw[->] (2) edge (4);
- \draw[->] (3) edge (1) (3) edge (4) (3) edge (5);
- \draw[->] (4) edge (1);
- \draw[->] (5) edge (6) (5) edge (8); 
- \draw[->] (6) to[bend left] (7);
- \draw[->] (7) to[bend left] (6);
- \draw[->] (8) to[bend right] (3);
- \draw[->] (9) edge (8) (9) edge (10);
- \draw[->] (10) edge (8); 
-\end{tikzpicture}
-\hfill\,
+	In diesem Beispiel sind die starkten Zusammenhangskomponenten mit mehr als einem Knoten farbich hinterlegt: 
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{Code/strongly_connected_comp.pdf}
+\end{center} 
 \end{bsp}
 
-\begin{bem}
-Als weitere wichtige Anwendung der Tiefensuche zeigen wir hier, wie man mit ihrer Hilfe einen Digraphen in dessen starken Zusammenhangskomponenten zerlegen kann, das heißt, wir suchen eine Partition $V = K_1 \cup K_2 \cup \ldots \cup K_r$ der Knotenmenge von~$D$, so dass jede Teilmenge $K_i \subseteq V$ eine starke Zusammenhangskomponente ist.
-Eine solche Zerlegung liegt vielen Algorithmen auf Digraphen zugrunde, da sie einen Ansatz mittels des Schemas Teile-und-Beherrsche erlaubt:
-Nach der erfolgten Zerlegung des Digraphen arbeitet der jeweilige Algorithmus auf den einzelnen Komponenten separat und vereinigt dann die Lösungen entsprechend der Verbindungsstruktur der Komponenten untereinander.
+\begin{thm}
+	\label{thm:starke-zshgk-laufzeit}
+	Ist ein Digraph $D=(V,A)$ als Adjazenzliste gegeben, so hat der Algorithmus aus \ref{szk:algo} die Laufzeit $\Theta(|V|+|A|)$.
+\end{thm}
+\begin{proof}
+	Die Berechnung von $D^\top$ sowie die beiden vollständigen Tiefensuchen sind benötigen jeweils  $\Theta(|V|+|A|)$ Elementaroperationen. 
+\end{proof}
 
-Der Algorithmus, den wir hier untersuchen wollen, basiert darauf eine Tiefensuche auf dem gegebenen Digraphen $D=(V,A)$ und danach eine weitere auf seinem \emph{transponierten Graphen} $D^T = (V,A^T)$ zu machen, dessen Kantenmenge durch $A^T = \{(u,v) \in V \times V : (v,u) \in A\}$ definiert ist.
-Wir erhalten also $D^T$ aus $D$ indem wir die Orientierung aller Kanten von $D$ umdrehen.
+\begin{defn}
+	Der \textbf{Komponentengraphen} $D^K=(V^K,A^K)$ eines Digraphen $D=(V,A)$
+	ist ein Digraph, beim dem die Menge $V^K$ die Menge von SZK von $D$ ist und die Menge $A^K$ der Kanten die Menge aller paare $(U,W)$ mit $U,W \in V^K$ mit der Eigenschaft, dass  $(u,w) \in A$  für ein $u \in U$ und $w \in W$  erfüllt ist. 
+\end{defn}
 
-Ein Knoten $v$ ist in $D$ genau dann von einem anderen Knoten $u$ aus erreichbar, wenn~$u$ in $D^T$ von $v$ aus erreichbar ist.
-Es gilt weiterhin die folgende wichtige Eigenschaft:
-\end{bem} 
+\begin{prop}
+	Der Komponentengraph eines jeden Digraphen ist azyklisch. 
+\end{prop}
+
+
+\begin{bsp}
+	\label{bsp:starke-zusammenhangskomponenten}
+	Die starken Zusammenhangskomponenten des Digraphen aus Beispiel~\ref{bsp:tiefensuche} bestehen aus den Knoten gleicher Farbe in folgender Abbildung:
+	
+	\hfill
+	\begin{tikzpicture}[line width=2,scale=1.2]
+		\node[fill=blue!30!white,circle,draw] (1) at (0,2) {$1$};
+		\node[fill=blue!30!white,circle,draw] (2) at (0,0) {$2$};
+		\node[fill=red,circle,draw] (3) at (2,2) {$3$};
+		\node[fill=blue!30!white,circle,draw] (4) at (2,0) {$4$};
+		\node[fill=red,circle,draw] (5) at (4.25,2) {$5$};
+		\node[fill=yellow,circle,draw] (6) at (3.5,0) {$6$};
+		\node[fill=yellow,circle,draw] (7) at (5,0) {$7$};
+		\node[fill=red,circle,draw] (8) at (7.25,2) {$8$};
+		\node[fill=green,circle,draw] (9) at (6.5,0) {$9$};
+		\node[circle,draw=black] (10) at (8,0) {$10$};
+		
+		\draw[->] (1) edge (2);
+		\draw[->] (2) edge (4);
+		\draw[->] (3) edge (1) (3) edge (4) (3) edge (5);
+		\draw[->] (4) edge (1);
+		\draw[->] (5) edge (6) (5) edge (8); 
+		\draw[->] (6) to[bend left] (7);
+		\draw[->] (7) to[bend left] (6);
+		\draw[->] (8) to[bend right] (3);
+		\draw[->] (9) edge (8) (9) edge (10);
+		\draw[->] (10) edge (8); 
+	\end{tikzpicture}
+	\hfill\,
+\end{bsp}
+
+Der Komponentengraph dieses  Digraphen ist: 
+\begin{center} 
+	\begin{tikzpicture}[line width=2,scale=1.2]
+		\node[fill=blue!30!white,rounded corners,draw] (1) at (3,2) {$\{1,2,4\}$};
+		% \node[fill=blue,rounded corners,draw] (2) at (0,0) {$2$};
+		% \node[fill=red,rounded corners,draw] (3) at (2,2) {$3$};
+		% \node[fill=blue,rounded corners,draw] (4) at (2,0) {$4$};
+		\node[fill=red,rounded corners,draw] (5) at (6,2) {$\{3,5,8\}$};
+		\node[fill=yellow,rounded corners,draw] (6) at (4,0) {$\{6,7\}$};
+		% \node[fill=yellow,rounded corners,draw] (7) at (5,0) {$7$};
+		% \node[fill=red,rounded corners,draw] (8) at (7.25,2) {$8$};
+		\node[fill=green,rounded corners,draw] (9) at (6,0) {$\{9\}$};
+		\node[rounded corners,draw=black] (10) at (9,0) {$\{10\}$};
+		
+		\draw[->] (5) edge (6) (5) edge (1); 
+		\draw[->] (9) edge (5) (9) edge (10);
+		\draw[->] (10) to[bend right] (5); 
+	\end{tikzpicture}
+\end{center}
+
+
+\begin{defn}
+	Für einen Digraphen $D = (V,A)$ führen wir den sogenannten
+ \emph{transponierten Graphen} $D^\top = (V,A^\top)$ mit $A^\top = \{(u,v) \in V \times V : (v,u) \in A\}$ ein. 
+Wir erhalten also $D^\top$ aus $D$, indem wir die Orientierung aller Kanten von $D$ umdrehen.
+\end{defn} 
+
 
 \begin{prop}
 \label{beob:d-vs-dt}
-Der zu einem Digraphen $D=(V,A)$ transponierte Graph $D^T$ hat dieselben starken Zusammenhangskomponenten wie~$D$.
+Der zu einem Digraphen $D=(V,A)$ transponierte Graph $D^\top$ hat dieselben starken Zusammenhangskomponenten wie~$D$.
 \end{prop}
 
-\begin{bem} 
-Der konkrete Algorithmus zum Bestimmen der starken Zusammenhangskomponenten ist im folgenden Pseudocode angegeben.
-Beachten Sie die Modifikation der Reihenfolge, in der die Knoten bei der zweiten Tiefensuche durchlaufen werden.
+\begin{bem}  \label{szk:algo}
+	Sei $D = (V,A)$ Digraph. Zur Berechnung der SZK von $D$ kann der folgende Algorithmus benutzt werden, den wir als $\cc{SZK}(D)$ bezeichnen: 
+\begin{itemize}
+	\item \textbf{Phase~1: Anordnung.} Ordne mit Hilfe der vollständigen Tiefesuche auf $D$ die Knotenmenge $V$ in absteigender Reihenfolge $u_1,\ldots,u_n$ der Abarbeitungszeit ($n:=|V|$). Es reicht dafür beim Abarbeiten eines Knoten, den Knoten zu einer Liste mit $n$ Elementen hinzuzufügen (und die Liste vom Ende beginnend zu füllen). 
+	\item \textbf{Phase~2: Berechnung der Komponenten.} Erzeuge $D^\top$ in der Form einer Adjazenzliste und starte vollständige Tiefensuche auf $D^\top$, bei der  über die Knoten $u \in V$ in der oben bestimmten Reihenfolge $u_1,\ldots,u_n$ iteriert wird. 
+\end{itemize} 
 
-\begin{algorithm}[H]
-\caption{$\cc{Starke-Zusammenhangskomponenten}(D)$}
- \begin{algorithmic}[1]
-  \STATE\label{line:szhk0} $\cc{Vollständige-Tiefensuche}(D)$
-  \STATE berechne $D^T$
-  \STATE\label{line:szhk1} $\cc{Vollständige-Tiefensuche}(D^T)$ mit folgender Modifikation:
-  \STATE\label{line:szhk2} $\qquad$ Durchlaufe die Hauptschleife (Zeilen~\ref{line:tiefensuche-hauptschleife-start}--\ref{line:tiefensuche-hauptschleife-ende}) der Tiefensuche auf $D^T$ in absteigender Reihenfolge des Arrays $\cc{Schwarz}$ von~$D$.
-  \STATE gib die Knoten eines jeden Baumes im Tiefensuchwald $(D^T)_\pi$ als starke Zusammenhangskomponenten aus
- \end{algorithmic}
-\end{algorithm}
+Wie man Phase~2 genau umsetzt hängt unter anderem davon ab, in welchem Format man die SZK speichern möchte. 
+
+Für dieses Verfahren gilt: jeder Aufruf von $\cc{TS}(u)$ innerhalb der vollständigen Tiefensuche, führt zur Entdeckung der Knoten einer weiteren SZK. Wenn man also einen Zähler $c=0$ einführt, den man vor jedem Start von $\cc{TS}(u)$ innerhalb der vollständigen Tiefensuche um eins erhöht, um dann während der Tiefensuche die entdeckten Knoten als die Knoten der SZK Nummer $c$ zu markieren, so identifiziert man am Ende der Ausführung der vollständigen Tiefensuche ür jeden Knoten seine SZK. 
 \end{bem} 
+
+
 
 \begin{thm}
-\label{thm:starke-zshgk-laufzeit}
-Ist ein Digraph $D=(V,A)$ als Adjazenzliste gegeben, so hat der Algorithmus $\cc{Starke-Zusammenhangskomponenten}(D)$ lineare Laufzeit, das heißt, er benötigt $\Theta(|V|+|A|)$ Zeiteinheiten.
+$\cc{SZK}(D)$ bestimmt die starken Zusammenhangskomponenten eines Digraphen~$D=(V,A)$ korrekt.
 \end{thm}
-
-\begin{proof}
-Die Tiefensuche in Zeile~\ref{line:szhk0} hat nach Theorem~\ref{thm:laufzeit-tiefensuche} lineare Laufzeit.
-Die Berechnung des transponierten Graphen~$D^T$ kann auch in linearer Laufzeit geschehen, da~$D$ als Adjazenzliste gegeben ist (siehe Übungsblatt 7, Aufgabe (3)).
-Die modifizizerte Tiefensuche auf~$D^T$ in den Zeilen~\ref{line:szhk1}-\ref{line:szhk2} läuft wieder in Zeit $\Theta(|V|+|A|)$.
-Ebenso ist die Ausgabe der Bäume im Tiefensuchwald $(D^T)_\pi$ in linearer Laufzeit möglich.
-\end{proof}
-
-\begin{bem}
-Die Idee hinter dem Algorithmus $\cc{Starke-Zusammenhangskomponenten}(D)$ beruht auf dem Konzept des \emph{Komponentengraphen} $D^K=(V^K,A^K)$ von $D=(V,A)$, der wie folgt definiert ist.
-Seien $K_1,\ldots,K_r$ die starken Zusammenhangskomponenten von~$D$.
-Dann setzen wir $V^K:=\{v_1,\ldots,v_r\}$, also je ein Knoten~$v_i$ für je eine starke Zusammenhangskomponente~$K_i$.
-Es gibt eine Kante $(v_i,v_j) \in A^K$ genau dann, wenn es ein $u \in K_i$ und ein $w \in K_j$ gibt, so dass $(u,w) \in A$ eine Kante in~$D$ ist.
-Der Komponentengraph~$D^K$ ensteht also aus~$D$ indem wir alle Kanten kontrahieren, deren Start- und Endknoten zur selben starken Zusammenhangskomponente gehören.
-\end{bem}
-
-\begin{bsp}
-\label{bsp:komponentengraph}
-Der Komponentengraph des Digraphen aus Beispiel~\ref{bsp:starke-zusammenhangskomponenten} in derselben Farbkodierung:
-
-\hfill
-\begin{tikzpicture}[line width=2,scale=1.2]
- \node[fill=blue,circle,draw] (1) at (1,2) {$\phantom{1}$};
-% \node[fill=blue,circle,draw] (2) at (0,0) {$2$};
-% \node[fill=red,circle,draw] (3) at (2,2) {$3$};
-% \node[fill=blue,circle,draw] (4) at (2,0) {$4$};
- \node[fill=red,circle,draw] (5) at (4,2) {$\phantom{5}$};
- \node[fill=yellow,circle,draw] (6) at (4,0) {$\phantom{6}$};
-% \node[fill=yellow,circle,draw] (7) at (5,0) {$7$};
-% \node[fill=red,circle,draw] (8) at (7.25,2) {$8$};
- \node[fill=green,circle,draw] (9) at (6.5,0) {$\phantom{9}$};
- \node[circle,draw=black] (10) at (8,0) {$\phantom{0}$};
-		
- \draw[->] (5) edge (6) (5) edge (1); 
- \draw[->] (9) edge (5) (9) edge (10);
- \draw[->] (10) to[bend right] (5); 
-\end{tikzpicture}
-\hfill\,
-\end{bsp}
-
-\begin{bem}
-Die wesentliche Eigenschaft des Komponentengraphen ist, dass er einen azyklischen Digraphen darstellt:
-\end{bem} 
-
-\begin{lem}
-\label{lem:komponentengraph-azyklisch}
-Sei $D=(V,A)$ ein Digraph und seien $K,K'$ zwei verschiedene starke Zusammenhangskomponenten von~$D$.
-Seien weiterhin $u,v \in K$ und $u',v' \in K'$ Knoten der jeweiligen Komponente.
-Falls $D$ einen $(u,u')$-Pfad enthält, so kann er nicht gleichzeitig auch einen $(v',v)$-Pfad enthalten.
-\end{lem}
-
-\begin{proof}
-Angenommen, $D$ würde neben einem $(u,u')$-Pfad auch einen $(v',v)$-Pfad enthalten.
-Da $K$ und $K'$ starke Zusammenhangskomponenten sind, könnten wir den $(u,u')$-Pfad zu einem $(u,v')$-Pfad und ebenso den $(v',v)$-Pfad zu einem $(v',u)$-Pfad erweitern.
-Demnach wären die Knoten~$u$ und~$v'$ vom jeweils anderen aus erreichbar, was der Annahme widerspricht, dass $K$ und $K'$ verschieden sind.
-\end{proof}
-
-\begin{bem}
-Für den Korrektheitsbeweis des angegebenen Algorithmus benötigen wir etwas mehr Verständnis der Beziehungen zwischen den während der Laufzeit erzeugten Zeitstempeln.
-Wenn wir nachfolgend von Zeitpunkten der Entdeckung und Abarbeitung sprechen, dann beziehen wir uns stets auf die entsprechenden Zeitstempel der ersten Tiefensuche in Zeile~\ref{line:szhk0} von $\cc{Starke-Zusammenhangskomponenten}(D)$.
-
-Für die Formulierung der Aussage erweitern wir zunächst die Begriffe der Entde\-ckungs- und Abarbeitungszeitpunkte von einzelnen Knoten auf Teilmengen von Knoten:
-Für $U \subseteq V$ seien dazu
-\[
-\cc{Grau}(U) := \min_{u \in U} \cc{Grau}[u] \quad \text{ und } \quad\cc{Schwarz}(U) := \max_{u \in U} \cc{Schwarz}[u]
-\]
-der früheste Entdeckungszeitpunkt beziehungsweise der späteste Abarbeitungszeitpunkt eines Knotens aus~$U$.
-\end{bem}
-
-\begin{lem}
-\label{lem:komponenten-zeitpunkte}
-Sei $D=(V,A)$ ein Digraph und seien $K,K'$ zwei verschiedene starke Zusammenhangskomponenten von~$D$.
-\begin{enumi}
- \item\label{lem:komponenten-zeitpunkte:primal} Falls eine Kante $(u,v) \in A$ mit $u \in K$ und $v \in K'$ existiert, so gilt
- \[
- \cc{Schwarz}(K) > \cc{Schwarz}(K').
- \]
- 
- \item\label{lem:komponenten-zeitpunkte:transponiert} Falls eine Kante $(u,v) \in A^T$ mit $u \in K$ und $v \in K'$ existiert, so gilt
- \[
- \cc{Schwarz}(K) < \cc{Schwarz}(K').
- \]
-\end{enumi}
-\end{lem}
-
-\begin{proof}
-i): Wir unterscheiden Fälle danach welche der beiden starken Zusammenhangskomponenten zuerst entdeckt wird.
-
-Sei zuerst angenommen, dass $\cc{Grau}(K) < \cc{Grau}(K')$ gilt und sei~$x$ der erste entdeckte Knoten in~$K$.
-Zum Zeitpunkt $\cc{Grau}[x]$ sind alle anderen Knoten in~$K$ und alle Knoten in~$K'$ weiß.
-In diesem Moment enthält~$D$ also Pfade von~$x$ zu jedem anderen Knoten in~$K$, die, bis auf~$x$ selbst, nur aus weißen Knoten bestehen.
-Die Existenz der Kante $(u,v)$ von der Komponente~$K$ in die Komponente~$K'$ impliziert damit, dass ebenso Pfade von~$x$ zu jedem Knoten in~$K'$ bestehen, die, bis auf~$x$ selbst, nur aus weißen Knoten bestehen.
-Nach dem Theorem~\ref{thm:weisse-pfade-thm} der weißen Pfade sind also alle Knoten in $K \cup K'$ Nachfahren von~$x$ im Tiefensuchwald und nach Korollar~\ref{cor:nachfahre-tiefenwald} erhalten wir $\cc{Schwarz}(K) = \cc{Schwarz}[x] > \cc{Schwarz}(K')$.
-
-Sei nun angenommen, dass $\cc{Grau}(K) > \cc{Grau}(K')$ gilt und sei~$y$ der erste entdeckte Knoten in~$K'$.
-Analog zu oben sind zum Zeitpunkt $\cc{Grau}[y]$ alle Knoten in~$K'$ mit einem Pfad von~$y$ aus erreichbar, der, bis auf~$y$ selbst, nur aus weißen Knoten besteht.
-Wegen Theorem~\ref{thm:weisse-pfade-thm} sind damit alle Knoten aus~$K'$ Nachfahren von~$y$ im Tiefensuchwald und mit Korollar~\ref{cor:nachfahre-tiefenwald} gilt $\cc{Schwarz}[y] = \cc{Schwarz}(K')$.
-Nach Annahme sind zum Zeitpunkt $\cc{Grau}[y]$ alle Knoten in~$K$ weiß.
-Da die Kante $(u,v)$ von~$K$ nach~$K'$ existiert, folgt aus Lemma~\ref{lem:komponentengraph-azyklisch}, dass es keinen Pfad von einem Knoten in~$K'$ zu einem Knoten in~$K$ geben kann.
-Da damit kein Knoten in~$K$ von~$y$ aus erreichbar ist, ist die ganze Komponente~$K$ zum Zeitpunkt $\cc{Schwarz}[y]$ noch immer weiß.
-Als Konsequenz erhalten wir $\cc{Schwarz}[w] > \cc{Schwarz}[y]$, für jeden Knoten $w \in K$, und damit $\cc{Schwarz}(K) > \cc{Schwarz}(K')$.
-
-ii): Nach Definition von $A^T$ ist $(v,u)$ Kante von~$D$.
-Da nach Beobachtung~\ref{beob:d-vs-dt} die Teilmengen~$K$ und $K'$ starke Zusammenhangskomponenten von~$D^T$ sind, können wir Teil~i) anwenden und erhalten $\cc{Schwarz}(K) < \cc{Schwarz}(K')$.
-\end{proof}
-
-\begin{bem} 
-In Worten ausgedrückt besagt das vorige Lemma, dass jede Kante von~$D$ (bzw.~$D^T$), die zwei verschiedene starke Zusammenhangskomponenten verbindet, von der Komponente mit dem späteren (bzw.~früheren) Abarbeitungszeitpunkt ausgeht.
-
-Auf der Grundlage dieser Beobachtung können wir nun die Grundidee des Korrektheitsbeweises erläutern:
-Die Tiefenssuche auf~$D^T$ startet in der starken Zusammenhangskomponente~$K_1$, die den zuletzt abgearbeiteten Knoten~$u_1$ der Tiefensuche auf~$D$ enthält.
-Der transponierte Graph $D^T$ enthält nach Lemma~\ref{lem:komponenten-zeitpunkte}~\ref{lem:komponenten-zeitpunkte:transponiert} keine Kanten, die von~$K_1$ zu einer anderen starken Zusammenhangskomponente verlaufen.
-Daher werden bei der Tiefensuche die von~$u_1$ aus startet genau die Knoten aus der Komponente~$K_1$ besucht.
-Der Algorithmus wählt danach den Knoten~$u_2$ außerhalb der Komponente~$K_1$, der als letztes unter den verbleibenden Knoten bei der Tiefensuche auf~$D$ abgearbeitet wurde und besucht wie zuvor, alle Knoten der starken Zusammenhangskomponente~$K_2$, die~$u_2$ enthält.
-Dies geht iterativ weiter bis alle Tiefensuchbäume erstellt sind, und wir sehen, dass diese den starken Zusammenhangskomponenten entsprechen.
-\end{bem} 
-
-\begin{thm}
-$\cc{Starke-Zusammenhangskomponenten}(D)$ bestimmt die starken Zusammenhangskomponenten eines Digraphen~$D=(V,A)$ korrekt.
-\end{thm}
-
-\begin{proof}
-Wir argumentieren über vollständige Induktion nach der Anzahl der Tiefensuchbäume, die bei der Tiefensuche auf $D^T$ in den Zeilen~\ref{line:szhk1}-\ref{line:szhk2} des Algorithmus $\cc{Starke-Zusammenhangskomponenten}(D)$ gefunden werden und zeigen, dass jeder solche Baum eine starke Zusammenhangskomponente bildet.
-Die konkrete Aussage, die wir per Induktion beweisen, ist: \glqq Die ersten $k$ Tiefensuchbäume, die in den Zeilen~\ref{line:szhk1}-\ref{line:szhk2} erzeugt werden, sind starke Zusammenhangskomponenten von~$D$.\grqq
-
-Der Induktionsanfang ist mit $k=0$ klar.
-Für den Induktionsschritt, sei $B \subseteq V$ der $(k+1)$-te erzeugte Baum bei der Tiefensuche auf~$D^T$.
-Sei weiterhin $u \in B$ die Wurzel dieses Baumes und $K \subseteq V$ die starke Zusammenhangskomponente, die~$u$ enthält.
-Für jede starke Zusammenhangskomponente $K' \neq K$, die bereits besucht wurde, gilt $\cc{Schwarz}[u] = \cc{Schwarz}(K) > \cc{Schwarz}(K')$, wegen der Reihenfolge in der die Knoten in Zeile~\ref{line:szhk2} durchlaufen werden.
-Wegen der Induktionsannahme sind zum Zeitpunkt zu dem die Suche den Knoten~$u$ besucht, alle anderen Knoten von~$K$ weiß.
-Nach dem Theorem~\ref{thm:weisse-pfade-thm} der weißen Pfade sind daher alle anderen Knoten in~$K$ Nachfahren von~$u$ in dessen Tiefensuchbaum.
-
-Weiterhin müssen nach Induktionsannahme und Lemma~\ref{lem:komponenten-zeitpunkte}~\ref{lem:komponenten-zeitpunkte:transponiert} alle Kanten von~$D^T$, die aus $K$ herausführen, zu starken Zusammenhangskomponenten verlaufen, die bereits entdeckt wurden.
-Damit wird kein Knoten außerhalb von~$K$ ein Nachfahre von~$u$ bei der Tiefensuche auf~$D^T$.
-Das heißt, dass die Knoten des Tiefensuchbaumes von~$D^T$, der von~$u$ ausgeht, eine starke Zusammenhangskomponente bilden, und der Induktionsschritt ist gezeigt.
-\end{proof}
 
 
 \begin{bem}

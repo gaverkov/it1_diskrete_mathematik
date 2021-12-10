@@ -667,9 +667,16 @@ Beachten Sie, dass die Knoten $9$ und $10$ nicht im Breitensuchbaum auftreten, d
 	\begin{itemize} 
 		\item Bestimmung der Zusammenhangskomponente des Knotens $s$ bei einem ungerichteten Graphen $G$. 
 		\item Umsetzung von Web-Crawlern, die das Umfeld einer Webseite $s$ bestimmen, als die Menge von Webseiten, die innerhalb von gegebener Anzahl von Klicks $k$ von $s$ aus erreichbar sind. 
-		\item Bei verschiedenen Arten von Spielen lässt sich die Frage stelle: kann man den Gewinn von einer gegebenen Position aus erzwingen und ggf. wie? Dafür benutzt man etwa im Schach die sogenannten Endspieldatenbanken. 
+	\end{itemize}
+\end{bem} 
+
+\begin{bem}[Entscheidung von Spielen mit einer Variante der Breitensuche]  		
+		Bei verschiedenen Arten von Spielen lässt sich die Frage stellen: kann man den Gewinn von einer gegebenen Position aus erzwingen und ggf. wie? Dafür benutzt man etwa im Schach die sogenannten Endspieldatenbanken. 
 		Die Generierung von Endspieldatenbanken basiert im Wesentlichen auf der Breitensuche. Vgl. den Abschnitt Generating Tablebases in  \url{https://en.wikipedia.org/wiki/Endgame_tablebase}. Endspieldatenbanken kann man für verschiedene Spiele generieren (Treblecross, Hex, Go, Nim usw.), die Anzahl der Positionen ist aber ein mögliches praktisches Hindernis, da der Graph der Endspiele, den man kann erzeugt, potenziell extrem groß sein kann.   
-	\end{itemize} 
+		
+		Hier eine Weise alle Endspiele für einen gegebene Auswahl von Steinen zu entscheiden. Man erzeugt den Digraphen des Spiels $D=(V,A)$, bei dem jeder Knoten $v \in V$ eine Position (mit gegebener Anzahl der Steine) darstellt, mit dem Vermerk wer dran ist. Die Menge $V$ besteht aus den Knoten, bei denen Weiß dran ist und aus den Knoten, bei denen Schwarz dran ist. Wir zerlegen dementsprechend $V$ als $V = W \cupdot S$). Die Kanten $(a,b) \in A $ stellen die Züge dar, und da Weiß und Schwarz abwechselnd dran sind, gilt für jede Kante entweder  $a \in W, b \in S$ oder $a \in S, b \in W$. 
+		
+		Um zu entscheiden, in welchen Stellungen Schwarz den Sieg erzwingen kann, markieren wir die Positionen $a \in W$, bei denen Weiß matt gesetzt ist als ``Schwarz gewinnt in $0$'' Zügen oder kurz $s_0$. Dann markieren wir alle $a \in S$, bei denen $b$ als $s_0$ markiert ist als ``Schwarz gewinnt in $1$ Zug'' oder kurz $s_1$. So gehen wir iterativ vor. Sind die Markierungen $s_0,\ldots,s_{k-1}$ bereits vergeben, so bestimmen wir die Knoten $a \in S$, für welche eine Kante $(a,b)$ existiert derart, dass für alle Kanten $(b,c)$, die von $b$ ausgehen, der Knoten $c$ bereits als $s_i$ mit $i=0,\ldots,k-1$ markiert ist. Man markiert $a$ als $s_k$ und merkt dabei den Siegeszug $(a,b)$. Auf diese Weise lassen sich alle Positionen markieren, bei denen Schwarz den Sieg erzwingen kann. Analog kann man auch alle Positionen bestimmen, bei denen Weiß den Sieg erzwingen kann. Alle nicht markierten  Positionen hat führen beim optimalen Spiel zu unentschieden. 
 \end{bem} 
 
 \begin{aufg}\ Hier der Graph des Spiels Nim für die Anfangspositionen $(2,2,2)$. Es gibt zwei Startpositionen (für den Fall, dass $A$ beginnt und für den Fall, dass $B$ beginnt). Die Gewinnstrategie für dieses Spiel ist zwar bekannt, man kann den Graphen trotzdem als Illustration zur Lösung der Spiele mit Hilfe von (End)spieldatenbanken benutzen. Berechnen Sie mit Hilfe des Graphen alle Positionen, von denen $A$ (bzw. $B$ ) den Sieg erzwingen kann. Bei den Positionen, die mit $a$ bzw. $b$ marikiert sind, ist $A$ bzw. $B$ dran. Bei Standard-Nim ist die Endopisition $b000$ der Sieg für $A$ und $a000$ der Sieg für $B$ (bei Mis\'ere-Nim ist das genau umgekehrt). 
@@ -683,10 +690,10 @@ Beachten Sie, dass die Knoten $9$ und $10$ nicht im Breitensuchbaum auftreten, d
 \end{aufg} 
 
 \begin{aufg}
-	Implementieren Sie die Breitensuche. Testen Sie die Laufzeit Ihrer Implementierung auf den Graphen den realen Straßennetzwerken, die in der 9th DIMACS Implementation Challenge benutzt wurden. Die Graphen sind unter 
+	Implementieren Sie die Breitensuche. Testen Sie die Laufzeit Ihrer Implementierung auf den realen Straßennetzwerken, die in der 9th DIMACS Implementation Challenge benutzt wurden. Die Graphen sind unter 
 	\url{http://www.diag.uniroma1.it/challenge9/download.shtml}  verfügbar. Diese Graphen sind gewichtet: für den Test Ihrer Implementierung können Sie die Gewichte ignorieren. 
 \end{aufg} 
 
 \begin{bem}
-	Die hier gegebene Präsentation der Breitensuche basiert auf \cite{CLRS17}. 
+	Die obige Präsentation der Breitensuche ist in Anlehnung auf \cite{CLRS17} entstanden.
 \end{bem} 
