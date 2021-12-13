@@ -8,7 +8,7 @@ Viel mehr zum Thema dieses Kapitels findet man im Kurs Entwicklung von Softwares
 \begin{bem} Wer mit den Theorie und der Praxis der  Computer-Berechnungen zu tun hat, muss sich in der Regel auch mit den folgenden Konzepten und Aspekten auseinandersetzen: 
 	\begin{center} 
 			\begin{tabular}{l|l} 
-				Algorithmische Theorie& Reale Berechnungen 
+				\textbf{Algorithmische Theorie} & \textbf{Reale Berechnungen}
 				\\ \hline\hline 
 				Rechenmodell (Rechner) & Hardware 
 				\\  & Betriebsysteme 
@@ -902,7 +902,7 @@ Dieser Algorithmus würde also $2^{2^n}$ in der Zeit $O(n)$ berechnen. Die Zahl 
 	Es existieren Sprachen, die nicht entscheidbar sind. 
 \end{thm} 
 \begin{proof} 
-		Ein Algorithmus ist durch seine ``Quellencode'' darstellbar. Denn ein jeder Algorithmus ist eine Auflistung von Grundbefehlen, die man alle mit Hilfe von Strings über einem endlichen Alphabet darstellen kann. Somit kann  man jeden Algorithmus als ein String über einem endlichen Alphabet kodieren. Wir identifizieren also die Algorithmen mit Elementen von $\{0,1\}^\ast$. Die Menge aller Sprachen über dem Alphabet $\{0,1\}^\ast$ ist die Menge $2^{\{0,1\}^\ast}$. Wäre jeder Sprache entscheidbar, so könnte man für jede Sprache $L \in 2^{\{0,1\}^\ast}$ einen Algorithmus (genauer: Quellcode eines Algorithmus) $A_L \in \{0,1\}^\ast$ fixieren, der die Sprache $L$ entscheidet. Wir können also eine Abbildung $F : \{0,1\}^\ast \to 2^{\{0,1\}^\ast}$ so fixieren, dass $F(A_L) = L$ für alle $L \in 2^{\{0,1\}^\ast}$ gilt. Die Abbildung $F$ ist surjektiv. Die Existenz der Abbildung $F$ widerspricht aber der Behauptung von Lemma~\ref{lem:X:2^X}.
+		Ein Algorithmus ist durch seinen ``Quellencode'' darstellbar. Denn ein jeder Algorithmus ist eine Auflistung von Grundbefehlen, die man alle mit Hilfe von Strings über einem endlichen Alphabet darstellen kann. Somit kann  man jeden Algorithmus als ein String über einem endlichen Alphabet kodieren. Wir identifizieren also die Algorithmen mit Elementen von $\{0,1\}^\ast$. Die Menge aller Sprachen über dem Alphabet $\{0,1\}^\ast$ ist die Menge $2^{\{0,1\}^\ast}$. Wäre jeder Sprache entscheidbar, so könnte man für jede Sprache $L \in 2^{\{0,1\}^\ast}$ einen Algorithmus (genauer: Quellcode eines Algorithmus) $A_L \in \{0,1\}^\ast$ fixieren, der die Sprache $L$ entscheidet. Wir können also eine Abbildung $F : \{0,1\}^\ast \to 2^{\{0,1\}^\ast}$ so fixieren, dass $F(A_L) = L$ für alle $L \in 2^{\{0,1\}^\ast}$ gilt. Die Abbildung $F$ ist surjektiv. Die Existenz der Abbildung $F$ widerspricht aber der Behauptung von Lemma~\ref{lem:X:2^X}.
 \end{proof} 
 
 \subsection{Komplexität in Hinblick auf die Laufzeit} 
@@ -978,6 +978,14 @@ Wir nennen einen Algorithmus~$A$ \textbf{polynomial} oder \textbf{Polynomialzeit
 
 \begin{prop}
 	Ist $M \in \DP$ und $L \le_{\DP} M$, so ist auch $L \in \DP$. 
+\end{prop} 
+
+\begin{bem}
+	Die kontrapositive Form der vorigen Aussage ist auch nützlich. 
+\end{bem}
+
+\begin{prop}
+	Ist $L \not\in \DP$ und $L \le_{\DP} M$, so ist auch $M \not\in DP$. 
 \end{prop} 
 
 IM AUFBAU 

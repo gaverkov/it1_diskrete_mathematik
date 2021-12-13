@@ -460,7 +460,7 @@ Für alle Knoten~$v \in Q$ mit $\pi[v] \neq \cc{nil}$ ist das Attribut~$\ell[v] 
 Diese Kante ist eine Kante mit aktuell kleinstem Gewicht, die den Knoten~$v$ mit dem aktuellen Teilbaum $(V',E')$ verbindet.
 
 \begin{algorithm}[H]
-\caption{$\cc{Prim}()$}
+\caption{$\cc{Prim}(G)$}
 \begin{algorithmic}[1]
  \STATE Ein beliebiges $s \in V$ fixieren.
  \STATE\COMMENT{Initialisierung}
@@ -513,19 +513,19 @@ Ist die Prioritätswarteschlange auf der Basis von Heaps umgesetzt, so beträgt 
 \end{thm}
 
 \begin{proof}
-Schauen wir zuerst auf die Laufzeit von $\cc{Prim}()$.
+Schauen wir zuerst auf die Laufzeit von $\cc{Prim}(G)$.
 Die Initialisierung verläuft in Zeit $\Theta(|V|)$.
 Beachten Sie dabei lediglich, dass der Min-Heap für die Prioritätswarteschlange~$Q$ in linearer Zeit initialisert werden kann, da die Schlüssel für die Knoten $v \neq s$ alle gleich $\infty$ sind.
 Die Initialisierung kann also durch ein Array $[s,v_1,\ldots,v_k]$ erfolgen, wobei $v_1,\ldots,v_k$ eine beliebige Anordnung der Knoten in $V \setminus \{s\}$ ist.
 
 Nach erfolgter Initialisierung wird die \texttt{while}-Schleife exakt $|V|$ Mal aufgerufen, ein Mal für jeden Knoten von~$G$.
-Die Prozedur $\cc{Minimum-Entfernen}(Q)$ benötigt bei der Umsetzung mittels Heaps, höchstens $O(\log |V|)$ Zeiteinheiten, und damit zusammengefasst über die ganze Laufzeit von $\cc{Prim}()$ höchstens $O(|V|\log|V|)$ Zeit.
+Die Prozedur $\cc{Minimum-Entfernen}(Q)$ benötigt bei der Umsetzung mittels Heaps, höchstens $O(\log |V|)$ Zeiteinheiten, und damit zusammengefasst über die ganze Laufzeit von $\cc{Prim}(G)$ höchstens $O(|V|\log|V|)$ Zeit.
 Die \texttt{for}-Schleife wird über den gesamten Algorithmus $O(|E|)$ oft ausgeführt, da jede Kante genau~$2$ Knoten hat.
 Die Hilfsprozedur $\cc{Prim-Update}(u,v)$ hat den Anschein in konstanter Zeit zu arbeiten.
 Beachten Sie aber, dass nach der Ausführung der Zuweisung $\ell[v]:=w(u,v)$ der Schlüssel von~$v$ in der Prioritätswarteschlange~$Q$ mittels $\cc{Schlüssel-Verkleinern}(Q,v,\ell[v])$ verkleinert werden muss, was $O(\log|V|)$ Zeiteinheiten erfordert.
 Insgesamt werden für die Rechenschritte in der \texttt{for}-Schleife damit $O(|E|\log|V|)$ Zeiteinheiten benötigt.
 
-Die Gesamtlaufzeit von $\cc{Prim}()$ ergibt sich nun durch Addition der oben bestimmten Teillaufzeiten und damit zu $\Theta(|V|)+O(|V|\log|V|)+O(|E|\log|V|) = O(|E|\log|V|)$.
+Die Gesamtlaufzeit von $\cc{Prim}(G)$ ergibt sich nun durch Addition der oben bestimmten Teillaufzeiten und damit zu $\Theta(|V|)+O(|V|\log|V|)+O(|E|\log|V|) = O(|E|\log|V|)$.
 
 Wir beweisen nun die Korrektheit des Algorithmus.
 Man überzeugt sich leicht davon, dass die beiden folgenden Bedingungen eine Schleifeninvariante für die \texttt{while}-Schleife bilden: 

@@ -33,7 +33,7 @@ def generate_szk_component(D,u,seen,component):
     """
     seen[u]=True
     component.append(u)
-    for v in D.neighbors_out(u):
+    for v in D.neighbors_in(u):
         if not seen[v]:
             generate_szk_component(D,v,seen,component)
 
@@ -48,11 +48,11 @@ def SZK(D):
     for u in D.vertices():
         if not seen[u]:
             szk_ordering(D,u,seen,ordering)
-    
+                
     # Phase 2: Berechnung der Komponenten
     seen={u:False for u in D.vertices()}
     components={}
-    for u in ordering[:-1:]:
+    for u in ordering[::-1]:
         if not seen[u]:
             components[u]=[]
             generate_szk_component(D,u,seen,components[u])

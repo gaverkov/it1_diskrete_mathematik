@@ -1065,14 +1065,16 @@ Der zu einem Digraphen $D=(V,A)$ transponierte Graph $D^\top$ hat dieselben star
 	Sei $D = (V,A)$ Digraph. Zur Berechnung der SZK von $D$ kann der folgende Algorithmus benutzt werden, den wir als $\cc{SZK}(D)$ bezeichnen: 
 \begin{itemize}
 	\item \textbf{Phase~1: Anordnung.} Ordne mit Hilfe der vollständigen Tiefesuche auf $D$ die Knotenmenge $V$ in absteigender Reihenfolge $u_1,\ldots,u_n$ der Abarbeitungszeit ($n:=|V|$). Es reicht dafür beim Abarbeiten eines Knoten, den Knoten zu einer Liste mit $n$ Elementen hinzuzufügen (und die Liste vom Ende beginnend zu füllen). 
-	\item \textbf{Phase~2: Berechnung der Komponenten.} Erzeuge $D^\top$ in der Form einer Adjazenzliste und starte vollständige Tiefensuche auf $D^\top$, bei der  über die Knoten $u \in V$ in der oben bestimmten Reihenfolge $u_1,\ldots,u_n$ iteriert wird. 
+	\item \textbf{Phase~2: Berechnung der Komponenten.} Für eine vollständige Tiefensuche auf $D^
+\top$ durch, bei der  über die Knoten $u \in V$ in der oben bestimmten Reihenfolge $u_1,\ldots,u_n$ iteriert wird. Dabei entdeckt jeder Aufruf der Tiefensuche aus der vollständigen Tiefensuche die Knoten einer starken Zusammenhangskomponente.
 \end{itemize} 
 
 Wie man Phase~2 genau umsetzt hängt unter anderem davon ab, in welchem Format man die SZK speichern möchte. 
-
-Für dieses Verfahren gilt: jeder Aufruf von $\cc{TS}(u)$ innerhalb der vollständigen Tiefensuche, führt zur Entdeckung der Knoten einer weiteren SZK. Wenn man also einen Zähler $c=0$ einführt, den man vor jedem Start von $\cc{TS}(u)$ innerhalb der vollständigen Tiefensuche um eins erhöht, um dann während der Tiefensuche die entdeckten Knoten als die Knoten der SZK Nummer $c$ zu markieren, so identifiziert man am Ende der Ausführung der vollständigen Tiefensuche ür jeden Knoten seine SZK. 
 \end{bem} 
 
+\begin{bem} Umsetzung: 
+\lstinputlisting{Code/szk.sage}
+\end{bem} 
 
 
 \begin{thm}
