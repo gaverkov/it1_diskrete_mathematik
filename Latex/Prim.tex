@@ -569,9 +569,33 @@ Die Korrektheit des Kruskal-Algorithmus ist etwas weniger direkt zu beweisen als
 \end{enuma}
 \end{bem}
 
+\begin{bem} Hier eine mögliche Umsetzung des Prim-Algorithmus: 
+\lstinputlisting{Code/prim.sage}
+Bei dieser Umsetzung benutzten wir im Gegenteil zur Beschreibung durch den Pseudecode keine Schlüssel-Änderung. Im Prim-Algorithmus lassen wir einen Baum auf die folgende Weise iterativ wachsen. 
+
+Auf den Heap werden ``Links'' gelegt, die einen Knoten $u$ des (aktuellen) Baums zu einem Knoten $v$ außerhalb des (aktuellen) Baums verbinden, sobald dieser Link besser als die bis jetzt gefundenen Links vom (aktuellen) Baum zu $v$ ist. Es kann also passieren, dass man während der Ausführung zu einem Knoten $v$ mehr als einen Links auf dem Heap aufgehoben hat. Wird ein Knoten $u$ in den Baum aufgenommen, so wird dieser Knoten mit dem besten gefundenen Link an den Baum verlinkt, weil die Links nach ihrer Priorität entfernt werden. Die weiteren Links zu $u$, die nach der Aufnahme von $u$ in den Baum noch vorhanden sein könnten, werden einfach nur entfernt, weil man den Knoten $u$ als ein Element des Baums notiert und einen Link zur Verbindung von $u$ an den Baum nur dann benutzt, wenn sich $u$ noch nicht im Baum befindet.  
+
+Während man bei der Umsetzung mit der Schlüssel-Änderung einen Heap der Größe $O(|V|)$ benötigt, wird in dieser Umsetzung ein Heap der Größe $O(|E|)$ benötigt. Der Speicheraufwand dieser Umsetzung ist also potenziell größer als bei der Umsetzung mit der Schlüssel-Änderung. Für Graphen, in denen die Anzahl der Kanten nicht wesentlich größer als die Anzahl der Knoten ist, ist der potenzielle größere Speicheraufwand nicht erheblich. 
+\end{bem} 
+
+\begin{bem}
+	Bei der naiven Umsetzung des Prim-Algorithmus führt man für jeden Knoten den besten Link zum Baum und verlinkt durch das Iterieren über alle Knoten, die aktuelle außerhalb des Baums sind, den Knoten außerhalb des Baums, der einen Link mit dem kleinsten Gewicht besitzt, zu dem Baum. Auf diese Weise lassen sich die Updates der aktuell besten Links zwar sehr schnell in der Zeit $O(1)$ durchführen, die Bestimmung des Knotens, der zum Baum verlink werden soll, benötigt dagegen $O(|V|)$ Operationen. Hier die naive Umsetzung: 
+	\lstinputlisting{Code/prim_naive.sage} 
+	
+	
+	Wir kommen bei der naiven Umsetzung auf den Aufwand $|V| O(|V|) + |E| \cdot O(1) = O(|V|^2 + |E|)$, weil jeder Knoten aus dem Baum entfernt wird und jede Kante ein Mal sondiert wird. 
+	
+	 Für Graphen, deren Anzahl der Kanten wesentlich geringer als $|V|^2$ ist, ist $|V|^2 + |E|$ ein viel höherer Wert als der Wert $|E| \log |V|$ aus der Abschätzung der Laufzeit des Heap-basierten Prim-Algorithmus. Auch die praktische Auswertung der Laufzeiten der beiden Umsetzungen zeigt ganz deutlich, wie erheblich der Unterschied der Laufzeit ist. Für den Vergleich nutzen wir den Code: 
+
+	\lstinputlisting{Code/prim_vs_prim_naive.sage} 	 
+	 
+	 Auf meinem Computer benötigt die Heap-basierte Umsetzung für diesen Graphen mit $10 \, 000$ Knoten und $19\, 800$ Kanten lediglich $0{,}614$ Sekunden. Die naive Umsetzung benötigt dagegen $2$ Minuten und $13$ Sekunden. Die naive Umsetzung ist somit auf dieser Instanz etwa $200$ mal langsamer. Bei noch größeren Graphen ist die Diskrepanz der Laufzeiten der beiden Umsetzungen noch dramatischer. 
+\end{bem} 
+
 \begin{bem}
 	Die Präsentation des  Primalgorithmus hier basiert auf  \cite{CLRS17}. 
 \end{bem} 
+
 
 
 
