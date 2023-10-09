@@ -1,6 +1,6 @@
 def smallest_factor_which_is_at_least_two(n):
     """
-        der kleinster Faktor einer natuerrlichen Zahl n>=2, der mind. 2 ist.
+        der kleinste Faktor einer natuerlichen Zahl n>=2, der mind. 2 ist.
 
         Ist die Rueckgabe n, so ist n Primzahl.
     """
@@ -25,7 +25,7 @@ def prime_factorizations(N):
             # n Primzahl
             Z[n]=[n] # n ist Produkt einer Primzahl (die Zahl n selbst)
         else:
-            Z[n]=sorted(Z[a] + Z[n/a]) # die Primaftorzerlegung von n setzt sich
+            Z[n]=sorted(Z[a] + Z[n/a]) # die Primfaktorzerlegung von n setzt sich
             # aus Primfaktorzerlegungen von a und n/a zusammen
     return Z
 

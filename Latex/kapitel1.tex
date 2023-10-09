@@ -14,9 +14,9 @@ Eine Aussage ist ein Satz (eine Folge von Zeichen mit mathematischer Bedeutung),
 	\item $ 2 = 1 $ (falsch)
 	\item $ 2 > 1 $ (wahr)
 	\item $2$ ist eine Primzahl (wahre Aussage, Primzahl definiert). 
-	\item $2$ ist eine schöne Zahl (keine Aussage, es sei denn, die Eingeschaft einer Zahl schön zu sein, wurde definiert). 
-	\item Es gibt unendlich viele Primzahlen $n$, für welche $n+2$ ebenfalls eine Primzahl ist. (eine Aussage, Wahrheitswert ist noch nicht geklärt). 
-	\item Die Gleichung $x^2+1 =0$ hat keine Lösungen. (an sich keine Aussage, es sei denn, ein Kontext war vorher gegeben, in dem die Rolle von $x$ geklärt wuirde.)
+	\item $2$ ist eine schöne Zahl (keine Aussage, es sei denn, die Eigenschaft einer Zahl schön zu sein, wurde definiert). 
+	\item Es gibt unendlich viele Primzahlen $n$, für die $n+2$ ebenfalls eine Primzahl ist. (eine Aussage, Wahrheitswert ist noch nicht geklärt). 
+	\item Die Gleichung $x^2+1 =0$ hat keine Lösungen. (an sich keine Aussage, es sei denn, ein Kontext war vorher gegeben, in dem die Rolle von $x$ geklärt wurde.)
 	\item Die Gleichung $x^2+1=0$ hat keine reellwertigen Lösungen (wahre Aussage). 
 \end{itemize}
 \end{bsp} 
@@ -37,7 +37,7 @@ Seien $ A $ und $ B $ Aussagen. Dann definiert man anhand von $ A $ und $ B $ di
 \begin{bsp}\
 	\begin{itemize}
 		\item Seien $ x,y \in \R$. Dann gilt die Implikation: $x = y \Rightarrow x^2 = y^2 $ (wahr)
-		\item Seien $x,y \in \R$. Dann gilt die Implikation $ x,y \in \R, x^2 = y^2 \Rightarrow x = y $ (falsch für $x=1$ und $y=-1$)	
+		\item Seien $x,y \in \R$. Dann gilt die Implikation $ x^2 = y^2 \Rightarrow x = y $ nicht für alle $ x,y \in \R $ (falsch für $x=1$ und $y=-1$)	
 	\end{itemize}
 \end{bsp}
 
@@ -51,7 +51,7 @@ Seien $ A $ und $ B $ Aussagen. Dann definiert man anhand von $ A $ und $ B $ di
 
 
 \begin{bem}
-	Die Aussagenlogik ist die Studie der logischen Vernknüpfungen von Aussagen. Dabei spielt die Natur in den Formeln verwendeten Aussagen, die man mit Symbolen bezeichnet, etwa $a,b, c, d, \ldots$, an sich keine Rolle. Alles, was zählt, ist der Wahrheitswert. Daher kann man auch $a,b,c,d \ldots$ als Variablen aus $\{0,1\}$ auffassen, ohne dass sich an der Studie was ändert. Mehr über die Aussagenlogik erfahren wir später in diesem Kurs. 
+	Die Aussagenlogik ist die Studie der logischen Verknüpfungen von Aussagen. Dabei spielt die Natur der in den Formeln verwendeten Aussagen, die man mit Symbolen bezeichnet, etwa $a,b, c, d, \ldots$, an sich keine Rolle. Alles, was zählt, ist der Wahrheitswert. Daher kann man auch $a,b,c,d \ldots$ als Variablen aus $\{0,1\}$ auffassen, ohne dass sich an der Studie etwas ändert. Mehr über die Aussagenlogik erfahren wir später in diesem Kurs. 
 \end{bem} 
 
 \clearpage
@@ -59,7 +59,7 @@ Seien $ A $ und $ B $ Aussagen. Dann definiert man anhand von $ A $ und $ B $ di
 
 
 \begin{defn}[Intuitive ``Definition'' einer Menge] 
-	Eine Menge $X$ ist durch die Eindeutige Angabe definiert, welche Objekte Elemente der Menge sind. Man schreibt in diesem Fall $x \in X$ dafür, dass das Objekt $x$ Element der Menge $X$ ist, und $x \not\in X$ dafür, dass $x$ kein Element der Menge $X$. 
+	Eine Menge $X$ ist durch die Eindeutige Angabe definiert, welche Objekte Elemente der Menge sind. Man schreibt in diesem Fall $x \in X$ dafür, dass das Objekt $x$ Element der Menge $X$ ist, und $x \not\in X$ dafür, dass $x$ kein Element der Menge $X$ ist. 
 	
 	Mit anderen Worten: für die Angabe einer Menge $X$ soll für jedes Objekt $x$ geklärt sein, ob für dieses Objekt $x \in X$ oder $x\not \in X$ gilt. 
 \end{defn} 
@@ -67,15 +67,15 @@ Seien $ A $ und $ B $ Aussagen. Dann definiert man anhand von $ A $ und $ B $ di
 \begin{bem}[Zur korrekten Definition einer Menge]
 	Unsere Definition der Menge ist etwas intuitiv und  somit streng genommen keine echte Definition); sie reicht aber vorerst für unsere Zwecke völlig aus. Die genaue Definition einer Menge ist durch das Axiomensystem von Zermelo-Fraenkel gegeben. Dieses System legt Folgendes fest: 
 	\begin{itemize}
-		\item die Existenz der leeren Mengen, 
+		\item die Existenz der leeren Menge, 
 		\item die Bedingung für die Gleichheit von zwei Mengen
 		\item die Möglichkeit Mengenfamilien zu vereinigen, 
 		\item die Existenz einer sogenannten Potenzmenge für eine beliebige Menge
 		\item Fundierungsaxiom (ist etwas technisch)
-		\item die Möglichkeit Mengen, durch eine Bedingung zu definieren. 
+		\item die Möglichkeit Mengen durch eine Bedingung zu definieren. 
 		\item Ersetzungsaxiom (ist etwas technisch)
 	\end{itemize} 
-	Zu den obigen Axiomen nimmt man noch zusätzlich das sogenannte Auswahlaxiom dazu. Das Axiomensystem, das auf diese Weise entsteht, wird als ZFC (Zermelo-Fraankel axioms plus Axom of Choice) abgekürzt. 
+	Zu den obigen Axiomen nimmt man noch zusätzlich das sogenannte Auswahlaxiom hinzu. Das Axiomensystem, das auf diese Weise entsteht, wird als ZFC (Zermelo-Fraenkel axioms plus Axiom of Choice) abgekürzt. 
 \end{bem} 
 
 
@@ -84,34 +84,34 @@ Eine Weise, Mengen zu definieren, ist durch die Auflistung ihrer Elemente. Dabei
 \begin{itemize}
 	\item $ \{1,2,5,7\} $ - Menge aus den vier Elementen $1,2,5$ und $7$. 
 	\item $ \{1\} $ - Menge aus einem einzigen Element $1$. 
-	\item $ \{1,\{2,5\},\{6\}\} $ - Menge aus drei Elementen, von denen zwei Elementen selber Mengen sind. 
-	\item $ \{1,2,3,\ldots\} $ - Menge der aller positiven ganzen Zahlen. 
+	\item $ \{1,\{2,5\},\{6\}\} $ - Menge aus drei Elementen, von denen zwei Elemente selbst Mengen sind. 
+	\item $ \{1,2,3,\ldots\} $ - Menge aller positiven ganzen Zahlen. 
 \end{itemize}
 \end{bsp}
 
 \begin{defn}
 Seien $ A $ und $ B $ Mengen. Dann heißt $ A $ eine \textbf{Teilmenge} von $ B $, wenn jedes Element von $ A $ auch Element von $ B $ ist;  wir verwenden in diesem Fall die Bezeichnung $A \subseteq B$ und nennen die Relation $\subseteq$ \textbf{Inklusion}. 
 
-Wenn $A$ Teilmenge von $B$ aber $B$ keine Teilmengen von $A$ ist, so sagt man, dass $A$ eine \textbf{echte Teilmenge} von $B$ ist; wir verwenden in diesem Fall die Bezeichnung $A \varsubsetneq B$ und nennen die Relation $\varsubsetneq$ eine \textbf{echte} bzw. \textbf{strikte Inklusion}. 
+Wenn $A$ Teilmenge von $B$ aber $B$ keine Teilmenge von $A$ ist, so sagt man, dass $A$ eine \textbf{echte Teilmenge} von $B$ ist; wir verwenden in diesem Fall die Bezeichnung $A \varsubsetneq B$ und nennen die Relation $\varsubsetneq$ eine \textbf{echte} bzw. \textbf{strikte Inklusion}. 
 \end{defn}
 
 \begin{bem}
-In einigen mathematischen Quellen bezeichnet man die Inklusion als $ \subset $ und nicht als $ \subseteq $. Es ist schwer zu sagen, welche Bezeichnung in der Mehrheit der Quellen benutzt wird. Es gibt aber auch Quellen, in denen $ \subset $ die strikte Inklusion bezeichnet. Durch die Nutzung $\subseteq$ vermeiden wir potenzielle Ambiguitäten. 
+In einigen mathematischen Quellen bezeichnet man die Inklusion als $ \subset $ und nicht als $ \subseteq $. Es ist schwer zu sagen, welche Bezeichnung in der Mehrheit der Quellen benutzt wird. Es gibt aber auch Quellen, in denen $ \subset $ die strikte Inklusion bezeichnet. Durch die Nutzung $\subseteq$ vermeiden wir potenzielle Ungenauigkeiten. %Ambiguitäten. 
 \end{bem} 
 
 \begin{defn}
-	 Mengen $ A $ und $ B $ heißen \textbf{gleich}, wenn $ A \subseteq B $ und $ B \subseteq A $ gilt. 
+	 Zwei Mengen $ A $ und $ B $ heißen \textbf{gleich}, wenn $ A \subseteq B $ und $ B \subseteq A $ gilt. Wir schreiben dann $A = B$.
 \end{defn} 
 
 
 \begin{bem}[Definition einer Menge durch eine Bedingung]
-Eine sehr verbreite Weise, Mengen zu definieren, ist durch Bedingungen, nach dem Format 
+Eine sehr verbreitete Weise, Mengen zu definieren, ist durch Bedingungen, nach dem Format 
 \[
  \setcond{ \text{AUSDRUCK} }{\text{BEDINGUNG}}. 
-\] Der Doppelpunkt bedeutet so viel wie \glqq sodass\grqq oder \glqq mit der Bedingung\grqq. In manchen Quellen wird ein Strich an der Stelle des Doppelpunktes benutzt. 
+\] Der Doppelpunkt bedeutet so viel wie \glqq sodass\grqq oder \glqq mit der Bedingung\grqq. In manchen Quellen wird ein senkrechter Strich an der Stelle des Doppelpunktes benutzt. 
 \end{bem} 
 
-\begin{bem} In der Programmiersprache Python hat man den Datentyp Menge sowie syntaktische Strukturen zur Konstruktion von Mengen und Listen, die analog zu mathematischen Bezeichnungen sind: 
+\begin{bem} In der Programmiersprache Python gibt es den Datentyp Menge sowie syntaktische Strukturen zur Konstruktion von Mengen und Listen, die analog zu mathematischen Bezeichnungen sind: 
 \begin{center}
 	\small 
 	\begin{tabular}{l|l}
@@ -145,7 +145,7 @@ set([i**2 for i in range(6) if i%2==1])
 	 \{ k^2 : k \in \N, k \: \text{ungerade} \} 
 \]
 sind. 
-\item Wie viele Elemente hat die Menge $\setcond{x \in \R}{x^2- 5 x + 6} $? Welche Elemente sind es genau? 
+\item Wie viele Elemente hat die Menge $\setcond{x \in \R}{x^2- 5 x + 6 = 0} $? Welche Elemente sind es genau? 
 \end{itemize}
 \end{aufg}
 
@@ -161,7 +161,7 @@ Sei $ X $ eine Menge. Dann ist die \textbf{Potenzmenge} von $ X $ die Menge alle
 gegeben. 
 \end{defn} 
 
-\begin{bem} Hier und im folgenden verwenden wir die Gleichung $:=$ mit Doppelpunkt, wenn es um neue Bezeichnungen geht, die festgelegt werden. Format: 
+\begin{bem} Hier und im Folgenden verwenden wir das Gleichheitszeichen $:=$ mit Doppelpunkt, wenn es um neue Bezeichnungen geht, die festgelegt werden. Format: 
 	\[
 		\text{NEUE BEZEICHNUNG} := \text{BEDEUTUNG DER BEZEICHNUNG}
 	\]
@@ -173,7 +173,7 @@ gegeben.
 \end{aufg} 
 
 \begin{bem}
-	Eine weitere Bezeichnung fúr die Potenzmengen, die man in der Literatur benutzt, ist $\mathcal{P}(X)$. Ich persönlich finde $2^X$ einleuchtender (zumindest im Kontext der Kombinatorik, die im folgenden Kapitel diskutiert wird). 
+	Eine weitere Bezeichnung für die Potenzmenge, die man in der Literatur benutzt, ist $\mathcal{P}(X)$. Ich persönlich finde $2^X$ einleuchtender (zumindest im Kontext der Kombinatorik, die im folgenden Kapitel diskutiert wird). 
 \end{bem} 
 
 
@@ -183,7 +183,7 @@ gegeben.
 \item[$ \N $] $ := \{ 1,2,3,\ldots \} $ die Menge der natürlichen Zahlen. Uns fehlt dort die Null, daher... 
 \item[$ \N_0 $] $ := \{ 0,1,2,\ldots \} $. Hier können wir nicht beliebig subtrahieren, daher... 
 \item[$ \Z $] $ := \{ 0,1,-1,2,-2,\ldots \} $ die Menge der ganzen Zahlen. Hier können wir nicht beliebig dividieren, daher...
-\item[$ \Q $] $ := \{ \frac{p}{q} : p \in \Z, q \in \N \} $ die Menge der rationalen Zahlen. In dieser Menge gibt es ``Löcher'' , die man merkt, wenn man Geometrie oder Analysis macht. Gemeint ist das Folgende: betrachtet man unendliche viele rationale Zahlen $a_1 \le a_2 \le a_3 \le \cdots $ und $ \cdots \le b_3 \le b_2 \le b_1$ mit $a_n \le b_n$ für jedes $n \in \N$, so gibt es nicht immer eine \underline{rationale} Zahl $x$ die $a_n \le x \le b_n$ für alle $n \in \N$ erfüllt. Informell: zwischen zwei Schranken $a_n$ und $b_n$, die sich mit jeder ``Iteration'' $n \in \N$ immer verbessert, wird nicht immer eine rationale Zahl eingefangen. In diesem Fall kann man von einem ``Loch'' spricht. Durch reelle Zahlen werden solche Löcher gestopft. 
+\item[$ \Q $] $ := \{ \frac{p}{q} : p \in \Z, q \in \N \} $ die Menge der rationalen Zahlen. In dieser Menge gibt es \glqq Löcher\grqq , die man bemerkt, wenn man Geometrie oder Analysis betreibt. Gemeint ist das Folgende: betrachtet man unendlich viele rationale Zahlen $a_1 \le a_2 \le a_3 \le \cdots $ und $ \cdots \le b_3 \le b_2 \le b_1$ mit $a_n \le b_n$ für jedes $n \in \N$, so gibt es nicht immer eine \underline{rationale} Zahl $x$ die $a_n \le x \le b_n$ für alle $n \in \N$ erfüllt ist. Informell: zwischen zwei Schranken $a_n$ und $b_n$, die sich mit jeder \glqq Iteration\grqq\ $n \in \N$ immer mehr annähern, wird nicht immer eine rationale Zahl eingefangen. In diesem Fall kann man von einem \glqq Loch\grqq\ sprechen. Durch reelle Zahlen werden solche Löcher gestopft. 
 \item[$ \R $] die Menge der reellen Zahlen. Format einer reellen Zahl: Vorzeichen $\pm$ endlich viele Stellen vor dem Komma, unendlich viele Nachkommastellen. Wir benutzen gerne die Computer-Formatierung mit Punkt an der Stelle von Komma (weil man in Mathe die Kommas gerne für viele andere Zwecke benutzt). Beispiele: 
 \begin{itemize}
 	\item[] $0{.}00000\cdots$ ist die $0$, 
@@ -196,7 +196,7 @@ gegeben.
 \end{bem}
 
 \begin{bem}
-	Es gelten die strikten Inklusionen. 
+	Es gelten die strikten Inklusionen
 $ \N \subsetneq \N_0 \subsetneq \Z \subsetneq \Q \subsetneq \R \subsetneq \C $. 
  \end{bem} 
 
@@ -241,38 +241,38 @@ Seien $ A,B $ Mengen. Dann heißt:
 \item $ A \cap B := \{ x : (x \in A) \wedge (x \in B) \} $ \textbf{Durchschnitt} von $ A $ und $ B $,
 \item $ A \cup B := \{ x : (x \in A) \vee (x \in B) \} $ \textbf{Vereinigung} von $ A $ und $ B $,
 \item $ A \setminus B := \{ x : (x \in A) \wedge (x \notin B) \} $ \textbf{Mengendifferenz} von $ A $ und $ B $,
-\item $A \operatorname{\triangle} B := (A \setminus B) \cup (B \setminus A)$, \textbf{Symmetrische Differenz} von $A$ und $B$. 
+\item $A \operatorname{\triangle} B := (A \setminus B) \cup (B \setminus A)$ \textbf{Symmetrische Differenz} von $A$ und $B$. 
 \end{itemize}
 \end{defn}
 
 \begin{bem}
-	Für eine Grundmenge $X$ wird die Menge $2^X$ aller Teilmengen von $X$ zu einer sogenannten \textbf{booleschen Algebra} der Teilmengen von $X$, indem man $2^X$ mit den Verknüpfungen $A \cap B$, $A \cap B$ und der unären Verknüpfung $\overline{A} := X \setminus A$ ausstattet. 
+	Für eine Grundmenge $X$ wird die Menge $2^X$ aller Teilmengen von $X$ zu einer sogenannten \textbf{booleschen Algebra} der Teilmengen von $X$, indem man $2^X$ mit den Verknüpfungen $A \cap B$, $A \cup B$ und der unären Verknüpfung $\overline{A} := X \setminus A$ ausstattet. 
 \end{bem} 
 
 \begin{defn}
-Seinen $ A,B $ Mengen. $ A $ und $ B $ heißen genau dann \textbf{disjunkt}, wenn $ A \cap B = \emptyset $ gilt. In diesem Fall wird die Vereinigung von $A$ und $B$ eine  \textbf{disjunkte Vereinigung} genannt
+Seien $ A,B $ Mengen. $ A $ und $ B $ heißen genau dann \textbf{disjunkt}, wenn $ A \cap B = \emptyset $ gilt. In diesem Fall wird die Vereinigung von $A$ und $B$ eine  \textbf{disjunkte Vereinigung} genannt
 und als $A \cupdot B$ bezeichnet. 
 \end{defn}
 
 \section{Tupel und Kreuzprodukte}
 
 \begin{defn}[Paare und das Kreuzprodukt] 
-	Für beliebige Objekte $ a,b $ kann man das \emph{(geordnete) Paar} $ (a,b) $ definieren. Das Paar $(a,b)$ besteht aus der ersten Komponente $a$ und der zweiten Komponente $b$. 
-	Die Gleichheit $ (a,b) = (c,d) $ von Paaren wird durch die Gleichheit $ a=c $ und $ b=d $ der jeweiligen Komponenten definiert.  Für Mengen $ A,B $ definiert man das \emph{Kreuzprodukt} (wird auch das \emph{kartesische Produkt} genannt) $ A \times B $ als die Menge
+	Für beliebige Objekte $ a,b $ kann man das \textbf{(geordnete) Paar} $ (a,b) $ definieren. Das Paar $(a,b)$ besteht aus der ersten Komponente $a$ und der zweiten Komponente $b$. 
+	Die Gleichheit $ (a,b) = (c,d) $ von Paaren wird durch die Gleichheit $ a=c $ und $ b=d $ der jeweiligen Komponenten definiert.  Für Mengen $ A,B $ definiert man das \textbf{Kreuzprodukt} (wird auch das \textbf{kartesische Produkt} genannt) $ A \times B $ als die Menge
 	\[
 	A \times B := \{ (a,b) \,:\, a \in A, \ b \in B \}
 	\]
-	aller Paare bei denen die erste Komponente in $A$ und die zweite Komponente in $B$ ist. 
+	aller Paare bei denen die erste Komponente in $A$ und die zweite Komponente in $B$ liegt. 
 \end{defn} 
 
 \begin{defn}[Tupel und Kreuzprodukt] 
-	Komplett analog zu (geordneten) Paaren definiert man auch (geordnete) Tripel $(a,b,c)$, (geordnete) Quadrupel $(a,b,c)$ und noch allgemeiner (geordnete) $n$-Tupel $(x_1,\ldots,x_n)$ mit $n \in \N_0$. Dem entsprechend betrachtet man auch das Kreuzprodukt $A \times B \times C$ von drei Mengen, das Kreuzprodukt $A \times B \times C \times D$ von vier Mengen und allgemein auch das Kreuzprodukt 
+	Komplett analog zu (geordneten) Paaren definiert man auch (geordnete) Tripel $(a,b,c)$, (geordnete) Quadrupel $(a,b,c,d)$ und allgemeiner (geordnete) $n$-Tupel $(x_1,\ldots,x_n)$ mit $n \in \N_0$. Dementsprechend betrachtet man auch das Kreuzprodukt $A \times B \times C$ von drei Mengen, das Kreuzprodukt $A \times B \times C \times D$ von vier Mengen und allgemein das Kreuzprodukt 
 	\[
 	X_1 \times \ldots \times X_n := \{ (x_1,\ldots,x_n) \,:\, x_1 \in X_1, \ldots , x_n \in X_n \} 
 	\]
 	von Mengen $ X_1,\ldots,X_n $.
 	
-	Das Element $ x_i $ mit $ i \in \is{1}{n} $ im $ n $-Tupel $ (x_1,\ldots,x_n) $ heißt die $ i $-te \emph{Komponente} des Tupels.
+	Das Element $ x_i $ mit $ i \in \is{1}{n} $ im $ n $-Tupel $ (x_1,\ldots,x_n) $ heißt die $ i $-te \textbf{Komponente} des Tupels.
 	
 	Für eine Menge $ X $ führt man die Bezeichnung
 	\begin{equation*}
@@ -287,11 +287,11 @@ und als $A \cupdot B$ bezeichnet.
 		\item $ [0,1] \times [0,2] $, $ \{ 0 \} \times [0,2] $  und $ \{ 0,1 \} \times \{ 0,2 \} $ 
 		\item $ [0,1]^3 $, $ [0,1]^2 \times \{ 0 \} $, $ [0,1]^2 \times \{ 1 \} $  und $ \{ 0 \}^2 \times [0,1] $. 
 	\end{itemize}
-	\textbf{Hinweis:} Geometrische Darstellung von Teilmengen von $\R^n$ für $n \in \{2,3\}$ im kartesischen Koordinatensystem wird in den Kursen IT-2 und IT-3 nützlich sein. 
+	\textbf{Hinweis:} Die geometrische Darstellung von Teilmengen des $\R^n$ für $n \in \{2,3\}$ im kartesischen Koordinatensystem wird in den Kursen IT-2 und IT-3 nützlich sein. 
 \end{aufg}
 
 \begin{aufg}
-	Beim bekannten Spiel ``Schiffe versenken'' lässt sich das Spielfeld als die Menge $\{1,\ldots,10\}^2$ beschreiben, weil jedes Kästschen eines Feldes durch die Angabe von einem Paar $(x,y)$ mit $x,y \in \{1,\ldots,10\}$  beshcrieben werden können. Eine Platzierung eines 4er-Schiffs lässt sich dann als eine vierelementige Teilmengen von $\{1,\ldots,10\}^2$ beschreiben. Z.B.: 
+	Beim bekannten Spiel \glqq Schiffe versenken\grqq\ lässt sich das Spielfeld als die Menge $\{1,\ldots,10\}^2$ beschreiben, weil jedes Kästchen des Spielfeldes durch die Angabe von einem Paar $(x,y)$ mit $x,y \in \{1,\ldots,10\}$ beschrieben werden kann. Eine Platzierung eines 4er-Schiffs lässt sich dann als eine vierelementige Teilmenge von $\{1,\ldots,10\}^2$ beschreiben. Z.B.: 
 	\[ \{(1,2), (1,3),(1,4),(1,5)\}
 	\] und 
 	\[ \{(5,6),(6,6),(7,6),(8,6)\}
@@ -304,7 +304,7 @@ und als $A \cupdot B$ bezeichnet.
 
 \begin{defn}
 Seien $ X,Y $ Mengen. Eine \textbf{Abbildung} $ f $ von $ X $ nach $ Y $ ist eine Vorschrift, die jedem $ x \in X $ genau ein Element aus $ Y $ zuordnet. Dieses Element aus $ Y $, das dem $x$ zugeordnet wird, wird durch $ f(x) $ bezeichnet. 
-Wenn $ f $ eine Abbildung von $ X $ nach $ Y $ ist, dann bezeichnet man das als $ f : X \to Y $. Die Menge $ X $ heißt der \textbf{Definitionsbereich} von $ f $, die Menge $ Y $ heißt der \textbf{Wertebereich} von $ f $. Wenn der Wertebereich $Y$ von $f$ Teilmengen von $\R$ ist, so nennen wir $f : X \to Y$ eine \textbf{Funktion}. Bei der Beschreibung von Abbildungen benutzt man auch die Bezeichnung $x \mapsto f(x)$, um zu verdeutlichen, dass $x$ auf $f(x)$ abgebildet wird. 
+Wenn $ f $ eine Abbildung von $ X $ nach $ Y $ ist, dann bezeichnet man das als $ f : X \to Y $. Die Menge $ X $ heißt der \textbf{Definitionsbereich} von $ f $, die Menge $ Y $ heißt der \textbf{Wertebereich} von $ f $. Wenn der Wertebereich $Y$ von $f$ eine Teilmenge von $\R$ ist, so nennen wir $f : X \to Y$ eine \textbf{Funktion}. Bei der Beschreibung von Abbildungen benutzt man auch die Bezeichnung $x \mapsto f(x)$, um zu verdeutlichen, dass $x$ auf $f(x)$ abgebildet wird. 
 \end{defn} 
 
 \begin{bem} 
@@ -333,7 +333,7 @@ In manchen Quellen benutzt man den Begriff Funktion als ein Synonym zum Begriff 
 \begin{itemize}
 	\item $ f : \R \to \R,\\ f(x) := x^2 -2x + 7 $
 	\item $ f : \R \setminus \{ 1 \} \to \R,\\ f(x) := \frac{1}{x-1}$
-	\item Die Vorzeichen-Funktion $ \sign: \R \to \R $ wird durch die Fallunterscheidung als 
+	\item Die Vorzeichen-Funktion $ \sign: \R \to \R $ wird durch Fallunterscheidung als 
 	\[
 		\sign(x) := \begin{cases} 
 				-1 &  \text{für} \ x < 0,
@@ -361,11 +361,11 @@ Zwei Abbildungen $ f,g : X \to Y $ heißen gleich, falls $ f(x) = g(x) $ für al
 \end{bem} 
 
 \begin{aufg}
-	Aus wie vielen Abbildungen besteht die Menge $\{1,2,3\}^{\{1,2\}}$? Zählen Sie diese Abbildungen auf? Was ist  mit $\{1,2\}^{\{-1,0,1\}}$?
+	Aus wievielen Abbildungen besteht die Menge $\{1,2,3\}^{\{1,2\}}$? Zählen Sie diese Abbildungen auf. Was ist  mit $\{1,2\}^{\{-1,0,1\}}$?
 \end{aufg} 
 
 \begin{defn}
-Seien $ X,Y,A,B $ Mengen mit $ A \subseteq X $ und $ B \subseteq Y $. Sei $ f : X \to Y $. Dann heißt $ f(A) := \{ f(x) : x \in A \} $ das Bild von $ A $ bzgl. $ f $ und $ f^{-1}(B) := \{ x \in X : f(x) \in B \} $ das Urbild von $ B $ bzgl. $ f $.
+Seien $ X,Y,A,B $ Mengen mit $ A \subseteq X $ und $ B \subseteq Y $. Sei $ f : X \to Y $. Dann heißt $ f(A) := \{ f(x) : x \in A \} $ das \textbf{Bild} von $ A $ bzgl. $ f $ und $ f^{-1}(B) := \{ x \in X : f(x) \in B \} $ das \textbf{Urbild} von $ B $ bzgl. $ f $.
 \end{defn} 
 
 \begin{bsp}
@@ -387,11 +387,11 @@ Seien $ X,Y,A,B $ Mengen mit $ A \subseteq X $ und $ B \subseteq Y $. Sei $ f : 
 
 
 \begin{defn}
-Seien $ X,Y $ Mengen und sei $ f : X \to Y $. Dann heißt $ f $:
+Seien $ X,Y $ Mengen und sei $ f : X \to Y $. Dann heißt $ f $
 \begin{itemize}
-	\item injektiv, falls für alle $ x_1, x_2 \in X : x_1 \neq x_2 $ die Bedingung $ f(x_1) \neq f(x_2) $ gilt.
-	\item surjektiv, falls für jedes $ y \in Y $ ein $ x \in X $ mit der Eigenschaft $ f(x) = y $ existiert.
-	\item bijektiv, falls $ f $ injektiv und surjektiv ist.
+	\item \textbf{injektiv}, falls für alle $ x_1, x_2 \in X$ mit $ x_1 \neq x_2 $ die Bedingung $ f(x_1) \neq f(x_2) $ gilt.
+	\item \textbf{surjektiv}, falls für jedes $ y \in Y $ ein $ x \in X $ mit der Eigenschaft $ f(x) = y $ existiert.
+	\item \textbf{bijektiv}, falls $ f $ injektiv und surjektiv ist.
 \end{itemize}
 \end{defn}
 
@@ -415,7 +415,7 @@ Seien $ X,Y $ Mengen und sei $ f : X \to Y $. Dann heißt $ f $:
 
 
 \begin{defn} 
-Seien $ X,Y $ Mengen und sei $ f : X \to Y $ bijektiv. Die Abbildung, die jedem $ y \in Y $ das eindeutige $ x \in X $ mit $ f(x) = y $ zuordnet, heißt die Umkehrabbildung von $ f $ und wird durch $ f^{-1} $ bezeichnet.
+Seien $ X,Y $ Mengen und sei $ f : X \to Y $ bijektiv. Die Abbildung, die jedem $ y \in Y $ das eindeutige $ x \in X $ mit $ f(x) = y $ zuordnet, heißt die \textbf{Umkehrabbildung} von $ f $ und wird durch $ f^{-1} $ bezeichnet.
 \end{defn} 
 
 \begin{aufg}
@@ -424,7 +424,7 @@ Seien $ X,Y $ Mengen und sei $ f : X \to Y $ bijektiv. Die Abbildung, die jedem 
 
 
 \begin{defn}
-Seien $ X,Y,Z $ Mengen, $ f : X \to Y $ und $ g : Y \to Z $. Dann heißt $ g \circ f : X \to Z $ mit $ ( g \circ f )(x) := g( f(x) ) $ für alle $ x \in X $ die Komposition von $ g $ und $ f $.
+Seien $ X,Y,Z $ Mengen, $ f : X \to Y $ und $ g : Y \to Z $. Dann heißt $ g \circ f : X \to Z $ mit $ ( g \circ f )(x) := g( f(x) ) $ für alle $ x \in X $ die \textbf{Komposition} von $ g $ und $ f $.
 \end{defn}
 
 \begin{bsp}
@@ -433,7 +433,7 @@ Seien $ X,Y,Z $ Mengen, $ f : X \to Y $ und $ g : Y \to Z $. Dann heißt $ g \ci
 
 
 \begin{defn}
-Sei $ X $ eine Menge. Dann heißt die Abbildung $ \id_X : X \to X $ mit $ \id_X(x) := x $ für alle $ x \in X $ die identische Abbildung auf $ X $. Man schreibt auch häufig $ \id $, wenn die Wahl von  $ X $ aus dem Kontext klar ist. 
+Sei $ X $ eine Menge. Dann heißt die Abbildung $ \id_X : X \to X $ mit $ \id_X(x) := x $ für alle $ x \in X $ die \textbf{identische Abbildung} auf $ X $. Man schreibt auch häufig $ \id $, wenn die Wahl von  $ X $ aus dem Kontext klar ist. 
 \end{defn}
 
 \begin{bem}
@@ -488,7 +488,7 @@ und die \textbf{Vereinigung} der Familie als
 \section{Summen und Produkte}
 
 \begin{defn} 
-Eine Menge $ X $ heißt endlich, falls $ X = \emptyset $ oder falls eine bijektive Abbildung von $ \is{1}{n} $ nach $ X $ existiert mit $ n \in \N $. Der Wert $ n $ heißt die Anzahl der Elemente (Kardinalität) von $ X $ und wird durch $ |X| $ bezeichnet. Man setzt die Kardinalität von $ \emptyset $ gleich 0. Bei einer unendlichen Mengen $X$ setzt man $|X| = \infty$. 
+Eine Menge $ X $ heißt endlich, falls $ X = \emptyset $ oder falls eine bijektive Abbildung von $ \is{1}{n} $ nach $ X $ existiert mit $ n \in \N $. Der Wert $ n $ heißt die Anzahl der Elemente (\textbf{Kardinalität}) von $ X $ und wird durch $ |X| $ bezeichnet. Man setzt die Kardinalität von $ \emptyset $ gleich 0. Bei einer unendlichen Mengen $X$ setzt man $|X| = \infty$. 
 \end{defn} 
 
 \begin{bem}
@@ -506,7 +506,7 @@ Für eine Abbildung $ f : X \to \R $ definiert man
 \end{align*}
 Im Fall $ X = \emptyset $ definiert man für $ f : X \to \R $ und $ \sum\limits_{x \in X} f(x) = 0 $ und $ \prod\limits_{x \in X} f(x) = 1 $.
 
-In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ der \emph{Summand} und im Produkt $\prod\limits_{x \in X} f(x)$ heißt $f(x)$ der \emph{Faktor}.  
+In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ der \textbf{Summand} und im Produkt $\prod\limits_{x \in X} f(x)$ heißt $f(x)$ der \textbf{Faktor}.  
 \end{defn}
 
 \begin{bem} 
@@ -533,48 +533,48 @@ In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ der \emph{Summand} und i
 
 
 \begin{defn}
-Sei $ X $ Menge. Dann heißt $ P : X \to \{ \text{falsch},\text{wahr} \} $ \emph{Prädikat} auf $ X $. 
+Sei $ X $ Menge. Dann heißt $ P : X \to \{ \text{falsch},\text{wahr} \} $ \textbf{Prädikat} auf $ X $. 
 \end{defn} 
 
 \begin{bem}
-	Informell beschrieben ist ein Prädikat eine Aussage über ein variables Element $x$ aus $X$. Dabei hängt im Allgemeinen der Wahrheitswert der Aussage von der Wahl von $x$ ab.  Sonst lässt sich ein Prädikat auf $X$ als eine Eigenschaft eines variablen Elements $x \in X$ beschreiben, die entweder vorhanden oder nicht vorhanden ist. Zum Beispiel: $P(n):=$``$n$ ist gerade'' als Eigenschaft einer natürlichen Zahl $n \in \N$. Diese Eigenschaft ist bei $n=123$ nicht vorhanden und bei $n=2020$ vorhanden. 
+	Informell beschrieben ist ein Prädikat eine Aussage über ein variables Element $x$ aus $X$. Dabei hängt im Allgemeinen der Wahrheitswert der Aussage von der Wahl von $x$ ab.  Sonst lässt sich ein Prädikat auf $X$ als eine Eigenschaft eines variablen Elements $x \in X$ beschreiben, die entweder vorhanden oder nicht vorhanden ist. Zum Beispiel: $P(n):=$\glqq$n$ ist gerade\grqq\ als Eigenschaft einer natürlichen Zahl $n \in \N$. Diese Eigenschaft ist bei $n=123$ nicht vorhanden und bei $n=2020$ vorhanden. 
 \end{bem}
 
 \begin{bsp}
 $ P : \N \to \{ \false,\true \}$ mit 
 \[
-	P(k) :=  \text{``$k(k+1)$ ist durch  $ 3$  teilbar''}. 
+	P(k) :=  \text{\glqq$k(k+1)$ ist durch  $ 3$  teilbar\grqq}. 
 \]
 \end{bsp} 
 
 \begin{bsp}
 $ P : \R^2 \to \{ \false , \true \}$ mit 
 \[
-	P(x,y) := \text{``Es gilt $x^2 + y^2 \le 1$''}.
+	P(x,y) := \text{\glqq Es gilt $x^2 + y^2 \le 1$\grqq}
 \] 
-ist die Eigenschaft  ``der Punkt $(x,y)$ hat den Abstand höchstens $1$ zum Punkt $(0,0)$''. 
+ist die Eigenschaft \glqq der Punkt $(x,y)$ hat den Abstand höchstens $1$ zum Punkt $(0,0)$\grqq. 
 \end{bsp} 
 
 \begin{bem} 
 	Für eine gegebene Menge $X$ hat man eine natürliche Bijektion 
 	\[
-		 \{ \false,\true \}^X \to 2^X
+		 \{ \false,\true \}^X \to 2^X.
 	\] 
 	Jedes Prädikat $P : X \to \{ \false,\true \}$ erzeugt die Menge $A:=\setcond{x \in X }{P(x)}$. Umgekehrt entspricht jede Menge $A \subseteq X$ dem Prädikat 
 	\[
-		P (x) := \text{``Es gilt $x \in A$''}. 
+		P (x) := \text{\glqq Es gilt $x \in A$\grqq}. 
 	\]
 \end{bem} 
 
 
 \begin{defn}
-$ \forall\: x \in X : P(x) $ für ein Prädikat $ P $ auf eine Menge $ X $ steht für die Aussage \textquote{die Bedingung $ P(x) $ gilt für alle $ x \in X $.} Das Symbol $ \forall $ heißt das \emph{Allgemeinheitsquantor} (Bedeutung: für $ \forall $lle). \\[10pt]
+$ \forall\: x \in X : P(x) $ für ein Prädikat $ P $ auf eine Menge $ X $ steht für die Aussage \textquote{die Bedingung $ P(x) $ gilt für alle $ x \in X $}. Das Symbol $ \forall $ heißt \textbf{Allgemeinheitsquantor} oder \textbf{Allquantor} (Bedeutung: für $ \forall $lle). \\[10pt]
 %
-$ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P(x) $ gilt für ein $ x \in X $.} $ \exists $ heißt \emph{Existenzquantor} (Bedeutung: es $ \exists $xistiert).
+$ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P(x) $ gilt für ein $ x \in X $}. Das Symbol $ \exists $ heißt \textbf{Existenzquantor} (Bedeutung: es $ \exists $xistiert).
 \end{defn}
 
 \begin{bem}
-	Negierung von quantifizierten Aussagen erfolgt auf die folgende naheliegende Weise: 
+	Negieren von quantifizierten Aussagen erfolgt durch die folgende naheliegende Weise: 
 	\begin{itemize}
 		\item $ \overline{\forall\: x \in X : P(x)} \Leftrightarrow \exists\: x \in X : \overline{P(x)} $
 		\item $ \overline{\exists\: x \in X : P(x)} \Leftrightarrow \forall\: x \in X : \overline{P(x)} $
@@ -583,12 +583,12 @@ $ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P
 
 
 \begin{bem}
-	$ \forall $ und $ \exists $ lassen sich kombinieren. Seien $X, Y$ Mengen. Wenn man ein Prädikat $ P $ auf $ X \times Y $ hat, so kann man dafür die Aussagen wie 
+	$ \forall $ und $ \exists $ lassen sich kombinieren. Seien $X, Y$ Mengen. Wenn man ein Prädikat $ P $ auf $ X \times Y $ hat, so kann man dafür die Aussagen
 	\[
-		 \forall x \in X \,\exists\: y \in Y : P(x,y), 
+		 \forall\, x \in X \,\exists\: y \in Y : P(x,y), 
 	\]
 	und
-	\[\exists x \in X  \, \forall y \in Y : P(x,y) 
+	\[\exists\, x \in X  \, \forall\, y \in Y : P(x,y) 
 	\]
 	usw. einführen. 
 \end{bem}
@@ -597,13 +597,13 @@ $ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P
 \begin{bem}
 	In der vorigen Bemerkung ist die Reihenfolge des Quantifizierens relevant. Sei $X$ eine Menge von  Personen und $A$ eine Menge von Adressen im Stadtteil Sandow. Die Aussage 
 	\[
-		\forall x \in X \, \exists a \in A \, :\, x \ \text{wohnt unter der Adresse} \  a .
+		\forall\, x \in X \, \exists\, a \in A \, :\, x \ \text{wohnt unter der Adresse} \  a
 	\]
-	lautet, dass alle Personen aus $X$ irgendwo in Sandow wohnen. Die Aussage 
+	bedeutet, dass alle Personen aus $X$ irgendwo in Sandow wohnen. Die Aussage 
 	\[
-		\exists a \in A \, \forall x \in X \,:\, x \ \text{wohnt unter der Adresse} \ a.
+		\exists\, a \in A \, \forall\, x \in X \,:\, x \ \text{wohnt unter der Adresse} \ a
 	\]
-	lautet dagegen, dass alle Personen aus $X$ unter einer und der selben Adresse in Sandow wohnen (z.B. als Wohngemeinschaft). Man sieht, die letztere Aussage ist eine stärkere Bedingung. 
+	bedeutet dagegen, dass alle Personen aus $X$ unter einer und derselben Adresse in Sandow wohnen (z.B. als Wohngemeinschaft). Man sieht, die zweite Aussage ist eine stärkere Bedingung. 
 \end{bem} 
 
 \begin{bsp}
@@ -619,7 +619,7 @@ $ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P
 
 
 \begin{defn}
-Seien $ X,Y $ Mengen. Dann heißt eine Teilmenge $ R $ von $ X \times Y $ eine (binäre) \emph{Relation} zwischen $ X $ und $ Y $. Bei $X = Y$, heßt $R$ eine (binäre) Relation auf $X$. 
+Seien $ X,Y $ Mengen. Dann heißt eine Teilmenge $ R $ von $ X \times Y $ eine (binäre) \textbf{Relation} zwischen $ X $ und $ Y $. Bei $X = Y$, heißt $R$ eine (binäre) Relation auf $X$. 
 \end{defn}
 
 \begin{bem}
@@ -646,18 +646,18 @@ Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so sch
 	\end{center}  
 	Diese Tabelle legt eine Relation auf $X \times Y$ fest. 
 	\item $ \leq, <, \geq, > $ sind binäre Relationen auf $ \R$
-	\item Sei $X$ Menge. Dann ist $ \subseteq $ ist eine binäre Relation auf $ 2^X $.
-	\item Für $ a,b \in \N $ schreibt man $ a | b $, wenn $ b $ durch $ a $ ohne Rest teilbar ist. Dies ist eine binäre Relation auf $\N$. 
+	\item Sei $X$ Menge. Dann ist $ \subseteq $ eine binäre Relation auf $ 2^X $.
+	\item Für $ a,b \in \N $ schreibt man $ a \mid b $, wenn $ b $ durch $ a $ ohne Rest teilbar ist. Dies ist eine binäre Relation auf $\N$. 
 \end{itemize}
 \end{bsp}
 
 
 \begin{defn}
-Sei $ X $ Menge und $ \sim $ eine Relation auf $ X $. Dann heißt $ \sim $ eine \textbf{Äquivalenz\-relation}, falls Folgendes gilt: 
+Sei $ X $ eine Menge und $ \sim $ eine Relation auf $ X $. Dann heißt $ \sim $ eine \textbf{Äquivalenz\-relation}, falls Folgendes gilt: 
 \begin{enumerate}
-	\item $ \sim $ ist \emph{reflexiv}, d.h. $ x \sim x $ für alle $ x \in X $.
-	\item $ \sim $ ist \emph{symmetrisch}, d.h. $ x \sim y $ ist äquivalent zu $ y \sim x $ für alle $ x \in X $.
-	\item $ \sim $ ist \emph{transitiv}, d.h. aus $ x \sim y $ und $ y \sim z $ folgt $ x \sim z $ für alle $ x,y,z \in X $.
+	\item $ \sim $ ist \textbf{reflexiv}, d.h. $ x \sim x $ für alle $ x \in X $.
+	\item $ \sim $ ist \textbf{symmetrisch}, d.h. $ x \sim y $ ist äquivalent zu $ y \sim x $ für alle $ x,y \in X $.
+	\item $ \sim $ ist \textbf{transitiv}, d.h. aus $ x \sim y $ und $ y \sim z $ folgt $ x \sim z $ für alle $ x,y,z \in X $.
 \end{enumerate}
 Für eine Äquivalenzrelation $ \sim $ auf einer Menge $ X $ und ein $ x \in X $ heißt
 \begin{equation*}
@@ -671,7 +671,7 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 
 \begin{bsp}\
 \begin{itemize}	
-	\item Sei $ m \in \N $. Für $ a,b \in \Z $ sagt man, dass $ a $ kongruent zu $ b $ modulo $ m $ ist, falls $ a-b \in m\Z $, wobei $ m\Z := \{ mz : z \in Z \} $.
+	\item Sei $ m \in \N $. Für $ a,b \in \Z $ sagt man, dass $ a $ kongruent zu $ b $ modulo $ m $ ist, falls $ a-b \in m\Z $, wobei $ m\Z := \{ mz : z \in \Z \} $.
 	
 	Schreibweise: $ a \equiv b \mod{m} $.
 	
@@ -681,26 +681,26 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 	
 	Diese Relation ist eine Äquivalenzrelation (Aufgabe).
 	
-	Formal kann man die Menge der rationalen Zahlen als die Menge der Äquivalenzklassen bzgl. dieser Äquivalenzrelation umsetzen. 
+	Formal kann man die Menge der rationalen Zahlen als die Menge der Äquiva\-lenz\-klassen bzgl. dieser Äquivalenzrelation umsetzen. 
 \end{itemize}
 \end{bsp}
 
 
 \begin{defn}
-	Eine Menge $X$ mit einer binären Relation $\succeq$ darauf heißt Poset (partiell geordnete Menge), wenn für alle $x,y,z \in X$ folgendes gilt: 
+	Eine Menge $X$ mit einer binären Relation $\preceq$ darauf heißt \textbf{Poset} (partiell geordnete Menge), wenn für alle $x,y,z \in X$ folgendes gilt: 
 	\begin{itemize}
 		\item $x \preceq x$ (Reflexivität)
 		\item $x \preceq y, \ y \preceq z$ $\Rightarrow$ $x \preceq z$ (Transitivität). 
 		\item $x \preceq y, \ y \preceq x$ $\Rightarrow$ $x = y$ (Antisymmetrie). 
 	\end{itemize} 
-	Die binäre Relation $\succeq$ heißt in diesem Fall die partielle Ordnung auf $X$. 
+	Die binäre Relation $\preceq$ heißt in diesem Fall die \textbf{partielle Ordnung} auf $X$. 
 \end{defn} 
 
 \begin{defn}
-	Wenn für ein Poset $(X,\succeq)$ für alle $x, y \in X$, die Bedingung $x \succeq y$ oder die Bedingung $y \succeq x$ erfüllt ist, so nennt  man $(X,\succeq)$ eine total geordnete Menge und $\succeq$ eine totale Ordnung auf $X$. 
+	Wenn für ein Poset $(X,\preceq)$ für alle $x, y \in X$, die Bedingung $x \preceq y$ oder die Bedingung $y \preceq x$ erfüllt ist, so nennt man $(X,\preceq)$ eine \textbf{total geordnete Menge} und $\preceq$ eine \textbf{totale Ordnung} auf $X$. 
 \end{defn} 
 
-\begin{bsp} Beispiele von Posets. 
+\begin{bsp} Beispiele von Posets:
 	\begin{itemize}
 		\item $2^X$ mit Inklusion. 
 		\item $\N$ mit Teilbarkeit. 
@@ -712,9 +712,9 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \end{defn} 
 
 \begin{bsp}
-	Betrachten wir eine Tabelle, in welcher die Besucher:innen eines Hotels durch die Angaben \textbf{Name, Zimmer, Checkin-Datum, Checkout-Datum} geführt werden. Ist $S$ die Menge aller Strings und $D$ die Menge aller Daten, so kann mann die Tabelle als eine $4$-stellige Relation  $R \subseteq S \times S \times D \times D$ auffassen. Die Bedingung $(p,z,d_1,d_2) \in R$, dass $(p,z,d_1,d_2)$ sich in der Relation $R$ befinden,  bedeutet, dass die Person $p$ am Tag $d_1$ im Zimmer $z$ untergebracht wurde und am Tag $d_2$ das Hotel verlassen hat. 
+	Betrachten wir eine Tabelle, in welcher die Besucher:innen eines Hotels durch die Angaben \textbf{Name, Zimmer, Checkin-Datum, Checkout-Datum} geführt werden. Ist $S$ die Menge aller Strings und $D$ die Menge aller Daten, so kann man die Tabelle als eine $4$-stellige Relation  $R \subseteq S \times S \times D \times D$ auffassen. Die Bedingung $(p,z,d_1,d_2) \in R$, dass $(p,z,d_1,d_2)$ sich in der Relation $R$ befindet,  bedeutet, dass die Person $p$ am Tag $d_1$ im Zimmer $z$ untergebracht wurde und am Tag $d_2$ das Hotel verlassen hat. 
 	
-	Wie man an diesem Beispiel sieht, sind die Tabellen eine Möglichkeit Relationen $R$ durch eine Aufzählung (durch die Zeilen einer Tabelle) zu beschreiben. 
+	Wie man an diesem Beispiel sieht, sind Tabellen eine Möglichkeit, Relationen $R$ durch eine Aufzählung (durch die Zeilen einer Tabelle) zu beschreiben. 
 \end{bsp} 
 
 
@@ -723,16 +723,16 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \subsection{Direkter Beweis} 
 
 \begin{bem}
-	Eine grobe Beschreibung eines direkten Beweises ist wie folgt. Ein direkter Beweis einer Implikation $a \Rightarrow b$ ist ein Beweis der auf Implikationen basiert, die von $a$ ausgehen und zum $b$ führen.
+	Eine grobe Beschreibung eines direkten Beweises ist wie folgt. Ein direkter Beweis einer Implikation $a \Rightarrow b$ ist ein Beweis der auf Implikationen basiert, die von $a$ ausgehen und zu $b$ führen.
 \end{bem} 
 
 \begin{bem}
 	Man kann für $x \in \R$ die Äquivalenz: 
-	\begin{align*}
-			x^2 - 5 x + 6 & = 0  &  & \Longleftrightarrow & & x \in \{2,3\}
-	\end{align*} 
+	\[
+			x^2 - 5 x + 6 = 0  \qquad \Longleftrightarrow \qquad x \in \{2,3\}
+	\]
 	als zwei Implikationen ausschreiben und anschließend 
-	folgendermaßen direkt verifizieren. Ist $x^2 - 5 x + 6 = (x-2) (x-3)$. Also folgt aus $(x-2) (x-3)=0$, dass $x-2=0$ oder $x-3=0$ gilt. Im ersten Fall erhält man aus $x-2=0$, dass $x=2$ ist. Im zweiten Fall erhält man aus $x-3$, dass $x=3$ ist. Folglich hat man $x \in \{2,3\}$. Umgekehrt: ist $x \in \{2,3\}$, so hat man im Fall $x=2$ die Gleichheiten $x^2 - 5 x + 6= 2^2 - 5 \cdot 2 + 6 = 4- 10 + 6 =0$ und im Fall $x=3$ die Gleichheiten $x^2 - 5 x + 6 = 3^2 - 5 \cdot 3 + 6 = 9 - 15 + 6 = 0$. Aus $x \in \{2,3\}$ folgt also $x^2 - 5 x + 6$. 
+	folgendermaßen direkt verifizieren. Es ist $x^2 - 5 x + 6 = (x-2) (x-3)$. Aus $(x-2) (x-3)=0$ folgt, dass $x-2=0$ oder $x-3=0$ gilt. Im ersten Fall erhält man aus $x-2=0$, dass $x=2$ ist. Im zweiten Fall erhält man aus $x-3 = 0$, dass $x=3$ ist. Folglich hat man $x \in \{2,3\}$. Umgekehrt: ist $x \in \{2,3\}$, so hat man im Fall $x=2$ die Gleichheiten $x^2 - 5 x + 6= 2^2 - 5 \cdot 2 + 6 = 4- 10 + 6 =0$ und im Fall $x=3$ die Gleichheiten $x^2 - 5 x + 6 = 3^2 - 5 \cdot 3 + 6 = 9 - 15 + 6 = 0$. Aus $x \in \{2,3\}$ folgt also $x^2 - 5 x + 6$. 
 \end{bem} 
 
 
@@ -743,7 +743,7 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 	Ein Widerspruchsbeweis ist ein Beweis, bei dem man eine Aussage $a$, die man zeigen möchte, durch die Herleitung der Implikation $\overline{a} \Rightarrow \text{falsch}$ bestätigt bzw. 
 	eine Implikation $a \Rightarrow b$, die man zeigen möchte, durch die Herleitung der Implikation $a \wedge \overline{b} \Rightarrow \text{falsch}$ bestätigt. 
 	
-	In den beiden Fällen erhält man aus einer Annahme einen sogenannten Widerspruch, d.h., eine falsche Aussage. Den Widerspruch erhält man oft in der Form $c \wedge \overline{c}$ für eine Aussage $c$. 
+	In beiden Fällen erhält man aus einer Annahme einen sogenannten Widerspruch, d.h., eine falsche Aussage. Den Widerspruch erhält man oft in der Form $c \wedge \overline{c}$ für eine Aussage $c$. 
 \end{bem} 
 
 \begin{lem}
@@ -754,7 +754,7 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \end{proof} 
 
 \begin{bem}
-	Eine Beweis durch Kontraposition ist der Beweis der Implikation $a \Rightarrow b$ dadurch, dass man die Implikation $\overline{b} \Rightarrow \overline{a}$ bestätigt. Ein  Beweis durch Kontraposition und der Widerspruchsbeweis sind miteinander verwandt, denn einen Beweis durch Kontraposition kann man in einen Widerspruchsbeweis konvertieren. 
+	Ein Beweis durch Kontraposition ist der Beweis der Implikation $a \Rightarrow b$ dadurch, dass man die Implikation $\overline{b} \Rightarrow \overline{a}$ bestätigt. Ein  Beweis durch Kontraposition und der Widerspruchsbeweis sind miteinander verwandt, denn einen Beweis durch Kontraposition kann man in einen Widerspruchsbeweis konvertieren. 
 \end{bem} 
 
 \begin{bem}
@@ -769,18 +769,18 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 	\end{enuma} 
 \end{lem} 
 \begin{proof} 
-	Wir zeigen (a) $\Rightarrow$ (b) direkt. Ist $a$ gerade, so hat $a$ die Form $a = 2 k$ mit $k \in \N$. Somit ist $a^3 = (2 k)^3 = 8 k^3$ ebenfalls gerade. 
+	Wir zeigen (a) $\Rightarrow$ (b) direkt. Ist $a$ gerade, so hat $a$ die Form $a = 2 k$ mit $k \in \N$. Somit ist $a^3 = (2 k)^3 = 8 k^3 = 2 \cdot 4 k^3$ ebenfalls gerade. 
 	
-	Die Implikation (b) $\Rightarrow$ (a) können wir durch die Kontraposition herleiten: wir zeigen also $\neg$ (a) $\Rightarrow$ $\neg$ (b). Wenn $a$ ungerade ist, so hat $a$ die Form $a = 2 k+1$ mit $k \in \N_0$. Somit ist $a^3  = (2k + 1)^3 = (2k)^3 + 3 (2k)^2 + 3 (2k) + 1 = 2 ( 4 k^3 + 6 k^2 + 6 k) + 1$ eine ungerade Zahl.  
+	Die Implikation (b) $\Rightarrow$ (a) können wir durch die Kontraposition herleiten: wir zeigen also $\neg$ (a) $\Rightarrow$ $\neg$ (b). Wenn $a$ ungerade ist, so hat $a$ die Form $a = 2 k+1$ mit $k \in \N_0$. Somit ist $a^3  = (2k + 1)^3 = (2k)^3 + 3 (2k)^2 + 3 (2k) + 1 = 2 ( 4 k^3 + 6 k^2 + 3 k) + 1$ eine ungerade Zahl.  
 \end{proof} 
 
 \begin{thm}
 	Die Zahl $\sqrt[3]{2}$ ist nicht rational. 
 \end{thm} 
 \begin{proof} 
-	Angenommen, $\sqrt[3]{2}$ wäre rational. Dann hätte die Zahl die Form $\sqrt[3]{2} = \frac{a}{b}$ mit $a, b \in \N$. Darüber hinaus können wir annehmen, dass $a$ und $b$ nicht beide gerade sind, denn sonst kann man $a$ und $b$, solange sie beide gerade sind, durch $2$ teilen, wodurch sich $a$ und $b$ um Faktor zwei verkleinern. Es ist klar, dass dieser Prozess nach endlich vielen Schritten terminiert. 
+	Angenommen, $\sqrt[3]{2}$ wäre rational. Dann hätte die Zahl die Form $\sqrt[3]{2} = \frac{a}{b}$ mit $a, b \in \N$. Darüberhinaus können wir annehmen, dass $a$ und $b$ nicht beide gerade sind, denn sonst kann man $a$ und $b$, solange sie beide gerade sind, durch $2$ teilen, wodurch sich $a$ und $b$ um den Faktor zwei verkleinern. Es ist klar, dass dieser Prozess nach endlich vielen Schritten terminiert. 
 	
-	$\sqrt[3]{2} = \frac{a}{b}$ folgt $2 b^3  = a^3$. Es folgt also, dass $a^3$ gerade ist. Dann ist aber nach Lemma~\ref{lem:a:a^3} die Zahl $a$ gerade ist und somit die Form $a = 2 k$ mit $k \in \N$ hat. Dann ist $2 b^3 = a^3 = (2k)^3 = 8 k^3$, woraus $b^3= 4 k^3$ folgt. Die Zahl $b^3$ ist also gerade. Nach Lemma~\ref{lem:a:a^3}, die wir nun zur Zahl $b$ anwenden können, ist die Zahl $b$ ebenfalls gerade. Wir haben also gezeigt, dass $a$ und $b$ beide gerade sind. Unsere Annahme war aber, dass $a$ oder $b$ ungerade ist. Dieser Widerspruch zeigt, dass die Zahl $\sqrt[3]{2}$ nicht rational ist. 
+	Aus $\sqrt[3]{2} = \frac{a}{b}$ folgt $2 b^3  = a^3$. Es folgt also, dass $a^3$ gerade ist. Dann ist aber nach Lemma~\ref{lem:a:a^3} die Zahl $a$ gerade und hat somit die Form $a = 2 k$ mit $k \in \N$. Dann ist $2 b^3 = a^3 = (2k)^3 = 8 k^3$, woraus $b^3= 4 k^3$ folgt. Die Zahl $b^3$ ist also gerade. Nach Lemma~\ref{lem:a:a^3}, das wir nun auf die Zahl $b$ anwenden können, ist die Zahl $b$ ebenfalls gerade. Wir haben also gezeigt, dass $a$ und $b$ beide gerade sind. Unsere Annahme war aber, dass $a$ oder $b$ ungerade ist. Dieser Widerspruch zeigt, dass die Zahl $\sqrt[3]{2}$ nicht rational ist. 
 \end{proof} 
 
 
@@ -794,9 +794,9 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 	\end{enuma} 
 \end{thm} 
 \begin{proof} 
-	Die Implikation (a) $\Rightarrow$ (b) ist klar: $P(1)$ ist erfüllt und da $P(n)$ und $P(n+1)$ beide Wahr ist die Implikation $P(n) \Rightarrow P(n+1)$ für jedes $n$ eine wahre Aussage. 
+	Die Implikation (a) $\Rightarrow$ (b) ist klar: $P(1)$ ist erfüllt und da $P(n)$ und $P(n+1)$ beide wahr sind, ist die Implikation $P(n) \Rightarrow P(n+1)$ für jedes $n$ eine wahre Aussage. 
 	
-	Nun zeigen wir (a) $\Rightarrow$ (b) durch Kontraposition. Angenommen, (a) ist nicht erfüllt. Dann gibt ein $n \in \N$ für welches $P(n)$ falsch ist. Wir fixieren das kleinste solche $n \in \N$. Ist unser $n=1$ so, ist (b) nicht erfüllt, weil $P(1)$ nicht erfüllt ist. Ist $n>1$ so ist (b) nicht erfüllt, weil $P(n)$ falsch und $P(n-1)$ wahr ist, wodurch die Implikation $P(n-1) \Rightarrow P(n)$ nicht erfüllt ist. 
+	Nun zeigen wir (b) $\Rightarrow$ (a) durch Kontraposition. Angenommen, (a) ist nicht erfüllt. Dann gibt es ein $n \in \N$ für welches $P(n)$ falsch ist. Wir fixieren das kleinste solche $n \in \N$. Ist unser $n=1$ so, ist (b) nicht erfüllt, weil $P(1)$ nicht erfüllt ist. Ist $n>1$ so ist (b) nicht erfüllt, weil $P(n)$ falsch und $P(n-1)$ wahr ist, wodurch die Implikation $P(n-1) \Rightarrow P(n)$ nicht erfüllt ist. 
 \end{proof} 
 
 \begin{bem}
@@ -821,18 +821,18 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 		
 		Sei nun $n \in \N$ ein beliebiger Wert, für welche die Formel $\sum_{i=1}^n  i = \frac{1}{2} n (n+1)$ erfüllt ist. Wir zeigen, dass die Formel mit $n+1$ an der Stelle von $n$ ebenfalls erfüllt ist. Es gilt 
 		\[
-			\sum_{i=1}^{n+1} = \sum_{i=1}^n i  + (n+1),
+			\sum_{i=1}^{n+1} i = \sum_{i=1}^n i  + (n+1),
 		\]
 		da wir in der Summe den Summanden zum Index $i=n+1$ abspalten können. Nach der Induktionsvoraussetzung ist $\sum_{i=1}^n i = \frac{1}{2} n (n+1)$. Somit hat man 
 		\[
-			\sum_{i=1}^{n+1} = \frac{1}{2} n (n+1) + (n+1) = \frac{1}{2} (n+1) (n+2). 
+			\sum_{i=1}^{n+1} i = \frac{1}{2} n (n+1) + (n+1) = \frac{1}{2} (n+1) (n+2). 
 		\]
 		Zusammenfassend: Unsere Formel gilt für $n=1$ und wenn unsere Formel für ein $n \in \N$ erfüllt ist, so ist sie auch mit $n+1$ an der Stelle von $n$ erfüllt. Aus Theorem~\ref{thm:ind} folgt, dass unsere Formel für jedes $n \in \N$ erfüllt ist. 
 \end{proof} 
 
 
 \begin{bsp}
-	Sei $q \in \R \setminus \{1\}$ und $n \in \N_0$. Dann gilt $\sum_{i=1}^n q^i = \frac{q^{n+1} - 1}{q-1}$. Zeigen Sie diese Formel durch die Induktion über $n$. Hier ist der Induktionsanfang $n=0$. 
+	Sei $q \in \R \setminus \{1\}$ und $n \in \N_0$. Dann gilt $\sum_{i=0}^n q^i = \frac{q^{n+1} - 1}{q-1}$. Zeigen Sie diese Formel durch vollständige Induktion über $n$. Hier ist der Induktionsanfang $n=0$. 
 \end{bsp} 
 
 \begin{bsp}
@@ -880,24 +880,24 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \end{thm} 
 
 \begin{bem}
-	Kommentar zur  vorigen Behauptung: man hat $\prod_{i=1}^0 p_i = 1$ im Fall $t=0$ und $\prod_{i=1}^1 p_i = p_1$ im Fall $t=0$. 
+	Kommentar zur  vorigen Behauptung: man hat $\prod_{i=1}^0 p_i = 1$ im Fall $t=0$ und $\prod_{i=1}^1 p_i = p_1$ im Fall $t=1$. 
 \end{bem} 
 
 
 \begin{proof} 
-	Die Behauptung ``es existieren $t \in \N_0$ Primzahlen $p_1,\ldots,p_t$ mit $n=\prod_{i=1}^t p_i$'' ist wahr für $n \in\{1,2\}$. Denn $n=1$ ist Produkt $1= \prod_{i=1}^0 p_i = 1$ und im Fall $n=2$ ist $2 = \prod_{i=1}^1 p_i$ mit $p_1:=1$.
+	Die Behauptung \glqq es existieren $t \in \N_0$ Primzahlen $p_1,\ldots,p_t$ mit $n=\prod_{i=1}^t p_i$\grqq\ ist wahr für $n \in\{1,2\}$. Denn $n=1$ ist Produkt $1= \prod_{i=1}^0 p_i = 1$ und im Fall $n=2$ ist $2 = \prod_{i=1}^1 p_i$ mit $p_1:=2$.
 	
-	Sei nun $n \in \N$ mit $n \ge 3$ so, dass jede Zahl $a \in \{1,\ldots,n-1\}$ Produkt von endlich vielen Primzahlen ist (im Sinne der Behauptung). Ist $n$ Primzahl, so gilt die Behauptung mit $t=1$ und $p_1 = n$. Ist $n$ keine Primzahl, so besitzt $n$ einen Teiler $a \in \{2,\ldots,n-1\}$. Es folgt $n = a b$ mit $b = n / a \in \N$ und $b \le \frac{n}{2} \le n-1$. Die Anwendung der Induktionsvoraussetzung zu $a$ und $b$ ergibt, dass man $a$ sowie $b$ als Produkt von Primzahlen darstellen hat. Es gilt also 
+	Sei nun $n \in \N$ mit $n \ge 3$ so, dass jede Zahl $a \in \{1,\ldots,n-1\}$ Produkt von endlich vielen Primzahlen ist (im Sinne der Behauptung). Ist $n$ Primzahl, so gilt die Behauptung mit $t=1$ und $p_1 = n$. Ist $n$ keine Primzahl, so besitzt $n$ einen Teiler $a \in \{2,\ldots,n-1\}$. Es folgt $n = a b$ mit $b = n / a \in \N$ und $b \le \frac{n}{2} \le n-1$. Die Anwendung der Induktionsvoraussetzung zu $a$ und $b$ ergibt, dass man $a$ sowie $b$ als Produkt von Primzahlen darstellen kann. Es gilt also 
 	\begin{align*}
 			a & = \prod_{i=1}^{r} u_i, 
-		\\	b & = \prod_{i=1}^s  v_i.
+		\\	b & = \prod_{i=1}^s  v_i
 	\end{align*} 
-	mit $r, s \in \N$ für geweisse Primzahlen $u_1,\ldots,u_r,v_1,\ldots,v_s$ (hier ist weder $r$ noch $s$ gleich $0$, denn $a,b \ge 2$). 
+	mit $r, s \in \N$ für gewisse Primzahlen $u_1,\ldots,u_r,v_1,\ldots,v_s$ (hier ist weder $r$ noch $s$ gleich $0$, denn $a,b \ge 2$). 
 	Dann ist $n$ Produkt von $t = r+s$ Primzahlen $p_1,\ldots,p_t$ mit $p_i = u_i$ für $i \in \{1,\ldots,r\}$ und $p_i = v_{i-r}$ für $i \in \{r+1,\ldots,r+s\}$. 
 \end{proof} 
 
 \begin{bem}[Fallunterscheidung] 
-	Ein weiteres verbreitetes Element eines Beweises ist die Fallunterscheidung. Im vorigen Beweis haben wir z.B. zwischen den Fällen, dass $n$ eine Primzahl und $n$ keine Primzahl ist, unterschieden. In jedem der beiden Fällen gaben wir ein eigenes Argument, wieso $n$ in die Primfaktoren zerlegbar ist.  
+	Ein weiteres verbreitetes Element eines Beweises ist die Fallunterscheidung. Im vorigen Beweis haben wir z.B. zwischen den Fällen, dass $n$ eine Primzahl und $n$ keine Primzahl ist, unterschieden. In jedem der beiden Fälle gaben wir ein eigenes Argument an, wieso $n$ in Primfaktoren zerlegbar ist.  
 \end{bem} 
 
 \begin{bem}
@@ -906,7 +906,7 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 
 
 \begin{bem}[Vollständige Induktion und Algorithmen]
-	Induktionsbeweise haben oft eine algorithmische Interpretation und können zu iterativen oder rekursiven Algorithmen konvertiert werden. In diesem Fall, kann man sich die folgende Umsetzung des vorigen Beweises als Algorithmus vorstellen. Nehmen wir an, wir wollen für alle Zahlen $1,\ldots,N$ für ein gegebenes $N \in \N$, $N \ge 2$, deren Zerlegung in Primfaktoren berechnen. Dann können wir folgendermaßen vorgehen. Wir führen für jedes $n \in \{1,\ldots,N\}$, eine Liste $L[i]$ der Primfaktoren von $1,\ldots,N$ ein. Für $n=1$ ist dies eine leere Liste. Angenommen, die Liste sei bereits für die Zahlen $1,\ldots,n-1$ erzeugt. Dann können wir die Liste $L[n]$ anhand der bereits vorhanden Listen $L[1],\ldots,L[n-1]$ so generieren. Wir testen, ob $n$ Primzahl ist. Ist das der Fall so erzeugen wir $L[n]$ als Liste aus einer einzigen Zahl $n$. Ist $n$ keine Primzahl, so Faktorisieren wir $n$ als $n = ab$ mit $a,b \in \{2,\ldots,n-1\}$ und erzeugen dann $L[n]$ durch das Zusammenfügen der Listen $L[a]$ und $L[b]$. 
+	Induktionsbeweise haben oft eine algorithmische Interpretation und können zu iterativen oder rekursiven Algorithmen konvertiert werden. In diesem Fall kann man sich die folgende Umsetzung des vorigen Beweises als Algorithmus vorstellen. Nehmen wir an, wir wollen für alle Zahlen $1,\ldots,N$ für ein gegebenes $N \in \N$, $N \ge 2$, deren Zerlegung in Primfaktoren berechnen. Dann können wir folgendermaßen vorgehen. Wir führen für jedes $n \in \{1,\ldots,N\}$, eine Liste $L[n]$ der Primfaktoren von $n$ ein. Für $n=1$ ist dies eine leere Liste. Angenommen, die Liste sei bereits für die Zahlen $1,\ldots,n-1$ erzeugt. Dann können wir die Liste $L[n]$ anhand der bereits vorhandenen Listen $L[1],\ldots,L[n-1]$ generieren: Wir testen, ob $n$ Primzahl ist. Ist das der Fall so erzeugen wir $L[n]$ als Liste aus einer einzigen Zahl $n$. Ist $n$ keine Primzahl, so Faktorisieren wir $n$ als $n = ab$ mit $a,b \in \{2,\ldots,n-1\}$ und erzeugen dann $L[n]$ durch das Zusammenfügen der Listen $L[a]$ und $L[b]$. 
 	
 	\lstinputlisting{Code/prime_factorizations.sage}
 	
@@ -915,27 +915,27 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \subsection{Ein Beispiel und ein Kommentar zur Fallunterscheidung} 
 
 \begin{bsp}[Ein Beispiel zur Fallunterscheidung] 
-	Sei $M$ die Menge der Nutzer:innen eines Sozialnetzwerks. Auf $M$ ist eine binäre Relation ``befreundet sein''  definiert, welche symmetrisch ist. Wir zeigen, dass in jeder $6$-elementigen Teilmenge $P$ von $M$ drei Nutzer:innen existieren, die entweder gegenseitig befreundet sind oder gegenseitig nicht befreundet sind. 
+	Sei $M$ die Menge der Nutzer:innen eines sozialen Netzwerks. Auf $M$ ist eine binäre Relation \glqq befreundet sein\grqq\ definiert, welche symmetrisch ist. Wir zeigen, dass in jeder $6$-elementigen Teilmenge $P$ von $M$ drei Nutzer:innen existieren, die entweder gegenseitig befreundet sind oder gegenseitig nicht befreundet sind. 
 	
-	Wir fixieren zuerst ein beliebiges $p \in P$. Bezüglich $p$ zerlegt sich die $5$-elementige Menge $P \setminus \{p\}$ in die Menge $A$ der jenigen $a \in P \setminus \{p\}$, die mit $p$ befreundet sind, und der Mengen $B$ der jenigen $b \in P \setminus \{p\}$, die mit $p$ nicht befreundet sind. Da $A \cup B = P \setminus \{p\}$ insgesamt $5$ Elemente hat, hat eine der beiden Mengen $A$ oder $B$ mindestens $3$ Elemente: denn hätten $A$ oder $B$ beide weniger als $3$ Elemente, so hätte $A \cup B$ insgesamt höchstens $4$ Elemente, was der Tatsache widerspricht, dass $A \cup B = P \setminus \{p\}$ $5$ Elemente hat. 
+	Wir fixieren zuerst ein beliebiges $p \in P$. Bezüglich $p$ zerlegt sich die $5$-elementige Menge $P \setminus \{p\}$ in die Menge $A$ derjenigen $a \in P \setminus \{p\}$, die mit $p$ befreundet sind, und der Menge $B$ derjenigen $b \in P \setminus \{p\}$, die mit $p$ nicht befreundet sind. Da $A \cup B = P \setminus \{p\}$ insgesamt $5$ Elemente hat, hat eine der beiden Mengen $A$ oder $B$ mindestens $3$ Elemente: denn hätten $A$ oder $B$ beide weniger als $3$ Elemente, so hätte $A \cup B$ insgesamt höchstens $4$ Elemente, was der Tatsache widerspricht, dass $A \cup B = P \setminus \{p\}$ $5$ Elemente hat. 
 	
 	\begin{itemize} 
 		\item[] \emph{Fall~1:} $A$ hat mindestens $3$ Elemente, d.h., $p$ ist mit mindestens drei Personen aus  $P \setminus \{p\}$ befreundet. 
 		\begin{itemize} 
-			\item[] \emph{Fall~1a:}  in $A$ findet man zwei befreundete Personen $a', a''$. Dann ist $\{p,a',a''\}$ eine $3$-elementige Teilmenge von $P$, mit den Personen, die befreundet sind. 
-			\item[] \emph{Fall~1b:} in $A$ sind  keine zwei Personen befreundet. Dann sind alle Personen aus $A$ nicht gegenseitig befreundet. In $A$ hat man also drei Personen die nicht gegenseitig befreundet sind. 
+			\item[] \emph{Fall~1a:} In $A$ findet man zwei befreundete Personen $a', a''$. Dann ist $\{p,a',a''\}$ eine $3$-elementige Teilmenge von $P$ mit Personen, die gegenseitig befreundet sind. 
+			\item[] \emph{Fall~1b:} In $A$ sind  keine zwei Personen befreundet. Dann sind alle Personen aus $A$ nicht gegenseitig befreundet. In $A$ hat man also drei Personen die nicht gegenseitig befreundet sind. 
 		\end{itemize} 
 		\item[] \emph{Fall~2:} $B$ hat mindestens $3$ Elemente, d.h., $p$ ist mit mindestens drei Personen aus $P \setminus \{p\}$ nicht befreundet. 
 		\begin{itemize} 
-				\item[] \emph{Fall~2a:} in $B$ findet man zwei Personen $b',b''$, die nicht befreundet sind. Dann ist $\{p,b',b''\}$ eine $3$-elementige Teilmengen von $P$, mit den Personen, die nicht befreundet sind. 
-				\item[] \emph{Fall~2b:} in $B$ sind alle Personen gegenseitig befreundet. Dann hat man in $B$ drei Personen, die gegenseitig befreundet sind. 
+				\item[] \emph{Fall~2a:} In $B$ findet man zwei Personen $b',b''$, die nicht befreundet sind. Dann ist $\{p,b',b''\}$ eine $3$-elementige Teilmenge von $P$ mit Personen, die gegenseitig nicht befreundet sind. 
+				\item[] \emph{Fall~2b:} In $B$ sind alle Personen gegenseitig befreundet. Dann hat man in $B$ drei Personen, die gegenseitig befreundet sind. 
 		\end{itemize} 
 	\end{itemize} 
-	In jedem der möglichen Fälle, haben wir die Existenz von drei Personen in $P$ nachgewiesen, die entweder gegenseitig befreundet sind oder gegenseitig nicht befreundet sind. 
+	In jedem der möglichen Fälle, haben wir die Existenz von drei Personen in $P$ nachgewiesen, die entweder gegenseitig befreundet oder gegenseitig nicht befreundet sind. 
 \end{bsp} 
 
 \begin{bem}[Fallunterscheidung mit Computer] 
-	In manchen Beweisen in Mathematik benötigt man so viel Fallunterscheidung (etwa zur Abarbeitung einer endlichen Anzahl von Sonderfälle), dass man es nicht mehr schafft, all die Fälle manuell zu behandeln. Dann holt man sich oft Computer zur Hilfe. 
+	In manchen Beweisen in der Mathematik benötigt man so viel Fallunterscheidung (etwa zur Abarbeitung einer endlichen Anzahl von Sonderfällen), dass man es nicht mehr schafft, all die Fälle manuell zu behandeln. Dann holt man sich oft den Computer zur Hilfe. 
 \end{bem} 
 
 \section{Schnupperstunde in Algebra} 
@@ -943,23 +943,23 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \subsection{Was ist Algebra?}
 
 \begin{bem}
-	Algebra ist die Theorie algebraischer Strukturen. Während man in der Schule mit einer relativ kleiner Anzahl algebraischer Strukturen wie $(\R,+,\cdot)$ oder dem Vektorraum $\R^3$ arbeitet, befasst man sich in Algebra mit verschiedenen Kategorien algebraischer Strukturen, wie z.B. Halbgruppen, Gruppen, Ringe, Körper und Vektorräume. 
+	Algebra ist die Theorie algebraischer Strukturen. Während man in der Schule mit einer relativ kleinen Anzahl algebraischer Strukturen wie $(\R,+,\cdot)$ oder dem Vektorraum $\R^3$ arbeitet, befasst man sich in Algebra mit verschiedenen Kategorien algebraischer Strukturen, wie z.B. Halbgruppen, Gruppen, Ringen, Körper und Vektorräumen. 
 
-Man entwickelt auch Mittel,  neue/eigene algebraische Strukturen anzulegen. Wenn man diesen Prozess mit der Programmierung vergleicht, so ist der Prozess sehr ähnlich zur Entwicklung eigener Datenstrukturen (im Gegensatz zur Nutzung der standardmäßig vorhandenen Datenstrukturen). 
+Man entwickelt auch Mittel,  neue/eigene algebraische Strukturen anzulegen. Wenn man diesen Prozess mit der Programmierung vergleicht, so ist der Prozess sehr ähnlich zur Entwicklung eigener Datenstrukturen (im Gegensatz zur Nutzung der standard\-¸mäßig vorhandenen Datenstrukturen). 
 \end{bem} 
 
 \begin{bem}[Algebraische Struktur] 
-	Eine algebraische Struktur ist in der Regel eine Menge $A$, die mit einer oder mehreren Verknüpfungen ausgestattet ist. In den allermeisten Fällen sind die Verknüpfungen, die man betrachtet, binär: sie sind Abbildungen $\ast : A \times A \rightarrow A$.  Für solche Abbildungen schreibt man dann $a \ast b$ an der Stelle von $\ast(a,b)$. Sehr oft handelt es sich auch um die Verknüpfungen, für welche (zumindest) das Assoziativgesetz $a \ast (b \ast c) = (a \ast b) \ast c$ erfüllt ist. 
+	Eine algebraische Struktur ist in der Regel eine Menge $A$, die mit einer oder mehreren Verknüpfungen ausgestattet ist. In den allermeisten Fällen sind die Verknüpfungen, die man betrachtet, binär: sie sind Abbildungen $\ast : A \times A \rightarrow A$.  Für solche Abbildungen schreibt man dann $a \ast b$ an der Stelle von $\ast(a,b)$. Sehr oft handelt es sich auch um die Verknüpfungen, für welche (zumindest) das Assoziativgesetz $a \ast (b \ast c) = (a \ast b) \ast c$, für alle $a,b,c \in A$, erfüllt ist. 
 \end{bem}	
 	
 \begin{bem}[Polymorphismus in Algebra] 
-	Man benutzt oft zum Bezeichnen der Verknüpfungen (bzw. der Verknüpfung) einer algebraischen Struktur die Symbole $+$ (Plus) und $\cdot$ (Mal). Hierbei meint man dann die Plus-Operation bzw. die Mal-Operation innerhalb der gegebenen algebraischen Struktur $A$. Das heißt, diese Operationen müssen $+$ und/oder $\cdot$ innerhalb einer algebraische Struktur $A$ nicht unbedingt mit Operation $+$ und $\cdot$ innerhalb der Menge $\R$ der reellen Zahlen etwas zu tun haben. Das bedeutet:  genau so, wie Symbole $a,b,c,d,\ldots$ in Mathematik kontextabhängig sind (können verschiedene Bedeutung in verschiedenen Kontexten haben), sind auch die Bezeichnungen wie $+$ und $\cdot$  kontextabhängig (bzw. Strukturabhängig) und können so, wie man es sich wünscht, eingeführt werden. Wenn man also $+$ in der Struktur $A$ hat, so ist das streng genommen $+_A$ -- die Plusoperation aus der Struktur $A$ -- man schreibt aber einfach nur $+$ und nimmt stillschweigend  an, dass es aus dem Kontext klar ist, welche Struktur $A$ gemeint ist. Die Nutzung der selben Bezeichnungen für verschiedene Operationen nennt man in der Programmierung der Polymorphismus.
+	Man benutzt oft zum Bezeichnen der Verknüp\-fungen (bzw. der Verknüpfung) einer algebraischen Struktur die Symbole $+$ (Plus) und $\cdot$ (Mal). Hierbei meint man dann die Plus-Operation bzw. die Mal-Operation innerhalb der gegebenen algebraischen Struktur $A$. Das heißt, diese Operationen $+$ und/oder $\cdot$ innerhalb einer algebraischen Struktur $A$ müssen nicht unbedingt etwas mit den Operationen $+$ und $\cdot$ innerhalb der Menge $\R$ der reellen Zahlen zu tun haben. Das bedeutet: genau so, wie Symbole $a,b,c,d,\ldots$ in der Mathematik kontextabhängig sind (können verschiedene Bedeutung in verschiedenen Kontexten haben), sind auch die Bezeichnungen wie $+$ und $\cdot$  kontextabhängig (bzw. strukturabhängig) und können so, wie man es sich wünscht, eingeführt werden. Wenn man also $+$ in der Struktur $A$ hat, so ist das streng genommen $+_A$ -- die Plusoperation aus der Struktur $A$ -- man schreibt aber einfach nur $+$ und nimmt stillschweigend  an, dass es aus dem Kontext klar ist, welche Struktur $A$ gemeint ist. Die Nutzung derselben Bezeichnung für verschiedene Operationen nennt man in der Programmierung den Polymorphismus.
 \end{bem} 
 
 \begin{bsp}
 	Für $n \in \N$ heißt die Menge $S_n$ aller bijektiven Abbildungen von $\{1,\ldots,n\}$ nach $\{1,\ldots,n\}$ mit der Multiplikation 
 	\[(\sigma \cdot \tau )(i) := \sigma(\tau(i))
-	\] die symmetrische Gruppe. Was eine (allgemeine) Gruppe ist, wird in IT-2 diskutiert. 
+	\] die symmetrische Gruppe. Was (allgemein) eine Gruppe ist, wird in IT-2 diskutiert. 
 \end{bsp} 
 
 \begin{bsp} 
@@ -981,7 +981,7 @@ Man entwickelt auch Mittel,  neue/eigene algebraische Strukturen anzulegen. Wenn
 \end{align*} 
 einführt, ist ein sogenannter binärer Körper. Die Bezeichnungen $+$, $\cdot$, $0$ und $1$, die wir hier verwenden, sind polymorph. 
 
-Wir meinen $+_{\F_2}, \cdot_{\F_2}$, $0_{\F_2}$ und $1_{\F_2}$ schreiben aber in unserem Kontext von $\F_2$ vereinfachend $+, \cdot, 0, 1$. 
+Wir meinen $+_{\F_2}, \cdot_{\F_2}$, $0_{\F_2}$ und $1_{\F_2}$, schreiben aber in unserem Kontext von $\F_2$ vereinfachend $+, \cdot, 0, 1$. 
 
 Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine wichtige Rolle. 
 
@@ -991,7 +991,7 @@ Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine w
 \subsection{Kommutativer Ring} 
 
 \begin{defn}
-	Eine Menge $R$ mit zwei binären Verknünfungen $+, -$ und zwei verschiedenen ausgezeichneten Elementen $0, 1 \in R$ heißt kommutativer Ring, wenn für alle $a,b,c \in R$ Folgendes erfüllt ist: 
+	Eine Menge $R$ mit zwei binären Verknüpfungen $+, -$ und zwei verschiedenen ausgezeichneten Elementen $0, 1 \in R$ heißt \textbf{kommutativer Ring}, wenn für alle $a,b,c \in R$ folgendes erfüllt ist: 
 	\begin{itemize}
 		\item $a + b =b +a$ und $a \cdot b = b \cdot a$ 
 		\item $a + 0 = a$ und $a \cdot 1 = a$ 
@@ -1019,7 +1019,7 @@ Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine w
 \subsection{Körper} 
 
 \begin{defn}
-	Eine Menge $K$ mit zwei binären Verknüpfungen $+$ und $\cdot$ heißt Körper, wenn $K$ bzgl. $+$ und $\cdot$ kommutativer Ring ist und darüber hinaus für jedes $a \in K \setminus \{0\}$ ein eindeutiges Element $a^{-1} \in K$ existiert, für welches $a \cdot a^{-1}  = 1$ gilt. 
+	Eine Menge $K$ mit zwei binären Verknüpfungen $+$ und $\cdot$ heißt \textbf{Körper}, wenn $K$ bzgl. $+$ und $\cdot$ kommutativer Ring ist und darüberhinaus für jedes $a \in K \setminus \{0\}$ ein eindeutiges Element $a^{-1} \in K$ existiert, für welches $a \cdot a^{-1}  = 1$ gilt. 
 \end{defn} 
 
 \begin{bsp}\ 
@@ -1034,26 +1034,26 @@ Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine w
 \end{bsp} 
 
 \begin{defn}
-	Ein Körper $K$ heißt algebraisch abgeschlossen, wenn für jede Wahl von $d \in \N$ und alle $a_d \in K \setminus \{0\}, a_{d-1},\ldots,a_0 \in K$ die Gleichung 
+	Ein Körper $K$ heißt \textbf{algebraisch abgeschlossen}, wenn für jede Wahl von $d \in \N$ und alle $a_d \in K \setminus \{0\}, a_{d-1},\ldots,a_0 \in K$ die Gleichung 
 	\[
 	a_d x^d + a_{d-1} x^{d-1} + \cdots + a_0 = 0
 	\]
-	mindestens eine Lösung $x$ aus $K$ besitzt. Eine Gleichung wie oben nennt man Polynomgleichung vom Grad $d$ mit Koeffizienten in $K$. 
+	mindestens eine Lösung $x$ aus $K$ besitzt. Eine Gleichung wie oben nennt man \textbf{Polynomgleichung} vom Grad $d$ mit Koeffizienten in $K$. 
 \end{defn} 
 
 \begin{bsp}\ 
 	\begin{itemize} 
-		\item $\Q$ ist nicht algebraisch abgeschlossen, vgl. die Gleichung $x^2 - 2 = 0$, mit den Koeffizienten $ -2, 0 , 1 \in \Q$, die keine Lösung $x$ in $\Q$ besitzt. 
+		\item $\Q$ ist nicht algebraisch abgeschlossen, vgl. die Gleichung $x^2 - 2 = 0$, mit den Koeffizienten $ 1, 0 , -2 \in \Q$, die keine Lösung $x$ in $\Q$ besitzt. 
 		\item $\R$ ist nicht algebraisch abgeschlossen, vgl. die Gleichung $x^2 + 1 = 0$ mit den Koeffizienten $1, 0, 1 \in \R$, die keine Lösung $x$ in $\R$ besitzt. 
 	\end{itemize} 
 \end{bsp} 
 
 \begin{defn} 
-	Sind $A$ und $B$ Mengen mit $A \subseteq B$ und $\ast_A : A \times A \to A$ und $\ast_B : B \times B \to B$ binäre Verknüpfungen, so nennt man $\ast_B$ Erweiterung von $\ast_A$ und $\ast_A$ Einschränkung von $\ast_B$ auf $A$, wenn $x \ast_A y = x \ast_B y$ für alle $a,b \in A$ erfüllt ist (mit anderen Worten: $\ast_B$ wirkt genau so wie $\ast_A$ innerhalb von $A$). 
+	Sind $A$ und $B$ Mengen mit $A \subseteq B$ und $\ast_A : A \times A \to A$ und $\ast_B : B \times B \to B$ binäre Verknüpfungen, so nennt man $\ast_B$ \textbf{Erweiterung} von $\ast_A$ und $\ast_A$ \textbf{Einschränkung} von $\ast_B$ auf $A$, wenn $x \ast_A y = x \ast_B y$ für alle $a,b \in A$ erfüllt ist (mit anderen Worten: $\ast_B$ wirkt genau so wie $\ast_A$ innerhalb von $A$). 
 \end{defn} 
 
 \begin{defn}
-	Sind $(F,+,\cdot)$ und $(K,+,\cdot)$ Körper mit $F \subseteq K$, bei denen $+$ und $\cdot$ von $K$ Erweiterungen von $+$ bzw. $\cdot$ auf $F$ sind, so nennt man den Körper $K$ eine Erweiterung des Körpers $F$. 
+	Sind $(F,+,\cdot)$ und $(K,+,\cdot)$ Körper mit $F \subseteq K$, bei denen $+$ und $\cdot$ von $K$ Erweiterungen von $+$ bzw. $\cdot$ auf $F$ sind, so nennt man den Körper $K$ eine \textbf{Erweiterung} des Körpers $F$. 
 \end{defn} 
 
 \begin{bsp}
@@ -1062,30 +1062,30 @@ Der binäre Körper spielt in der Kodierungstheorie und der Kryptographie eine w
 		\Q[\sqrt{2}] := \setcond{ a + \sqrt{2} b }{a,b \in \Q}
 	\]
 	ebenfalls ein Körper. Es gilt $\Q \varsubsetneq \Q[\sqrt{2}] \varsubsetneq \R$. 
-	Wie sieht das inverse eines Elements aus $\Q[\sqrt{2} ] \setminus \{0\}$ aus? 
+	Wie sieht das Inverse eines Elements aus $\Q[\sqrt{2} ] \setminus \{0\}$ aus? 
 \end{bsp} 
 
 \begin{thm}
-	Jeder Körper besitzt eine algebraisch abgeschlossene Körpererweiterung. 	
+	Jeder Körper besitzt eine algebraisch abgeschlossene Körpererwei\-terung. 	
 \end{thm} 
 
 \begin{bem}
-	Es gilt sogar eine stärkere Aussage: jeder Körper eine (im einem bestimmten Sinn) minimale algebraisch abgeschlossene Körpererweiterung. 
+	Es gilt sogar eine stärkere Aussage: jeder Körper besitzt eine (in einem bestimmten Sinn) minimale algebraisch abgeschlossene Körpererweiterung. 
 \end{bem} 
 
 \subsection{Der Körper der komplexen Zahlen} 
 
 \begin{defn} 
-	Die Menge $\C$ der komplexen Zahlen führen wir als die Menge der formalen Ausdrücke der Form $x +  y \, \iu$ mit $x, y \in \R$ ein. Hierbei ist $\iu$ ein formales Element, für welches wir $\iu^2 := -1$ festlegen. Das Element $\iu$ nennt man die \emph{imaginäre Einheit} oder die \emph{Wurzel aus $-1$}. Die Menge der reellen Zahlen $\R$ wird als eine Teilmenge von $\C$ aufgefasst, indem man $x \in \R$ als $x +  y  \, \iu$ mit $y=0$ schreibt. 
+	Die Menge $\C$ der komplexen Zahlen führen wir als die Menge der formalen Ausdrücke der Form $x +  y \, \iu$ mit $x, y \in \R$ ein. Hierbei ist $\iu$ ein formales Element, für welches wir $\iu^2 := -1$ festlegen. Das Element $\iu$ nennt man die \textbf{imaginäre Einheit} oder die \textbf{Wurzel aus $-1$}. Die Menge der reellen Zahlen $\R$ wird als eine Teilmenge von $\C$ aufgefasst, indem man $x \in \R$ als $x +  y  \, \iu$ mit $y=0$ schreibt. 
 	
-	Nach diesen Festlegungen lassen sich die Operationen $+$ und $\cdot$ vom Körper $\R$ der reellen Zahlen auf $\C$ auf eine eindeutige Weise erweitern, wenn man fordert, dass  $\C$ mit Operationen $+$ und $\cdot$ ein kommutativer Ring sein soll, vgl. dazu die Gesetze für einen kommutativen Ring.  (Wie wir in Kürze sehen werden, ist $(\C,+,\cdot)$ sogar ein Körper.) Die Addition und Multiplikation führen wir also auf die folgende Weise eingeführt: 
+	Nach diesen Festlegungen lassen sich die Operationen $+$ und $\cdot$ vom Körper $\R$ der reellen Zahlen auf $\C$ auf eine eindeutige Weise erweitern, wenn man fordert, dass  $\C$ mit den Operationen $+$ und $\cdot$ ein kommutativer Ring sein soll, vgl. dazu die Gesetze für einen kommutativen Ring.  (Wie wir in Kürze sehen werden, ist $(\C,+,\cdot)$ sogar ein Körper.) Die Addition und Multiplikation führen wir also auf die folgende Weise ein:
 	\begin{align*}
 			(x_1 + y_1 \iu ) + (x_2 +  y_2 \iu ) & := (x_1 +y_1) +  (y_1 + y_2) \iu
 			\\ (x_1 + y_1 \iu) \cdot (x_2 + y_2 \iu) & := (x_1 x_2 - y_1 y_2) + (x_1 y_2 + x_2 y_1) \iu,
 	\end{align*} 
 für $x_1,x_2, y_1, y_2 \in \R$. 
 
-Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als $\Re(z) :=x$ und den Imaginärteil von $z$ als $\Im(z):= y$ ein; die Zahl $\overline{z} = x - y \iu$ nennen wir komplex konjugiert zu $z$; den Wert $|z| = \sqrt{x^2 + y^2}$ nennen wir den Betrag von $z$. 
+Ist $z = x  + y \iu$ mit $x, y \in \R$, so führen wir den \textbf{Realteil} von $z$ als $\Re(z) :=x$ und den \textbf{Imaginärteil} von $z$ als $\Im(z):= y$ ein; die Zahl $\overline{z} = x - y \iu$ nennen wir \textbf{komplex konjugiert} zu $z$; den Wert $|z| = \sqrt{x^2 + y^2}$ nennen wir den \textbf{Betrag} von $z$. 
 \end{defn} 
 
 \begin{aufg}
@@ -1093,7 +1093,7 @@ Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als 
 \end{aufg} 
 
 \begin{bem}
-	In Algebra werden oft Strukturen formal nach ``eigenen Vorgaben'' eingeführt. Bei der Definition von komplexen Zahlen sieht man ein Beispiel dafür. 
+	In Algebra werden oft Strukturen formal nach \glqq eigenen Vorgaben\grqq\ eingeführt. Bei der Definition von komplexen Zahlen sieht man ein Beispiel dafür. 
 \end{bem} 
 
 \begin{thm}
@@ -1108,7 +1108,7 @@ Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als 
 		 	z z^{-1} = \frac{z \bar{z} }{|z|^2} = \frac{ ( x+ y \iu) ( x - y\iu) }{x^2 + y^2}   = \frac{ x^2 - (y \iu)^2 }{x^2 + y^2} = \frac{x^2 - y^2 \iu^2}{x^2 + y^2} = \frac{x^2 + y^2}{x^2 + y^2} = 1. 
 	\]
 	
-	Dass der Körper $(\C,+,\cdot)$ algebraisch abgeschlossen ist, ist ziemlich bemerkenswert. Bedenken Sie, dass wir nur die imaginäre Einheit $\iu$ eine formale Lösung der Polynomgleichung $z^2 + 1=0$ in einem unbekannten $z$ eingeführt haben. Die Behauptung über die algebraische Abgeschlossenheit ist, dass wird durch diese Ergänzung für eine beliebige Polynomgleichung von einem positiven Grad (un d mit Koeffizienten in $\C$) eine Lösung in $\C$ finden. Um diese Behauptung herzuleiten braucht man wissen aus der Analysis (wir geben also an dieser Stelle keinen Beweis). 
+	Dass der Körper $(\C,+,\cdot)$ algebraisch abgeschlossen ist, ist ziemlich bemerkenswert. Bedenken Sie, dass wir nur die imaginäre Einheit $\iu$, also eine formale Lösung der Polynomgleichung $z^2 + 1=0$ in einem unbekannten $z$, eingeführt haben. Die Behauptung über die algebraische Abgeschlossenheit ist, dass wir durch diese Ergänzung für eine beliebige Polynomgleichung von einem positiven Grad (und mit Koeffizienten in $\C$) eine Lösung in $\C$ finden. Um diese Behauptung herzuleiten braucht man Wissen aus der Analysis (wir geben also an dieser Stelle keinen Beweis). 
 \end{proof} 
 
 \begin{aufg}
@@ -1129,18 +1129,18 @@ Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als 
 \end{proof} 
 
 \begin{defn}
-	Sei $c \in \R^2$ und $\rho>0$. Dann heißt die Menge aller Punkte, den zum Punkt $c$ Abstand $\rho>0$ haben \textbf{Kreis} mit Zentrum in $c$ vom Radius $\rho>0$. 
+	Sei $c \in \R^2$ und $\rho>0$. Dann heißt die Menge aller Punkte, die zum Punkt $c$ den Abstand $\rho>0$ haben, \textbf{Kreis} mit Zentrum in $c$ vom Radius $\rho>0$. 
 \end{defn} 
 
 \begin{bem}
 	Aus Korollar~\ref{kor:pythagoras} folgt: die Menge 
 	\[
 		\setcond{(x,y) \in \R^2}{x^2 + y^2 = 1}
-	\] ist Kreis vom Radius $1$ mit Zentrum in $(0,0)$. Diese Menge nennen wir im folgenden \textbf{den Einheitskreis}. 
+	\] ist Kreis vom Radius $1$ mit Zentrum in $(0,0)$. Diese Menge nennen wir im folgenden den \textbf{Einheitskreis}. 
 \end{bem} 
 
-\begin{bem}[Über Radianten und Grade.] 
-	Im alten Babylonien dachte man, das Jahr wäre 360 Jahre lang (das stimmt nicht, wie wir jetzt wessen). Daher teilte man den Jahreskreis in 360 Teile auf, die den Tagen entsprechen. Ein Grad steht daher für einen Tag im babylonischen Jahreskreis. Das zeigt, dass die Herkunft der Messung der Winkel in Graden nicht mathematisch ist. Sie ist anthropologisch: sie hängt mit dem Planeten Erde zusammen, auf dem wir uns befinden, und mit den Babylonier:innen, die bei der Bestimmung der Anzahl der Tage im Jahr sich ein Wenig verschätzten. Dennoch hat sich die Messung mit 360 Graden für den vollen Winkeln bis jetzt erhalten. Das liegt vielleicht daran, dass einige für uns interessante Winkel mit Graden durch eine ganze Zahl darstellbar sind ($90^\circ$, $60^\circ$, $30^\circ$). 
+\begin{bem}[Über Radianten und Grade] 
+	Im alten Babylonien dachte man, das Jahr wäre 360 Tage lang (das stimmt nicht, wie wir jetzt wissen). Daher teilte man den Jahreskreis in 360 Teile auf, die den Tagen entsprechen sollten. Ein Grad steht daher für einen Tag im babylonischen Jahreskreis. Das zeigt, dass die Herkunft der Messung der Winkel in Graden nicht mathematisch ist. Sie ist anthropologisch: sie hängt mit dem Planeten Erde zusammen, auf dem wir uns befinden, und mit den Babylonier:innen, die bei der Bestimmung der Anzahl der Tage im Jahr sich ein wenig verschätzten. Dennoch hat sich die Messung mit 360 Graden für den vollen Winkeln bis jetzt erhalten. Das liegt vielleicht daran, dass einige für uns interessante Winkel mit Graden durch eine ganze Zahl darstellbar sind ($90^\circ$, $60^\circ$, $30^\circ$). 
 	
 	Die Messung mit Radianten ist eine dimensionslose Messung und sie ist intrinsisch mathematisch. Man nimmt einen Kreis mit dem Radius $1$ und misst Winkel durch die Längen der Bögen dieses Kreises. Dabei bezeichnet man die Länge einer Hälfte des Einheitskreises als $\pi$ und nennt die Zahl $\pi$ die Kreiszahl. Diese Zahl $\pi$ ist etwas größer als $3$ (das sieht man, wenn man in den Einheitskreis ein reguläres Sechseck einschreibt). 
 	
@@ -1153,25 +1153,25 @@ Ist $z = x  + y \iu$ mit $x, y \in \R$ so führen, wir den Realteil von $z$ als 
 \end{bem} 
 
 \begin{bem}[Kosinus, Sinus und Co.] 
- Man betrachte eine kreisförmige Radrennbahn mit Zentrum im Punkt $(0,0)$ vom Radius $1$. Diese Bahn ist nach dem Satz des Pythagoras durch die Gleichung $x^2 + y^2 = 1$ beschrieben. Nun legen wir den Punkt $(1,0)$ dieser Bahn als den Startpunkt fest. Von diesem Punkt aus kann man nun Strecken einer beliebigen Länge zurücklegen. Wie lang die Strecke ist und ob man sich im Gegenuhrzeiger oder im Uhrzeigersinn bewegt wird durch eine Zahl $\alpha \in \R$ notiert. Der Betrag von $\alpha$ gibt die Länge der Strecke an, die man zurücklegen will. Das Vorzeichen von $\alpha$ gibt an, ob man sich im Gegenuhrzeigersinn oder im Uhrzeigersinn bewegt: bei einem positiven Vorzeichen - im Gegenuhrzeigersinn und bei einem negativen Vorzeichen - im Uhrzeigersinn. Für jedes $\alpha \in \R$ erhält man einen Punkt $(x,y)$, in dem man sich nach dem Zurücklegen der vorgegebenen Strecke in die vorgegebene Richtung landet. Die $x$-Komponente dieses Punkts nennt man den Kosinus von $\alpha$ und die $y$-Komponente Sinus von $\alpha$. Bezeichnungen dazu sind: 
+ Man betrachte eine kreisförmige Radrennbahn mit Zentrum im Punkt $(0,0)$ vom Radius $1$. Diese Bahn ist nach dem Satz des Pythagoras durch die Gleichung $x^2 + y^2 = 1$ beschrieben. Nun legen wir den Punkt $(1,0)$ dieser Bahn als den Startpunkt fest. Von diesem Punkt aus kann man nun Strecken einer beliebigen Länge zurücklegen. Wie lang die Strecke ist und ob man sich im Gegenuhrzeigersinn oder im Uhrzeigersinn bewegt wird durch eine Zahl $\alpha \in \R$ notiert. Der Betrag von $\alpha$ gibt die Länge der Strecke an, die man zurücklegen will. Das Vorzeichen von $\alpha$ gibt an, ob man sich im Gegenuhrzeigersinn oder im Uhrzeigersinn bewegt: bei einem positiven Vorzeichen + im Gegenuhrzeigersinn und bei einem negativen Vorzeichen - im Uhrzeigersinn. Für jedes $\alpha \in \R$ erhält man einen Punkt $(x,y)$, den man erhält, wenn man sich nach dem Zurücklegen der vorgegebenen Strecke in die vorgegebene Richtung, ausgehend vom Punkt $(1,0)$, bewegt. Die $x$-Komponente dieses Punkts nennt man den Kosinus von $\alpha$ und die $y$-Komponente den Sinus von~$\alpha$. Die Bezeichnungen dazu sind: 
  \begin{align*} 
  	x & = \cos \alpha
  	\\ y & = \sin \alpha 
  \end{align*}	
-Sonst betrachtet man den Tangens 
+Ansonsten betrachtet man noch den Tangens 
 \[
 	\tan \alpha = \frac{\sin \alpha}{\cos \alpha}
 \]
- den Kotangens 
+und den Kotangens 
  \[
- 	\cot \alpha = \frac{\cos \alpha}{\sin \alpha}
+ 	\cot \alpha = \frac{\cos \alpha}{\sin \alpha}.
  \] 
- Ist $0 \le \alpha \le \pi$, so sagt man bei $x =\cos \alpha$, dass $\alpha$ Arcus Kosinus von $x$ ist. Man schreibt dann $\alpha = \arccos x$. Mit anderen Worten ist $\arccos$ die Umkehrfunktion der vom Kosinus, wenn man den Kosinus als Funktion $[0,\pi] \to [-1,1]$ auffasst. 
+ Ist $0 \le \alpha \le \pi$, so sagt man bei $x =\cos \alpha$, dass $\alpha$ Arcus Kosinus von $x$ ist. Man schreibt dann $\alpha = \arccos x$. Mit anderen Worten ist $\arccos$ die Umkehrfunktion vom Kosinus, wenn man den Kosinus als Funktion $[0,\pi] \to [-1,1]$ auffasst. 
  Ist $-\pi \le \alpha \le \pi$, so sagt man bei $y = \sin \alpha$, dass $\alpha$ Arcus Sinus von $y$ ist. Man schreibt dann 
- $\alpha = \arcsin y$. Mit anderen Worte ist $\arcsin$ die Umkehrfunktion der Einschränkung vom Sinus, wenn man den Sinus als Funktion $[-\pi,\pi] \to [-1,1]$ auffasst. 
+ $\alpha = \arcsin y$. Mit anderen Worten ist $\arcsin$ die Umkehrfunktion der Einschränkung vom Sinus, wenn man den Sinus als Funktion $[-\pi,\pi] \to [-1,1]$ auffasst. 
 \end{bem} 
 
-\begin{bem}[Kosinus und Sinus im Taschenrechner] Wenn Studierende den Kosinus und Sinus (unter anderem für sehr einfache Werte $\alpha$) im Taschenrechner berechnen, so sieht man, dass es immer wieder dazu kommt, dass ihre Ergebnisse falsch sind. Das liegt daran, dass man in vielen Taschenrechnern eine Umschaltung zwischen Grad und Radianten hat. Ist der Taschenrechner auf Radianten eingestellt, so berechnet er die eigentlichen  Kosinus und Sinus, wie sie in Mathematik (und in den meisten Programmiersprachen) zu finden sind. Ist der Taschenrechner auf Grade eingestellt, so berechnet er die Funktionen $t \mapsto \cos( \frac{\pi}{180}t)$ und $t \mapsto \sin( \frac{\pi}{180})t$ an der Stelle von $\cos$ und $\sin$. Übrigens: in Excel wird die Funktion $t \mapsto \frac{\pi}{180} t$, die oben in $\cos$ und $\sin$ eingesetzt wurde, das Bogenmaß von $t$ genannt. 
+\begin{bem}[Kosinus und Sinus im Taschenrechner] Wenn Studierende den Kosinus und Sinus (unter anderem für sehr einfache Werte $\alpha$) im Taschenrechner berechnen, so sieht man, dass es immer wieder dazu kommt, dass ihre Ergebnisse falsch sind. Das liegt daran, dass man in vielen Taschenrechnern eine Umschaltung zwischen Grad und Radianten hat. Ist der Taschenrechner auf Radianten eingestellt, so berechnet er den eigentlichen  Kosinus und Sinus, wie sie in der Mathematik (und in den meisten Programmiersprachen) zu finden sind. Ist der Taschenrechner auf Grade eingestellt, so berechnet er die Funktionen $t \mapsto \cos( \frac{\pi}{180}t)$ und $t \mapsto \sin( \frac{\pi}{180})t$ an der Stelle von $\cos$ und $\sin$. Übrigens: in Excel wird die Funktion $t \mapsto \frac{\pi}{180} t$, die oben in $\cos$ und $\sin$ eingesetzt wurde, das Bogenmaß von $t$ genannt. 
 \end{bem} 
 
 \begin{bem} 
@@ -1185,25 +1185,25 @@ Sonst betrachtet man den Tangens
 	\[
 		z = \rho ( \cos \phi + \iu \sin \phi )
 	\]
-	mit $\rho \in \R_{\ge 0}$ und $\phi \in \R$. Hierbei gilt $\rho = |z|$. Bei $z \ne 0$, ist $\phi$ eindeutig durch $z$ bis auf das addieren eines ganzzahligen Vielfachen von $2 \pi$ definiert. 
+	mit $\rho \in \R_{\ge 0}$ und $\phi \in \R$. Hierbei gilt $\rho = |z|$. Bei $z \ne 0$, ist $\phi$ eindeutig durch $z$ bis auf das Addieren eines ganzzahligen Vielfachen von $2 \pi$ definiert. 
 \end{thm}
 
 \begin{proof}  
 	{\color{red} WARNUNG:} Der nachfolgende Beweis und unsere Definition von $\cos$ und $\sin$ entspricht nicht ganz den mathematischen Standards, solange wir den Begriff  Länge (eines Bogens) und Orientierung (einer Kurve), auf den  wir uns bei der Einführung von $\cos$ und $\sin$ beziehen, nicht mathematisch formal definiert haben. Wir verlassen uns also auf Intuition und darauf, dass man (später) den Begriff Länge mathematisch korrekt einführen kann (solche Begriffe führt man in der Analysis ein). Es gibt auch einen formalen nicht-geometrischen Zugang zum Kosinus und Sinus (dieser Zugang ist aber nicht wirklich intuitiv, sodass man dadurch nicht wirklich versteht, was Kosinus und Sinus eigentlich sind). 
 	
-	Da jede komplexe Zahl $z = x + y \iu$ eindeutig durch $x, y \in \R$ gegeben ist, kann man $z$ als einen Punkt $(x,y) \in \R^2$ visualisieren. Die Visualisierung von $\C$ auf diese Weise nennt man die gaußsche Zahlenebene. Dabei werden $1$ und $\iu$ als die zueinander senkrechte Vektoren $(1,0)$ und $(0,1)$ dargestellt. Man sieht, dass die Menge $K := \setcond{z \in \C}{|z|=1} = \setcond{ x+ \iu y}{x^2 + y^2 =1}$ als  der Einheitskreis mit Zentrum in $0 \in \C$ und dem Radius $1$ in der gaußschen Zahlenebene darstellbar ist. 
+	Da jede komplexe Zahl $z = x + y \iu$ eindeutig durch $x, y \in \R$ gegeben ist, kann man $z$ als einen Punkt $(x,y) \in \R^2$ visualisieren. Die Visualisierung von $\C$ auf diese Weise nennt man die gaußsche Zahlenebene. Dabei werden $1$ und $\iu$ als die zueinander senkrechten Vektoren $(1,0)$ und $(0,1)$ dargestellt. Man sieht, dass die Menge $K := \setcond{z \in \C}{|z|=1} = \setcond{ x+ \iu y}{x^2 + y^2 =1}$ als  der Einheitskreis mit Zentrum in $0 \in \C$ und dem Radius $1$ in der gaußschen Zahlenebene darstellbar ist. 
 	
-	\emph{Existenz:} Ist $z \ne 0$,so ist $z / |z|$ ist ein Punkt im Kreis $K$ und so hat $z$ die Darstellung $ z / |z| = \cos \phi + \iu \sin \phi$ für ein $\phi \in \R$ nach unserer Beschreibung von $\cos$ und $\sin$. Es folgt also, dass $z = \rho ( \cos \phi + \iu \sin \phi)$ mit $\rho = |z|$ gilt. Im Fall $z= 0 \in \C$ kann man $\rho =0$ und ein beliebiges $\phi$ fixieren. 
+	\emph{Existenz:} Ist $z \ne 0$, so ist $z / |z|$ ein Punkt auf dem Kreis $K$ und so hat $z$ die Darstellung $ z / |z| = \cos \phi + \iu \sin \phi$ für ein $\phi \in \R$ nach unserer Beschreibung von $\cos$ und $\sin$. Es folgt also, dass $z = \rho ( \cos \phi + \iu \sin \phi)$ mit $\rho = |z|$ gilt. Im Fall $z= 0 \in \C$ kann man $\rho =0$ und ein beliebiges $\phi$ fixieren. 
 	
 	\emph{Eindeutigkeit:} Ist $z = \rho (\cos \phi + \iu \sin \phi)$ mit $\rho \in \R_{\ge 0}$ und $\phi \in \R$ so gilt $|z| = | \rho (\cos \phi + \iu \sin \phi) | = \rho | \cos \phi + \iu \sin \phi| = \rho \sqrt{ \cos^2 \phi + \sin^2\phi } = \rho$. Ist $z \ne 0$, so ist 
-	$ z/ |z|$ der Punkt $\cos \phi + \iu \sin \phi$ auf Einheitskreis $K$. Der Punkt $\cos \phi + \iu \sin \phi$ im Kreis $K$ ändert sich nicht, wenn man zum Wert von $\phi$  ein ganzzahliges Vielfaches von $2 \pi$ dazu addiert, weil der Kreis $K$ die Länge $2\pi$ hat. So besteht die Möglichkeit als $\phi$ einen Wert aus $[0,2 \pi)$ zu wählen. 
+	$ z/ |z|$ der Punkt $\cos \phi + \iu \sin \phi$ auf dem Einheitskreis $K$. Der Punkt $\cos \phi + \iu \sin \phi$ auf dem Kreis $K$ ändert sich nicht, wenn man zum Wert von $\phi$  ein ganzzahliges Vielfaches von $2 \pi$ dazu addiert, weil der Kreis $K$ die Länge $2\pi$ hat. So besteht die Möglichkeit als $\phi$ einen Wert aus $[0,2 \pi)$ zu wählen. 
 	
 	 Da $K$ die Länge $2\pi$ hat, ist jeder Punkt eindeutig durch die Angabe eines solchen $\phi \in [0,2 \pi)$ gegeben. 
 \end{proof} 
 
 \begin{defn}[Definition der Exponentialfunktion durch die Euler-Formel]
 	\label{def:euler:formel}
-	Wir erweitern die \textbf{Exponentialfunktion} $e^x : \R \to \R$ in der Variablen $x \in \R$ zur Exponentialfunktion zur Funktion $e^z : \C \to \C$ in der Variablen $z \in \C$, indem wir 
+	Wir erweitern die Exponentialfunktion $e^x : \R \to \R$ in der Variablen $x \in \R$ zur \textbf{Exponentialfunktion} $e^z : \C \to \C$ in der Variablen $z \in \C$, indem wir 
 	\[
 			e^{x+ \iu y} := e^x ( \cos y + \iu \sin y)
 	\]
@@ -1215,21 +1215,21 @@ Sonst betrachtet man den Tangens
 \end{bem} 
 
 \begin{defn} 
-	In der (eindeutigen) Darstellung  der Zahl $z \in \C^2 \setminus \{0\}$ als $z = \rho e^{\iu \phi}$ mit $\rho \in \R_{>0}$ und $\phi = (-\pi,\pi]$  wird $\phi$ das \textbf{Argument} von $z$ gennant und als $\Arg(z)$ bezeichnet. 
+	In der (eindeutigen) Darstellung  der Zahl $z \in \C^2 \setminus \{0\}$ als $z = \rho e^{\iu \phi}$ mit $\rho \in \R_{>0}$ und $\phi = (-\pi,\pi]$  wird $\phi$ das \textbf{Argument} von $z$ genannt und als $\Arg(z)$ bezeichnet. 
 \end{defn} 
 
 \begin{aufg}
-	Zeigen Sie dass bei $z_k := \rho_k e^{\iu \phi_k}$ mit $\rho_1,\rho_2 \in \R_{\ge 0}$ und $\phi_1,\phi_2 \in \R$ die Gleichung $z_1 z_2 =  \rho_1 \rho_2 e^{\iu (\phi_1 + \phi_2)}$ erfüllt ist.  Benutzen Sie dafür die Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$. 
+	Zeigen Sie, dass bei $z_k := \rho_k e^{\iu \phi_k}$ mit $\rho_1,\rho_2 \in \R_{\ge 0}$ und $\phi_1,\phi_2 \in \R$ die Gleichung $z_1 z_2 =  \rho_1 \rho_2 e^{\iu (\phi_1 + \phi_2)}$ erfüllt ist.  Benutzen Sie dafür die Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$. 
 	
-	Wenn Sie diese Formeln nicht kennen bzw. nicht gefunden haben, dann gibt es eine alternative Aufgabe: leiten Sie aus der Tatsache, dass $z_1 z_2 = \rho_1 \rho_2 = \rho_1 \rho_2 e^{\iu(\phi_1 + \phi_2)}$ gilt, Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$. 
+	Wenn Sie diese Formeln nicht kennen bzw. nicht gefunden haben, dann gibt es eine alternative Aufgabe: Leiten Sie aus der Tatsache, dass $z_1 z_2 = \rho_1 \rho_2 e^{\iu(\phi_1 + \phi_2)}$ gilt, Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$ her. 
 	
 	\textbf{Kommentar:} Formeln für $\cos(\alpha \pm \beta)$ und $\sin(\alpha \pm \beta)$ kann man im Rahmen der Linearen Algebra (IT-2) herleiten. 
 \end{aufg} 
 
-\begin{bem}[Merkhilfe für trigonometrische Formeln mit Hilfe von $e^{z} : \C \to \C$.]
+\begin{bem}[Merkhilfe für trigonometrische Formeln mit Hilfe von $e^{z} : \C \to \C$]
 	Es stellt sich heraus, dass sich die Rechenregeln für $e^x : \R\to \R$ direkt auf die Rechenregel in $e^z : \C \to \C$ übertragen lassen. Das Übertragen der Rechenregel im Fall einer reellen Variablen auf den Fall einer komplexen Variablen basiert auf den (zahlreichen) trigonometrischen Formeln, die man kennt. 
 	
-	Umgekehrt gilt: die Rechenregel für $e^z : \C \to \C$ in Kombination mit der Euler-Formel ``speichern'' die trigonometrischen Formeln. Das bedeutet, dass man die trigonometrischen Formeln durch die Euler-Formel merken kann. 
+	Umgekehrt gilt: die Rechenregel für $e^z : \C \to \C$ in Kombination mit der Euler-Formel \glqq speichern\grqq\ die trigonometrischen Formeln. Das bedeutet, dass man sich die trigonometrischen Formeln durch die Euler-Formel merken kann. 
 	
 	Stellen wir uns vor, wir haben die Formeln für $\cos 2 \alpha$ und $\sin 2 \alpha$ vergessen. Was wir tun können, ist Folgendes. Es gilt: 
 	\[
@@ -1255,7 +1255,7 @@ Auf diese Weise kommen wir zu den Formeln
 \end{bem} 
 
 \begin{aufg} 
-	Welche trigonometrische Identitäten speichern die folgenden Formeln? 
+	Welche trigonometrischen Identitäten speichern die folgenden Formeln? 
 	\begin{align*}
 			e^{\iu \alpha} e^{- \iu \alpha} & =1, 
 			\\ e^{\iu (\alpha + \beta)} & = e^{\iu \alpha} e^{\iu \beta},
@@ -1277,18 +1277,18 @@ Auf diese Weise kommen wir zu den Formeln
 \end{defn} 
 
 \begin{bem}
-	Die Euler-Formel ermöglicht einen Übergang von den trigonometrischen Funktionen zur Exponentialfunktion. So ein Übergang, der oft die Berechnung  erleichtert, wird gerne in Physik/Elektrotechnik benutzt, wenn man sich mit Schwingungen und Wellen beschäftigt. 
+	Die Euler-Formel ermöglicht einen Übergang von den trigonometrischen Funktionen zur Exponentialfunktion. So ein Übergang, der oft die Berechnung  erleichtert, wird gerne in der Physik/Elektrotechnik benutzt, wenn man sich mit Schwingungen und Wellen beschäftigt. 
 \end{bem} 
 
 \begin{aufg}\ 
-	Schlagen Sie nach, wie die inversen trigonometrischen Funktionen Arcus Kosinus, Arcus Sinus und Arcus Tangens definiert sind. Der Wertebereich  vom Arcus Kosinus ist $[0,2\pi]$. Der Wertebereich vom Arcus Sinus ist dagegen in $[-\pi,\pi]$. Begründen Sie, warum die Wertebereiche so gewählt sind. \textbf{Hinweis:} Die inversen trigonometrischen Funktionen sollen eigentlich die trigonometrischen Funktionen umkehren. Was braucht man für Eigenschaften für die Umkerhbareit? Sind diese Eigenschaften für die trigonometrischen Funktionen erfüllt? 
+	Schlagen Sie nach, wie die inversen trigonometrischen Funktionen Arcus Kosinus, Arcus Sinus und Arcus Tangens definiert sind. Der Wertebereich  vom Arcus Kosinus ist $[0,2\pi]$. Der Wertebereich vom Arcus Sinus ist dagegen in $[-\pi,\pi]$. Begründen Sie, warum die Wertebereiche so gewählt sind. \textbf{Hinweis:} Die inversen trigonometrischen Funktionen sollen eigentlich die trigonometrischen Funktionen umkehren. Was braucht man für Eigenschaften für die Umkehrbareit? Sind diese Eigenschaften für die trigonometrischen Funktionen erfüllt? 
 \end{aufg} 
 
 \begin{aufg}\
 	\begin{itemize}
-			\item Sei $n \in \N$. Was sind alle Lösungen der Gleichung $z^n =1$ in einer komplexwertigen Unbekannten $z$? Wenn Sie schwierigkeiten im Fall eines allgemeinen $n$ haben, versuchen Sie zuerst die Lösungen in den Fällen $n \in \{1,2,4\}$ zu finden. 
+			\item Sei $n \in \N$. Was sind alle Lösungen der Gleichung $z^n =1$ in einer komplexwertigen Unbekannten $z$? Wenn Sie Schwierigkeiten im Fall eines allgemeinen $n$ haben, versuchen Sie zuerst die Lösungen in den Fällen $n \in \{1,2,4\}$ zu finden. 
 			\item Bestimmen Sie alle Lösungen der Gleichung $z^2 + 2 z +  2 = 0$ in einer komplexwertigen Unbekannten $z$. 
-			\item Wie kann das Konjugieren $z \mapsto \overline{z}$ geometrisch als eine Transformation  auf der komplexen Ebene $\C$ beschreiben werden? 
+			\item Wie kann das Konjugieren $z \mapsto \overline{z}$ geometrisch als eine Transformation  auf der komplexen Ebene $\C$ beschrieben werden? 
 	\end{itemize} 
 \end{aufg} 
 
@@ -1298,7 +1298,7 @@ Auf diese Weise kommen wir zu den Formeln
 \subsection{O, $\Omega$ und $\Theta$}
 
 \begin{bem}
-Bei der Analyse von Algorithmen und der Analysis redet man oft von der Größenordnung von Funktionen. Eine praktische Ausdrucksweise dafür ist die sogenannte asymptotische Notation.
+Bei der Analyse von Algorithmen und der Analysis redet man oft von der Größenordnung von Funktionen. Eine praktische Ausdrucksweise dafür ist die sogenannte asymptotische Notation (oder auch Landau-Notation).
 \end{bem} 
 
 \begin{defn}[$O$-Notation]  
@@ -1307,7 +1307,7 @@ Man schreibt $f(n) = O(g(n))$, wenn eine Konstante $c>0$ und ein $n_0 \in \N$ ex
 \end{defn} 
 
 \begin{bem} 
-Die Bezeichnung $f(n)=O(g(n))$ steht für ``$f(n)$ hat die Größenordnung höchstens $g(n)$ bis auf eine mutliplikative Konstante'' und man sagt \glqq$f(n)$ ist in Groß-O von $g(n)$\grqq. Die Schreibweise $f(n) = O(g(n))$ ist streng genommen nicht ganz korrekt, in der Literatur aber sehr verbreitet. Die korrekte Schreibweise wäre $f(n) \in O(g(n))$, d.h., $f(n)$ liegt in der Menge aller Funktionen der Größenordnung höchstens $g(n)$. In der Literatur verwendet man oft $O(g(n))$ als eine Schreibweise für eine anonyme Funktion der Größenordnung höchstens $g(n)$. In diesem Kurs spielen die Beträge in der Definition von $O(g(n))$ in der Regel keine Rolle, weil wir beim Anwenden der asymptotischen Notationen fast ausschließlich nichtnegative Funktionen benutzen. 
+Die Bezeichnung $f(n)=O(g(n))$ steht für \glqq $f(n)$ hat die Größenordnung höchstens $g(n)$ bis auf eine mutliplikative Konstante\grqq\ und man sagt \glqq$f(n)$ ist in Groß-O von $g(n)$\grqq. Die Schreibweise $f(n) = O(g(n))$ ist streng genommen nicht ganz korrekt, in der Literatur aber sehr verbreitet. Die korrekte Schreibweise wäre $f(n) \in O(g(n))$, d.h., $f(n)$ liegt in der Menge aller Funktionen der Größenordnung höchstens $g(n)$. In der Literatur verwendet man oft $O(g(n))$ als eine Schreibweise für eine anonyme Funktion der Größenordnung höchstens $g(n)$. In diesem Kurs spielen die Beträge in der Definition von $O(g(n))$ in der Regel keine Rolle, weil wir beim Anwenden der asymptotischen Notationen fast ausschließlich nichtnegative Funktionen benutzen. 
 \end{bem} 
 
 \begin{defn}[$\Omega$-Notation] 
@@ -1315,7 +1315,7 @@ Man schreibt $f(n) = \Omega(g(n))$, wenn eine Konstante $c>0$ und ein $n_0 \in \
 \end{defn} 
 
 \begin{defn} 
-Man schreibt $f(n) = \Theta(g(n))$, wenn sowohl $f(n) = O(g(n))$ als auch$f(n) = \Omega(g(n))$ gelten.
+Man schreibt $f(n) = \Theta(g(n))$, wenn sowohl $f(n) = O(g(n))$ als auch $f(n) = \Omega(g(n))$ gelten.
 \end{defn} 
 
 \begin{bem}
@@ -1355,9 +1355,9 @@ Die asymptotischen Notationen $O(g(n))$, $\Omega(g(n))$ und $\Theta(g(n))$ (und 
 \subsection{$o$ und $\omega$}
 
 \begin{defn} 
-Bei $g : \N \to \R$ steht $o(f(n))$ für die Menge aller Funktionen $f: \N \to \R$ mit der Eigenschaft, dass für jedes $c>0$ ein $n_0 \in \N$ existiert derart, dass $|f(n)| \le c |g(n)|$ für alle $n \in \N$ mit $n \ge n_0$ erfüllt ist. In der Literatur schreibt man oft $f(n) = o(g(n))$ an der Stelle von $f(n) \in o(g(n))$. 
+Bei $g : \N \to \R$ steht $o(g(n))$ für die Menge aller Funktionen $f: \N \to \R$ mit der Eigenschaft, dass für \textbf{jedes} $c>0$ ein $n_0 \in \N$ existiert derart, dass $|f(n)| \le c |g(n)|$ für alle $n \in \N$ mit $n \ge n_0$ erfüllt ist. In der Literatur schreibt man oft $f(n) = o(g(n))$ an der Stelle von $f(n) \in o(g(n))$. 
 \end{defn} 
 
 \begin{defn}
-Die Bezeichnung $\omega(g(n))$ steht für die Menge aller Funktionen $f : \N \to \R$, für welche für alle $c>0$ ein $n_0 \in \N$ existiert derart, dass $|f(n)| \ge c|g(n)|$ für alle $n \in \N$ mit $n \ge n_0$ erfüllt ist. 
+Die Bezeichnung $\omega(g(n))$ steht für die Menge aller Funktionen $f : \N \to \R$, für welche für \textbf{alle} $c>0$ ein $n_0 \in \N$ existiert derart, dass $|f(n)| \ge c|g(n)|$ für alle $n \in \N$ mit $n \ge n_0$ erfüllt ist. 
 \end{defn} 
