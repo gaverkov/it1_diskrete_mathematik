@@ -108,7 +108,7 @@ In einigen mathematischen Quellen bezeichnet man die Inklusion als $ \subset $ u
 Eine sehr verbreitete Weise, Mengen zu definieren, ist durch Bedingungen, nach dem Format 
 \[
  \setcond{ \text{AUSDRUCK} }{\text{BEDINGUNG}}. 
-\] Der Doppelpunkt bedeutet so viel wie \glqq sodass\grqq oder \glqq mit der Bedingung\grqq. In manchen Quellen wird ein senkrechter Strich an der Stelle des Doppelpunktes benutzt. 
+\] Der Doppelpunkt bedeutet so viel wie \glqq sodass\grqq\ oder \glqq mit der Bedingung\grqq. In manchen Quellen wird ein senkrechter Strich an der Stelle des Doppelpunktes benutzt. 
 \end{bem} 
 
 \begin{bem} In der Programmiersprache Python gibt es den Datentyp Menge sowie syntaktische Strukturen zur Konstruktion von Mengen und Listen, die analog zu mathematischen Bezeichnungen sind: 
@@ -303,8 +303,11 @@ und als $A \cupdot B$ bezeichnet.
 
 
 \begin{defn}
-Seien $ X,Y $ Mengen. Eine \textbf{Abbildung} $ f $ von $ X $ nach $ Y $ ist eine Vorschrift, die jedem $ x \in X $ genau ein Element aus $ Y $ zuordnet. Dieses Element aus $ Y $, das dem $x$ zugeordnet wird, wird durch $ f(x) $ bezeichnet. 
-Wenn $ f $ eine Abbildung von $ X $ nach $ Y $ ist, dann bezeichnet man das als $ f : X \to Y $. Die Menge $ X $ heißt der \textbf{Definitionsbereich} von $ f $, die Menge $ Y $ heißt der \textbf{Wertebereich} von $ f $. Wenn der Wertebereich $Y$ von $f$ eine Teilmenge von $\R$ ist, so nennen wir $f : X \to Y$ eine \textbf{Funktion}. Bei der Beschreibung von Abbildungen benutzt man auch die Bezeichnung $x \mapsto f(x)$, um zu verdeutlichen, dass $x$ auf $f(x)$ abgebildet wird. 
+Seien $ X $ und $ Y $ Mengen. Eine \textbf{Abbildung} $ f $ von $ X $ nach $ Y $ ist eine Vorschrift, die jedem $ x \in X $ genau ein Element aus $ Y $ zuordnet. Das Element aus~$ Y $, das einem Element $x \in X $ zugeordnet wird, wird durch $ f(x) $ bezeichnet.
+
+Wenn $ f $ eine Abbildung von $ X $ nach $ Y $ ist, dann notieren wir dies durch $ f : X \to Y $. Die Menge $ X $ heißt dann der \textbf{Definitionsbereich} von $ f $, und die Menge~$ Y $ der \textbf{Wertebereich} von $ f $.
+
+Wenn der Wertebereich $Y$ von $f$ eine Teilmenge von $\R$ ist, so nennen wir $f : X \to Y$ eine \textbf{Funktion}. Bei der Beschreibung von Abbildungen benutzt man auch die Bezeichnung $x \mapsto f(x)$, um zu verdeutlichen, dass $x$ auf $f(x)$ abgebildet wird. 
 \end{defn} 
 
 \begin{bem} 
@@ -331,32 +334,36 @@ In manchen Quellen benutzt man den Begriff Funktion als ein Synonym zum Begriff 
 
 \begin{bsp}\ 
 \begin{itemize}
-	\item $ f : \R \to \R,\\ f(x) := x^2 -2x + 7 $
-	\item $ f : \R \setminus \{ 1 \} \to \R,\\ f(x) := \frac{1}{x-1}$
+	\item $ f : \R \to \R$ mit $ f(x) := x^2 -2x + 7 $ für alle $x \in \R$
+	\item $ f : \R \setminus \{ 1 \} \to \R$ mit $ f(x) := \frac{1}{x-1}$ für alle $x \in \R \setminus \{ 1 \}$
 	\item Die Vorzeichen-Funktion $ \sign: \R \to \R $ wird durch Fallunterscheidung als 
 	\[
 		\sign(x) := \begin{cases} 
 				-1 &  \text{für} \ x < 0,
 				\\ 0 & \text{für} \ x =0,
-				\\ 1 & \text{für}  \ x >0
+				\\ 1 & \text{für}  \ x > 0
 			\end{cases} 
 	\]
 	definiert. 
-	\item Definitions- bzw. Wertebereiche von Abbildungen müssen keine Teilmengen der Zahlenbereiche sein. 
-	
-	$ f : 2^{\N} \to \N, f(A) := \min(A) $. Die Eingabe dieser Funktion ist keine Zahl sondern eine Menge, man hat z.B. $ f( \{ 2,7,43 \} ) = 2 $.
-	\item $ f : \N \to 2^\N, f(k) := \is{1}{k}.$ Die Rückgabe dieser Abbildung ist keine Zahl sondern eine Menge, z.B. $f(3) = \{1,2,3\}$. 
+	\item $g : \N \to \N$ mit $g(n) := 1$ falls $n \geq 10$ und $g(n) := 2$ falls $n \leq 50$ ist keine Abbildung
+	\item Definitions- bzw. Wertebereiche von Abbildungen müssen keine Teilmengen der Zahlenbereiche sein:
+	\begin{itemize}
+	 \item Sei $ f : 2^{\N} \to \N$ mit $ f(A) := \min(A) $. Die Eingabe dieser Funktion ist keine Zahl sondern eine Menge, man hat z.B. $ f( \{ 2,7,43 \} ) = 2 $.
+	\item Sei $ f : \N \to 2^\N$ mit $ f(k) := \is{1}{k}.$ Die Rückgabe dieser Abbildung ist keine Zahl sondern eine Menge, z.B. $f(3) = \{1,2,3\}$. 
+	\end{itemize}
 	\item $(x,y) \mapsto (x,-y)$ ist eine vertikale Spiegelung $\R^2 \to \R^2$. 
 	\item $(x,y) \mapsto (-x,y)$ ist eine horizontale Spiegelung $\R^2 \to \R^2$. 
 \end{itemize}
 \end{bsp} 
 
 \begin{bem}
-Zwei Abbildungen $ f,g : X \to Y $ heißen gleich, falls $ f(x) = g(x) $ für alle $ x \in X $ gilt. 
+Zwei Abbildungen $ f,g : X \to Y $ heißen gleich, falls $ f(x) = g(x) $ für alle $ x \in X $ gilt.
+
+\underline{Wichtig:} Bei Gleichheit von zwei Abbildungen müssen insbesondere Definitions- und Wertebereich gleich sein, nicht nur die Zuweisungsvorschrift.
 \end{bem} 
 
 \begin{bem} 
-	Für Mengen $X$ und $Y$, 
+	Für zwei Mengen $X$ und $Y$, 
 	bezeichnet man als $ Y^X $  die Menge aller Abbildungen von $ X $ nach $ Y $.
 \end{bem} 
 
@@ -365,7 +372,7 @@ Zwei Abbildungen $ f,g : X \to Y $ heißen gleich, falls $ f(x) = g(x) $ für al
 \end{aufg} 
 
 \begin{defn}
-Seien $ X,Y,A,B $ Mengen mit $ A \subseteq X $ und $ B \subseteq Y $. Sei $ f : X \to Y $. Dann heißt $ f(A) := \{ f(x) : x \in A \} $ das \textbf{Bild} von $ A $ bzgl. $ f $ und $ f^{-1}(B) := \{ x \in X : f(x) \in B \} $ das \textbf{Urbild} von $ B $ bzgl. $ f $.
+Seien $ X,Y,A,B $ Mengen mit $ A \subseteq X $ und $ B \subseteq Y $ und sei $ f : X \to Y $ eine Abbildung. Dann heißt $ f(A) := \{ f(x) : x \in A \} $ das \textbf{Bild} von $ A $ bzgl. $ f $ und $ f^{-1}(B) := \{ x \in X : f(x) \in B \} $ das \textbf{Urbild} von $ B $ bzgl. $ f $.
 \end{defn} 
 
 \begin{bsp}
@@ -396,16 +403,16 @@ Seien $ X,Y $ Mengen und sei $ f : X \to Y $. Dann heißt $ f $
 \end{defn}
 
 \begin{bsp}
-	Untersuche folgende Funktionen auf Bijektivität:
+	Wir untersuchen die folgende Funktionen auf Bijektivität:\\[-2em]
 	\begin{itemize}
 		\item $ f : \R \to \R, f(x) := x^2 $
 		für alle $ x \in \R $\\
 		surjektiv ? nein, $ -1 \neq f(x) $ für alle $ x \in \R $\\
 		injektiv ? nein, $ f(x) = f(-x) $ für alle $ x \in \R $
-		\item $ f : \R \to [0,+\infty), f(x) := x^2 $ für alle $ x \in \R $\\
+		\item $ f : \R \to \R_{\geq 0}, f(x) := x^2 $ für alle $ x \in \R $\\
 		surjektiv ? ja\\
-		injektiv ? nein (analog)
-		\item $ f : \R \setminus \{ 0 \} \to \R, f(x) = \frac{1}{x} $ für alle $ x \in \R $\\
+		injektiv ? nein (wie zuvor)
+		\item $ f : \R \setminus \{ 0 \} \to \R, f(x) = \frac{1}{x} $ für alle $ x \in \R \setminus \{ 0 \}$\\
 		surjektiv ? nein, 0 wird nicht angenommen\\
 		injektiv ? ja
 		\item $ f : \R \to \R, f(x) = 2x + 3 $ für alle $ x \in \R $\\
@@ -415,20 +422,20 @@ Seien $ X,Y $ Mengen und sei $ f : X \to Y $. Dann heißt $ f $
 
 
 \begin{defn} 
-Seien $ X,Y $ Mengen und sei $ f : X \to Y $ bijektiv. Die Abbildung, die jedem $ y \in Y $ das eindeutige $ x \in X $ mit $ f(x) = y $ zuordnet, heißt die \textbf{Umkehrabbildung} von $ f $ und wird durch $ f^{-1} $ bezeichnet.
+Seien $ X,Y $ Mengen und sei $ f : X \to Y $ bijektiv. Die Abbildung, die jedem $ y \in Y $ das eindeutige $ x \in X $ mit $ f(x) = y $ zuordnet, heißt die \textbf{Umkehrabbildung} von $ f $ und wird durch $ f^{-1} : Y \to X $ bezeichnet.
 \end{defn} 
 
 \begin{aufg}
-	Was ist die Umkehrfunktion von $ f : \R \to \R : f(x) := 2x + 3 $ ?
+	Was ist die Umkehrfunktion von $ f : \R \to \R$ mit $ f(x) := 2x + 3 $ ?
 \end{aufg}
 
 
 \begin{defn}
-Seien $ X,Y,Z $ Mengen, $ f : X \to Y $ und $ g : Y \to Z $. Dann heißt $ g \circ f : X \to Z $ mit $ ( g \circ f )(x) := g( f(x) ) $ für alle $ x \in X $ die \textbf{Komposition} von $ g $ und $ f $.
+Seien $ X,Y,Z $ Mengen, $ f : X \to Y $ und $ g : Y \to Z $ Abbildungen. Dann heißt $ g \circ f : X \to Z $ mit $ ( g \circ f )(x) := g( f(x) ) $ für alle $ x \in X $ die \textbf{Komposition} (oder Verkettung) von $ g $ und $ f $.
 \end{defn}
 
 \begin{bsp}
-	Seien $ f : \R \to \R : f(x) = 2x + 3 $ für alle $ x \in \R $ und $ g : \R \to \R : g(x) = x^2 $ für alle $ x \in \R $. Dann ist $ ( f \circ g )(x) = 2x^2 + 3 $ und $ ( g \circ f )(x) = (2x + 3)^2 $.
+	Seien $ f : \R \to \R$ mit $ f(x) = 2x + 3 $ für alle $ x \in \R $ und $ g : \R \to \R $ mit $g(x) = x^2 $ für alle $ x \in \R $. Dann ist $ ( f \circ g )(x) = 2x^2 + 3 $ und $ ( g \circ f )(x) = (2x + 3)^2 $.
 \end{bsp}
 
 
@@ -449,13 +456,13 @@ Sei $ X $ eine Menge. Dann heißt die Abbildung $ \id_X : X \to X $ mit $ \id_X(
 \begin{defn}
 Seien $ I,X $ Mengen und sei $ A : I \to 2^X $. Man schreibt auch in diesem Fall $ A_i $ statt $ A(i) $ für $ i \in I $, $ (A_i)_{i \in I} $ ist eine \textbf{Familie} (bzw. \textbf{Schar}) von Teilmengen von $ X $.
 
-Für die Familie $ (A_i)_{i \in I} $ definiert man den \textbf{Durchschnitt} der Familie als 
+Für die Familie $ (A_i)_{i \in I} $ definiert man ihren \textbf{Durchschnitt} als 
 \begin{align*}
-	\bigcap_{i \in I} A_i &:= \{ x \in X : x \in A_i \:\text{für alle}\: i \in I \},
+	\bigcap_{i \in I} A_i &:= \setcond{x \in X}{x \in A_i \:\text{für alle}\: i \in I},
 \end{align*}
-und die \textbf{Vereinigung} der Familie als 
+und ihre \textbf{Vereinigung} als 
 \begin{align*}
-	\bigcup_{i \in I} A_i &:= \{ x \in X : x \in A_i \:\text{für ein}\: i \in I \}.
+	\bigcup_{i \in I} A_i &:= \setcond{x \in X}{x \in A_i \:\text{für ein}\: i \in I}.
 \end{align*}
 \end{defn} 
 
@@ -488,7 +495,7 @@ und die \textbf{Vereinigung} der Familie als
 \section{Summen und Produkte}
 
 \begin{defn} 
-Eine Menge $ X $ heißt endlich, falls $ X = \emptyset $ oder falls eine bijektive Abbildung von $ \is{1}{n} $ nach $ X $ existiert mit $ n \in \N $. Der Wert $ n $ heißt die Anzahl der Elemente (\textbf{Kardinalität}) von $ X $ und wird durch $ |X| $ bezeichnet. Man setzt die Kardinalität von $ \emptyset $ gleich 0. Bei einer unendlichen Mengen $X$ setzt man $|X| = \infty$. 
+Eine Menge $ X $ heißt endlich, falls $ X = \emptyset $ oder falls eine bijektive Abbildung von $ \is{1}{n} $ nach $ X $ existiert mit $ n \in \N $. Der Wert $ n $ heißt die Anzahl der Elemente (\textbf{Kardinalität}) von $ X $ und wird durch $ |X| $ bezeichnet. Man setzt die Kardinalität von $ \emptyset $ gleich 0. Bei einer unendlichen Mengen $X$ setzt man $|X| := \infty$. 
 \end{defn} 
 
 \begin{bem}
@@ -504,9 +511,9 @@ Für eine Abbildung $ f : X \to \R $ definiert man
 \\
 	\prod\limits_{x \in X} f(x) &:= f(x_1) \cdot \ldots \cdot f(x_n).
 \end{align*}
-Im Fall $ X = \emptyset $ definiert man für $ f : X \to \R $ und $ \sum\limits_{x \in X} f(x) = 0 $ und $ \prod\limits_{x \in X} f(x) = 1 $.
+Im Fall $ X = \emptyset $ definiert man für $ f : X \to \R $ die leere Summe $ \sum\limits_{x \in X} f(x) := 0 $ und das leere Produkt $ \prod\limits_{x \in X} f(x) := 1 $.
 
-In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ der \textbf{Summand} und im Produkt $\prod\limits_{x \in X} f(x)$ heißt $f(x)$ der \textbf{Faktor}.  
+In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ \textbf{Summand} und im Produkt $\prod\limits_{x \in X} f(x)$ heißt $f(x)$ \textbf{Faktor}.  
 \end{defn}
 
 \begin{bem} 
@@ -515,11 +522,11 @@ In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ der \textbf{Summand} und
 
 
 \begin{bem}
-	$\sum\limits_{i=a}^b$ benutzt man als eine kurze Schreibweise für $\sum\limits_{i \in \{a,\ldots,b\}}$. Im entarteten Fall $a>b$ ist $\sum\limits_{i =a}^b$ eine Summe über die leere Menge. 
+	$\sum\limits_{i=a}^b f(i)$ benutzt man als eine kurze Schreibweise für $\sum\limits_{i \in \{a,\ldots,b\}} f(i)$. Im entarteten Fall $a>b$ ist $\sum\limits_{i =a}^b f(i)$ eine Summe über die leere Menge, also die leere Summe.
 \end{bem} 
 
 \begin{bsp}
-	Für jedes $n \in \N$ gilt $S:=\sum_{i=1}^n i = \frac{1}{2} n (n+1).$ Die Abbildung $i \mapsto n+1 - i$ ist eine Bijektion von $\{1,\ldots,n\}$ nach $\{1,\ldots,n\}$. Daher gilt  $S = \sum_{i=1}^n (n+1 - i)$. Daraus ergibt sich 
+	Für jedes $n \in \N$ gilt $S:=\sum\limits_{i=1}^n i = \frac{1}{2} n (n+1).$ Die Abbildung $i \mapsto n+1 - i$ ist eine Bijektion von $\{1,\ldots,n\}$ nach $\{1,\ldots,n\}$. Daher gilt  $S = \sum\limits_{i=1}^n (n+1 - i)$. Daraus ergibt sich 
 	\[
 		2 S = S +  S = \sum_{i=1}^n i + \sum_{i=1}^n (n+1 - i) = \sum_{i=1}^n ( i + n + 1 -i) = \sum_{i=1}^n (n+1) = n (n+1). 
 	\]
@@ -533,11 +540,15 @@ In der Summe $\sum\limits_{x \in X} f(x)$ heißt $f(x)$ der \textbf{Summand} und
 
 
 \begin{defn}
-Sei $ X $ Menge. Dann heißt $ P : X \to \{ \text{falsch},\text{wahr} \} $ \textbf{Prädikat} auf $ X $. 
+Sei $ X $ Menge. Dann heißt $ P : X \to \{ \false,\true \} $ \textbf{Prädikat} auf $ X $. 
 \end{defn} 
 
 \begin{bem}
-	Informell beschrieben ist ein Prädikat eine Aussage über ein variables Element $x$ aus $X$. Dabei hängt im Allgemeinen der Wahrheitswert der Aussage von der Wahl von $x$ ab.  Sonst lässt sich ein Prädikat auf $X$ als eine Eigenschaft eines variablen Elements $x \in X$ beschreiben, die entweder vorhanden oder nicht vorhanden ist. Zum Beispiel: $P(n):=$\glqq$n$ ist gerade\grqq\ als Eigenschaft einer natürlichen Zahl $n \in \N$. Diese Eigenschaft ist bei $n=123$ nicht vorhanden und bei $n=2020$ vorhanden. 
+	Informell beschrieben ist ein Prädikat eine Aussage über ein variables Element $x$ aus $X$. Dabei hängt im Allgemeinen der Wahrheitswert der Aussage von der Wahl von $x$ ab.
+	
+	Alternativ lässt sich ein Prädikat auf $X$ als eine Eigenschaft eines variablen Elements $x \in X$ beschreiben, die entweder vorhanden oder nicht vorhanden ist.
+	
+	\underline{Zum Beispiel:} $P(n):=$ \glqq$n$ ist gerade\grqq\ als Eigenschaft einer natürlichen Zahl $n \in \N$. Diese Eigenschaft ist bei $n=123$ nicht vorhanden und bei $n=2020$ vorhanden, also $P(123) = \false$ und $P(2020) = \true$.
 \end{bem}
 
 \begin{bsp}
@@ -550,7 +561,7 @@ $ P : \N \to \{ \false,\true \}$ mit
 \begin{bsp}
 $ P : \R^2 \to \{ \false , \true \}$ mit 
 \[
-	P(x,y) := \text{\glqq Es gilt $x^2 + y^2 \le 1$\grqq}
+	P(x,y) := \text{\glqq Es gilt $x^2 + y^2 \le 1$.\grqq}
 \] 
 ist die Eigenschaft \glqq der Punkt $(x,y)$ hat den Abstand höchstens $1$ zum Punkt $(0,0)$\grqq. 
 \end{bsp} 
@@ -583,14 +594,14 @@ $ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P
 
 
 \begin{bem}
-	$ \forall $ und $ \exists $ lassen sich kombinieren. Seien $X, Y$ Mengen. Wenn man ein Prädikat $ P $ auf $ X \times Y $ hat, so kann man dafür die Aussagen
+	$ \forall $ und $ \exists $ lassen sich kombinieren. Seien $X, Y$ Mengen. Wenn man ein Prädikat $ P $ auf $ X \times Y $ hat, also eine Abbildung $P : X \times Y \to \{\false,\true\}$, so kann man dafür Aussagen wie
 	\[
-		 \forall\, x \in X \,\exists\: y \in Y : P(x,y), 
+		 \forall\, x \in X \,\exists\: y \in Y : P(x,y)
 	\]
 	und
 	\[\exists\, x \in X  \, \forall\, y \in Y : P(x,y) 
 	\]
-	usw. einführen. 
+	einführen. 
 \end{bem}
 
 
@@ -603,7 +614,10 @@ $ \exists\: x \in X : P(x) $ bezeichnet die Aussage \textquote{die Bedingung $ P
 	\[
 		\exists\, a \in A \, \forall\, x \in X \,:\, x \ \text{wohnt unter der Adresse} \ a
 	\]
-	bedeutet dagegen, dass alle Personen aus $X$ unter einer und derselben Adresse in Sandow wohnen (z.B. als Wohngemeinschaft). Man sieht, die zweite Aussage ist eine stärkere Bedingung. 
+	bedeutet dagegen, dass alle Personen aus $X$ unter einer und derselben Adresse in Sandow wohnen (z.B. als Wohngemeinschaft).
+	
+	Man sieht, die zweite Aussage ist eine stärkere Bedingung.
+	Das hei\ss t, dass die zweite Aussage die erste impliziert.
 \end{bem} 
 
 \begin{bsp}
@@ -633,7 +647,7 @@ Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so sch
 \begin{bsp}\ % hack to force itemize to new line
 \begin{itemize}
 	\item $ X = \{f_1,f_2,f_3,f_4\} $ - Menge von Fahrzeugen\\
-	$ Y =  \{ \text{Ersatzrad}, \text{Radio}, \text{Navi}, \text{Automatik} \}$ - Menge von Features von Fahrzeugen. Hier 
+	$ Y =  \{ \text{Ersatzrad}, \text{Radio}, \text{Navi}, \text{Automatik} \}$ - Menge von Features von Fahrzeugen
 	\begin{center} 
 	\begin{tabular}{l|c|c|c|c}
 		& Ersatzrad & Radio & Navi & Automatik \\
@@ -644,7 +658,7 @@ Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so sch
 		$ f_4 $ & nein & ja & ja & nein
 	\end{tabular}
 	\end{center}  
-	Diese Tabelle legt eine Relation auf $X \times Y$ fest. 
+	Diese Tabelle legt eine Relation zwischen $X$ und $Y$ fest. 
 	\item $ \leq, <, \geq, > $ sind binäre Relationen auf $ \R$
 	\item Sei $X$ Menge. Dann ist $ \subseteq $ eine binäre Relation auf $ 2^X $.
 	\item Für $ a,b \in \N $ schreibt man $ a \mid b $, wenn $ b $ durch $ a $ ohne Rest teilbar ist. Dies ist eine binäre Relation auf $\N$. 
@@ -653,13 +667,13 @@ Wenn für $ x \in X $ und $ y \in Y $ die Bedingung $ (x,y) \in R $ gilt, so sch
 
 
 \begin{defn}
-Sei $ X $ eine Menge und $ \sim $ eine Relation auf $ X $. Dann heißt $ \sim $ eine \textbf{Äquivalenz\-relation}, falls Folgendes gilt: 
+Sei $ \sim $ eine Relation auf der Menge $ X $. Dann heißt $ \sim $ \textbf{Äquivalenz\-relation}, falls: 
 \begin{enumerate}
 	\item $ \sim $ ist \textbf{reflexiv}, d.h. $ x \sim x $ für alle $ x \in X $.
 	\item $ \sim $ ist \textbf{symmetrisch}, d.h. $ x \sim y $ ist äquivalent zu $ y \sim x $ für alle $ x,y \in X $.
 	\item $ \sim $ ist \textbf{transitiv}, d.h. aus $ x \sim y $ und $ y \sim z $ folgt $ x \sim z $ für alle $ x,y,z \in X $.
 \end{enumerate}
-Für eine Äquivalenzrelation $ \sim $ auf einer Menge $ X $ und ein $ x \in X $ heißt
+Für eine Äquivalenzrelation $ \sim $ auf der Menge $ X $ und ein $ x \in X $ heißt
 \begin{equation*}
 	[x]_\sim := \{ y \in X : x \sim y \}
 \end{equation*}
@@ -671,15 +685,17 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 
 \begin{bsp}\
 \begin{itemize}	
-	\item Sei $ m \in \N $. Für $ a,b \in \Z $ sagt man, dass $ a $ kongruent zu $ b $ modulo $ m $ ist, falls $ a-b \in m\Z $, wobei $ m\Z := \{ mz : z \in \Z \} $.
+	\item Sei $ m \in \N $. Für $ a,b \in \Z $ sagt man, dass $ a $ kongruent zu $ b $ modulo $ m $ ist, falls $ a-b \in m\Z $, wobei $ m\Z := \{ mz : z \in \Z \} $. Äquivalent gilt also $m \mid (a-b)$.
 	
 	Schreibweise: $ a \equiv b \mod{m} $.
 	
 	Die Kongruenz modulo $ m $ ist eine Äquivalenzrelation auf $ \Z $.
 	
+	Die Äquivalenzklassen werden oft mit $[a]_m$ bezeichnet und heißen Restklassen modulo $m$.
+	
 	\item Sei $ \sim $ Relation auf $ \Z \times \N $, definiert durch $ (a,b) \sim (c,d) $ für $ a,c \in \Z, b,d \in \N $, wenn $ ad = bc $ gilt.
 	
-	Diese Relation ist eine Äquivalenzrelation (Aufgabe).
+	Diese Relation ist eine Äquivalenzrelation (Hausaufgabe!).
 	
 	Formal kann man die Menge der rationalen Zahlen als die Menge der Äquiva\-lenz\-klassen bzgl. dieser Äquivalenzrelation umsetzen. 
 \end{itemize}
@@ -687,12 +703,13 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 
 
 \begin{defn}
-	Eine Menge $X$ mit einer binären Relation $\preceq$ darauf heißt \textbf{Poset} (partiell geordnete Menge), wenn für alle $x,y,z \in X$ folgendes gilt: 
+	Eine Menge $X$ mit einer binären Relation $\preceq$ darauf heißt \textbf{Poset} (partiell geordnete Menge; engl.~\underline{p}artially \underline{o}rdered \underline{set}), wenn für alle $x,y,z \in X$ folgendes gilt: 
 	\begin{itemize}
 		\item $x \preceq x$ (Reflexivität)
-		\item $x \preceq y, \ y \preceq z$ $\Rightarrow$ $x \preceq z$ (Transitivität). 
-		\item $x \preceq y, \ y \preceq x$ $\Rightarrow$ $x = y$ (Antisymmetrie). 
+		\item $x \preceq y, \ y \preceq z$ $\Rightarrow$ $x \preceq z$ (Transitivität)
+		\item $x \preceq y, \ y \preceq x$ $\Rightarrow$ $x = y$ (Antisymmetrie)
 	\end{itemize} 
+	Ein Poset notieren wir mittels $(X,\preceq)$.\\
 	Die binäre Relation $\preceq$ heißt in diesem Fall die \textbf{partielle Ordnung} auf $X$. 
 \end{defn} 
 
@@ -702,17 +719,18 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 
 \begin{bsp} Beispiele von Posets:
 	\begin{itemize}
-		\item $2^X$ mit Inklusion. 
-		\item $\N$ mit Teilbarkeit. 
+		\item $\R$ mit $\leq$
+		\item $2^X$ mit Inklusion 
+		\item $\N$ mit Teilbarkeit
 	\end{itemize} 
 \end{bsp} 
 
 \begin{defn}
-	Für $n \in \N$ ist eine $n$-stellige Relation auf Mengen $X_1,\ldots,X_n$ eine Teilmenge $R \subseteq X_1 \times \cdots \times X_n$. 
+	Für $n \in \N$ ist eine \textbf{$n$-stellige Relation} auf den Mengen $X_1,\ldots,X_n$ eine Teilmenge $R \subseteq X_1 \times \cdots \times X_n$. 
 \end{defn} 
 
 \begin{bsp}
-	Betrachten wir eine Tabelle, in welcher die Besucher:innen eines Hotels durch die Angaben \textbf{Name, Zimmer, Checkin-Datum, Checkout-Datum} geführt werden. Ist $S$ die Menge aller Strings und $D$ die Menge aller Daten, so kann man die Tabelle als eine $4$-stellige Relation  $R \subseteq S \times S \times D \times D$ auffassen. Die Bedingung $(p,z,d_1,d_2) \in R$, dass $(p,z,d_1,d_2)$ sich in der Relation $R$ befindet,  bedeutet, dass die Person $p$ am Tag $d_1$ im Zimmer $z$ untergebracht wurde und am Tag $d_2$ das Hotel verlassen hat. 
+	Betrachten wir eine Tabelle, in welcher die Besucher:innen eines Hotels durch die Angaben \textbf{Name, Zimmer, Checkin-Datum, Checkout-Datum} geführt werden. Ist $S$ die Menge aller Strings und $D$ die Menge aller Daten, so kann man die Tabelle als eine $4$-stellige Relation  $R \subseteq S \times S \times D \times D$ auffassen. Die Bedingung $(p,z,d_{in},d_{out}) \in R$, dass $(p,z,d_{in},d_{out})$ sich in der Relation $R$ befindet,  bedeutet, dass die Person $p$ am Tag $d_{in}$ im Zimmer $z$ untergebracht wurde und am Tag $d_{out}$ das Hotel verlassen hat. 
 	
 	Wie man an diesem Beispiel sieht, sind Tabellen eine Möglichkeit, Relationen $R$ durch eine Aufzählung (durch die Zeilen einer Tabelle) zu beschreiben. 
 \end{bsp} 
@@ -787,7 +805,7 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \subsection{Vollständige Induktion} 
 
 \begin{thm}[Vollständige Induktion, Version~1] \label{thm:ind}
-	Sei $P$ ein Prädikat auf $\N$. Dann sind die folgenden Bedingungen äquivalent: 
+	Sei $P$ ein Prädikat auf $\N$. Dann sind die folgenden Aussagen äquivalent: 
 	\begin{enuma}
 			\item $P(n)$ gilt für alle $n \in \N$. 
 			\item  $P(1)$ gilt und, aus $P(n)$ folgt $P(n+1)$, für alle $n \in \N$. 
@@ -800,11 +818,11 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \end{proof} 
 
 \begin{bem}
-	Beim Verwenden von Theorem~\ref{thm:ind} unterteilt sich die Argumentation in die folgende Schritte. 
+	Beim Verwenden von Theorem~\ref{thm:ind} unterteilt sich die Argumentation in die folgenden Schritte:
 	\begin{itemize}
-		\item Induktionsanfang (IA): man verifiziert, dass $P(1)$ gilt. 
-		\item Induktionsvoraussetzung (IV): man macht die Annahme: sei $n \in \N$ und sei die Aussage $P(n)$ erfüllt. 
-		\item Induktionsschritt (IS): man folgert $P(n+1)$ aus der Induktionsvoraussetzung.  
+		\item \underline{Induktionsanfang (IA):} man verifiziert, dass $P(1)$ gilt. 
+		\item \underline{Induktionsvoraussetzung (IV):} man macht die Annahme: sei $n \in \N$ und sei die Aussage $P(n)$ erfüllt. 
+		\item \underline{Induktionsschritt (IS):} man folgert $P(n+1)$ aus der Induktionsvoraussetzung.  
 	\end{itemize} 
 \end{bem} 
 
@@ -817,9 +835,11 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \begin{proof} 
 		Das Prädikat mit dem wir uns in dieser Aussage befassen ist die Gleichung $$\sum_{i=1}^n i = \frac{1}{2} n (n+1)$$ die von einem variablen $n \in \N$ abhängig ist. 
 		
-		Diese Formel ist für $n=1$ erfüllt, denn $\sum_{i=1}^1 i = 1$ und $\frac{1}{2} 1 \cdot (1+1) = 1$. 
+\noindent\underline{IA:} Diese Formel ist für $n=1$ erfüllt, denn $\sum_{i=1}^1 i = 1$ und $\frac{1}{2} 1 \cdot (1+1) = 1$. 
 		
-		Sei nun $n \in \N$ ein beliebiger Wert, für welche die Formel $\sum_{i=1}^n  i = \frac{1}{2} n (n+1)$ erfüllt ist. Wir zeigen, dass die Formel mit $n+1$ an der Stelle von $n$ ebenfalls erfüllt ist. Es gilt 
+\noindent\underline{IV:} Sei nun $n \in \N$ ein beliebiger Wert, für welche die Formel $\sum_{i=1}^n  i = \frac{1}{2} n (n+1)$ erfüllt ist.
+		
+\noindent\underline{IS:} Wir zeigen, dass die Formel mit $n+1$ an der Stelle von $n$ ebenfalls erfüllt ist. Es gilt 
 		\[
 			\sum_{i=1}^{n+1} i = \sum_{i=1}^n i  + (n+1),
 		\]
@@ -840,7 +860,9 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \end{bsp} 
 
 \begin{bem}
-	Durch Induktion lassen sich nicht nur Gleichungen herleiten. Es gibt viele verschiedene Situationen in der Mathematik (und insbesondere diskreter Mathematik), in denen man durch die Induktion Aussagen verifizieren kann. 
+	Durch Induktion lassen sich nicht nur Gleichungen herleiten. Es gibt viele verschiedene Situationen in der Mathematik (und insbesondere diskreter Mathematik), in denen man durch die Induktion Aussagen verifizieren kann.
+	
+	Bei der theoretischen Behandlung von Algorithmen nutzt man häufig Induktionsbeweise um die Korrektheit eines Algorithmus zu beweisen oder seine Laufzeit zu analysieren.
 \end{bem} 
 
 \begin{thm}
@@ -849,7 +871,7 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \begin{proof} 
 	Diese Ungleichung kann man mit der Verwendung Ihrer Schulkenntnisse aus der Analysis herleiten. Der folgende Beweis durch die Induktion ist aber elementarer. 
 	
-	Die Ungleichung gilt für $n=1$, denn $1 \le 2^1$. Sei nun $n \in \N$ ein Wert, für welchen $n \le 2^n$ gilt. Im Induktionsschritt sollen wir nun $n + 1 \le 2^{n+1}$ herleiten. Da wir $n \le 2^n$ voraussetzen, gilt $n+1 \le 2^n + 1$, daher reicht es zu verifizieren, dass $2^n + 1 \le 2^{n+1}$ erfüllt ist. Das letztere ist Äquivalent zur Ungleichung $2^n \ge 1$, die trivialerweise für $n \in \N$ erfüllt ist. 
+	Die Ungleichung gilt für $n=1$, denn $1 \le 2^1$. Sei nun $n \in \N$ ein Wert, für welchen $n \le 2^n$ gilt. Im Induktionsschritt sollen wir nun $n + 1 \le 2^{n+1}$ herleiten. Da wir $n \le 2^n$ voraussetzen, gilt $n+1 \le 2^n + 1$, daher reicht es zu verifizieren, dass $2^n + 1 \le 2^{n+1}$ erfüllt ist. Die letzte Ungleichung ist äquivalent zur Ungleichung $2^n \ge 1$, die für $n \in \N$ erfüllt ist. 
 \end{proof} 
 
 \begin{aufg} 
@@ -859,35 +881,33 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 
 \begin{thm}[Vollständige Induktion, Version~2]
 	\label{thm:ind:ver2}
-	Sei $P$ ein Prädikat auf  $\N$. Dann sind die folgenden Bedingungen äquivalent: 
+	Sei $P$ ein Prädikat auf  $\N$. Dann sind die folgenden Aussagen äquivalent: 
 	\begin{enuma}
 			\item $P(n)$ gilt für alle $n \in \N$. 
-			\item es gilt $P(1)$ und, für jedes $n \in \N$, gilt die Implikation 
+			\item es gilt $P(1)$, und für jedes $n \in \N$ gilt die Implikation 
 			\[
 				P(1) \wedge \cdots \wedge P(n)  \Rightarrow P(n+1).
 			\] 
 	\end{enuma} 
 \end{thm} 
 \begin{proof} 
-	Es gibt zwei einfache Weisen, diese Version der vollständigen Induktion herzuleiten. Zum einen kann man den Beweis von Theorem~\ref{thm:ind} sehr geringfügig modifizieren, um dieses Theorem herzuleiten. Zum anderen kann man die Behauptung von Theorem~\ref{thm:ind} für das Prädikat $Q(n) := P(1) \wedge \cdots \wedge P(n)$ benutzen. 
+	Es gibt zwei Weisen, diese Version der vollständigen Induktion herzuleiten. Zum einen kann man den Beweis von Theorem~\ref{thm:ind} sehr geringfügig modifizieren, um dieses Theorem zu beweisen. Zum anderen kann man Theorem~\ref{thm:ind} für das Prädikat $Q(n) := P(1) \wedge \cdots \wedge P(n)$ benutzen. 
 \end{proof} 
 
-\begin{thm}[Primfaktorzerlegung - Existenz] 
+\begin{thm}[Primfaktorzerlegung - Existenz]
+	\label{thm:primfakt-ex}
 	Für jedes $n \in \N$ existieren  Primzahlen $p_1,\ldots,p_t$ ($t \in \N_0$), deren Produkt gleich $n$ ist, d.h.:  
 	\[
 		n = \prod_{i=1}^t p_i.
 	\] 
 \end{thm} 
 
-\begin{bem}
-	Kommentar zur  vorigen Behauptung: man hat $\prod_{i=1}^0 p_i = 1$ im Fall $t=0$ und $\prod_{i=1}^1 p_i = p_1$ im Fall $t=1$. 
-\end{bem} 
-
-
 \begin{proof} 
 	Die Behauptung \glqq es existieren $t \in \N_0$ Primzahlen $p_1,\ldots,p_t$ mit $n=\prod_{i=1}^t p_i$\grqq\ ist wahr für $n \in\{1,2\}$. Denn $n=1$ ist Produkt $1= \prod_{i=1}^0 p_i = 1$ und im Fall $n=2$ ist $2 = \prod_{i=1}^1 p_i$ mit $p_1:=2$.
 	
-	Sei nun $n \in \N$ mit $n \ge 3$ so, dass jede Zahl $a \in \{1,\ldots,n-1\}$ Produkt von endlich vielen Primzahlen ist (im Sinne der Behauptung). Ist $n$ Primzahl, so gilt die Behauptung mit $t=1$ und $p_1 = n$. Ist $n$ keine Primzahl, so besitzt $n$ einen Teiler $a \in \{2,\ldots,n-1\}$. Es folgt $n = a b$ mit $b = n / a \in \N$ und $b \le \frac{n}{2} \le n-1$. Die Anwendung der Induktionsvoraussetzung zu $a$ und $b$ ergibt, dass man $a$ sowie $b$ als Produkt von Primzahlen darstellen kann. Es gilt also 
+	Sei nun $n \in \N$ mit $n \ge 3$ so, dass jede Zahl $a \in \{1,\ldots,n-1\}$ Produkt von endlich vielen Primzahlen ist (im Sinne der Behauptung). Ist $n$ Primzahl, so gilt die Behauptung mit $t=1$ und $p_1 = n$. Ist $n$ keine Primzahl, so besitzt $n$ einen Teiler $a \in \{2,\ldots,n-1\}$. Es folgt $n = a b$ mit $b = n / a \in \N$ und $b \le \frac{n}{2} \le n-1$.
+	
+	Die Anwendung der Induktionsvoraussetzung auf $a$ und $b$ ergibt, dass man $a$ sowie $b$ als Produkt von Primzahlen darstellen kann. Es gilt also 
 	\begin{align*}
 			a & = \prod_{i=1}^{r} u_i, 
 		\\	b & = \prod_{i=1}^s  v_i
@@ -896,9 +916,10 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 	Dann ist $n$ Produkt von $t = r+s$ Primzahlen $p_1,\ldots,p_t$ mit $p_i = u_i$ für $i \in \{1,\ldots,r\}$ und $p_i = v_{i-r}$ für $i \in \{r+1,\ldots,r+s\}$. 
 \end{proof} 
 
-\begin{bem}[Fallunterscheidung] 
-	Ein weiteres verbreitetes Element eines Beweises ist die Fallunterscheidung. Im vorigen Beweis haben wir z.B. zwischen den Fällen, dass $n$ eine Primzahl und $n$ keine Primzahl ist, unterschieden. In jedem der beiden Fälle gaben wir ein eigenes Argument an, wieso $n$ in Primfaktoren zerlegbar ist.  
+\begin{bem}
+	Kommentar zur  vorigen Behauptung: man hat $\prod_{i=1}^0 p_i = 1$ im Fall $t=0$ und $\prod_{i=1}^1 p_i = p_1$ im Fall $t=1$. 
 \end{bem} 
+
 
 \begin{bem}
 	Im vorigen Beweis setzen wir das Muster $P(1) \wedge \cdots \wedge P(n) \Rightarrow P(n+1)$ aus Theorem~\ref{thm:ind:ver2} als $P(1) \wedge \cdots \wedge P(n-1) \Rightarrow P(n)$ um. Das heißt, in Theorem~\ref{thm:ind:ver2} werden die schon abgearbeiteten Werte als $1,\ldots,n$ bezeichnet und der nächste Wert als $n+1$. In unserer Umsetzung werden die abgearbeiteten Werte als $1,\ldots,n-1$ bezeichnet und der nächste Wert als $n$. 
@@ -907,22 +928,36 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 
 \begin{bem}[Vollständige Induktion und Algorithmen]
 	Induktionsbeweise haben oft eine algorithmische Interpretation und können zu iterativen oder rekursiven Algorithmen konvertiert werden. In diesem Fall kann man sich die folgende Umsetzung des vorigen Beweises als Algorithmus vorstellen. Nehmen wir an, wir wollen für alle Zahlen $1,\ldots,N$ für ein gegebenes $N \in \N$, $N \ge 2$, deren Zerlegung in Primfaktoren berechnen. Dann können wir folgendermaßen vorgehen. Wir führen für jedes $n \in \{1,\ldots,N\}$, eine Liste $L[n]$ der Primfaktoren von $n$ ein. Für $n=1$ ist dies eine leere Liste. Angenommen, die Liste sei bereits für die Zahlen $1,\ldots,n-1$ erzeugt. Dann können wir die Liste $L[n]$ anhand der bereits vorhandenen Listen $L[1],\ldots,L[n-1]$ generieren: Wir testen, ob $n$ Primzahl ist. Ist das der Fall so erzeugen wir $L[n]$ als Liste aus einer einzigen Zahl $n$. Ist $n$ keine Primzahl, so Faktorisieren wir $n$ als $n = ab$ mit $a,b \in \{2,\ldots,n-1\}$ und erzeugen dann $L[n]$ durch das Zusammenfügen der Listen $L[a]$ und $L[b]$. 
+\end{bem} 
+
+\begin{bem}\
 	
 	\lstinputlisting{Code/prime_factorizations.sage}
 	
 \end{bem} 
 
-\subsection{Ein Beispiel und ein Kommentar zur Fallunterscheidung} 
+\subsection{Fallunterscheidung} 
 
-\begin{bsp}[Ein Beispiel zur Fallunterscheidung] 
-	Sei $M$ die Menge der Nutzer:innen eines sozialen Netzwerks. Auf $M$ ist eine binäre Relation \glqq befreundet sein\grqq\ definiert, welche symmetrisch ist. Wir zeigen, dass in jeder $6$-elementigen Teilmenge $P$ von $M$ drei Nutzer:innen existieren, die entweder gegenseitig befreundet sind oder gegenseitig nicht befreundet sind. 
+\begin{bem}
+Im Beweis von Theorem~\ref{thm:primfakt-ex} haben wir zwischen den Fällen, dass $n$ eine Primzahl ist und dass $n$ keine Primzahl ist, unterschieden. In jedem der beiden Fälle gaben wir ein eigenes Argument an, wieso $n$ in Primfaktoren zerlegbar ist.  
+
+	Eine solche \textbf{Fallunterscheidung} ist ein verbreitetes Element in Beweisen in der Mathematik.
+	Die Fallunterscheidung ist dabei weniger eine eigene Beweismethode, sondern mehr eine Art einen Beweis zu organisieren.
+	Verschiedene Fälle werden dabei meist durch verschiedene Argumente/Beweisverfahren bearbeitet.
+\end{bem} 
+
+
+\begin{bsp}
+	Sei $M$ die Menge der Nutzer:innen eines sozialen Netzwerks. Auf $M$ ist eine binäre Relation \glqq befreundet sein\grqq\ definiert, die symmetrisch ist. Wir zeigen, dass in jeder $6$-elementigen Teilmenge $P \subseteq M$ drei Nutzer:innen existieren, die entweder gegenseitig befreundet sind oder gegenseitig nicht befreundet sind. 
 	
-	Wir fixieren zuerst ein beliebiges $p \in P$. Bezüglich $p$ zerlegt sich die $5$-elementige Menge $P \setminus \{p\}$ in die Menge $A$ derjenigen $a \in P \setminus \{p\}$, die mit $p$ befreundet sind, und der Menge $B$ derjenigen $b \in P \setminus \{p\}$, die mit $p$ nicht befreundet sind. Da $A \cup B = P \setminus \{p\}$ insgesamt $5$ Elemente hat, hat eine der beiden Mengen $A$ oder $B$ mindestens $3$ Elemente: denn hätten $A$ oder $B$ beide weniger als $3$ Elemente, so hätte $A \cup B$ insgesamt höchstens $4$ Elemente, was der Tatsache widerspricht, dass $A \cup B = P \setminus \{p\}$ $5$ Elemente hat. 
-	
+	Wir fixieren zuerst ein beliebiges $p \in P$. Bezüglich $p$ zerlegt sich die $5$-elementige Menge $P \setminus \{p\}$ in die Menge $A$ derjenigen $a \in P \setminus \{p\}$, die mit $p$ befreundet sind, und der Menge $B$ derjenigen $b \in P \setminus \{p\}$, die mit $p$ nicht befreundet sind. Da $A \cup B = P \setminus \{p\}$ insgesamt $5$ Elemente hat, hat eine der beiden Mengen $A$ oder $B$ mindestens $3$ Elemente: denn hätten $A$ und $B$ beide weniger als $3$ Elemente, so hätte $A \cup B$ insgesamt höchstens $4$ Elemente, ein Widerspruch. 
+
 	\begin{itemize} 
 		\item[] \emph{Fall~1:} $A$ hat mindestens $3$ Elemente, d.h., $p$ ist mit mindestens drei Personen aus  $P \setminus \{p\}$ befreundet. 
 		\begin{itemize} 
-			\item[] \emph{Fall~1a:} In $A$ findet man zwei befreundete Personen $a', a''$. Dann ist $\{p,a',a''\}$ eine $3$-elementige Teilmenge von $P$ mit Personen, die gegenseitig befreundet sind. 
+			\item[] \emph{Fall~1a:} In $A$ findet man zwei befreundete Personen $a', a''$.
+			
+			Dann ist $\{p,a',a''\}$ eine $3$-elementige Teilmenge von $P$ mit Personen, die gegenseitig befreundet sind. 
 			\item[] \emph{Fall~1b:} In $A$ sind  keine zwei Personen befreundet. Dann sind alle Personen aus $A$ nicht gegenseitig befreundet. In $A$ hat man also drei Personen die nicht gegenseitig befreundet sind. 
 		\end{itemize} 
 		\item[] \emph{Fall~2:} $B$ hat mindestens $3$ Elemente, d.h., $p$ ist mit mindestens drei Personen aus $P \setminus \{p\}$ nicht befreundet. 
@@ -935,7 +970,14 @@ die \textbf{Äquivalenzklasse} von $ x $ bzgl. $ \sim $. Die Menge aller Äquiva
 \end{bsp} 
 
 \begin{bem}[Fallunterscheidung mit Computer] 
-	In manchen Beweisen in der Mathematik benötigt man so viel Fallunterscheidung (etwa zur Abarbeitung einer endlichen Anzahl von Sonderfällen), dass man es nicht mehr schafft, all die Fälle manuell zu behandeln. Dann holt man sich oft den Computer zur Hilfe. 
+	In manchen Beweisen in der Mathematik benötigt man so viel Fallunterscheidung (etwa zur Abarbeitung einer endlichen Anzahl von Sonderfällen), dass man es nicht mehr schafft, all die Fälle manuell zu 
+behandeln. Dann holt man sich oft den Computer zur Hilfe. 
+
+\underline{Beispiel:} Angenommen, Sie haben einen Beweis dafür, dass jede natürliche Zahl $n \in \N$ mit $n \geq 1000$ geschrieben werden kann als Summe von vier Quadraten, das hei\ss t, es gibt $a,b,c,d \in \N_0$ mit
+\[
+n = a^2 + b^2 + c^2 + d^2. 
+\]
+Dann könnten Sie mit dem Computer die Fälle $n < 1000$ testen und werden feststellen, dass die Aussage für alle $n \in \N$ gilt.
 \end{bem} 
 
 \section{Schnupperstunde in Algebra} 
@@ -1298,7 +1340,7 @@ Auf diese Weise kommen wir zu den Formeln
 \subsection{O, $\Omega$ und $\Theta$}
 
 \begin{bem}
-Bei der Analyse von Algorithmen und der Analysis redet man oft von der Größenordnung von Funktionen. Eine praktische Ausdrucksweise dafür ist die sogenannte asymptotische Notation (oder auch Landau-Notation).
+Bei der Analyse von Algorithmen und in der Analysis redet man oft von der Größenordnung von Funktionen. Eine praktische Ausdrucksweise dafür ist die sogenannte asymptotische Notation (oder auch Landau-Notation).
 \end{bem} 
 
 \begin{defn}[$O$-Notation]  
@@ -1307,20 +1349,25 @@ Man schreibt $f(n) = O(g(n))$, wenn eine Konstante $c>0$ und ein $n_0 \in \N$ ex
 \end{defn} 
 
 \begin{bem} 
-Die Bezeichnung $f(n)=O(g(n))$ steht für \glqq $f(n)$ hat die Größenordnung höchstens $g(n)$ bis auf eine mutliplikative Konstante\grqq\ und man sagt \glqq$f(n)$ ist in Groß-O von $g(n)$\grqq. Die Schreibweise $f(n) = O(g(n))$ ist streng genommen nicht ganz korrekt, in der Literatur aber sehr verbreitet. Die korrekte Schreibweise wäre $f(n) \in O(g(n))$, d.h., $f(n)$ liegt in der Menge aller Funktionen der Größenordnung höchstens $g(n)$. In der Literatur verwendet man oft $O(g(n))$ als eine Schreibweise für eine anonyme Funktion der Größenordnung höchstens $g(n)$. In diesem Kurs spielen die Beträge in der Definition von $O(g(n))$ in der Regel keine Rolle, weil wir beim Anwenden der asymptotischen Notationen fast ausschließlich nichtnegative Funktionen benutzen. 
+Die Bezeichnung $f(n)=O(g(n))$ steht für \glqq $f(n)$ hat die Größenordnung höchstens $g(n)$ bis auf eine multiplikative Konstante\grqq\ und man sagt \glqq$f(n)$ ist in Groß-O von $g(n)$\grqq.
+
+Die Schreibweise $f(n) = O(g(n))$ ist streng genommen nicht ganz korrekt, in der Literatur aber sehr verbreitet. Die korrekte Schreibweise wäre $f(n) \in O(g(n))$, d.h., $f(n)$ liegt in der Menge aller Funktionen der Größenordnung höchstens $g(n)$.
+
+In der Literatur verwendet man oft $O(g(n))$ als eine Schreibweise für eine anonyme Funktion der Größenordnung höchstens $g(n)$. In diesem Kurs spielen die Beträge in der Definition von $O(g(n))$ in der Regel keine Rolle, weil wir beim Anwenden der asymptotischen Notationen fast ausschließlich nichtnegative Funktionen benutzen. 
 \end{bem} 
 
 \begin{defn}[$\Omega$-Notation] 
-Man schreibt $f(n) = \Omega(g(n))$, wenn eine Konstante $c>0$ und ein $n_0 \in \N$ existieren, so dass $|f(n)| \ge c |g(n)|$ für alle $n \ge n_0$ gilt. In diesem Fall: Die Größenordnung von $f(n)$ ist mindestens $g(n)$, bis auf eine multiplikative Konstante und man sagt \glqq$f(n)$ ist in Groß-Omega von $g(n)$\grqq. 
+Für zwei Funktionen $f, g: \N \to \R$ schreibt man $f(n) = \Omega(g(n))$, wenn eine Konstante $c>0$ und ein $n_0 \in \N$ existieren, so dass $|f(n)| \ge c |g(n)|$ für alle $n \ge n_0$ gilt.
+
+In diesem Fall: Die Größenordnung von $f(n)$ ist mindestens $g(n)$, bis auf eine multiplikative Konstante und man sagt \glqq$f(n)$ ist in Groß-Omega von $g(n)$\grqq. 
 \end{defn} 
 
-\begin{defn} 
-Man schreibt $f(n) = \Theta(g(n))$, wenn sowohl $f(n) = O(g(n))$ als auch $f(n) = \Omega(g(n))$ gelten.
-\end{defn} 
+\begin{defn}[$\Theta$-Notation] 
+Für zwei Funktionen $f, g: \N \to \R$ schreibt man $f(n) = \Theta(g(n))$, wenn sowohl $f(n) = O(g(n))$ als auch $f(n) = \Omega(g(n))$ gelten.
 
-\begin{bem}
 In diesem Fall: Die Größenordnung von $f(n)$ ist genau $g(n)$ bis auf eine multiplikative Konstante, und man sagt \glqq$f(n)$ ist in Groß-Theta von $g(n)$\grqq.
-\end{bem} 
+\end{defn} 
+
 
 \begin{bem}
 Die asymptotischen Notationen $O(g(n))$, $\Omega(g(n))$ und $\Theta(g(n))$ (und ihre weiteren Varianten) werden oft auch Landau-Symbole genannt.
@@ -1354,10 +1401,14 @@ Die asymptotischen Notationen $O(g(n))$, $\Omega(g(n))$ und $\Theta(g(n))$ (und 
 
 \subsection{$o$ und $\omega$}
 
-\begin{defn} 
-Bei $g : \N \to \R$ steht $o(g(n))$ für die Menge aller Funktionen $f: \N \to \R$ mit der Eigenschaft, dass für \textbf{jedes} $c>0$ ein $n_0 \in \N$ existiert derart, dass $|f(n)| \le c |g(n)|$ für alle $n \in \N$ mit $n \ge n_0$ erfüllt ist. In der Literatur schreibt man oft $f(n) = o(g(n))$ an der Stelle von $f(n) \in o(g(n))$. 
+\begin{defn}[$o$-Notation] 
+Bei $g : \N \to \R$ steht $o(g(n))$ für die Menge aller Funktionen $f: \N \to \R$ mit der Eigenschaft, dass für \textbf{jedes} $c>0$ ein $n_0 \in \N$ existiert derart, dass $|f(n)| \le c |g(n)|$ für alle $n \in \N$ mit $n \ge n_0$ erfüllt ist.
+
+Wir schreiben dann $f(n) = o(g(n))$ beziehungsweise $f(n) \in o(g(n))$, und sagen \glqq $f(n)$ liegt in Klein-o von $g(n)$\grqq.
 \end{defn} 
 
-\begin{defn}
-Die Bezeichnung $\omega(g(n))$ steht für die Menge aller Funktionen $f : \N \to \R$, für welche für \textbf{alle} $c>0$ ein $n_0 \in \N$ existiert derart, dass $|f(n)| \ge c|g(n)|$ für alle $n \in \N$ mit $n \ge n_0$ erfüllt ist. 
+\begin{defn}[$\omega$-Notation]
+Die Bezeichnung $\omega(g(n))$ steht für die Menge aller Funktionen $f : \N \to \R$ mit der Eigenschaft, dass für \textbf{jedes} $c>0$ ein $n_0 \in \N$ existiert derart, dass $|f(n)| \ge c|g(n)|$ für alle $n \in \N$ mit $n \ge n_0$ erfüllt ist.
+
+Wir schreiben dann $f(n) = \omega(g(n))$ beziehungsweise $f(n) \in \omega(g(n))$, und sagen \glqq $f(n)$ liegt in Klein-$\omega$ von $g(n)$\grqq.
 \end{defn} 
