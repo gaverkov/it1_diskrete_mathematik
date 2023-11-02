@@ -5,7 +5,7 @@ def Abb(X,Y):
 
         Warnung: das Ziel des Codes ist keine effiziente Aufzaehlung,
         sondern eine interaktive Illustration des Beweises.
-        Man kann die Aufzaelung ohne Rekursion effizienter erledigen.
+        Man kann die Aufzaehlung ohne Rekursion effizienter erledigen.
     """
 
     X=set(X)

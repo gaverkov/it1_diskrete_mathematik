@@ -1,9 +1,9 @@
 \chapter{Kombinatorik} 
 
-\section{Vereinigung und Kreuzprodukt von zwei Mengen} 
+\section{Vereinigung endlicher Mengen} 
 
 \begin{bem}
-	Die Haupfrage der Kombinatorik ist ``Wie viele Elemente hat meine endliche Menge?''. Etwas formaler geht es um die Formeln für die Anzahl der Elemente verschiedener endlicher Mengen, welche man in der diskreten Mathematik gerne benutzt. 
+	Die Hauptfrage der Kombinatorik ist \glqq Wie viele Elemente hat meine endliche Menge?\grqq. Etwas formaler geht es um Formeln für die Anzahl der Elemente verschiedener endlicher Mengen, die in der diskreten Mathematik relevant sind und immer mal wieder benutzt werden.
 \end{bem} 
 
 \begin{lem} \label{lem:vereinigung:zwei}
@@ -16,30 +16,31 @@
 		|A \cup B| = | A \cup \emptyset| = |A| = |A| + 0 = |A| + | \emptyset| = |A| + |B|. 
 	\]
 	
-	 Sonst nummerieren wir alle Elemente von $A$ als $a_1,\ldots,a_s$ und $B$ als $b_1,\ldots,b_t$. Das heißt, $A$ ist eine $s$-Elementige Menge $A = \{a_1,\ldots,a_s\}$ und $B$ ist eine $t$-elementige Menge $B = \{b_1,\ldots,b_t\}$ mit $s,t \in \N$. Es gilt $a_i \ne a_j$ für $i,j \in \{1,\ldots,s\}$ mit $i \ne j$   und $b_i \ne b_j$ für  $i,j \in \{1,\ldots,t\}$ mit $i \ne j$. Da $A$ und $B$ disjunkt sind gilt auch $a_i \ne b_j$ für alle $i \in \{1,\ldots,s\}$ und $j \in \{1,\ldots,t\}$. 
+	 Ansonsten nummerieren wir die Elemente von $A$ als $a_1,\ldots,a_s$ und $B$ als $b_1,\ldots,b_t$. Das heißt, $A$ ist die $s$-elementige Menge $A = \{a_1,\ldots,a_s\}$ und $B$ ist die $t$-elementige Menge $B = \{b_1,\ldots,b_t\}$ mit $s,t \in \N$. Es gilt $a_i \ne a_j$ für $i,j \in \{1,\ldots,s\}$ mit $i \ne j$   und $b_i \ne b_j$ für  $i,j \in \{1,\ldots,t\}$ mit $i \ne j$. Da $A$ und $B$ disjunkt sind gilt auch $a_i \ne b_j$ für alle $i \in \{1,\ldots,s\}$ und $j \in \{1,\ldots,t\}$. 
 	 
 	 Somit ist 
-	 $A \cupdot B = \{a_1,\ldots,a_s,b_1,\ldots,b_t\}$, sodass wir $A \cupdot B = \{c_1,\ldots,c_n\}$ mit $n = s + t$ und 
+	 $A \cupdot B = \{a_1,\ldots,a_s,b_1,\ldots,b_t\}$, sodass $A \cupdot B = \{c_1,\ldots,c_n\}$ mit $n = s + t$ und 
 	 \[
 	 	c_i = \begin{cases}
 	 		 a_i, & \text{für} \ i \in\{1,\ldots,s\}
 	 		 \\b_{i-s}  &  \text{für} \ i \in \{s+1,\ldots,n\}
-	 		\end{cases}.
+	 		\end{cases}
  	\] 
- 	Hierbei sind $c_1,\ldots,c_n$ nach der Konstruktion paarweise verschieden. Das zeigt, dass $A \cupdot B$ genau $n = s+t$ Elemente hat. 
+ 	Hierbei sind $c_1,\ldots,c_n$ nach der Konstruktion paarweise verschieden. Das zeigt, dass $A \cupdot B$ genau $n = s+t = |A| + |B|$ Elemente hat. 
 \end{proof}
 
 \begin{lem} \label{lem:disjunkte:vereinigung}
-	Seien $A_1,\ldots,A_n$ ($n \in \N$) endliche paarweise disjunkte Mengen. Dann ist 
+	Sei $n \in \N$ und seien $A_1,\ldots,A_n$ endliche paarweise disjunkte Mengen. Dann gilt
 	\[
 		\left| \bigcup_{i=1}^n A_i \right| = \sum_{i=1}^n |A_i|. 
 	\]
 \end{lem} 
 
 \begin{proof} 
-	Wir beweisen die die Formel durch Induktion über $n$. 
-	Die Formel ist rivial für $n=1$, denn $\bigcup_{i=1}^1 A_i = A_1$ und $\sum_{i=1}^n |A_i|$ ist $|A_1|$. 
-	Sei $n \in \N$ mit $n \ge 2$ gegeben und sei die Formel im Fall von $n-1$ an der Stelle von $n$ Mengen bereits verifiziert. Da die Mengen $A_1 \cup \cdots \cup A_{n-1}$ und $A_n$ paarweise disjunkt sind, erhalten wir durch die Anwendung von Lemma~\ref{lem:vereinigung:zwei} zu diesen beiden Mengen, dass 
+	Wir beweisen die Formel durch vollständige Induktion über $n$. 
+	Die Formel ist klar für $n=1$, denn $\bigcup_{i=1}^1 A_i = A_1$ und $\sum_{i=1}^1 |A_i|$ ist $|A_1|$.
+	
+	Sei $n \in \N$ mit $n \ge 2$ gegeben und sei die Formel im Fall von $n-1$ an der Stelle von $n$ Mengen bereits verifiziert. Da die Mengen $A_1 \cup \cdots \cup A_{n-1}$ und $A_n$ disjunkt sind, erhalten wir durch die Anwendung von Lemma~\ref{lem:vereinigung:zwei} auf diese beiden Mengen, dass 
 	\[
 		| A_1 \cup \cdots \cup A_n| = |A_1 \cup \cdots \cup A_{n-1} | + |A_n| 
 	\]
@@ -53,7 +54,8 @@
 	\]
 \end{proof} 
 
-\begin{lem} \label{lem:inkl:exkl:2}
+\begin{lem}[Siebformel für zwei Mengen]
+\label{lem:inkl:exkl:2}
 	Seien $A$ und $B$ endliche Mengen. Dann gilt 
 	\[
 		|A \cup B| = |A| + |B| - |A \cap B|. 
@@ -61,41 +63,47 @@
 \end{lem}
 
 \begin{proof}
-		Wir können $A \cup B$ als dijsunkte Vereinigung von $A$ und $B \setminus A$ darstellen. Die Anwendung von Lemma~\ref{lem:vereinigung:zwei} zu $A$ und $B \setminus A$ ergibt 
+		Wir können $A \cup B$ als disjunkte Vereinigung von $A$ und $B \setminus A$ auffassen. Die Anwendung von Lemma~\ref{lem:vereinigung:zwei} auf $A$ und $B \setminus A$ ergibt dann
 		\[
 			| A \cup B| = |A \cupdot (B \setminus A)| = |A | + |B \setminus A|. 
 		\]
-		Die Menge $B$ ist disjunkte Vereinigung von $B \setminus A$ und $A \cap B$. Die Anwendung von Lemma~\ref{lem:vereinigung:zwei} zu $A \cap B$ und $B \setminus A$ ergibt
+		Die Menge $B$ ist disjunkte Vereinigung von $B \setminus A$ und $A \cap B$. Die Anwendung von Lemma~\ref{lem:vereinigung:zwei} auf $A \cap B$ und $B \setminus A$ ergibt
 		\[
-			|B| = |B \setminus A| + |A \cap B|. 
+			|B| = |(B \setminus A) \cupdot (A \cap B)| = |B \setminus A| + |A \cap B|. 
 		\]
 		Aus den beiden Gleichungen, die wir auf diese Weise herleiten, folgt dann 
 		\[
-			| A \cup B|  = |A | + |B \setminus A| = |A| + (|B| - | A \cap B|) = |A| + |B| - | A \cap B|. 
+			| A \cup B|  = |A | + |B \setminus A| = |A| + (|B| - | A \cap B|) = |A| + |B| - | A \cap B|.\qedhere
 		\]
 \end{proof} 
 
 \begin{bem}
-	Die Intuition hinter Lemma~\ref{lem:inkl:exkl:2} ist: wir zählen alle Elemente in $A$ sowie $B$ ab. Dadurch werden die Elemente in $A \cap B$ doppelt abgezählt. Wir sollen also die Anzahl der Elemente in $A \cap B$ abbziehen, um auf die Anzahl der Elemente in $A \cup B$ zu kommen. 
+	Die Intuition hinter Lemma~\ref{lem:inkl:exkl:2} ist die folgende: Wir zählen alle Elemente in $A$ sowie $B$ ab. Dadurch werden die Elemente in $A \cap B$ doppelt abgezählt. Wir müssen daher die Anzahl der Elemente in $A \cap B$ abziehen, um auf die Anzahl der Elemente in $A \cup B$ zu kommen. 
 \end{bem} 
+
+
+\begin{bsp}
+	In einer Klasse haben $15$ Kinder eine Playstation, $10$ Kinder eine Xbox und $3$ Kinder die beiden genannten Geräte. Wie viele Kinder haben mindestens eines der beiden Geräte? 
+	
+	Sei $P$ die Menge der Kinder, die eine Playstation haben, $X$ die Menge der Kinder, die eine Xbox haben. Dann gilt: 
+	\[
+		|P \cup X| = |P| + |X| - |P \cap X| = 15 + 10 - 3 = 22. 
+	\]
+\end{bsp} 
 
 
 \begin{bsp}
 	Wie viele dreistellige Zahlen gibt es, bei denen zwei benachbarte Stellen gleich sind? 
 	
-	Wir identifizieren die dreistelligen Zahlen mit den  den Tripeln $(s_1,s_2,s_3)$ mit $s_1 \in \{1,\ldots,9\}$ und $s_2,s_3 \in \{0,\ldots,9\}$. Daher arbeiten wir innerhalb der Menge
+	Wir identifizieren die dreistelligen Zahlen mit den Tripeln $(s_1,s_2,s_3)$ wobei $s_1 \in \{1,2,\ldots,9\}$ und $s_2,s_3 \in \{0,1,2,\ldots,9\}$. Daher arbeiten wir innerhalb der Menge
 	\[
-			X = \{1,\ldots,9\} \times  \{0,\ldots,9\} \times \{0,\ldots,9\}
+			X = \{1,\ldots,9\} \times  \{0,\ldots,9\} \times \{0,\ldots,9\}.
 	\]
-	Dann entspricht die Menge 
+	Mit dieser Notation entsprechen die Mengen
 	\[
-		A := \setcond{ (s_1,s_2,s_3) \in X}{s_1=s_2}
+		A := \setcond{ (s_1,s_2,s_3) \in X}{s_1=s_2} \qquad \textrm{und} \qquad B:= \setcond{ (s_1,s_2,s_3) \in X}{s_2=s_3}
 	\]
-	der Menge der dreistelligen Zahlen, bei denen die $100$er und die $10$er Stelle gleich sind, und die Menge
-	\[
-		B:= \setcond{ (s_1,s_2,s_3)}{s_2=s_3}
-	\]
-	der Menge der dreistelligen Zahlen, bei denen die $10$er und die $1$er Stelle gleich sind. Wir sind also an der Anzahl der Elemente in der Vereinigung $A \cup B$ interessiert. Wegen 
+	der Menge der dreistelligen Zahlen, bei denen die $100$er und die $10$er Stelle gleich sind, beziehungsweise der Menge der dreistelligen Zahlen, bei denen die $10$er und die $1$er Stelle gleich sind. Wir sind also an der Anzahl der Elemente in der Vereinigung $A \cup B$ interessiert. Wegen 
 	\[
 			| A \cup B| = |A| + |B|  - |A \cap B|
 	\]
@@ -104,13 +112,15 @@
 	\[	
 		A \cap B = \setcond{ (s_1,s_2,s_3) \in X}{s_1=s_2=s_3}
 	\]
-	entspricht der Menge der dreistelligen Zahlen, bei denen alle drei Stellen gleich sind. Die Menge $A$ hat genau $9 \cdot 10$ Elemente. Das lässt sich folgendermaßen verifizieren:  
+	entspricht der Menge der dreistelligen Zahlen, bei denen alle drei Stellen gleich sind. Die Menge $A\cap B$ hat $9$ Elemente.
+	
+	Die Menge $A$ hat genau $9 \cdot 10$ Elemente. Das lässt sich folgendermaßen verifizieren:  
 	\begin{itemize} 
-		\item es gibt für die $100$er Stelle $9$ Möglichkeiten hat;
-		\item unabhängig von der $100$er Stelle gibt es für die $1$er Stelle $10$ Möglichkeiten
-		\item Die $10$er Stelle bei den Zahlen, die den Elementen aus $A$ entsprechen, ist gleich der $100$er Stelle. 
+		\item es gibt für die $100$er Stelle $9$ Möglichkeiten;
+		\item die $10$er Stelle der Zahlen in $A$ ist gleich der $100$er Stelle;
+		\item unabhängig von der $100$er und $10$er Stelle gibt es für die $1$er Stelle $10$ Möglichkeiten.
 	\end{itemize} 
-	Ganz analog sieht man, dass die Menge $B$ ebenfalls genau $9 \cdot 10$ Elemente hat. Die Menge $A\cap B$ hat $9$ Elemente. Es folgt: 
+	Ganz analog sieht man, dass die Menge $B$ ebenfalls genau $9 \cdot 10$ Elemente hat. Es folgt: 
 	\[
 		|A \cup B| = 90 + 90 - 9 = 171. 
 	\]	
@@ -118,68 +128,59 @@
 	\lstinputlisting{Code/komb171.py}
 \end{bsp} 
 
-
-\begin{bsp}
-	In einer Klasse haben $15$ Kinder eine Playstation, $10$ Kinder eine Xbox und $3$ Kinder die beiden genannten Geräte. Wie viele Kinder haben mindestens eines der beiden Geräte? 
-	
-	Sei $P$ die Menge der Kinder, die eine Playstation haben, $X$ die Anzahl der Kinder, die eien Xbox haben. Dann gilt: 
-	\[
-		|P \cup X| = |P| + |X| - |P \cap X| = 15 + 10 - 3 = 22. 
-	\]
-\end{bsp} 
-
 \begin{bem}[Kombinatorik und Wahrscheinlichkeiten] 
-	Die Berechnung von Wahrscheinlichkeiten reduziert sich im Fall von endlichen Wahrscheinlichkeitsräumen oft zur Berechnung von Quotienten 
+	Die Berechnung von Wahrscheinlichkeiten reduziert sich im Fall von endlichen Wahrscheinlichkeitsräumen oft auf die Berechnung des Quotienten 
 	\begin{align*}
-			\frac{\text{die Anzahl der besonderen Fälle}}{\text{die Anzahl aller Fälle}}
+			\frac{\text{Anzahl der besonderen Fälle}}{\text{Anzahl aller Fälle}}
 	\end{align*} 
-	uns somit zur Lösung von kombinatorischen Aufgaben, vgl. auch \cite{Tit19}. 
+	und somit auf die Lösung von kombinatorischen Aufgaben, vgl. auch \cite{Tit19}. 
 \end{bem} 
 
 \begin{aufg}
 	Alice wirft zwei Spielwürfel und Bob wirft einen Spielwürfel. Mit welcher Wahrscheinlichkeit ist die Augenzahl bei Bob gleich einer der Augenzahlen bei Alice? 
 \end{aufg} 
 
+
+\section{Kartesisches Produkt endlicher Mengen} 
+
 \begin{lem} \label{lem:anzahl:prod:2}
-	Seien $A$ und $B$ endliche Menge. Dann gilt: 
+	Seien $A$ und $B$ endliche Mengen. Dann gilt: 
 	\[
 		|A \times B| = |A| \cdot |B|. 
 	\]
 \end{lem}
 \begin{proof} 
-	Ist $A$ oder $B$ leer, so sind die linke sowie rechte Seite der Gleichung gleich $0$. Ansonsten stellen wir die Menge $A \times B$ kann als disjunkte Vereinigung $\bigcup_{a \in A} \{a\} \times B$ da. Lemma~\ref{lem:disjunkte:vereinigung} ergibt
+	Ist $A$ oder $B$ leer, so sind die linke sowie rechte Seite der Gleichung gleich $0$. Ansonsten stellen wir die Menge $A \times B$ als disjunkte Vereinigung $\bigcup\limits_{a \in A} \left(\{a\} \times B\right)$ dar. Lemma~\ref{lem:disjunkte:vereinigung} ergibt
 	\[
-		|A \times B| = \left| \bigcup_{a \in A} \{a \} \times B \right| = \sum_{a \in A} | \{a \} \times B |.
+		|A \times B| = \left| \bigcup_{a \in A} \left(\{a \} \times B\right) \right| = \sum_{a \in A} | \{a \} \times B |.
 	\]
-	Für ein beliebiges festes $a \in A$ kann nun die Anzahl der Elemente in $\{a\} \times B$ bestimmt werden. Diese Anzahl ist $|B|$, da die Abbildung $f_a : B \to \{a\} \times B$ mit $f_a(b) := (a,b)$ bijektiv ist: denn hat man zwei verschiedene Elemente $b',b'' \in B$ so sind auch $(a,b')$ und $(a,b'')$ verschieden (Injektivität) und hat man ein beliebiges Element aus $\{a\} \times B$ fixiert, etwa $(a,b)$ mit $b \in B$, so erhält man dieses Element als $f_a(b) = (a,b)$. 
+	Für ein beliebiges festes $a \in A$ kann nun die Anzahl der Elemente in $\{a\} \times B$ bestimmt werden. Diese Anzahl ist $|B|$, da die Abbildung $f_a : B \to \{a\} \times B$ mit $f_a(b) := (a,b)$ bijektiv ist: denn für zwei verschiedene Elemente $b',b'' \in B$ sind auch die Paare $(a,b')$ und $(a,b'')$ verschieden (Injektivität), und für ein beliebiges Element aus $\{a\} \times B$, etwa $(a,b)$ mit $b \in B$, erhält man $b \in B$ als Urbild, also $f_a(b) = (a,b)$ (Surjektivität). 
 \end{proof} 
 
 \begin{bsp}
-	In einem Kinosaal hat man $10$ Reihen mit $16$ Plätzen pro Reihe. Jeder Platz kann also durch die Angabe der Reihe und die Nummer des Platzes in der Reihe als das Paar $(r,n)$ mit $r \in \{1,\ldots,10\}$ und $n \in \{1,\ldots,16\}$ notiert werden. Die Anzahl der Plätze ist 
+	In einem Kinosaal gibt es $10$ Reihen mit $16$ Plätzen pro Reihe. Jeder Platz kann also durch die Angabe der Reihe und die Nummer des Platzes in der Reihe als das Paar $(r,n)$ mit $r \in \{1,\ldots,10\}$ und $n \in \{1,\ldots,16\}$ notiert werden. Die Anzahl der Plätze ist 
 	\[
 			| \{1,\ldots,10\} \times \{1,\ldots,16\} |  = | \{1,\ldots,10\} | \times | \{1,\ldots,16\}| = 10 \cdot 16 = 160. 
 	\]
-	Dieses Beispiel ist genauso einfach wie unser Lemma~\ref{lem:anzahl:prod:2}, das die Idee hinter dem Beispiel ganz allgemein erfasst. 
+	Dieses Beispiel ist genauso elementar wie Lemma~\ref{lem:anzahl:prod:2}, das die Idee hinter dem Beispiel ganz allgemein erfasst. 
 \end{bsp} 
  
 
-\section{Kartesisches Produkt} 
-
 \begin{thm} \label{thm:kreuz:produkt}
-	Seien $A_1,\ldots, A_n$ endliche Mengen ($n \in \N$). Dann ist 
+	Sei $n \in \N$ und seien $A_1,\ldots, A_n$ endliche Mengen. Dann ist 
 	\[
 		|A_1 \times \cdots \times A_n|  = \prod_{i=1}^n |A_i|. 
 	\]
 \end{thm} 
 \begin{proof}
-	Wir beweisen die Gleichung durch Induktion über $n$.
-	Für $n=1$ erhalten wir eine triviale Identät. Sei die Gleichung für $n-1$ Mengen für ein $n \in \N$ mit $n \ge 2$ efüllt. Dann erhält man wegen 
+	Wir beweisen die Gleichung durch vollständige Induktion über $n$.
+	Für $n=1$ erhalten wir direkt die behauptete Identität. Sei die Gleichung für $n-1$ Mengen für ein $n \in \N$ mit $n \ge 2$ erfüllt. Dann erhält man wegen 
 	\[
-			A_1 \times \cdots \times A_n = A_1 \times (A_2 \times \cdots \times A_n)
+			A_1 \times A_2 \times \cdots \times A_n = A_1 \times (A_2 \times \cdots \times A_n)
 	\]
 	durch die Anwendung von Lemma~\ref{lem:anzahl:prod:2} die Gleichung 
 	\[
-		|A_1 \times \cdots \times A_n | = |A_1| \cdot |A_2 \times \cdots \times A_n|. 
+		|A_1 \times A_2 \times \cdots \times A_n | = |A_1| \cdot |A_2 \times \cdots \times A_n|. 
 	\]
 	Anschließend erhalten wir aus der Induktionsvoraussetzung 
 	\[
@@ -189,40 +190,45 @@
 \end{proof} 
 
 \begin{bem}[Identifikation  in der Mathematik: das Selbe oder das Gleiche?]
-	In der Mathematik wird oft eine stillschweigende Identifikation von Objekten vorgenommen. Genauer sind  zwischen manchen paaren von Mengen natürliche Bijektionen vorhanden, auf deren Basis diese Mengen identifiziert werden. Zum Beispiel kann man für eine Menge $X$ die kartesische erste Potenz $X^1$ mit $X$ identifizieren, weil man ein einelementiges Tupel $(x)$ mit $x \in X$ mit $x \in X$ identifizieren kann. Man geht also davon aus, dass $(x)$ das Selbe wie $x$ ist. Beim Programmieren dagegen erfolgt eine solche Identifikation nicht immer automatisch: man soll dann Objekte verschiedener Datentypen explizit in einander konvertieren. 
+	In der Mathematik wird oft eine stillschweigende Identifikation von Objekten vorgenommen. Genauer sind zwischen manchen Paaren von Mengen natürliche Bijektionen vorhanden, auf deren Basis diese Mengen identifiziert werden. Zum Beispiel kann man für eine Menge $X$ die kartesische erste Potenz $X^1$ mit $X$ identifizieren, weil man ein einelementiges Tupel $(x)$, für $x \in X$, mit dem Element $x \in X$ identifizieren kann. Man geht also davon aus, dass $(x)$ dasselbe wie $x$ ist. Beim Programmieren dagegen erfolgt eine solche Identifikation nicht immer automatisch: man muss dann Objekte verschiedener Datentypen explizit ineinander konvertieren. 
 	
 	Im vorigen Beweis haben wir $(a_1,(a_2,\ldots,a_n))$, ein Paar, bei dem die zweite Komponente ein $(n-1)$-Tupel ist, stillschweigend mit $(a_1,\ldots,a_n)$ identifiziert. 
 \end{bem} 
 
 \begin{kor} \label{kor:product} 
-	Sei $A$ endliche Menge und $n \in \N$. Dann gilt $|A^n| = |A|$. 
+	Sei $A$ eine endliche Menge und $n \in \N$. Dann gilt $|A^n| = |A|^n$. 
 \end{kor}
 \begin{proof}
 	Die Behauptung folgt durch die Anwendung von Theorem~\ref{thm:kreuz:produkt} im Fall, dass alle Mengen $A_1,\ldots,A_n$ gleich $A$ sind. 
 \end{proof}  
 
-\section{Abbildungen} 
+
+\section{Zählen von Abbildungen} 
 
 \begin{thm}
-	Seien $X,Y $ endliche Mengen. Dann gilt $|Y^X| = |Y|^{|X|}$, wobei man bei $X= Y = \emptyset$, $|Y|^{|X|} = 0^0  =1$ setzt. 
+	Seien $X,Y $ endliche Mengen. Dann gilt
+	\[
+	|Y^X| = |Y|^{|X|},
+	\]
+	wobei man im Fall $X= Y = \emptyset$, $|Y|^{|X|} = 0^0 = 1$ setzt. 
 \end{thm}
 \begin{proof}
-	Im entarteten Fall $X = \emptyset$ gibt es nur eine Abbildung von $\emptyset$ nach $Y$. 
-	Sei $X \ne\emptyset$ und sei $n := |X|$, sodass wir alle Elemente von $x$ als $x_1,\ldots,x_n$ indexieren können. Dann entspricht jede Abbildung $f : X \to Y$ einem $n$-Tupel $(f(x_1),\ldots,f(x_n)) \in Y^n$, wobei zwei verschiedene Abbildungen von $X$ nach $Y$ zwei verschiedene Tupel erzuegen. 
-	Umkgekehrt definiert jedes $n$-Tupel $(y_1,\ldots,y_n)$ die Abbildung $f: X \to Y$ mit $f(x_i)  = y_i$ für alle $i \in \{1,\ldots,n\}$. Man sieht also, dass die Abbildung 
+	Im entarteten Fall $X = \emptyset$ gibt es nur eine Abbildung von $\emptyset$ nach $Y$; die \glqq leere Abbildung\grqq\ $f : \emptyset \to Y$. 
+	Sei $X \ne\emptyset$ und sei $n := |X|$, sodass wir die Elemente von $X$ als $x_1,\ldots,x_n$ indizieren können. Dann entspricht jede Abbildung $f : X \to Y$ einem $n$-Tupel $(f(x_1),\ldots,f(x_n)) \in Y^n$, wobei zwei verschiedene Abbildungen von $X$ nach $Y$ zwei verschiedene Tupel erzeugen. 
+	Umgekehrt definiert jedes $n$-Tupel $(y_1,\ldots,y_n)$, mit $y_1,\ldots,y_n \in Y$, die Abbildung $f: X \to Y$ mit $f(x_i)  = y_i$ für alle $i \in \{1,\ldots,n\}$. Man sieht also, dass die Abbildung 
 	\[
 			Y^X \to Y^n,
 	\]
-	die einem $f : X \to Y$ das Tupel $(f(x_1),\ldots,f(x_n))$ zuordnet, bijektiv ist. Wir erhalten mit der Verwendung von Korollar~\ref{kor:product}
+	die einem $f : X \to Y$ das Tupel $(f(x_1),\ldots,f(x_n))$ zuordnet, bijektiv ist. Wir erhalten mit der Verwendung von Korollar~\ref{kor:product} daher
 	\[
 			|Y^X| = |Y^n| = |Y|^n = |Y|^{|X|}. 
 	\]
 \end{proof} 
 
 \begin{bsp}
-	Wieviele Möglichkeiten gibt es drei verschiedene Aufgaben unter vier Personen zu verteilen, wenn jede Aufgabe genau einer Personen zugeordent wird? 
+	Wie viele Möglichkeiten gibt es drei verschiedene Aufgaben unter vier Personen zu verteilen, wenn jede Aufgabe genau einer Personen zugeordnet wird? 
 	
-	Eine Zuordnung der Aufgaben den Personen ist eine Abbildung aus einer $3$-elementigen Menge $X$ von  Aufgaben in die $4$-elementige Menge $Y$ der Personen. Wir zählen also die Abbildungen aus $Y^X$. Die Anzahl ist $|Y^X| = |Y|^{|X|} = 4^3 = 64$. 
+	Eine Zuordnung der Aufgaben zu den Personen ist eine Abbildung aus der $3$-elementigen Menge $X$ der Aufgaben in die $4$-elementige Menge $Y$ der Personen. Wir zählen also die Abbildungen in $Y^X$. Die Anzahl ist $|Y^X| = |Y|^{|X|} = 4^3 = 64$. 
 \end{bsp} 
 
 \begin{bem}\
@@ -231,12 +237,16 @@
 	\lstinputlisting{Code/Abb_demo.py}
 \end{bem}
 
-\section{Injektive und bijektive Abbildungen} 
+
+\subsection{Injektive und bijektive Abbildungen} 
 
 \begin{defn}[Fakultät]
-	Für $n \in \N_0$ ist \textbf{$n$ Fakultät} als 
-	\[n ! := \prod_{i=1}^n i
-	\] definiert. Insbesondere gilt $0!=1!=1$. 
+	Für $n \in \N_0$ definieren wir 
+	\[n ! := \prod_{i=1}^n i.
+	\]
+	Insbesondere ist $0!=1!=1$.
+	
+	Sprechweise: \glqq\textbf{$n$ Fakultät}\grqq
 \end{defn} 
 
 \begin{defn}
@@ -244,37 +254,39 @@
 	\[
 		n^{\underline{k}} := n \cdot \ldots \cdot (n-k+1).
 	\]
-	Man hat insbesondere $n^{\underline{0}}=1$. 
+	Insbesondere ist $n^{\underline{0}}=1$ und $n^{\underline{k}}=0$, für $k > n$.
 \end{defn} 
 
 \begin{defn}
-	Für Mengen $X, Y$ bezeichnen wir als $\Inj(X,Y)$ die Menge aller injektiven und als $\Bij(X,Y)$ die Menge aller bijektiven Abbildungen von $X$ nach $Y$. 
+	Für zwei Mengen $X, Y$ bezeichnen wir mit $\Inj(X,Y)$ die Menge aller injektiven Abbildungen von $X$ nach~$Y$ und mit $\Bij(X,Y)$ die Menge aller bijektiven Abbildungen von~$X$ nach~$Y$. 
 \end{defn} 
 
 \begin{thm} \label{thm:inj:abbildungen}
 	Seien $X,Y$ endliche Mengen. Dann ist $|\Inj(X,Y) | = |Y|^{\underline{|X|}}$. 
 \end{thm} 
 \begin{proof} 
-	Wenn es eine injektive Abbildung $f$ von $X$ existiert $Y$ exisitert, so gilt $|X| \le |Y|$, denn $f(X)$ ist eine Teilmenge von $Y$, die genau so viele Elemente wie $X$ hat. Das bedeutet, dass die Formel iim $|X| > |Y|$ erfüllt ist, weil in diesem Fall die linke sowie rechte Seite gleich $0$ ist. Wir beweisen die Formeln im Fall $|X| \le |Y|$ durch Induktion über $|X|$. Für $X = \emptyset$ gibt es genau eine injektive Abbildung von $X= \emptyset$ nach $Y$. Also gilt die Formel für $|X|=0$. 
-	Nun betrachten wir $X$ und $Y$ mit $k=|X|$ und $k \le |Y|$ und nehmen an, dass die Formel im Fall $k-1=|X| \le |Y|$ bereits verifiziert wurde. Wir fixieren ein beliebiges $a \in X$. Jede injektive Abbildung $f$ von $X$ nach $Y$ bildet das fixierte $a$ auf eines der Elemente aus $Y$ ab. Wir können also die Menge $\Inj(X,Y)$ als disjunkte Vereinigung 
+	Wenn eine injektive Abbildung $f$ von $X$ nach $Y$ existiert, so gilt $|X| \le |Y|$, denn $f(X)$ ist eine Teilmenge von $Y$, die genauso viele Elemente wie $X$ hat. Das bedeutet, dass die Formel im Fall $|X| > |Y|$ erfüllt ist, weil in diesem Fall linke sowie rechte Seite gleich $0$ ist.
+	
+	Wir beweisen die Formel im Fall $|X| \le |Y|$ durch Induktion über $k = |X| \in \N_0$. Für $X = \emptyset$ gibt es genau eine injektive Abbildung von $X= \emptyset$ nach $Y$. Also gilt die Formel für $|X|=0$. 
+	Nun betrachten wir $X$ und $Y$ mit $k=|X| \geq 1$ und $k \le |Y|$ und nehmen an, dass die Formel im Fall $k-1=|X| \le |Y|$ bereits verifiziert wurde. Wir fixieren ein beliebiges $a \in X$. Jede injektive Abbildung $f : X \to Y$ bildet das fixierte $a$ auf eines der Elemente aus $Y$ ab. Wir können also die Menge $\Inj(X,Y)$ als disjunkte Vereinigung 
 	\[
 			\Inj(X,Y) = \bigcup_{b \in Y} \Inj_{a,b}(X,Y),
 	\]
 	mit 
 	\[
-		\Inj_{a,b} (X,Y) := \setcond{ f \in \Inj(X,Y)}{f(a) = b}. 
+		\Inj_{a,b} (X,Y) := \setcond{ f \in \Inj(X,Y)}{f(a) = b}
 	\]
-	Nach Lemma~\ref{lem:disjunkte:vereinigung} gilt 
+	schreiben. Nach Lemma~\ref{lem:disjunkte:vereinigung} gilt 
 	\[
-			|\Inj(X,Y)| = \sum_{b \in Y} |\Inj_{a,b}(X,Y)|
+			|\Inj(X,Y)| = \sum_{b \in Y} |\Inj_{a,b}(X,Y)|.
 	\]
 	Jede Abbildung $f  \in \Inj_{a,b}(X,Y)$ erzeugt die Abbildung $\tilde{f} : X \setminus \{a\} \to Y \setminus \{b\}$. Da $f$ injektiv ist, ist $\tilde{f}$ ebenfalls injektiv. Auf diese Weise haben wir die Abbildung 
 	\[
-				f \mapsto \tilde{f} 
+	g : \Inj_{a,b}(X,Y) \to \Inj(X \setminus \{a\}, Y \setminus \{b\}) \qquad \textrm{mit} \qquad  g(f) = \tilde{f} 
 	\]
-	von $\Inj_{a,b}(X,Y)$ nach $\Inj(X \setminus \{a\}, Y \setminus \{b\})$ erstellt. Die Abbildung $f$ ist offensichtlich eine Bijektion, sodass man $|\Inj_{a,b}(X,Y)| = |\Inj(X \setminus \{a\},Y \setminus \{b\})|$ hat. Nach der Induktionsvoraussetzung ist 
+    erstellt. Die Abbildung $g$ ist eine Bijektion, sodass $|\Inj_{a,b}(X,Y)| = |\Inj(X \setminus \{a\},Y \setminus \{b\})|$ folgt. Nach der Induktionsvoraussetzung ist 
 	\[
-		|\Inj(X \setminus \{a\}, Y \setminus \{b\} | = |Y \setminus \{b\}|^{\underline{|X \setminus \{a\}}} = (|Y| -1)^{\underline{|X|-1}}.
+		|\Inj(X \setminus \{a\}, Y \setminus \{b\} | = |Y \setminus \{b\}|^{\underline{|X \setminus \{a\}|}} = (|Y| -1)^{\underline{|X|-1}}.
 	\] 
 	Es folgt 
 	\begin{align*}
@@ -286,7 +298,7 @@
 \end{proof} 
 
 \begin{bsp}
-		In einer Deutsch-Stunde sollen  $3$ von $25$ Schüler:innen ein Gedicht vortragen. Wie viele Möglichkeit gibt es dafür, wenn man die Reihenfolge, in der man vorträgt, berücksichtigt? Wir zählen injektive Abbildungen von $\{1,2,3\}$ in die Menge der $25$ Schüler:innen. Die Antwort: 
+		In einer Deutsch-Stunde sollen  $3$ von $25$ Schüler:innen ein Gedicht vortragen. Wie viele Möglichkeiten der Auswahl der $3$ Schüler:innen gibt es, wenn man die Reihenfolge, in der sie vortragen, berücksichtigt? Wir zählen injektive Abbildungen von $\{1,2,3\}$ in die Menge der $25$ Schüler:innen. Die Antwort: 
 		\[
 			25^{\underline{3}} = 25 \cdot 24 \cdot 23. 
 		\]
@@ -297,12 +309,13 @@
 \end{bem}
 
 \begin{kor}
-	 Seien $X$ und $Y$ endliche Mengen der gleichen Kardinalität $n$. Dann gilt $|\Bij(X,Y)| = n!$
+\label{kor:anzahl-bijektive-abb}
+	 Seien $X$ und $Y$ endliche Mengen der gleichen Kardinalität $n = |X| = |Y|$. Dann gilt $|\Bij(X,Y)| = n!$.
 \end{kor} 
 \begin{proof}
-	Haben endliche Mengen $X$ und $Y$ die gleiche Kardinalität, so gilt die Gleichheit $\Bij(X,Y ) = \Inj(X,Y)$. Die Inklusion $\Bij(X,Y ) \subseteq \Inj(X,Y)$ ist trivial, weil jede Abbildung nach der Definition injektiv ist. Umgekehrt: Ist $f: X \to Y$ injektiv, so hat $Y \setminus f(X)$ genau $|Y| - |f(X)| = |Y| - |X| =0$ Elemente. Das bedeutet, $Y = f(X)$, sodass $f$ auch surjektiv ist. Das zeigt die Inklusion $\Inj(X,Y) \subseteq \Bij(X,Y)$. 
+	Haben endliche Mengen $X$ und $Y$ die gleiche Kardinalität, so gilt die Gleichheit $\Bij(X,Y ) = \Inj(X,Y)$: Die Inklusion $\Bij(X,Y ) \subseteq \Inj(X,Y)$ folgt direkt aus daraus, dass jede bijektive Abbildung nach Definition insbesondere injektiv ist. Umgekehrt: Ist $f: X \to Y$ injektiv, so hat $Y \setminus f(X)$ genau $|Y| - |f(X)| = |Y| - |X| =0$ Elemente. Das bedeutet, $Y = f(X)$, sodass $f$ auch surjektiv ist. Das zeigt die Inklusion $\Inj(X,Y) \subseteq \Bij(X,Y)$. 
 	
-	Nach dieser Bemerkung folgt die Behauptung direkt aus Theorem~\ref{thm:inj:abbildungen}. 
+	Nach dieser Bemerkung folgt die Behauptung aus Theorem~\ref{thm:inj:abbildungen}, da $n^{\underline{n}} = n!$ ist.
 \end{proof} 
 
 \begin{bsp}
@@ -319,12 +332,12 @@ ergibt $6$ Möglichkeiten.
 
 \begin{aufg}[Geburtstage]\
 	\begin{enuma}
-		\item Mit welcher Wahrscheinlichkeit haben $2$ zufällig gewählte Personen den gleichen Geburtstag? 
-		\item Mit welcher Wahrscheinlichkeit gibt es unter $3$ zufällig gewählten Personen zwei mit dem gleichen Geburstag?
-		\item Mit welcher Wahrscheinlichkeit gibt es unter $25$ zufällig gewählten Personen zwei mit dem gleichen Geburstag?
-		\item Mit welcher Wahrscheinlichkeit gibt es unter $366$ zufällig gewählten Personen zwei mit dem gleichen Geburstag? 
+		\item Mit welcher Wahrscheinlichkeit haben $2$ zufällig gewählte Personen am selben Tag des Jahres Geburtstag? 
+		\item Mit welcher Wahrscheinlichkeit gibt es unter $3$ zufällig gewählten Personen zwei, die am selben Tag des Jahres Geburtstag haben?
+		\item Mit welcher Wahrscheinlichkeit gibt es unter $25$ zufällig gewählten Personen zwei, die am selben Tag des Jahres Geburtstag haben?
+		\item Mit welcher Wahrscheinlichkeit gibt es unter $366$ zufällig gewählten Personen zwei, die am selben Tag des Jahres Geburtstag haben? 
 	\end{enuma}
-	Bemerkung: Wir ignorieren Einfachheit halber die Problematik mit den Schaltjahren und gehen davon aus, dass das Jahr $365$ hat. 
+	Bemerkung: Wir ignorieren der Einfachheit halber die Problematik mit den Schaltjahren und gehen davon aus, dass das Jahr $365$ Tage hat. 
 \end{aufg} 
 
 \section{Teilmengen} 
@@ -332,7 +345,10 @@ ergibt $6$ Möglichkeiten.
 \subsection{$k$-elementige Teilmengen} 
 
 \begin{defn}
-Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Menge aller $k$-elementigen Teilmengen von $X$. 
+Für eine Menge $X$ und ein $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Menge aller $k$-elementigen Teilmengen von $X$. In Symbolen:
+\[
+\binom{X}{k} := \setcond{A}{A \subseteq X \text{ mit } |A| = k}.
+\]
 \end{defn}
 
 \begin{bsp}
@@ -343,20 +359,22 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 
 
 \begin{defn}
-	Für $n,k \in \N_0$ wird der \textbf{Binomialkoeffizient  $n$ über $k$} als 
+	Für $n,k \in \N_0$ wird der \textbf{Binomialkoeffizient} als 
 	\[
-		\binom{n}{k}:= \frac{n^{\underline{k}}}{k!}  = \frac{n \cdot \ldots \cdot (n-k+1)}{k!}.
+		\binom{n}{k}:= \frac{n^{\underline{k}}}{k!}  = \frac{n \cdot \ldots \cdot (n-k+1)}{1\cdot 2 \cdot \ldots \cdot k}
 	\]
-	definiert. 
+	definiert.
+	
+	Sprechweise: \glqq $n$ über $k$\grqq
 \end{defn} 
 
 \begin{bem}
-	Im Fall $0 \le k \le n$ und $n,k \in \N_0$ hat man $\binom{n}{k} = \frac{n!}{k! (n-k)!}$. 
+	Im Fall $0 \le k \le n$ und $n,k \in \N_0$ gilt $\binom{n}{k} = \frac{n!}{k! (n-k)!}$. 
 \end{bem} 
 
 
 \begin{thm} \label{thm:k:elem:teilmengen} 
-		Sei $X$ endliche Menge und sei $k \in \N_0$. Dann gilt: 
+		Sei $X$ eine endliche Menge und sei $k \in \N_0$. Dann gilt: 
 		\[
 				\left| \binom{X}{k} \right| = \binom{|X|}{k}. 
 		\]
@@ -364,7 +382,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 \begin{proof} 
 	In den Fällen $k > |X|$ werden die beiden Seiten der Formel gleich $0$. Wir nehmen also $k \le |X|$ an. Ist $k=0$, werden die beiden Seiten der Formeln gleich $1$. Wir nehmen also $0 < k \le |X|$ an. 
 	
-	Wir zählen die injektiven Abbildungen von $I:=\{1,\ldots,k\}$ nach $X$ auf die folgende  Weise auf. Bei jeder injektiven Abbildung $f : I \to X$ ist das Bild $f(I)$ eine $k$-elementige Teilmenge von $X$. Also kann man die injektiven Abbildungen $f: I \to X$  nach der Wahl von $f(I)$ gruppieren. Mit anderen Worten ist $\Inj(I,X)$ disjunkte Vereinigung
+	Wir zählen die injektiven Abbildungen von $I:=\{1,\ldots,k\}$ nach $X$ auf die folgende  Weise auf. Bei jeder injektiven Abbildung $f : I \to X$ ist das Bild $f(I)$ eine $k$-elementige Teilmenge von~$X$. Also kann man die injektiven Abbildungen $f: I \to X$  nach der Wahl von $f(I)$ gruppieren. Mit anderen Worten ist $\Inj(I,X)$ die disjunkte Vereinigung
 	\[
 		\Inj(I,X)  = \bigcup_{B \in \binom{X}{k} } \setcond{f \in \Inj(I,X)}{f(I) = B}. 
 	\]
@@ -372,11 +390,10 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	\[
 		|\Inj(I,X) | = \sum_{B \in \binom{X}{k} } | \setcond{f \in \Inj(I,X)}{f(I) = B}|. 
 	\]
-	Jeder ijectiven Abbildung $ f: I \to X$ mit einem vorgeschriebenen Bild $B$ 
-	die bijektive Abbildung $\tilde{f} : I \to B$ mit $\tilde{f}(i) = f(i)$ zuordnen kann, und die Abbildung $f \mapsto \tilde{f}$ von $\setcond{f \in \Inj(I,X)}{f(I) = B}$ nach $\Bij(I,B)$ ist bijektiv. 
-	Wir erhalten also 
+	Jeder injektiven Abbildung $ f: I \to X$ mit vorgeschriebenen Bild $B$ kann man die bijektive Abbildung $\tilde{f} : I \to B$ mit $\tilde{f}(i) = f(i)$, für alle $i \in I$, zuordnen, und die Abbildung $f \mapsto \tilde{f}$ von $\setcond{f \in \Inj(I,X)}{f(I) = B}$ nach $\Bij(I,B)$ ist bijektiv. 
+	Wir erhalten mit Korollar~\ref{kor:anzahl-bijektive-abb} also
 	\[
-			| \setcond{f \in \Inj(I,X)}{f(I) = B}| = |\Bij(I,B)| = k!
+			| \setcond{f \in \Inj(I,X)}{f(I) = B}| = |\Bij(I,B)| = k!.
 	\]
 	Das ergibt
 	\[
@@ -386,14 +403,16 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	\[
 		|\Inj(I,X)| = |X|^{\underline{k}}. 
 	\]
-	Es folgt: 
+	Es folgt
 	\[
 		\left| \binom{X}{k} \right| = \frac{|\Inj(I,X) |}{k!} = \frac{|X|^{\underline{k}}}{k!} = \binom{|X|}{k!}. 
 	\]
 \end{proof} 
 
 \begin{bem}[Doppeltes Abzählen] 
-	Im Beweis des  Theorems~\ref{thm:k:elem:teilmengen} haben wir injektive Abbildungen zwischen zwei festgelegten Mengen auf eine andere Weise als im Beweise des Theorems~\ref{thm:inj:abbildungen} abgezählt. Aus den beiden Weisen abzuzählen ergab sich dann im Beweis des Theorems~\ref{thm:inj:abbildungen} für die Anzahl der $k$-elementigen Teilmengen einer gegebenen Menge. Solchen Beweisansatz nennt man in der Kombinatorik \textbf{Doppeltes Abzählen}. 
+	Im Beweis von Theorem~\ref{thm:k:elem:teilmengen} haben wir injektive Abbildungen zwischen zwei festgelegten Mengen auf eine andere Weise als im Beweis des Theorems~\ref{thm:inj:abbildungen} abgezählt. Aus den beiden Arten die Elemente derselben Menge abzuzählen ergab sich dann im Beweis von Theorem~\ref{thm:inj:abbildungen} die Anzahl der $k$-elementigen Teilmengen einer gegebenen Menge.
+	
+	Solch einen Beweisansatz nennt man in der Kombinatorik \textbf{Doppeltes Abzählen}. 
 \end{bem} 
 
 \begin{aufg}
@@ -404,12 +423,13 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 \subsection{Alle Teilmengen} 
 
 \begin{thm}
-	Sei $X$ endliche Menge. Dann gilt $|2^X|=2^{|X|}$. 
+\label{thm:kard-potenzmenge}
+	Sei $X$ eine endliche Menge. Dann gilt $|2^X|=2^{|X|}$. 
 \end{thm} 
 \begin{proof} 
 	Es gibt verschiedene Ansätze zum Beweis dieser Formel. Zum Beispiel kann man eine natürliche Bijektion zwischen  $2^X$ und $\{0,1\}^X$ erstellen und dann $|\{0,1\}^X| = |\{0,1\}|^{|X|} = 2^{|X|}$ nutzen (Aufgabe). 
 	
-	Wir präsentieren hier einen Beweis durch Induktion über $|X|$. Hat $X$ $0$ Elemente, so gilt $2^X = 2^\emptyset = \{\emptyset\}$. Somit ist $|2^X| = 1 = 2^0 = 2^{|X|}$. Sei $X$ Mengen mit $n$ Elementen, mit $n \ge 1$, und sei die Formel für Mengen $X$ mit $n-1$ Elementen bereits verifiziert. Wir fixieren ein $a \in X$. Die Teilmengen $A$ von $X$ zerlegen sich nach den Bedingungen $a \in A$ und $a \not\in A$ in zwei disjunkte Mengen. Es gilt also
+	Wir diskutieren hier einen Beweis durch Induktion über $|X|$. Hat $X$ kein Element, so gilt $2^X = 2^\emptyset = \{\text{leere Abbildung}\}$. Somit ist $|2^X| = 1 = 2^0 = 2^{|X|}$. Sei $X$ eine Menge mit $n \ge 1$ Elementen und sei die Formel für Mengen $X$ mit $n-1$ Elementen bereits verifiziert. Wir fixieren ein $a \in X$. Die Teilmengen $A$ von $X$ zerlegen sich nach den Bedingungen $a \in A$ und $a \not\in A$ in zwei disjunkte Mengen. Es gilt also
 	\begin{align*}
 			2^X & = \setcond{A}{A \subseteq X, \ a \in A} \cupdot \setcond{A}{A \subseteq X, \ a \not\in A}
 			\\ & = \setcond{B \cup \{a\}}{B \subseteq X \setminus \{a\}} \cupdot 2^{X \setminus \{a\}}. 
@@ -422,7 +442,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	\[
 		|2^X| = 2 \cdot |2^{X \setminus \{a\}}|
 	\]
-	Da $X \setminus \{a\}$ eine $(n-1)$-elementige Menge ist, folgt nach der Induktionsovraussetzung $|2^{X \setminus \{a\}}| = 2^{|X \setminus \{a\}|} = 2^{|X|-1}$. Wir erhalten somit $|2^{X}| = 2 \cdot 2^{|X|-1} = 2^{|X|}$. 
+	Da $X \setminus \{a\}$ eine $(n-1)$-elementige Menge ist, folgt nach der Induktionsvoraussetzung $|2^{X \setminus \{a\}}| = 2^{|X \setminus \{a\}|} = 2^{|X|-1}$. Wir erhalten somit $|2^{X}| = 2 \cdot 2^{|X|-1} = 2^{|X|}$. 
 \end{proof} 
 
 \begin{bem} Aufzählungscode der dem vorigen Beweis entspricht: 
@@ -430,12 +450,12 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 \end{bem} 
 
 \begin{aufg}
-	Wie wahrscheinlich ist es, beim viermaligen Werfen einer fairen Münze, genau $2$ mal den Kopf zu werfen?
+	Wie wahrscheinlich ist es, beim viermaligen Werfen einer fairen Münze, genau $2$ mal Kopf zu werfen?
 \end{aufg} 
 
-\subsection{Binomialsatz}
+\subsection{Binomischer Lehrsatz}
 
-\begin{thm}[Binomialsatz] 
+\begin{thm}[Binomischer Lehrsatz] 
 	Für $x, y \in \R$ und $n \in \N$ gilt 
 	\[
 			(x+y)^n = \sum_{i=0}^n \binom{n}{i} x^i y^{n-i}. 
@@ -446,7 +466,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	\[
 			(x+y)^n = \underbrace{(x+y) \cdot \ldots \cdot (x+y)}_{n \ \text{mal}}
 	\]
-	erhält man $2^n$ Terme, indem man aus jeder der $n$ Klammern $x$ oder $y$ wählt und die so gewählten Werte miteinander multipliziert. Wenn wir durch $I$ die Nummern der Klammern bezeichnen, aus denen der Wert $x$ gewählt wurde, erhalten wir 
+	erhält man $2^n$ Terme, indem man aus jeder der $n$ Klammern $x$ oder $y$ wählt und die so gewählten Terme miteinander multipliziert. Wenn wir durch $I$ die Indizes der Klammern bezeichnen, aus denen der Wert $x$ gewählt wurde, erhalten wir 
 	\[
 			(x+y)^n = \sum_{I \subseteq \{1,\ldots,n\}} x^{|I|} y^{n - |I|}. 
 	\]
@@ -484,14 +504,12 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 \subsection{Rekursion für Binomialkoeffizienten} 
 
 \begin{thm} \label{pascals:triangle} 
-	Für alle $n \in \N$ und $i \in \N_0$ hat man $\binom{n}{i}  = \binom{n-1}{i}  + \binom{n-1}{i-1}$. 
+	Für alle $n,i \in \N$ gilt $\binom{n}{i}  = \binom{n-1}{i}  + \binom{n-1}{i-1}$. 
 \end{thm} 
 \begin{proof} 
-	Wir beschränken uns auf den nichttrivialen Fall $1 \le i \le n$. 
+	Man kann für die Formel in der Behauptung einen rein arithmetischen Beweis anhand der expliziten Formel in der Definition der Binomialkoeffizienten geben. 
 	
-	Man kann für die Formel in der Behauptung einen rein arithmetischen Beweis anhand der expliziten Formel für die Binomailkoeffizienten geben. 
-	
-	Alternativ geben wir hier einen kombinatorischen Beweis. Sei $X$ eine $n$-elementige Menge. Wir fixieren ein Element $p\in X$ in dieser Menge. Die Menge $\binom{X}{i}$ der $i$-elementigen Teilmengen ist disjunkte Vereinigung 
+	Alternativ diskutieren wir einen kombinatorischen Beweis: Sei $X$ eine $n$-elementige Menge. Wir fixieren ein Element $p\in X$ in dieser Menge. Die Menge $\binom{X}{i}$ der $i$-elementigen Teilmengen ist die disjunkte Vereinigung 
 	\[
 		\binom{X}{i} = \setcond{ A \in \binom{X}{i}}{p \in A} \cupdot \setcond{A \in \binom{X}{i}}{p \not\in A}. 
 	\]
@@ -503,7 +521,8 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 	\[
 			\binom{X \setminus \{p\}}{i-1}
 	\]
-	abgebildet werden, indem man $A$ auf $A \setminus \{p\}$ abbildet. Auf diese Weise erhält man 
+	abgebildet werden, indem man $A$ auf $A \setminus \{p\}$ abbildet. Man vergleiche mit dem Beweis von Theorem~\ref{thm:kard-potenzmenge}.
+	Auf diese Weise erhält man 
 	\begin{align*}
 		\binom{n}{i} = \left| \binom{X}{i} \right| & = \left| \binom{X \setminus \{p\}}{i} \right| + \left| \binom{X \setminus \{p\}}{i-1}\right| 
 		\\ & = \binom{n-1}{i} + \binom{n-1}{i-1}. 
@@ -512,7 +531,7 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 
 
 \begin{aufg}
-	Die Formel in Theorem~\ref{pascals:triangle} wird oft als das sogenannte \textbf{pascalsche Dreieck} visualisiert. 
+	Die Formel in Theorem~\ref{pascals:triangle} wird oft als sogenanntes \textbf{Pascalsche Dreieck} visualisiert:
 	\begin{center}
 	\begin{tabular}{rrrrrrrrr}
 1\\
@@ -526,14 +545,15 @@ Für eine Menge $X$ xund $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die Meng
 1 & 8 & 28 & 56 & 70 & 56 & 28 & 8 & 1
 	\end{tabular}
 \end{center}
-Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie wie $(x+y)^6$ oder zum Beispiel $(x+y)^9$ auszumultiplizieren. 
+Schauen Sie sich das Dreieck an. Versuchen Sie darauf aufbauend Ausdrücke wie $(x+y)^6$ oder $(x+y)^9$ mit wenig Aufwand auszumultiplizieren.
 \end{aufg} 
 
 \begin{aufg}
-	Beweisen Sie den Binomialsatz durch Induktion über $n$ mit der Verwendung von Theorem~\ref{pascals:triangle}. 
+	Beweisen Sie den Binomischen Lehrsatz durch vollständige Induktion über $n$ mit der Verwendung von Theorem~\ref{pascals:triangle}. 
 \end{aufg} 
 
-\section{Das Prinzip der Inklusion-Exklusion} 
+
+\section{Das Prinzip von Inklusion und Exklusion} 
 
 \begin{defn}
 	Seien $A,X$ Mengen mit $A \subseteq X$. Dann nennen wir die Funktion $1_A : X \to \R$ mit 
@@ -549,57 +569,61 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 \end{defn} 
 
 \begin{bem}
-	Andere Bezeichnungen für die charakteristische Funktion von $A$, die man in der Literatur benutzt, sind $f_A$, $\chi_A$ und $[A]$. Die charakteristische Funktion wird auch die \textbf{Indikator-Funktion} genannt. 
+	Andere Bezeichnungen für die charakteristische Funktion von $A$, die man in der Literatur benutzt, sind $f_A$, $\chi_A$ und $[A]$. Die charakteristische Funktion wird auch die \textbf{Indikator-Funktion} von $A$ genannt. 
 \end{bem} 
 
 \begin{bem}
-	Sind $A, X$ endliche Menge mit $A \subseteq X$ so ist 
+	Sind $A, X$ endliche Mengen mit $A \subseteq X$, so ist 
 	\[	
-			|A| = \sum_{x \in X} 1_A(x)
+			|A| = \sum_{x \in X} 1_A(x).
 	\] 
-	Darüber hinaus gilt 
+	Darüberhinaus gilt 
 	\[	
-		1_{X \setminus A} = 1 - 1_A. 
+		1_{X \setminus A} = 1_X - 1_A. 
 	\]
 \end{bem}
 
-\begin{bem} Wir erstellen ein ``Wörterbuch'' zwischen Teilmengen von $X$ und Funktionen auf $X$: 
+\begin{bem}
+Wir erstellen ein \glqq Wörterbuch\grqq\ zwischen Teilmengen von $X$ und Funktionen auf $X$: 
 	\begin{align*}
-		\text{``Sprache'' der Mengen} & \longleftrightarrow \text{``Sprache'' der Funktionen} 
+		\text{\glqq Sprache\grqq\ der Mengen} & \longleftrightarrow \text{\glqq Sprache\grqq\ der Funktionen} 
 		\\ A & \longleftrightarrow 1_A
 		\\ |A| & =\joinrel=\joinrel= \sum_{x \in X} 1_A(x)
-		\\ \overline{A}:=X \setminus A & \longleftrightarrow 1 - 1_A
+		\\ \overline{A}:=X \setminus A & \longleftrightarrow 1_X - 1_A
 	\end{align*}
-	Bei einer festgelegten Grundmenge $X$, nennt man $\overline{A}$ das Komplement von $A$ (innerhalb von $X$). 
+	Bei einer festgelegten Grundmenge $X$, hei\ss t $\overline{A}$ das \textbf{Komplement} von $A$ (innerhalb von $X$). 
 \end{bem} 
 
-\begin{bem}[Idee der Nutzung von charakteristischen Funktionen] 
-	Wir Idee der Nutzung des Wörterbuchs zwischen Mengen und Funktionen zum Beweis der Formel für die Kardinalität der Vereinigung am Beispiel von zwei Mengen. Für zwei Mengen habe wir bereits diese Formel bewiesen. Es gilt: 
+\begin{bem}[Nutzen von charakteristischen Funktionen] 
+	Wir illustrieren die Idee der Benutzung des Wörterbuchs zwischen Mengen und Funktionen zum Beweis der Formel für die Kardinalität der Vereinigung am Beispiel von zwei Mengen:
+	
+	Für zwei endliche Mengen $A,B$ haben wir bereits in Lemma~\ref{lem:inkl:exkl:2} die gewünschte Formel bewiesen. Es gilt
 	\[
 			|A \cup B| = |A| + |B| - |A \cap B|.
 	\]
 	Wir zeigen diese Formel mit Hilfe des Wörterbuchs. 
 	Die Durchschnittsoperation kann man direkt in die Sprache der Funktionen übersetzen: 
 	\[	
-		1_{A \cap B} = 1_A \cdot 1_B
+		1_{A \cap B} = 1_A \cdot 1_B.
 	\] 
 	Die Situation mit der Vereinigung ist ein wenig trickreich, aber wir können die Vereinigung mit Hilfe des Durchschnitts und des Komplements beschreiben: 
 	\[
-		A \cup B = \overline{\overline{ A } \cap \overline{B} }
+		A \cup B = \overline{\overline{ A } \cap \overline{B} }.
 	\]
 	Mit Worten: $x$ gehört genau dann nicht zu $A \cup B$, wenn $x$ weder zu $A$ noch zu $B$ gehört. Die Übersetzung dieser Darstellung der Vereinigung führt zur Gleichung 
 	\[
-		1_{A \cup B} = 1 - (1 - 1_A) \cdot (1-1_B). 
+		1_{A \cup B} = 1_X - (1_X - 1_A) \cdot (1_X - 1_B). 
 	\]
-	Das Ausmultiplizieren ergibt 
+	Ausmultiplizieren und Zusammenfassen ergibt dann
 	\[
-		1_{A \cup B} = 1_A + 1_B - 1_A \cdot 1_B
+		1_{A \cup B} = 1_A + 1_B - 1_A \cdot 1_B = 1_A + 1_B - 1_{A \cap B}.
 	\]
-	Das Bedeutet $1_{A \cup B} (x) = 1_{A}(x) + 1_B(x) - 1_A(x) 1_B(x)$ gilt für $x \in X$. Das Aufsummieren all dieser Gleichungen für $x \in X$ ergibt $|A \cup B| = |A| + |B| - |A \cap B|$. 
+	Das bedeutet $1_{A \cup B} (x) = 1_{A}(x) + 1_B(x) - 1_{A \cap B}(x)$ gilt für alle $x \in X$.
+	Aufsummieren all dieser Gleichungen für $x \in X$ ergibt schie\ss lich $|A \cup B| = |A| + |B| - |A \cap B|$. 
 \end{bem} 
 
-\begin{lem}
-	Seien $A_1,\ldots,A_n$ ($n \in \N$) endliche Teilmengen einer endlichen Menge $X$. Dann gilt 
+\begin{lem} \label{lem:intersection}
+	Sei $n \in \N$ und seien $A_1,\ldots,A_n$ endliche Teilmengen einer endlichen Menge $X$. Dann gilt 
 	\[
 			1_{A_1 \cap \cdots \cap A_n}  = 1_{A_1} \cdot \ldots \cdot 1_{A_n}. 
 	\]
@@ -607,9 +631,11 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 \begin{proof}
 	Sei $x \in X$. 
 	Liegt $x$ im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt 
-	\[ 1_{A_1 \cap \cdots \cap A_n} (x) =1
-	\]  aber auch $1_{A_i}(x)=1$ für jedes $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken und rechten Seite auf $x$  ergibt somit den Wert $1$
-	Ist $x$ nicht im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt $1_{A_1 \cap \cdots \cap A_n}(x) =0$ aber auch $1_{A_i}(x)=1$ für ein $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken rechten Seite der Formel ergibt somit den Wert $0$. 
+	\[
+	1_{A_1 \cap \cdots \cap A_n} (x) =1,
+	\]
+	aber auch $1_{A_i}(x)=1$ für jedes $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken und rechten Seite der behaupteten Identität an der Stelle~$x$ ergibt somit den Wert $1$.
+	Liegt $x$ nicht im Durchschnitt der Mengen $A_1,\ldots,A_n$ so gilt $1_{A_1 \cap \cdots \cap A_n}(x) = 0$, aber auch $1_{A_i}(x)=0$ für mindestens ein $i \in \{1,\ldots,n\}$. Die Auswertung der Funktionen auf der linken und rechten Seite der Formel ergibt somit den Wert $0$. 
 \end{proof} 
 
 \begin{lem} \label{lem:product} 
@@ -617,61 +643,62 @@ Schauen Sie sich das Dreieck an. Versuchen Sie darauf basierend die Ausdrückie 
 	\[
 		(1 - t_1) \cdot \ldots \cdot  (1-t_n) = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I|} \prod_{i \in I} t_i.  
 	\]
-	(Deutung der rechten Seite: die Summe über alle Teilmengen $I$ von $\{1,\ldots,t\}$ und das Produkt aller $t_i$ mit $i \in I$). 
+	(Deutung der rechten Seite: die Summe über alle Teilmengen $I$ von $\{1,\ldots,n\}$ und das Produkt aller $t_i$ mit $i \in I$). 
 \end{lem} 
 \begin{proof} 
-	Die Gleichung folgt durch das Ausmultiplizieren. Aus jeder der $n$ Klammern au fer linken Seite der Formel kann  beim Ausmultiplizieren unabhängig der Term $1$ oder der Term $-t_i$ gewählt werden. Die Menge $I$ kodiert also die Wahl der Terme in den Klammern durch die Angabe der Klammern, in denen man den Term $-t_i$ gewählt hat. Man hat also 
+	Die Gleichung folgt durch Ausmultiplizieren. Aus jeder der $n$ Klammern auf der linken Seite der Formel kann beim Ausmultiplizieren unabhängig der Term $1$ oder der Term $-t_i$ gewählt werden. Die Menge $I$ kodiert die Wahl der Terme in den Klammern durch die Angabe der Klammern, in denen man den Term $-t_i$ gewählt hat. Man hat also 
 	\[
 			(1 - t_1) \cdot \ldots \cdot  (1-t_n) = \sum_{I \subseteq \{1,\ldots,n\}}  \prod_{i \in I} (-t_i)  = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I|} \prod_{i \in I} t_i.
 	\]
 	Einen formaleren Beweis kann man zum Beispiel durch Induktion über $n$ führen (Aufgabe). 
 \end{proof} 
 
-\begin{thm}[Das Prinizip der Inklusion-Exklusion] \label{thm:ink:exkl}
-	Seien $A_1,\ldots,A_n$ ($n \in \N$) endliche Mengen. Dann gilt 
+\begin{thm}[Das Prinzip von Inklusion und Exklusion] \label{thm:ink:exkl}
+	Sei $n \in \N$ und seien $A_1,\ldots,A_n$ endliche Mengen. Dann gilt 
 	\[
-		| A_1 \cup \cdots \cup A_n| = \sum_{\emptyset \ne J \subseteq \{1,\ldots,n\}} (-1)^{|J|+1} \left| \bigcap_{j \in J} A_i \right| 
+		| A_1 \cup \cdots \cup A_n| = \sum_{\emptyset \ne I \subseteq \{1,\ldots,n\}} (-1)^{|I|+1} \,\Big| \bigcap_{i \in I} A_i \Big| .
 	\]
 \end{thm} 
 \begin{proof} 
 	Wir setzen $X := A_1 \cup \cdots \cup A_n$ und betrachten die charakteristischen Funktionen von $A_1,\ldots,A_n$ auf der Grundmenge $X$. Dann gilt die Identität
 	\[
-		  (1-1_{A_1} )  \cdots (1 -1_{A_n}) = 0
+		  (1_X - 1_{A_1} ) \cdot \ldots \cdot (1_X - 1_{A_n}) = 0
 	\]
-	auf der Menge $x$; denn für jedes $x \in X$ hat man $x \in A_i$ für ein $i \in \{1,\ldots,n\}$, woraus sich $1 - 1_{A_i}(x) = 0$ ergibt. 
+	auf der Menge $X$; denn für jedes $x \in X$ gilt $x \in A_i$ für ein $i \in \{1,\ldots,n\}$, woraus sich $(1_X - 1_{A_i})(x) = 0$ ergibt. 
 	
-	Aus Lemma~\ref{lem:product} folgt dann 
+	Aus Lemma~\ref{lem:product} und Lemma~\ref{lem:intersection} folgt dann 
 	\[
-		 0 = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I|} \prod_{i \in I} 1_{A_i} = \sum_{i \in I} (-1)^{|I| } \, 1_{\bigcap_{i \in I} A_i},
+		 0 = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I|} \prod_{i \in I} 1_{A_i} = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I| } \, 1_{\bigcap_{i \in I} A_i},
 	\]
-	wobei wir hier $\bigcup_{i \in \emptyset} A_i$ als $X$ interpretieren. 
+	wobei wir hier $\bigcap_{i \in \emptyset} A_i$ als $X$ interpretieren. 
 	Daraus folgt: 
 	\begin{align*}
-		0  & = \sum_{x \in X} \sum_{i \in I} (-1)^{|I| } \, 1_{\bigcap_{i \in I} A_i}(x)
+		0  & = \sum_{x \in X} \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I| } \, 1_{\bigcap_{i \in I} A_i}(x)
 		\\ & = \sum_{I \subseteq \{1,\ldots,n\} } (-1)^{|I| } \sum_{x \in X} 1_{\bigcap_{i \in I} A_i}(x)
-		\\ & = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I| } \left| \bigcap_{i \in I} A_i \right|
+		\\ & = \sum_{I \subseteq \{1,\ldots,n\}} (-1)^{|I| } \,\Big| \bigcap_{i \in I} A_i \Big|
 	\end{align*}
-	Wir spalten in der vorigen Summer den Summanden zu $I = \emptyset$ ab und erhalten 
+	Wir spalten in der vorigen Summe den Summanden zu $I = \emptyset$ ab und erhalten 
 	\[
-		0  = |X| + \sum_{\emptyset \ne I \subseteq \{1,\ldots,n\}} (-1)^{|I| } \left| \bigcap_{i \in I} A_i \right|,
+		0  = |X| + \sum_{\emptyset \ne I \subseteq \{1,\ldots,n\}} (-1)^{|I| } \,\Big| \bigcap_{i \in I} A_i \Big|,
 	\]
 	was zur Formel in der Behauptung des Theorems äquivalent ist. 
 \end{proof} 
 
 \begin{bem}
-	Das Prinzip der Inklusion-Exklusion wird auch die \textbf{Siebformel} genannt. 
+	Das Prinzip von Inklusion und Exklusion wird auch die \textbf{Siebformel} genannt. 
 \end{bem} 
 
 \begin{bem}
 	Wenn man $I$ als $\{i_1,\ldots,i_k\}$ mit $1 \le i_1 < \cdots < i_k \le n$ führt, so kann man die Formel aus Theorem~\ref{thm:ink:exkl} auch so umformulieren: 
 	\[
-		|A_1 \cup \cdots \cup A_n| = \sum_{k=1}^n (-1)^{k+1} \sum_{1 \le i_1 < \cdots < i_k \le n} | A_{i_1} \cap \cdots \cap A_{i_k}|. 
+		|A_1 \cup \cdots \cup A_n| = \sum_{k=1}^n (-1)^{k+1} \sum_{1 \le i_1 < \ldots < i_k \le n} | A_{i_1} \cap \ldots \cap A_{i_k}|. 
 	\]
 \end{bem} 
 
 \begin{aufg}
-	Wie viele Zahlen in $\{1,\ldots,10000\}$ gibt es, die durch $2$, $3$ oder $5$ teilbar sind? 
+	Wie viele Zahlen in $\{1,2,\ldots,10\,000\}$ gibt es, die durch $2$, $3$ oder $5$ teilbar sind? 
 \end{aufg} 
+
 
 \section{Multimengen} 
 
@@ -686,11 +713,11 @@ nennt man die \textbf{Kardinalität} der Multimenge $M$.  Wir nennen die Menge
 \]
 den \textbf{Träger} von $M$.
 
-Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Träger $T$ haben und für jedes $x \in T$ die Vielfachheiten von $x$ in $M$ und $N$ übereinstimmen.
+Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Träger $T$ haben und für jedes $x \in T$ die Vielfachheiten von $x$ in $M$ und $N$ übereinstimmen, also $\mu_M(x) = \mu_N(x)$ gilt.
 \end{defn} 
 
-\begin{bem}[Angabe von Multimengen durch die Aufzählung]
-	Bei der Angabe der Multimengen durch die Aufzählung benutzen wir die Bezeichnung $\{x_1,\ldots,x_n\}_{\ne}$. So ist z.B. 
+\begin{bem}[Angabe von Multimengen durch Aufzählung]
+	Bei der Angabe von Multimengen durch Aufzählung benutzen wir die Bezeichnung $\{x_1,\ldots,x_n\}_{\ne}$. So ist z.B. 
 	\[
 			M = \{1,1,1,1,2,2,2,3\}_{\ne}
 	\]
@@ -698,11 +725,11 @@ Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Tr�
 \end{bem}
 
 \begin{defn}
-	Für $k \in \N_0$ bezeichnen wir als $\mbinom{X}{k}$ die Menge aller $k$-elementigen Multimengen, deren Träger in  $X$ als Teilmenge enthalten ist. 
+	Für $k \in \N_0$ bezeichnen wir als $\multiset{X}{k}$ die Menge aller $k$-elementigen Multimengen, deren Träger in  $X$ als Teilmenge enthalten ist. 
 \end{defn} 
 
 \begin{defn}
-		Für $n,k \in \N_0$ führen wir die \textbf{Multimengen-Binomialkoeffizienten} $n$ über $k$ als 
+		Für $n,k \in \N_0$ führen wir die \textbf{Multimengen-Binomialkoeffizienten} als 
 		\[
 			\mbinom{n}{k} := \binom{n+k-1}{k}
 		\] ein. Dieser Wert lässt sich auch als 
@@ -711,22 +738,22 @@ Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Tr�
 		\]
 		mit Hilfe der sogenannten \textbf{steigenden Faktoriellen} von $n$ der Länge $k$ beschreiben, welche folgendermaßen definiert wird: 
 		\[
-				n^{\overline{k}} := \frac{n \cdot (n+1) \ldots \cdot (n+k-1)}{k!}
+				n^{\overline{k}} := \frac{n \cdot (n+1) \cdot \ldots \cdot (n+k-1)}{k!}.
 		\]
 \end{defn} 
 
-\begin{bem}[Das Zählen der $k$-elementigen Multimengen: Idee]
- 	Multimengen über einer $n$-elementigen Grundmenge $X = \{x_1,\ldots,x_n\}$ sind eindeutig durch die Angabe der nicht-negativen ganzzahligen Vielfachheiten $z_i$ von $x_i$, für jedes $i=1,\ldots,n$, gegeben. Hierbei ist die Kardinalität der Multimenge nichts anderes als die Summe $z_1 + \cdots + z_n$. Das Zählen der Multimengen einer gegebener Kardinalität $k$ über einer $n$-elementigen Menge $X$  reduziert sich daher zum Zählen der Anzahl der nicht-negativen ganzzahligen Lösungen der $n$-variaten Gleichung $z_1 + \cdots + z_n = k$. 
+\begin{bem}[Zählen der $k$-elementigen Multimengen: Idee]
+ 	Multimengen über einer $n$-elementigen Grundmenge $X = \{x_1,\ldots,x_n\}$ sind eindeutig durch die Angabe der nicht-negativen ganzzahligen Vielfachheiten $z_i$ von $x_i$, für jedes $i=1,\ldots,n$, gegeben. Hierbei ist die Kardinalität der Multimenge nichts anderes als die Summe $z_1 + \cdots + z_n$. Das Zählen der Multimengen einer gegebenen Kardinalität $k$ über einer $n$-elementigen Menge $X$ reduziert sich daher auf das Zählen der nicht-negativen ganzzahligen Lösungen der $n$-variaten Gleichung $z_1 + \cdots + z_n = k$. 
  	
- 	Hier Beispiele der Lösungsmengen für $n=3$ und $k \in \{1,2,3\}$: 
+ 	Beispiele der Lösungsmengen für $n=3$ und $k \in \{1,2,3\}$: 
  	\begin{center} 
  	\begin{tabular}{l|l}
  			& Lösungsmenge für $z_1 + \cdots + z_n =k$ 
  			\\ \hline 
  		$n=3, k=1$ & $\{(1,0,0), (0,1,0), (0,0,1)\}$ 
  		\\ $n=3, k=2$ & $\{(2,0,0)(0,2,0),(0,0,2), (1,1,0),(1,0,1), (0,1,1)\}$
- 		\\ $n=3, k=3$ & $\{(3,0,0),(0,3,0),(0,0,3)$
- 		\\ & $\phantom{\{}(2,1,0),(1,2,0),(0,2,1),(0,1,2),(2,0,1),(1,0,2)$
+ 		\\ $n=3, k=3$ & $\{(3,0,0),(0,3,0),(0,0,3),$
+ 		\\ & $\phantom{\{}(2,1,0),(1,2,0),(0,2,1),(0,1,2),(2,0,1),(1,0,2),$
  		\\ & $\phantom{\{} (1,1,1)\}$
  	\end{tabular} 
  	\end{center} 
@@ -735,7 +762,7 @@ Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Tr�
 \begin{lem} \label{lem:multimengen}
 	Seien $n \in \N$ und $k \in \N_0$. Dann gilt: 
 	\[
-		\biggl| \setcond{ (z_1,\ldots,z_n) \in \N_0^n}{z_1 + \cdots + z_n = k} \biggr| = \mbinom{n}{k} := \binom{n+k-1}{k}. 
+		\biggl| \setcond{ (z_1,\ldots,z_n) \in \N_0^n}{z_1 + \cdots + z_n = k} \biggr| = \mbinom{n}{k} = \binom{n+k-1}{k}. 
 	\]
 	Mit Worten: die Gleichung $z_1 + \cdots + z_n = k$ mit nicht-negativen ganzzahligen Variablen $z_1,\ldots,z_n$ hat genau $\binom{n+k-1}{k}$ Lösungen $(z_1,\ldots,z_n)$. 
 \end{lem} 
@@ -748,13 +775,13 @@ Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Tr�
 	\[
 			Y:= \setcond{ (y_1,\ldots,y_n) \in \N^n}{y_1 + \cdots + y_n = n+ k}. 
 	\]
-	Es reicht also aus, die Anzahl der Elemente in $Y$ zu bestimmen. Eine Wahl von $(y_1,\ldots,y_n)$ lässt sich so veranschaulichen. Man zeichnet $n+k$ Punkte von links nach rechts. Zwischen diesen Punkten gibt es $n+k-1$ Lücken. Setzt man in genau $n-1$ Lücken Striche, so zerlegen sich Punkte in $n$ Gruppen. Bezeichnet man als $y_i$ die Anzahl der Punkte in $i$-te Gruppe, so erhält man $(y_1,\ldots,y_n) \in Y$. Umgekehrt erzeugt jedes $(y_1,\ldots,y_n) \in Y$ eine Angabe, welche der $n+k-1$ Lücken mit Strichen gefüllt werden sollen. Daraus ergibt sich 
+	Es reicht also aus, die Anzahl der Elemente in $Y$ zu bestimmen. Eine Wahl von $(y_1,\ldots,y_n)$ lässt sich so veranschaulichen. Man zeichnet $n+k$ Punkte von links nach rechts. Zwischen diesen Punkten gibt es $n+k-1$ Lücken. Setzt man in genau $n-1$ Lücken Striche, so zerlegen sich die Punkte in $n$ Gruppen. Bezeichnet man als $y_i$ die Anzahl der Punkte in der $i$-ten Gruppe, so erhält man $(y_1,\ldots,y_n) \in Y$. Umgekehrt erzeugt jedes $(y_1,\ldots,y_n) \in Y$ eine Angabe, welche der $n+k-1$ Lücken mit Strichen gefüllt werden sollen. Daraus ergibt sich 
 	\[
 			|Z| = |Y|= \binom{n+k-1}{n-1} = \binom{n+k-1}{k}. 
 	\]
 	Die informelle Begründung mit Punkten, Lücken und Strichen kann mathematisch formal beschrieben werden. Es handelt sich um die Bijektion 
 	\begin{equation}\label{y->x}
-		(y_1,\ldots,y_n) \mapsto (y_1,y_1+y_2,\ldots, y_1+ \cdots +y_{n-1})
+		(y_1,\ldots,y_n) \mapsto \{y_1,y_1+y_2,\ldots, y_1+ \cdots +y_{n-1}\}
 	\end{equation}
 	 von $Y$ nach 
 	\(
@@ -767,14 +794,14 @@ Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Tr�
 \end{aufg} 
 
 \begin{thm}
-	Sei $X$ endliche Menge und sei $k \in \N_0$. Dann gilt 
+	Sei $X$ eine endliche Menge und sei $k \in \N_0$. Dann gilt 
 	\[
 			\left| \mbinom{X}{k} \right| = \mbinom{|X|}{k}. 
 	\]
-	Mit anderen Worten: es gibt genau $\binom{n+k-1}{k}$ Multimengen mit $k$ Elementen, deren Träger in $X$ enthalten ist. 
+	Mit Worten: es gibt genau $\binom{n+k-1}{k}$ Multimengen mit $k$ Elementen, deren Träger in der $n$-elementigen Menge $X$ enthalten ist. 
 \end{thm}
 \begin{proof}
-	Es reicht den Fall $|X| >0$, $k>0$ zu betrachten. Sei $n:= |X|$. Wir nummerieren die Elemente in $X$ und schreiben $X$ als $\{x_1,\ldots,x_n\}$. Jede Multimenge $M \in \mbinom{X}{k}$ ist eindeutig durch die Angabe der Werte $z_i := \mu_M(x_i)$ mit $i \in \{1,\ldots,k\}$ gegeben. Daher folgt die Behauptung aus Lemma~\ref{lem:multimengen}. 
+	Es reicht den Fall $|X| >0$, $k>0$ zu betrachten. Sei $n:= |X|$. Wir nummerieren die Elemente in $X$ und schreiben $X$ als $\{x_1,\ldots,x_n\}$. Jede Multimenge $M \in \multiset{X}{k}$ ist eindeutig durch die Angabe der Werte $z_i := \mu_M(x_i)$ mit $i \in \{1,\ldots,k\}$ gegeben. Daher folgt die Behauptung aus Lemma~\ref{lem:multimengen}. 
 \end{proof} 
 
 \begin{aufg}
@@ -784,10 +811,10 @@ Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Tr�
 \section{Kombinatorische Formeln und das Ziehen}
 
 \begin{bem}
-	Für eine Menge $X$ und $k \in \N$ verwendet man oft die folgende ``Zieh-Terminologie'' in Bezug auf einige der vorigen Formeln. 
+	Für eine Menge $X$ und $k \in \N$ verwendet man oft die folgende \glqq Zieh-Terminologie\grqq\ in Bezug auf einige der vorigen Formeln. 
 \end{bem}
 
-\begin{bem} $\binom{X}{k}$ beschriebt das \textbf{ungeordnete Ziehen ohne Zurücklegen} von $k$ Elementen aus der Menge $X$.  
+\begin{bem} $\binom{X}{k}$ beschreibt das \textbf{ungeordnete Ziehen ohne Zurücklegen} von $k$ Elementen aus der Menge $X$.  
 \end{bem}
 
 \begin{bsp}
@@ -806,7 +833,7 @@ In einer Eisdiele, in der $10$ Sorten Eis angeboten werden, bestellen Sie $3$ Ei
 \end{bsp} 
 
 \begin{bem}
-	 $X^k$ sowie $X^{\{1,\ldots,k\}}$ beschreibt das \textbf{geordnete Ziehen mit Zurücklegen} aus der Menge $X$. 
+	 $X^k$ und $X^{\{1,\ldots,k\}}$ beschreiben das \textbf{geordnete Ziehen mit Zurücklegen} von $k$ Elementen aus der Menge~$X$. 
 \end{bem}
 
 \begin{bsp} \label{wg:muell} 
@@ -828,15 +855,15 @@ In einer $3$er WG mit den Mitgliedern Alice, Bob und Carola wird $10$ Tage lang 
 \end{tabular} 
 \end{center} 
 
-Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die $10$  Tage sind durchnummeriert) mit Zurücklegen (wer den Müllrausgebracht hat, verschwindet  nicht aus der WG und darf es ruhig nochmal an einem anderen Tag machen). 
+Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die $10$  Tage sind durchnummeriert) mit Zurücklegen (wer den Müll rausgebracht hat, verschwindet  nicht aus der WG und darf es ruhig noch einmal an einem anderen Tag machen). 
 \end{bsp} 
 
 \begin{bem}
-		 Die Menge $\mbinom{X}{k}$ beschreibt das \textbf{ungeordenete Ziehen mit Zurücklegen} aus der Menge $X$. 
+		 Die Menge $\multiset{X}{k}$ beschreibt das \textbf{ungeordnete Ziehen mit Zurücklegen} von $k$ Elementen aus der Menge $X$. 
 \end{bem} 
 
 \begin{bsp}
-	Um das Ungeordnete Ziehen mit Zurücklegen zu illustrieren, modifizieren wir  Beispiel~\ref{wg:muell} mit der WG wie folgt. $10$ Tage lang sammeln Alice, Bob und Carola auf die folgende Weise Daten ein, wer am Ende des Tages den Müll rausbringt. Es wird eine Liste mit drei Namen (Alice, Bob und Carola) erstellt. Das Mitglied der WG, das am Ende des Tages den Müll rausbringt, setzt einen Strich in der Liste bei seinem Namen. Das Protokoll am Ende der $10$ Tage kann dann ungefähr so aussehen: 
+	Um das ungeordnete Ziehen mit Zurücklegen zu illustrieren, modifizieren wir  Beispiel~\ref{wg:muell} mit der WG wie folgt. $10$ Tage lang sammeln Alice, Bob und Carola auf die folgende Weise Daten ein, wer am Ende des Tages den Müll rausbringt. Es wird eine Liste mit drei Namen (Alice, Bob und Carola) erstellt. Das Mitglied der WG, das am Ende des Tages den Müll rausbringt, setzt einen Strich in der Liste bei seinem Namen. Das Protokoll am Ende der $10$ Tage kann dann ungefähr so aussehen: 
 	\begin{center}
 	\begin{tabular}{ll}
 			Alice & $| \  | \ | \  | \ | $ 
@@ -846,34 +873,36 @@ Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die 
 	\end{center} 
 	
 	
-	Das ist eine $10$-elementige Multimenge auf der Grundmenge $\{ \text{Alice}, \text{Bob}, \text{Carola}\}$.  Hier hat man wieder das Ziehen mit Zurücklegen (wer Müll rausbringt, darf es nochmal machen), aber im Gegensatz zum Beispiel davor ungeordnet: jeder der $10$ Tage entspricht einem Strich auf der Liste, an einem Strich kann man aber am Ende nicht mehr sehen, an welchem Tag der gesetzt wurde. 
+	Das ist eine $10$-elementige Multimenge auf der Grundmenge $\{ \text{Alice}, \text{Bob}, \text{Carola}\}$.  Hier hat man wieder das Ziehen mit Zurücklegen (wer Müll rausbringt, darf es nochmal machen), aber im Gegensatz zum Beispiel davor ungeordnet: jeder der $10$ Tage entspricht einem Strich auf der Liste, an einem Strich kann man aber am Ende nicht mehr sehen, an welchem Tag dieser gesetzt wurde. 
 \end{bsp} 
 
-\section{Doppeltes Abzählen an Beispielen} 
+\section{Doppeltes Abzählen anhand von Beispielen} 
 
 \begin{bem}
 	Beim doppelten Abzählen zählt man Elemente einer Menge auf zwei verschiedene Weisen und erhält dadurch eine Gleichung, in der die linke und rechte Seite die beiden Zählweisen darstellen. 
 	
-	Mit anderen Worten: viele Gleichungen in der Kombinatorik und diskreter Mathematik haben eine kombinatorische ``Geschichte'' im Hintergrund. 
+	Mit anderen Worten: viele Gleichungen in der Kombinatorik und diskreter Mathematik haben eine kombinatorische \glqq Geschichte\grqq\ im Hintergrund. 
 \end{bem} 
 
 \subsection{Beispiel aus der Kombinatorik}
 
 \begin{prop} \label{doppeltes:abzaehlen} 
-	Für $n \in \N$ gilt $\sum_{k=1}^n k \binom{n}{k} = n 2^{n-1}.$ 
+	Für $n \in \N$ gilt $\sum\limits_{k=1}^n k \binom{n}{k} = n 2^{n-1}.$ 
 \end{prop} 
 \begin{proof}
-	Sei $X$ eine $n$-elementige Menge. Wie viele Möglichkeiten gibt es eine nichtleere Teilmenge $A \subseteq X$ und ein Element $p \in A$ in dieser Teilmenge zu wählen? Einerseits kann man zuerst $p \in X$ auf $n$ mögliche Weisen fixieren und dann die Menge $A \setminus \{p\}$. Da $A \setminus \{p\}$ eine Teilmenge der $(n-1)$-elementigen Menge $X \setminus \{p\}$ ist, gibt bei einem festgelegten $p$ $2^{n-1}$ Möglichkeiten $A \setminus \{p\}$ zu fixieren. Es gibt insgesamt $n 2^{n-1}$ zu Möglichkeiten $(p,A)$ mit $p \in A \subseteq X$ zu fixieren. 
+	Sei $X$ eine $n$-elementige Menge. Wie viele Möglichkeiten gibt es eine nichtleere Teilmenge $A \subseteq X$ und ein Element $p \in A$ in dieser Teilmenge zu wählen?
 	
-	Die zweite Weise zu zählen ist wie folgt: die Teilmengen $A$ hat $1$ bis $n$ Elemente. Wir könne also zuerst die gewünschte Anzahl $k \in \{1,\ldots,n\}$ der Elemente in $A$ fixieren und dann eine beliebige $k$-elementige Teilmenge $A$ von $X$ fixieren. Sobald das $k$-elementige $A$ festgelegt ist, kann man das $p \in A$ auf $k$ mögliche Weisen wählen. So ergibt sich insgesamt $\sum_{k=1}^n k \binom{n}{k}$ Möglichkeiten für die Wahl von $(p, A)$ mit $P \in A \subseteq X$. 
+	Einerseits kann man zuerst $p \in X$ auf $n$ mögliche Weisen fixieren und dann die Menge $A \setminus \{p\}$ betrachten. Da $A \setminus \{p\}$ eine Teilmenge der $(n-1)$-elementigen Menge $X \setminus \{p\}$ ist, gibt es bei einem festgelegten $p$ genau $2^{n-1}$ Möglichkeiten $A \setminus \{p\}$ zu fixieren. Es gibt insgesamt $n 2^{n-1}$ also Möglichkeiten $(p,A)$ mit $p \in A \subseteq X$ zu fixieren. 
+	
+	Die zweite Weise zu zählen ist wie folgt: die nichtleeren Teilmengen $A \subseteq X$ haben zwischen $1$ und $n$ Elemente. Wir können also zuerst die gewünschte Anzahl $k \in \{1,\ldots,n\}$ der Elemente in $A$ fixieren und dann eine beliebige $k$-elementige Teilmenge $A$ von $X$ auswählen. Sobald das $k$-elementige $A$ festgelegt ist, kann man das $p \in A$ auf $k$ mögliche Weisen wählen. So ergeben sich insgesamt $\sum\limits_{k=1}^n k \binom{n}{k}$ Möglichkeiten für die Wahl von $(p, A)$ mit $p \in A \subseteq X$. 
 \end{proof} 
 
 \begin{bsp}
-	Alice, Bob, Carola, Dennis und Eric müssen entscheiden, wer unter ihnen bei einem Weihnachtskonzert als Weihnachtsmann und Elfe auftreten wird.  Jemand  muss dabei unbedingt Weihnachtsmann sein (Geschlecht egal), die Elfe sind dagegen optional (es können also $0$ bis $4$ Elfe geben, da sie $5$ Personen sind und genau eine Person den Weihnachtsmann spielt). Wie viel Möglichkeiten gibt es, eine solche Truppe aus dem Weihnachtsmann und Elfen  aufzustellen?  
+	Alice, Bob, Carola, Dennis und Eric müssen entscheiden, wer unter ihnen bei einem Weihnachtskonzert als Weihnachtsmann und Elfe auftreten wird.  Jemand  muss dabei unbedingt Weihnachtsmann sein (Geschlecht egal), die Elfen sind dagegen optional (es kann also $0$ bis $4$ Elfen geben, da sie $5$ Personen sind und genau eine Person den Weihnachtsmann spielt). Wie viele Möglichkeiten gibt es, eine solche Truppe aus Weihnachtsmann und Elfen aufzustellen?  
 	
-	Eine Weise zu zählen ist wie folgt. Eine der fünf Personen übernimmt die Rolle des Weihnachtsmanns. Unter den übrigen vier Personen gibt es dann $2^4$ Möglichkeiten eine Menge der Elfe zu fixieren. Insgesamt sind es $5 \cdot 2^4 = 80$ Varianten, eine Truppe aus dem Weihnachtsmann und Elfen zu fixieren. 
+	Eine Weise zu zählen ist wie folgt. Eine der fünf Personen übernimmt die Rolle des Weihnachtsmanns. Unter den übrigen vier Personen gibt es dann $2^4$ Möglichkeiten eine Menge von Elfen zu fixieren. Insgesamt sind es damit $5 \cdot 2^4 = 80$ Varianten, eine Truppe aus Weihnachtsmann und Elfen zu bilden.
 	
-	Eine weitere Weise zu zählen ist wie folgt. Die Anzahl der Mitglieder der Truppe ist $1$ bis $5$. Man kann also die Truppen der Größen $1$ bis $5$ getrennt zählen. Bei einer Truppe der Größe $k \in \{1,\ldots,5\}$ gibt es $\binom{5}{k}$ Möglichkeiten Mitglieder der Truppe zu fixieren. Sobald die Mitglieder fixiert sind, gibt es genau $k$ Möglichkeiten innerhalb der Truppe die Rolle des Weihnachtsmanns zu vergeben. Wir kommen auf diese Weise auf  die Formel
+	Eine weitere Weise zu zählen ist wie folgt. Die Anzahl der Mitglieder der Truppe liegt zwischen $1$ und $5$. Man kann also die Truppen der Größen $1$ bis $5$ getrennt zählen. Bei einer Truppe der Größe $k \in \{1,\ldots,5\}$ gibt es $\binom{5}{k}$ Möglichkeiten Mitglieder der Truppe zu fixieren. Sobald die Mitglieder fixiert sind, gibt es genau $k$ Möglichkeiten innerhalb der Truppe die Rolle des Weihnachtsmanns zu vergeben. Wir kommen auf diese Weise auf  die Formel
 	\[
 			\sum_{k=1}^5 k \binom{5}{k}. 
 	\]
@@ -888,12 +917,13 @@ Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die 
 	\[
 		\sum_{k=0}^n k \cdot \frac{\binom{n}{k}}{2^n} =  \frac{n}{2}
 	\]
-	umformulieren. Hierbei ist $\frac{\binom{n}{k}}{2^n}$ ist die Wahrscheinlichkeit bei einem $n$-maligen Werfen einer fairen Münze genau $k$ mal den Kopf zu werfen.
+	umformulieren. Hierbei ist $\frac{\binom{n}{k}}{2^n}$ die Wahrscheinlichkeit bei $n$-maligem Werfen einer fairen Münze genau $k$ mal Kopf zu werfen.
 	
-	 Die linke Seite ist also der Erwartungswert für die Anzahl der Köpfe bei einem $n$-mailigen Werfen einer fairen Münze (Erinnerung an den Schulstoff: der Erwartungswert einer diskreten Zufallsvariable ist die Summe der Terme Möglicher Wert $\times $ Wahrscheinlichkeit dieses Werts). 
+	 Die linke Seite ist also der Erwartungswert für die Anzahl der Köpfe bei einem $n$-maligen Werfen einer fairen Münze (Erinnerung an den Schulstoff: der Erwartungswert einer diskreten Zufallsvariable ist die Summe der Terme \glqq Möglicher Wert $\times $ Wahrscheinlichkeit dieses Werts\grqq). 
 	 
-	 Die rechte Seite verrät uns, was dieser Erwartungswert genau ist: $\frac{n}{2}$. Die Formel ist intuitiv klar: wenn wir eine faire Münze $n$ mal werfen, so kriegen wir im Durchschnitt $n/2$ Köpfe. 
+	 Die rechte Seite verrät uns, was dieser Erwartungswert genau ist: $\frac{n}{2}$. Die Formel ist intuitiv klar: wenn wir eine faire Münze $n$ mal werfen, so erwarten wir $n/2$ mal Kopf. 
 \end{bem} 
+
 
 \subsection{Beispiel aus der Zahlentheorie} 
 
@@ -905,7 +935,7 @@ Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die 
 \end{defn}
 
 \begin{bem}
-	Das Verhalten der Funktion $t$ ist sehr ``unregelmäßig'' (beim sukzessiven inkrementieren von $n$ geht $t(n)$ hoch unter runter).  
+	Das Verhalten der Funktion $t$ ist sehr \glqq unregelmäßig\grqq\ (beim sukzessiven Inkrementieren von $n$ geht $t(n)$ hoch unter runter).  
 	\begin{center}
 			\includegraphics[width=10cm]{Pics/t_plot.pdf}
 	\end{center} 
@@ -916,18 +946,29 @@ Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die 
 	\[
 			\bar{t} (n) := \frac{1}{n} \sum_{j=1}^n t(j).
 	\]
+	In Worten: $\bar{t} (n)$ ist die durchschnittliche Anzahl von Teilern einer Zahl zwischen $1$ und $n$.
 \end{defn} 
 
 \begin{bem}
-	Das Verhalten von $\bar{t}$ erschient viel regelmäßiger zu sein. 
+	Das Verhalten von $\bar{t}$ erscheint viel regelmäßiger zu sein. 
 	\begin{center}
 	\includegraphics[width=10cm]{Pics/t_bar_plot.pdf}
 \end{center} 
 \end{bem} 
 
 \begin{defn}
-	Für $n \in \N$ nennt man $H_n := \sum_{i=1}^n \frac{1}{i}$ die $n$-te \textbf{harmonische Zahl}. 
+	Für $n \in \N$ nennt man $H_n := \sum\limits_{i=1}^n \frac{1}{i}$ die $n$-te \textbf{harmonische Zahl}. 
 \end{defn} 
+
+\begin{defn}
+	Aufrunden und Abrunden sind Abbildungen $\R \to \Z$, die für $x \in \R$ folgendermaßen definiert werden: 
+	\begin{align*}
+			\ceiling{x} & := \min \setcond{k \in \Z}{x \le k}
+			\\ \floor{x} & := \max \setcond{k \in \Z}{x \ge k}. 
+	\end{align*}
+	Diese Funktionen werden auch als \textbf{Gau\ss klammern} bezeichnet.
+\end{defn} 
+
 
 \begin{thm}
 	Es gilt
@@ -937,11 +978,11 @@ Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die 
 	für alle $n \in \N$. 
 \end{thm} 
 \begin{proof}
-	Man hat 
+	Die folgende Gleichungskette gilt:
 	\begin{align*} 
 		\bar{t} (n) & = \frac{1}{n} \sum_{k=1}^n t(k) 
-		\\ & = \frac{1}{n} \sum_{k=1}^n | \setcond{i \in \N}{i \ \text{teilt} \ k}. 
-		\\ & = \frac{1}{n} | \setcond{(i,k)}{i,k \in \{1,\ldots,n\}, i \ \text{teilt}  \ k}. 
+		\\ & = \frac{1}{n} \sum_{k=1}^n | \setcond{i \in \N}{i \ \text{teilt} \ k}|
+		\\ & = \frac{1}{n} \, | \setcond{(i,k)}{i,k \in \{1,\ldots,n\}, i \ \text{teilt}  \ k}|
 		\\ & = \frac{1}{n} \sum_{i=1}^n \floor{ \frac{n}{i}}. 
 	\end{align*}  
 	Aus 
@@ -974,35 +1015,27 @@ Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die 
 \subsection{Das Prinzip} 
 
 \begin{bem}
-	Das Schubfachprinzip ist ein nützliches Mittel, kombinatorische und diskrete  Existenzaussagen zu verifizieren. 
+	Das Schubfachprinzip (auch Taubenschlagprinzip) ist ein nützliches Mittel, kombinatorische und diskrete  Existenzaussagen zu verifizieren. 
 \end{bem} 
-
-\begin{defn}
-	Aufrunden und Abrunden sind Abbildungen $\R \to \Z$, die folgendermaßen definieren werden: 
-	\begin{align*}
-			\ceiling{x} & := \min \setcond{k \in \Z}{x \le k}
-			\\ \floor{x} & := \max \setcond{k \in \Z}{x \ge k}. 
-	\end{align*} 
-\end{defn} 
 
 
 \begin{prop}[Schubfachprinzip: starke Form] \label{prop:schubfach:stark}
 	Seien $X, Y$ nichtleere endliche Mengen. Dann gibt es für jede Abbildung $f: X \to Y$ ein $y \in Y$ mit 
 	\[
-		|f^{-1} (\{y\})|  \ge  \ceiling{\frac{|X|}{|Y|}} 
+		|f^{-1} (\{y\})|  \ge  \ceiling{\frac{|X|}{|Y|}} .
 	\]
 \end{prop} 
-\begin{proof} $X$ ist disjunkte Vereinigung der Mengen 
+\begin{proof} $X$ ist die disjunkte Vereinigung der Urbildmengen der Elemente in $Y$:
 	\[
-			X = \bigcup_{y \in Y} f^{-1}(\{y\}) 
+			X = \bigcup_{y \in Y} f^{-1}(\{y\}) .
 	\]
 	Somit ist 
 	\[
-		|X| = \sum_{y \in Y} | f^{-1}(\{y\}) | 
+		|X| = \sum_{y \in Y} | f^{-1}(\{y\}) | .
 	\]
 	Es folgt: 
 	\[
-		|X| \le |Y| \max_{y \in Y} |f^{-1}(\{y\}) |. 
+		|X| \le |Y| \cdot \max_{y \in Y} |f^{-1}(\{y\}) |. 
 	\]
 	Das bedeutet, dass für ein $y \in Y$ mit der maximalen Kardinalität $|f^{-1}(\{y\}) |$, die Ungleichung 
 	\[
@@ -1016,7 +1049,7 @@ Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die 
 
 
 \begin{bsp}
-	In einem Haus mit $10$ Wohungen und insgesamt $21$ Bewohner:innen, wohnt in einer Wohnung mindestens $3$ Bewohner:innen. 
+	In einem Haus mit $10$ Wohnungen und insgesamt $21$ Bewohner:innen, wohnen in einer Wohnung mindestens $3$ Bewohner:innen. 
 \end{bsp} 
 
 \begin{kor}[Schubfachprinzip: schwache Form] 
@@ -1030,29 +1063,30 @@ Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die 
 	sodass verschiedene $x',x'' \in X$ mit $f(x') = f(x'') =y$ existieren. 
 \end{proof} 
 
+
 \subsection{Einfache Beispiele} 
 
 \begin{aufg}
-	Zeigen Sie, dass jede Färbung der Seitenflächen eines (dreidimensionalen) Würfels mit zwei Farben ein Paar von Seitenflächen besitzt	die benachbart sind ($=$ eine gemeinsame Kante haben) und die gleiche Farbe haben. 
-\end{aufg}
-
-\begin{aufg}
-	Zeigen Sie, dass jede Färbung der Seitenflächen eines (dreidimensionalen) Würfels mit zwei Farben vier Seitenflächen $A,B,C,D$ besitzt, bei denen $A$ und $B$ sowie $C$ und $D$ gleich gefärbt wurden. 
+	Zeigen Sie, dass jede Färbung der Seitenflächen eines (dreidimensionalen) Würfels mit zwei Farben vier Seitenflächen gleich färbt. 
 \end{aufg} 
 
 \begin{aufg}
-	$30$ Kinder, darunter auch Fritzchen, haben eine Klassenarbeit geschrieben. In der Klassenarbeit hat Fritzchen $13$ Fehler gemacht, und alle anderen Kinder weniger Fehler als Fritzchen. Zeigen Sie, dass drei Kinder die gleiche Anzahl der Fehler gemacht haben. 
+	Zeigen Sie, dass jede Färbung der Seitenflächen eines (dreidimensionalen) Würfels mit zwei Farben einem Paar benachbarter Seitenflächen ($=$ besitzen eine gemeinsame Kante) die gleiche Farbe gibt.
+\end{aufg}
+
+\begin{aufg}
+	$30$ Kinder, darunter auch Fritzchen, haben eine Klassenarbeit geschrieben. In der Klassenarbeit hat Fritzchen $13$ Fehler gemacht, und alle anderen Kinder haben weniger Fehler als Fritzchen gemacht. Zeigen Sie, dass drei Kinder die gleiche Anzahl an Fehlern gemacht haben. 
 \end{aufg}  
 
 \begin{aufg}
-	In einem Fußballturnier mit $n \in \N$ Mannschaften ($n \ge 2$), spielen je zwei Mannschaften höchstens ein mal miteinander. Zeigen Sie, dass in jedem Zeitpunkt zwei Mannschaften existieren, die zu diesem Zeitpunkt die gleiche Anzahl der Spiele gespielt haben. 
+	Bei einem Basketballturnier mit $n \in \N$ Mannschaften ($n \ge 2$), spielen je zwei Mannschaften höchstens ein Mal gegeneinander. Zeigen Sie, dass zu jedem Zeitpunkt zwei Mannschaften existieren, die zu diesem Zeitpunkt die gleiche Anzahl der Spiele gespielt haben. 
 \end{aufg} 
 
 \subsection{Der Satz von Erd\H{os}-Szekeres}
 
 
 \begin{thm}[Erd\H{os}-Szekeres] 
-	Seien $m, n \in \N$, sei $k=mn+1$ und sei $a_1,\ldots,a_k$ Folge paarweise verschiedener reeller Zahlen. Dann besitzt die Folge eine ansteigende Teilfolge 
+	Seien $m, n \in \N$, sei $k=mn+1$ und sei $a_1,\ldots,a_k$ eine Folge paarweise verschiedener reeller Zahlen. Dann besitzt die Folge eine ansteigende Teilfolge 
 	\[
 			a_{i_1}  < a_{i_2} < \cdots < a_{i_{m+1}} \qquad (1 \le i_1 < \cdots < i_{m+1} \le k)
 	\]
@@ -1063,7 +1097,8 @@ Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die 
 	der  Länge $n+1$. 
 \end{thm} 
 \begin{proof}
-	Sei $t_i$ die Länge der längesten ansteigenden Teilfolge, die mit $a_i$ anfängt. Gilt für ein $a_i$ die Ungleichung $t_i \ge m+1$, so besitzt unsere Folge eine ansteigende Teilfolge der Länge $m$. Wir nehmen also an, dass $t_i \le m$ für alle $i=1,\ldots, k$ gilt. Das ergibt dann die Abbildung $a_i \mapsto t_i$, welche die $k$-elementige Menge $\{a_1,\ldots,a_k\}$ auf die Menge $\{1,\ldots,m\}$  Wegen $k=mn+1$ hat man ein einen Wert $s \in \{1,\ldots,m\}$, so dass $f(a_i) = s$ für $n+1$ Zahlen $a_i$ gilt. Seien $a_{j_1}, \cdots ,  a_{j_{n+1}}$ diese $n+1$ Zahlen mit $1 \le j_1 < \cdots < j_{n+1} \le k$. Wir vergleichen nun $a_{j_t}$ und $a_{j_{t+1}}$. Wäre $a_{j_t} < a_{j_{t+1}}$, so hätten wir eine ansteigende Folge der Länge $s+1$ die mit $a_{j_t}$ beginnt, was der Wahl von $a_{j_t}$ widerspricht. Also hat man $a_{j_t} > a_{j_{t+1}}$. Wir erhalten 
+	Sei $t_i$ die Länge der längsten ansteigenden Teilfolge, die mit $a_i$ anfängt. Gilt für ein $a_i$ die Ungleichung $t_i \ge m+1$, so besitzt unsere Folge eine ansteigende Teilfolge der Länge $m+1$. Wir nehmen also an, dass $t_i \le m$ für alle $i=1,\ldots, k$ gilt. Das ergibt dann die Abbildung $a_i \mapsto t_i$, welche die $k$-elementige Menge $\{a_1,\ldots,a_k\}$ auf die Menge $\{1,\ldots,m\}$ abbildet.
+	Wegen $k=mn+1$ gibt es einen Wert $s \in \{1,\ldots,m\}$, so dass $a_i \mapsto s$ für $n+1$ Zahlen $a_i$ gilt. Seien $a_{j_1}, \cdots ,  a_{j_{n+1}}$ diese $n+1$ Zahlen mit $1 \le j_1 < \cdots < j_{n+1} \le k$. Wir vergleichen nun $a_{j_t}$ und $a_{j_{t+1}}$. Wäre $a_{j_t} < a_{j_{t+1}}$, so hätten wir eine ansteigende Folge der Länge $s+1$ die mit $a_{j_t}$ beginnt, was der Wahl von $a_{j_t}$ widerspricht. Also hat man $a_{j_t} > a_{j_{t+1}}$. Wir erhalten 
 	\[
 		a_{j_1} > \cdots > a_{j_{n+1}}.
 	\]
