@@ -1,6 +1,6 @@
 def hanoi_schritte(n,Start,Hilfe,Ziel):
     """
-        n Scheiben die auf den drei aufgestappelt sind
+        n Scheiben die auf Start aufgestappelt sind
         von Start nach Ziel mithilfe von Hilfe zu versetzen
     """
     if n==1:

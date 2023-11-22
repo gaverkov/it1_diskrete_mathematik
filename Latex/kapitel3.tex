@@ -2,16 +2,16 @@
 
 
 \begin{bem} 
-Viel mehr zum Thema dieses Kapitels findet man im Kurs Entwicklung von Softwaresystemen, vgl. auch das umfangreiche Buch \cite{GS11}. 
+Viel mehr zum Thema dieses Kapitels findet man im Kurs \emph{Entwicklung von Softwaresystemen}, vgl. auch das umfangreiche Buch \cite{GS11}. 
 \end{bem} 
 
-\begin{bem} Wer mit den Theorie und der Praxis der  Computer-Berechnungen zu tun hat, muss sich in der Regel auch mit den folgenden Konzepten und Aspekten auseinandersetzen: 
+\begin{bem} Wer mit Theorie und Praxis von Computer-Berechnungen zu tun hat, muss sich in der Regel auch mit den folgenden Konzepten und Aspekten auseinandersetzen: 
 	\begin{center} 
 			\begin{tabular}{l|l} 
 				\textbf{Algorithmische Theorie} & \textbf{Reale Berechnungen}
 				\\ \hline\hline 
 				Rechenmodell (Rechner) & Hardware 
-				\\  & Betriebsysteme 
+				\\  & Betriebssysteme 
 				\\  Rechenmodell (Algorithmus) & reale Programmiersprache 
 				\\ \hline Algorithmen und deren Analyse & Umsetzung von Algorithmen
 				\\ \hline Klassifikation von Rechenproblemen, & Analyse algorithmischer 
@@ -21,12 +21,12 @@ Viel mehr zum Thema dieses Kapitels findet man im Kurs Entwicklung von Softwares
 	Im Prinzip ist es möglich -- aber nicht unbedingt sinnvoll -- die theoretischen Aspekte komplett getrennt von der Praxis zu behandeln, denn Theorie ist für die Praxis entwickelt. Um die Theorie sinnvoll einsetzen zu können, braucht man auch praktisches Wissen. 
 \end{bem} 
 
-\section{Darstellung von Daten in der Theorie und Praxis} 
+\section{Darstellung von Daten in Theorie und Praxis} 
 
 \subsection{Kodierung mit Strings} 
 
 \begin{defn}
-Wir sagen, dass wir die Elemente der  Menge $X$ mit Hilfe der Elemente der Menge $Y$ \textbf{kodieren}, wenn wir eine  injektive Abbildung $c : X \to Y$ festlegen. Wir nennen dann $c$ eine \textbf{Kodierung} von $X$ mit $Y$ und $y=c(x)$ die \textbf{Kodierung} von $x$ als $y$ bzgl. $c$.  
+Wir sagen, dass wir die Elemente einer Menge $X$ mit Hilfe der Elemente einer Menge $Y$ \textbf{kodieren}, wenn wir eine  injektive Abbildung $c : X \to Y$ festlegen. Wir nennen dann $c$ eine \textbf{Kodierung} von $X$ mit $Y$, und $y=c(x)$ die \textbf{Kodierung} von $x$ als $y$ bzgl. $c$.  
 \end{defn}
 
 \begin{defn} 
@@ -38,6 +38,7 @@ Wir sagen, dass wir die Elemente der  Menge $X$ mit Hilfe der Elemente der Menge
 	Es gibt nur einen String der Länge $0$, diesen bezeichnen wir als~$\oslash$ (diese Bezeichnung ist ähnlich zur Bezeichnung für die leere Menge steht aber für etwas anderes). 
 	Das heißt, $A^0 = \{\oslash\}$. 
 	Oft schreiben wir einen String $(x_1,\ldots,x_n) \in A^n$ auch kürzer als $x_1 \cdots x_n$ und wir nennen $x_i$ das $i$-te \textbf{Zeichen} von $x$. 
+	
 	Die Menge aller Strings über dem Alphabet $A$ bezeichnen wir mit $A^\ast$, das heißt: 
 	\[
 		A^\ast := \bigcup_{n \in \N_0} A^n.
@@ -46,7 +47,7 @@ Wir sagen, dass wir die Elemente der  Menge $X$ mit Hilfe der Elemente der Menge
 \end{defn}
 
 \begin{defn} 
-		Für zwei Strings $x=x_1 \cdots x_n$ und $y=y_1 \cdots y_k$ aus $A^\ast$ heißt der String $xy = x_1 \cdots x_n y_1 \cdots y_k = (x_1,\ldots,x_n,y_1,\ldots,y_k) \in S^\ast$ die \textbf{Verkettung} oder \textbf{Konkatenation} von~$x$ und~$y$. 
+		Für zwei Strings $x=x_1 \cdots x_n$ und $y=y_1 \cdots y_k$ aus $A^\ast$ heißt der String $xy = x_1 \cdots x_n y_1 \cdots y_k = (x_1,\ldots,x_n,y_1,\ldots,y_k) \in A^\ast$ die \textbf{Verkettung} oder \textbf{Konkatenation} von~$x$ und~$y$. 
 \end{defn} 
 
 \begin{defn} 
@@ -58,11 +59,11 @@ Wir sagen, dass wir die Elemente der  Menge $X$ mit Hilfe der Elemente der Menge
 \end{bem} 
 
 \begin{defn}
-	Für eine endliche Menge $A$ und $k \in \N_0$, nennen wir eine injektive Abbildung $c: A \to \{0,1\}^k$ eine \textbf{$k$-Bit-Kodierung} von $A$. 
+	Für eine endliche Menge $A$ und ein $k \in \N_0$, nennen wir eine injektive Abbildung $c: A \to \{0,1\}^k$ eine \textbf{$k$-Bit-Kodierung} von $A$. 
 \end{defn} 
 
 \begin{prop}
-Sei $A$ endliche Menge und seien $k \in \N_0$. Dann sind die folgenden Bedingungen äquivalent: 
+Sei $A$ eine endliche Menge und sei $k \in \N_0$. Dann sind die folgenden Bedingungen äquivalent: 
 \begin{enumi} 
 	\item $A$ besitzt eine $k$-Bit-Kodierung.
 	\item $ |A| \le 2^k$. 
@@ -75,27 +76,27 @@ Sei $A$ endliche Menge und seien $k \in \N_0$. Dann sind die folgenden Bedingung
 \begin{bsp}
 	Da die Menge 
 	\[
-		A = \{\text{'a'},\ldots,\text{'z'}\}
+		A = \{\text{'a'},\text{'b'},\ldots,\text{'z'}\}
 	\]
-	$26$ Elemente hat und es $2^4 < 25 \le 2^5$ gilt, besitzt $A$ eine $5$-Bit- aber keine $4$-Bit-Kodierung. 
+	$26$ Elemente hat und $2^4 < 25 \le 2^5$ gilt, besitzt $A$ eine $5$-Bit- aber keine $4$-Bit-Kodierung. 
 \end{bsp} 
 
 \begin{prop}[Kodierung von Strings durch Bit-Strings] \label{prop:beliebiges:alphabet->01}
-	Sei $A$ endliche nichtleere Menge. Dann existiert eine Injektive Abbildung von $A^\ast$ nach $\{0,1\}^\ast$. Mit anderen Worten: Strings über einem beliebigen endlichen Alphabet können als Bit-Strings kodiert werden. 
+	Sei $A$ eine endliche nichtleere Menge. Dann existiert eine injektive Abbildung von $A^\ast$ nach $\{0,1\}^\ast$. Mit anderen Worten: Strings über einem beliebigen endlichen Alphabet können als Bit-Strings kodiert werden. 
 \end{prop} 
 \begin{proof} 
-	Sei $k \in \N_0$ Wert mit $2^k \ge |A|$. Dann existiert eine Kodierung $ c : A \to \{0,1\}^k$. Diese Kodierung erzeugt die Kodierung  von $A^\ast$ nach $\{0,1\}^\ast$ mit
+	Sei $k \in \N_0$ ein Wert mit $2^k \ge |A|$. Dann existiert eine Kodierung $ c : A \to \{0,1\}^k$. Diese Kodierung erzeugt die Kodierung  von $A^\ast$ nach $\{0,1\}^\ast$ mit
 	\[
-		(x_1, \cdots ,x_n) \in A^n \mapsto (c(x_1),\ldots,c(x_n)) \in \{0,1\}^{nk}.
+		(x_1, \ldots ,x_n) \in A^n \ \mapsto \ (c(x_1),\ldots,c(x_n)) \in \{0,1\}^{nk}.
 	\]
 \end{proof} 
 
 
 \begin{prop}[Kodierung von Paaren] \label{kod:paare}
-	Besitzen Mengen $X$ und $Y$ Kodierungen mit Bit-Strings, so besitzt auch $X \times Y$ Kodierung mit Bit-Strings. 
+	Besitzen zwei Mengen $X$ und $Y$ Kodierungen mit Bit-Strings, so besitzt auch $X \times Y$ eine Kodierung mit Bit-Strings. 
 \end{prop} 
 \begin{proof}
-	Seien $ a : X \to \{0,1\}^\ast$ und $b : Y \to \{0,1\}^\ast$ Kodierungen von $X$ bzw. $Y$ mit Bit-Strings. Dann können wir ein Trennzeichen $\# \not\in \{0,1\}$ einführen und das Paar $(x,y)$ mit $x \in X, y \in Y$ als ein String $a(x) \, \# \,  b(y) \in \{0,1,\#\}^\ast$ über dem drei-elementigen Alphabet $\{0,1,\#\}$ kodieren. Nach Proposition~\ref{prop:beliebiges:alphabet->01} können Strings über einem beliebigen endlichen Alphabet als Bit-Strings kodiert werden, es gibt also eine Kodierung $c : \{0,1,\#\}^\ast \to \{0,1\}^\ast$.
+	Seien $ a : X \to \{0,1\}^\ast$ und $b : Y \to \{0,1\}^\ast$ Kodierungen von $X$ bzw. $Y$ mit Bit-Strings. Dann können wir ein Trennzeichen $\# \not\in \{0,1\}$ einführen und das Paar $(x,y)$ mit $x \in X, y \in Y$ als ein String $a(x) \, \# \,  b(y) \in \{0,1,\#\}^\ast$ über dem $3$-elementigen Alphabet $\{0,1,\#\}$ kodieren. Nach Proposition~\ref{prop:beliebiges:alphabet->01} können Strings über einem beliebigen endlichen Alphabet als Bit-Strings kodiert werden, es gibt also eine Kodierung $c : \{0,1,\#\}^\ast \to \{0,1\}^\ast$.
 
 	 Das ergibt die Kodierung 
 	 \[
@@ -104,11 +105,11 @@ Sei $A$ endliche Menge und seien $k \in \N_0$. Dann sind die folgenden Bedingung
 	 von $X \times Y$ nach $\{0,1\}^\ast$. 
 \end{proof} 
 
-\begin{kor}[Kodierung von Tupeln]
-	Besitzen Mengen $X_1,\ldots,X_n$ Kodierungen mit Bit-Strings, so besitzt auch das Produkt $X_1 \times \cdots X_n$ eine Kodierung mit Bit-Strings. 
+\begin{kor}[Kodierung von Tupeln] \label{kod:tupel}
+	Besitzen die Mengen $X_1,\ldots,X_n$ Kodierungen mit Bit-Strings, so besitzt auch das Produkt $X_1 \times \cdots \times X_n$ eine Kodierung mit Bit-Strings. 
 \end{kor} 
 \begin{proof} 
-Die Konstruktion im Beweis von \eqref{kod:paare} direkt vom Fall $n=2$ auf ein allgemeines $n$ erweitern. Alternativ kann man die Behauptung durch die Induktion nach $n$, mit dem Induktionsanfang $n=2$, aus Korollar~\ref{kod:paare} herleiten. 
+Man kann die Konstruktion im Beweis von Proposition~\ref{kod:paare} direkt vom Fall $n=2$ auf ein allgemeines $n$ erweitern. Alternativ kann man die Behauptung durch vollständige Induktion nach $n$, mit dem Induktionsanfang $n=2$, aus Proposition~\ref{kod:paare} herleiten. 
 \end{proof} 
 
 \begin{bsp}
@@ -133,14 +134,16 @@ Die Konstruktion im Beweis von \eqref{kod:paare} direkt vom Fall $n=2$ auf ein a
 	\begin{equation}\label{z:zur:Basis:b}
 		z = \sum_{i=0}^k z_i b^i
 	\end{equation}
-	mit $k \in \N_0, z_0,\ldots,z_k \in \{0,\ldots,b-1\}$ und $z_k \ne 0$. Mit anderen Worten ist die Relation $z \mapsto (z_k,\ldots,z_0)$ für $z$ und $z_0,\ldots,z_k$ wie oben eine injektive Abbildung von $\N$ nach $\{0,\ldots,b-1\}^\ast$.
+	mit $k \in \N_0, z_0,\ldots,z_k \in \{0,1,\ldots,b-1\}$ und $z_k \ne 0$.
+	
+	 Mit anderen Worten: Die Zuordnung $z \mapsto (z_k,\ldots,z_0)$ für $z$ und $z_0,\ldots,z_k$ wie oben ist eine injektive Abbildung von $\N$ nach $\{0,1,\ldots,b-1\}^\ast$.
 \end{thm}
 \begin{proof}
- 	Die Existenz und Eindeutigkeit der gewünschten Darstellung für $z$ zeigen wir durch Induktion über $z$. Bei $1 \le z \le b-1$ ist $k=1$ und $z_0=z$. Sei $z>b$ und sei die Existenz und Eindeutigkeit einer solchen Darstellung für die Zahlen $1,\ldots,z-1$ bereits gezeigt. Bei $z$ ist $z_0$ notwendigerweise der Rest der Division von $z$ durch $b$, weil die Terme $z_i b^i$ mit $i>0$ alle durch $b$ teilbar sind. Die Zahl $z-z_0$ ist positiv und durch $b$ teilbar. Somit ist $(z-z_0) / b$ eine natürliche Zahl, die echt kleiner als $z$ ist; denn $(z-z_0)/b \le z / b < z$. Die Darstellung von $z$, nach der wir suchen, kann als 
+ 	Die Existenz und Eindeutigkeit der gewünschten Darstellung für $z$ zeigen wir durch Induktion über $z$. Bei $1 \le z \le b-1$ ist $k=1$ und $z_0=z$. Sei $z>b$ und sei die Existenz und Eindeutigkeit einer solchen Darstellung für die Zahlen $1,2,\ldots,z-1$ bereits gezeigt. Bei $z$ ist $z_0$ notwendigerweise der Rest der Division von $z$ durch $b$, weil die Terme $z_i b^i$ mit $i>0$ alle durch $b$ teilbar sind. Die Zahl $z-z_0$ ist positiv und durch $b$ teilbar. Somit ist $(z-z_0) / b$ eine natürliche Zahl, die echt kleiner als $z$ ist; denn $(z-z_0)/b \le z / b < z$. Die Darstellung von $z$, nach der wir suchen, kann als 
  	\[
  		(z-z_0)/b = \sum_{i=0}^{k-1} z_{i+1} b^i
  	\]
- 	umformuliert werden. Die Existenz und Eindeutigkeit von $z_1,\ldots,z_k \in \{0,\ldots,b-1\}$ mit $z_k \ne 0$ folgt durch die Anwendung der Induktionsvoraussetzung zu $(z-z_0)/b$. 
+ 	umformuliert werden. Die Existenz und Eindeutigkeit von $z_1,\ldots,z_k \in \{0,\ldots,b-1\}$ mit $z_k \ne 0$ folgt durch die Anwendung der Induktionsvoraussetzung auf $(z-z_0)/b$. 
 \end{proof} 
 
 \begin{defn}
@@ -150,7 +153,7 @@ Die Konstruktion im Beweis von \eqref{kod:paare} direkt vom Fall $n=2$ auf ein a
 	\]
 	bezeichnet. Bzgl. des Stellenwertsystems zur Basis $b$ wird $z$ eine \textbf{$(k+1)$-stellige Zahl genannt}. Hierbei nennt man $z_k$ die \textbf{höchste Stelle} und $z_0$ die \textbf{niedrigste Stelle}.  Stellenwertsysteme zu Basen $2, 10$ und $16$ nennt man \textbf{binär}, \textbf{dezimal} bzw. \textbf{hexadezimal}. 
 	
-	Die Darstellung der natürlichen Zahlen wird  erweitert, indem man die Darstellung von $0$ als $0$ festgelegt und die Darstellung von $\pm z$ als $(\pm ,z_k,\ldots,z_0) \in \{+,-\} \times \{0,\ldots,b-1\}^\ast$ mit Hilfe der Darstellung $(z_k,\ldots,z_0)$  von $z \in \N$ definiert. 
+	Die Darstellung der natürlichen Zahlen wird auf die ganzen Zahlen erweitert, indem man die Darstellung von $0$ als $0$ festgelegt und die Darstellung von $\pm z$ als $(\pm ,z_k,\ldots,z_0) \in \{+,-\} \times \{0,\ldots,b-1\}^\ast$ mit Hilfe der Darstellung $(z_k,\ldots,z_0)$  von $z \in \N$ definiert. 
 \end{defn} 
 
 \begin{prop}
@@ -158,30 +161,30 @@ Die Konstruktion im Beweis von \eqref{kod:paare} direkt vom Fall $n=2$ auf ein a
 	\begin{equation}
 	(z_t,\ldots,z_0) \mapsto z:= \sum_{i=0}^t z_i b^i
 	\end{equation}
-	eine Bijektion $\{0,\ldots,b-1\}^t \to \{0,\ldots,b^{t+1} -1\}$. Insbesondere ist die Umkehrung dieser Abbildung eine Kodierung von $\{0,\ldots,b^{t+1} -1\}$ mit $t$-Bit-Strings. 
+	eine Bijektion $\{0,1,\ldots,b-1\}^{t+1} \to \{0,1,\ldots,b^{t+1} - 1\}$. Insbesondere ist die Umkehrung dieser Abbildung eine Kodierung von $\{0,1,\ldots,b^{t+1} -1\}$ mit Strings der Länge $t+1$.
 \end{prop} 
 \begin{proof}
- Sei $(z_t,\ldots,z_0) \in \{0,\ldots,b-1\}^t$. Dann gilt $0 \le z_i  \le b-1$ für jedes $i  \in \{0,\ldots,b-1\}$, sodass die Abschätzungen
+ Sei $(z_t,\ldots,z_0) \in \{0,1,\ldots,b-1\}^{t+1}$. Dann gilt $0 \le z_i  \le b-1$ für jedes $i  \in \{0,1,\ldots,t\}$, sodass die Abschätzungen
  \[
  	0 \le z \le \sum_{i=0}^t (b-1) b^i = (b-1) \sum_{i=0}^t b^i = b^{t+1} -1
  \]
- erfüllt sind. Das zeigt, dass die Angabe des Wertebereichs $\{0,\ldots,b^{t+1} -1\}$ korrekt ist.
- Der Definitionsbereich sowie der Wertebereich haben je $b^t$ Elemente. Um zu zeigen, dass die Abbildung bijektiv ist, reicht es zu zeigen, dass die Abbildung injektiv ist. Seien $(z_t,\ldots,z_0), (z_t',\ldots,z_0') \in \{0,\ldots,b-1\}^t$ verschieden. Dann gibt es das größte $k\in \{0,\ldots,t\}$ mit $z_k \ne z_k'$. Sei ohne Beschränkung der Allgemeinheit $z_k>z_k'$. Dann ist 
+ erfüllt sind. Das zeigt, dass die Angabe des Wertebereichs $\{0,1,\ldots,b^{t+1} -1\}$ korrekt ist.
+ Der Definitionsbereich sowie der Wertebereich haben je $b^{t+1}$ Elemente. Um zu zeigen, dass die Abbildung bijektiv ist, reicht es zu zeigen, dass die Abbildung injektiv ist. Seien dazu $(z_t,\ldots,z_0), (z_t',\ldots,z_0') \in \{0,1,\ldots,b-1\}^{t+1}$ verschieden. Dann gibt es das größte $k\in \{0,\ldots,t\}$ mit $z_k \ne z_k'$. Sei ohne Beschränkung der Allgemeinheit $z_k>z_k'$. Dann ist 
  \begin{align*}
- 		\sum_{i=0}^t z_i b^i - \sum_{i=0}^t z_i' b^i & = (z_k - z_k')b^k + \sum_{i=0}^{k-1} (z_i -z_i') b^i
- 		\\ \ge b^k + \sum_{i=0}^{k-1} (0 - (b-1)) b^i 
- 		\\ = b^k - (b-1) \sum_{i=0}^{k-1} b^i
- 		\\ = b^k - (b^k - 1) 
- 		\\ =1.
+ 		z - z' &= \sum_{i=0}^t z_i b^i - \sum_{i=0}^t z_i' b^i \ = \ (z_k - z_k')b^k + \sum_{i=0}^{k-1} (z_i -z_i') b^i
+ 		\\ &\ge b^k + \sum_{i=0}^{k-1} (0 - (b-1)) b^i 
+ 		\\ &= b^k - (b-1) \sum_{i=0}^{k-1} b^i
+ 		\\ &= b^k - (b^k - 1) 
+ 		\\ &= 1.
  \end{align*}
-Es folgt: $\sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i $. Also ist die Abbildung tatsächlich injektiv. 
+Es folgt: $z = \sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i = z'$. Also ist die Abbildung tatsächlich injektiv. 
 \end{proof} 
 
 \begin{bem}\
-	Die Intuition hinter den Stellenwertsystemen ist wie folgt: man führt die Ziffernbezeichnungen für die $b$ Ziffern des Stellenwertsystems ein und rechnet dann im Rahmen dieses Stellenwertsystems schriftlich, so wie es für das System mit der Basis $b=10$ in der Schule gelernt haben. Hier ein Vergleich von $b=10$ und $b=2$: 
+	Die Intuition hinter den Stellenwertsystemen ist wie folgt: man führt die Ziffernbezeichnungen für die $b$ Ziffern des Stellenwertsystems ein und rechnet dann im Rahmen dieses Stellenwertsystems schriftlich, so wie man es für das System mit der Basis $b=10$ in der Schule gelernt hat. Hier ein Vergleich von $b=10$ und $b=2$: 
 	\begin{center} 
 		\begin{tabular}{l|l} 
-			Bezeichnungen bzgl. der Basis $10$ & Bezeichnungen bzgl. Basis $2$ 
+			Bezeichnungen bzgl. der Basis $10$ & Bezeichnungen bzgl. der Basis $2$ 
 			\\ \hline $0$ ist die Null & $0$ ist die Null
 			\\ $1$ ist die Eins & $1$ ist die Eins
 			\\ $2:=1+1$ & $10:=1+1$
@@ -195,7 +198,7 @@ Es folgt: $\sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i $. Also ist die Abbildun
 			\\ $10:=9+1$  
 		\end{tabular} 
 	\end{center} 
-	Stellen Sie sich einfach vor, Sie würden die Ziffern des Dezimalsystems nicht kennen. Denn würde die linke Seite der Tabelle Ihnen Erklären, was für eine Bedeutung die Ziffern haben $1,\ldots,9$ sowie die Zahl $10$ haben. Danach könnte man Ihnen auch erklären, dass $100 = 10 \cdot 10$, $1000 = 10 \cdot 10 \cdot 10$ ist usw. und dass z.B. $1425 = 1000 + 4 \cdot 100 + 2 \cdot 10 + 5$ ist. Nach diesen Erklärungen sind die Darstellungen aller nichnegativen ganzen Zahlen festgelegt. 
+	Stellen Sie sich einfach vor, Sie würden die Ziffern des Dezimalsystems nicht kennen. Dann würde die linke Seite der Tabelle Ihnen erklären, was für eine Bedeutung die Ziffern $1,\ldots,9$ sowie die Zahl $10$ haben. Danach könnte man Ihnen auch erklären, dass $100 = 10 \cdot 10$, $1000 = 10 \cdot 10 \cdot 10$ ist usw. und dass z.B. $1425 = 1000 + 4 \cdot 100 + 2 \cdot 10 + 5$ ist. Nach diesen Erklärungen sind die Darstellungen aller nichtnegativen ganzen Zahlen festgelegt. 
 	
 	Wenn Sie die Ziffern des Dezimalsystems nicht kennen würden, könnte man Sie genauso in das Binärsystem einführen, indem man Ihnen erklären würde, dass $10:=1+1$ ist, dass $100 = 10 \cdot 10$, $1000 = 10 \cdot 10 \cdot 10$ ist usw. und dass z.B. $101011= 100000 + 1000 + 10 + 1$ ist. 
 \end{bem} 
@@ -218,8 +221,10 @@ Es folgt: $\sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i $. Also ist die Abbildun
 
 
 \begin{bem}
-	Die Konvertierung einer Darstellung zu einer Basis $b$ in die Darstellung zur Basis $10$ geht  direkt mit der Verwendung von  \eqref{z:zur:Basis:b}, aber eine effizientere Konvertierung erhält man, wenn man das so genannte \textbf{Horner-Schema} benutzt. 
-		Für $k=2$, benutzt erhält man durch das Ausklammern den Ausdruck
+	Die Konvertierung einer Darstellung bzgl.~einer Basis $b$ in die Darstellung zur Basis $10$ geht direkt mit der Verwendung von  \eqref{z:zur:Basis:b}, also mittels $z = \sum_{i=0}^k z_i b^i$.
+	
+	Eine effizientere Konvertierung erhält man, wenn man das sogenannte \textbf{Horner-Schema} benutzt. 
+		Für $k=2$, erhält man durch Ausklammern den Ausdruck
 	\[
 	z_2 b^2 + z_1 b + z_0 = b (b z_2 + z_1) + z_0,
 	\]
@@ -228,14 +233,16 @@ Es folgt: $\sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i $. Also ist die Abbildun
 	\[
 	z_3 b^3 + z_2 b^2 + z_1 b + z_0 =  b(b (b z_3 + z_2) + z_1 ) + z_0
 	\]
-	mit drei Multiplikationen und so fort für $k \geq 4$. Das Auswerten erfolgt dann von innen nach außen durch das Auswerten der Werte für die Klammern, etwa für $k=3$:
+	mit drei Multiplikationen und so fort für $k \geq 4$.
+	
+	Das Auswerten erfolgt dann von innen nach außen durch das Auswerten der Werte für die Klammern, etwa für $k=3$:
 	\[
-\underbrace{b \underbrace{( b \underbrace{(b z_3 + z_2)}_{\text{1. Runde}} + z_1 )}_{\text{2. Runde}}  + z_0,}_{\text{3. Runde}}
+\underbrace{b \underbrace{( b \underbrace{(b z_3 + z_2)}_{\text{1. Runde}} + z_1 )}_{\text{2. Runde}}  + z_0}_{\text{3. Runde}}
 	\]
 \end{bem}
 
 \begin{bsp}
-	Die Konvertierung von der Basis $10$ zu einer anderen Basis erfolgt durch iterative Division mit Rest  mit der Verwendung der konstruktiven Idee des Beweises von Theorem~\ref{thm:stellenwert}. Konvertieren wir zum Beispiel die Zahl $46$ in das System zur Basis $3$. Es gilt
+	Die Konvertierung von der Basis $10$ zu einer anderen Basis erfolgt durch iterative Division mit Rest unter Verwendung der konstruktiven Idee des Beweises von Theorem~\ref{thm:stellenwert}. Konvertieren wir zum Beispiel die Zahl $46$ in das System zur Basis $3$. Es gilt
 	\begin{align*}
 		46 & = 15 \cdot 3 + 1 = (5 \cdot 3 + 0) \cdot 3 + 1 = 5 \cdot 3^2 + 0 \cdot 3 + 1 
 		\\ & = (1 \cdot 3 + 2) \cdot 3^2 + 0 \cdot 3 + 1
@@ -251,9 +258,9 @@ Es folgt: $\sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i $. Also ist die Abbildun
 \begin{bsp}
 	Je geringer die Basis $b$ des Stellenwertsystems ist, desto mehr Stellen braucht man um eine Zahl $z \in \N$ im Stellenwertsystem zur Basis $b$ zu beschreiben. In digitalen Geräten benutzt man aber die kleinstmögliche Basis $b=2$. Daher nutzt man im Zusammenhang mit dem binären System auch das Hexadezimalsystem, dessen Basis $16$ eine Potenz von $2$ ist. Aufgrund dieser Tatsache gibt es einen direkten einfachen Zusammenhang zwischen den Darstellungen zur  Basis $2$ und zur Basis $16$. 
 	
-	Diesen Zusammenhang illustrieren wir an einem Beispiel. Zunächst sei bemerkt dass die 16 Ziffern des Hexadezimalsystems als $0,\ldots,9,A,B,C,D,E,F$ bezeichnet werden. Das bedeutet es gibt den folgenden Zusammenhang zwischen den Ziffern des Hexadezimalsystem und deren Darstellungen als Zahlen im Binär- und Dezimalsystem: 
+	Diesen Zusammenhang illustrieren wir an einem Beispiel. Zunächst sei bemerkt dass die 16 Ziffern des Hexadezimalsystems als $0,\ldots,9,A,B,C,D,E,F$ bezeichnet werden. Das bedeutet es gibt den folgenden Zusammenhang zwischen den Ziffern des Hexadezimalsystems und deren Darstellungen als Zahlen im Binär- und Dezimalsystem: 
 	\begin{center}
-		\scriptsize 
+		\small
 		\begin{tabular}{rrr}
 			\textbf{Hexadezimal} & \textbf{Dezimal} & \textbf{Binär}
 			\\ 0 & 0 & 0000
@@ -279,7 +286,7 @@ Es folgt: $\sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i $. Also ist die Abbildun
 	\operatorname{BEE} \, {}_{16} = 1011 \ 1110 \ 1110 \, {}_{2}.
 	\]
 	Um sich zu vergewissern, dass das tatsächlich stimmt, kann man sich überlegen, was diese Gleichheit im Dezimalsystem bedeutet:
-	{\scriptsize 
+	{\small
 	\begin{align*}
 		& \underbrace{(1\cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1+ 1 \cdot 2^0)}_{\operatorname{B}} 16^2 + \underbrace{(1 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0)}_{\operatorname{E}} 16^1 + \underbrace{(1 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0)}_{\operatorname{E}} 16^0  
 		\\ = & \underbrace{1 \cdot 2^{11} + 0 \cdot 2^{10} + 1 \cdot 2^9 + 1 \cdot 2^8} + \underbrace{1 \cdot 2^7 + 1\cdot 2^6 + 1 \cdot 2^5 + 0 \cdot 2^4} + \underbrace{1 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0}. 
@@ -311,16 +318,16 @@ Hier ist $61$ die hexadezimale Kodierung des Buchstaben $a$, $62$ die hexadezima
 \end{aufg}
 
 \begin{bem}[Restklassenringe] 
-	Sei $m \in \N$. Zahlen $x,y \in \Z$ nennt man kongruent modulo $m$, wenn $x-y$ durch $m$ teilbar sind (das bedeutet, die Zahlen ergeben den selben Rest $r \in \{0,\ldots,m-1\}$ bei der Division durch $m$). Die Kongruenz Modulo $m$ ist eine Äquivalenzrelation und wir bezeichnen als $[x]$ die Äquivalenzklasse von $x$ bzgl. dieser Relation, das ist also die Menge aller ganzen Zahlen, die den selben Rest als $x$ bei der Division durch $m$ ergeben. Es gibt genau $m$ solche Äquivalenzklassen, das sind die Klassen $[0],\ldots,[m-1]$. Die Menge $\{[0],\ldots,[m-1]\}$ aller Restklassen wird als $\Z /m \Z$ bezeichnet. Es stellt sich heraus, dass durch man in $\Z / m$ die Verknüpfungen $+$ und $\cdot$ durch 
+	Sei $m \in \N$. Die Zahlen $x,y \in \Z$ heißen \textbf{kongruent modulo $m$}, wenn $x-y$ durch $m$ teilbar ist (das bedeutet, die Zahlen ergeben den selben Rest $r \in \{0,\ldots,m-1\}$ bei der Division durch $m$). Die Kongruenz modulo $m$ ist eine Äquivalenzrelation und wir bezeichnen als $[x]$ die Äquivalenzklasse von $x$ bzgl. dieser Relation, das ist also die Menge aller ganzen Zahlen, die den selben Rest wie $x$ bei der Division durch $m$ ergeben. Es gibt genau $m$ solche Äquivalenzklassen, das sind die Klassen $[0],\ldots,[m-1]$. Die Menge $\{[0],\ldots,[m-1]\}$ aller Restklassen wird als $\Z /m \Z$ bezeichnet. Es stellt sich heraus, dass man in $\Z / m \Z$ die Verknüpfungen $+$ und $\cdot$ durch 
 	\begin{align*}
 			[x]+ [y] & := [x+y],
 			\\ [x] \cdot [y] & := [x\cdot y]
 	\end{align*} 
-einführen kann. Mit diesen Verknüpfungen ist $\Z /  m$ ein kommutativen Ring mit der Null $[0]$ und der Eins $[1]$. 
+einführen kann. Mit diesen Verknüpfungen ist $\Z / m \Z$ ein kommutativer Ring mit der Null $[0]$ und der Eins $[1]$. 
 \end{bem} 
 
 \begin{bem}[Ganzzahlige Arithmetik mit Zahlen fester Bit-Größe]
-		Bei der Umsetzung der ganzzahligen Arithmetik für Register und Speicherzellen fester Bit-Größe $k$ ist die Register-Arithmetik eigentlich die Arithmetik des Rings $\Z / m \Z$ mit $m=2^k$. Werden durch $k$ Bits nicht-negative Zahlen im Bereich $\{0,\ldots,2^k-1\}$ dargestellt, so ergibt die Addition der Eins zu $2^k-1$ den Wert $0$. Das Entspricht der Gleichung $[m-1] + [1] = [0]$ im Ring $\Z / m \Z$. Mit anderen Worten sind die Zahlen $0,\ldots,2^k-1$ Vertreter der jeweiligen Restklassen modulo $m$. 
+		Bei der Umsetzung der ganzzahligen Arithmetik für Register und Speicherzellen fester Bit-Größe $k$ ist die Register-Arithmetik eigentlich die Arithmetik des Rings $\Z / m \Z$ mit $m=2^k$. Werden durch $k$ Bits nicht-negative Zahlen im Bereich $\{0,\ldots,2^k-1\}$ dargestellt, so ergibt die Addition der Eins zu $2^k-1$ den Wert $0$. Das entspricht der Gleichung $[m-1] + [1] = [0]$ im Ring $\Z / m \Z$. Mit anderen Worten sind die Zahlen $0,\ldots,2^k-1$ Vertreter der jeweiligen Restklassen modulo $m$. 
 		
 		Ähnlich ist die Situation mit der Darstellung von ganzen Zahlen mit dem Vorzeichen. In diesem Fall werden ganze Zahlen im Bereich  $\{-2^{k-1},\ldots,2^{k-1}  - 1\}$ durch $k$ Bits kodiert. Die Addition der Eins zu $2^{k-1}-1$ ergibt in dieser Darstellung $-2^{k-1}$. Das entspricht der Gleichung $[m/2-1] + [1] =[-m/2]$ im Ring $\Z / m \Z$. Es sei bemerkt, dass  $m/2=2^{k-1}$ ist.
 		
@@ -330,7 +337,7 @@ einführen kann. Mit diesen Verknüpfungen ist $\Z /  m$ ein kommutativen Ring m
 \begin{bsp}\ 
 	\begin{itemize} 
 		\item Die Bit-Darstellung von $255$ in uint8 ist $11111111$. Die Addition von $255$ mit $1$ in uint8 ergibt $0$ - die Zahl, deren Bit-Darstellung in diesem Typ $00000000$ ist.  
-		\item Die Bit-Darstellung von $127$ in int8 ist $0111111$. Die Addition von $127$ und $1$ in int8 ergibt $-128$ - die Zahl, deren Bit-Darstellung in diesem Typ $11111111$ ist. 
+		\item Die Bit-Darstellung von $127$ in int8 ist $01111111$. Die Addition von $127$ und $1$ in int8 ergibt $-128$ - die Zahl, deren Bit-Darstellung in diesem Typ $11111111$ ist. 
 	\end{itemize} 
 \end{bsp}
 
@@ -340,13 +347,15 @@ einführen kann. Mit diesen Verknüpfungen ist $\Z /  m$ ein kommutativen Ring m
 \subsection{Variablen, Zuweisungen und Kontrollstrukturen}
 
 \begin{bem} 
-Zur Beschreibung von Algorithmen unabhängig von einer konkreten Programmiersprache gibt es unter anderem folgende Möglichkeiten: 
+Zur Beschreibung von Algorithmen
+%unabhängig von einer konkreten Programmiersprache
+gibt es unter anderem folgende Möglichkeiten: 
 \begin{enumerate}
 	\item Beschreibung in einer natürlichen Sprache, evtl. mit der Verwendung mathematischer Formeln und Bezeichnungen. 
 	\item Beschreibung in einem sogenannten Pseudocode. 
 	\item Umsetzung in einer Programmiersprache. 
 \end{enumerate} 
-Im Gegensatz zu einem richtigen Code, der sehr oft programmiertechnische Details einer konkreten Programmiersprache beinhaltet, kann man im Pseudocode solche Details vermeiden. Beim Pseudocode gibt es meistens nur Richtlinien und keine festen Vorgaben darüber, welche syntaktische Konstrukte eingesetzt werden. In seiner klassischen Form ahmt der Pseudocode die Programmiersprache ALGOL 60 nach, deren Syntax die allermeisten der heutzutage verbreiteten Programmiersprachen beeinflusst hat. Die bekannten Kontrollstrukturen wie if, for usw.  stammen z.B. aus ALGOL. Die Beschreibung von Algorithmen in einem ALGOL-ähnlichen Pseudocode ist in wissenschaftlichen Publikationen sehr verbreitet. 
+Im Gegensatz zu einem richtigen Code, der sehr oft programmiertechnische Details einer konkreten Programmiersprache beinhaltet, kann man im Pseudocode solche Details vermeiden. Beim Pseudocode gibt es meistens nur Richtlinien und keine festen Vorgaben darüber, welche syntaktischen Konstrukte eingesetzt werden. In seiner klassischen Form ahmt der Pseudocode die Programmiersprache ALGOL 60 nach, deren Syntax die allermeisten der heutzutage verbreiteten Programmiersprachen beeinflusst hat. Die bekannten Kontrollstrukturen wie if, for usw.  stammen z.B. aus ALGOL. Die Beschreibung von Algorithmen in einem ALGOL-ähnlichen Pseudocode ist in wissenschaftlichen Publikationen sehr verbreitet. 
 
 Ein Nachteil des Pseudocodes besteht darin, dass man ihn nicht auf einem Computer testen bzw. ausführen kann. Des Weiteren sind programmiertechnische Details aus der praktischen Sicht wichtig: sie können  die praktische Effizienz der Algorithmen (tatsächliche Laufzeit usw.) erheblich beeinflussen. 
 \end{bem} 
@@ -356,14 +365,13 @@ Eine \textbf{Algorithmus}- bzw. \textbf{Programm-Variable} ist ein Behälter fü
 
 Da man auch mit Variablen arbeiten kann, deren Wert keine Zahl ist, nennt man Variablen auch allgemeiner \textbf{Objekte} und deren Wert nennt man auch gerne den \textbf{Zustand} eines Objektes. 
 
-Man beachte, dass man den Begriff Objekt nicht nur in der objektorientierten Programmierung sondern auch allgemein in der Programmierung in dem oben beschriebenen allgemein Sinn benutzt. Der Zustand eines Objekts kann während der Ausführung mit Hilfe von verschiedenen Befehlen und Operationen geändert werden. 
+Man beachte, dass man den Begriff Objekt nicht nur in der objektorientierten Programmierung sondern auch allgemein in der Programmierung in dem oben beschriebenen allgemeinen Sinn benutzt. Der Zustand eines Objekts kann während der Ausführung mit Hilfe von verschiedenen Befehlen und Operationen geändert werden. 
 
-Der Zustand eines Objekts kann durch eine Zuweisung geändert werden. Diese hat das Format: 
-Die Zuweisung hat das Format: 
+Der Zustand eines Objekts kann durch eine Zuweisung geändert werden. Diese hat das Format:
 \begin{align*}
 	\text{OBJEKT} := \text{AUSDRUCK} 
 \end{align*} 
-Hierbei kann die linke Seite der Name des Objekts sein oder auch ein Ausdruck, der ein Objekt festlegt. Die rechte ist ein Ausdruck, der ausgewertet werden kann. Eine weitere Bezeichnung, die man im Pseudocode für die Zuweisung benutzt ist $\leftarrow$. 
+Hierbei kann die linke Seite der Name des Objekts sein oder auch ein Ausdruck, der ein Objekt festlegt. Die rechte Seite ist ein Ausdruck, der ausgewertet werden kann. Eine weitere Bezeichnung, die man im Pseudocode für die Zuweisung benutzt ist $\leftarrow$. 
 \end{defn} 
 
 
@@ -381,17 +389,17 @@ In der zweiten Zeile wird der Variablen $x$ ein neuer Wert zugewiesen, wobei man
 Nach der Ausführung der ersten Zeile ist ein Objekt mit dem Namen $x$ entstanden, dessen aktueller Wert gleich $5$ ist: 
 
 \begin{center} 
-\begin{tabular}{r|l}
+\begin{tabular}{c|c}
 	Variable & Wert
 	\\ \hline 
 	$x$ & $5$ 
 \end{tabular} 
 \end{center} 
 
-Nach der Auswertung der rechten Seite in der zweiten Zeile ist ein Objekt ohne Namen und mit dem Wert $2 \cdot 5 + 4 = 14$ entstanden. 
+Nach der Auswertung der rechten Seite in der zweiten Zeile ist ein Objekt ohne Namen und mit dem Wert $2 \cdot 5 + 4 = 14$ entstanden:
 
 \begin{center} 
-\begin{tabular}{r|l}
+\begin{tabular}{c|c}
 	Variable & Wert
 	\\ \hline 
 	$x$ & $5$  \\
@@ -402,7 +410,7 @@ Nach der Auswertung der rechten Seite in der zweiten Zeile ist ein Objekt ohne N
 Nach der Ausführung der Zuweisung in der zweiten Zeile hat man dann
 
 \begin{center} 
-	\begin{tabular}{r|l}
+	\begin{tabular}{c|c}
 		Variable & Wert
 		\\ \hline 
 		$x$ & $14$  
@@ -438,7 +446,7 @@ Die \textbf{Kontrollstrukturen} einer imperativen Sprache unterteilen sich in di
 \end{defn} 
 
 \begin{bem}
-	Es stellt sich heraus, dass man \texttt{goto} und \texttt{if-then} alle anderen Kontrollstrukturen aus Definition~\ref{def:kontroll:strukt} umsetzen kann. Das Ziel der redundanten Kontrollstrukturen ist, die Lesbarkeit des Codes bzw. der Algorithmen zu erhöhen. 
+	Es stellt sich heraus, dass man mit \texttt{goto} und \texttt{if-then} alle anderen Kontrollstrukturen aus Definition~\ref{def:kontroll:strukt} umsetzen kann. Das Ziel der redundanten Kontrollstrukturen ist, die Lesbarkeit des Codes bzw. der Algorithmen zu erhöhen. 
 \end{bem} 
 
 \begin{bsp} 
@@ -459,7 +467,7 @@ Die Verzweigungen lassen sich nach Belieben verschachteln um komplexere Handlung
 \end{bsp} 
 
 \begin{defn} 
-Ein \textbf{Array} $A$ der Länge $n$ ist eine Liste aus $n$ Variablen, wobei die Variablen mit aufeinanderfolgenden ganzen Zahlen indiziert sind. In den allermeisten Programmiersprachen werden die Arrays beginnend mit $0$ indiziert. Bei Indizierung ab $0$ ist ein Array~$A$ der Länge $n$ aus den Variablen $A[0],\ldots,A[n-1]$ zusammengesetzt, auf welche man durch die Angabe des Index $i$ zugreifen kann. Die Variable $A[i]$ heißt die \emph{$i$-te Komponente}, oder das \emph{$i$-te Element} des Arrays $A$. Die Anzahl der Komponenten eines Arrays $A$ wird als \emph{Länge} von $A$ bezeichnet und mit $\Laenge[A]$ notiert.
+Ein \textbf{Array} $A$ ist eine Liste aus $n$ Variablen, wobei die Variablen mit aufeinanderfolgenden ganzen Zahlen indiziert sind. In den allermeisten Programmiersprachen werden die Arrays beginnend mit $0$ indiziert. Bei Indizierung ab $0$ ist ein Array~$A$ der Länge $n$ aus den Variablen $A[0],\ldots,A[n-1]$ zusammengesetzt, auf welche man durch die Angabe des Index $i$ zugreifen kann. Die Variable $A[i]$ heißt die \textbf{$i$-te Komponente}, oder das \textbf{$i$-te Element} des Arrays $A$. Die Anzahl der Komponenten eines Arrays $A$ wird als \textbf{Länge} von~$A$ bezeichnet und mit $\Laenge[A]$ notiert.
 \end{defn} 
 
 \begin{bsp} 
@@ -514,8 +522,9 @@ Stellen wir uns vor, wir müssen zur Lösung einer Rechenaufgabe immer wieder te
 	\begin{algorithmic}
 		\IF{$p \le x \le q$ oder $q \le x \le p$}
 		\STATE $b=\true$
-		\ENDIF
+		\ELSE
 		\STATE $b=\false$
+		\ENDIF
 	\end{algorithmic}
 \end{algorithm}
 
@@ -557,7 +566,7 @@ Bei der Übergabe durch Referenz, ist der Eingabeparameter lediglich ein weitere
 	\end{lstlisting}
 \end{center}
 
-Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, müssen die Eingabeparameter $x$ und $y$ Referenzvariablen sein. In diesem Fall sind $x$ und $y$ zweite Namen für $a$ bzw. $b$. Die Variable $t$ ist eine \emph{lokale} Variable der Funktion \texttt{vertauschen}. Sie entsteht bei jeder Ausführung von \texttt{vertauschen} und verschwindet nach der Terminierung dieser Funktion. 
+Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, müssen die Eingabeparameter $x$ und $y$ Referenzvariablen sein. In diesem Fall sind $x$ und $y$ zweite Namen für $a$ bzw.~$b$. Die Variable $t$ ist eine \emph{lokale} Variable der Funktion \texttt{vertauschen}. Sie entsteht bei jeder Ausführung von \texttt{vertauschen} und verschwindet nach der Terminierung dieser Funktion. 
 \end{bsp} 
 
 \begin{bem}
@@ -571,8 +580,8 @@ Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, mü
 \begin{defn}
 	Ein \textbf{Datentyp} bzw. eine \textbf{Datenstruktur} $T$ ist durch die folgenden Angaben definiert: 
 	\begin{itemize} 
-		\item[] der \textbf{Wertebereich} für den Zustand der Objekt des Datentyps $T$
-		\item[] das \textbf{Interface:} Prozeduren (unter anderem die Grundoperationen, -Relationen) für den Datentyp $T$, durch welche man den Zustand der Objekte vom Typ $T$ ablesen und ändern kann. 
+		\item[] der \textbf{Wertebereich} für den Zustand der Objekte des Datentyps $T$
+		\item[] das \textbf{Interface:} Prozeduren (unter anderem die Grundoperationen, -relationen) für den Datentyp $T$, durch welche man den Zustand der Objekte ablesen und ändern kann. 
 	\end{itemize}  
 \end{defn} 
 
@@ -585,7 +594,7 @@ Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, mü
 \end{bem} 
 
 \begin{bem}
-	Verschiedene Operationen und Konstruktion für Mengen, die wir eingeführt haben entsprechen verschiedenen Datentypen, die man in vielen Programmiersprachen findet: 
+	Verschiedene Operationen und Konstruktionen für Mengen, die wir eingeführt haben entsprechen verschiedenen Datentypen, die man in vielen Programmiersprachen findet: 
 	\begin{center} 
 		\small  
 	\begin{tabular}{l|l|l}
@@ -601,7 +610,7 @@ Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, mü
 			\\ Multimenge & & Multimenge 
 	\end{tabular} 
 	\end{center}
-Arrays werden in der Programmierung auch Listen oder Felder genannt. Die Verunde nennt man auch Structures oder Records. Während man die Komponenten eines $n$-Tupels mit Zahlen $1,\ldots,n$ indexiert, werden für die Komponenten eines Verbunds Namen festgelegt.  Wörterbücher werden auch Maps genannt. 
+Arrays werden in der Programmierung auch Listen oder Felder genannt. Die Verbunde nennt man auch Structures oder Records. Während man die Komponenten eines $n$-Tupels mit Zahlen $1,\ldots,n$ indiziert, werden für die Komponenten eines Verbunds Namen festgelegt.  Wörterbücher werden auch Maps genannt. 
 \end{bem} 
 
 \begin{aufg}
@@ -631,8 +640,8 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 \begin{aufg} 
 	Schlagen Sie nach wie die folgenden Datenstrukturen auf den Zeigern basierend umgesetzt werden: 
 	\begin{itemize}
-			\item Einfach verkette Listen (linear und zyklisch)
-			\item Doppelt verkette Listen  (linear und zyklisch)
+			\item Einfach verkettete Listen (linear und zyklisch)
+			\item Doppelt verkettete Listen  (linear und zyklisch)
 			\item Binäre Bäume
 	\end{itemize} 
 \end{aufg} 
@@ -662,7 +671,7 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 			\ENDIF
 		\end{algorithmic}
 	\end{algorithm}
-	Diese rekursive Prozedur ist in vielen Situationen besser als die nicht-rekursive iterative Umsetzung mit Hilfe  $\Theta(n)$ arithmetischen Operationen berechnet: 
+	Diese rekursive Prozedur ist in vielen Situationen besser als die nicht-rekursive iterative Umsetzung mit Hilfe von $\Theta(n)$ arithmetischen Operationen: 
 	\begin{algorithm}[H]
 		\caption{$p:=\cc{Potenz-Langsam}(a,n)$}
 		\begin{algorithmic}
@@ -682,26 +691,26 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 	Wir zeigen zuerst durch Induktion über $n$, dass $\cc{Potenz}(a,n)$ für jedes $n \in \N_0$ mit der Rückgabe $a^n$ terminiert. 
 	Diese Behauptung ist in den Fällen $n=0$ und $n=1$ klar. Angenommen, $n>1$ und es ist bereits verifiziert worden, dass $\cc{Potenz}(a,k)$ für jedes $k=0,\ldots,n-1$ mit der Rückgabe $a^k$ terminiert. Ist $n$ gerade, so ist $n/2$ ganze Zahl, die kleiner als $n$ ist, und es gilt $a^n = (a^{n/2})^2$. Nach der Induktionsvoraussetzung terminiert $\cc{Potenz}(a,n/2)$ mit der Rückgabe $a^{n/2}$, sodass $\cc{Potenz}(a,n)$ mit der Rückgabe $(a^{n/2})^2 = a^n$ terminiert. Ist $n$ ungerade, so ist $(n-1)/2$ ganze Zahl, die ebenfalls kleiner als $n$ ist, und es gilt $a^n = a \cdot (a^{(n-1)/2})^2$. Nach der Induktionsvoraussetzung terminiert $\cc{Potenz}(a,(n-1)/2)$ mit der Rückgabe $a^{(n-1)/2}$, sodass $\cc{Potenz}(a,n)$ mit der Rückgabe $a \cdot (a^{(n-1)/2})^2 = a^n$ terminiert. 
 	
-	Es bleibt zu zeigen, dass die Anzahl der Multiplikation, die in $\cc{Potenz}(a,n)$ benutzt wird die Ordnung $\Theta(\log_2 n)$ hat. Dafür zeigen wir durch Induktion über $n$, dass die Anzahl der Multiplikation $M(n)$ bei der Ausführung von $\cc{Potenz}(a,n)$ für jedes $n \in \N$ mit $n \ge 2$ 
+	Es bleibt zu zeigen, dass die Anzahl der Multiplikationen, die in $\cc{Potenz}(a,n)$ benutzt werden die Grö\ss enordnung $\Theta(\log_2 n)$ hat. Dafür zeigen wir durch Induktion über $n$, dass die Anzahl $M(n)$ der Multiplikationen bei der Ausführung von $\cc{Potenz}(a,n)$ für jedes $n \in \N$ mit $n \ge 2$ 
 	die Bedingung
 	\[
 			 \frac{1}{2} \log_2 n \le M(n) \le  2 \log_2 n
 	\]
-	erfüllt. Für $n=2$ ist das klar: $\cc{Potenz}(a,2)$ multipliziert $a$ mit $q = \cc{Potenz}(a,1)$ und $\cc{Potenz}(a,1)$ macht keine Multiplikationen. Sei $n \ge 3$ und sei die Ungleichung $\log_2 k \le M(k) \le 2 \log_2 k$ für alle $k=1,\ldots,n-1$ verifiziert. Ist $n$ gerade, so haben wir $M(n) = M(n/2)+ 1$. Da $n/2 \in \{1,\ldots,n-1\}$ gilt, erhalten wir aus der Induktionsvoraussetzung einerseits
+	erfüllt. Für $n=2$ ist das klar: $\cc{Potenz}(a,2)$ multipliziert $a$ mit $q = \cc{Potenz}(a,1)$ und $\cc{Potenz}(a,1)$ macht keine Multiplikationen. Sei $n \ge 3$ und sei die Ungleichung $\frac12\log_2 k \le M(k) \le 2 \log_2 k$ für alle $k=1,\ldots,n-1$ verifiziert. Ist $n$ gerade, so haben wir $M(n) = M(n/2)+ 1$. Da $n/2 \in \{1,\ldots,n-1\}$ gilt, erhalten wir aus der Induktionsvoraussetzung einerseits
 	\[
-			M(n) = M(n/2) + 1 \ge 1 + \frac{1}{2} \log_2 (n/2) = \frac{1}{2} \log_2 n
+			M(n) = M(n/2) + 1 \ge 1 + \frac{1}{2} \log_2 (n/2) \geq \frac{1}{2} \log_2 n
 	\]
 	und andererseits 
 	\[
-		M(n) \le M(n/2) + 1 \le 1 + 2 \log_2 n/2 + 1 = -1 +  2 \log_2 n \le  2 \log_2 n. 
+		M(n) = M(n/2) + 1 \le 2 \log_2 (n/2) + 1 = 2 \log_2 n - 1 \le  2 \log_2 n. 
 	\]
 	Ist $n$ ungerade, so haben wir $M(n) = M((n-1)/2) + 2$. Da $(n-1)/2 \in \{1,\ldots,n-1\}$ gilt, erhalten wir aus der Induktionsvoraussetzung einerseits 
 	\[
-		M(n) = M((n-1)/2) + 2 \ge 2 + \frac{1}{2} \log_2 ((n-1)/2) \ge \frac{1}{2} \log_2 n
+		M(n) = M((n-1)/2) + 2 \ge \frac{1}{2} \log_2 ((n-1)/2) + 2 = \frac{1}{2} \log_2 (8(n-1)) \ge \frac{1}{2} \log_2 n,
 	\]
-	und andererseits 
+	wegen $n \geq 3$, und andererseits 
 	\[
-		M(n) = M((n-1)/2)+2 \le 2 + 2 \log_2 ((n-1)/2))  = 2 \log_2 (n-1) \le 2 \log_2 n. 
+		M(n) = M((n-1)/2)+2 \le 2 \log_2 ((n-1)/2)) + 2  = 2 \log_2 (n-1) \le 2 \log_2 n. 
 	\]
 \end{proof} 
 
@@ -711,7 +720,7 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 \end{bem} 
 
 \begin{defn}
-	Zur Ausführung einer rekursiven Prozedur $P$ auf einer Eingabe $x$ definiert man den \textbf{Rekursionsbaum} als das Paar $(V,A)$, in dem $V$ die Menge aller Aufrufe von $P$ während der Ausführung von $P$ auf $x$ ist und $A$ ist die Menge aller paare $(u,v)$ derart, dass der Aufruf $v$ direkt aus $u$ stattgefunden hat. Das größte $k$ mit $(a_0,a_1),\ldots, (a_{k-1},a_k) \in A$ für gewisse $a_0,\ldots,a_k$ nennt man die \textbf{Rekursionstiefe} der Ausführung von $P$ auf $x$. Den Aufruf von $P$ auf $x$ nennt man die Wurzel des Baums. 
+	Zur Ausführung einer rekursiven Prozedur $P$ auf einer Eingabe $x$ definiert man den \textbf{Rekursionsbaum} als das Paar $(V,A)$, in dem $V$ die Menge aller Aufrufe von $P$ während der Ausführung von $P$ auf $x$ ist und $A$ die Menge aller Paare $(u,v)$ von Aufrufen ist, so dass der Aufruf $v$ direkt aus $u$ heraus stattgefunden hat. Das größte $k$ mit $(a_0,a_1),\ldots, (a_{k-1},a_k) \in A$ für gewisse $a_0,\ldots,a_k$ nennt man die \textbf{Rekursionstiefe} der Ausführung von $P$ auf $x$. Den Aufruf von $P$ auf $x$ nennt man die Wurzel des (Rekursions)Baums. 
 \end{defn} 
 
 \begin{bsp} 
@@ -729,18 +738,18 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 \end{bsp} 
 
 \begin{bem}
-	Auf der praktischen Seite erfolgt die Umsetzung der Aufrufe von Prozeduren und, insbesondere rekursiven Prozeduren, in Betriebssystemen und Programmiersprachen mit Hilfe des sogenannten Programmstacks. Bei jedem Aufruf wird (intern,auf der Ebene der Maschinensprache) die Stelle im Programm notiert, zu der man nach der Ausführung  der Prozedur zurückkehren soll. Außerdem werden durch einen Aufruf potenziell neue Variablen eingeführt (lokale Variablen der Prozedur, Eingabeparameter). All diese Daten werden auf dem sogenannten \textbf{Aufrufstapel} (engl. call stack, procedure stack) aufgehoben. Die Größe des Aufrufstapels ist standardmäßig ziemlich eingeschränkt, sodass es bei der Ausführung von reksuriven Prozeduren mit einer großen Rekursionstiefe zu einem Überlauf des Aufrufstapels kommen kann. 
+	Auf der praktischen Seite erfolgt die Umsetzung der Aufrufe von Prozeduren und, insbesondere rekursiven Prozeduren, in Betriebssystemen und Programmiersprachen mit Hilfe des sogenannten Programmstacks. Bei jedem Aufruf wird (intern, auf der Ebene der Maschinensprache) die Stelle im Programm notiert, zu der man nach der Ausführung  der Prozedur zurückkehren soll. Außerdem werden durch einen Aufruf potenziell neue Variablen eingeführt (lokale Variablen der Prozedur, Eingabeparameter). All diese Daten werden auf dem sogenannten \textbf{Aufrufstapel} (engl. call stack, procedure stack) aufgehoben. Die Größe des Aufrufstapels ist standardmäßig ziemlich eingeschränkt, sodass es bei der Ausführung von rekursiven Prozeduren mit einer großen Rekursionstiefe zu einem Überlauf des Aufrufstapels kommen kann. 
 	
-	In höheren Programmiersprache, bei denen die Rekursion nicht unbedingt direkt durch den Aufrufstapel umgesetzt wird, wird oft trotzdem das Maximum der Rekursionstiefe festgelegt. 	Hier ein Beispiel eines Python-Codes, der diese Problematik illustriert: 
+	In höheren Programmiersprachen, bei denen die Rekursion nicht unbedingt direkt durch den Aufrufstapel umgesetzt wird, wird oft trotzdem das Maximum der Rekursionstiefe festgelegt. 	Hier ein Beispiel eines Python-Codes, der diese Problematik illustriert: 
 	\lstinputlisting{Code/dive.py}
 	
-	Auf meinem Computer führt der Aufruf von dive auf der Eingabe $0$ zum eine Stacküberlauf  in der Rekursionstiefe $995$. Die maximale Rekursionstiefe kann oft manuell erhöht werden, und es gibt auch Sprachen, die in gewissen Situationen die rekursiven Prozeduren in nicht-rekursiven Maschinencode übersetzen können. Generell gilt aber: wenn man eine rekursive Prozedur mit einer hohen Rekursionstiefe hat, soll man sich Gedanken darüber machen, wie man diese Prozedur in eine nicht-rekursiv umsetzen könnte. Sehr oft kann man dabei seinen eigenen Stapel anlegen. 
+	Auf meinem Computer führt der Aufruf von dive auf der Eingabe $0$ zu einem Stacküberlauf in der Rekursionstiefe $995$. Die maximale Rekursionstiefe kann oft manuell erhöht werden, und es gibt auch Sprachen, die in gewissen Situationen die rekursiven Prozeduren in nicht-rekursiven Maschinencode übersetzen können. Generell gilt aber: wenn man eine rekursive Prozedur mit einer hohen Rekursionstiefe hat, sollte man sich Gedanken darüber machen, wie man diese Prozedur nicht-rekursiv umsetzen könnte. Sehr oft kann man dabei seinen eigenen Stapel anlegen. 
 \end{bem} 
 
 \begin{bsp}[Türme von Hanoi] 
-	Gegeben sind drei Stäbe: Startstab, Hilfsstab und Zielstab. Auf dem Startstab sind $n$ Scheiben der Größen $1$ bis $n$ aufgestapelt, so dass die Scheiben von oben nach unten betrachtet nach der Größe steigend sortiert sind. Die Rechenaufgabe besteht darin, eine Folge von Schritten zu bestimmen, mit denen man alle $n$ Scheiben vom Startstab auf den Zielstab derart versetzt, dass in jedem Schritt die Scheiben von jedem der drei Stäbe sortiert sind (von oben nach unten betrachtet aufsteigend nach der Größe). 
+	Gegeben sind drei Stäbe: Startstab, Hilfsstab und Zielstab. Auf dem Startstab sind $n$ Scheiben der Größen $1$ bis $n$ aufgestapelt, so dass die Scheiben von oben nach unten betrachtet nach der Größe steigend sortiert sind. Die Rechenaufgabe besteht darin, eine Folge von Schritten zu bestimmen, mit denen man einzeln alle $n$ Scheiben vom Startstab auf den Zielstab derart versetzt, dass in jedem Schritt die Scheiben von jedem der drei Stäbe sortiert sind (von oben nach unten betrachtet aufsteigend nach der Größe). 
 	
-	Eine rekursive Lösung dieser Aufgabe sieht so aus: das Ziel ist $n$ Scheiben vom Start $s$ nach Ziel $z$ mit Hilfe von $h$ als Hilfsstab zu versetzen. Wir versetzen die $n-1$ Scheiben vom Start- auf den Hilfsstab, indem wir das Zielstab als Hilfsstab benutzen. Danach wird die größte Scheibe verfügbar: sie kann auf den Zielstab versetzt werden. Danach ist der Startstab frei und kann bei der Versetzung der $n-1$ Scheiben vom Hilfs- auf den Zielstab als Hilfsstab benutzt werden. 
+	Eine rekursive Lösung dieser Aufgabe sieht so aus: das Ziel ist $n$ Scheiben vom Start $s$ nach Ziel $z$ mit Hilfe von $h$ als Hilfsstab zu versetzen. Wir versetzen die $n-1$ Scheiben vom Start- auf den Hilfsstab, indem wir den Zielstab als Hilfsstab benutzen. Danach wird die größte Scheibe verfügbar: sie kann auf den Zielstab versetzt werden. Danach ist der Startstab frei und kann bei der Versetzung der $n-1$ Scheiben vom Hilfs- auf den Zielstab als Hilfsstab benutzt werden. 
 	
 	\begin{algorithm}[H]
 	\caption{$\cc{Hanoi-Schritte}(n,s,h,z)$}
@@ -774,8 +783,11 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 	Hier Umsetzung in Python mit der Verwendung von Iteratoren: 
 \lstinputlisting{Code/hanoi.py}
 
-	Die Demo-Datei für $4$ Türme: \scriptsize{ 
+	Die Demo-Datei für $4$ Türme:
+	\begin{center}
+	\small{ 
 	\url{https://de.wikipedia.org/wiki/T%C3%BCrme_von_Hanoi#/media/Datei:Tower_of_Hanoi_4.gif} } 
+	\end{center}
 
 \end{bsp} 
 
@@ -785,13 +797,13 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 \label{sect:RAM}
 
 \begin{bem} 
-Die \textbf{Random Access Machine} (kurz \textbf{RAM}), oder auf deutsch, \textbf{Maschine mit wahlfreiem Zugriff}, wird unsere Idealisierung bzw. mathematische Abstraktion des realen Rechners sein. Alle Analysen und Entwürfe von Algorithmen in diesem Kurs werden im Rahmen der RAM durchgeführt. 
+Die \textbf{Random Access Machine} (kurz \textbf{RAM}), oder auf deutsch, \textbf{Maschine mit wahlfreiem Zugriff}, wird unsere \underline{Idealisierung} bzw. mathematische Abstraktion des realen Rechners sein. Alle Analysen und Entwürfe von Algorithmen in diesem Kurs werden im Rahmen der RAM durchgeführt. 
 
 Wir nehmen an, dass die Zellen unserer Maschine ganze Zahlen beliebiger Größe speichern können (d.h., die Bit-Größe der Speicherzellen ist unendlich). Die Speichergröße (d.h., die Anzahl der Speicherzellen) ist ebenfalls unbeschränkt (d.h., unendlich). Wir können des Weiteren alle anderen Datentypen auf der Basis der ganzen Zahlen umsetzen. 
 
 Die Random Access Machine kann auch rein formal eingeführt werden. Wir betrachten hier (zunächst) allerdings eine etwas informelle Beschreibung, in der wir festlegen welche Datentypen, Operationen und Kontrollstrukturen für uns elementar sind. 
 
-Als \textbf{Grundoperationen} für unsere RAM erlauben wir:
+Als \textbf{Grundoperationen} für die RAM erlauben wir:
 %
 \begin{itemize}
 	\item Zuweisung (für ganzzahlige Datentypen)
@@ -830,42 +842,42 @@ Dieser Algorithmus würde also $2^{2^n}$ in der Zeit $O(n)$ berechnen. Die Zahl 
 \begin{defn}
 	Wir fixieren die \textbf{Standard-Kodierungen} durch Bit-Strings für Mengen $\Z, \Q$ sowie $\Z^n$ und $\Q^n$ mit $n \in \N$ wie folgt: 
 	\begin{itemize}
-		\item Für $z \in \Z$ ist die Standard-Kodierung die Darstellung von $z$ im Binärsystem. Diese Kodierung hat Größe $\Theta(\log_2 (|z|+1)$. 
-		\item Jedes $q \in \Q$ kann eindeutig als $q = a/b$ mit $a \in \Z$ und $b \in \N$ fixiert werden. Danach wird das Paar $(a,b) \in \Z \times \N$ mit der Verwendung der Standardkodierungen von $a$ und $b$ kodiert (vgl. dazu den Beweis der Proposition~\eqref{kod:paare} über das Kodieren von Paaren). 
-		\item $\Z^n$ und $\Q^n$ wird in Anlehnung an die oben festgelegten Stadardkodierungen von $\Z$ und $\Q$ kodiert. 
+		\item Für $z \in \Z$ ist die Standard-Kodierung die Darstellung von $z$ im Binärsystem. Diese Kodierung hat die Größe $\Theta(\log_2 (|z|+1))$. 
+		\item Jedes $q \in \Q$ kann eindeutig als $q = a/b$ mit $a \in \Z$ und $b \in \N$ fixiert werden. Danach wird das Paar $(a,b) \in \Z \times \N$ mit der Verwendung der Standardkodierungen von $a$ und $b$ kodiert (vgl. dazu den Beweis der Proposition~\ref{kod:paare} über das Kodieren von Paaren). 
+		\item $\Z^n$ und $\Q^n$ wird in Anlehnung an die oben festgelegten Standardkodierungen von $\Z$ und $\Q$ kodiert (vgl.~Korollar~\ref{kod:tupel}). 
 	\end{itemize} 
-	Für $x$ aus einer dieser Mengen ($\Z,\Q, \Z^n$ oder $\Q^n$) bezeichnen wir als $\enc{x} \in \{0,1\}^\ast$ die Standardkodierung von $x$ und als $\encl{x}$ die Länge dieser Kodierung. 
+	Für ein Element $x$ aus einer dieser Mengen ($\Z,\Q, \Z^n$ oder $\Q^n$) bezeichnen wir als $\enc{x} \in \{0,1\}^\ast$ die Standardkodierung von $x$ und als $\encl{x}$ die Länge dieser Kodierung. 
 \end{defn} 
 
 \begin{defn}
-	Ein Rechenproblem ist eine binäre Relation auf der Menge der Bit-Strings $\{0,1\}^\ast$. Mit anderen Worten ist ein Rechenproblem eine Menge 
+	Ein \textbf{Rechenproblem} ist eine binäre Relation auf der Menge der Bit-Strings $\{0,1\}^\ast$. Mit anderen Worten ist ein Rechenproblem eine Menge 
 	\[
 	\Pi \subseteq \{0,1\}^\ast \times \{0,1\}^\ast.
 	\]
-	Die Bedeutung von $(x,y) \in \Pi$ ist dabei: $y$ ist eine mögliche Rückgabe für die Eingabe $x$. Somit ist ein Rechenproblem eine Eingabe-Rückgabe-Relation. Ein Rechenproblem $\Pi$ algorithmisch zu lösen heißt es, einen Algorithmus zu finden, der für jede Eingabe $x$ entscheidet, ob ein $y$ mit $(x,y) \in \Pi$ existiert und ggf. ein solches $y$ berechnet. 
+	Die Bedeutung von $(x,y) \in \Pi$ ist dabei: $y$ ist eine mögliche Rückgabe für die Eingabe $x$. Somit ist ein Rechenproblem eine \textbf{Eingabe-Rückgabe-Relation}. Ein Rechenproblem~$\Pi$ \textbf{algorithmisch zu lösen} heißt, einen Algorithmus zu finden, der für jede Eingabe $x$ entscheidet, ob ein $y$ mit $(x,y) \in \Pi$ existiert und ggf. ein solches $y$ berechnet. 
 \end{defn} 
 
-\begin{defn}
-	Die Berechnung einer Funktion $f : \{0,1\}^\ast \to \{0,1\}^\ast$ ist ein Spezialfall eines Rechenproblems, bei dem man zu jeder Eingabe $x$ eine Eindeutige Rückgabe $f(x)$ hat. 
-\end{defn} 
+\begin{bem}
+	Die Berechnung einer Funktion $f : \{0,1\}^\ast \to \{0,1\}^\ast$ ist ein Spezialfall eines Rechenproblems, bei dem es für jede Eingabe $x$ eine eindeutige Rückgabe $f(x)$ gibt. 
+\end{bem} 
 
 \begin{defn}
-	Eine Teilmenge $L \subseteq \{0,1\}^\ast$ nennt man \textbf{Sprache}. Eine Sprache algorithmisch zu entscheiden, heißt es einen Algorithmus zu finden, der für jedes $x \in \{0,1\}^\ast$ entscheidet, ob $x$ zu $L$ gehört oder nicht. Die Entscheidung der Sprache $L$ kann als die Berechnung der Funktion $f $ mit 
+	Eine Teilmenge $L \subseteq \{0,1\}^\ast$ nennt man \textbf{Sprache}. Eine Sprache \textbf{algorithmisch zu entscheiden} heißt, einen Algorithmus zu finden, der für jedes $x \in \{0,1\}^\ast$ entscheidet, ob $x$ zu $L$ gehört oder nicht. Die Entscheidung der Sprache $L$ kann als die Berechnung der Funktion $f : \{0,1\}^\ast \to \{0,1\}$ mit 
 	\[
 	f(x) := \begin{cases}
-		1 & \text{für} \ x \in L, 
-		\\ 0 & \text{für} \ x \not\in L.
+		1 & \text{für} \ x \in L
+		\\ 0 & \text{für} \ x \not\in L
 	\end{cases} 
 	\]
-	formuliert werden. Die Rechenprobleme, die durch eine Sprache definiert werden, nennt man Entscheidungsprobleme. Es handelt sich dabei, um Probleme bei denen man nur zwei mögliche Rückgabewerte hat (ja/nein bzw. wahr/falsch bzw. 1/0). 
+	formuliert werden. Die Rechenprobleme, die durch eine Sprache definiert werden, nennt man \textbf{Entscheidungsprobleme}. Es handelt sich dabei um Probleme, bei denen man nur zwei mögliche Rückgabewerte hat (ja/nein bzw. wahr/falsch bzw. 1/0). 
 \end{defn}
 
 \begin{bem}
-	Die vorigen drei Definitionen werden wir auch mit anderen Mengen an der Stelle von $\{0,1\}^\ast$ benutzen, unter der Voraussetzung, dass für diese Mengen eine Kodierung mit Bit-Strings festgelegt ist:
+	Die vorigen Definitionen werden wir auch mit anderen Mengen an der Stelle von $\{0,1\}^\ast$ benutzen, unter der Voraussetzung, dass für diese Mengen eine Kodierung mit Bit-Strings festgelegt ist:
 	\begin{itemize}
-		\item Ein Rechenproblem ist eine Eingabe-Rückgabe-Relation $\Pi \subseteq  X \times Y$ für die Menge $X$ aller möglichen Eingaben (mit einer festgelegten Kodierung der Eingabe) und die Menge $Y$ aller möglichen Rückgaben (mit einer festgelegten Kodierung der Rückgabe). 
+		\item Ein Rechenproblem ist eine Eingabe-Rückgabe-Relation $\Pi \subseteq  X \times Y$ für die Menge $X$ aller möglichen Eingaben (mit einer festgelegten Kodierung der Eingabe) und die Menge~$Y$ aller möglichen Rückgaben (mit einer festgelegten Kodierung der Rückgabe). 
 		\item Analog kann das Problem der algorithmischen Berechnung einer Abbildung $f : X \to Y$ beschrieben werden, sobald Kodierungen für $X$ und $Y$ festgelegt sind. 
-		\item Entscheidungsprobleme entsprechen der algorithmischen Berechnung der Prädikate $P : X \to \{\false,\true\}$. 
+		\item Entscheidungsprobleme entsprechen der algorithmischen Berechnung von Prädikaten der Form $P : X \to \{\false,\true\}$. 
 	\end{itemize} 
 \end{bem} 
 
@@ -873,10 +885,10 @@ Dieser Algorithmus würde also $2^{2^n}$ in der Zeit $O(n)$ berechnen. Die Zahl 
 	\begin{itemize} 
 		\item Das Problem
 		\[
-		\setcond{ (a,p) \in \N \times \Z_{\ge 2} }{p \ \text{ist Primfaktor von} \ a}
+		\setcond{ (a,p) \in \N \times \Z_{\ge 2} }{p \ \text{ist Primfaktor von} \ a} \subseteq \N \times \Z_{\ge 2}
 		\]
 		kann mit Worten folgendermaßen formuliert werden: entscheide, für ein gegebenes $a \in \N$, ob $a$ einen Primfaktor $p \in \Z_{\ge 2}$ besitzt und berechne ggf. einen solchen Faktor. 
-		\item Die Berechnung von $f : \Z \times \N_0 \to \N$ mit $f(a,k):= a^k$ kann mit Worten so formulieren, für gegebene $a \in \Z,k \in \N$ berechne die $k$-te Potenz von $a$. 
+		\item Die Berechnung von $f : \Z \times \N_0 \to \N$ mit $f(a,k):= a^k$ kann mit Worten so formuliert werden: für gegebene $a \in \Z,k \in \N_0$ berechne die $k$-te Potenz von $a$. 
 		\item Das algorithmische  Problem zur Sprache der (Bit-Kodierungen von) Primzahlen ist zu entscheiden, ob die Eingabe (die Bit-Kodierung einer) Primzahl ist. Mit Worten: entscheide, ob eine gegebene Zahl $z \in \N$ eine Primzahl ist. 
 	\end{itemize} 
 \end{bsp} 
@@ -884,35 +896,36 @@ Dieser Algorithmus würde also $2^{2^n}$ in der Zeit $O(n)$ berechnen. Die Zahl 
 \subsection{Entscheidbarkeit}
 
 \begin{defn}
-	Eine Sprache $L$ heißt entscheidbar, wenn ein Algorithmus existiert, der die Sprache $L$ entscheidet. 
+	Eine Sprache $L \subseteq \{0,1\}^\ast$ heißt \textbf{entscheidbar}, wenn ein Algorithmus existiert, der die Sprache~$L$ entscheidet. 
 \end{defn} 
 
 \begin{lem} \label{lem:X:2^X}
-	Sei $X$ Menge. Dann ist keine Abbildung $F : X \to 2^X$ surjektiv. 
+	Sei $X$ eine Menge. Dann gibt es keine surjektive Abbildung $F : X \to 2^X$. 
 \end{lem}
 \begin{proof}
+Sei $F : X \to 2^X$ eine Abbildung.
 	Man betrachte die Menge $Y := \setcond{x \in X}{x \not\in F(x)}$. Wir zeigen durch ein Widerspruchsargument, dass kein $a \in X$ mit $F(a) =Y$ existiert. Angenommen, es gäbe ein solches $a$. 
 	
-	Hat man $a \in Y$, so ist $a \in F(a)$, weil $Y=F(a)$ ist. Aber andererseits besteht $Y$ aus allen $x \in X$, für die $x \not\in F(x)$ gilt, sodass man wegen $a \in Y$ auch gleichzeitig $a \not\in F(x)$ hat. Widerspruch. 
+	Hat man $a \in Y$, so ist $a \in F(a)$, weil $Y=F(a)$ ist. Aber andererseits besteht $Y$ aus allen $x \in X$, für die $x \not\in F(x)$ gilt, sodass wegen $a \in Y$ auch gleichzeitig $a \not\in F(a)$ gilt. Widerspruch. 
 	
-	Hat man $a \not\in Y$, so ist $a \not\in F(a)$, weil $Y=F(a)$ ist. Aber anderseits besteht $Y$ genau aus den $x \in X$ mit $x \not\in F(x)$.Wegen $a \not\in Y$ hat man also $a \in F(a)$. Widerspruch. 
+	Hat man $a \not\in Y$, so ist $a \not\in F(a)$, weil $Y=F(a)$ ist. Aber andererseits besteht $Y$ genau aus den $x \in X$ mit $x \not\in F(x)$. Wegen $a \not\in Y$ gilt damit $a \in F(a)$. Widerspruch. 
 \end{proof} 
 
 \begin{thm}
 	Es existieren Sprachen, die nicht entscheidbar sind. 
 \end{thm} 
 \begin{proof} 
-		Ein Algorithmus ist durch seinen ``Quellencode'' darstellbar. Denn ein jeder Algorithmus ist eine Auflistung von Grundbefehlen, die man alle mit Hilfe von Strings über einem endlichen Alphabet darstellen kann. Somit kann  man jeden Algorithmus als ein String über einem endlichen Alphabet kodieren. Wir identifizieren also die Algorithmen mit Elementen von $\{0,1\}^\ast$. Die Menge aller Sprachen über dem Alphabet $\{0,1\}^\ast$ ist die Menge $2^{\{0,1\}^\ast}$. Wäre jeder Sprache entscheidbar, so könnte man für jede Sprache $L \in 2^{\{0,1\}^\ast}$ einen Algorithmus (genauer: Quellcode eines Algorithmus) $A_L \in \{0,1\}^\ast$ fixieren, der die Sprache $L$ entscheidet. Wir können also eine Abbildung $F : \{0,1\}^\ast \to 2^{\{0,1\}^\ast}$ so fixieren, dass $F(A_L) = L$ für alle $L \in 2^{\{0,1\}^\ast}$ gilt. Die Abbildung $F$ ist surjektiv. Die Existenz der Abbildung $F$ widerspricht aber der Behauptung von Lemma~\ref{lem:X:2^X}.
+		Ein Algorithmus ist durch seinen \glqq Quellencode\grqq\ darstellbar. Denn ein jeder Algorithmus ist eine Auflistung von Grundbefehlen, die man alle mit Hilfe von Strings über einem endlichen Alphabet darstellen kann. Somit kann  man jeden Algorithmus als ein String über einem endlichen Alphabet kodieren. Wir identifizieren also die Algorithmen mit Elementen von $\{0,1\}^\ast$. Die Menge aller Sprachen über dem Alphabet $\{0,1\}^\ast$ ist die Menge $2^{\{0,1\}^\ast}$. Wäre jede Sprache entscheidbar, so könnte man für jede Sprache $L \in 2^{\{0,1\}^\ast}$ einen Algorithmus (genauer: Quellcode eines Algorithmus) $A_L \in \{0,1\}^\ast$ fixieren, der die Sprache $L$ entscheidet. Wir können also eine Abbildung $F : \{0,1\}^\ast \to 2^{\{0,1\}^\ast}$ so fixieren, dass $F(A_L) = L$ für alle $L \in 2^{\{0,1\}^\ast}$ gilt. Die Abbildung $F$ ist surjektiv. Die Existenz der Abbildung $F$ widerspricht aber der Behauptung von Lemma~\ref{lem:X:2^X}.
 \end{proof} 
 
-\subsection{Komplexität in Hinblick auf die Laufzeit} 
+\subsection{Komplexität im Hinblick auf die Laufzeit} 
 
 \begin{defn} 
-	Sei $A$ Algorithmus im Rahmen eines Rechenmodells, dessen Schritte als Grundoperationen im gegebenen Rechenmodell beschrieben sind. 
+	Sei $A$ ein Algorithmus im Rahmen eines Rechenmodells, dessen Schritte als Grundoperationen im gegebenen Rechenmodell beschrieben sind. 
 
 Die \textbf{Laufzeit} $L(A,x)$ von~$A$ auf der Eingabeinstanz $x$ ist die Anzahl der Schritte des Algorithmus $A$ auf der Eingabe $x$ bis zur Terminierung. 
 
-Für eine Menge $X$ von Eingabe-Instanze, heißt $\max_{x \in A} L(A,x)$ die \textbf{Worst-Case-Laufzeit} von $A$ auf $X$. 
+Für eine Menge $X$ von Eingabe-Instanzen, heißt $\max_{x \in A} L(A,x)$ die \textbf{Worst-Case-Laufzeit} von $A$ auf $X$. 
 
 Die \textbf{Laufzeitfunktion} $L_A : \N \to \N$ von~$A$ beschreibt die Worst-Case-Laufzeit in Abhängigkeit von einer oberen Schranke an die Länge der Eingabe: 
 \[
@@ -932,29 +945,29 @@ Wir nennen einen Algorithmus~$A$ \textbf{polynomial} oder \textbf{Polynomialzeit
 \end{defn} 
 
 \begin{bem}
-	Ein Polynomialzeit-Algorithmus $A$ ist ein Algorithmust mit der Laufzeitfunktion der Ordnung $ O(n^d)$ für ein $d \in \N_0$. 
+	Ein Polynomialzeit-Algorithmus $A$ ist ein Algorithmus, deren Laufzeitfunktion die Ordnung $O(n^d)$, für ein $d \in \N_0$, hat. 
 \end{bem} 
 
 \begin{bem}
-	In der Theorie nennt man Polynomialzeit-Algorithmen oft auch effiziente Algorithmen. Welche Algorithmen aus der praktischen Sicht effizient sind, lässt sich schwer formal beschreiben.
+	In der Theorie nennt man Polynomialzeit-Algorithmen oft auch \textbf{effiziente} Algorithmen. Welche Algorithmen aus der praktischen Sicht effizient sind, lässt sich schwer formal beschreiben.
 \end{bem} 
 
 \begin{defn}
-	Für $T: \N_0 \to \N$ heißt ein Rechenproblem heißt \textbf{in der Zeit $T(n)$} berechenbar, wenn es ein Algorithmus $A$ existiert, der das Problem löst und für welchen die Laufzeit-Funktion die Bedingung $L_A(n) \le T(n)$ für alle $n \in \N_0$ erfüllt. Im Fall von Sprachen sagt man `ìn der Zeit $T(n)$ entscheidbar''. 
+	Für $T: \N_0 \to \N$ heißt ein Rechenproblem \textbf{in der Zeit $T(n)$} berechenbar, wenn ein Algorithmus $A$ existiert, der das Problem löst und dessen Laufzeit-Funktion die Bedingung $L_A(n) \le T(n)$ für alle $n \in \N_0$ erfüllt. Im Fall von Sprachen sagt man \glqq in der Zeit $T(n)$ entscheidbar\grqq. 
 	
-	Ein Rechenproblem heißt \textbf{Polynomialzeit-berechenbar}, wenn es ein Po\-ly\-no\-mi\-al\-zeit-Algorithmus existiert, der das Rechenproblem löst. 
+	Ein Rechenproblem heißt \textbf{Polynomialzeit-berechenbar}, wenn ein Po\-ly\-no\-mi\-al\-zeit-Algorithmus existiert, der das Rechenproblem löst. 
 	
-	Ein Entscheidungsproblem bzw. eine Sprache heißt \textbf{Polynomialzeit-\-ent\-scheid\-bar}, wenn es ein Polynomialzeit-Algorithmus existiert, der das Problem bzw. die Sprache entscheidet. 
+	Ein Entscheidungsproblem bzw. eine Sprache heißt \textbf{Polynomialzeit-\-ent\-scheid\-bar}, wenn ein Polynomialzeit-Algorithmus existiert, der das Problem bzw. die Sprache entscheidet. 
 \end{defn} 
 
 \begin{bem}
-	Die Berechenbarkeit in der Zeit $T(n)$ bezieht sich auf ein zugrundeliegendes Rechenmodell. Das ist RAM in unserem Fall, es gibt aber auch andere Rechenmodelle (z.B. Modelle, die nur einen sequentiellen Zugriff zu den Speicherzellen ermöglichen). 
+	Die Berechenbarkeit in der Zeit $T(n)$ bezieht sich auf ein zugrundeliegendes Rechenmodell. Das ist die RAM in unserem Fall, es gibt aber auch andere Rechenmodelle (z.B. Modelle, die nur einen sequentiellen Zugriff zu den Speicherzellen ermöglichen). 
 \end{bem} 
 
 \begin{defn}
-	Die Menge aller Polynomialzeit-entscheidbaren Sprachen $L \subseteq \{0,1\}^\ast$ wird die Komplexitätsklasse $\operatorname{P}$ genannt. Als Formel: 
+	Die Menge aller Polynomialzeit-entscheidbaren Sprachen $L \subseteq \{0,1\}^\ast$ wird die \textbf{Komplexitätsklasse} $\operatorname{P}$ genannt. Als formaler Ausdruck: 
 	\[
-			\DP := \setcond{L \subseteq \{0,1\}^\ast }{L \ \text{Polynomialzeit-entscheidbar} } 
+			\DP := \setcond{L \subseteq \{0,1\}^\ast }{L \ \text{Polynomialzeit-entscheidbar} } .
 	\]
 \end{defn} 
 

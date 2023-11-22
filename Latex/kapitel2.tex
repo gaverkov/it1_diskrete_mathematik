@@ -405,7 +405,7 @@ Für eine Menge $X$ und ein $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die M
 	\]
 	Es folgt
 	\[
-		\left| \binom{X}{k} \right| = \frac{|\Inj(I,X) |}{k!} = \frac{|X|^{\underline{k}}}{k!} = \binom{|X|}{k!}. 
+		\left| \binom{X}{k} \right| = \frac{|\Inj(I,X) |}{k!} = \frac{|X|^{\underline{k}}}{k!} = \binom{|X|}{k}. 
 	\]
 \end{proof} 
 
@@ -429,7 +429,7 @@ Für eine Menge $X$ und ein $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die M
 \begin{proof} 
 	Es gibt verschiedene Ansätze zum Beweis dieser Formel. Zum Beispiel kann man eine natürliche Bijektion zwischen  $2^X$ und $\{0,1\}^X$ erstellen und dann $|\{0,1\}^X| = |\{0,1\}|^{|X|} = 2^{|X|}$ nutzen (Aufgabe). 
 	
-	Wir diskutieren hier einen Beweis durch Induktion über $|X|$. Hat $X$ kein Element, so gilt $2^X = 2^\emptyset = \{\text{leere Abbildung}\}$. Somit ist $|2^X| = 1 = 2^0 = 2^{|X|}$. Sei $X$ eine Menge mit $n \ge 1$ Elementen und sei die Formel für Mengen $X$ mit $n-1$ Elementen bereits verifiziert. Wir fixieren ein $a \in X$. Die Teilmengen $A$ von $X$ zerlegen sich nach den Bedingungen $a \in A$ und $a \not\in A$ in zwei disjunkte Mengen. Es gilt also
+	Wir diskutieren hier einen Beweis durch Induktion über $|X|$. Hat $X$ kein Element, so gilt $2^X = 2^\emptyset = \{ \emptyset \}$. Somit ist $|2^X| = 1 = 2^0 = 2^{|X|}$. Sei $X$ eine Menge mit $n \ge 1$ Elementen und sei die Formel für Mengen $X$ mit $n-1$ Elementen bereits verifiziert. Wir fixieren ein $a \in X$. Die Teilmengen $A$ von $X$ zerlegen sich nach den Bedingungen $a \in A$ und $a \not\in A$ in zwei disjunkte Mengen. Es gilt also
 	\begin{align*}
 			2^X & = \setcond{A}{A \subseteq X, \ a \in A} \cupdot \setcond{A}{A \subseteq X, \ a \not\in A}
 			\\ & = \setcond{B \cup \{a\}}{B \subseteq X \setminus \{a\}} \cupdot 2^{X \setminus \{a\}}. 
@@ -498,7 +498,7 @@ Für eine Menge $X$ und ein $k \in \N_0$ bezeichnen wir als $\binom{X}{k}$ die M
 			\\ \hline & $y^3$
 		\end{tabular} 
 	\end{center} 
-	Man erhält $(x+y)^3 = x^3+ 3 x^2 y + 3 x y^2 + y^3$, wobei hier die Koeffizienten $1,3,3,1$ die Binomialkoeffizienten $\binom{3}{k}$ mit $i=0,1,2,3$ sind. 
+	Man erhält $(x+y)^3 = x^3+ 3 x^2 y + 3 x y^2 + y^3$, wobei hier die Koeffizienten $1,3,3,1$ die Binomialkoeffizienten $\binom{3}{i}$ mit $i=0,1,2,3$ sind. 
 \end{bsp} 
 
 \subsection{Rekursion für Binomialkoeffizienten} 
@@ -762,7 +762,7 @@ Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Tr�
 \begin{lem} \label{lem:multimengen}
 	Seien $n \in \N$ und $k \in \N_0$. Dann gilt: 
 	\[
-		\biggl| \setcond{ (z_1,\ldots,z_n) \in \N_0^n}{z_1 + \cdots + z_n = k} \biggr| = \mbinom{n}{k} = \binom{n+k-1}{k}. 
+		\biggl| \left\{ (z_1,\ldots,z_n) \in \N_0^n : z_1 + \cdots + z_n = k \right\} \biggr| = \mbinom{n}{k} = \binom{n+k-1}{k}. 
 	\]
 	Mit Worten: die Gleichung $z_1 + \cdots + z_n = k$ mit nicht-negativen ganzzahligen Variablen $z_1,\ldots,z_n$ hat genau $\binom{n+k-1}{k}$ Lösungen $(z_1,\ldots,z_n)$. 
 \end{lem} 
@@ -785,12 +785,12 @@ Zwei Multimengen $M$ und $N$ nennen wir \textbf{gleich}, wenn sie den selben Tr�
 	\end{equation}
 	 von $Y$ nach 
 	\(
-			X:=\binom{\{1,\ldots,n+k-1\}}{n-1}. 
+			X:=\binom{\{1,2,\ldots,n+k-1\}}{n-1}. 
 	\)
 \end{proof} 
 
 \begin{aufg}
-	Überprüfen Sie, dass im Beweis des vorigen Theorems die Vorschrift \eqref{y->x} tatsächlich eine Bijektion von $Y$ nach $X$ ist. 
+	Überprüfen Sie, dass im Beweis des vorigen Lemmas die Vorschrift \eqref{y->x} tatsächlich eine Bijektion von $Y$ nach $X$ ist. 
 \end{aufg} 
 
 \begin{thm}
@@ -1067,8 +1067,12 @@ Es gibt insgesamt $3^{10}$ mögliche Protokolle. Das ist geordnetes Ziehen (die 
 \subsection{Einfache Beispiele} 
 
 \begin{aufg}
-	Zeigen Sie, dass jede Färbung der Seitenflächen eines (dreidimensionalen) Würfels mit zwei Farben vier Seitenflächen gleich färbt. 
-\end{aufg} 
+	Zeigen Sie, dass jede Färbung der Ecken eines (dreidimensionalen) Würfels mit zwei Farben vier Ecken gleich färbt. 
+\end{aufg}
+
+\begin{aufg}
+Zeigen Sie, dass jede Färbung der Seitenflächen eines (dreidimensionalen) Würfels mit zwei Farben vier Seitenflächen $A, B, C, D$ so färbt, dass $A$ und $B$ die gleiche Farbe haben und $C$ und $D$ die gleiche Farbe haben.
+\end{aufg}
 
 \begin{aufg}
 	Zeigen Sie, dass jede Färbung der Seitenflächen eines (dreidimensionalen) Würfels mit zwei Farben einem Paar benachbarter Seitenflächen ($=$ besitzen eine gemeinsame Kante) die gleiche Farbe gibt.
