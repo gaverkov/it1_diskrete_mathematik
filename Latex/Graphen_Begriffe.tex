@@ -5,17 +5,17 @@
 
 \begin{defn}
 Sei $V$ eine endliche Menge und sei $A$ eine Teilmenge von $V \times V$.
-Das Paar $D=(V,A)$ heißt \emph{Digraph} (engl.~\emph{directed graph}) mit \emph{Knotenmenge} $V$ und \emph{Kantenmenge}~$A$.
-Die Elemente von $V$ heißen \emph{Knoten} und die Elemente von $A$ heißen \emph{(gerichtete) Kanten} (engl.~\emph{arcs}) von~$D$.
-Ist $(a,b) \in A$ eine \emph{Kante}, so nennen wir~$a$ ihren \emph{Startknoten} und~$b$ ihren \emph{Endkonten}.
-Man sagt auch, dass die Knoten $a$ und $b$ \emph{benachbart} und die Kante $(a,b)$ \emph{inzident} zu~$a$ und $b$ ist.
-Eine Kante der Form $(a,a)$ heißt \emph{Schlinge}.
+Das Paar $D=(V,A)$ heißt \textbf{Digraph} (engl.~\textbf{directed graph}) mit \textbf{Knotenmenge} $V$ und \textbf{Kantenmenge}~$A$.
+Die Elemente von $V$ heißen \textbf{Knoten} und die Elemente von $A$ heißen \textbf{(gerichtete) Kanten} (engl.~\textbf{arcs}) von~$D$.
+Ist $(a,b) \in A$ eine Kante, so nennen wir~$a$ ihren \textbf{Startknoten} und~$b$ ihren \textbf{Endkonten}.
+Man sagt auch, dass die Knoten $a$ und $b$ \textbf{benachbart} und die Kante $(a,b)$ \textbf{inzident} zu~$a$ und zu~$b$ ist.
+Eine Kante der Form $(a,a)$ heißt \textbf{Schlinge}.
 \end{defn}
 
 \begin{bsp} 
 Digraphen lassen sich auf vielfache Weise anschaulich darstellen.
 Eine verbreitete und nützliche Möglichkeit ist das \glqq Zeichnen\grqq\ in die Ebene.
-Ein Digraph mit Doppelkante zwischen den Knoten $1$ und $3$ und Schlinge um den Knoten $7$ sei zum Beispiel wie folgt dargestellt:
+Ein Digraph mit Doppelkante zwischen den Knoten $1$ und $3$ und Schlinge um den Knoten $7$ sei zum Beispiel wie folgt dargestellt:\\
 
 \begin{center}
 \begin{tikzpicture}[line width=1.5,scale=1.5]
@@ -34,28 +34,29 @@ Ein Digraph mit Doppelkante zwischen den Knoten $1$ und $3$ und Schlinge um den 
 \end{bsp} 
 
 \begin{defn}
-Für einen gegebenen Knoten $a \in V$ heißt die Anzahl der Knoten $b \in V$ mit $(a,b) \in A$ der \emph{Ausgangsgrad} von~$a$.
-Analog heißt für $b \in V$ die Anzahl der Knoten $a \in V$ mit $(a,b) \in A$ der \emph{Eingangsgrad} von~$b$.
+Sei $D = (V,A)$ ein Digraph.
+Für einen gegebenen Knoten $a \in V$ heißt die Anzahl der Knoten $b \in V$ mit $(a,b) \in A$ der \textbf{Ausgangsgrad} von~$a$.
+Analog heißt für $b \in V$ die Anzahl der Knoten $a \in V$ mit $(a,b) \in A$ der \textbf{Eingangsgrad} von~$b$.
 \end{defn} 
 
 \begin{defn}
-Sind $D=(V,A)$ und $D'=(V',A')$ zwei Digraphen, so dass $V' \subseteq V$ und $A' \subseteq A$ gelten, so nennt man $D'$ einen \emph{Teilgraphen} von~$D$.
+Sind $D=(V,A)$ und $D'=(V',A')$ zwei Digraphen, so dass $V' \subseteq V$ und $A' \subseteq A$ gelten, so nennt man $D'$ einen \textbf{Teilgraphen} von~$D$.
 Ist $W \subseteq V$ so heißt
 \[
 D_{W} := \left( W, \setcond{(a,b)}{a,b \in W \text{ und } (a,b) \in A} \right)
 \]
-der durch $W$ \emph{induzierte} Teilgraph von~$D$.
+der durch $W$ \textbf{induzierte} Teilgraph von~$D$.
 \end{defn}
 
 \begin{defn} 
-Für einen Digraphen $D=(V,A)$ und Knoten $a,b \in V$ heißt ein Tupel $(v_0,\ldots,v_k)$ mit $(v_i,v_{i+1}) \in A$, für $0 \leq i \leq k-1$ und $v_0=a$ und $v_k=b$ ein \emph{$(a,b)$-Pfad} der Länge~$k$.
-Ein Pfad heißt \emph{Weg}, wenn die Knoten des Pfades paarweise verschieden sind.
-Der Pfad $(v_i,\ldots,v_j)$ mit $0 \le i \le j \le k$ heißt \emph{Teilpfad} von $(v_0,\ldots,v_k)$.
-Ein $(a,b)$-Pfad mit $a=b$ heißt \emph{Zyklus}.
-Ein Zyklus $(v_0,\ldots,v_k)$ heißt \emph{Kreis}, falls die Knoten $v_1,\ldots,v_{k-1}$ paarweise verschieden sind.
+Für einen Digraphen $D=(V,A)$ und Knoten $a,b \in V$ heißt ein Tupel $(v_0,\ldots,v_k)$ mit $(v_i,v_{i+1}) \in A$, für $0 \leq i \leq k-1$ und $v_0=a$ und $v_k=b$ ein \textbf{$(a,b)$-Pfad} der Länge~$k$.
+Ein Pfad heißt \textbf{Weg}, wenn die Knoten des Pfades paarweise verschieden sind.
+Der Pfad $(v_i,\ldots,v_j)$ mit $0 \le i \le j \le k$ heißt \textbf{Teilpfad} von $(v_0,\ldots,v_k)$.
+Ein $(a,b)$-Pfad mit $a=b$ heißt \textbf{Zyklus}.
+Ein Zyklus $(v_0,\ldots,v_k)$ heißt \textbf{Kreis}, falls die Knoten $v_0,v_1,\ldots,v_{k-1}$ paarweise verschieden sind.
 Die Zyklen $(v_0,\ldots,v_k)$ und $(v_i,\ldots,v_k,v_0,\ldots,v_i)$ werden als gleich angesehen.
-Man sagt eine Kante $(u,v)$ \emph{gehört} zu einem Pfad $(v_0,\ldots,v_k)$, falls $u=v_i$ und $v=v_{i+1}$ für ein $i$ mit $0 \le i \leq k-1$ gilt.
-Digraphen ohne Zyklen heißen \emph{azyklisch}.
+Man sagt eine Kante $(u,v)$ \textbf{gehört} zu einem Pfad $(v_0,\ldots,v_k)$, falls $u=v_i$ und $v=v_{i+1}$ für ein $i$ mit $0 \le i \leq k-1$ gilt.
+Digraphen ohne Zyklen heißen \textbf{azyklisch}.
 \end{defn} 
 
 %Seien $G=(V,E)$ und $G=(V',E')$ Digraphen und sei $f: V \to V'$ eine Bijektion mit $(a,b) \in E$ $\Leftrightarrow$ $(f(a), f(b)) \in E'$. Die Bijektion $f$ heißt Isomorphismus von $G$ nach $G'$. Zwei Digraphen heißen isomorph, falls ein Isomorphismus von $G$ nach $G'$ existiert. 
@@ -83,40 +84,39 @@ Im Beispieldigraphen von oben markieren wir den Weg $(4,1,3,5,6)$ in blau:
 
 \begin{bem}
 Ein wichtiger Aspekt von Digraphen ist die Orientierung der Kanten, die es ermöglicht zwischen Start- und Endknoten zu unterscheiden.
-Wird eine solche Orientierung nicht benötigt, so vereinfachen sich manche Begriffe und wir sprechen anstelle von Digraphen dann von Graphen.
+Wird eine solche Orientierung nicht benötigt, so vereinfachen sich manche Begriffe und wir sprechen anstelle von Digraphen dann von \textbf{Graphen}.
 \end{bem} 
 
 \begin{defn} 
-Sei dazu $V$ wieder eine endliche Menge und sei $E$ nun eine Teilmenge der Menge $\binom{V}{2}= \setcond{\{a,b\}}{a, b \in V, a \ne b} $. 
-
-Das Paar $G=(V,E)$ heißt \emph{Graph} mit \emph{Knotenmenge} $V$ und \emph{Kantenmenge}~$E$.
-Die Elemente von $V$ heißen \emph{Knoten} und die Elemente von $E$ heißen \emph{Kanten} (engl.~\emph{edges}) von~$G$.
-Ist $\{a,b\} \in E$ eine Kante, so nennen wir~$a$ und~$b$ ihre \emph{Endknoten}.
-Wiederum sagen wir, dass die Knoten $a$ und $b$ \emph{benachbart} und die Kante $\{a,b\}$ \emph{inzident} zu~$a$ und $b$ ist.
+Sei $V$ eine endliche Menge und sei $E \subseteq \binom{V}{2}= \left\{ \{a,b\} : a, b \in V, a \ne b \right\}$. 
+Das Paar $G=(V,E)$ heißt \textbf{Graph} mit \textbf{Knotenmenge} $V$ und \textbf{Kantenmenge}~$E$.
+Die Elemente von $V$ heißen \textbf{Knoten} und die Elemente von $E$ heißen \textbf{Kanten} (engl.~\textbf{edges}) von~$G$.
+Ist $\{a,b\} \in E$ eine Kante, so nennen wir~$a$ und~$b$ ihre \textbf{Endknoten}.
+Wiederum sagen wir, dass die Knoten $a$ und $b$ \textbf{benachbart} und die Kante $\{a,b\}$ \textbf{inzident} zu~$a$ und zu~$b$ ist.
 \end{defn} 
 
 \begin{bem}
 Im Gegensatz zu Digraphen erlaubt die Definition eines Graphen keine Schlingen oder parallele Kanten.
-In manchen Literaturquellen lässt man mitunter Mehrfachkanten oder \glqq ungerichtete Schlingen\grqq\ zu und spricht dann von einem \emph{einfachen Graphen} wenn man beides verbietet.
+In manchen Literaturquellen lässt man mitunter Mehrfachkanten oder \glqq ungerichtete Schlingen\grqq\ zu und spricht dann von einem \textbf{einfachen Graphen} wenn man beides verbietet.
 \end{bem}
 
 \begin{defn} 
-Für einen Knoten $a \in V$ heißt die Anzahl der Knoten $b \in V$ mit $\{a,b\} \in E$ der \emph{Grad} des Knotens~$a$.
-Die Begriffe \emph{(induzierter) Teilgraph}, \emph{Pfad}, \emph{Weg}, \emph{Teilpfad}, \emph{Zyklus} und \emph{Kreis} werden für Graphen analog zu denen für Digraphen definiert.
-Ein Graph ohne Zyklen heißt \emph{Wald}.
+Für einen Knoten $a \in V$ heißt die Anzahl der Knoten $b \in V$ mit $\{a,b\} \in E$ der \textbf{Grad} des Knotens~$a$.
+Die Begriffe \textbf{(induzierter) Teilgraph}, \textbf{Pfad}, \textbf{Weg}, \textbf{Teilpfad}, \textbf{Zyklus} und \textbf{Kreis} werden für Graphen analog zu denen für Digraphen definiert.
+Ein Graph ohne Zyklen heißt \textbf{Wald}.
 \end{defn}
 
 \begin{defn} 
-Ein Graph $G=(V,E)$ heißt \emph{zusammenhängend}, falls für alle Knoten $a, b \in V$ ein $(a,b)$-Pfad existiert.
-Ein zusammenhängender Wald heißt \emph{Baum}.
+Ein Graph $G=(V,E)$ heißt \textbf{zusammenhängend}, falls es für alle Knoten $a, b \in V$ einen $(a,b)$-Pfad in $G$ gibt.
+Ein zusammenhängender Wald heißt \textbf{Baum}.
 Die Relation \glqq es existiert ein $(a,b)$-Pfad\grqq\ ist eine Äquivalenzrelation auf den Knoten des Graphen~$G$.
-Die Äquivalenzklassen bezüglich dieser Relation heißen \emph{Zusammenhangskomponenten} des Graphen.
-Ein Wald ist ein Graph bei dem jede Zusammenhangskomponente ein Baum ist.
+Die Äquivalenzklassen bezüglich dieser Relation heißen \textbf{Zusammenhangskomponenten} des Graphen.
+Ein Wald ist ein Graph in dem jede Zusammenhangskomponente ein Baum ist.
 \end{defn} 
 
 
 \begin{bsp}
-Die folgende Abbildung zeigt einen Graphen mit zwei Zusammenhangskomponenten:
+Die folgende Abbildung zeigt einen Graphen mit zwei Zusammenhangskomponenten:\\
 
 \begin{center}
 \begin{tikzpicture}[line width=2,scale=1.5]
@@ -140,8 +140,8 @@ Beachten Sie, dass es im Fall einer gerichteten Kante auf die Reihenfolge der Kn
 \end{bem}
 
 \begin{defn}
-Ein schleifenfreier Digraph $D = (V,A)$ kann auch als Orientierung eines ungerichteten Graphen $G=(V,E)$ mit $E = \{\{u,v\} : (u,v) \in A\}$ verstanden werden.
-Der Graph~$G$ wird dann als der \emph{zugrundeliegende Graph} von~$D$ bezeichnet.
+Ein schleifenfreier Digraph $D = (V,A)$ kann auch als Orientierung eines ungerichteten Graphen $G=(V,E)$ mit $E := \{\{u,v\} : (u,v) \in A\}$ verstanden werden.
+Der Graph~$G$ wird dann als der \textbf{zugrundeliegende Graph} von~$D$ bezeichnet.
 Sobald $E$ nicht leer ist, gibt es stets mindestens zwei Digraphen, denen~$G$ zugrundeliegt.
 \end{defn} 
 
@@ -174,31 +174,34 @@ Die folgende Abbildung zeigt einen (schleifenfreien) Digraphen und den dazugehö
 Beachten Sie, dass die beiden in entgegengesetzten Richtungen orientierten Kanten zwischen den Knoten $1$ und $3$ zu \emph{einer} Kante im ungerichteten Graphen verschmelzen.
 \end{bsp}
 
-\begin{defn} 
-Halten wir noch ein paar wichtige spezielle Graphenklassen und deren Bezeichnungen fest: Sei dazu im Folgenden $G=(V,E)$ ein Graph mit $n$ Knoten und $m$ Kanten.
+\begin{defn}[Graphenklassen]
+Sei $G=(V,E)$ ein Graph mit $n$ Knoten und $m$ Kanten.
 \begin{itemize}
  \item Ist $E=\binom{V}{2}$, so heißt $G$ \textbf{vollständig}.
  Ein vollständiger Graph mit $n$ Knoten wird oft mit~$K_n$ bezeichnet.
 
  \item Ist $E=\emptyset$, so heißt $G$ \textbf{leer}.
- Ein leerer Graph mit $n$ Knoten wird oft mit~$\bar K_n$ bezeichnet.
+ Ein leerer Graph mit $n$ Knoten wird oft mit~$\overline K_n$ bezeichnet.
 
  \item Ist $V$ eine disjunkte Vereinigung zweier Mengen $A$ und $B$ und hat jede Kante von~$G$ die Form $\{a,b\}$ mit $a \in A$ und $b \in B$, so heißt $G$ \textbf{bipartit}.
- Die Mengen~$A$ und $B$ heißen dann \textbf{Partitionsklassen} von $G$.
- 
+ Die Mengen~$A$ und $B$ heißen dann \textbf{Partitionsklassen} von $G$. 
+
+\condclearpage 
+
  \item Ist $G$ bipartit und gilt darüber hinaus, dass jedes $\{a,b\}$ mit $a \in A$ und $b \in B$ eine Kante von $G$ ist, so heißt $G$ \textbf{vollständig bipartit}.
  Ein vollständig bipartiter Graph, deren Partitionsklassen die Größe~$r$ und~$s$ haben, wird oft mit~$K_{r,s}$ bezeichnet.
  Natürlich gilt $n = r + s$.
  
- \item Eine \emph{Einbettung} von~$G$ in die Ebene~$\R^2$ ist eine Menge $P=\{p_1,\ldots,p_n\} \subseteq \R^2$ von Punkten zusammen mit einer Menge $S=\{S_1,\ldots,S_m\}$ von Streckensegmenten, so dass es eine Bijektion $f:V \to P$ gibt mit der Eigenschaft, dass $\{u,v\}$ genau dann eine Kante von~$G$ ist, wenn die Punkte $f(u)$ und $f(v)$ Eckpunkte desselben Streckensegmentes~$S_i$ sind.
- Besitzt ein Graph eine Einbettung bei der je zwei verschiedene Streckensegmente sich höchstens in Eckpunkten schneiden, so heißt dieser Graph \textbf{planar}.
+ \item Eine \textbf{Einbettung} von~$G$ in die Ebene~$\R^2$ ist eine Menge $P=\{p_1,\ldots,p_n\} \subseteq \R^2$ von Punkten zusammen mit einer Menge $S=\{S_1,\ldots,S_m\}$ von Streckensegmenten, so dass es eine Bijektion $f:V \to P$ gibt mit der Eigenschaft, dass $\{u,v\}$ genau dann eine Kante von~$G$ ist, wenn die Punkte $f(u)$ und $f(v)$ Eckpunkte desselben Streckensegmentes~$S_i$ sind.
+% 
+ Besitzt ein Graph eine Einbettung bei der je zwei verschiedene Streckensegmente sich höchstens in Eckpunkten schneiden, so sprechen wir von einem \textbf{planaren} Graphen.
  \end{itemize}
 \end{defn} 
 
 \begin{bsp}\
 	\begin{itemize} 
-	\item  $K_n$ mit $n\leq4$ sind planar. 
-	 \item $K_{n,m}$ mit $n \le 2$ und $m \le 3$ sind auch planar. 
+	\item  Jeder $K_n$ mit $n\leq4$ ist planar. 
+	 \item Jeder $K_{n,m}$ mit $n \le 2$ und $m \le 3$ ist auch planar. 
 	 \item $K_{3,3}$ ist nicht planar. (Beweis durch Widerspruch)
 	 \item $K_5$ ist nicht planar. (Beweis durch Widerspruch) 
 	 \end{itemize} 
@@ -238,7 +241,7 @@ Finden Sie eine Darstellung, die dies illustriert!
 \end{bsp}
 
 \begin{defn}
-	Ein Digraph $D=(V,A)$  heißt \textbf{gerichteter bzgl. gewurzelter Baum} (engl., out-tree oder arborescence) mit Wurzel $w \in V$, wenn der unterichtete Graph zu $D$ ein Baum ist, der Eingangsgrad von $w$ gleich $0$ ist und der Eingangsgrad aller anderen Knoten $v \in V \setminus \{w\}$ gleich $1$ ist. 
+	Ein Digraph $D=(V,A)$  heißt \textbf{gerichteter} bzw.~\textbf{gewurzelter Baum} (engl., \textbf{out-tree} oder \textbf{arborescence}) mit Wurzel $w \in V$, wenn der zugrundeliegende Graph zu $D$ ein Baum ist, der Eingangsgrad von $w$ gleich $0$ ist und der Eingangsgrad aller anderen Knoten $v \in V \setminus \{w\}$ gleich $1$ ist. 
 \end{defn} 
 
 \begin{prop}
@@ -249,42 +252,46 @@ Finden Sie eine Darstellung, die dies illustriert!
 \end{proof} 
 
 \begin{defn}
-	Ein Digraph $D=(V,A)$ heißt \textbf{gerichteter Wald}, wenn $V$ disjunkte Vereinigung von Mengen $V_1,\ldots,V_t$ ist, bei denen $D_{V_i}$ für jedes $i=1,\ldots,t$ ein gerichteter Baum ist. 
+	Ein Digraph $D=(V,A)$ heißt \textbf{gerichteter Wald}, wenn $V$ disjunkte Vereinigung von Mengen $V_1,\ldots,V_t$ ist, bei denen $D_{V_i}$ für jedes $i=1,\ldots,t$ ein gerichteter Baum ist, und es keine Kanten in $A$ gibt, die zwei verschiedene der gerichteten Bäume $D_{V_1},\ldots,D_{V_t}$ verbinden.
 \end{defn} 
 
 \begin{defn}
-	In einem gerichteten Baum/Wald $D=(V,A)$ nennen wir $v \in V$ \textbf{Nachfahre} von $u \in V$ und $u$ \textbf{Vorfahre} von $v$, wenn ein $(u,v)$-Pfad existiert. Wenn $(u,v) \in A$ ist, so nennen wir $v$ \textbf{Kind} oder \textbf{direkter Nachfahre} von $u$ und $u$ \textbf{Vater/Mutter/Elter} von $v$.
+Sei $D=(V,A)$ ein gerichteter Baum/Wald und seien $u,v \in V$.
+Wir nennen~$v$ \textbf{Nachfahre} von $u$ und $u$ \textbf{Vorfahre} von $v$, wenn ein $(u,v)$-Pfad in~$D$ existiert.
+Wenn $(u,v) \in A$ ist, so nennen wir $v$ \textbf{Kind} oder \textbf{direkter Nachfahre} von $u$ und wir nennen~$u$ \textbf{Vater/Mutter/Elter} von $v$.
 \end{defn} 
 
 
 \begin{bem}
 In der Graphentheorie ist die Bezeichnung der Hauptbegriffe nicht einheitlich.
 Von Quelle zu Quelle unterscheiden sich die Definitionen geringfügig und insbesondere in Bezug auf die Namensgebung gibt es teilweise große Unterschiede.
-Zu diesem Zweck listen wir hier die geläufigsten Synonyme um mögliche Verwirrungen beim Lesen unterschiedlicher Quellen zu vermeiden:
+Daher listen wir hier die geläufigsten Synonyme um mögliche Verwirrungen beim Lesen unterschiedlicher Quellen zu vermeiden:
+
 \begin{align*}
-\text{gerichteter Graph} &= \text{Digraph}\\
+\text{Digraph} &= \text{gerichteter Graph}\\
 \text{Knoten} &= \text{Ecke}\\
 \text{gerichtete Kante} &= \text{Bogen}\\
-\text{adjazent} &= \text{benachbart}\\
+\text{benachbart} &= \text{adjazent}\\
 \text{Grad} &= \text{Valenz}\\
+\text{Pfad} &= \text{Kantenzug}\\
+\text{Zyklus} &= \text{geschlossener Kantenzug}\\
 \text{Weg} &= \text{einfacher Pfad}\\
 \text{Kreis} &= \text{einfacher Zyklus}\\
-\text{Kantenzug} &= \text{Pfad}\\
-\text{geschlossener Kantenzug} &= \text{Zyklus}\\
-\text{Schleife} &= \text{Schlinge}
+\text{Schlinge} &= \text{Schleife}
 \end{align*}
 \end{bem}
+
 
 \section{Speicherung von Graphen} 
 
 \begin{bem}
-Zum Abschluss dieser Einführung in die Grundbegriffe schauen wir uns noch verschiedene Möglichkeiten an, wie man einen gegebenen (Di)Graphen im Rechner darstellt, das heißt, in welcher Form man die Beziehungen zwischen Knoten und (gerichteten) Kanten verwalten kann.
+Zum Abschluss dieser Einführung in die Grundbegriffe der Graphentheorie schauen wir uns noch verschiedene Möglichkeiten an, wie man einen gegebenen (Di)Graphen im Rechner darstellt, das heißt, in welcher Form man die Beziehungen zwischen Knoten und (gerichteten) Kanten verwalten kann.
 
 Sei dazu ein Graph oder ein Digraph gegeben und zur Vereinheitlichung im Folgenden mit $D=(V,A)$ bezeichnet.
 \end{bem} 
 
 \begin{defn}
-Die {\bfseries Kantenliste} von $D=(V,A)$ ist die Liste der Kanten von $D$. 
+Die {\bfseries Kantenliste} von $D=(V,A)$ ist eine Liste der Kanten von $D$. 
 \end{defn}
 
 \begin{bsp}\ 
@@ -311,8 +318,8 @@ Die {\bfseries Kantenliste} von $D=(V,A)$ ist die Liste der Kanten von $D$.
 \end{bsp}
 
 \begin{defn} 
-In der {\bfseries Adjazenzliste} von $G$ speichert man die Knotenmenge $V$ als Liste und jedem Element $u \in V$ der Liste wird eine Liste aller Knoten $v \in V$ mit $uv \in E$ zugeordnet.
-(Der Speicherplatzbedarf für diese Darstellung ist offensichtlich $\Theta(|V|+|E|)$.)
+In der {\bfseries Adjazenzliste} von $D = (V,A)$ speichert man die Knotenmenge $V$ als Liste und jedem Element $u \in V$ dieser Liste wird eine Liste aller Knoten $v \in V$ mit $(u,v) \in A$ zugeordnet.
+(Der Speicherplatzbedarf für diese Darstellung ist $\Theta(|V|+|A|)$.)
 \end{defn}
 
 \begin{bsp} \ 
@@ -351,38 +358,23 @@ In der {\bfseries Adjazenzliste} von $G$ speichert man die Knotenmenge $V$ als L
 \end{bsp} 
 
 
-\begin{bem}
-	Typische Fragen auf Graphen, deren algorithmische Behandlung grundlegend für viele Anwendungen ist, sind zum Beispiel die folgenden:
-	\begin{itemize}
-		\item Ist der Graph zusammenhängend?
-		\item Gibt es einen Pfad im Graphen von einem Knoten $s$ zu einem Knoten $z$?
-		\item Wieviele Zusammenhangskomponenten hat der Graph?
-		\item Gibt es Kreise oder Zyklen im Graphen?
-		\item Was ist der Grad eines gegebenen Knotens?
-	\end{itemize}
-	
-	Ein allgemeines Prinzip um diese Art Fragen zu beantworten ist die sogenannte \emph{Graphendurchmusterung}, deren Ziel es ist alle Knoten und Kanten des gegebenen Graphen zu \glqq erkunden\grqq\ und dabei nützliche Informationen über den Graphen zu sammeln. In Graphendurchmusterungen wird der (Di)Graph in der Regel durch seine Adjazenzliste gegeben. 
-\end{bem} 
-
-
-
 \begin{defn}
-	\textbf{Matrizen} mit $m \in \N$ Zeilen und $n \in \N$ Spalten und mit Komponenten in einer Menge $K$  entsprechen den Abbildungen $A : \{1,\ldots,m\} \times \{1,\ldots,n\} \to K$. Das bedeutet, dass für die Angabe einer Matrix $A$ für alle $i \in \{1,\ldots,m\}$ und $j \in \{1,\ldots,n\}$ die Komponente $A(i,j)$ der Matrix in der Zeile $i$ und Spalte $j$ festgelegt werden muss. 
+Seien $m,n \in \N$ und sei $K$ eine Menge.
+	\textbf{Matrizen} mit $m$ Zeilen und $n$ Spalten und mit Komponenten in~$K$  entsprechen den Abbildungen $M : \{1,\ldots,m\} \times \{1,\ldots,n\} \to K$. Das bedeutet, dass für die Angabe einer \textbf{Matrix} $M$ für alle $i \in \{1,\ldots,m\}$ und $j \in \{1,\ldots,n\}$ die Komponente $M(i,j)$ der Matrix in der Zeile $i$ und Spalte $j$ festgelegt werden muss. 
 	
-	An der Stelle von $A(i,j)$ benutzt man traditionell eine Bezeichnung mit einem kleinen Buchstaben und untergestellten Indizes $i$ und $j$. 
-	
+	An der Stelle von $M(i,j)$ benutzt man traditionell eine Bezeichnung mit einem kleinen Buchstaben und untergestellten Indizes $i$ und $j$. 
 	So schreibt man zum Beispiel
 	\[
-		A = \bigl (a_{i,j} \bigr)_{\substack{i=1,\ldots,m \\ j=1,\ldots,n}} \in K^{m \times n}
+		M = \bigl(m_{i,j} \bigr)_{\substack{i=1,\ldots,m \\ j=1,\ldots,n}} = (m_{i,j}) \in K^{m \times n}
 	\]
-	wenn man eine Matrix $A$ der Größe $(m,n)$ führen möchte, deren Komponente in der Position $(i,j)$  als $a_{i,j}$ bezeichnet wird. 
+	wenn man eine Matrix $M$ der Größe $m \times n$ führen möchte, deren Komponente in der Position $(i,j)$  als $m_{i,j}$ bezeichnet wird. 
 \end{defn} 
 
 \begin{defn} 
 Sei $|V|=n$ und $V=\{v_1,\ldots,v_n\}$.
-Die \textbf{Adjazenzmatrix} von~$G$ ist die Matrix $A=(a_{i,j}) \in \R^{n \times n}$ mit Einträgen
+Die \textbf{Adjazenzmatrix} von~$D = (V,A)$ ist die Matrix $M=(m_{i,j}) \in \R^{n \times n}$ mit Einträgen
 \[
-a_{i,j} = \begin{cases}1&,\text{ falls }\{v_i,v_j\} \in E \text{ bzw.~falls }(v_i,v_j) \in E,\\ 0&,\text{ sonst}.\end{cases}
+m_{i,j} = \begin{cases}1&,\text{ falls } (v_i,v_j) \in A,\\ 0&,\text{ sonst}.\end{cases}
 \]
 Der Speicherplatzbedarf (bei direkter Implementierung von Matrizen) ist $\Theta(|V|^2)$.
 \end{defn} 
@@ -418,17 +410,18 @@ Der Speicherplatzbedarf (bei direkter Implementierung von Matrizen) ist $\Theta(
 \end{bsp} 
 
 \begin{defn}
-Sei $G=(V,E)$ Digraph mit $m=|E|$ und $n=|V|$ und sei $V=\{v_1,\ldots,v_n\}$ und $E=\{e_1,\ldots,e_m\}$.
-Sei weiterhin $G$ zunächst als gerichteter Graph ohne Schleifen angenommen.
-Die \textbf{Inzidenzmatrix} von~$G$ ist die Matrix $B=(b_{i,j}) \in \R^{n \times m}$ mit Einträgen
+Sei $D=(V,A)$ Digraph mit $n=|V|$ und $m=|A|$ und sei $V=\{v_1,\ldots,v_n\}$ und $A=\{a_1,\ldots,a_m\}$.
+Sei weiterhin $D$ zunächst als gerichteter Graph ohne Schleifen angenommen.
+Die \textbf{Inzidenzmatrix} von~$D$ ist die Matrix $B=(b_{i,j}) \in \R^{n \times m}$ mit Einträgen
 \[
-b_{i,j} = \begin{cases}1&,\text{ falls }v_i\text{ Startknoten von }e_j\text{ ist},\\ -1&,\text{ falls }v_i\text{ Endknoten von }e_j\text{ ist},\\ 0&,\text{ sonst}.\end{cases}
+b_{i,j} = \begin{cases}\phantom{-}1&,\text{ falls }v_i\text{ Startknoten von }a_j\text{ ist},\\ -1&,\text{ falls }v_i\text{ Endknoten von }a_j\text{ ist},\\ \phantom{-}0&,\text{ sonst}.\end{cases}
 \]
-Ist $G$ ein ungerichteter Graph, so lassen wir lediglich die Vorzeichen weg, das heißt, die Einträge der Inzidenzmatrix sind
+\condclearpage
+Ist $D$ ein ungerichteter Graph, so lassen wir lediglich die Vorzeichen weg, das heißt, die Einträge der Inzidenzmatrix sind
 \[
-b_{i,j} = \begin{cases}1&,\text{ falls }v_i\text{ Endknoten von }e_j\text{ ist},\\ 0&,\text{ sonst}.\end{cases}
+b_{i,j} = \begin{cases}1&,\text{ falls }v_i\text{ Endknoten von }a_j\text{ ist},\\ 0&,\text{ sonst}.\end{cases}
 \]
-Der Speicherplatzbedarf (bei direkter Implementierung von Matrizen) ist $\Theta(|V|\cdot|E|)$.
+Der Speicherplatzbedarf (bei direkter Implementierung von Matrizen) ist jeweils $\Theta(|V|\cdot|A|)$.
 \end{defn} 
 
 \begin{bsp} \ 
@@ -460,4 +453,19 @@ Der Speicherplatzbedarf (bei direkter Implementierung von Matrizen) ist $\Theta(
 \end{center}
 
 Die Kanten in der vorigen Abbildung sind in der Reihenfolge $12,32,34,35,45,53$ nummeriert.
-\end{bsp} 
+\end{bsp}
+
+
+\begin{bem}
+	Typische Fragen auf Graphen, deren algorithmische Behandlung grundlegend für viele Anwendungen ist, sind zum Beispiel die folgenden:
+	\begin{itemize}
+		\item Ist der Graph zusammenhängend?
+		\item Gibt es einen Pfad im Graphen von einem Knoten $s$ zu einem Knoten $z$?
+		\item Wie viele Zusammenhangskomponenten hat der Graph?
+		\item Gibt es Kreise oder Zyklen im Graphen?
+		\item Was ist der Grad eines gegebenen Knotens?
+	\end{itemize}
+%	
+	Ein allgemeines Prinzip um diese Art Fragen zu beantworten, ist die sogenannte \textbf{Graphendurchmusterung}, deren Ziel es ist alle Knoten und Kanten des gegebenen Graphen zu \glqq erkunden\grqq\ und dabei nützliche Informationen über den Graphen zu sammeln. In Graphendurchmusterungen wird der (Di)Graph in der Regel durch seine Adjazenzliste gegeben. 
+\end{bem} 
+

@@ -70,7 +70,7 @@ Sei $A$ eine endliche Menge und sei $k \in \N_0$. Dann sind die folgenden Beding
 \end{enumi} 
 \end{prop} 
 \begin{proof} 
-	Für die Existenz einer injektiven Abbildung von $A$ nach $\{0,1\}^k$ ist es notwendig und hinreichend, dass $X$ höchstens so viele Elemente wie $\{0,1\}^k$ hat. Nach Korollar~\ref{kor:product}  hat $\{0,1\}^k$ genau $|\{0,1\}|^k = 2^k$ Elemente. Das zeigt die gewünschte Äquivalenz. 
+	Für die Existenz einer injektiven Abbildung von $A$ nach $\{0,1\}^k$ ist es notwendig und hinreichend, dass $X$ höchstens so viele Elemente wie $\{0,1\}^k$ hat. Nach Korollar~\ref{kor:product} hat $\{0,1\}^k$ genau $|\{0,1\}|^k = 2^k$ Elemente. Das zeigt die gewünschte Äquivalenz. 
 \end{proof} 
 
 \begin{bsp}
@@ -78,7 +78,7 @@ Sei $A$ eine endliche Menge und sei $k \in \N_0$. Dann sind die folgenden Beding
 	\[
 		A = \{\text{'a'},\text{'b'},\ldots,\text{'z'}\}
 	\]
-	$26$ Elemente hat und $2^4 < 25 \le 2^5$ gilt, besitzt $A$ eine $5$-Bit- aber keine $4$-Bit-Kodierung. 
+	$26$ Elemente hat und $2^4 < 26 \le 2^5$ gilt, besitzt $A$ eine $5$-Bit- aber keine $4$-Bit-Kodierung. 
 \end{bsp} 
 
 \begin{prop}[Kodierung von Strings durch Bit-Strings] \label{prop:beliebiges:alphabet->01}
@@ -117,7 +117,7 @@ Man kann die Konstruktion im Beweis von Proposition~\ref{kod:paare} direkt vom F
 	\begin{align*}
 		(0, 6,3,7) & \mapsto (0,110,11,111)  & & \text{(Binärdarstellung)} 
 		\\ & \mapsto 0 \mathbf{\#} 110 \mathbf{\#} 11 \mathbf{\#} 111 & & \text{(Trennzeichen)} 		
-		\\ & \mapsto  00 \, \mathbf{11} \,  01 \,  01 \, 00 \, \mathbf{11 }\, 01 \, 01 \, \mathbf{11} \, 01 01 01.
+		\\ & \mapsto  00 \, \mathbf{11} \,  01 \,  01 \, 00 \, \mathbf{11 }\, 01 \, 01 \, \mathbf{11} \, 01 \, 01 \, 01.
 	\end{align*}
 	Im letzten Schritt nutzt man die Kodierung 
 	\begin{align*}
@@ -139,7 +139,7 @@ Man kann die Konstruktion im Beweis von Proposition~\ref{kod:paare} direkt vom F
 	 Mit anderen Worten: Die Zuordnung $z \mapsto (z_k,\ldots,z_0)$ für $z$ und $z_0,\ldots,z_k$ wie oben ist eine injektive Abbildung von $\N$ nach $\{0,1,\ldots,b-1\}^\ast$.
 \end{thm}
 \begin{proof}
- 	Die Existenz und Eindeutigkeit der gewünschten Darstellung für $z$ zeigen wir durch Induktion über $z$. Bei $1 \le z \le b-1$ ist $k=1$ und $z_0=z$. Sei $z>b$ und sei die Existenz und Eindeutigkeit einer solchen Darstellung für die Zahlen $1,2,\ldots,z-1$ bereits gezeigt. Bei $z$ ist $z_0$ notwendigerweise der Rest der Division von $z$ durch $b$, weil die Terme $z_i b^i$ mit $i>0$ alle durch $b$ teilbar sind. Die Zahl $z-z_0$ ist positiv und durch $b$ teilbar. Somit ist $(z-z_0) / b$ eine natürliche Zahl, die echt kleiner als $z$ ist; denn $(z-z_0)/b \le z / b < z$. Die Darstellung von $z$, nach der wir suchen, kann als 
+ 	Die Existenz und Eindeutigkeit der gewünschten Darstellung für $z$ zeigen wir durch Induktion über $z$. Bei $1 \le z \le b-1$ ist $k=1$ und $z_0=z$. Sei $z \geq b$ und sei die Existenz und Eindeutigkeit einer solchen Darstellung für die Zahlen $1,2,\ldots,z-1$ bereits gezeigt. Bei $z$ ist $z_0$ notwendigerweise der Rest der Division von $z$ durch $b$, weil die Terme $z_i b^i$ mit $i>0$ alle durch $b$ teilbar sind. Die Zahl $z-z_0$ ist positiv und durch $b$ teilbar. Somit ist $(z-z_0) / b$ eine natürliche Zahl, die echt kleiner als $z$ ist; denn $(z-z_0)/b \le z / b < z$. Die Darstellung von $z$, nach der wir suchen, kann als 
  	\[
  		(z-z_0)/b = \sum_{i=0}^{k-1} z_{i+1} b^i
  	\]
@@ -181,7 +181,7 @@ Es folgt: $z = \sum_{i=0}^t z_i b^i > \sum_{i=0}^t z_i' b^i = z'$. Also ist die 
 \end{proof} 
 
 \begin{bem}\
-	Die Intuition hinter den Stellenwertsystemen ist wie folgt: man führt die Ziffernbezeichnungen für die $b$ Ziffern des Stellenwertsystems ein und rechnet dann im Rahmen dieses Stellenwertsystems schriftlich, so wie man es für das System mit der Basis $b=10$ in der Schule gelernt hat. Hier ein Vergleich von $b=10$ und $b=2$: 
+	Die Intuition hinter den Stellenwertsystemen ist wie folgt: man führt die Ziffernbezeichnungen für die $b$ Ziffern des Stellenwertsystems ein und rechnet dann im Rahmen dieses Stellenwertsystems \glqq schriftlich\grqq, so wie man es für das System mit der Basis $b=10$ in der Schule gelernt hat. Hier ein Vergleich von $b=10$ und $b=2$: 
 	\begin{center} 
 		\begin{tabular}{l|l} 
 			Bezeichnungen bzgl. der Basis $10$ & Bezeichnungen bzgl. der Basis $2$ 
@@ -346,14 +346,22 @@ einführen kann. Mit diesen Verknüpfungen ist $\Z / m \Z$ ein kommutativer Ring
 
 \subsection{Variablen, Zuweisungen und Kontrollstrukturen}
 
+\begin{defn}
+% aus Cormen et al.
+Ein \textbf{Algorithmus} ist eine wohldeﬁnierte Rechenvorschrift, die eine
+Größe oder eine Menge von Größen als \textbf{Eingabe} verwendet und eine Größe oder eine Menge von Größen als \textbf{Ausgabe} erzeugt.
+
+Somit ist ein Algorithmus eine Folge von Rechenschritten, die die Eingabe in die Ausgabe umwandeln. Jeder Schritt wird dabei \glqq mechanisch\grqq\ ausgeführt und bedarf keiner denkenden Instanz im Hintergrund.
+\end{defn}
+
 \begin{bem} 
 Zur Beschreibung von Algorithmen
 %unabhängig von einer konkreten Programmiersprache
 gibt es unter anderem folgende Möglichkeiten: 
 \begin{enumerate}
-	\item Beschreibung in einer natürlichen Sprache, evtl. mit der Verwendung mathematischer Formeln und Bezeichnungen. 
-	\item Beschreibung in einem sogenannten Pseudocode. 
-	\item Umsetzung in einer Programmiersprache. 
+	\item Beschreibung in einer \textbf{natürlichen Sprache}, evtl. mit der Verwendung mathematischer Formeln und Bezeichnungen. 
+	\item Beschreibung in einem sogenannten \textbf{Pseudocode}. 
+	\item Umsetzung in einer \textbf{Programmiersprache}. 
 \end{enumerate} 
 Im Gegensatz zu einem richtigen Code, der sehr oft programmiertechnische Details einer konkreten Programmiersprache beinhaltet, kann man im Pseudocode solche Details vermeiden. Beim Pseudocode gibt es meistens nur Richtlinien und keine festen Vorgaben darüber, welche syntaktischen Konstrukte eingesetzt werden. In seiner klassischen Form ahmt der Pseudocode die Programmiersprache ALGOL 60 nach, deren Syntax die allermeisten der heutzutage verbreiteten Programmiersprachen beeinflusst hat. Die bekannten Kontrollstrukturen wie if, for usw.  stammen z.B. aus ALGOL. Die Beschreibung von Algorithmen in einem ALGOL-ähnlichen Pseudocode ist in wissenschaftlichen Publikationen sehr verbreitet. 
 
@@ -515,12 +523,13 @@ Eine \textbf{Prozedur} bzw. eine \textbf{Programm-Funktion} bzw. ein \textbf{Unt
 \end{defn} 
 
 \begin{bem} 
-Stellen wir uns vor, wir müssen zur Lösung einer Rechenaufgabe immer wieder testen, ob $ x \in [p,q]$ für gegebene $x,p,q \in \Z$ gilt. In diesem Fall lohnt es sich, eine sogenannte \emph{Prozedur} anzulegen, welche genau diesen Test durchführt:
+Stellen wir uns vor, wir müssen zur Lösung einer Rechenaufgabe immer wieder testen, ob $ x \in [p,q]$ für gegebene $x,p,q \in \Z$ gilt. In diesem Fall lohnt es sich, eine sogenannte \textbf{Prozedur} anzulegen, welche genau diesen Test durchführt:
 
 \begin{algorithm}[H]
 	\caption{$b=\cc{Ist-zwischen}(x,p,q)$}
 	\begin{algorithmic}
-		\IF{$p \le x \le q$ oder $q \le x \le p$}
+%		\IF{$p \le x \le q$ oder $q \le x \le p$}
+		\IF{$p \le x \le q$}
 		\STATE $b=\true$
 		\ELSE
 		\STATE $b=\false$
@@ -533,7 +542,8 @@ Die Variablen $x,p,q$ heißen \textbf{Eingabeparameter} der Prozedur und die Var
 \begin{algorithm}[H]
 	\caption{$\cc{Ist-zwischen}(x,p,q)$}
 	\begin{algorithmic}
-		\IF{$p \le x \le q$ oder $q \le x \le p$}
+%		\IF{$p \le x \le q$ oder $q \le x \le p$}
+		\IF{$p \le x \le q$}
 		\RETURN $\true$
 		\ENDIF
 		\RETURN $\false$
@@ -598,9 +608,9 @@ Damit die Werte $a$ und $b$ in der \texttt{main}-Funktion vertauscht werden, mü
 	\begin{center} 
 		\small  
 	\begin{tabular}{l|l|l}
-			Mathe-Begriff & Menge & Datenstruktur
+			\textbf{Mathe-Begriff} & \textbf{Menge} & \textbf{Datenstruktur}
 			\\ \hline 
-			Element einer endlichen Menge & $\{x_1,\ldots,x_n\}$ & Aufzählung 
+			Elemente einer endlichen Menge & $\{x_1,\ldots,x_n\}$ & Aufzählung 
 			\\ $n$-Tupel mit Komponenten in $T$ & $T^n$ & Array der Länge $n$ über $T$ 
 			\\ String über $T$ & $T^\ast$ & Array über $T$
 			\\ $n$-Tupel & $X_1 \times \cdots \times X_n$ & Verbund mit $n$ Komponenten
@@ -624,8 +634,8 @@ Arrays werden in der Programmierung auch Listen oder Felder genannt. Die Verbund
 
 
 \begin{bem} 
-Bei der konkreten Umsetzung bzw.~Implementierung einer Datenstruktur werden oftmals sogenannte \emph{Zeiger} verwendet.
-Das sind Adress-Variablen, d.h., eine Zeiger-Variable speichert die Adresse eines Ortes (einer anderen Variable) im Speicher des Rechners.
+Bei der konkreten Umsetzung bzw.~Implementierung einer Datenstruktur werden oftmals sogenannte \textbf{Zeiger} verwendet.
+Das sind Adress-Variablen, d.h., eine Zeiger-Variable speichert die Adresse (einer anderen Variable) im Speicher des Rechners.
 %Zeiger können in verschiedensten Situationen benutzt werden (insbesondere um verkettete Datenstrukturen zu implementieren).
 Für Zeiger gibt es zwei Grundoperationen: 
 \begin{itemize}
@@ -783,7 +793,7 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 	Hier Umsetzung in Python mit der Verwendung von Iteratoren: 
 \lstinputlisting{Code/hanoi.py}
 
-	Die Demo-Datei für $4$ Türme:
+Eine Demo-Datei für $4$ Türme:
 	\begin{center}
 	\small{ 
 	\url{https://de.wikipedia.org/wiki/T%C3%BCrme_von_Hanoi#/media/Datei:Tower_of_Hanoi_4.gif} } 
@@ -915,7 +925,7 @@ Sei $F : X \to 2^X$ eine Abbildung.
 	Es existieren Sprachen, die nicht entscheidbar sind. 
 \end{thm} 
 \begin{proof} 
-		Ein Algorithmus ist durch seinen \glqq Quellencode\grqq\ darstellbar. Denn ein jeder Algorithmus ist eine Auflistung von Grundbefehlen, die man alle mit Hilfe von Strings über einem endlichen Alphabet darstellen kann. Somit kann  man jeden Algorithmus als ein String über einem endlichen Alphabet kodieren. Wir identifizieren also die Algorithmen mit Elementen von $\{0,1\}^\ast$. Die Menge aller Sprachen über dem Alphabet $\{0,1\}^\ast$ ist die Menge $2^{\{0,1\}^\ast}$. Wäre jede Sprache entscheidbar, so könnte man für jede Sprache $L \in 2^{\{0,1\}^\ast}$ einen Algorithmus (genauer: Quellcode eines Algorithmus) $A_L \in \{0,1\}^\ast$ fixieren, der die Sprache $L$ entscheidet. Wir können also eine Abbildung $F : \{0,1\}^\ast \to 2^{\{0,1\}^\ast}$ so fixieren, dass $F(A_L) = L$ für alle $L \in 2^{\{0,1\}^\ast}$ gilt. Die Abbildung $F$ ist surjektiv. Die Existenz der Abbildung $F$ widerspricht aber der Behauptung von Lemma~\ref{lem:X:2^X}.
+		Ein Algorithmus ist durch seinen \glqq Quellcode\grqq\ darstellbar. Denn ein jeder Algorithmus ist eine Auflistung von Grundbefehlen, die man alle mit Hilfe von Strings über einem endlichen Alphabet darstellen kann. Somit kann  man jeden Algorithmus als ein String über einem endlichen Alphabet kodieren. Wir identifizieren also die Algorithmen mit Elementen von $\{0,1\}^\ast$. Die Menge aller Sprachen über dem Alphabet $\{0,1\}^\ast$ ist die Menge $2^{\{0,1\}^\ast}$. Wäre jede Sprache entscheidbar, so könnte man für jede Sprache $L \in 2^{\{0,1\}^\ast}$ einen Algorithmus (genauer: Quellcode eines Algorithmus) $A_L \in \{0,1\}^\ast$ fixieren, der die Sprache $L$ entscheidet. Wir können also eine Abbildung $F : \{0,1\}^\ast \to 2^{\{0,1\}^\ast}$ so fixieren, dass $F(A_L) = L$ für alle $L \in 2^{\{0,1\}^\ast}$ gilt. Die Abbildung $F$ ist surjektiv. Die Existenz der Abbildung $F$ widerspricht aber der Behauptung von Lemma~\ref{lem:X:2^X}.
 \end{proof} 
 
 \subsection{Komplexität im Hinblick auf die Laufzeit} 
@@ -955,7 +965,7 @@ Wir nennen einen Algorithmus~$A$ \textbf{polynomial} oder \textbf{Polynomialzeit
 \begin{defn}
 	Für $T: \N_0 \to \N$ heißt ein Rechenproblem \textbf{in der Zeit $T(n)$} berechenbar, wenn ein Algorithmus $A$ existiert, der das Problem löst und dessen Laufzeit-Funktion die Bedingung $L_A(n) \le T(n)$ für alle $n \in \N_0$ erfüllt. Im Fall von Sprachen sagt man \glqq in der Zeit $T(n)$ entscheidbar\grqq. 
 	
-	Ein Rechenproblem heißt \textbf{Polynomialzeit-berechenbar}, wenn ein Po\-ly\-no\-mi\-al\-zeit-Algorithmus existiert, der das Rechenproblem löst. 
+	Ein Rechenproblem heißt \textbf{Polynomialzeit-berechenbar}, wenn es einen Po\-ly\-no\-mi\-al\-zeit-Algorithmus gibt, der das Rechenproblem löst. 
 	
 	Ein Entscheidungsproblem bzw. eine Sprache heißt \textbf{Polynomialzeit-\-ent\-scheid\-bar}, wenn ein Polynomialzeit-Algorithmus existiert, der das Problem bzw. die Sprache entscheidet. 
 \end{defn} 

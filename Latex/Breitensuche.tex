@@ -2,31 +2,85 @@
 
 
 \begin{bem}
-Die Eingabe für die Breitensuche ist ein Digraph $D=(V,A)$ in Form einer Adjazenzliste.
+Die Eingabe für die Breitensuche ist ein Digraph $D=(V,A)$ in Form einer \underline{Adjazenzliste}~$N$.
+Das heißt, für jeden Knoten $u \in V$ ist $N[u]$ eine Liste aller $v \in V$ mit $(u,v) \in A$.
+%Wie wir sehen werden erlaubt die Darstellung von $D$ als Adjazenzliste eine Durchmusterung mit der optimalen Laufzeit $\Theta(|V|+|A|)$.
+Erinnern Sie sich, dass der Speicherplatz für die Adjazenzliste $\Theta(|V|+|A|)$ beträgt.
+
 Auf ungerichteten Graphen ist die Vorgehensweise analog und wir diskutieren (fast ausschließlich) die gerichtete Variante.
 \end{bem}
 
+
+\begin{bem} 
+\underline{Die Idee der Breitensuche:} (engl.~\textbf{breadth first search}, daher auch kurz BFS genannt).
+
+Die Breitensuche ist ein \glqq vorsichtiger\grqq\ Erkundungs-Algorithmus zur Durchmusterung von Graphen.
+Wir fassen die Knoten $u \in V$ als Orte und $N[u]$ als die Nachbarschaft des Ortes~$u$ auf.
+Die Breitensuche will zuerst die gesamte Nachbarschaft eines Ortes erkunden, bevor sie sich \glqq traut\grqq\ weiter in die Welt hinauszugehen:
+\begin{itemize} 
+ \item Man sucht die Umgebung von $u$ durch. 
+ \item Man erkundet erst die Nachbarschaft eines zuvor noch nicht gesehenen Ortes~$v$, wenn man alle Orte gesehen hat, die man von $u$ aus erreichen kann. 
+\end{itemize} 
+%
+Die Umsetzung dieser Strategie basiert auf Farbattributen der Knoten, die man im Laufe der Durchmusterung sukzessiv zuerst als weiß ($=$ noch nicht gesehen), dann als grau ($=$ gesehen aber noch nicht abgearbeitet) und schließlich als schwarz ($=$ abgearbeitet) setzt. 
+\end{bem}
+
+
 \begin{defn}
-Für zwei Knoten $u,v \in V$ in~$D$ definieren wir den \emph{Abstand} von~$u$ nach~$v$ als die minimale Länge eines $(u,v)$-Pfades und bezeichnen ihn mit $\delta(u,v)$.
+Wenn die Breitensuche entlang einer Kante verläuft, die in einen weißen Knoten endet, dann sagen wir, dass der entsprechende Knoten \textbf{entdeckt} wird.
+
+\noindent Eine Zusammenfassung der Bedeutung der Farben der Knoten:
+\begin{itemize}
+	\item[] {\bfseries weiß:} Der Knoten wurde noch nicht entdeckt. 
+	\item[] {\bfseries grau:} Der Knoten wurde entdeckt und die Breitensuche für den Knoten läuft gerade.
+	\item[] {\bfseries schwarz:} Der Knoten wurde entdeckt und die Breitensuche für den Knoten ist bereits beendet.
+\end{itemize}
+
+\noindent Wird ein Knoten schwarz gefärbt, so sagen wir auch dass er \textbf{abgearbeitet} wurde.
+\end{defn}
+
+
+\begin{defn}
+Für zwei Knoten $u,v \in V$ in~$D$ definieren wir den \textbf{Abstand} (die \textbf{Distanz}) von~$u$ nach~$v$ als die minimale Länge eines $(u,v)$-Pfades und bezeichnen ihn mit $\delta(u,v)$.
 Wenn kein solcher Pfad existiert, setzen wir $\delta(u,v):=\infty$.
 Für ungerichtete Graphen ist $\delta(u,v)$ entsprechend definiert und es gilt $\delta(u,v)=\delta(v,u)$ für alle Knoten $u,v \in V$.
-Wie oben erwähnt erlaubt uns die Breitensuche das Bestimmen der Abstände $\delta(s,v)$ von einem festen \emph{Startknoten} $s \in V$ aus zu jedem anderen Knoten~$v$.
-Ist $\delta(s,v) < \infty$, so sagen wir, dass~$v$ von~$s$ aus \emph{erreichbar} ist.
+Gilt für einen Knoten $s \in V$, dass $\delta(s,v) < \infty$, so sagen wir, dass~$v$ von~$s$ aus \textbf{erreichbar} ist.
 \end{defn} 
 
 \begin{bem} 
-Während der Durchmusterung des Digraphen~$D$ wird ein Array~$d$ der Länge~$|V|$ verwaltet, in dem nach Abschluss der Breitensuche die Abstände $\delta(s,v)$, für alle Knoten $v \in V$, gespeichert sind.
+Die Breitensuche erlaubt das Bestimmen der Abstände $\delta(s,v)$ von einem festen \textbf{Startknoten} $s \in V$ aus zu jedem anderen Knoten~$v \in V$.
+
+Während der Durchmusterung des Digraphen~$D=(V,A)$ wird dabei ein Array~$d$ der Länge~$|V|$ verwaltet, in dem nach Abschluss der Breitensuche die Abstände $\delta(s,v)$, für alle Knoten $v \in V$, gespeichert sind.
 \end{bem} 
+
+
+\begin{bem} 
+Vor der eigentlichen Breitensuche müssen eine Reihe von Attributen korrekt initialisiert werden:
+\begin{itemize}
+ \item Zu Beginn setzen wir $d[v]:=\infty$, für alle $v \in V \setminus \{s\}$, und $d[s]:=0$.
+Besteht die Gleichheit $d[v]=\infty$ zu einem Moment der Breitensuche, so bedeutet dies, dass der Knoten~$v$ bisher noch nicht entdeckt wurde.
+Die erste Veränderung des Wertes~$d[v]$ entspricht der Entdeckung von~$v$, und wir nennen $d[v]$ die \textbf{aktuelle Distanz} von~$s$ zu~$v$. 
+ \item Wir verwalten weiterhin ein \textbf{Farbattribut} $\cc{Farbe}[u]$ für jeden Knoten~$u \in V$ um den Bearbeitungszustand von~$u$ zu jedem Zeitpunkt der Breitensuche zu kennen.
+ \item Desweiteren kommt die sogenannte \textbf{Vorgängerabbildung}~$\pi$ zum Einsatz.
+ Dies ist ein Array~$\pi$ mit $|V|$ Komponenten.
+	Durch $\pi[v]$ wird notiert von welchem Knoten aus der Knoten $v$ entdeckt wurde.
+\end{itemize}
+\end{bem} 
+
+%\begin{defn}
+%	Die \textbf{Vorgängerabbildung} ist ein Array~$\pi$ mit $|V|$ Komponenten.
+%	Durch $\pi[v]$ wird notiert von welchem Knoten aus der Knoten $v$ entdeckt wurde.
+%\end{defn}
 
 \begin{defn} 
 Für die Umsetzung der Breitensuche wird die folgende Hilfsdatenstruktur benutzt.
-Eine \emph{Warteschlange}~$Q$ ist eine Liste $Q=[q_1,\ldots,q_k]$, die mit zwei Grundoperationen ausgestattet ist:
+Eine \textbf{Warteschlange}~$Q$ ist eine Liste $Q=[q_1,\ldots,q_k]$, die mit zwei Grundoperationen ausgestattet ist:
 \begin{itemize}
- \item $\cc{Dequeue}(Q)$: Das \emph{erste} Element~$q_1$ von~$Q$ wird zurückgegeben und aus der Warteschlange entfernt.
- Man nennt das Element~$q_1$ den \emph{Kopf} der Warteschlange und nach der Operation gilt $Q=[q_2,\ldots,q_k]$.
+ \item $\cc{Dequeue}(Q)$: Das \textbf{erste} Element~$q_1$ von~$Q$ wird zurückgegeben und aus der Warteschlange entfernt.
+ Man nennt das Element~$q_1$ den \textbf{Kopf} der Warteschlange und nach der Operation gilt $Q=[q_2,\ldots,q_k]$.
 
- \item $\cc{Enqueue}(Q,x)$: Das Element~$x$ wird am \emph{Ende} von~$Q$ hinzugefügt.
- Nach der Ausführung dieser Operation gilt also $Q=[q_1,\ldots,q_k,x]$. 
+ \item $\cc{Enqueue}(Q,x)$: Das Element~$x$ wird am \textbf{Ende} von~$Q$ hinzugefügt.
+ Nach Ausführung dieser Operation gilt also $Q=[q_1,\ldots,q_k,x]$. 
 \end{itemize}
 \end{defn} 
 
@@ -35,26 +89,14 @@ Aufgrund der Einfüge- und Rückgabereihenfolge sagt man auch, dass Warteschlang
 Warteschlangen mit höchstens $n \in \N$ Elementen können auf der Basis von Arrays der Länge~$n$ umgesetzt werden, sodass die Laufzeit der beiden Grundoperationen $\Theta(1)$ Zeiteinheiten beträgt. 
 \end{bem} 
 
-\begin{bem} 
-Bevor wir mit der eigentlichen Breitensuche beginnen können, müssen eine Reihe von Attributen und natürlich auch die Warteschlange korrekt initialisiert werden:
-Zu Beginn setzen wir $d[v]:=\infty$, für alle $v \in V \setminus \{s\}$, und $d[s]:=0$.
-Besteht die Gleichheit $d[v]=\infty$ zu einem Moment der Breitensuche, so bedeutet dies, dass der Knoten~$v$ bisher noch nicht entdeckt wurde.
-Die erste Veränderung des Wertes~$d[v]$ entspricht der Entdeckung von~$v$, und wir nennen $d[v]$ die \emph{aktuelle Distanz} von~$s$ zu~$v$. 
-Wir verwalten weiterhin wie bei der Tiefensuche das Farbattribut $\cc{Farbe}[u]$ eines Knotens~$u \in V$ um den Bearbeitungszustand von~$u$ zu jedem Zeitpunkt der Breitensuche zu kennen.
-Auch die Vorgängerabbildung~$\pi$ kommt wieder zum Einsatz.
-\end{bem} 
-
-\begin{defn}
-	Die \textbf{Vorgängerabbildung} ist ein Array~$\pi$ mit $|V|$ Komponenten.
-	Durch $\pi[v]$ wird notiert von welchem Knoten aus der Knoten $v$ entdeckt wurde.
-\end{defn} 
 
 
 \begin{bem} 
-Wir fassen die Initialisierungen zu einer eigenen Hilfsprozedur zusammen:
+Auch die Warteschlange muss korrekt initialisiert werden.
+Wir fassen alle Initialisierungen zu einer eigenen Hilfsprozedur zusammen:
 
 \begin{algorithm}[H]
-\caption{$\cc{Breitensuche-initialisieren}(D,s)$}
+\caption{$\cc{Breitensuche-initialisieren}(s)$}
 \begin{algorithmic}[1]
  \FOR{$u \in V \setminus \{s\}$}
   \STATE $\cc{Farbe}[u] := \cc{weiss}$
@@ -71,7 +113,7 @@ Wir fassen die Initialisierungen zu einer eigenen Hilfsprozedur zusammen:
 \end{bem}
 
 \begin{bem}
-Die Breitensuche ist so umgesetzt, dass das ``Leben'' eines jeden Knotens $u$ als der folgender Ablauf zusammengefasst werden kann: 
+Die Breitensuche ist so umgesetzt, dass das \glqq Leben\grqq\ eines jeden Knotens $u$ als der folgende Ablauf zusammengefasst werden kann: 
 \begin{equation*}
 	\cc{weiss} 
 	\ \xrightarrow{\text{$u$ kommt in $Q$}} \ 
@@ -80,8 +122,10 @@ Die Breitensuche ist so umgesetzt, dass das ``Leben'' eines jeden Knotens $u$ al
 	\ \xrightarrow{\text{Sondierung von $N[u]$}} \ 
 	\cc{schwarz} 
 \end{equation*} 
+%
+Beim Sondieren/Erkunden der Nachbarschaft $N[u]$ von~$u$ werden weiße Knoten entdeckt: Sie werden in $Q$ eingefügt und dann grau gefärbt. Die Breitensuche ist durch die Wahl des Containers~$Q$ als \underline{Warteschlange} ausgezeichnet.
 
-Beim Sondieren von $N[u]$ werden werden weiße Knoten entdeckt: sie kommen in $Q$ und werden grau gefärbt. Die Breitensuche ist durch die Wahl des Containers $Q$ als Warteschlange ausgezeichnet. Durch diese Wahl ``simuliert'' die Breitensuche die Ausbreitung einer Welle in einem Medium. Stellen Sie sich vor: in $s$ kommt es zu einer Explosion; die Schallwelle breitet sich in $G$ entlang der Kanten aus und erreicht mit der Zeit immer mehr Knoten. Wie sich die Front der Schallwelle durch die Knoten ausbreitet wird durch die Warteschlange $Q$ ``modelliert''. 
+Durch diese Wahl \glqq simuliert\grqq\ die Breitensuche die Ausbreitung einer Welle in einem Medium. Stellen Sie sich vor in $s$ kommt es zu einer Explosion; die Schallwelle breitet sich im Graphen $D$ entlang der Kanten aus und erreicht mit der Zeit immer mehr Knoten. Wie sich die Front der Schallwelle durch die Knoten ausbreitet wird durch die Warteschlange $Q$ \glqq modelliert\grqq.
 
 
 \begin{algorithm}[H]
@@ -90,7 +134,7 @@ Beim Sondieren von $N[u]$ werden werden weiße Knoten entdeckt: sie kommen in $Q
  \STATE $\cc{Breitensuche-initialisieren}(s)$
  \WHILE{$Q$ enthält Knoten}
   \STATE\label{line:breitensuche-dequeue} $u:=\cc{Dequeue}(Q)$ $\quad$ \COMMENT{Die Bearbeitung des Knotens $u$ beginnt.}
-  \STATE \COMMENT{Aus $u$ ausgehende Kanten werden sondiert}
+  \STATE \COMMENT{Aus $u$ ausgehende Kanten werden sondiert/untersucht}
   \FOR{$v \in N[u]$}
    \IF{$\cc{Farbe}[v]=\cc{weiss}$}\label{line:breitensuche-if}
     \STATE $\cc{Farbe}[v]:=\cc{grau}$
@@ -111,7 +155,7 @@ Beim Sondieren von $N[u]$ werden werden weiße Knoten entdeckt: sie kommen in $Q
 
 \begin{bsp}
 \label{bsp:breitensuche}
-Zum Vergleich mit der Tiefensuche sehen wir uns die Arbeitsweise der Breitensuche wieder auf dem Digaphen aus Beispiel~\ref{bsp:tiefensuche} an:
+Wir sehen uns die Arbeitsweise der Breitensuche auf dem folgenden Digraphen an:
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -139,8 +183,9 @@ Zum Vergleich mit der Tiefensuche sehen wir uns die Arbeitsweise der Breitensuch
 \end{tikzpicture}
 \hfill\,
 
-Als Startknoten wählen wir wieder~$s=3$ und treffen ansonsten jede Wahl aufsteigend in der Reihenfolge der Knotenindizes.
-Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beispiel~\ref{bsp:tiefensuche}:
+Als Startknoten wählen wir~$s=3$ und treffen ansonsten jede Wahl aufsteigend in der Reihenfolge der Knotenindizes.
+Wir zeigen die ersten 8 Schritte durch die folgende Sequenz von gefärbten Digraphen.
+Dabei entspricht die Knotenfarbe dem aktuellen Farbattribut und die bereits sondierten Kanten sind rot markiert:
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -169,7 +214,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\, $Q: \ \not 3 $
+\hfill\, $Q: \ 3 $
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -199,7 +244,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\, $Q: \ \not 3 1 $ 
+\hfill\, $Q: \ \not 3\ 1 $ 
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -230,7 +275,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\, $Q: \ \not 3 1 4$ 
+\hfill\, $Q: \ \not 3\ 1\ 4$ 
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -261,7 +306,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\, $Q: \ \not 3 1 4 5$ 
+\hfill\, $Q: \ \not 3\ 1\ 4\ 5$ 
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -292,7 +337,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\, $Q: \ \not 3 \not1 4 5 2$ 
+\hfill\, $Q: \ \not 3 \not 1\ 4\ 5\ 2$ 
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -323,7 +368,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\, $Q: \ \not 3 \not1 \not4 5 2$
+\hfill\, $Q: \ \not 3 \not 1 \not 4\ 5\ 2$
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -355,7 +400,7 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\, $Q: \ \not 3 \not1 \not4 \not5 2 6$
+\hfill\, $Q: \ \not 3 \not 1 \not 4 \not 5\ 2\ 6$
 
 \condclearpage 
 \begin{tikzpicture}[line width=2,scale=1.2]
@@ -386,11 +431,11 @@ Wir zeigen die ersten 8 Schritte und benutzen dieselbe Farbkodierung wie in Beis
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\, $Q: \ \not 3 \not1 \not4 \not5 2 6 8$
-
-Da die Knoten~$9$ und~$10$ nicht vom Startknoten $s=3$ aus erreichbar sind, ist der Endzustand nach dem Abschluss von $\cc{Breitensuche}(3)$ der folgende:
+\hfill\, $Q: \ \not 3 \not 1 \not 4 \not 5\ 2\ 6\ 8$
 
 \condclearpage 
+Da die Knoten~$9$ und~$10$ nicht vom Startknoten $s=3$ aus erreichbar sind, ist der Endzustand nach dem Abschluss von $\cc{Breitensuche}(3)$ der folgende:
+
 \begin{tikzpicture}[line width=2,scale=1.2]
  \tikzset{gnode/.style ={fill=black!30!,circle,draw}}
  \tikzset{snode/.style ={white,fill=black,circle,draw}}
@@ -418,14 +463,15 @@ Da die Knoten~$9$ und~$10$ nicht vom Startknoten $s=3$ aus erreichbar sind, ist 
  \draw[->] (9) edge (8) (9) edge (10);
  \draw[->] (10) edge (8); 
 \end{tikzpicture}
-\hfill\, $Q: \ \not 3 \not1 \not4 \not5 \not2 \not6 \not8$
+\hfill\, $Q: \ \not 3 \not1 \not4 \not5 \not2 \not6 \not8 \not7$
 
+\condclearpage 
 Weitere Beispiele können mit \verb#bfs_demo.sage# generiert werden.
 \end{bsp}
 
 \begin{bem}
 Der Beweis der Korrektheit der Breitensuche inklusive der korrekten Bestimmung der Abstände $\delta(s,v)$, für $v \in V$, erfordert noch etwas Vorbereitung.
-Die Laufzeitanalyse können wir allerdings bereits durchführen, mit dem Ergebnis, dass auch die Breitensuche einen optimalen linearen Aufwand erfordert:
+Die Laufzeitanalyse können wir allerdings bereits durchführen, mit dem Ergebnis, dass die Breitensuche einen optimalen linearen Aufwand $\Theta(|V|+|A|)$ auf einem Digraphen $D  = (V,A)$ erfordert:
 \end{bem}
 
 \begin{thm}
@@ -435,7 +481,7 @@ Die Laufzeit von $\cc{Breitensuche}(s)$ ist $\Theta(|V|+|A|)$.
 \end{thm}
 
 \begin{proof}
-Der Aufwand für die Initialisierung $\cc{Breitensuche-initialisieren}(D,s)$ ist direkt als $\Theta(|V|)$ festzustellen. Der Aufwand von $\cc{Breitensuche}(s)$ kann aus dem Diagramm zur Bearbeitung von Knoten $u \in V$ abgelesen werden: 
+Der Aufwand für die Initialisierung $\cc{Breitensuche-initialisieren}(s)$ ist direkt als $\Theta(|V|)$ festzustellen. Der Aufwand von $\cc{Breitensuche}(s)$ kann aus dem Diagramm zur Bearbeitung eines Knotens $u \in V$ abgelesen werden: 
 \begin{equation*}
 	\cc{weiss} 
 	\ \xrightarrow{\text{$u$ kommt in $Q$}} \ 
@@ -444,14 +490,17 @@ Der Aufwand für die Initialisierung $\cc{Breitensuche-initialisieren}(D,s)$ ist
 	 \ \xrightarrow{\text{Sondierung von $N[u]$}}
 	\ \cc{schwarz} 
 \end{equation*} 
-Der Aufwand pro Knoten, der entdeckt wird ist konstant: der Aufwand  besteht aus der Aufnahme in $Q$,  der Färbung von Weiß zu Grau und von Grau zu Schwarz. Der Aufwand pro Kante $(u,v)$, die sondiert wird, ist ebenfalls konstant: jede Kante $(u,v)$ wird höchstens ein mal sondiert, denn die Sondierung erfolgt nach der Entfernung von $u$ aus der Warteschlange. Nach der Entfernung von $u$ wird $u$ schwarz gefärbt und daher nicht mehr in $Q$ aufgenommen. 
+Der Aufwand pro Knoten, der entdeckt wird ist konstant: der Aufwand  besteht aus der Aufnahme in $Q$,  der Färbung von Weiß zu Grau und von Grau zu Schwarz. Der Aufwand pro Kante $(u,v)$, die sondiert wird, ist ebenfalls konstant: jede Kante $(u,v)$ wird höchstens ein Mal sondiert, denn die Sondierung erfolgt nach der Entfernung von $u$ aus der Warteschlange. Nach der Entfernung von $u$ wird $u$ schwarz gefärbt und daher nicht noch einmal in $Q$ aufgenommen. 
 
-Zusammenfassend erhalten wir also  wie behauptet einen Zeitaufwand von $\Theta(|V|) + \Theta(|V|) + \Theta(|A|) = \Theta(|V|+|A|)$.
+Zusammenfassend erhalten wir also  wie behauptet einen Zeitaufwand von
+\[
+\Theta(|V|) + \Theta(|V|) + \Theta(|A|) = \Theta(|V|+|A|).
+\]
 \end{proof}
 
 
 \begin{defn}
-Wir nennen einen $(s,v)$-Pfad der Länge $\delta(s,v)$ einen \emph{kürzesten Pfad} von~$s$ nach~$v$ in~$D$.
+Wir nennen einen $(s,v)$-Pfad der Länge $\delta(s,v)$ einen \textbf{kürzesten Pfad} von~$s$ nach~$v$ in~$D$.
 \end{defn}
 
 \begin{lem}
@@ -476,7 +525,7 @@ Nach Abschluss der Prozedur $\cc{Breitensuche}(s)$ gilt $d[v] \geq \delta(s,v)$,
 \end{lem}
 
 \begin{proof}
-Wir argumentieren mittels vollständiger Induktion nach der Anzahl der Ein\-füge\-operationen in die Warteschlange~$Q$.
+Wir argumentieren mittels vollständiger Induktion nach der Anzahl der Ein\-füge\-operatio\-nen in die Warteschlange~$Q$.
 
 Der Induktionsanfang ist der Zeitpunkt nach der Initialisierung zu dem $d[s]=0=\delta(s,s)$ und, für alle $v \in V \setminus \{s\}$, die Ungleichung $d[v]=\infty\geq\delta(s,v)$ gilt.
 
@@ -490,7 +539,7 @@ Der Knoten~$v$ wird in die Warteschlange~$Q$ eingefügt, und da er zu diesem Zei
 \end{proof}
 
 \begin{bem} 
-Wir fassen dafür die Warteschlange als Liste oder Array $[v_1,\ldots,v_r]$ auf, wobei $v_1$ der Kopf und $v_r$ das Ende von~$Q$ ist.
+Für das folgende Lemma fassen wir die Warteschlange als Liste oder Array $[v_1,\ldots,v_r]$ auf, wobei $v_1$ der Kopf und $v_r$ das Ende von~$Q$ ist.
 \end{bem} 
 
 \begin{lem}
@@ -508,35 +557,36 @@ Mit anderen Worten: die Liste
 \begin{proof}
 Am Anfang der Breitensuche enthält~$Q$ nur den Startknoten~$s$ und die Aussage gilt trivialerweise.
 
-Wir zeigen, dass wenn die behauptete Bedingung zu einem Zeitpunkt gilt, dass sie auch dann gültig bleibt, wenn eine Warteschlangenoperation ausgeführt wird.
+Wir zeigen, dass wenn die behauptete Bedingung zu einem Zeitpunkt gilt, dass sie dann auch gültig bleibt, wenn eine Warteschlangenoperation ausgeführt wird.
 (Das heißt, wir argumentieren mittels vollständiger Induktion über die Anzahl der ausgeführten Warteschlangenoperationen.)
 
 \condclearpage 
 
 Sei zunächst wie angenommen $Q=[v_1,\ldots,v_r]$ und führen wir $\cc{Dequeue}(Q)$ aus.
-Hat die Liste $Q_d$ die Form $[t,\ldots,t]$ so, hat sie nach der Entfernung von $v_1$ immer noch die Form $[t,\ldots,t]$ (und Länge um eins kleiner).  Hat die Liste $Q_d$ die Form $[t,\ldots,t,t+1,\ldots,t+1]$ so, hat hat sie nach der Entfernung von $v_1$ die Form $[t,\ldots,t,t+1,\ldots,t+1]$ mit dem Block $t,\ldots,t$, dessen Länge um eins geringer geworden ist, oder die Form $[t+1,\ldots,t+1]$. 
+Hat die Liste $Q_d$ die Form $[t,\ldots,t]$ so, hat sie nach der Entfernung von $v_1$ immer noch die Form $[t,\ldots,t]$ (und Länge um eins kleiner).
+Hat die Liste $Q_d$ die Form $[t,\ldots,t,t+1,\ldots,t+1]$, so hat sie nach der Entfernung von $v_1$ die Form $[t,\ldots,t,t+1,\ldots,t+1]$, wobei die Länge des Blocks $t,\ldots,t$ um eins kleiner geworden ist, oder sie hat die Form $[t+1,\ldots,t+1]$. 
 
 \condclearpage 
 
-Schauen wir uns an, was passiert, wenn in Zeile~\ref{line:breitensuche-enqueue} von $\cc{Breitensuche}(s)$ die Operation $\cc{Enqueue}(Q,v)$ ausgeführt wird.
+Schauen wir uns an, was passiert, wenn in Zeile~\ref{line:breitensuche-enqueue} von $\cc{Breitensuche}(s)$ die Opera\-tion $\cc{Enqueue}(Q,v)$ ausgeführt wird.
 Der Knoten~$v$ wird zum Ende der neuen Warteschlange $Q'=[v_1,\ldots,v_r,v]$ und zum Zeitpunkt dieser Operation durchsucht der Algorithmus die Nachbarschaft des Knotens~$u$, der zuvor aus der Warteschlange entfernt wurde.
 Daher gilt nach Annahme die Ungleichung $d[u] \leq d[v_i]$ für alle $1 \leq i \leq r$ und nach Zeile~\ref{line:breitensuche-d} weiterhin $d[v] = d[u]+1 \leq d[v_1]+1$.
 Es gilt außerdem, dass $d[v_r] \leq d[u]+1=d[v]$, da wie bereits erwähnt, $u$ zuvor aus der Schlange entfernt wurde, und nach Annahme die Aussage des Lemmas vor der Operation $\cc{Enqueue}(Q,v)$ gilt.
 Alle anderen Ungleichungen bleiben unangetastet und wir erhalten zusammenfassend
 \[
-d[v_1] \leq d[v_2] \leq \ldots d[v_r] \leq d[v] \leq d[v_1] + 1,
+d[v_1] \leq d[v_2] \leq \ldots \leq d[v_r] \leq d[v] \leq d[v_1] + 1,
 \]
-wie gewünscht.
+wie behauptet.
 \end{proof}
 
 \begin{kor}
 \label{cor:breitensuche-warteschlange}
-Seien $v'$ und $v''$ Knoten die während der Ausführung von $\cc{Breitensuche}(s)$ in $Q$ eingefügt werden, und nehmen wir weiterhin an, dass~$v'$ vor $v''$ eingefügt wird.
-Dann gilt $d[v'] \leq d[v'']$ zum Zeitpunkt des Einfügens von~$v''$.
+Seien $v$ und $v'$ Knoten, die während der Ausführung von $\cc{Breitensuche}(s)$ in~$Q$ eingefügt werden, und nehmen wir weiterhin an, dass~$v$ zu einem früheren Zeitpunkt als $v'$ eingefügt wird.
+Dann gilt $d[v] \leq d[v']$ zum Zeitpunkt des Einfügens von~$v'$.
 \end{kor}
 
 \begin{proof}
-Aus Lemma~\ref{lem:breitensuche-warteschlange-monotonie} folgt: solange $Q$ nicht leer ist, wächst das Maximum von $Q_d$ monoton während der Ausführung der Breitensuche (monotones Wachstum im nicht-strikten Sinn). Die Entfernung des Kopfs verändert $Q_d$ nicht, solange die Schlange $Q$ nicht leer ist. Beim Hinzufügen eines neuen Elements zu $Q$ bleibt das Maximum im Fall $Q_d=[t,\ldots,t,t+1,\ldots,t+1]$ unverändert und es wächst um eine Einheit bei $Q_d=[t,\ldots,t]$, weil nach dem Hinzufügen $Q_d = [t,\ldots,t,t+1]$ ist. 
+Aus Lemma~\ref{lem:breitensuche-warteschlange-monotonie} folgt: solange $Q$ nicht leer ist, wächst das Maximum von $Q_d$ monoton während der Ausführung der Breitensuche (monotones Wachstum im nicht-strikten Sinn). Die Entfernung des Kopfes verändert die Form von $Q_d$ nicht, solange die Schlange $Q$ nicht leer bleibt. Beim Hinzufügen eines neuen Elements zu $Q$ bleibt das Maximum in dem Fall, dass $Q_d=[t,\ldots,t,t+1,\ldots,t+1]$ ist, unverändert und es wächst um eine Einheit falls $Q_d=[t,\ldots,t]$, weil nach dem Hinzufügen $Q_d = [t,\ldots,t,t+1]$ gilt.
 \end{proof}
 
 
@@ -557,11 +607,16 @@ Sei weiterhin angenommen, dass~$v$ ein solcher Knoten mit kleinstem Abstand $\de
 Da $d[s]=0=\delta(s,s)$ gilt, ist demnach in jedem Fall $v \neq s$.
 Nach Lemma~\ref{lem:breitensuche-d-geq-delta} ist $d[v] \geq \delta(s,v)$ und daher $d[v] > \delta(s,v)$ für diesen ausgezeichneten Knoten~$v$.
 Weiterhin muss~$v$ von~$s$ aus erreichbar sein, da ansonsten $\delta(s,v)=\infty \geq d[v]$ gelte.
+
+\condclearpage
+
 Sei nun~$u$ ein Knoten auf einem kürzesten $(s,v)$-Pfad, der unmittelbar vor~$v$ liegt, so dass $\delta(s,v)=\delta(s,u)+1$ gilt.
 Die Wahl des Knotens~$v$ zusammen mit $\delta(s,u) < \delta(s,v)$ ergibt die Identität $d[u]=\delta(s,u)$, und wir fassen unsere Beobachtungen in folgender Ungleichungskette zusammen
 \begin{align}
 d[v] &> \delta(s,v) = \delta(s,u) + 1 = d[u] + 1.\label{eqn:breitensuche-korrekt}
 \end{align}
+
+\condclearpage
 
 Sehen wir uns den Zeitpunkt an, zu dem der Algorithmus $\cc{Breitensuche}(s)$ in Zeile~\ref{line:breitensuche-dequeue} den Knoten~$u$ aus der Warteschlange entfernt.
 Wir unterscheiden danach, welche Farbe $\cc{Farbe}[v]$ der Knoten~$v$ zu diesem Zeitpunkt trägt:
@@ -577,31 +632,35 @@ Ist $\cc{Farbe}[v]=\cc{schwarz}$, so wurde~$v$ bereits aus der Warteschlange ent
 
 Zusammenfassend erhalten wir in jedem Fall einen Widerspruch zu~\eqref{eqn:breitensuche-korrekt} und damit gilt also $d[v]=\delta(s,v)$, für alle Knoten $v \in V$.
 
+\condclearpage
+
 Alle von~$s$ aus erreichbaren Knoten werden bei der Breitensuche entdeckt, da für einen ansonsten unentdeckten Knoten~$v$ der Initialwert $d[v]=\infty$ größer als $\delta(s,v)$ wäre.
 Abschließend bemerken wir noch, dass die Verwaltung der Vorgängerabbildung~$\pi$ und des Abstandsattributs~$d$ in den Zeilen~\ref{line:breitensuche-pi} und~\ref{line:breitensuche-d} von $\cc{Breitensuche}(s)$ impliziert, dass $\delta(s,v)=d[v]=d[\pi[v]]+1=\delta(s,\pi[v])+1$ gilt und somit jeder kürzeste $(s,\pi[v])$-Pfad über die Kante $(\pi[v],v)$ zu einem kürzesten $(s,v)$-Pfad erweitert werden kann.
 \end{proof}
 
 \begin{defn} 
-	Die Vorgängerabbildung $\pi$ aus der Breitensuche erzeugt auf einem Digraphen $D=(V,A)$, die von einem Startknoten~$s \in V$ ausgeht, den \textbf{Vorgängerteilgraphen} $D_\pi = (V_\pi,A_\pi)$, der durch
+	Die Vorgängerabbildung $\pi$ aus der Breitensuche erzeugt auf einem Digraphen $D=(V,A)$, von einem Startknoten~$s \in V$ ausgehend, den \textbf{Vorgängerteilgraphen} $D_\pi = (V_\pi,A_\pi)$, der durch
 	\[
 	V_\pi := \left\{ v \in V : \pi[v] \neq \cc{nil}\right\} \cup \{s\} \quad \text{ und } \quad A_\pi := \left\{ (\pi[v],v) : v \in V_\pi \setminus \{s\}\right\}
 	\]
 	definiert ist.
 	
-	Es kann gezeigt, werden dass $D_\pi$ ein gerichteter Baum mit Wurzel $s$ ist. Dieser Baum nennt man den \textbf{Breitensuchbaum} der Breitensuche. die  Kanten von $D_\pi$ werden die \textbf{Baumkanten} der Breitensuche genannt.
+	Man kann zeigen, dass $D_\pi$ ein gerichteter Baum mit Wurzel $s$ ist.
+	Nach dem Abschluss der Breitensuche nennt man diesen Baum den \textbf{Breitensuchbaum} der Breitensuche; die Kanten von $D_\pi$ werden die \textbf{Baumkanten} der Breitensuche genannt.
 \end{defn}
 
 \begin{prop}
 	Zu jeder Zeit der Ausführung der Breitensuche auf einem Digraphen $D=(V,A)$ ist $D_\pi$ ein gerichteter Baum. 
 \end{prop} 
 \begin{proof} 
-	Die Aussage kann durch Induktion über die Anzahl der Färbungen von weißen Knoten mit der grauen Farbe beweisen werden. 
-	Nach der ersten Färbung ist $D_\pi$ der Baum mit einem einzigen Knoten $s$. Nach jeder neuen Färbung von einem weißen Knoten $v$ wird ein Knoten $v$, der außerhalb von $D_\pi $ liegt $D_\pi$ hinzugefügt und es entsteht eine neue Kante $(u,v)$ zwischen einem Knoten $u$, der bereits in $D_\pi$ liegt, und dem neu hinzugefügten Knoten $v$. Man sieht, dass $D_\pi$ nach diesem Update ein gerichteter Baum bleibt. 
+	Die Aussage kann durch Induktion über die Anzahl der erfolgten Grau-Färbungen von weißen Knoten bewiesen werden. 
+	Nach der ersten Grau-Färbung ist $D_\pi$ der Baum mit einem einzigen Knoten $s$. Nach jeder neuen Grau-Färbung von einem noch weißen Knoten wird ein Knoten~$v$, der außerhalb von $D_\pi $ liegt, $D_\pi$ hinzugefügt und es entsteht eine neue Kante $(u,v)$ zwischen einem Knoten $u$, der bereits in $D_\pi$ liegt, und dem neu hinzugefügten Knoten $v$.
+	Daher bleibt $D_\pi$ nach diesem Update ein gerichteter Baum.
 \end{proof} 
 
 \begin{bem}Zur Berechnung der kürzesten Pfade kann die folgende Prozedur benutzt werden: 
 	\begin{algorithm}[H]
-	\caption{$\cc{Pfad-Ausgeben}(v)$}
+	\caption{$\cc{Pfad-Ausgeben}(s,v)$}
 	\begin{algorithmic}[1]
 		\IF{$v=s$}
 		\STATE print $s$
@@ -614,12 +673,15 @@ Abschließend bemerken wir noch, dass die Verwaltung der Vorgängerabbildung~$\p
 \end{bem}
 
 \begin{prop}
-	Ist $\pi$ die Vorgängerabbildung zur Breitensuche auf $G=(V,A)$ mit dem Startknoten $s$, so gibt die Prozedur $\cc{Pfad-Ausgeben}(v)$ folgende Algorithmus für jedes $v \in V$ mit $\delta(s,v)<\infty$ einen kürzesten $(s,v)$-Pfad aus. 
+	Ist $\pi$ die Vorgängerabbildung zur Breitensuche auf $D=(V,A)$ mit dem Startknoten $s$, so gibt die Prozedur $\cc{Pfad-Ausgeben}(s,v)$, für jedes $v \in V$ mit $\delta(s,v)<\infty$, einen kürzesten $(s,v)$-Pfad aus.
 \end{prop}
 \begin{proof} 
- Dass die Prozedur $\cc{Pfad-Ausgeben}(v)$ terminiert und einen kürzesten $(s,v)$-Pfad ausgibt kann durch Induktion über $\delta(s,v)$ gezeigt werden. ist $\delta(s,v)=0$ so ist $v=0$ und die Behauptung ist klar. Angenommen, die Behauptung gelte für alle $v \in V$ mit $\delta(s,v)=t-1$ für ein $t \in \N$. 
+ Dass die Prozedur $\cc{Pfad-Ausgeben}(s,v)$ terminiert und einen kürzesten $(s,v)$-Pfad ausgibt kann durch Induktion über $\delta(s,v)$ gezeigt werden.
+ Ist $\delta(s,v)=0$ so ist $v=s$ und die Behauptung ist klar.
+ Angenommen, die Behauptung gelte für alle $v \in V$ mit $\delta(s,v)=t-1$ für ein $t \in \N$. 
 
-Wir betrachten ein $v \in V$ mit $\delta(s,v)$. 	In der Breitensuche setzt man  $\pi[v] := u$ gleichzeitig mit $d[v] = d[u]+1$ für $v \in N[u]$. Daher hat man $t = d[v] = d[\pi[u]] + 1 $, sodass $d[\pi[u]]=t-1$ gilt. Nach der Induktionsvoraussetzung  gibt $\cc{Pfad-Ausgeben}(s,\pi[v])$ den $(s,\pi[v])$-Pfad der Lange $\delta(s,\pi[u]) = d[\pi[u]]  = t-1$ aus. Also gibt $\cc{Pfad-Ausgeben}(v)$ den $(s,v)$-Pfad der Länge $t = d[v] = \delta(s,v)$ aus, was die Korrektheit und die Terminierung der Ausführung Prozedur $\cc{Pfad-Ausgeben}$  auf dem Knoten $v$ bestätigt. 
+Wir betrachten ein $v \in V$ mit $\delta(s,v) = t$.
+In der Breitensuche setzt man  $\pi[v] := u$ gleichzeitig mit $d[v] = d[u]+1$ für $v \in N[u]$. Daher hat man $t = d[v] = d[\pi[u]] + 1 $, sodass $d[\pi[u]]=t-1$ gilt. Nach der Induktionsvoraussetzung  gibt $\cc{Pfad-Ausgeben}(s,\pi[v])$ einen $(s,\pi[v])$-Pfad der L\"ange $\delta(s,\pi[u]) = d[\pi[u]]  = t-1$ aus. Also gibt $\cc{Pfad-Ausgeben}(s,v)$ einen $(s,v)$-Pfad der Länge $t = d[v] = \delta(s,v)$ aus, was die Korrektheit und die Terminierung der Prozedur $\cc{Pfad-Ausgeben}$ auf dem Knoten $v$ bestätigt. 
 \end{proof} 
 
 
@@ -665,24 +727,96 @@ Beachten Sie, dass die Knoten $9$ und $10$ nicht im Breitensuchbaum auftreten, d
 
 \begin{bem} Einige Anwendungen der Breitensuche: 
 	\begin{itemize} 
-		\item Bestimmung der Zusammenhangskomponente des Knotens $s$ bei einem ungerichteten Graphen $G$. 
-		\item Umsetzung von Web-Crawlern, die das Umfeld einer Webseite $s$ bestimmen, als die Menge von Webseiten, die innerhalb von gegebener Anzahl von Klicks $k$ von $s$ aus erreichbar sind. 
+		\item Bestimmen der Zusammenhangskomponente des Knotens $s$ bei einem ungerichteten Graphen $G$. 
+		\item Umsetzung von Web-Crawlern, die das Umfeld einer Webseite $s$ bestimmen, das hei\ss t, die Menge von Webseiten, die innerhalb einer vorgegebenen Anzahl $k$ von Klicks von $s$ aus erreichbar sind. 
 	\end{itemize}
 \end{bem} 
 
 \begin{bem}[Entscheidung von Spielen mit einer Variante der Breitensuche]  		
-		Bei verschiedenen Arten von Spielen lässt sich die Frage stellen: kann man den Gewinn von einer gegebenen Position aus erzwingen und ggf. wie? Dafür benutzt man etwa im Schach die sogenannten Endspieldatenbanken. 
-		Die Generierung von Endspieldatenbanken basiert im Wesentlichen auf der Breitensuche. Vgl. den Abschnitt Generating Tablebases in  \url{https://en.wikipedia.org/wiki/Endgame_tablebase}. Endspieldatenbanken kann man für verschiedene Spiele generieren (Treblecross, Hex, Go, Nim usw.), die Anzahl der Positionen ist aber ein mögliches praktisches Hindernis, da der Graph der Endspiele, den man kann erzeugt, potenziell extrem groß sein kann.   
+		Bei verschiedenen Arten von Spielen lässt sich die Frage stellen: Kann man das Gewinnen von einer gegebenen Position aus erzwingen und ggf. wie? Dafür benutzt man etwa im Schach die sogenannten Endspieldatenbanken. 
+		Die Generierung von Endspieldatenbanken basiert im Wesentlichen auf der Breitensuche. Vgl. den Abschnitt Generating Tablebases in \url{https://en.wikipedia.org/wiki/Endgame_tablebase}. Endspieldatenbanken kann man für verschiedene Spiele generieren (Treblecross, Hex, Go, Nim usw.), die Anzahl der Positionen ist aber ein mögliches praktisches Hindernis, da der Graph der Endspiele, den man erzeugt, potenziell extrem groß sein kann.   
+
+\condclearpage
+
+		Wir beschreiben eine Art und Weise, die alle Endspiele für eine gegebene Auswahl von Steinen entscheidet: Man erzeugt den Digraphen des Spiels $D=(V,A)$, bei dem jeder Knoten $v \in V$ eine Position (mit gegebener Anzahl der Steine) darstellt, mit dem Vermerk wer dran ist. Die Menge $V$ besteht aus den Knoten, bei denen Weiß dran ist und aus den Knoten, bei denen Schwarz dran ist. Wir zerlegen dementsprechend $V$ als $V = W \cupdot S$. Die Kanten $(a,b) \in A $ stellen die Züge dar, und da Weiß und Schwarz abwechselnd dran sind, gilt für jede Kante entweder  $a \in W,\ b \in S$ oder $a \in S,\ b \in W$. 
 		
-		Hier eine Weise alle Endspiele für einen gegebene Auswahl von Steinen zu entscheiden. Man erzeugt den Digraphen des Spiels $D=(V,A)$, bei dem jeder Knoten $v \in V$ eine Position (mit gegebener Anzahl der Steine) darstellt, mit dem Vermerk wer dran ist. Die Menge $V$ besteht aus den Knoten, bei denen Weiß dran ist und aus den Knoten, bei denen Schwarz dran ist. Wir zerlegen dementsprechend $V$ als $V = W \cupdot S$). Die Kanten $(a,b) \in A $ stellen die Züge dar, und da Weiß und Schwarz abwechselnd dran sind, gilt für jede Kante entweder  $a \in W, b \in S$ oder $a \in S, b \in W$. 
-		
-		Um zu entscheiden, in welchen Stellungen Schwarz den Sieg erzwingen kann, markieren wir die Positionen $a \in W$, bei denen Weiß matt gesetzt ist als ``Schwarz gewinnt in $0$'' Zügen oder kurz $s_0$. Dann markieren wir alle $a \in S$, bei denen $b$ als $s_0$ markiert ist als ``Schwarz gewinnt in $1$ Zug'' oder kurz $s_1$. So gehen wir iterativ vor. Sind die Markierungen $s_0,\ldots,s_{k-1}$ bereits vergeben, so bestimmen wir die Knoten $a \in S$, für welche eine Kante $(a,b)$ existiert derart, dass für alle Kanten $(b,c)$, die von $b$ ausgehen, der Knoten $c$ bereits als $s_i$ mit $i=0,\ldots,k-1$ markiert ist. Man markiert $a$ als $s_k$ und merkt dabei den Siegeszug $(a,b)$. Auf diese Weise lassen sich alle Positionen markieren, bei denen Schwarz den Sieg erzwingen kann. Analog kann man auch alle Positionen bestimmen, bei denen Weiß den Sieg erzwingen kann. Alle nicht markierten  Positionen hat führen beim optimalen Spiel zu unentschieden. 
+		Um zu entscheiden, in welchen Stellungen Schwarz den Sieg erzwingen kann, markieren wir die Positionen $a \in W$, bei denen Weiß matt gesetzt ist als \glqq Schwarz gewinnt in $0$\grqq\ Zügen oder kurz $s_0$. Dann markieren wir alle $a \in S$, bei denen $(a,b) \in A$ ist und $b$ als $s_0$ markiert ist als \glqq Schwarz gewinnt in $1$ Zug\grqq\ oder kurz $s_1$. So gehen wir iterativ vor: Sind die Markierungen $s_0,\ldots,s_{k-1}$ bereits vergeben, so bestimmen wir die Knoten $a \in S$, für welche eine Kante $(a,b)$ existiert derart, dass für alle Kanten $(b,c)$, die von $b$ ausgehen, der Knoten $c \in S$ bereits als $s_i$ mit $i=0,\ldots,k-1$ markiert ist. Man markiert $a$ als $s_k$ und merkt sich dabei den Siegeszug $(a,b)$. Auf diese Weise lassen sich alle Positionen markieren, bei denen Schwarz den Sieg erzwingen kann. Analog kann man auch alle Positionen bestimmen, bei denen Weiß den Sieg erzwingen kann.
+		Alle nicht markierten Positionen führen beim optimalen Spiel zu unentschieden. 
 \end{bem} 
 
-\begin{aufg}\ Hier der Graph des Spiels Nim für die Anfangspositionen $(2,2,2)$. Es gibt zwei Startpositionen (für den Fall, dass $A$ beginnt und für den Fall, dass $B$ beginnt). Die Gewinnstrategie für dieses Spiel ist zwar bekannt, man kann den Graphen trotzdem als Illustration zur Lösung der Spiele mit Hilfe von (End)spieldatenbanken benutzen. Berechnen Sie mit Hilfe des Graphen alle Positionen, von denen $A$ (bzw. $B$ ) den Sieg erzwingen kann. Bei den Positionen, die mit $a$ bzw. $b$ marikiert sind, ist $A$ bzw. $B$ dran. Bei Standard-Nim ist die Endopisition $b000$ der Sieg für $A$ und $a000$ der Sieg für $B$ (bei Mis\'ere-Nim ist das genau umgekehrt). 
-\begin{center}
-			\includegraphics[width=0.4\textwidth]{Code/nim_222.pdf}
-	\end{center} 
+\begin{aufg}\ Nachfolgend eine Illustration des Graphen des Spiels Nim für die Anfangspositionen $(2,2,2)$. Es gibt zwei Startpositionen (für den Fall, dass $A$ beginnt und für den Fall, dass $B$ beginnt). Die Gewinnstrategie für dieses Spiel ist zwar bekannt, man kann den Graphen trotzdem als Illustration zur Lösung der Spiele mit Hilfe von (End)spieldatenbanken benutzen. Berechnen Sie mit Hilfe des Graphen alle Positionen, von denen $A$ (bzw. $B$) den Sieg erzwingen kann. Bei den Positionen, die mit $a$ bzw. $b$ markiert sind, ist $A$ bzw. $B$ dran. Bei Standard-Nim ist die Endposition $b000$ der Sieg für $A$ und $a000$ der Sieg für $B$ (bei Mis\`ere-Nim ist das genau umgekehrt). 
+%\begin{center}
+%			\includegraphics[width=0.4\textwidth]{Code/nim_222.pdf}
+%\end{center}
+
+\begin{center} 
+\begin{tikzpicture}[line width=2,scale=1.2]
+ \node[circle,draw=red] (a222) at (0,3) {\small $a222$};
+ \node[circle,draw=red] (a122) at (3,3) {\small $a122$};
+ \node[circle,draw=red] (a022) at (6,3) {\small $a022$};
+ \node[circle,draw=red] (a012) at (9,3) {\small $a012$};
+ \node[circle,draw=red] (a002) at (12,3) {\small $a002$};
+ \node[circle,draw=red] (a001) at (15,3) {\small $a001$};
+ \node[circle,draw=red] (a000) at (18,3) {\small $a000$};
+ \node[circle,draw=red] (a112) at (6,7) {\small $a112$};
+ \node[circle,draw=red] (a111) at (9,7) {\small $a111$};
+ \node[circle,draw=red] (a011) at (12,7) {\small $a011$};
+
+ \node[circle,draw=blue] (b222) at (0,-1) {\small $b222$};
+ \node[circle,draw=blue] (b122) at (3,-1) {\small $b122$};
+ \node[circle,draw=blue] (b022) at (6,-1) {\small $b022$};
+ \node[circle,draw=blue] (b012) at (9,-1) {\small $b012$};
+ \node[circle,draw=blue] (b002) at (12,-1) {\small $b002$};
+ \node[circle,draw=blue] (b001) at (15,-1) {\small $b001$};
+ \node[circle,draw=blue] (b000) at (18,-1) {\small $b000$};
+ \node[circle,draw=blue] (b112) at (6,-5) {\small $b112$};
+ \node[circle,draw=blue] (b111) at (9,-5) {\small $b111$};
+ \node[circle,draw=blue] (b011) at (12,-5) {\small $b011$};
+
+ \draw[->,draw=red] (a222) edge (b122);
+ \draw[->,draw=red] (a222) edge (b022);
+ \draw[->,draw=blue] (b222) edge (a122);
+ \draw[->,draw=blue] (b222) edge (a022);
+
+ \draw[->,draw=red] (a122) edge (b112);
+ \draw[->,draw=red] (a122) edge (b022);
+ \draw[->,draw=blue] (b122) edge (a112);
+ \draw[->,draw=blue] (b122) edge (a022);
+
+ \draw[->,draw=red] (a022) edge (b012);
+ \draw[->,draw=red] (a022) edge (b002);
+ \draw[->,draw=blue] (b022) edge (a012);
+ \draw[->,draw=blue] (b022) edge (a002);
+
+ \draw[->,draw=red] (a112) edge (b012);
+ \draw[->,draw=red] (a112) edge (b111);
+ \draw[->,draw=red] (a112) edge (b011);
+ \draw[->,draw=blue] (b112) edge (a012);
+ \draw[->,draw=blue] (b112) edge (a111);
+ \draw[->,draw=blue] (b112) edge (a011);
+
+ \draw[->,draw=red] (a012) edge (b011);
+ \draw[->,draw=red] (a012) edge (b002);
+ \draw[->,draw=red] (a012) edge (b001);
+ \draw[->,draw=blue] (b012) edge (a011);
+ \draw[->,draw=blue] (b012) edge (a002);
+ \draw[->,draw=blue] (b012) edge (a001);
+
+ \draw[->,draw=red] (a111) edge (b011);
+ \draw[->,draw=blue] (b111) edge (a011);
+
+ \draw[->,draw=red] (a002) edge (b001);
+ \draw[->,draw=red] (a002) edge (b000);
+ \draw[->,draw=blue] (b002) edge (a001);
+ \draw[->,draw=blue] (b002) edge (a000);
+
+ \draw[->,draw=red] (a011) edge (b001);
+ \draw[->,draw=blue] (b011) edge (a001);
+
+ \draw[->,draw=red] (a001) edge (b000);
+ \draw[->,draw=blue] (b001) edge (a000);
+\end{tikzpicture}
+\end{center} 
 \end{aufg}
 
 \begin{aufg} 
