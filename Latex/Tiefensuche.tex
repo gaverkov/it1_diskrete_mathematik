@@ -742,7 +742,7 @@ Da~$v$ vor seiner Entdeckung zu keinem Tiefensuchbaum gehörte, wird du die Hinz
 	Nun zeigen wir die letzte Behauptung: wenn ein Knoten $v$ entdeckt wird, dann bilden laut der Behauptung (a) die Knoten, die im Moment der Entdeckung von $v$ grau sind, einen $(s,v)$-Pfad. Umgekehrt, sei $v \in V$ ein Knoten, für den ein $(s,v)$-Pfad $(v_0,\ldots,v_t)$ in $D$ existiert. Wir zeigen, dass der Knoten $v$ entdeckt wird. Angenommen, das wäre falsch. Wir zeigen durch Induktion über $i=0,1,\ldots,t$, dass der Knoten $v_i$ entdeckt wird. Der Knoten $v_0=s$ wird entdeckt. Sei also $1 \le i < t$ und nehmen wir an, dass $v_0,\ldots,v_{i-1}$ entdeckt werden. Da $v_{i-1}$ entdeckt wird, wird die Kante $(v_{i-1},v_i)$ sondiert, sodass $v_i$ spätestens beim Sondieren der Kante $(v_{i-1},v_i)$ entdeckt wird (eventuell wird~$v_i$ bereits früher von einem anderen Knoten aus entdeckt). 
 \end{proof} 
 
-\begin{kor}[Theorem der weißen Pfade] \label{kor:weisse:pfade} 
+\begin{kor}[Theorem der weißen Pfade]\label{kor:weisse:pfade} 
 	Sei $D=(V,A)$ ein Digraph und sei $u \in V$.
 	Sind die Farbattribute der Knoten von $V$ auf weiß/grau/schwarz gesetzt, und ist $u$ ein weißer Knoten, für den man $\cc{TS}(u)$ startet, so wird ein weißer Knoten $v \in V$ während der Ausführung von $\cc{TS}(u)$ genau dann entdeckt, wenn vor der Ausführung von $\cc{TS}(u)$ ein $(u,v)$-Pfad in~$D$ existiert, der nur aus weißen Knoten besteht. 
 \end{kor} 
@@ -1175,79 +1175,6 @@ Im folgenden Beispiel (gerichteter Gittergraph) sind die starken Zusammenhangsko
 \hfill\,
 \end{bsp}
 
-\begin{defn}
-	Der \textbf{Komponentengraph} $D^K=(V^K,A^K)$ eines Digraphen $D=(V,A)$
-	ist der Digraph, dessen Knotenmenge $V^K$ der Menge aller SZKn von $D$ entspricht, und für $U,W \in V^K$ die Kante $(U,W) \in A^K$ genau dann existiert, falls es ein $u \in U$ und ein $w \in W$ gibt mit $(u,w) \in A$. 
-\end{defn}
-
-
-\begin{bsp}
-	\label{bsp:starke-zusammenhangskomponenten}
-	Die starken Zusammenhangskomponenten des Digraphen aus Beispiel~\ref{bsp:tiefensuche} bestehen aus den Knoten gleicher Farbe in folgender Abbildung:
-	
-	\hfill
-	\begin{tikzpicture}[line width=2,scale=1.2]
-		\node[fill=blue!30!white,circle,draw] (1) at (0,2) {$1$};
-		\node[fill=blue!30!white,circle,draw] (2) at (0,0) {$2$};
-		\node[fill=red,circle,draw] (3) at (2,2) {$3$};
-		\node[fill=blue!30!white,circle,draw] (4) at (2,0) {$4$};
-		\node[fill=red,circle,draw] (5) at (4.25,2) {$5$};
-		\node[fill=yellow,circle,draw] (6) at (3.5,0) {$6$};
-		\node[fill=yellow,circle,draw] (7) at (5,0) {$7$};
-		\node[fill=red,circle,draw] (8) at (7.25,2) {$8$};
-		\node[fill=green,circle,draw] (9) at (6.5,0) {$9$};
-		\node[circle,draw=black] (10) at (8,0) {$10$};
-		
-		\draw[->] (1) edge (2);
-		\draw[->] (2) edge (4);
-		\draw[->] (3) edge (1) (3) edge (4) (3) edge (5);
-		\draw[->] (4) edge (1);
-		\draw[->] (5) edge (6) (5) edge (8); 
-		\draw[->] (6) to[bend left] (7);
-		\draw[->] (7) to[bend left] (6);
-		\draw[->] (8) to[bend right] (3);
-		\draw[->] (9) edge (8) (9) edge (10);
-		\draw[->] (10) edge (8); 
-	\end{tikzpicture}
-	\hfill\,
-\end{bsp}
-
-Der Komponentengraph dieses  Digraphen ist: 
-\begin{center} 
-	\begin{tikzpicture}[line width=2,scale=1.2]
-		\node[fill=blue!30!white,rounded corners,draw] (1) at (2,2) {$\{1,2,4\}$};
-		% \node[fill=blue,rounded corners,draw] (2) at (0,0) {$2$};
-		% \node[fill=red,rounded corners,draw] (3) at (2,2) {$3$};
-		% \node[fill=blue,rounded corners,draw] (4) at (2,0) {$4$};
-		\node[fill=red,rounded corners,draw] (5) at (6,2) {$\{3,5,8\}$};
-		\node[fill=yellow,rounded corners,draw] (6) at (2,0) {$\{6,7\}$};
-		% \node[fill=yellow,rounded corners,draw] (7) at (5,0) {$7$};
-		% \node[fill=red,rounded corners,draw] (8) at (7.25,2) {$8$};
-		\node[fill=green,rounded corners,draw] (9) at (6,0) {$\{9\}$};
-		\node[rounded corners,draw=black] (10) at (9,0) {$\{10\}$};
-		
-		\draw[->] (5) edge (6) (5) edge (1); 
-		\draw[->] (9) edge (5) (9) edge (10);
-		\draw[->] (10) to[bend right] (5); 
-	\end{tikzpicture}
-\end{center}
-
-
-\begin{prop}
-	Der Komponentengraph eines jeden Digraphen ist azyklisch. 
-\end{prop}
-\begin{proof}
-Sei $D=(V,A)$ ein Digraph und $D^K$ sein Komponentengraph.
-Angenommen, es gibt einen Zyklus in $D^K=(V^K,A^K)$.
-Dann gibt es SZKn $K_1,K_2 \in V^K$ mit $K_1 \neq K_2$ und sowohl einen $(K_1,K_2)$-Pfad als auch einen $(K_2,K_1)$-Pfad in $D^K$.
-Diese Pfade können jeweils durch weitere SZKn verlaufen.
-
-Das heißt aber, dass für je zwei Knoten $u \in K_1$ und $v \in K_2$ ein $(u,v)$-Pfad und ein $(v,u)$-Pfad in $D$ existiert.
-Damit ist dann $K_1 \cup K_2$ stark zusammenhängend, aber Knoten $u \in K_1$ und $v \in K_2$ waren mittels $K_1 \neq K_2$ als nicht äquivalent angenommen.
-
-Dieser Widerspruch zeigt, dass es in $D^K$ keinen Zyklus geben kann.
-\end{proof}
-
 
 \begin{defn}
 	Für einen Digraphen $D = (V,A)$ führen wir den sogenannten
@@ -1278,24 +1205,296 @@ Dies folgt direkt aus folgender Beobachtung: Für zwei Knoten $u,v \in V$, für 
 \noindent Wie man Phase~2 genau umsetzt hängt unter anderem davon ab, in welchem Format man die SZK speichern möchte. 
 \end{bem} 
 
+\begin{bem}
+Der Algorithmus im Pseudocode:
+\begin{algorithm}[H]
+\caption{$\cc{SZK}(D)$}
+ \begin{algorithmic}[1]
+  \STATE\label{line:szhk0} $\cc{Vollständige-Tiefensuche}(D)$
+  \STATE berechne $D^\top$
+  \STATE\label{line:szhk1} $\cc{Vollständige-Tiefensuche}(D^\top)$
+  \STATE\label{line:szhk2} $\quad$ durchlaufe dabei die Hauptschleife in absteigender Reihenfolge des Arrays $\cc{Schwarz}$ von~$D$
+  \STATE gib die Knotenmengen der Bäume im Tiefensuchwald $(D^\top)_\pi$ zurück
+ \end{algorithmic}
+\end{algorithm}
+\end{bem}
+
 \begin{bem} Umsetzung: 
 \lstinputlisting{Code/szk.sage}
 \end{bem} 
 
 \begin{thm}
 	\label{thm:starke-zshgk-laufzeit}
-	Ist ein Digraph $D=(V,A)$ als Adjazenzliste gegeben, so hat der Algorithmus $\cc{SZK}(D)$ aus \ref{szk:algo} die Laufzeit $\Theta(|V|+|A|)$.
+	Ist ein Digraph $D=(V,A)$ als Adjazenzliste gegeben, so hat der Algorithmus $\cc{SZK}(D)$ die Laufzeit $\Theta(|V|+|A|)$.
 \end{thm}
 \begin{proof}
 	Die Berechnung von $D^\top$ sowie die beiden vollständigen Tiefensuchen benötigen jeweils  $\Theta(|V|+|A|)$ Elementaroperationen. 
 \end{proof}
 
 
+\begin{bsp}
+	\label{bsp:starke-zusammenhangskomponenten}
+	Wir berechnen die SZKn des Digraphen aus Beispiel~\ref{bsp:tiefensuche}:
+	
+{\centering
+\begin{tabular}{m{.05\textwidth}m{.4\textwidth}}
+$D$
+	&
+	\begin{tikzpicture}[line width=2,scale=1.2]
+	 \node[circle,draw=black] (1) at (0,2) {$1$};
+	 \node[circle,draw=black] (2) at (0,0) {$2$};
+	 \node[circle,draw=black] (3) at (2,2) {$3$};
+	 \node[circle,draw=black] (4) at (2,0) {$4$};
+	 \node[circle,draw=black] (5) at (4.25,2) {$5$};
+	 \node[circle,draw=black] (6) at (3.5,0) {$6$};
+	 \node[circle,draw=black] (7) at (5,0) {$7$};
+	 \node[circle,draw=black] (8) at (7.25,2) {$8$};
+	 \node[circle,draw=black] (9) at (6.5,0) {$9$};
+	 \node[circle,draw=black] (10) at (8,0) {$10$};
+		
+		\draw[->] (1) edge (2);
+		\draw[->] (2) edge (4);
+		\draw[->] (3) edge (1) (3) edge (4) (3) edge (5);
+		\draw[->] (4) edge (1);
+		\draw[->] (5) edge (6) (5) edge (8); 
+		\draw[->] (6) to[bend left] (7);
+		\draw[->] (7) to[bend left] (6);
+		\draw[->] (8) to[bend right] (3);
+		\draw[->] (9) edge (8) (9) edge (10);
+		\draw[->] (10) edge (8); 
+	\end{tikzpicture}
+\end{tabular}
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			\textbf{Knoten $u$}        & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} \\ \hline
+			\textbf{$\cc{Schwarz}[u]$} & 7          & 6          & 16         & 5          & 15         & 12         & 11         & 14         & 20         & 19          \\ \hline
+		\end{tabular}
+	\end{table}
+
+\begin{tabular}{m{.05\textwidth}m{.4\textwidth}m{.05\textwidth}m{.4\textwidth}}
+$D^\top$
+   &
+\begin{tikzpicture}[line width=2,scale=1.2]
+	 \node[circle,draw=black] (1) at (0,2) {$1$};
+	 \node[circle,draw=black] (2) at (0,0) {$2$};
+	 \node[circle,draw=black] (3) at (2,2) {$3$};
+	 \node[circle,draw=black] (4) at (2,0) {$4$};
+	 \node[circle,draw=black] (5) at (4.25,2) {$5$};
+	 \node[circle,draw=black] (6) at (3.5,0) {$6$};
+	 \node[circle,draw=black] (7) at (5,0) {$7$};
+	 \node[circle,draw=black] (8) at (7.25,2) {$8$};
+	 \node[circle,draw=black] (9) at (6.5,0) {$9$};
+	 \node[circle,draw=black] (10) at (8,0) {$10$};
+		
+	 \draw[<-] (1) edge (2);
+	 \draw[<-] (2) edge (4);
+	 \draw[<-] (3) edge (1) (3) edge (4) (3) edge (5);
+	 \draw[<-] (4) edge (1);
+	 \draw[<-] (5) edge (6) (5) edge (8); 
+	 \draw[<-] (6) to[bend left] (7);
+	 \draw[<-] (7) to[bend left] (6);
+	 \draw[<-] (8) to[bend right] (3);
+	 \draw[<-] (9) edge (8) (9) edge (10);
+	 \draw[<-] (10) edge (8); 
+\end{tikzpicture}
+	&
+$\leadsto$
+	&
+\begin{tikzpicture}[line width=2,scale=1.2]
+	\node[fill=blue!30!white,circle,draw] (1) at (0,2) {$1$};
+	\node[fill=blue!30!white,circle,draw] (2) at (0,0) {$2$};
+	\node[fill=red,circle,draw] (3) at (2,2) {$3$};
+	\node[fill=blue!30!white,circle,draw] (4) at (2,0) {$4$};
+	\node[fill=red,circle,draw] (5) at (4.25,2) {$5$};
+	\node[fill=yellow,circle,draw] (6) at (3.5,0) {$6$};
+	\node[fill=yellow,circle,draw] (7) at (5,0) {$7$};
+	\node[fill=red,circle,draw] (8) at (7.25,2) {$8$};
+	\node[fill=green,circle,draw] (9) at (6.5,0) {$9$};
+	\node[circle,draw=black] (10) at (8,0) {$10$};
+		
+	 \draw[<-] (1) edge (2);
+	 \draw[<-] (2) edge (4);
+	 \draw[<-] (3) edge (1) (3) edge (4) (3) edge (5);
+	 \draw[<-] (4) edge (1);
+	 \draw[<-] (5) edge (6) (5) edge (8); 
+	 \draw[<-] (6) to[bend left] (7);
+	 \draw[<-] (7) to[bend left] (6);
+	 \draw[<-] (8) to[bend right] (3);
+	 \draw[<-] (9) edge (8) (9) edge (10);
+	 \draw[<-] (10) edge (8); 
+\end{tikzpicture}	
+\end{tabular}
+} % end of \centering
+\end{bsp}
+
+\begin{defn}
+	Der \textbf{Komponentengraph} $D^K=(V^K,A^K)$ eines Digraphen $D=(V,A)$
+	ist der Digraph, dessen Knotenmenge $V^K$ der Menge aller SZKn von $D$ entspricht, und für $U,W \in V^K$ die Kante $(U,W) \in A^K$ genau dann existiert, falls es ein $u \in U$ und ein $w \in W$ gibt mit $(u,w) \in A$. 
+\end{defn}
+
+
+\begin{bsp}
+	\label{bsp:komponentengraph}
+	Die starken Zusammenhangskomponenten des Digraphen aus Beispiel~\ref{bsp:tiefensuche} bestehen aus den Knoten gleicher Farbe in folgender Abbildung:
+	
+	\hfill
+	\begin{tikzpicture}[line width=2,scale=1.2]
+		\node[fill=blue!30!white,circle,draw] (1) at (0,2) {$1$};
+		\node[fill=blue!30!white,circle,draw] (2) at (0,0) {$2$};
+		\node[fill=red,circle,draw] (3) at (2,2) {$3$};
+		\node[fill=blue!30!white,circle,draw] (4) at (2,0) {$4$};
+		\node[fill=red,circle,draw] (5) at (4.25,2) {$5$};
+		\node[fill=yellow,circle,draw] (6) at (3.5,0) {$6$};
+		\node[fill=yellow,circle,draw] (7) at (5,0) {$7$};
+		\node[fill=red,circle,draw] (8) at (7.25,2) {$8$};
+		\node[fill=green,circle,draw] (9) at (6.5,0) {$9$};
+		\node[circle,draw=black] (10) at (8,0) {$10$};
+		
+		\draw[->] (1) edge (2);
+		\draw[->] (2) edge (4);
+		\draw[->] (3) edge (1) (3) edge (4) (3) edge (5);
+		\draw[->] (4) edge (1);
+		\draw[->] (5) edge (6) (5) edge (8); 
+		\draw[->] (6) to[bend left] (7);
+		\draw[->] (7) to[bend left] (6);
+		\draw[->] (8) to[bend right] (3);
+		\draw[->] (9) edge (8) (9) edge (10);
+		\draw[->] (10) edge (8); 
+	\end{tikzpicture}
+	\hfill\,
+	
+\vspace{1em}
+\noindent Der Komponentengraph dieses  Digraphen ist: 
+\begin{center} 
+	\begin{tikzpicture}[line width=2,scale=1.2]
+		\node[fill=blue!30!white,rounded corners,draw] (1) at (2,2) {$\{1,2,4\}$};
+		% \node[fill=blue,rounded corners,draw] (2) at (0,0) {$2$};
+		% \node[fill=red,rounded corners,draw] (3) at (2,2) {$3$};
+		% \node[fill=blue,rounded corners,draw] (4) at (2,0) {$4$};
+		\node[fill=red,rounded corners,draw] (5) at (6,2) {$\{3,5,8\}$};
+		\node[fill=yellow,rounded corners,draw] (6) at (2,0) {$\{6,7\}$};
+		% \node[fill=yellow,rounded corners,draw] (7) at (5,0) {$7$};
+		% \node[fill=red,rounded corners,draw] (8) at (7.25,2) {$8$};
+		\node[fill=green,rounded corners,draw] (9) at (6,0) {$\{9\}$};
+		\node[rounded corners,draw=black] (10) at (9,0) {$\{10\}$};
+		
+		\draw[->] (5) edge (6) (5) edge (1); 
+		\draw[->] (9) edge (5) (9) edge (10);
+		\draw[->] (10) to[bend right] (5); 
+	\end{tikzpicture}
+\end{center}
+\end{bsp}
+
+
+\begin{prop}\label{prop:kompgraph-azyklisch}
+	Der Komponentengraph eines jeden Digraphen ist azyklisch. 
+\end{prop}
+\begin{proof}
+Sei $D=(V,A)$ ein Digraph und $D^K$ sein Komponentengraph.
+Angenommen, es gibt einen Zyklus in $D^K=(V^K,A^K)$.
+Dann gibt es SZKn $K_1,K_2 \in V^K$ mit $K_1 \neq K_2$ und sowohl einen $(K_1,K_2)$-Pfad als auch einen $(K_2,K_1)$-Pfad in $D^K$.
+Diese Pfade können jeweils durch weitere SZKn verlaufen.
+
+Das heißt aber, dass für je zwei Knoten $u \in K_1$ und $v \in K_2$ ein $(u,v)$-Pfad und ein $(v,u)$-Pfad in $D$ existiert.
+Damit ist dann $K_1 \cup K_2$ stark zusammenhängend, aber Knoten $u \in K_1$ und $v \in K_2$ waren mittels $K_1 \neq K_2$ als nicht äquivalent angenommen.
+
+Dieser Widerspruch zeigt, dass es in $D^K$ keinen Zyklus geben kann.
+\end{proof}
+
+\begin{bem}
+Wir benötigen noch mehr Verständnis der Beziehungen zwischen den Zeitstempeln, die während der Laufzeit der Tiefensuche auf $D=(V,A)$ erzeugt werden.
+Wenn wir nachfolgend von Zeitpunkten der Entdeckung und Abarbeitung sprechen, dann beziehen wir uns stets auf die entsprechenden Zeitstempel der ersten Tiefensuche in Zeile~\ref{line:szhk0} von $\cc{SZK}(D)$.
+
+Für die Formulierung der Aussage erweitern wir zunächst die Begriffe der Entde\-ckungs- und Abarbeitungszeitpunkte von einzelnen Knoten auf Teilmengen von Knoten:
+
+Für $U \subseteq V$ seien dazu
+\[
+\cc{Grau}(U) := \min_{u \in U} \,\cc{Grau}[u] \quad \text{ und } \quad\cc{Schwarz}(U) := \max_{u \in U} \,\cc{Schwarz}[u]
+\]
+der früheste Entdeckungszeitpunkt beziehungsweise der späteste Abarbeitungszeitpunkt eines Knotens aus~$U$.
+\end{bem}
+
+\begin{lem}
+\label{lem:komponenten-zeitpunkte}
+Sei $D=(V,A)$ ein Digraph und seien $K,K'$ zwei verschiedene starke Zusammenhangskomponenten von~$D$.
+\begin{enuma}
+ \item\label{lem:komponenten-zeitpunkte:primal} Falls eine Kante $(u,v) \in A$ mit $u \in K$ und $v \in K'$ existiert, so gilt
+ \[
+ \cc{Schwarz}(K) > \cc{Schwarz}(K').
+ \]
+ 
+ \item\label{lem:komponenten-zeitpunkte:transponiert} Falls eine Kante $(u,v) \in A^\top$ mit $u \in K$ und $v \in K'$ existiert, so gilt
+ \[
+ \cc{Schwarz}(K) < \cc{Schwarz}(K').
+ \]
+\end{enuma}
+\end{lem}
+
+\condclearpage
+
+\begin{proof}
+(a): Wir unterscheiden Fälle danach welche der beiden starken Zusammenhangskomponenten zuerst entdeckt wird.
+
+Sei zuerst angenommen, dass $\cc{Grau}(K) < \cc{Grau}(K')$ gilt und sei~$x$ der erste entdeckte Knoten in~$K$.
+Zum Zeitpunkt $\cc{Grau}[x]$ sind alle anderen Knoten in~$K$ und alle Knoten in~$K'$ weiß.
+In diesem Moment enthält~$D$ also Pfade von~$x$ zu jedem anderen Knoten in~$K$, die, bis auf~$x$ selbst, nur aus weißen Knoten bestehen.
+Die Existenz der Kante $(u,v)$ von der Komponente~$K$ in die Komponente~$K'$ impliziert damit, dass ebenso Pfade von~$x$ zu jedem Knoten in~$K'$ bestehen, die, bis auf~$x$ selbst, nur aus weißen Knoten bestehen.
+
+Nach dem Theorem der weißen Pfade (Korollar~\ref{kor:weisse:pfade}) und dem Klammerungstheorem (Theorem~\ref{thm:klammerung}) werden also alle Knoten in $K \cup K'$ während $\cc{TS}(x)$ entdeckt und sind Nachfahren von~$x$ im Tiefensuchwald.
+Nach Korollar~\ref{cor:nachfahre-tiefenwald} erhalten wir damit $\cc{Schwarz}(K) = \cc{Schwarz}[x] > \cc{Schwarz}(K')$.
+
+\condclearpage
+
+Sei nun angenommen, dass $\cc{Grau}(K) > \cc{Grau}(K')$ gilt und sei~$y$ der erste entdeckte Knoten in~$K'$.
+Analog zu oben sind zum Zeitpunkt $\cc{Grau}[y]$ alle Knoten in~$K'$ mit einem Pfad von~$y$ aus erreichbar, der, bis auf~$y$ selbst, nur aus weißen Knoten besteht.
+Damit sind wieder alle Knoten aus~$K'$ Nachfahren von~$y$ im Tiefensuchwald und mit Korollar~\ref{cor:nachfahre-tiefenwald} gilt $\cc{Schwarz}[y] = \cc{Schwarz}(K')$.
+
+Nach Annahme sind zum Zeitpunkt $\cc{Grau}[y]$ alle Knoten in~$K$ weiß.
+Da die Kante $(u,v)$ von~$K$ nach~$K'$ existiert und nach Proposition~\ref{prop:kompgraph-azyklisch} der Komponentengraph von~$D$ azyklisch ist, kann es keinen Pfad von einem Knoten in~$K'$ zu einem Knoten in~$K$ geben.
+Da damit kein Knoten in~$K$ von~$y$ aus erreichbar ist, ist die ganze Komponente~$K$ zum Zeitpunkt $\cc{Schwarz}[y]$ noch immer weiß.
+Als Konsequenz erhalten wir $\cc{Schwarz}[w] > \cc{Schwarz}[y]$, für jeden Knoten $w \in K$, und damit $\cc{Schwarz}(K) > \cc{Schwarz}(K')$.
+
+\condclearpage
+
+(b): Nach der Definition des transponierten Graphen folgt aus der Existenz einer Kante $(u,v) \in A^\top$, die Existenz der Kante $(v,u)$ in~$D$.
+Nach Teil (a) gilt damit $\cc{Schwarz}(K') > \cc{Schwarz}(K)$.
+\end{proof}
+
+\begin{bem}
+\underline{Grundidee des Korrektheitsbeweises von $\cc{SZK}(D)$:}
+\begin{itemize}
+ \item Die Tiefenssuche auf~$D^\top$ startet in der starken Zusammenhangskomponente~$K_1$, die den zuletzt abgearbeiteten Knoten~$u_1$ der Tiefensuche auf~$D$ enthält.
+ \item Der transponierte Graph $D^\top$ enthält nach Lemma~\ref{lem:komponenten-zeitpunkte}~\ref{lem:komponenten-zeitpunkte:transponiert} keine Kanten, die von~$K_1$ zu einer anderen starken Zusammenhangskomponente verlaufen.
+ \item Die Tiefensuche in $D^\top$, die von~$u_1$ aus startet besucht also genau die Knoten aus der Komponente~$K_1$.
+ \item Der Algorithmus wählt danach den Knoten~$u_2$ außerhalb der Komponente~$K_1$, der als letztes unter den verbleibenden Knoten bei der Tiefensuche auf~$D$ abgearbeitet wurde und besucht wie zuvor, alle Knoten der starken Zusammenhangskomponente~$K_2$, die~$u_2$ enthält.
+ \item Dies geht iterativ weiter bis alle Tiefensuchbäume erstellt sind, und wir sehen, dass diese den starken Zusammenhangskomponenten entsprechen.
+\end{itemize}
+\end{bem}
+
+
 \begin{thm}
 Der Algorithmus $\cc{SZK}(D)$ bestimmt die starken Zusammenhangskomponenten eines Digraphen $D=(V,A)$ korrekt.
 \end{thm}
 \begin{proof}
-..
+Wir argumentieren mittels vollständiger Induktion nach der Anzahl $k$ der Tiefensuch\-bäume, die bei der Tiefensuche auf $D^\top$ in den Zeilen~\ref{line:szhk1}-\ref{line:szhk2} des Algorithmus $\cc{SZK}(D)$ gefunden werden und zeigen, dass jeder solche Baum eine starke Zusammenhangskomponente bildet.
+Die konkrete Aussage, die wir per Induktion beweisen, ist:
+\begin{center}
+\glqq Die ersten $k$ Tiefensuchbäume, die in den Zeilen~\ref{line:szhk1}-\ref{line:szhk2} erzeugt werden, sind starke Zusammenhangskomponenten von~$D$.\grqq
+\end{center}
+
+\noindent Der Induktionsanfang ist mit $k=0$ klar.
+Für den Induktionsschritt, sei $B \subseteq V$ der $(k+1)$-te erzeugte Baum bei der Tiefensuche auf~$D^\top$.
+Sei weiterhin $u \in B$ die Wurzel dieses Baumes und $K \subseteq V$ die starke Zusammenhangskomponente, die~$u$ enthält.
+Für jede starke Zusammenhangskomponente $K' \neq K$, die bereits besucht wurde, gilt $\cc{Schwarz}[u] = \cc{Schwarz}(K) < \cc{Schwarz}(K')$, wegen der Reihenfolge in der die Knoten in Zeile~\ref{line:szhk2} durchlaufen werden.
+Wegen der Induktionsannahme sind zum Zeitpunkt zu dem die Suche den Knoten~$u$ besucht, alle anderen Knoten von~$K$ weiß.
+Wie zuvor sind nach dem Theorem der weißen Pfade und dem Klammerungstheorem daher alle anderen Knoten in~$K$ Nachfahren von~$u$ in dessen Tiefensuchbaum~$B$.
+
+Weiterhin müssen nach Induktionsannahme und Lemma~\ref{lem:komponenten-zeitpunkte}~\ref{lem:komponenten-zeitpunkte:transponiert} alle Kanten von~$D^\top$, die aus $K$ herausführen, zu starken Zusammenhangskomponenten verlaufen, die bereits entdeckt wurden.
+Damit wird kein Knoten außerhalb von~$K$ ein Nachfahre von~$u$ bei der Tiefensuche auf~$D^\top$.
+Das heißt, dass die Knoten des Tiefensuchbaumes von~$D^\top$, der von~$u$ ausgeht, eine starke Zusammenhangskomponente bilden, und der Induktionsschritt ist gezeigt.
 \end{proof}
 
 
