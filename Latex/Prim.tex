@@ -49,7 +49,7 @@ Dann gibt es genau einen minimalen Spannbaum in~$G$.
 Angenommen, es gibt zwei verschiedene minimale Spannbäume $S$ und $T$ von~$G$.
 Dann gibt es mindestens eine Kante $e \in E$, die in $S \setminus T$ oder in $T \setminus S$ liegt.
 Sei $e_1$ unter allen solchen Kanten, die Kante kleinsten Gewichts, also $w(e_1) < w(e)$, für alle Kanten $e \in S \setminus T \cup T \setminus S$.
-(Die Kante $e_1$ ist insbesondere eindeutig.)
+Ohne Einschränkung sei $e_1 \in S \setminus T$. (Die Kante $e_1$ ist insbesondere eindeutig.)
 
 Da $T$ ein Spannbaum ist, enthält der Teilgraph $T \cup \{e_1\}$ einen Kreis $C$, der wiederum die Kante $e_1$ enthält.
 Der Spannbaum~$S$ ist als Baum ein kreisfreier Graph, und somit gibt es eine Kante $e_2 \in C \setminus S$, und $e_2$ gehört zu~$T$.
@@ -522,7 +522,8 @@ Für die Umsetzung dieser simplen Idee benötigen wir eine weitere Datenstruktur
  \item $\cc{Schl\"u{\ss}el-\"Andern}(S,(x,k),\ell)$
  
  Ändert den Schlüssel des in~$S$ enthaltenen Elements $(x,k)$ auf den Wert~$\ell$.
- (Die Änderung ist eine redundante Operation, die der Enfernung von $(x,k)$ und dem Einfügen von $(x,\ell)$ entspricht.) 
+ 
+ (Die Änderung ist eine redundante Operation, die der Entfernung von $(x,k)$ und dem Einfügen von $(x,\ell)$ entspricht.) 
 \end{itemize}
 
 %	\begin{enuma}
@@ -599,7 +600,7 @@ Verfolgen Sie die Arbeitsweise von $\cc{Prim}(G)$ anhand der Dynamiken der invol
 \begin{bem}
 Nach erfolgter Ausführung des Prim-Algorithmus entspricht der letzte aktuelle Teilbaum $(V',E')$ dem \textbf{Vorgängerteilgraphen} $G_\pi := (V,E_\pi)$ von~$G$ mit Kantenmenge
 \[
-E_\pi := \setcond{ \{\pi(v),v\}}{v \in V \setminus \{s\}}.
+E_\pi := \setcond{ \{\pi[v],v\}}{v \in V \setminus \{s\}}.
 \]
 Wie oben bereits erwähnt stellt sich heraus, dass dieser Vorgängerteilgraph tatsächlich ein minimaler Spannbaum von~$G$ ist:
 \end{bem} 

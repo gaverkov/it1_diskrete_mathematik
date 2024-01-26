@@ -14,11 +14,11 @@ Wir benutzen die Standard-Identifizierung $\{\false,\true\} \to \{0,1\}$ mit
 \begin{align*}
 	\false & \mapsto 0 & \true & \mapsto 1,
 \end{align*}
-welche uns ermöglicht, die kürzere Schreibweise mit $0$ und $1$ zu nutzen. 
+die uns ermöglicht, die kürzeren Schreibweisen $0$ und $1$ für die Wahrheitswerte zu nutzen. 
 \end{bem}
 
 \begin{defn}
-	Für $n \in \N$ nennen wir $f: \{0,1\}^n \to \{0,1\}$ \textbf{boolesche Funktion} in $n$ Variablen. 
+	Für $n \in \N$ nennen wir $f: \{0,1\}^n \to \{0,1\}$ eine \textbf{boolesche Funktion} auf der Menge $\{0,1\}^n$ in $n$ Variablen. 
 \end{defn} 
 
 \begin{bem} Es gibt genau vier boolesche Funktionen in einer Variablen: 
@@ -50,13 +50,16 @@ welche uns ermöglicht, die kürzere Schreibweise mit $0$ und $1$ zu nutzen.
 			\\ 0 & \text{sonst}. 
 		\end{cases} 
 		\]
-		\item Sei $V$ endliche Menge. Dann lässt sich jeder Graph $G = (V,E)$ mit der Knotenmenge $V$ als die characteristische Funktion $1_E \in \{0,1\}^{\binom{V}{2}}$ der Menge der Kanten kodieren. Verscheidene Eigenschaften von Graphen mit der Knotenmenge $V$ können dann als boolesche Funktionen auf $\{0,1\}^{\binom{V}{2}}$ beschrieben weren. Etwa 
+		\item Sei $V$ endliche Menge. Dann lässt sich jeder Graph $G = (V,E)$ mit der Knotenmenge~$V$ als die \textbf{charakteristische Funktion} $1_E \in \{0,1\}^{\binom{V}{2}}$ der Menge der Kanten kodieren. Dabei ist $1_E(\{u,v\}) = 1$, genau dann wenn $\{u,v\} \in E$ eine Kante in~$G$ ist.
+		
+		Verschiedene Eigenschaften von Graphen mit der Knotenmenge $V$ können dann als boolesche Funktionen auf $\{0,1\}^{\binom{V}{2}}$ beschrieben werden. Etwa 
 		\[
 			f(x) := \begin{cases} 1 & \text{der Graph $(V,E)$ mit $1_E=x$} 
-				\\ & \text{ist zusamenhängend}, 
+				\\ & \text{ ist zusammenhängend}, 
 				\\0  & \text{sonst}.
 				\end{cases} 
 		\]
+		\condclearpage
 		\item Der Operator
 		\[
 			  x \, ?\, y \, :\, z = \begin{cases}
@@ -69,32 +72,31 @@ welche uns ermöglicht, die kürzere Schreibweise mit $0$ und $1$ zu nutzen.
 \end{bsp}
 
 \begin{defn}
-	Eine \textbf{boolesche Formel} ist ein Ausddruck der aus endlich vielen booleschen Variablen, den Verknüpfungen $\neg$, $\vee$, $\wedge$ und Konstanen $0,1$ konstruiert ist. Eine boolesche Formel, die auf den Variablen  $x_1,\ldots,x_n$ $(n \in \N$) definiert ist, ergibt durch das Auswerten die boolesche Funktion $f : \{0,1\}^n \to \{0,1\}$ zu dieser Formel. 
+	Eine \textbf{boolesche Formel} ist ein Ausdruck, der aus endlich vielen booleschen Variablen, den Verknüpfungen $\neg$, $\vee$, $\wedge$ und den Konstanten $0,1$ konstruiert ist. Eine boolesche Formel, die auf den Variablen  $x_1,\ldots,x_n$ $(n \in \N$) definiert ist, ergibt durch das Auswerten die boolesche Funktion $f : \{0,1\}^n \to \{0,1\}$ zu dieser Formel. 
 	
 	Zwei Formeln nennen wir \textbf{äquivalent}, wenn sie dieselbe boolesche Funktion definieren. 
 	
-	In den booleschen Formel schreiben wir oft auch $a \cdot b$ oder $a b$ an der Stelle von $a \wedge b$ und setzten dabei die Priorität von $\cdot$ höher als die Priorität von $\vee$. 
-	
+	In den booleschen Formeln schreiben wir oft auch $a \cdot b$ oder $a b$ an der Stelle von $a \wedge b$ und setzten dabei die Priorität von $\cdot$ höher als die Priorität von $\vee$.	
 \end{defn} 
 
 
-\begin{defn}
-	Die selber boolesche Funktion kann durch verschiedene Formeln gegeben werde. Etwa, 
+\begin{bem}
+	Die Äquivalenz zweier boolescher Formeln, kann auch so aufgefasst werden, dass die beiden Formeln die selbe boolesche Funktion repräsentieren. Etwa, 
 	\[
 		x \, \overline{y}\vee y= x \vee y.  
 	\]
-\end{defn} 
+\end{bem} 
 
 \begin{bem}
 	Wenn zwei Formeln $F$ und $G$ äquivalent sind, so bezeichnet man das in manchen Quellen als $F \equiv G$, wir nutzen aber hier (wie in \cite{Lov20}) die Bezeichnung $F = G$ (die wir ja auch sonst, etwa für die  Gleichheit von Funktionen benutzen). 
 \end{bem} 
 
 \begin{defn} 
-Wir nennen eine boolesche Formel in $n$ Variablen \textbf{erfüllbar}, wenn sie eine eine boolesche Funktion $f  : \{0,1\}^n \to \{0,1\}$ definiert, die nicht identisch gleich $0$ ist. Das bedeutet, dass die Formel bei einer Belegung von Variablen zu $1$ ausgewertet wird. 
+Wir nennen eine boolesche Formel in $n$ Variablen \textbf{erfüllbar}, wenn sie eine boolesche Funktion $f : \{0,1\}^n \to \{0,1\}$ definiert, die nicht identisch gleich $0$ ist. Das bedeutet, dass es eine Belegung der $n$ Variablen gibt, bei der die Formel zu $1$ ausgewertet wird. 
 \end{defn} 
 
 \begin{defn} 
-Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn sie eine boolsche Funktion $f: \{0,1\}^n \to \{0,1\}$ definiert, die identisch gleich $1$ ist. Das bedeutet, dass die Formel bei jeder Belegung von Variablen zu $0$ ausgewertet wird. 
+Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn sie eine boolesche Funktion $f: \{0,1\}^n \to \{0,1\}$ definiert, die identisch gleich $1$ ist. Das bedeutet, dass die Formel bei \underline{jeder} Belegung der $n$ Variablen zu $1$ ausgewertet wird. 
 \end{defn} 
 
 
@@ -103,7 +105,7 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 	\footnotesize
 		\begin{align*}
 			a \wedge b & = b \wedge a &  a \vee b & = b \vee a & & \text{Kommutativgesetze} 
-			\\ (a \wedge b) \wedge c & = a \wedge (b \wedge c) &  (a \vee b) \vee c& = a \vee (b \vee c) & & \text{Distributivgesetze} 
+			\\ (a \wedge b) \wedge c & = a \wedge (b \wedge c) &  (a \vee b) \vee c& = a \vee (b \vee c) & & \text{Assoziativgesetze} 
 			\\ a \wedge a & = a  & a \vee a & = a  & & \text{Idempotenzgesetze} 
 			\\ a \wedge (b \vee c) & = (a \wedge b) \vee (a \wedge c) &  a \vee (b \wedge c) & = (a \vee b) \wedge (a \vee c)  && \text{Distributivgesetze} 
 			\\ a \wedge 1 & = a  & a \vee 0 & = a  & & \text{Neutralitätsgesetze} 
@@ -120,14 +122,14 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 
 
 
-\section{Darstellung durch DNF} 
+\section{Darstellung von booleschen Formeln durch DNFs} 
 
 \begin{defn}
 	Ist $x$ eine boolesche Variable, so nennen wir die Formeln $x$ und $\overline{x}$ \textbf{Literale}. 
 	
-	Wir nennen Disjunktion endlich vieler Literale eine \textbf{Elementardisjunktion} (kurz \textbf{ED}) oder eine \textbf{Klausel} und Konjunktion endlich vieler Literale eine \textbf{Elementarkonjunktion} (kurz \textbf{EK}).  Die $0$ ist dabei die Disjunktion von $0$ Literalen und die $1$ die Konjunktion von $0$ Literalen. 
+	Wir nennen die Disjunktion endlich vieler Literale eine \textbf{Elementardisjunktion} (kurz \textbf{ED}) oder eine \textbf{Klausel}, und die Konjunktion endlich vieler Literale eine \textbf{Elementarkonjunktion} (kurz \textbf{EK}).  Die $0$ ist dabei die Disjunktion von $0$ Literalen und die $1$ die Konjunktion von $0$ Literalen. 
 	
-	Des Weiteren nennen wir Konjunktion endlich vieler EDs eine \textbf{konjunktive Normalform} (kurz \textbf{KNF}) und Disjunktion endlich vieler EDs eine \textbf{disjunktive Normalform} (kurz \textbf{DNF}). 
+	Des Weiteren nennen wir die Konjunktion endlich vieler EDs/Klauseln eine \textbf{konjunktive Normalform} (kurz \textbf{KNF}) und die Disjunktion endlich vieler EKs eine \textbf{disjunktive Normalform} (kurz \textbf{DNF}). 
 \end{defn} 
 
 
@@ -145,19 +147,20 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 	\end{equation}
 \end{lem} 
 \begin{proof} 
-	Man kann alle vier Möglichkeiten für $(x,a) \in \{0,1\}^2$ durchprobieren, um die Gleichheit zu verifizieren. 
+	Man kann alle vier Möglichkeiten für $(x,a) \in \{0,1\}^2$ durchprobieren, um die Gleichheiten zu verifizieren. 
 \end{proof} 
 
 \begin{thm}
+\label{thm:DNF}
 	Jede boolesche Funktion $ f: \{0,1\}^n \to \{0,1\}$ kann durch eine DNF beschrieben werden. 
 \end{thm} 
 \begin{proof}
 	Wir betrachten die Belegungen von $(x_1,\ldots,x_n)$, auf denen $f$ zu $1$ ausgewertet wird: 
-	sei 
+	Sei dazu 
 	\[
 	W := \setcond{ (a_1,\ldots,a_n) \in \{0,1\}^n}{f(a_1,\ldots,a_n) = 1}. 
 	\]
-	Es gilt:
+	Es gilt
 	\begin{equation}
 		\label{dnf}
 		f(x_1,\ldots,x_n) = \bigvee_{ (a_1,\ldots,a_n) \in W} \ \, \bigwedge_{i=1}^n \, (x_i \leftrightarrow a_i). 
@@ -170,37 +173,41 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 	\\  & \Leftrightarrow & & \text{es gibt ein $(a_1,\ldots,a_n) \in W$, für welches $\bigwedge_{i=1}^n (x_i \leftrightarrow a_i)$ wahr ist}
 	\\  & \Leftrightarrow & & \bigvee_{ (a_1,\ldots,a_n) \in W} \ \, \bigwedge_{i=1}^n \, (x_i \leftrightarrow a_i) \ \text{ist wahr}. 
 	\end{align*} 
-
-	Wegen \eqref{equiv:x:no:x} ist der Ausdruck $x_i \leftrightarrow a_i$ in \eqref{dnf} je nach dem Wert von $a_i$ entweder $x_i$ oder $\overline{x_i}$. Mit dieser Interpretation ist die rechte Seite von \eqref{dnf} eine DNF.
+%
+	Wegen \eqref{equiv:x:no:x} ist der Ausdruck $x_i \leftrightarrow a_i$ in \eqref{dnf}, je nach dem Wert von $a_i$, entweder $x_i$ oder~$\overline{x_i}$. Mit dieser Interpretation ist die rechte Seite von \eqref{dnf} eine DNF.
 \end{proof} 
 
 \begin{bem} \label{dnf:rezept}
-	\eqref{dnf} ist ein Rezept der Konstruktion einer Darstellung als DNF für ein gegebenes $f$. Für jede Belegung $(a_1,\ldots,a_n)$, bei der $f$ wahr wird, füge die Elementarkonjunktion hinzu deren Literale für jedes $i=1,\ldots,n$ folgendermaßen  gewählt werden: $x_i$ bei $a_i=1$ und $\overline{x_i}$ bei $a_i=0$. 
+	\eqref{dnf} ist ein Rezept zur Konstruktion einer Darstellung als DNF für eine gegebene boolesche Funktion~$f$:
+	
+	 Für jede Belegung $(a_1,\ldots,a_n)$, bei der $f$ wahr wird, füge die Elementarkonjunktion hinzu deren Literale für jedes $i=1,\ldots,n$ folgendermaßen  gewählt werden: $x_i$ bei $a_i=1$ und $\overline{x_i}$ bei $a_i=0$. 
 \end{bem} 
 
 
-\section{Dualität der booleschen Funktionen und Formeln} 
+\section{Dualität von booleschen Funktionen und booleschen Formeln} 
 
 \begin{defn}
-	Sei $f : \{0,1\}^n \to \{0,1\}$. Dann definieren wir die duale Funktion $f^\ast : \{0,1\}^n \to \{0,1\}$ zu $f$ durch 
+	Sei $f : \{0,1\}^n \to \{0,1\}$ eine boolesche Funktion. Wir definieren die \textbf{duale Funktion} $f^\ast : \{0,1\}^n \to \{0,1\}$ zu $f$ durch 
 	\[
-	f^\ast(x_1,\ldots,x_n) := \overline{ f(\overline{x_1},\ldots,\overline{x_n})}. 
+	f^\ast(x_1,\ldots,x_n) := \overline{ f(\overline{x_1},\ldots,\overline{x_n})} \quad \text{ für alle } \quad (x_1,\ldots,x_n) \in \{0,1\}^n.
 	\]
 \end{defn} 
 
 
 \begin{defn}
-	Als duale Formel zu einer booleschen Formel $F$ definieren wir die Formel $F^\ast$ die aus $F$ entsteht, indem in der Formel die Operatioen $\wedge$ und $\vee$ sowie die Konstanten $0$ und $1$ vertauscht. Mit anderen Worten ensteht die duale Formeln nach durch die folgenden Regeln:
+	Als \textbf{duale Formel} einer booleschen Formel $F$ definieren wir die Formel $F^\ast$, die aus~$F$ entsteht, indem in~$F$ die Operationen $\wedge$ und $\vee$ sowie die Konstanten $0$ und $1$ vertauscht werden.
+	
+	Die duale Formel entsteht also durch das Anwenden der folgenden Regeln auf~$F$:
 	\begin{itemize} 
-		\item $L^\ast := L$ für jedes Literal $L$, 
-		\item $0^\ast = 1$ und $1^\ast = 0$ 
-		\item $(A \vee B)^\ast = A^\ast \wedge B^\ast$ und $(A \wedge B)^\ast = A^\ast \vee B^\ast$.
-		\item $(\overline{A})^\ast = \overline{A}$
+		\item $L^\ast := L$ für jedes Literal $L$,
+		\item $0^\ast = 1$ und $1^\ast = 0$,
+		\item $(A \vee B)^\ast = A^\ast \wedge B^\ast$ und $(A \wedge B)^\ast = A^\ast \vee B^\ast$,
+		\item $(\overline{A})^\ast = \overline{A}$ bzw. $(\neg{A})^\ast = \neg{A}$.
 	\end{itemize}  
 \end{defn} 
 
 \begin{thm}
-	Sei $F$ boolesche Formel. Dann ist die duale Funktion zur Funktion von $F$ gleich der Funktion zur dualen Formel $F^\ast$. 
+	Sei $F$ eine boolesche Formel und $f : \{0,1\}^n \to \{0,1\}$ die Funktion zu~$F$. Dann ist die duale Funktion $f^\ast$ zu~$f$ gleich der Funktion zur dualen Formel $F^\ast$. 
 \end{thm}
 \begin{proof} 
 	Die Behauptung folgt aus der Tatsache, dass für die Operation $f \mapsto f^\ast$ für boolesche Funktionen $f,g : \{0,1\}^n \to \{0,1\}$ die folgenden Regeln gelten: 
@@ -220,10 +227,10 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 \section{Darstellung  von booleschen Formeln durch KNFs}
 
 \begin{thm}
-	Jede boolesche Funktion $f : \{0,1\}^n \to \{0,1\}$ kann durch eine KNF gegeben werden. 
+	Jede boolesche Funktion $f : \{0,1\}^n \to \{0,1\}$ kann durch eine KNF repräsentiert werden. 
 \end{thm} 
 \begin{proof}
-		Wir starten mit der Darstellung von $f^\ast$ als 
+		Wir starten mit der Darstellung von $f^\ast$ als DNF nach Theorem~\ref{thm:DNF}:
 		\[
 			f^\ast(x_1,\ldots,x_n) = \bigvee_{f^\ast(a_1,\ldots,a_n)=1} \ \, \bigwedge_{i=1}^n \, (x_i \leftrightarrow a_i).
 		\]
@@ -231,105 +238,127 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 		\[
 			\overline{ f(\overline{x_1},\ldots,\overline{x_n})} = \bigvee_{f(\overline{a_1},\ldots,\overline{a_n}) = 0} \ \, \bigwedge_{i=1}^n  \, (x_i \leftrightarrow a_i). 
 		\]
-		Wir negieren die Formel und erhalten mit Hilfe des Gesetzes von De Morgan die Darstellung 
-		\[	
-				f(\overline{x_1},\ldots,\overline{x_n}) = \bigwedge_{f(\overline{a_1},\ldots,\overline{a_n})=0} \ \, \bigwedge_{i=1}^n  \, (\overline{x_i} \leftrightarrow a_i). 
-		\]
-		Substitution von $x_i$ durch $\overline{x_i}$ ergibt 
+		\condclearpage
+		\noindent Wir negieren die Formel und erhalten mit Hilfe der de Morganschen Gesetze die Darstellung 
+		\begin{align*}
+				f(\overline{x_1},\ldots,\overline{x_n}) &= \bigwedge_{f(\overline{a_1},\ldots,\overline{a_n})=0} \ \, \overline{\bigwedge_{i=1}^n  \, (x_i \leftrightarrow a_i)} \\
+				&= \bigwedge_{f(\overline{a_1},\ldots,\overline{a_n})=0} \ \, \bigvee_{i=1}^n  \, \overline{(x_i \leftrightarrow a_i)}\\
+				&= \bigwedge_{f(\overline{a_1},\ldots,\overline{a_n})=0} \ \, \bigvee_{i=1}^n  \, (\overline{x_i} \leftrightarrow a_i). 
+		\end{align*}
+		\condclearpage
+		\noindent Substitution von $x_i$ durch $\overline{x_i}$ ergibt 
 		\[
-				f(x_1,\ldots,x_n) = \bigwedge_{f(\overline{a_1},\ldots,\overline{a_n})=0} \ \, \bigwedge_{i=1}^n  \, (x_i \leftrightarrow a_i)
+				f(x_1,\ldots,x_n) = \bigwedge_{f(\overline{a_1},\ldots,\overline{a_n})=0} \ \, \bigvee_{i=1}^n  \, (x_i \leftrightarrow a_i).
 		\]
 		Substitution von $a_i$ durch $\overline{b_i}$ ergibt
 		\begin{equation} \label{knf} 
-			f(x_1,\ldots,x_n) = \bigwedge_{f(b_1,\ldots,b_n)=0} \ \, \bigwedge_{i=1}^n  \, (x_i \leftrightarrow \overline{b_i})
+			f(x_1,\ldots,x_n) = \bigwedge_{f(b_1,\ldots,b_n)=0} \ \, \bigvee_{i=1}^n  \, (x_i \leftrightarrow \overline{b_i}).
 		\end{equation}
 		Wegen \eqref{equiv:x:no:x} kann $x_i \leftrightarrow \overline{b_i}$ je nach dem Wert von $b_i$ entweder durch $x_i$ oder durch $\overline{x_i}$ ersetzt werden. Mit dieser Interpretation ist die rechte Seite von \eqref {knf} eine KNF. 
 \end{proof} 
 
 \begin{bem}
-	\eqref{knf} ist ein Rezept zur Konstruktion einer Darstellung als KNF für ein gegebenes $f$. Für jede Belegung $(b_1,\ldots,b_n)$, bei der $f$ falsch wird, füge die folgende Elementardijsunktion hinzu, deren Literarale für jedes $i=1,\ldots,n$, folgendermaßen fixiert werden: $x_i$ bei $b_i=0$ und $\overline{x_i}$ bei $b_i=1$. Dieses Rezept ist die ``Dualisierung'' des Rezepts \eqref{dnf:rezept} zur Konstruktion, das dadurch entsteht, dass man die Rollen von $0$ und $1$ vertauscht. 
+	\eqref{knf} ist ein Rezept zur Konstruktion einer Darstellung als KNF für eine gegebene boolesche Funktion~$f$:
+	
+	Für jede Belegung $(b_1,\ldots,b_n)$, bei der $f$ falsch wird, füge die Elementardisjunktion hinzu, deren Literale für jedes $i=1,\ldots,n$, folgendermaßen fixiert werden: $x_i$ bei $b_i=0$ und $\overline{x_i}$ bei $b_i=1$.
+	
+	Dieses Rezept ist die \glqq Dualisierung\grqq\ des Rezepts \eqref{dnf:rezept} zur Konstruktion einer DNF, das dadurch entsteht, dass man die Rollen von $0$ und $1$ vertauscht. 
 \end{bem} 
 
 
 \section{Erfüllbarkeitsproblem der Aussagenlogik}
 
 \begin{defn}
-	Als $\SAT$ bezeichent man das Rechenproblem, bei dem man für eine gegebene KNF $F$ entscheiden muss, ob $F$ erfüllbar ist. Als Sprache ist $\SAT$ wie folgt gegeben: 
+	Als $\SAT$ bezeichnet man das Rechenproblem, bei dem man für eine gegebene KNF~$F$ entscheiden soll, ob $F$ erfüllbar ist. Als Sprache ist $\SAT$ damit wie folgt gegeben: 
 	\[
-		\SAT = \setcond{\enc{F}}{F \ \text{erfüllbare KNF}}
+		\SAT := \setcond{\enc{F}}{F \ \text{erfüllbare KNF}}.
 	\]
 \end{defn} 
 
 \begin{bem}
-	Es ist klar, dass $\SAT$ entscheidbar ist, weil man bei einer KNF $F$ mit $n$ Variablen, alle $2^n$ Belegungen durchprobieren kann, um zu testen, ob $F$ erfüllbar ist. Dieser Ansatz zur Entscheidung von $\SAT$ ergibt allerdings kein Polynomialzeit-Algorithmus. 
+	Es ist klar, dass $\SAT$ entscheidbar ist, weil man bei einer KNF $F$ mit $n$ Variablen, alle $2^n$ Belegungen durchprobieren kann, um zu testen, ob $F$ erfüllbar ist. Dieser Ansatz zur Entscheidung von $\SAT$ ergibt allerdings keinen Polynomialzeit-Algorithmus. 
 \end{bem} 
 
-\begin{bem}[Eine der wichtigsten Vermutungen in der Mathematik bzw. Theoretischen Informatik] 
-	Es wird vermutet, dass $\SAT$  nicht in Polynomialzeit entscheidbar ist. Dieses Problem ist insofern sehr wichtig, als in den Anwendungen buchstäblich Tausende von Problemen bekannt sind, die zu $\SAT$ im Sinne der Polynomialzeit-Karp-Reduktion äquivalent sind. Es handelt sich um die sogenannten $\operatorname{NP}$-vollständigen Probleme. Mehr dazu erfahren Sie in den weiterführenden Kursen. 
+\begin{bem}[Eine der wichtigsten Vermutungen in der Mathematik bzw.~der Theoretischen Informatik]
+	Es wird vermutet, dass $\SAT$ \underline{nicht} in Polynomialzeit entscheidbar ist. Dieses Problem ist insofern sehr wichtig, als in den Anwendungen buchstäblich Tausende von Problemen bekannt sind, die zu $\SAT$ im Sinne der Polynomialzeit-Karp-Reduktion äquivalent sind. Es handelt sich um die sogenannten $\operatorname{NP}$-vollständigen Probleme. Mehr dazu erfahren Sie in den weiterführenden Kursen. 
 \end{bem} 
 
 \begin{bem}
-	Der DPLL Algorithmus zur Berechnung ist ein rekursiver Algorithmus zur Entscheidung von $\SAT$, in dem die folgenden zwei Techniken die Laufzeit etwas verbessern sollen: 
+	Der DPLL Algorithmus (benannt nach Davis, Putnam, Logemann \& Loveland 1961) ist ein rekursiver Algorithmus zur Entscheidung von $\SAT$, in dem die folgenden zwei Techniken die Laufzeit oft etwas verbessern: 
 	\begin{itemize}
 		\item[] \textbf{Unit propagation}. Bei einer Klausel aus genau einem Literal $a$ kommt für die Erfüllung der Klausel nur die Zuweisung  $a=1$ in Frage. Wenn man den Wert $a=1$ für $a$ und somit auch den Wert $\overline{a}=0$ für $\overline{a}$ zugewiesen hat, so kann man die Klauseln mit $a$ weglassen. Bei den Klauseln mit dem Literal $\overline{a}$, kann dieses Literal gestrichen werden, sodass potenziell weitere Klauseln entstehen, die nur ein Literal haben. 
 		Man kann also den Prozess der Zuweisung solange wiederholen, bis man keine Klauseln aus genau einem Literal hat. 
 		\item[] \textbf{Pure Literal Assignment}. Kommt ein Literal $a$ in den Klauseln vor, ohne dass $\overline{a}$ in irgendeiner Klausel vorkommt, so kann die Zuweisung $a=1$ für das Literal $a$ festgelegt werden. Diese Zuweisung erfüllt die Klauseln mit dem Literal $a$ und hat keinen Einfluss auf die anderen Klauseln. 
 	\end{itemize} 
-	Sobald die zugrundeliegende KNF nicht durch die beiden beschriebenen Operationen vereinfacht werden kann, wählt man eine Variable $x_i$ und probiert zur Erfüllung der Formel  die beiden Möglichen Zuweisungen $x_i=0$ sowie $x_i=1$ mit Hilfe von rekursiven Aufrufen von DPLL aus. Hat der erste der beiden rekursiven Aufrufe die Erfüllbarkeit festgestellt, so muss man den zweiten Aufruf nicht mehr starten. Auf diese Weise kann für manche Eingabeinstanzen eine vollständige Aufzählung aller möglichen Belegungen der Variablen vermieden werden. 
+	Sobald die zugrundeliegende KNF nicht durch eine der beiden beschriebenen Operationen vereinfacht werden kann, wählt man eine Variable $x_i$ und probiert zur Erfüllung der Formel  die beiden möglichen Zuweisungen $x_i=0$ sowie $x_i=1$ mit Hilfe von rekursiven Aufrufen von DPLL aus. Hat der erste der beiden rekursiven Aufrufe die Erfüllbarkeit festgestellt, so muss man den zweiten Aufruf nicht mehr starten. Auf diese Weise kann für manche Eingabeinstanzen eine vollständige Aufzählung aller möglichen Belegungen der Variablen vermieden werden. 
 \end{bem} 
 
 \begin{lem}[Resolution] \label{resolution}
-	Die Formel $(x \vee y) ( \overline{x} \vee z) \to (y \vee z)$ ist Tautologie. 
+	Die Formel $(x \vee y) ( \overline{x} \vee z) \to (y \vee z)$ ist eine Tautologie. 
 \end{lem} 
 \begin{proof}
-	Das lässt sich durch die Tafel für diese Formel verifizieren. Alternativ kann man es auch so sehen: 
-	Setzen wir $x=0$ ein, so reduziert sich die Formel zur Tautologie $y \mapsto (y \vee z)$ (mit Worten: aus $y$ folgt $y$ oder $z$). Setzen wir $x=1$ ein, so reduziert sich die Formel zur Tautologie $z \mapsto (y \vee z)$ (mit Worten: aus $z$ folgt $y$ oder $z$). 
+	Das lässt sich beispielsweise durch die Wahrheitstafel für diese Formel verifizieren.
+	
+	Alternativ kann man es auch so sehen: 
+	Setzen wir $x=0$ ein, so reduziert sich die Formel zur Tautologie $y \to (y \vee z)$ (mit Worten: aus $y$ folgt $y$ oder $z$). Setzen wir $x=1$ ein, so reduziert sich die Formel zur Tautologie $z \to (y \vee z)$ (mit Worten: aus $z$ folgt $y$ oder $z$). 
 \end{proof} 
 
 \begin{defn}
-	Für eine Variable $x$ und  zwei Klauseln $G$ und $H$ der Form $G=A \vee x$ und $H:=B \vee \overline{x}$, nennt man die Klausel $A \vee B$ die \textbf{Resolvente} von $G$ und $H$ bzgl. der Variablen $x$. Herleitung einer Resolvente aus zwei Klauseln nennt man \textbf{Resolution}. 
+	Für eine Variable $x$ und  zwei Klauseln $G$ und $H$ der Form $G=A \vee x$ und $H=B \vee \overline{x}$, nennt man die Klausel $A \vee B$ die \textbf{Resolvente} von $G$ und $H$ bzgl. der Variablen~$x$.
+	Die Herleitung einer Resolvente aus zwei Klauseln nennt man \textbf{Resolution}. 
 	
-	Wir sagen, dass eine Klausel $K$ aus einer KNF $F = \bigwedge_{i=1}^m K_i$ mit  Klauseln $K_1,\ldots,K_m$ durch einen \textbf{Resolventenbeweis} herlgeleitet werden kann, wenn $K$ eine der Klauseln $K_1,\ldots,K_m $ ist oder  eine endliche Folge $K_{m+1},\ldots,K_t$ von Klauseln existiert derart, dass für jedes $i =m+1,\ldots,t$, die Klausel $K_i$ Resolvente von zwei Klauseln aus  $K_1,\ldots,K_{i-1}$ ist und  die letzte Klausel $K_t$ dieser Folge gleich $K$ ist. Hierbei nennt man $K_{m+1},\ldots,K_{m+t}$ die Beweisschritte und $t$ die Länge des Beweises. Ist $K$ direkt in der KNF enthalten, so hat $K$ einen Beweis der Länge $0$. 
+	Wir sagen, dass eine Klausel $K$ aus einer KNF $F = \bigwedge_{i=1}^m K_i$, mit den Klauseln $K_1,\ldots,K_m$, durch einen \textbf{Resolutionsbeweis hergeleitet} werden kann, wenn
+	\begin{itemize}
+	 \item $K$ eine der Klauseln $K_1,\ldots,K_m $ ist, oder
+	 \item eine endliche Folge $K_{m+1},\ldots,K_{m+t}$ von Klauseln existiert derart, dass für jedes $i =m+1,\ldots,m+t$, die Klausel $K_i$ Resolvente von zwei Klauseln aus  $K_1,\ldots,K_{i-1}$ ist und  die letzte Klausel $K_{m+t}$ dieser Folge gleich $K$ ist.
+	 \end{itemize}
+	 \condclearpage
+Hierbei nennt man $K_{m+1},\ldots,K_{m+t}$ die \textbf{Beweisschritte} und $t$ die \textbf{Länge} des Beweises. Ist $K$ direkt in der KNF enthalten, so hat $K$ einen Beweis der Länge $0$. 
 	
-	Wir sagen, dass eine KNF $F$ mit  Klauseln $K_1,\ldots,K_m$ durch einen \textbf{ Resolutionsbeweis widerlegt} werden kann, wenn die Klausel $0$ aus $F$ durch einen Resolventenbeweis hergeleitet werden kann. 
+	Wir sagen, dass eine KNF $F$ mit  Klauseln $K_1,\ldots,K_m$ durch einen \textbf{Resolutionsbeweis widerlegt} werden kann, wenn die Klausel $0$ durch einen Resolutionsbeweis aus $F$ hergeleitet werden kann. 
 \end{defn} 
 
 \begin{thm}
 	Eine KNF $F$ ist genau dann nicht erfüllbar, wenn sie durch einen Resolutionsbeweis widerlegt werden kann. 
 \end{thm} 
 \begin{proof}
-	Aus Lemma~\ref{resolution} folgt: ist $F$ eine KNF und $R$ Resolvente von zwei Klauseln aus $F$, so ist $F \wedge R$ äquivalent zu $F$. Also ist jede KNF, die durch einen Resolutionsbeweis widerlegt werden kann, nicht erfüllbar, weil die Klausel $0$, die durch den Resolutionsbeweis erzeugt wird, nicht erfüllbar ist.  
+	Aus Lemma~\ref{resolution} folgt, dass wenn $F$ eine KNF ist und $R$ eine Resolvente zweier Klauseln aus~$F$, dann ist $F \wedge R$ äquivalent zu $F$. Also ist jede KNF, die durch einen Resolutionsbeweis widerlegt werden kann, nicht erfüllbar, weil die Klausel $0$, die durch den Resolutionsbeweis erzeugt wird, nicht erfüllbar ist.  
 	
-	Wir zeigen, dass jede nicht-erfüllbare KNF $F$ durch einen Resolutionsbeweis widerlegt werden kann. Wir führen dabei die Induktion über die Anzahl $n \in \N_0$ der Variablen $x_1,\ldots,x_n$ in der KNF $F$. Ist $n=0$, so ist $F=0$ durch einen Resolutionsbeweis der Länge $0$ widerlegt. 
+	Es bleibt also die Umkehrung zu zeigen, also dass jede nicht-erfüllbare KNF $F$ durch einen Resolutionsbeweis widerlegt werden kann. Wir benutzen vollständige Induktion über die Anzahl $n \in \N_0$ der Variablen $x_1,\ldots,x_n$ in der KNF $F$. Ist $n=0$, so ist $F=0$ durch einen Resolutionsbeweis der Länge $0$ widerlegt. 
 	
-	Sei $n \in \N$ so, dass jede nicht-erfüllbare KNF in höchstens $n-1$ Variablen durch Resolutionsbweis widerlegt werden kann. 
-	
-	Wir teilen die Klauseln von $F$ in drei Arten auf, je nachdem, ob die Klausel  $x_n$ oder $\overline{x_n}$ oder weder $x_n$ noch $\overline{x_n}$ als einen der Literale enthält. 	Dem entsprechend schreiben wir die KNF $F$ in $n$ Variablen als $F = A \wedge B \wedge C$, mit
+	Sei also $n \in \N$ und sei angenommen, dass jede nicht-erfüllbare KNF in höchstens $n-1$ Variablen durch einen Resolutionsbeweis widerlegt werden kann.	
+	Wir teilen die Klauseln von $F$ in drei Arten auf, je nachdem, ob die Klausel $x_n$, oder $\overline{x_n}$, oder weder $x_n$ noch $\overline{x_n}$ als ein Literal enthält. Dementsprechend schreiben wir die KNF $F$ in $n$ Variablen als $F = A \wedge B \wedge C$, mit
 	\begin{align*}
 		A & = \bigwedge_{i \in I} A_i   & B & = \bigwedge_{j \in J} (B_j \vee x_n)  &  C & = \bigwedge_{k \in K} (C_k \vee \overline{x_n})
 	\end{align*}
-	mit den Klauseln $A_i, B_j, C_k$ die nur von $x_1,\ldots,x_{n-1}$ abhängig sind. Ist $J$ die leere Indexmenge, so ist $B=1$ und wir können $C$ durch die Wahl $x_n=0$ erfüllen. Somit ist die Erfüllbarkeit von $F$ in diesem Fall äquivalent zur Erfüllbarkeit von $A$. Die Behauptung folgt dann aus der Induktionsvoraussetzung. Ist $K$ die leere Menge, so ist $C=1$ und wir können $B$ durch die Wahl $x_n=1$ erfüllen. Somit ist die Erfüllbarkeit von $F$ in diesem Fall ebenfalls äquivalent zur Erfüllbarkeit von $A$, sodass man ebenfalls die Induktionsvoraussetzung benutzt kann. 
+	mit den Klauseln $A_i, B_j, C_k$, die nur von $x_1,\ldots,x_{n-1}$ abhängig sind. Wir nehmen nun eine Fallunterscheidung nach der Natur der Indexmengen~$J$ und~$K$ vor:
 	
-	Sind $J$ und $K$ beide  nicht leer, so stellt sich heraus, dass die Erfüllbarkeit von $F$ zur Erfüllbarkeit der Formel 
+	\underline{Fall 1:} Ist $J$ die leere Indexmenge, so ist $B=1$ und wir können $C$ durch die Wahl $x_n=0$ erfüllen. Somit ist die Erfüllbarkeit von $F$ in diesem Fall äquivalent zur Erfüllbarkeit von $A$. Die Behauptung folgt dann aus der Induktionsvoraussetzung.
+	
+	\underline{Fall 2:} Ist $K$ die leere Menge, so ist $C=1$ und wir können $B$ durch die Wahl $x_n=1$ erfüllen. Somit ist die Erfüllbarkeit von $F$ in diesem Fall ebenfalls äquivalent zur Erfüllbarkeit von $A$, sodass man ebenfalls die Induktionsvoraussetzung benutzen kann. 
+
+\condclearpage
+	
+	\underline{Fall 3:} Sind $J$ und $K$ beide  nicht leer, so stellt sich heraus, dass die Erfüllbarkeit von $F$ zur Erfüllbarkeit der Formel 
 	\begin{equation} \label{G:formel} 
 			G := A \wedge \bigwedge_{\substack{ j \in J \\ k \in K}} (B_j \vee C_k).
 	\end{equation}
 	äquivalent ist. 
-	Um das zu sehen, bemerken wir zuerst, dass $B_j \vee C_k$ die Resolvente von $B_j \cap x_n$ und $C_k \cap \overline{x_n}$ bzgl. $x_n$ ist. Aus der Erfüllbarkeit von $F$ folgt also die Erfüllbarkeit von $G$. Umgekehrt, sei $G$ erfüllbar. Die Formel $G$ kann also
+	Um das zu sehen, bemerken wir zuerst, dass $B_j \vee C_k$ die Resolvente von $B_j \vee x_n$ und $C_k \vee \overline{x_n}$ bzgl. $x_n$ ist. Aus der Erfüllbarkeit von $F$ folgt also die Erfüllbarkeit von $G$. Umgekehrt, sei $G$ erfüllbar. Die Formel $G$ kann mit den Distributivgesetzen als
 	\begin{align*}
-			G = A \wedge \left( \left( \bigwedge_{j \in J} B_j  \right)  \vee \left( \bigwedge_{k \in K} C_k \right) \right)
+			G = A \wedge \left( \bigg( \bigwedge_{j \in J} B_j  \bigg)  \vee \bigg( \bigwedge_{k \in K} C_k \bigg) \right)
 	\end{align*}
-	umformuliert werden.  Gibt es eine Belegung $b=(b_1,\ldots,b_{n-1}) \in \{0,1\}^n$ der Variablen $x_1,\ldots,x_n$ mit $G(b) = 1$, so gilt $A(b)=1$ und mindestens einer der folgenden Bedingungen ist erfüllt: $B_j(b)=1$ für alle $j \in J$ oder $C_k(b)=1$ für alle $k \in K$. Im ersten Fall ist $F(b_1,\ldots,b_{n-1}, 0 ) =1$ und im zweiten Fall ist $F(b_1,\ldots,b_{n-1},1)=0$. 
+	umformuliert werden.  Gibt es eine Belegung $b=(b_1,\ldots,b_{n-1}) \in \{0,1\}^{n-1}$ der Variablen $x_1,\ldots,x_{n-1}$ mit $G(b) = 1$, so gilt $A(b)=1$ und mindestens einer der folgenden Bedingungen ist erfüllt: $B_j(b)=1$ für alle $j \in J$ oder $C_k(b)=1$ für alle $k \in K$. Im ersten Fall ist $F(b_1,\ldots,b_{n-1}, 0 ) =1$ und im zweiten Fall ist $F(b_1,\ldots,b_{n-1},1)=1$.
 	
-	Ist $F$ nicht erfüllbar, dann ist also auch $G$ nicht erfüllbar. Nach der Induktionsvoraussetzung kann  $G$ durch einen Resolutionsbeweis widerlegt werden. Jede Klausel in \eqref{G:formel} ist aber eine Klausel on $F$ oder eine Resolvente von zwei Klauseln aus $F$. Somit lässt sich der Resolutionsbweis der Nicht-Erfüllbarkeit von $G$ zu einem Resolutionsbeweis der Nicht-Erfüllbarkeit von $F$ ergänzt werden. 	
+	Ist $F$ nicht erfüllbar, dann ist also auch $G$ nicht erfüllbar. Nach der Induktionsvoraussetzung kann  $G$ durch einen Resolutionsbeweis widerlegt werden. Jede Klausel in \eqref{G:formel} ist aber eine Klausel von $F$ oder eine Resolvente zweier Klauseln aus $F$. Somit lässt sich der Resolutionsbeweis der Nicht-Erfüllbarkeit von $G$ zu einem Resolutionsbeweis der Nicht-Erfüllbarkeit von $F$ ergänzen.
 \end{proof} 
 
 \begin{defn}
-	Für $m \in \N$ nennen wir eine KNF, bei der jede Klausel höchstens $m$ Literale enthält eine $m$-KNF. 
+	Für $m \in \N$ nennen wir eine KNF, bei der jede Klausel höchstens $m$ Literale enthält eine \textbf{$m$-KNF}.
 	
-	Als $\kSAT{m}$ bezeichnen wir das Entscheidungsproblem, bei dem man für eine gegebene $m$-KNF testet, ob diese erfüllbar ist. Als Sprache ist $\kSAT{k}$ folgendermaßen definiert: 
+	Als $\kSAT{m}$ bezeichnen wir das Entscheidungsproblem, bei dem man für eine gegebene $m$-KNF testet, ob diese erfüllbar ist. Als Sprache ist $\kSAT{m}$ folgendermaßen definiert: 
 	\[
-		\kSAT{m} = \setcond{\enc{F} }{F \ \emph{erfüllbare $m$-KNF}}
+		\kSAT{m} = \setcond{\enc{F} }{F \text{ erfüllbare $m$-KNF}}.
 	\]
 \end{defn} 
 
@@ -337,31 +366,39 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 	$\kSAT{2}$ ist Polynomialzeit-entscheidbar.  
 \end{thm} 
 \begin{proof}
-	Sei $F$ eine $2$-KNF mit Variablen $x_1,\ldots,x_n$. Ohne Beschränkung der Allgemeinheit kann vorausgesetzt werden, dass jede Klausel genau zwei Literale enthält. 
+	Sei $F$ eine $2$-KNF mit Variablen $x_1,\ldots,x_n$. Ohne Beschränkung der Allgemeinheit kann vorausgesetzt werden, dass jede Klausel genau zwei Literale enthält (wiederhole eventuell nur einzeln auftretende Literale).
 	
 	Wir führen einen Digraphen $D=(V,A)$ ein mit 
-	$V = \{x_1,\ldots,x_n,\overline{x_1},\ldots,\overline{x_n} \}$ und mit der Kantenmenge 
+	$V := \{x_1,\ldots,x_n,\overline{x_1},\ldots,\overline{x_n} \}$ und mit der Kantenmenge 
 	\[
-			A = \setcond{(a,b)}{ \{\overline{a},b\} \ \text{ist die Menge der Literale einer der Klauseln von} \  F} 
+			A := \setcond{(a,b)}{ \{\overline{a},b\} \ \text{ist die Menge der Literale einer der Klauseln von} \  F} .
 	\]
-	Mit anderen Worten stellt jede Kante $(a,b)$ die Implikation $a  \to b$ dar, welche in der Formel eine Klausel $\overline{a} \vee b$ in $F$ vorhanden ist. Die bekannte Tautologie 
+	Mit anderen Worten stellt jede Kante $(a,b)$ die Implikation $a \to b$ dar, die in der Formel~$F$ als Klausel $\overline{a} \vee b$ vorhanden ist.
+\condclearpage	
+	Die bekannte Tautologie 
 	\[
 		 	(a \to b) (b \to c)  \to (a \to c)
 	\]
-	ist nichts anderes als die Resolution $(b \vee \overline{a}) ( \overline{b} \vee c) \to (\overline{a} \vee c)$, mit der man aus den Klauseln $b \vee \overline{a}$ und  $\overline{b} \vee c$ die Klausel $\overline{a} \vee c$ erhält. Ein $(u,v)$-Pfad in $D$ entspricht also der Herleitung von $u \to v = \overline{u} \vee v$ durch einen Resolutionsbeweis. Wenn für ein $i=1,\ldots,n$ die Knoten $x_i$ und $\overline{x_i}$ in $D$ gegenseitig erreichbar sind, so können wir $\overline{x_i} \to  x_i  = x_i$ sowie $x_i \to \overline{x_i} = \overline{x_i}$ mit Hilfe der Resolutionsbweise herleiten. Da man aber $x_i$ und $\overline{x_i}$ nicht gleichzeitig erfüllen kann, folgt in diesem Fall, dass $F$ nicht erfüllbar ist. 
-	Wir stellen also fest, dass $F$ nicht erfüllbar ist, wenn für ein $i =1,\ldots,n$ die beiden Atome $x_i$ und $\overline{x_i}$ in der selben starken Zusammenhangskomponente von $D$ liegen. 
+	ist nichts anderes als die Resolution $(b \vee \overline{a}) ( \overline{b} \vee c) \to (\overline{a} \vee c)$, mit der man aus den Klauseln $b \vee \overline{a}$ und  $\overline{b} \vee c$ die Klausel $\overline{a} \vee c$ erhält. Ein $(u,v)$-Pfad in $D$ entspricht also der Herleitung von $u \to v = \overline{u} \vee v$ durch einen Resolutionsbeweis.
 	
-	 Da man die starken Zusammenhangskomponenten mit Hilfe einer Tiefensuche berechnen kann, lässt sich der beschriebene Fall in Polynomialzeit abfangen. 
+	Wenn für ein $i=1,\ldots,n$ die Knoten $x_i$ und $\overline{x_i}$ in $D$ gegenseitig erreichbar sind, so können wir $\overline{x_i} \to  x_i  = x_i$ sowie $x_i \to \overline{x_i} = \overline{x_i}$ mit Hilfe der Resolutionsbeweise herleiten. Da man aber~$x_i$ und $\overline{x_i}$ nicht gleichzeitig erfüllen kann, folgt in diesem Fall, dass $F$ nicht erfüllbar ist. 
+	Wir stellen also fest, dass $F$ nicht erfüllbar ist, wenn für ein $i =1,\ldots,n$ die beiden Knoten $x_i$ und $\overline{x_i}$ in der selben starken Zusammenhangskomponente von $D$ liegen. 
 	
-	Andernfalls können wir eine Belegung wie folgt festlegen.  Wir sortieren den Komponentengraphen von $D$  topologisch (das geht ebenfalls mit der Tiefensuche) und legen $x_i=0$ genau dann fest, wenn die Komponenten von $x_i$ vor der Komponente $\overline{x_i}$ aufgelistet wird. Da wir die Klauseln als Kanten $(a,b)$ mit $a,b \in V$ kodieren und dabei als Implikationen $a \to b$ umformulieren, bleibt es zu zeigen, dass jede solche Implikation durch unsere Belegung erfüllt wird. Wäre $a \to b$ nicht erfüllt, so würde es bedeuten, dass man die Werte $a=1$ und $b=0$ zugewiesen hat. Das bedeutet wiederum, dass die Komponente von $\overline{a}$ vor der Komponente von $a$ ist und die Komponente von $b$ vor der Komponenten von $\overline{b}$ aufgelistet ist. Wegen $ a \to b$ ist die Komponente von $a$ vor der Komponente von $b$ aufgelistet. Somit ist die Komponente von $\overline{a}$ vor der Komponente von $\overline{b}$ aufgelistet. Nach der Konstruktion von $D=(V,A)$ ist in $A$ neben der Kante $(a,b)$ auch die Kante $(\overline{b},\overline{a})$ vorhanden. Diese Kante führt von der Komponente von $\overline{b}$ zur Komponente von $\overline{a}$, was der Tatsache widerspricht, dass unsere Auflistung der  Komponenten eine topologische Sortierung ist. Dies zeigt, dass jede Klausel von $F$ durch die von uns eingeführte Belegung erfüllt wird. 
+	 Da man die starken Zusammenhangskomponenten mit Hilfe der Tiefensuche berechnen kann, lässt sich der beschriebene Fall in Polynomialzeit abfangen. 
+\condclearpage	
+	Andernfalls können wir eine $F$ erfüllende Belegung der Variablen wie folgt festlegen: Wir sortieren den Komponentengraphen von $D$  topologisch (das geht ebenfalls mit der Tiefensuche) und legen $x_i=0$ genau dann fest, wenn die Komponente von $x_i$ vor der Komponente von $\overline{x_i}$ aufgelistet wird.
+	
+	 Da wir die Klauseln als Kanten $(a,b)$ mit $a,b \in V$ kodieren und dabei als Implikationen $a \to b$ umformulieren, bleibt es zu zeigen, dass jede solche Implikation durch unsere Belegung erfüllt wird. Wäre $a \to b$ nicht erfüllt, so würde es bedeuten, dass man die Werte $a=1$ und $b=0$ zugewiesen hat. Das bedeutet wiederum, dass die Komponente von $\overline{a}$ vor der Komponente von $a$ aufgelistet ist und die Komponente von $b$ vor der Komponente von $\overline{b}$ aufgelistet ist. Wegen $ a \to b$ ist die Komponente von $a$ vor der Komponente von $b$ aufgelistet. Somit ist die Komponente von $\overline{a}$ vor der Komponente von $\overline{b}$ aufgelistet.
+	 
+	 Nach der Konstruktion von $D=(V,A)$ ist in $A$ neben der Kante $(a,b)$ auch die Kante $(\overline{b},\overline{a})$ vorhanden. Diese Kante führt von der Komponente von $\overline{b}$ zur Komponente von $\overline{a}$, was der Tatsache widerspricht, dass unsere Auflistung der  Komponenten eine topologische Sortierung ist. Dies zeigt, dass jede Klausel von~$F$ durch die von uns eingeführte Belegung erfüllt wird. 
 \end{proof} 
 
 \begin{defn}
-	Ist $x$ Variable, so nennen wir $x$ ein positives Literal und $\overline{x}$ ein negatives Literal. Eine Klausel mit höchstens einem positiven Literal nennen wir eine Hornklausel. Eine Klausel nennen wir eine Einheit, wenn sie nur aus einem Literal besteht. 
+	Ist $x$ eine Variable, so nennen wir $x$ ein \textbf{positives Literal} und $\overline{x}$ ein \textbf{negatives Literal}. Eine Klausel mit höchstens einem positiven Literal nennen wir eine \textbf{Hornklausel}. Eine Klausel nennen wir eine \textbf{Einheit}, wenn sie nur aus einem Literal besteht. 
 	
-	Eine KNF aus Hornklauseln nennen wir eine Horn-KNF. Als  $\HORNSAT$ bezeichnen wir das Problem, bei dem für eine gegebene Horn-KNF ihre Erfüllbarkeit entschieden wird. Als Sprache: 
+	Eine KNF aus Hornklauseln nennen wir eine Horn-KNF. Als $\HORNSAT$ bezeichnen wir das Entscheidungsproblem, bei dem für eine gegebene Horn-KNF ihre Erfüllbarkeit entschieden werden soll. Als Sprache: 
 	\[
-		\HORNSAT := \setcond{\enc{F} }{F \ \text{erfüllbare Horn-KNF}}. 
+		\HORNSAT := \setcond{\enc{F} }{F \text{ erfüllbare Horn-KNF}}. 
 	\]
 \end{defn} 
 
@@ -369,9 +406,9 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 	$\HORNSAT$ ist Polynomialzeit-entscheidbar. 
 \end{thm} 
 \begin{proof}
-	Wir benutzen die Unit Propagation, die bereits erwähnt wurde. Sei $F$ eine Horn-KNF. Der Algorithmus, modifiziert $F$ iterativ, ohne die Erfüllbarkeit von $F$ zu beeinträchtigen (eine erfüllbare $F$ bleibt erfüllbar,  eine unerfüllbare $F$ bleibt unerfüllbar). 
-	
-	Hat $F$ die Klausel $0$, so ist $F$ nicht erfüllbar.  Ist eine der Klausel eine Einheit $a$, so müssen wir $a$ mit $1$ belegen, um $F$ zu erfüllen. Auf diese Weise werden alle Klauseln, die $a$ enthalten aus $F$ entfernt, und aus den Klauseln, die $\overline{a}$ enthalten, wird das Literal $\overline{a}$ entfernt (man beachte, dass eine Klausel ohne Literal die Klausel $0$ ist). Den vorigen Prozess wiederholt man iterativ  solange, bis die Klausel $0$ generiert wird oder man die Formel $F$ ohne erzeugt. Im letzteren Fall lässt sich die Formel erfüllen, indem man alle übrig gebliebenen Variablen gleich $0$ setzt. 
+	Wir benutzen die Unit Propagation, die bereits in der Beschreibung des DPLL Algorithmus erwähnt wurde. Sei $F$ eine Horn-KNF. Der Algorithmus modifiziert $F$ iterativ, ohne die Erfüllbarkeit von $F$ zu beeinträchtigen (eine erfüllbare Formel $F$ bleibt erfüllbar; eine unerfüllbare Formel $F$ bleibt unerfüllbar). 
+
+	Hat $F$ die Klausel $0$, so ist $F$ nicht erfüllbar.  Ist eine der Klauseln eine Einheit $a$, so müssen wir $a$ mit $1$ belegen, um $F$ zu erfüllen. Auf diese Weise werden alle Klauseln, die $a$ enthalten, aus~$F$ entfernt, und aus den Klauseln, die $\overline{a}$ enthalten, wird das Literal $\overline{a}$ entfernt (man beachte, dass eine Klausel ohne Literal die Klausel $0$ ist). Den vorigen Prozess wiederholt man iterativ  solange, bis die Klausel $0$ generiert wird oder man die Formel $F$ ohne Einheit erzeugt. Im letzteren Fall lässt sich die Formel erfüllen, indem man alle übrig gebliebenen Variablen gleich~$0$ setzt. 
 \end{proof} 
 
 

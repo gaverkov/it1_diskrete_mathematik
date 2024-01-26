@@ -3,45 +3,188 @@
 \subsection{Färbung} 
 
 \begin{defn}
-	Fur einen Graphen $ G = (V,E)$ und eine $k$-elementige Menge $C$ heißt eine Abbildung $ f : V\to C$ eine \textbf{$k$-Färbung} wenn $f(u) \ne f(v)$ für alle $\{u,v\} \in E$ gilt. 
+	Sei $G = (V,E)$ ein Graph und $C$ eine $k$-elementige Menge.
+	Dann heißt eine Abbildung $ f : V\to C$ eine \textbf{$k$-Färbung von $G$}, wenn $f(u) \ne f(v)$ für alle $\{u,v\} \in E$ gilt. 
 	
-	Das minimale $k$, für welches $G$ eine $k$-Färbung nennt man die \textbf{chromatische Zahl} von $G$ und bezeichnet diesen Wert als $\chi(G)$. 
+	Das minimale $k$, für das $G$ eine $k$-Färbung besitzt, nennt man die \textbf{chromatische Zahl} von~$G$ und bezeichnet diesen Wert als $\chi(G)$. 
 \end{defn} 
 
 \begin{prop}[Brute-Force-Färbung] \label{brute-force-faerbung}
-	Es gibt einen Algorithmus, der für einen (als Adjazenz- oder Kantenliste) gegebenen Graphen $G=(V,E)$ und ein $k \in \N$ in der Zeit $T$ mit $O(k^{|V|} \cdot |V| \cdot |E|)$ entscheidet, ob $G$ eine $k$-Färbung besitzt. 
+	Es gibt einen Algorithmus, der für einen (als Adjazenz- oder Kantenliste) gegebenen Graphen $G=(V,E)$ und ein $k \in \N$ in der Zeit $O(|V| \cdot |E| \cdot k^{|V|})$ entscheidet, ob $G$ eine $k$-Färbung besitzt. 
 \end{prop} 
 \begin{proof} 
-	Sei $k \ge 2$, denn der Fall $k=1$ ist trivial. 
-	Es gibt $k^{|V|}$ Abbildungen $V \to \{0,\ldots,k-1\}$, die man alle algorithmisch aufzählen kann. Zur Aufzählung kann man solche Abbildung als Darstellungen der Zahlen aus $\{0,\ldots,k^{|V|} -1\}$ im Stellenwertsystem zur Basis $k$ auffassen und all diese Darstellungen von der Darstellung von $0$ beginnend durch das sukzessive Inkrementieren aufzählen. Eine Inkremtinierung benötigt $O(|V|)$ Elementaroperationen, sodass man beim Aufzählen auf Insgesamt $O(k^{|V|} |V|)$ Elementaroperationen kommt. Für jede Abbildung kann durch das Iterieren über alle Kanten überprüft werden, ob die Abbildung eine $k$-Färbung ist. 
+	Die Fälle $k=1$ oder $E = \emptyset$ sind direkt einsichtig. 
+	Seien also $k \ge 2$ und $|E| \geq 1$.
+	Es gibt $k^{|V|}$ Abbildungen $V \to \{0,\ldots,k-1\}$, die man alle algorithmisch aufzählen kann. Zur Aufzählung kann man diese Abbildungen als Darstellungen der Zahlen aus $\{0,\ldots,k^{|V|} -1\}$ im Stellenwertsystem zur Basis $k$ auffassen und all diese Darstellungen von der Darstellung von $0$ beginnend durch das sukzessive Inkrementieren aufzählen. Eine Inkrementierung benötigt $O(|V|)$ Elementaroperationen, sodass man beim Aufzählen auf insgesamt $O(k^{|V|} |V|)$ Elementaroperationen kommt. Für jede Abbildung kann durch das Iterieren über alle Kanten überprüft werden, ob die Abbildung eine $k$-Färbung ist. 
 \end{proof} 
 
 
 \begin{bem}
 	Der Algorithmus aus Proposition~\ref{brute-force-faerbung} ist kein Polynomialzeit-Algorithmus: denn im Fall $k \ge 2$ hat die Laufzeit des Algorithmus die Ordnung mindestens $
-k^|V| \ge  2^{|V|}$. Das heißt, es ist kein effizienter Algorithmus. 
+k^{|V|} \ge  2^{|V|}$. Das heißt, es ist kein effizienter Algorithmus. 
 	
 	Im Spezialfall $k=2$, gibt es aber einen effizienten Algorithmus.
 \end{bem} 
 
 \begin{prop}
-		Es gibt einen Algorithmus der für einen als Adjazenzliste gegebenen Graphen $G=(V,E)$ in der Zeit $\Theta(|V|+|E|)$, ob $G$ eine $2$-Färbung besitzt. 
+		Es gibt einen Algorithmus der für einen als Adjazenzliste gegebenen Graphen $G=(V,E)$ in der Zeit $\Theta(|V|+|E|)$ entscheidet, ob $G$ eine $2$-Färbung besitzt. 
 \end{prop} 
 \begin{proof}
-	Graphen mit $2$-Färbung nennt man auch bipartit. Ob ein Graph bipartit ist, kann mit Hilfe der Tiefensuche oder Breitesuche entschieden werden (Aufgabe). 
+	Graphen mit $2$-Färbung sind genau die bipartiten Graphen. Ob ein Graph bipartit ist, kann mit Hilfe einer Tiefen- oder Breitensuche entschieden werden.
+	
+	\underline{Mit einer Tiefensuche:} Zunächst können wir annehmen, dass $G$ zusammenhängend ist. Wenn er mehrere Zusammenhangskomponenten hat, dann führen wir die folgende Vorgehensweise auf jeder seiner Zusammenhangskomponenten einzeln aus (Bestimmen der Komponenten geht mittels Breitensuche).
+	
+	Nennen wir die beiden Teile der eventuellen Bipartition rot und blau.
+	\begin{itemize}
+	 \item 	Einen Knoten, aus dem die Suche gestartet wird, färben wir rot oder blau (die Wahl der Farbe für den Startknoten ist nicht wichtig).
+	 \item Bei einem Knoten, der bereits gefärbt ist, müssen alle Nachbarn mit der jeweils anderen Farbe gefärbt werden: die noch nicht gefärbten Nachbarn von einem roten Knoten färbt man blau, die nicht gefärbten Nachbarn von einem blauen Knoten färbt man rot.
+	 \item Das Färben der Nachbarn erfolgt in der Tiefensuche beim Sondieren der Kanten.
+	 \item Wenn man beim Sondieren der Nachbarn eines Knotens u einen Knoten entdeckt, der mit der selben Farbe wie u gefärbt ist, ist der Graph nicht bipartit, da wir dann einen Kreis in~$G$ gefunden haben, der ungerade viele Kanten enthält.
+	\end{itemize}
 \end{proof} 
 
 \begin{bem}
-	Es ist kein effizienter Test der $3$-Färbbarkeit bekannt. Man vermutet, es gibt keinen solchen Test. 
-	In der Theorie und Anwendungen gibt es Tausende von Rechenproblemen, die zur Entscheidung der $3$-Färbarkeit äquivalent sind, wobei man in diesem Zussammenhang die Äquivalenz in einem bestimmten genau definierbaren Sinn einführt. Das bedeutet: Die $3$-Färbbarkeit gehört zu den sogennanten $NP$-vollständigen Problemen. 
+	Es ist kein effizienter Test der $3$-Färbbarkeit bekannt. Man vermutet, dass es keinen solchen Test gibt. 
+	In der Theorie und den Anwendungen gibt es Tausende von Rechenproblemen, die zur Entscheidung der $3$-Färbbarkeit \emph{äquivalent} sind, wobei man in diesem Zussammenhang die Äquivalenz in einem bestimmten genau definierbaren Sinn einführt. Das bedeutet: Die $3$-Färbbarkeit gehört zu den sogenannten $\mathrm{NP}$-vollständigen Problemen. 
 \end{bem} 
 
 
 \condclearpage
-\subsection{Existenz der Hamilton-Kreise und das TSP}
+\subsection{Existenz von Hamilton-Kreisen und das TSP}
 
-IM AUFBAU 
+\begin{defn}
+Sei $G = (V,E)$ ein Graph oder $D = (V,A)$ ein Digraph.
+\begin{itemize}
+ \item Ein \textbf{Hamilton-Kreis} in $G$ bzw.~$D$ ist ein Zyklus im (Di)Graphen, der jeden Knoten in~$V$ genau einmal enthält.
+ \item Ein \textbf{Euler-Kreis} in~$G$ bzw.~$D$ ist ein Zyklus im (Di)Graphen, der jede Kante in~$E$ bzw.~$A$ genau einmal enthält.
+\end{itemize}
+\end{defn}
 
+\begin{lem}
+\label{lem:existenz-euler-kreis}
+Ein stark zusammenhängender Digraph $D$ bzw.~ein zusammenhängender Graph~$G$ enthält genau dann einen Euler-Kreis, wenn für jeden Knoten in~$D$ der Eingangsgrad gleich dem Ausgansgrad ist bzw.~jeder Knoten in~$G$ geraden Grad hat.
+
+Existiert ein Euler-Kreis, so kann er in der Zeit $O(|A|)$ bzw.~$O(|E|)$ berechnet werden.
+\end{lem}
+\begin{proof}
+Wir betrachten einen ungerichteten Graphen~$G$ (die Behandlung für Digraphen ist analog).
+Sei zunächst $K$ ein Euler-Kreis in $G$. Da $K$ alle Kanten von $G$ genau einmal enthält, ist der Grad eines jeden Knotens in $G$ gleich dem Grad eines jeden Knotens in $K$.
+In einem Kreis gibt es aber nur gerade Knotengrade.
+
+Umgekehrt, sei nun $G$ ein Graph mit ausschlie\ss lich geraden Knotengraden.
+Wir verfolgen einen iterativen Ansatz um einen Euler-Kreis schrittweise aus Kreisen in $G$ zusammenzusetzen:
+\begin{itemize}
+ \item Beginne an einem beliebigen Knoten $v$ in $G$ und verfolge solange Kanten, bis man wieder zu $v$ zurückkehrt (dies ist möglich durch die geraden Knotengrade in jedem Knoten).
+ \item Dies erzeugt einen Kreis $K_1$ in $G$, dessen Kanten wir aus $G$ entfernen und dann den Graphen $G_1$ erhalten.
+ \item Da alle Knotengrade in $K_1$ gleich $2$ sind, hat $G_1$ wieder nur gerade Knotengrade.
+ \item Wie oben erzeugen wir einen Kreis $K_2$ in $G_1$ und setzen ihn mit $K_1$ entlang eines gemeinsamen Knotens zum Zyklus $Z$ zusammen.
+ \item Iteratives Vorgehen erzeugt auf diese Weise Graphen $G_1,G_2,\ldots,G_k$, wobei der letzte Graph $G_k$ keine Kanten mehr enthält und der letzte erzeugte Kreis $K_{k+1}$ den bis dahin zusammengebauten Zyklus $Z$ zu einem Euler-Kreis vervollständigt.
+\end{itemize}
+%
+Dieser algorithmische Ansatz kann in linearer Zeit $O(|E|)$ umgesetzt werden (Algorithmus von Hierholzer).
+\end{proof}
+
+\begin{bem} 
+Das \textbf{Rundreiseproblem} oder \textbf{Problem der Handlungsreisenden} (engl.~\emph{traveling saleperson problem (TSP)}) hat zur Aufgabe, einen kürzesten Hamilton-Kreis zu finden.
+Genauer:
+\begin{center}
+\textit{Gegeben ein zusammenhängender gewichteter Graph~$G=(V,E,w)$,\\ finde einen Hamilton-Kreis $H$ in $G$ minimalen Gewichts.}
+\end{center}
+Das Bestimmen eines minimalen Hamilton-Kreises findet Anwendung zum Beispiel:
+\begin{itemize}
+ \item in der DNA-Sequenzierung,
+ \item beim Design integrierter Schaltkreise,
+ \item bei der Maschinensteuerung bei Herstellung von Leiterplatten,
+ \item bei Tourenplanung in Verkehrsnetzen.
+\end{itemize}
+\end{bem}
+
+\begin{bem}
+Es ist kein polynomieller Algorithmus bekannt, der das Rundreiseproblem löst.
+Weiterhin wird vermutet, dass es keinen solchen Algorithmus geben kann.
+
+Da man die Aufgaben in der Praxis trotzdem lösen möchte, braucht man zum Beispiel sogenannte \textbf{Approximationsverfahren}, die eventuell nicht einen minimalen Hamilton-Kreis bestimmen, aber einen, der \glqq fast\grqq\ minimal ist.
+\end{bem} 
+
+\begin{defn}
+Sei $G=(V,E,w)$ ein gewichteter Graph. Das Rundreiseproblem bzw.~die Gewichtsfunktion~$w$ auf $G$ hei\ss t \textbf{euklidisch}, falls $w$ die sogenannte \textbf{Dreiecksungleichung} erfüllt.
+Das hei\ss t, falls für je drei Knoten $i,j,k \in V$, die mit den Kanten $ij, ik, kj \in E$ ein Dreieck in $G$ bilden, die Ungleichung
+\[
+w(i,j) \leq w(i,k) + w(k,j)
+\]
+gilt.
+\end{defn}
+
+\begin{bem}[Spannbaum-Heuristik für das TSP]\,\\
+\underline{Idee einer Approximationslösung für das Rundreiseproblem:} Gegeben sei $G=(V,E,w)$.
+\begin{itemize}
+ \item Bestimme einen minimalen Spannbaum $T$ in $G$.
+ \item Erzeuge den Digraphen $T'$ aus~$T$, der für jede Kante $e \in T$ ein Paar von antiparallelen Kanten $e',e''$ enthält mit Gewichten $w(e')=w(e'')=w(e)$.
+ \item Bestimme einen Euler-Kreis $K$ in $T'$ (zum Beispiel \glqq au\ss en herum\grqq).
+ \item Erzeuge einen Hamilton-Kreis aus $K$ indem man entlang $K$ läuft und bereits besuchte Kanten überspringt und den Weg dabei \glqq abkürzt\grqq.
+\end{itemize}
+Die genaue Ausführung kann durch eine Nachfolger-Funktion, die der Kreis $K$ definiert, umgesetzt werden:
+Angenommen, die Knoten in $G$ seien $V = \{1,2,\ldots,n\}$. Dann ist $\cc{succ}_K[i]$ der Nachfolgeknoten von $i$ in~$K$.
+\end{bem}
+
+
+\begin{algorithm}[H]
+\caption{$\cc{Rundreise-MSB}(G)$}
+\begin{algorithmic}[1]
+ \STATE $T :=$ minimaler Spannbaum von $G$
+ \STATE $T' :=$ Digraph zu $T$ mit antiparallelen Kanten gleichen Gewichts
+ \STATE $K :=$ Euler-Kreis in $T'$
+ \STATE $\cc{succ}_K :=$ Array von Nachfolgern der Knoten entlang von $K$
+ \STATE $p := 1$, \ $q := \cc{succ}_K[1]$, \ $R := \{pq\}$, \ markiere Knoten $1$
+ \WHILE{$q \neq 1$}
+  \STATE $p := q$, \ markiere Knoten $p$
+  \STATE \COMMENT{Abk\"urzen falls n\"otig}
+  \WHILE{($q$ ist markiert \AND $q \neq 1$)}
+   \STATE $q := \cc{succ}_K[q]$
+  \ENDWHILE
+  \STATE $R := R \cup \{pq\}$
+ \ENDWHILE
+ \RETURN $R$
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{thm}
+Sei $G=(V,E,w)$ ein gewichteter Graph mit euklidischer nicht-negativer Gewichtsfunktion, also $w(i,j) \geq 0$ für alle $i,j \in V$.
+Sei $d^\ast$ das Gewicht eines minimalen Hamilton-Kreises in~$G$ und~$d$ das Gewicht des durch $\cc{Rundreise-MSB}(G)$ berechneten Hamilton-Kreises.
+Dann gilt
+\[
+d \leq 2 \cdot d^\ast.
+\]
+Darüberhinaus hat der Algorithmus die Laufzeit $O(|E| \log |V|)$.
+\end{thm}
+\begin{proof}
+Beginnen wir mit der Laufzeitanalyse: Mit dem Prim-Algorithmus finden wir einen minimalen Spannbaum $T$ in $G$ in Zeit $O(|E| \log |V|)$. Das Aufstellen von $T'$ erfolgt in Zeit $O(|V|)$, da $T$ genau $|V|-1$ Kanten enthält. Der Euler-Kreis $K$ in $T'$ kann in linearer Zeit $O(|V|)$ gefunden werden, und dieser wird dann in ebenfalls linearer Zeit traversiert um einen Hamilton-Kreis zu extrahieren.
+Insgesamt erhalten wir somit die angegebene Laufzeit von
+\[
+O(|E| \log |V|) + O(|V|) + O(|V|) + O(|V|) = O(|E| \log |V|).
+\]
+Beweisen wir nun die behauptete Approximationsgüte des durch $\cc{Rundreise-MSB}(G)$ berechneten Hamilton-Kreises.
+Sei dazu $T$ ein minimaler Spannbaum in $G$ und $K$ der berechnete Euler-Kreis in $T'$.
+Nach Definition von $T'$ gilt dann
+\[
+w(K) = \sum_{e \in T} \left( w(e') + w(e'') \right) = 2 \cdot w(T).
+\]
+Sei weiterhin $R$ die Rundreise / der Hamilton-Kreis aus $\cc{Rundreise-MSB}(G)$.
+Da $w$ euklidisch ist, also die Dreiecksungleichung erfüllt, ist jedes \glqq Abkürzen\grqq entlang von $K$ ein echtes Abkürzen bzgl.~der Gewichtsfunktion~$w$ und es gilt $w(R) \leq w(K)$.
+
+Sei nun $R^\ast$ eine minimale Rundreise / Hamilton-Kreis in $G$, also mit $w(R^\ast)$ minimal unter allen Rundreisen in $G$.
+Die Rundreise $R^\ast$ hat genau $|V|$ Kanten und nach dem Entfernen einer beliebigen Kante aus $R^\ast$ erhält man einen Spannbaum $T^\ast$ in $G$.
+Nach Annahme an $T$ gilt damit $w(T^\ast) \geq w(T)$.
+Da $w(i,j) \geq 0$ gilt für alle Kanten $ij \in E$, gilt weiterhin $w(R^\ast) \geq w(T^\ast)$.
+Kombinieren wir nun alle abgeleiteten Ungleichungen, so erhalten wir
+\[
+\frac{d}{d^\ast} = \frac{w(R)}{w(R^\ast)} \leq \frac{w(K)}{w(T^\ast)} = \frac{2 \cdot w(T)}{w(T^\ast)} \leq \frac{2 \cdot w(T)}{w(T)} = 2,
+\]
+wie behauptet.
+\end{proof}
+
+\condclearpage
 \subsection{Modellierung als lineare ganzzahlige Optimierungsaufgaben}
 
 IM AUFBAU
