@@ -69,7 +69,7 @@ Existiert ein Euler-Kreis, so kann er in der Zeit $O(|A|)$ bzw.~$O(|E|)$ berechn
 \begin{proof}
 Wir betrachten einen ungerichteten Graphen~$G$ (die Behandlung für Digraphen ist analog).
 Sei zunächst $K$ ein Euler-Kreis in $G$. Da $K$ alle Kanten von $G$ genau einmal enthält, ist der Grad eines jeden Knotens in $G$ gleich dem Grad eines jeden Knotens in $K$.
-In einem Kreis gibt es aber nur gerade Knotengrade.
+In einem Zyklus gibt es aber nur gerade Knotengrade.
 
 Umgekehrt, sei nun $G$ ein Graph mit ausschlie\ss lich geraden Knotengraden.
 Wir verfolgen einen iterativen Ansatz um einen Euler-Kreis schrittweise aus Kreisen in $G$ zusammenzusetzen:
@@ -121,7 +121,7 @@ gilt.
  \item Bestimme einen minimalen Spannbaum $T$ in $G$.
  \item Erzeuge den Digraphen $T'$ aus~$T$, der für jede Kante $e \in T$ ein Paar von antiparallelen Kanten $e',e''$ enthält mit Gewichten $w(e')=w(e'')=w(e)$.
  \item Bestimme einen Euler-Kreis $K$ in $T'$ (zum Beispiel \glqq au\ss en herum\grqq).
- \item Erzeuge einen Hamilton-Kreis aus $K$ indem man entlang $K$ läuft und bereits besuchte Kanten überspringt und den Weg dabei \glqq abkürzt\grqq.
+ \item Erzeuge einen Hamilton-Kreis aus $K$ indem man entlang $K$ läuft und bereits besuchte Knoten überspringt und den Weg dabei \glqq abkürzt\grqq.
 \end{itemize}
 Die genaue Ausführung kann durch eine Nachfolger-Funktion, die der Kreis $K$ definiert, umgesetzt werden:
 Angenommen, die Knoten in $G$ seien $V = \{1,2,\ldots,n\}$. Dann ist $\cc{succ}_K[i]$ der Nachfolgeknoten von $i$ in~$K$.
@@ -151,35 +151,34 @@ Angenommen, die Knoten in $G$ seien $V = \{1,2,\ldots,n\}$. Dann ist $\cc{succ}_
 
 \begin{thm}
 Sei $G=(V,E,w)$ ein gewichteter Graph mit euklidischer nicht-negativer Gewichtsfunktion, also $w(i,j) \geq 0$ für alle $i,j \in V$.
-Sei $d^\ast$ das Gewicht eines minimalen Hamilton-Kreises in~$G$ und~$d$ das Gewicht des durch $\cc{Rundreise-MSB}(G)$ berechneten Hamilton-Kreises.
+Sei $R_{\min}$ ein minimaler Hamilton-Kreis in~$G$ und sei~$R$ der durch $\cc{Rundreise-MSB}(G)$ berechnete Hamilton-Kreis.
 Dann gilt
 \[
-d \leq 2 \cdot d^\ast.
+w(R) \leq 2 \cdot w(R_{\min}).
 \]
 Darüberhinaus hat der Algorithmus die Laufzeit $O(|E| \log |V|)$.
 \end{thm}
 \begin{proof}
-Beginnen wir mit der Laufzeitanalyse: Mit dem Prim-Algorithmus finden wir einen minimalen Spannbaum $T$ in $G$ in Zeit $O(|E| \log |V|)$. Das Aufstellen von $T'$ erfolgt in Zeit $O(|V|)$, da $T$ genau $|V|-1$ Kanten enthält. Der Euler-Kreis $K$ in $T'$ kann in linearer Zeit $O(|V|)$ gefunden werden, und dieser wird dann in ebenfalls linearer Zeit traversiert um einen Hamilton-Kreis zu extrahieren.
+Beginnen wir mit der Laufzeitanalyse: Mit dem Prim-Algorithmus finden wir einen minimalen Spannbaum $T$ in $G$ in Zeit $O(|E| \log |V|)$. Das Aufstellen von $T'$ erfolgt in Zeit $O(|V|)$, da $T$ genau $|V|-1$ Kanten enthält. Der Euler-Kreis $K$ in $T'$ kann nach Lemma~\ref{lem:existenz-euler-kreis} in linearer Zeit $O(|V|)$ gefunden werden, und dieser wird dann in ebenfalls linearer Zeit traversiert um einen Hamilton-Kreis zu extrahieren.
 Insgesamt erhalten wir somit die angegebene Laufzeit von
 \[
 O(|E| \log |V|) + O(|V|) + O(|V|) + O(|V|) = O(|E| \log |V|).
 \]
-Beweisen wir nun die behauptete Approximationsgüte des durch $\cc{Rundreise-MSB}(G)$ berechneten Hamilton-Kreises.
+Beweisen wir nun die behauptete Approximationsgüte des durch $\cc{Rundreise-MSB}(G)$ berechneten Hamilton-Kreises~$R$ in~$G$.
 Sei dazu $T$ ein minimaler Spannbaum in $G$ und $K$ der berechnete Euler-Kreis in $T'$.
 Nach Definition von $T'$ gilt dann
 \[
 w(K) = \sum_{e \in T} \left( w(e') + w(e'') \right) = 2 \cdot w(T).
 \]
-Sei weiterhin $R$ die Rundreise / der Hamilton-Kreis aus $\cc{Rundreise-MSB}(G)$.
-Da $w$ euklidisch ist, also die Dreiecksungleichung erfüllt, ist jedes \glqq Abkürzen\grqq entlang von $K$ ein echtes Abkürzen bzgl.~der Gewichtsfunktion~$w$ und es gilt $w(R) \leq w(K)$.
-
-Sei nun $R^\ast$ eine minimale Rundreise / Hamilton-Kreis in $G$, also mit $w(R^\ast)$ minimal unter allen Rundreisen in $G$.
-Die Rundreise $R^\ast$ hat genau $|V|$ Kanten und nach dem Entfernen einer beliebigen Kante aus $R^\ast$ erhält man einen Spannbaum $T^\ast$ in $G$.
-Nach Annahme an $T$ gilt damit $w(T^\ast) \geq w(T)$.
-Da $w(i,j) \geq 0$ gilt für alle Kanten $ij \in E$, gilt weiterhin $w(R^\ast) \geq w(T^\ast)$.
+Da $w$ euklidisch ist, also die Dreiecksungleichung erfüllt, ist jedes \glqq Abkürzen\grqq\ entlang von~$K$ ein echtes Abkürzen bzgl.~der Gewichtsfunktion~$w$ und es gilt $w(R) \leq w(K)$.
+\condclearpage
+Sei nun $R_{\min}$ eine minimale Rundreise / Hamilton-Kreis in $G$, also mit $w(R_{\min})$ minimal unter allen Rundreisen in $G$.
+Die Rundreise $R_{\min}$ hat genau $|V|$ Kanten und nach dem Entfernen einer beliebigen Kante aus $R_{\min}$ erhält man einen Spannbaum $T^\ast$ in $G$.
+Nach Annahme an~$T$ gilt damit $w(T^\ast) \geq w(T)$.
+Da $w(i,j) \geq 0$ gilt für alle Kanten $ij \in E$, gilt weiterhin $w(R_{\min}) \geq w(T^\ast)$.
 Kombinieren wir nun alle abgeleiteten Ungleichungen, so erhalten wir
 \[
-\frac{d}{d^\ast} = \frac{w(R)}{w(R^\ast)} \leq \frac{w(K)}{w(T^\ast)} = \frac{2 \cdot w(T)}{w(T^\ast)} \leq \frac{2 \cdot w(T)}{w(T)} = 2,
+\frac{w(R)}{w(R_{\min})} \leq \frac{w(K)}{w(R_{\min})} \leq \frac{w(K)}{w(T^\ast)} = \frac{2 \cdot w(T)}{w(T^\ast)} \leq \frac{2 \cdot w(T)}{w(T)} = 2,
 \]
 wie behauptet.
 \end{proof}
