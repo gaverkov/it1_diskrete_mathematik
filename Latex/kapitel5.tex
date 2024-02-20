@@ -80,12 +80,19 @@ die uns ermöglicht, die kürzeren Schreibweisen $0$ und $1$ für die Wahrheitsw
 \end{defn} 
 
 
-\begin{bem}
-	Die Äquivalenz zweier boolescher Formeln, kann auch so aufgefasst werden, dass die beiden Formeln die selbe boolesche Funktion repräsentieren. Etwa, 
+\begin{bsp}\,
+\begin{itemize}
+ \item Zwei äquivalente boolesche Formeln sind
 	\[
 		x \, \overline{y}\vee y= x \vee y.  
 	\]
-\end{bem} 
+
+ \item Zwei nicht-äquivalente boolesche Formeln sind
+	\[
+		\overline{x \wedge y} \vee z \neq x \wedge \overline{z}.  
+	\]
+\end{itemize}
+\end{bsp} 
 
 \begin{bem}
 	Wenn zwei Formeln $F$ und $G$ äquivalent sind, so bezeichnet man das in manchen Quellen als $F \equiv G$, wir nutzen aber hier (wie in \cite{Lov20}) die Bezeichnung $F = G$ (die wir ja auch sonst, etwa für die  Gleichheit von Funktionen benutzen). 
@@ -114,7 +121,7 @@ Wir nennen eine boolesche Formel in $n$ Variablen eine \textbf{Tautologie}, wenn
 			\\ \overline{a \wedge b} & = \overline{a} \vee \overline{b}  & \overline{a \vee b} & = \overline{a} \wedge \overline{b} & & \text{De Morgansche Gesetze} 
 			\\ a \wedge \overline{a} & = 0  & a \vee \overline{a} & = 1 & & \text{Komplementärgesetze}
 			\\ \overline{0} & = 1 & \overline{1} & = 0 & & \text{Dualitätsgesetze} 
-			\\ a \vee (a \wedge b) & = a & a \wedge (a \wedge b) & = a & & \text{Absorptionsgesetze}
+			\\ a \vee (a \wedge b) & = a & a \wedge (a \vee b) & = a & & \text{Absorptionsgesetze}
 		\end{align*} 
 \end{prop} 
 
