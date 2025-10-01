@@ -9,7 +9,10 @@ Hier findet man auch SageMath-Skript, welche die in der Vorlesung präsentierten
 Zulassung zur Klausur bei mind. 50% der Punkte für die Aufgabenblätter, die wöchentlich ausgegeben werden. <br>
 Mindestens ein Aufgabenblatt wird durch eine Probeklausur ersetzt, deren Punkte auch mitgezählt werden. <br>
 +10% Bonus in der Klausur bei mind. 75% Punkte für die Aufgabenblätter <br> 
-**NEU:** bei mir keine Hilfsmittel in der Klausur (so können Sie sich besser vorbereiten). 
+**NEU:** bei mir keine Hilfsmittel in der Klausur (so können Sie sich besser vorbereiten). <br>
+In der Klausur wird sowohl theoretischer Stoff abgefragt als auch 
+
+3-Wochen-Zyklus: In der Woche k Ausgabe des Aufgabeblatts k. In der Woche k+1 das Einsammeln der Lösungen des Aufgabeblatts k. In der Woche k+2 die Besprechung der Lösungen der Aufgaben aus dem Aufgabenblatt k. Aufgabenblätter werden in der Übung diskutiert. Im Tutorium kann man beliebige Fragen zum Modul besprechen. In der Vorlesung wird der Stoff diskutiert, der sowohl für die Aufgabenblätter als auch fÜr die Klausur relevant ist. 
 
 
 ## Woche 1: Intro
