@@ -1,6 +1,6 @@
 # Vorlesungsstoff: Skript, handgeschriebene Notizen und Code 
 
-Die annotierten PDF-Dateien befinden sich im Ordner [***Vorlesungsnotizen***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Vorlesungsnotizen). <br>
+Die annotierten PDF-Dateien aus dem Wintersemester 2021/22 befinden sich im Ordner [***Vorlesungsnotizen***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Vorlesungsnotizen-WiSe-2021-22). <br>
 Das neueste Skript sowie die neueste Präsentation sind unter [***Releases - Skript und Präsentation***](https://github.com/gaverkov/it1_diskrete_mathematik/releases/tag/Latest) zu finden. <br>
 Hier findet man auch SageMath-Skript, welche die in der Vorlesung präsentierten Algorithmen illustrieren. 
 
