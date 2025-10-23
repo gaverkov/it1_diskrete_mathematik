@@ -14,17 +14,17 @@ Hier findet man auch SageMath-Skript, welche die in der Vorlesung präsentierten
 - **Algorithmen** — aber nicht als Kochbuch von Algorithmen, sondern vor allem die *Analysis* (wieso korrekt? was ist die Laufzeit?)
 - **Graphen**. 
 - **Algorithmen auf Graphen**
-- **Boolsche Algebra**
-- Die Rolle der Mathematik in den angewandten Bereichen wird *nebenbei* diskutiert.
+- **Boolesche Algebra** (Kommentar für mich: bool*e*sche Algebra. Datentyp ist bool, ohne e, der Name ist aber George Boole - mit e). 
+- Die Rolle der Mathematik in den angewandten Bereichen wird *nebenbei* diskutiert, um die Diskussion etwas aufzulockern. 
 
 *Zur Literatur* 
 
-Weil all diese Themen zu Basics gehören, gibt es richtig viel Literatur zu all den Themen. Je nach Ihren Kapazitätten und dem Vorbereitungsgrad kann man Ihnen recht unterschiedliche Literatur empfehlen. Es lohnt sich Literatur zur diskreten Mathematik und Algorithmen zu lesen, die Sie interessant finden. Es lohnt sich auch Literatur zu lesen, die etwas anstregend zu lesen ist. Wenn eine Literaturquelle die beiden Eigenschaften hat (interessant und schwer) , ist das eine perfekte Wahl. 
+Weil all diese Themen zu Basics gehören, gibt es richtig viel Literatur zu all den Themen. Je nach Ihren Kapazitäten, Ihrer persönlichen Veranlagung und dem Vorbereitungsgrad kann man Ihnen recht unterschiedliche Literatur empfehlen. Es lohnt sich Literatur zur diskreten Mathematik und Algorithmen zu lesen, die Sie interessant finden. Es lohnt sich auch Literatur zu lesen, die etwas anstregend zu lesen ist. Wenn eine Literaturquelle die beiden Eigenschaften hat (interessant und schwer), ist das eine perfekte Wahl. 
 
-- Zum Formulieren und Beweisen: **Proofs from the book bzw. das Buch der Beweise von Aigner und Ziegler**. Hat viele interessante Beweise und Kommentare. Es ist aber kein Lehrbuch.
+- Zum Formulieren und Beweisen: **Proofs from the book bzw. das Buch der Beweise von Aigner und Ziegler**. Hat viele interessante Beweise und Kommentare. Es ist aber kein Lehrbuch. Das ist ein Buch, um Spaß an Mathe zu haben! 
 - Das Lehrbuch **Diskrete Mathematik von Martin Aigner** hat Kombinatorik, Graphen, Algorithmen auf Graphen.
-- **Stanley Enumerative Combinatorics, Band 1.** Eigentlich ein Lehrbuch, aber nicht für Anfänger. Das Buch ist ein Hammer. Wenn Sie die ersten 80 Seiten schaffen, sind Sie wahrscheinlich ein/e Superheld/in aus einem anderen Universum. 
-- **Cormen, Leiserson, Rivest und Stein, Algorithmen -- Eine Einführung.** Ein Klassiker. In zahlreichen Auflagen erschienen (auf Englisch). Sehr nutzerfruendliches Buch, aber vom Gewicht her schwer (denn es werden viele Themen diskutiert). Anhänge dieses Buchs (zu Mathematik) sind genau so wertvoll wie der Hauptteil. Ich vermute, dass alle Algorithmen, die in diesem Buch beschrieben sind (und noch viel mehr) in diesem Buch enthalten sind. Die Algorithmen dort sind werden sorgfältig präsentiert und analysiert. 
+- **Stanley Enumerative Combinatorics, Band 1.** Eigentlich ein Lehrbuch, aber nicht für Anfänger. Das Buch ist ein Hammer. Auch wenn Sie "lediglich" die ersten 80 Seiten schaffen, sind Sie wahrscheinlich ein/e Superheld/in aus einem anderen Universum. 
+- **Cormen, Leiserson, Rivest und Stein, Algorithmen -- Eine Einführung.** Ein Klassiker. In zahlreichen Auflagen erschienen (vor allem auf Englisch). Sehr nutzerfruendliches Buch, aber vom Gewicht her schwer (denn es werden viele Themen diskutiert). Anhänge dieses Buchs (zu Mathematik) sind genau so wertvoll wie der Hauptteil. Ich vermute, dass alle Algorithmen, die Sie in diesem Modul und später in Algorithmieren und Programmieren sehen (und noch viel mehr) in diesem Buch enthalten sind. Die Algorithmen werden im Cormen et al. sehr sorgfältig präsentiert und analysiert. 
 
 
 
@@ -49,13 +49,40 @@ Grundvokabeln der Mathemathik sind: Vernkünpfungen der Aussagenlogik, Mengen, A
 
 Zahlenbreiche: natürliche Zahlen, ganze Zahlen, rationale Zahlen, reelle Zahlen, komplexe Zahlen. Sie kennen wohl schon alle aus der Schule, aber die komplexen Zahlen vielleicht noch nicht. 
 
+*Ergebnis vom Test zum Wissensstand* 
+
+Es wurden einersets sehr einfache Themen diskutiert (wie Zinsrechnung) und anspruchsvollere Themen, bei denen man nicht erwahrtet, dass diese in der Schule so richtig behandelt werden (etwa das Programmieren). Ergebnis: Es gibt viele Studierende mit wenig Punkten, etwas weniger Studierende mit etwas mehr Punkten usw. Mit vielen Punkten hat man also ganz wenig Studirende. Das ist unser Stand. Kommentare: 
+
+- Zinsrechnung ist im Wesentlichen die getarnte Mal- und Geteiltrechnung. Etwas um 19% aufwerten heißt, dieses etwas mit 1,19 multiplizieren. Wenn man vom aufgewerteten Wert zum Usprungswert kommen möchte, dann teilt man halt durch 1.19. 19% von etwas nehmen heißt mal 0,19 rechnen. Das ist alles. Nochmals: Zinsrechnung ist ein anderer Wortlaut für mal und geteilt.
+- Bei der Aufgaben zum größten und Zweitgrößten Wert sieht man bereits, dass die normale natürliche Sprache nicht ganz dafür geeignet ist, solche Art Konzepte präzise zu beschreiben. Denn wir müssen tatsächlich den zweigrößten Wert etwas genauer definieren. In einer Folge $$a_1,\ldots,a_n$$ aus $n \ge 2$ reellen Werten nennen wir $$a_i$$ und $$a_j$$ mit $$i,j = 1,\ldots,n$$ und $$i \ne j$$ jeweils den größten und zweitgrößten Wert, wenn für alle $$t = 1,\ldots,n$$ Folgendes gilt: $$a_i \ge a_t$$ und, wenn $$a_t < a_i$$, dann ist $a_j \ge a_t$.
+- Die Aufgaben zum Zählen von Möglichkeiten sensibilisieren Sie für die nachfolgenden Themen (Kombinatorik).
+- Die Aufgabe zu Algebra mit $$x^2 =-1$$ ist die Aufgabe zur Ihrer Fähigkeit, abstrakt zu denken, denn $x$ war in dieser Aufgabe abstrakt. 
+- Sonst hatte der Test etliche Aufgabe direkt zum Schulstoff. 
+
 ## Woche 2
 
-### Tabellarische Darstellung von Funktionen und boolschen Funktionen
+### Parallelen zwischen Mathematik und Informatik 
 
-Wenn eine Abbildung auf einer endlichen Menge definiert ist, kann man sie auch tabellarisch festlegen, im Gegensatz z.B. durch die Angabe durch eine Formel. Boolesche Ausdrücke definieren boolsche Funktionen. Man kann die Äquivalenz  von booleschen Ausdrücken nachweisen, indem man die Wahrheitstabellen bestimmt (also, die Tabellen der Funktionen, die durch die boolschen Ausdrücke definiert sind). 
+- (1) Code läuft und berechnet das Gewünschte (2) Code läuft und berechnet nicht das Gewünschte (3) Code ist fehlerhaft und läuft gar nicht.
+- (1) Aussage ist verständlich und korrekt (2) Aussage ist verständlich, aber falsch (3) Häh? Was meinst du hier?
+
+"Code läuft und berechnet das Gewünschte" ist eine mathematische Aussage, die  man mit mathematischen Mitteln beweisen kann. Das nennt man die Algorithmenanalysis. 
+
+### Tabellarische Darstellung von Funktionen und booleschen Funktionen
+
+Wenn eine Abbildung auf einer endlichen Menge definiert ist, kann man sie auch tabellarisch festlegen, im Gegensatz z.B. durch die Angabe durch eine Formel. Boolesche Ausdrücke definieren boolesche Funktionen. Man kann die Äquivalenz  von booleschen Ausdrücken nachweisen, indem man die Wahrheitstabellen bestimmt (also, die Tabellen der Funktionen, die durch die boolschen Ausdrücke definiert sind). 
 
 *Bemerkung:* Ausdruck ist nicht das selbe wie die Abbildung. Verschiedene Ausdrücke können die selbe Abbildung definieren. 
+
+### Was ist real unter den Konzepten, die man in Mathematik betrachtet? 
+
+Ungefähr in dieser Form  kam diese Frage von den Teilnehmenden. Antwort: 
+Mathematik ist eine Kunstform mit großer Freiheit. Man kann also die Spielregeln festlegen, wie man will und dann im Rahmen der festgelegten Spielregeln nach interessanten Mustern suchen. Mathematische Konzepte müssen daher nicht real sein oder direkt durch die Realität motiviert werden. In angewandter Mathematik orientiert man sich direkt an die Anwendungen aus der realen Welt. In der theoretischen Mathematik muss man es nicht machen, aber es kommt immer  wieder vor, das etwas theoretische nach einer Weile Anwendungen findet und sehr real eingesetzt wird. Beispiel: Zahlentheorie, Primzahlen, endliche Körper, abstrakte Algebra haben Anwendungen in der Codierungtheorie (Kommunikationsprotokolle bei der Datenübertragen) und Kryptographie (Verschlüsselung). Manche Konzepte lassen sich direkt mit der realen Wert verbinden (ganze Zahlen), einige anderen erfordern mehr Hintegrundwissen (auch mehr Wissen darüber, was man in der realen Welt so alles hat). 
+
+### Zu Voraussetzungen beim Beweisen von neuen Aussagen 
+
+In der Vorlesung habe ich durch ein Widerspruchsargument gezeigt, dass man unendlich viele Primzahlen hat, und nutzte dabei, dass jede natürliche Zahl eine Primfaktorzerlegung besitzt. Das habe ich als gegeben angenommen. Die Anmerkung dazu kam aus dem Publikum (das ist sehr gut!). Wenn man ein mathematisches Thema nicht von Null beginnend aufbaut, dann lehnt man sich an etwas an, was bereits bekannt ist. In meinem Fall habe ich angenommen, dass ich der Fundamentalsatz der Arithmetik (Existenz und Eindeutigkeit der Primfaktorzerlegungen) bereits gezeigt worden ist. 
+
 
 
 ### Vollständige Induktion (WICHTIG)
@@ -77,6 +104,16 @@ Nun unendlich viele Aussagen:
 *Vollständige Induktion:* Wenn P(1) gilt und für alle n in N, aus P(n) P(n+1) folgt, dann gilt P(n) für alle n in N. 
 
 Die Beweise durch Induktion werden in Mathematik und Informatik benutzt. 
+
+### Beispiele zur Induktion 
+
+- Formel für die Summe der Zahlen von 1 bis n.
+- Formel für die Summe der geometrischen Reihe.
+
+### Induktion und Invarianten von Algorithmen
+
+Sagen wir mal, man hat im Code ein $$i$$, as wächst. Dann kann man an einer Stelle im Code eine sogenannte Invariante für $i$ führen. Das ist eine wahre Aussage, die zu jeder Zeit der Ausführung gilt. Das heißt: $i$ wird immer größer und die Aussage bleibt gelten. Dass die Aussage gilt (eine Invariante ist), wird durch induktive Argumente gezeigt. Ein sehr einfaches Beispiel dazu wäre: die Berechnung das Maximums. Interessanterweise kann man den Code aus den Invarianten heraus entwickeln. Man legt fest, was gelten sollte (die Invarainte), und versucht die Invariante durch Berechnungen (sagen wir mal im Rumpf der Schleife) zu erhalten. 
+
 
 
 
