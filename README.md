@@ -12,10 +12,21 @@ Hier findet man auch SageMath-Skript, welche die in der Vorlesung präsentierten
 - **Mathematischer Formalismus**
 - **Kombinatorik** — diskrete Objekte und Konfigurationen zählen
 - **Algorithmen** — aber nicht als Kochbuch von Algorithmen, sondern vor allem die *Analysis* (wieso korrekt? was ist die Laufzeit?)
-- **Graphen** 
+- **Graphen**. 
 - **Algorithmen auf Graphen**
 - **Boolsche Algebra**
 - Die Rolle der Mathematik in den angewandten Bereichen wird *nebenbei* diskutiert.
+
+*Zur Literatur* 
+
+Weil all diese Themen zu Basics gehören, gibt es richtig viel Literatur zu all den Themen. Je nach Ihren Kapazitätten und dem Vorbereitungsgrad kann man Ihnen recht unterschiedliche Literatur empfehlen. Es lohnt sich Literatur zur diskreten Mathematik und Algorithmen zu lesen, die Sie interessant finden. Es lohnt sich auch Literatur zu lesen, die etwas anstregend zu lesen ist. Wenn eine Literaturquelle die beiden Eigenschaften hat (interessant und schwer) , ist das eine perfekte Wahl. 
+
+- Zum Formulieren und Beweisen: **Proofs from the book bzw. das Buch der Beweise von Aigner und Ziegler**. Hat viele interessante Beweise und Kommentare. Es ist aber kein Lehrbuch.
+- Das Lehrbuch **Diskrete Mathematik von Martin Aigner** hat Kombinatorik, Graphen, Algorithmen auf Graphen.
+- **Stanley Enumerative Combinatorics, Band 1.** Eigentlich ein Lehrbuch, aber nicht für Anfänger. Das Buch ist ein Hammer. Wenn Sie die ersten 80 Seiten schaffen, sind Sie wahrscheinlich ein/e Superheld/in aus einem anderen Universum. 
+- **Cormen, Leiserson, Rivest und Stein, Algorithmen -- Eine Einführung.** Ein Klassiker. In zahlreichen Auflagen erschienen (auf Englisch). Sehr nutzerfruendliches Buch, aber vom Gewicht her schwer (denn es werden viele Themen diskutiert). Anhänge dieses Buchs (zu Mathematik) sind genau so wertvoll wie der Hauptteil. Ich vermute, dass alle Algorithmen, die in diesem Buch beschrieben sind (und noch viel mehr) in diesem Buch enthalten sind. Die Algorithmen dort sind werden sorgfältig präsentiert und analysiert. 
+
+
 
 In der Vorlesung am 13.10. gibt es einen Test mit Bonunspunkten. <br>
 Die Vorlesung am 14.10 fällt aus. An der Stelle von Vorlesung lernen Sie selbständig die Inhalte aus den Abschnitten 1 bis 8 des Kapitels 1 im Vorlesungsskript.
@@ -38,7 +49,16 @@ Grundvokabeln der Mathemathik sind: Vernkünpfungen der Aussagenlogik, Mengen, A
 
 Zahlenbreiche: natürliche Zahlen, ganze Zahlen, rationale Zahlen, reelle Zahlen, komplexe Zahlen. Sie kennen wohl schon alle aus der Schule, aber die komplexen Zahlen vielleicht noch nicht. 
 
-## Woche 2: Vollständige Induktion 
+## Woche 2
+
+### Tabellarische Darstellung von Funktionen und boolschen Funktionen
+
+Wenn eine Abbildung auf einer endlichen Menge definiert ist, kann man sie auch tabellarisch festlegen, im Gegensatz z.B. durch die Angabe durch eine Formel. Boolesche Ausdrücke definieren boolsche Funktionen. Man kann die Äquivalenz  von booleschen Ausdrücken nachweisen, indem man die Wahrheitstabellen bestimmt (also, die Tabellen der Funktionen, die durch die boolschen Ausdrücke definiert sind). 
+
+*Bemerkung:* Ausdruck ist nicht das selbe wie die Abbildung. Verschiedene Ausdrücke können die selbe Abbildung definieren. 
+
+
+### Vollständige Induktion (WICHTIG)
 
 Prädikat: Aussage mit Eingabe-Variablen. 
 
