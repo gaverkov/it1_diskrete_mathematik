@@ -6,6 +6,17 @@ Hier findet man auch SageMath-Skript, welche die in der Vorlesung präsentierten
 
 # WiSe 2025/26
 
+## Unsere Ziele
+
+- **Sauber formulieren und argumentieren**
+- **Mathematischer Formalismus**
+- **Kombinatorik** — diskrete Objekte und Konfigurationen zählen
+- **Algorithmen** — aber nicht als Kochbuch von Algorithmen, sondern vor allem die *Analysis* (wieso korrekt? was ist die Laufzeit?)
+- **Graphen** 
+- **Algorithmen auf Graphen**
+- **Boolsche Algebra**
+- Die Rolle der Mathematik in den angewandten Bereichen wird *nebenbei* diskutiert.
+
 In der Vorlesung am 13.10. gibt es einen Test mit Bonunspunkten. <br>
 Die Vorlesung am 14.10 fällt aus. An der Stelle von Vorlesung lernen Sie selbständig die Inhalte aus den Abschnitten 1 bis 8 des Kapitels 1 im Vorlesungsskript.
 
