@@ -123,7 +123,7 @@ for i in range(1,n):
     assert(M == max(a[:i])) # Invariante gilt für i (Induktionsvoraussetzung)
     if a[i]>M:
         M = a[i] 
-    assert(M == max(a[:(i+1)])) # Invariante: Schritt von i zu i+1 (damit der Induktionsschritt funjktioniert)
+    assert(M == max(a[:(i+1)])) # Invariante: Schritt von i zu i+1 (damit der Induktionsschritt funktioniert)
 print(M)
 ```
 
