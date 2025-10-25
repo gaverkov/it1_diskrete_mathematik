@@ -114,6 +114,22 @@ Die Beweise durch Induktion werden in Mathematik und Informatik benutzt.
 
 Sagen wir mal, man hat im Code ein $$i$$, as wächst. Dann kann man an einer Stelle im Code eine sogenannte Invariante für $i$ führen. Das ist eine wahre Aussage, die zu jeder Zeit der Ausführung gilt. Das heißt: $i$ wird immer größer und die Aussage bleibt gelten. Dass die Aussage gilt (eine Invariante ist), wird durch induktive Argumente gezeigt. Ein sehr einfaches Beispiel dazu wäre: die Berechnung das Maximums. Interessanterweise kann man den Code aus den Invarianten heraus entwickeln. Man legt fest, was gelten sollte (die Invarainte), und versucht die Invariante durch Berechnungen (sagen wir mal im Rumpf der Schleife) zu erhalten. 
 
+```python
+a = [3,2,5,1,6]
+n = len(a)
+assert(n>0) #Voraussetzung an die Länge, bei n=0 hätte unser a keine Elemente 
+M = a[0] # Invariante (unten) gilt für i=1 (Induktionsanfang) 
+for i in range(1,n):
+    assert(M == max(a[:i])) # Invariante gilt für i (Induktionsvoraussetzung)
+    if a[i]>M:
+        M = a[i] 
+    assert(M == max(a[:(i+1)])) # Invariante: Schritt von i zu i+1 (damit der Induktionsschritt funjktioniert)
+print(M)
+```
+
+Die asserts im Rumpf der Schleife müssen im echten Code auskommentiert werden (es sind die asserts die auf Richtigkeit testen). 
+
+
 
 
 
