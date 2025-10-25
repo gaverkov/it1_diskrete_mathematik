@@ -107,8 +107,8 @@ Die Beweise durch Induktion werden in Mathematik und Informatik benutzt.
 
 ### Beispiele zur Induktion 
 
-- Formel für die Summe der Zahlen von 1 bis n.
-- Formel für die Summe der geometrischen Reihe.
+- Formel für $$\sum_{i=1}^n i$$ (Summe der arithmetischen Reihe im Spezialfall)
+- Formel für $$\sum_{i=0}^n q^i$$ bei $q \ne 1$ (Summe der feometrischen Reihe). 
 
 ### Induktion und Invarianten von Algorithmen
 
