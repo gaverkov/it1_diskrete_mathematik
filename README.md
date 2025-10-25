@@ -63,8 +63,13 @@ Es wurden einersets sehr einfache Themen diskutiert (wie Zinsrechnung) und anspr
 
 ### Parallelen zwischen Mathematik und Informatik 
 
-- (1) Code läuft und berechnet das Gewünschte (2) Code läuft und berechnet nicht das Gewünschte (3) Code ist fehlerhaft und läuft gar nicht.
-- (1) Aussage ist verständlich und korrekt (2) Aussage ist verständlich, aber falsch (3) Häh? Was meinst du hier?
+|  | Informatik  | Mathematik  |
+|-----|--------------------|-----------------------|
+| (1) | Code läuft und berechnet das Gewünschte | Aussage verständlich und korrekt |
+| (2) | Code läuft, aber berechnet nicht das Gewünschte | Aussage verständlich, aber falsch |
+| (3) | Code ist fehlerhaft und läuft gar nicht | Häh? Was meinst du hier? |
+
+
 
 "Code läuft und berechnet das Gewünschte" ist eine mathematische Aussage, die  man mit mathematischen Mitteln beweisen kann. Das nennt man die Algorithmenanalysis. 
 
