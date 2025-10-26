@@ -148,11 +148,25 @@ Weitere Beispiele zur Induktion:
 
 ### Beweisen durch Fallunterscheidung
 
-## Schnupperstunde in Algebra 
+## Schnupperstunde in Algebra (KURZ)
 
 ### Kommutative Ringe mit 1 und Körper
+
+Beispiele: 
+
+- $$\mathbb{Z}$$ ist der Ring aus der Schulzeit 
+- $$\mathbb{R}$$ und $$\mathbb{Q}$$ sind die beiden Körper aus der Schulzeit
+- Körper $$\mathbb{Q}[\sqrt{2}]$$ 
+- $$\mathbb{C}$$ als $$\mathbb{R}[x]$$ modulo $$x^2+1$$.
+- $$\mathbb{F}_2$$ -- der Körper der digitalen Welt. XOR und UND. 
+- $$\mathbb{F}_{256}$$ als $$\mathbb{F}_2[x]$$ modulo $$x^8+x^4+x^3+x^2+1$$. Der Körper mit den Byte-großen Elementen aus dem QR-Code. Sonst in vielen anderen Anwendungen sehr verbreitet. 
+
 ### Algebraisch abgeschlossene Körper 
+
+*Ein Polynom vom Grad mindestens 1 hat immer eine Nullstelle, wenn man den Körper passend vergrößert.*
+
 ### Der Körper der komplexen Zahlen und die Eulerformel
+
 *Exkurs in die Trignometrie mit Sinus, Kosinus und Radianten*
 
 
