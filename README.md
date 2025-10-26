@@ -206,6 +206,12 @@ Beispiele:
 - $$\sum_{i=1}^n \frac{1}{i}$$
 - $$p_n$$ -- die $n$-te Primzahl
 
+*Asymptotische Äquivalenz" für positivwertige Folgen. 
+
+Beispiele: 
+- $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
+- $$p_n \sim n \ln n$$
+
 
 
 
