@@ -171,7 +171,9 @@ Beispiele:
 
 ### Der Körper der komplexen Zahlen und die Eulerformel
 
-*Exkurs in die Trignometrie mit Sinus, Kosinus und Radianten*
+*Exkurs in die Trignometrie mit Sinus, Kosinus und Radianten
+
+*Anwendungen der Eulerformel* - Schwingungen und Wellen (Exponentialfunktion ist einfacher als die Trigonometrischen)
 
 ## Asymptotische Notation 
 
