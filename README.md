@@ -198,7 +198,7 @@ Welcher Code wäre besser von der Laufzeit her?
 
 *Gültigkeit für alle genüngend großen n*
 
-$$O,\Omega,Theta$$
+$$O,\Omega,\Theta$$
 
 Beispiele: 
 - $$\sum_{i=1}^n \frac{1}{i}$$
