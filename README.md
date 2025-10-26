@@ -134,6 +134,29 @@ print(M)
 
 Die asserts im Rumpf der Schleife müssen im echten Code auskommentiert werden (es sind die asserts die auf Richtigkeit testen). 
 
+## Woche 3
+
+### Induktion (Fortsetzung) 
+
+Starke Induktion basiert auf dem Induktionsschritt $$P(1) \wedge \cdots \wedge P(n) \Rightarrow P(n+1)$$.
+
+Weitere Beispiele zur Induktion: 
+- Herleitung von Ungleichungen wie $$n \le 2^n$$
+- Existenz einer Binärdarstellung für jede natürliche Zahl.
+- Die Formel $$(\phi^n - \psi^n) / (\phi - \psi)$$ für die Fobonacci-Zahlen. 
+- Existenz von Primfaktorzerlegungen mit der starken Induktion 
+
+### Beweisen durch Fallunterscheidung
+
+## Schnupperstunde in Algebra 
+
+### Kommutative Ringe mit 1 und Körper
+### Algebraisch abgeschlossene Körper 
+### Der Körper der komplexen Zahlen und die Eulerformel
+*Exkurs in die Trignometrie mit Sinus, Kosinus und Radianten*
+
+
+
 
 
 
