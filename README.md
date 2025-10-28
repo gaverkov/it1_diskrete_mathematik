@@ -4,7 +4,8 @@ Ihnen stehen zur Verfügung:
 - [***Releases - Skript und die Präsentation***](https://github.com/gaverkov/it1_diskrete_mathematik/releases/tag/Latest)
 - [***Vorlesungsnotizen aus dem WiSe 2021/22***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Vorlesungsnotizen-WiSe-2021-22)
 - [***Die aktuellen Vorlesungsnotizen***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Vorlesungsnotizen-WiSe-2025-26)
-- Ein kurzes Protokoll zum Verlauf der Vorlesung (unten in dieser Datei) 
+- Ein kurzes Protokoll zum Verlauf der Vorlesung (dieser Text)
+- [***Umsetzung einiger der präsentierten Algorithmen in Python und SageMath***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Code)
   
 # WiSe 2025/26
 
