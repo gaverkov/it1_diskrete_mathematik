@@ -3,24 +3,24 @@
 Ihnen stehen zur Verfügung: 
 - [***Skript und die Präsentation***](https://github.com/gaverkov/it1_diskrete_mathematik/releases/tag/Latest)
 - [***Vorlesungsnotizen aus dem WiSe 2021/22***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Notizen/WiSe-2021-22)
-- [***Die aktuellen Vorlesungsnotizen***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Vorlesungsnotizen-WiSe-2025-26)
-- Ein kurzes Protokoll zum Verlauf der Vorlesung (dieser Text)
+- [***Die aktuellen Vorlesungsnotizen***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Notizen/WiSe-2025-26/WiSe-2025-26.md)
 - [***Umsetzung einiger der präsentierten Algorithmen in Python und SageMath***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Code)
   
 # WiSe 2025/26
 
-## Unsere Ziele
+## Ziele
 
-- **Sauber formulieren und argumentieren**
-- **Mathematischer Formalismus**
-- **Kombinatorik** — diskrete Objekte und Konfigurationen zählen
-- **Algorithmen** — aber nicht als Kochbuch von Algorithmen, sondern vor allem die *Analysis* (wieso korrekt? was ist die Laufzeit?)
-- **Graphen**. 
-- **Algorithmen auf Graphen**
-- **Boolesche Algebra** (Kommentar für mich: bool*e*sche Algebra. Datentyp ist bool, ohne e, der Name ist aber George Boole - mit e). 
+- **Sauber formulieren und argumentieren, insbesondere in Bezug auf Algorithmen**
+- **Mathematischer Formalismus, auch um diskrete Algorithmen sauber präsentieren zu können**
+- **Kombinatorik** — diskrete Objekte und Konfigurationen zählen, um insbesondere die Lafuzeiten von Algorithmen abschätzen zu können
+- **Asymptotische Notation*** - gängige Art den Resourccenverbrauch (Laufzeit/Speicheraufwand) von Algorithmen grob geschätzt anzugeben 
+- **Algorithmen** — aber nicht als Kochbuch von Algorithmen, sondern vor allem die *Analysis* (Wieso korrekt? Was ist die Laufzeit?)
+- **Graphen** -- omnipräsente mathematische Struktur bei vielen diskreten Algorithmen 
+- **Algorithmen auf Graphen** -- DFS, BFS, kürzeste Wege und minimale Spannbäume 
+- **Boolesche Algebra** (Nach George Boole genannt, die Logikrechnung, bei denen der zugrundeliegende Bereich nicht aus Zahlen sonder aus Falsch/Wahr besteht und man mit den logischen Verknüfpungen rechnet, wie UND, ODER, NICHT, XOR). 
 - Die Rolle der Mathematik in den angewandten Bereichen wird *nebenbei* diskutiert, um die Diskussion etwas aufzulockern. 
 
-*Zur Literatur* 
+*Literaturempfehlung* 
 
 Weil all diese Themen zu Basics gehören, gibt es richtig viel Literatur zu all den Themen. Je nach Ihren Kapazitäten, Ihrer persönlichen Veranlagung und dem Vorbereitungsgrad kann man Ihnen recht unterschiedliche Literatur empfehlen. Es lohnt sich Literatur zur diskreten Mathematik und Algorithmen zu lesen, die Sie interessant finden. Es lohnt sich auch Literatur zu lesen, die etwas anstregend zu lesen ist. Wenn eine Literaturquelle die beiden Eigenschaften hat (interessant und schwer), ist das eine perfekte Wahl. 
 
