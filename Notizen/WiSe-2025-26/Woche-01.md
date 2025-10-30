@@ -14,4 +14,7 @@ Es wurden einersets sehr einfache Themen diskutiert (wie Zinsrechnung) und anspr
 - Bei der Aufgaben zum größten und Zweitgrößten Wert sieht man bereits, dass die normale natürliche Sprache nicht ganz dafür geeignet ist, solche Art Konzepte präzise zu beschreiben. Denn wir müssen tatsächlich den zweigrößten Wert etwas genauer definieren. In einer Folge $$a_1,\ldots,a_n$$ aus $n \ge 2$ reellen Werten nennen wir $$a_i$$ und $$a_j$$ mit $$i,j = 1,\ldots,n$$ und $$i \ne j$$ jeweils den größten und zweitgrößten Wert, wenn für alle $$t = 1,\ldots,n$$ Folgendes gilt: $$a_i \ge a_t$$ und, wenn $$a_t < a_i$$, dann ist $a_j \ge a_t$.
 - Die Aufgaben zum Zählen von Möglichkeiten sensibilisieren Sie für die nachfolgenden Themen (Kombinatorik).
 - Die Aufgabe zu Algebra mit $$x^2 =-1$$ ist die Aufgabe zur Ihrer Fähigkeit, abstrakt zu denken, denn $x$ war in dieser Aufgabe abstrakt. 
-- Sonst hatte der Test etliche Aufgabe direkt zum Schulstoff. 
+- Sonst hatte der Test etliche Aufgabe direkt zum Schulstoff.
+
+![image](Wissensstand_nach_der_Schule_WiSe-25-26.png)
+
