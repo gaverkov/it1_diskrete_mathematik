@@ -8,9 +8,12 @@ Weitere Beispiele zur Induktion:
 - Herleitung von Ungleichungen wie $$n \le 2^n$$
 - Existenz einer Binärdarstellung für jede natürliche Zahl.
 - Die Formel $$(\phi^n - \psi^n) / (\phi - \psi)$$ für die Fobonacci-Zahlen. 
-- Existenz von Primfaktorzerlegungen mit der starken Induktion 
+- Existenz von Primfaktorzerlegungen mit der starken Induktion
 
-[***Woche 3, Vorlesung 1, handgeschrieben***](It-1-woche-03-1.pdf)
-[***Woche 3, Vorlesung 2, handgeschrieben***](It-1-woche-03-2.pdf)
+Handgeschriebene Notizen: 
+
+- [***Woche 3, Vorlesung 1***](It-1-woche-03-1.pdf)
+- [***Woche 3, Vorlesung 2***](It-1-woche-03-2.pdf)
+
 
 
