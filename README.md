@@ -1,4 +1,4 @@
-# Vorlesungsstoff: Skript, handgeschriebene Notizen und Code 
+# Stoff zum Modul IT-1 Diskrete Mathematik
 
 Ihnen stehen zur Verfügung: 
 - [***Skript und die Präsentation***](https://github.com/gaverkov/it1_diskrete_mathematik/releases/tag/Latest)
