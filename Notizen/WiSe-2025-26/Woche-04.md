@@ -1,4 +1,14 @@
-## Woche 4. Schnupperstunde in Algebra (KURZ)
+
+## Woche 4
+
+### Beweisen durch Fallunterscheidung
+
+Welche Beträge können aus 4- und 5-Taler-Münzen zusammengesetzt werden? 
+
+$$\lbrace 4 i + 5 j \colon i,j \in \mathbb{Z}_{\ge 0} \rbrace = \lbrace 0,4,5,8,9,10\rbrace \cup \mathbb{Z}_{\ge 12}$$
+
+
+## Schnupperstunde in Algebra (KURZ)
 
 ### Kommutative Ringe mit 1 und Körper
 
@@ -57,6 +67,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$
+
 
 
 
