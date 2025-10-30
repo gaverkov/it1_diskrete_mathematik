@@ -9,3 +9,5 @@ Weitere Beispiele zur Induktion:
 - Existenz einer Binärdarstellung für jede natürliche Zahl.
 - Die Formel $$(\phi^n - \psi^n) / (\phi - \psi)$$ für die Fobonacci-Zahlen. 
 - Existenz von Primfaktorzerlegungen mit der starken Induktion 
+
+[***Handgeschrieben VL 1***]([***Skript und die Präsentation***](It-1-woche-03-1.pdf)
