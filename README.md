@@ -3,11 +3,9 @@
 Ihnen stehen zur Verfügung: 
 - [***Skript und die Präsentation***](https://github.com/gaverkov/it1_diskrete_mathematik/releases/tag/Latest)
 - [***Vorlesungsnotizen aus dem WiSe 2021/22***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Notizen/WiSe-2021-22)
-- [***Die aktuellen Vorlesungsnotizen***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Notizen/WiSe-2025-26/WiSe-2025-26.md)
+- [***Vorlesungsnotizen aus dem WiSe 2025/26***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Notizen/WiSe-2025-26/WiSe-2025-26.md)
 - [***Umsetzung einiger der präsentierten Algorithmen in Python und SageMath***](https://github.com/gaverkov/it1_diskrete_mathematik/tree/main/Code)
   
-# WiSe 2025/26
-
 ## Ziele
 
 - **Sauber formulieren und argumentieren, insbesondere in Bezug auf Algorithmen**
@@ -29,7 +27,7 @@ Weil all diese Themen zu Basics gehören, gibt es richtig viel Literatur zu all 
 - **Stanley Enumerative Combinatorics, Band 1.** Eigentlich ein Lehrbuch, aber nicht für Anfänger. Das Buch ist ein Hammer. Auch wenn Sie "lediglich" die ersten 80 Seiten schaffen, sind Sie wahrscheinlich ein/e Superheld/in aus einem anderen Universum. 
 - **Cormen, Leiserson, Rivest und Stein, Algorithmen -- Eine Einführung.** Ein Klassiker. In zahlreichen Auflagen erschienen (vor allem auf Englisch). Sehr nutzerfruendliches Buch, aber vom Gewicht her schwer (denn es werden viele Themen diskutiert). Anhänge dieses Buchs (zu Mathematik) sind genau so wertvoll wie der Hauptteil. Ich vermute, dass alle Algorithmen, die Sie in diesem Modul und später in Algorithmieren und Programmieren sehen (und noch viel mehr) in diesem Buch enthalten sind. Die Algorithmen werden im Cormen et al. sehr sorgfältig präsentiert und analysiert. 
 
-
+## Organisatorisches 
 
 In der Vorlesung am 13.10. gibt es einen Test mit Bonunspunkten. <br>
 Die Vorlesung am 14.10 fällt aus. An der Stelle von Vorlesung lernen Sie selbständig die Inhalte aus den Abschnitten 1 bis 8 des Kapitels 1 im Vorlesungsskript.
@@ -37,7 +35,7 @@ Die Vorlesung am 14.10 fällt aus. An der Stelle von Vorlesung lernen Sie selbst
 Zulassung zur Klausur bei mind. 50% der Punkte für die Aufgabenblätter, die wöchentlich ausgegeben werden. <br>
 Mindestens ein Aufgabenblatt wird durch eine Probeklausur ersetzt, deren Punkte auch mitgezählt werden. <br>
 +10% Bonus in der Klausur bei mind. 75% Punkte für die Aufgabenblätter <br> 
-**NEU:** bei mir keine Hilfsmittel in der Klausur (so können Sie sich besser vorbereiten). <br>
+**NEU: bei mir keine Hilfsmittel in der Klausur (so können Sie sich besser vorbereiten und am Ende auch hoffentlich besser abschneiden).** <br>
 Die Klausur enthält Theorie und Praxis. 
 
 
