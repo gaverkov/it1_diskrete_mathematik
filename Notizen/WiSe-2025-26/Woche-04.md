@@ -3,12 +3,25 @@
 
 ### Beweisen durch Fallunterscheidung
 
+...hatten wir bereits im Beweis der Existenz der Primfaktorzerlegung. Hier noch ein Beispiel. 
+
 Welche Beträge können aus 4- und 5-Taler-Münzen zusammengesetzt werden? 
 
 $$\lbrace 4 i + 5 j \colon i,j \in \mathbb{Z}_{\ge 0} \rbrace = \lbrace 0,4,5,8,9,10\rbrace \cup \mathbb{Z}_{\ge 12}$$
 
 
-## Schnupperstunde in Algebra (KURZ)
+## Schnupperstunde in Algebra (KURZ) 
+
+Laut Modulbeschreibung diskutieren wir die komplexen Zahlen schon in IT-1 (in IT-2 brauchen wir aber mehr Algebra) 
+
+- [Ring](https://de.wikipedia.org/wiki/Ring_(Algebra))
+- [Körper](https://de.wikipedia.org/wiki/K%C3%B6rper_(Algebra))
+- [Quotientenkörper](https://de.wikipedia.org/wiki/Quotientenk%C3%B6rper)
+- [Restklassenring](https://de.wikipedia.org/wiki/Restklassenring)
+- [Vollständiger Raum](https://de.wikipedia.org/wiki/Vollst%C3%A4ndiger_Raum)
+- [I.R. Schafarevich: Basic notions of algebra](https://link.springer.com/book/10.1007/b137643)
+
+Algebra und weitereichende Abstraktion der Konzepte Zahl und Rechenoperationen. 
 
 ### Kommutative Ringe mit 1 und Körper
 
@@ -67,6 +80,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$
+
 
 
 
