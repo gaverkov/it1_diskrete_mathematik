@@ -63,6 +63,7 @@ Beispiele:
 - *Exkurs in die Trignometrie mit Sinus, Kosinus und Radianten*
 - [Eulerformel](https://de.wikipedia.org/wiki/Eulersche_Formel)
 - *Anwendungen der Eulerformel* - Schwingungen und Wellen (Exponentialfunktion ist einfacher als die Trigonometrischen)
+- Die Wurzeln aus 1 (aus der Eulerformel), die diskrete Fourier-Transformation und die schnelle Fourier-Transformation (FFT).
 
 Zur Algorithmik: 
 
@@ -105,6 +106,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$
+
 
 
 
