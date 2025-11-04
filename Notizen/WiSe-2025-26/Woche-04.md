@@ -60,9 +60,11 @@ Beispiele:
 
 ### Der Körper der komplexen Zahlen und die Eulerformel
 
-*Exkurs in die Trignometrie mit Sinus, Kosinus und Radianten*
+- *Exkurs in die Trignometrie mit Sinus, Kosinus und Radianten*
+- [Eulerformel](https://de.wikipedia.org/wiki/Eulersche_Formel)
+- *Anwendungen der Eulerformel* - Schwingungen und Wellen (Exponentialfunktion ist einfacher als die Trigonometrischen)
 
-*Anwendungen der Eulerformel* - Schwingungen und Wellen (Exponentialfunktion ist einfacher als die Trigonometrischen)
+Zur Algorithmik: 
 
 - [Karatsuba: The complexity of compuatations](http://www.ccas.ru/personal/karatsuba/divcen.pdf). Ein 23-jähriger Student zeigt, dass die schriftliche Multiplikation, die man der Schule lernt, nicht effizient ist. 
 - [Schönhage-Strassen-Algorithmus](https://de.wikipedia.org/wiki/Sch%C3%B6nhage-Strassen-Algorithmus). Mit der schnellen Fourier-Transformation (d.h. mit Hilfe der komplexen Zahlen) kann man einen noch viel schnelleren Algorithmus entwickeln. 
@@ -103,6 +105,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$
+
 
 
 
