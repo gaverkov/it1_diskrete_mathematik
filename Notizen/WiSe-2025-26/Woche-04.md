@@ -25,12 +25,32 @@ Algebra und weitereichende Abstraktion der Konzepte Zahl und Rechenoperationen.
 
 ### Kommutative Ringe mit 1 und Körper
 
+Kommutativer Ring mit 1 (= unitärer kommutativer Ring).
+Kurz gefasst. Menge mit zwei binären Verknüpfungen, die man $$+$$ und $$\cdot$$ nennt, mit den folgenden Regeln.  
+Regeln für $$+$$: 
+- $$a+0=a$$
+- $$a+b=b+a$$
+- $$a+(b+c) = (a+b) + c$$
+- $$a+(-a) = 0$$
+
+Regeln für $$\cdot$$
+- $$a \cdot 1 = a$$
+- $$a \cdot b = b \cdot$$
+- $$a \cdot (a \cdot b) = (a \cdot b) \cdot c$$
+
+Regeln, die $$+$$ und $$\cdot$$ verbinden
+- $$(a+b) \cdot c = a \cdot c + b \cdot c$$
+- $$0 \ne 1$$ 
+
+Einen unitären kommutativen Ring nennt man einen Körper, wenn im Ring zu jedem Element $$a$$ ein Element $$b$$ mit $$a \cdot b =1$$ existiert. Dieses Element ist eindeutig und wird als $$a^{-1}$$ bezeichnet. 
+
 Beispiele: 
 
 - $$\mathbb{Z}$$ ist der Ring aus der Schulzeit 
 - $$\mathbb{R}$$ und $$\mathbb{Q}$$ sind die beiden Körper aus der Schulzeit
-- Körper $$\mathbb{Q}[\sqrt{2}]$$ 
+- $$\mathbb{R}$$ erhält man als Vervollständigung von $$\mathbb{Q}$$ bzgl. des Abstands $$|x-y|$$. Vollständigkeit ist für die Analysis (IT-3) wichtig. Beispiel dazu: $$\sum_{i=0}^\infty \frac{1}{i!}$ ist eine Reihe, die aus rationalen Glidern besteht, deren Wert aber nicht zu $$\mathbb{Q}$$ gehört. 
 - $$\mathbb{C}$$ als $$\mathbb{R}[x]$$ modulo $$x^2+1$$.
+- Körper $$\mathbb{Q}[\sqrt{2}]$$
 - $$\mathbb{F}_2$$ -- der Körper der digitalen Welt. XOR und UND. 
 - $$\mathbb{F}_{256}$$ als $$\mathbb{F}_2[x]$$ modulo $$x^8+x^4+x^3+x^2+1$$. Der Körper mit den Byte-großen Elementen aus dem QR-Code. Sonst in vielen anderen Anwendungen sehr verbreitet. 
 
@@ -83,6 +103,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$
+
 
 
 
