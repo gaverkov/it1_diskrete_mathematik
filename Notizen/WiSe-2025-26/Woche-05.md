@@ -10,9 +10,9 @@ Die $$O$$-Notation gibt einem die Abschätzungen nach oben an das Wachsum einer 
 
 Wenn wir zum Beispiel $$f(n) = \Omega(n^2)$$ schreiben, so meinen wir damit, dass das Wachstum von $$f(n)$$ mindestens quadratisch ist. Das kann zum Beispiel bedeuten, dass $$|f(n)| \ge \frac{1}{2} n^2$$ für alle $$n \ge 120$$ gilt. Auch hier: die Konstante $$\frac{1}{2}$$ und den Index $$120$$ wählt man passend. Bei einer anderen $$\Omega(n^2)$$ Funktion können die Konstante und der Index anders sein. 
 
-Kann man die Funktion $$f(n)$$ mit Hilfe von $$g(n)$$ sowohl nach oben als auch nach unten abschätzen, so verwendet man die $$\Theta$$-Notation, um diese Erkenntis festzuhalten. $$f(n)$$ gehört zur Klasse $$\Theta(g(n))$$, wenn $$f(n)$$ sowohl zur Klasse $$O(g(n))$$ als auch zur Klasse $$\Omega(g(n))$$ gehört. Die Bezeichungen dazu sind $$f(n) \in \Theta(g(n))$$ und $$f(n)=\Theta(g(n))$$. Auschreiben kann man die Bedingung als die Existenz von Konstanten $$c,C \in \mathbb{R}_{>0}$$ und einem Index $$n_0 \in \mathbb{N}$$, für welche $$c |g(n)| \le |f(n)| \le C |g(n)|$$ für alle $$n \ge n_0$$ gilt. 
+Kann man die Funktion $$f(n)$$ mit Hilfe von $$g(n)$$ sowohl nach oben als auch nach unten abschätzen, so verwendet man die $$\Theta$$-Notation, um diese Erkenntis festzuhalten. Funktion $$f(n)$$ gehört zur Klasse $$\Theta(g(n))$$, wenn $$f(n)$$ sowohl zur Klasse $$O(g(n))$$ als auch zur Klasse $$\Omega(g(n))$$ gehört. Die Bezeichungen dazu sind $$f(n) \in \Theta(g(n))$$ und $$f(n)=\Theta(g(n))$$. Auschreiben kann man die Bedingung als die Existenz von Konstanten $$c,C \in \mathbb{R}_{>0}$$ und einem Index $$n_0 \in \mathbb{N}$$, für welche $$c |g(n)| \le |f(n)| \le C |g(n)|$$ für alle $$n \ge n_0$$ gilt. 
 
-Zum Beispiel gehört eine Funktion $$f(n)$$ mit $$\frac{1}{2} n^2 \le |f(n)| \le 4 n^2$$ für alle $$n_0 \ge 120$$ zur Klasse $$\Theta(n^2)$$. In diesem Beispiel ist $$c = \frac{1}{2}$$, $$C=4$$ und $$n_0=120$$. 
+Zum Beispiel gehört eine Funktion $$f(n)$$ mit $$\frac{1}{2} n^2 \le |f(n)| \le 4 n^2$$ für alle $$n \ge 120$$ zur Klasse $$\Theta(n^2)$$. In diesem Beispiel ist $$c = \frac{1}{2}$$, $$C=4$$ und $$n_0=120$$. 
 Das bedeutet, das Wachstum von $$f(n)$$ ist mindestens quadratisch und höchstens quadratisch. Das Wachstum ist somit genau quadratisch. 
 
 
@@ -54,6 +54,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$. [Primzahlsatz](https://de.wikipedia.org/wiki/Primzahlsatz)
+
 
 
 
