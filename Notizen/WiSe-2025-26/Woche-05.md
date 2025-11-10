@@ -1,6 +1,6 @@
 ## Asymptotische Notation 
 
-Einführendes Beispiel 
+Einführendes Beispiel.  
 
 ```python
 I # Initialisierung 
@@ -23,7 +23,17 @@ Welcher Code wäre besser von der Laufzeit her?
 
 *Gültigkeit für alle genüngend großen n*
 
-Größenordnung: höchstens das, mindetens das, ziemlich genau das, viel geringer als das, viel höher als das, ganz genau das. 
+- $$f(n)=O(g(n))$$ - das Wachstum von $$f(n)$$ hat die Größenordnung höchstens $$g(n)$$
+- $$f(n)=\Omega(g(n))$$ - das Wachstum von $$f(n)$$ hat die Größenordnung mindestens $$g(n)$$
+- $$f(n)=\Theta(g(n))$$ - das Wachstum von $$f(n)$$ hat die Größenordnung $$g(n)$$.
+
+Etwa, bei $$g(n) = n^2$$: 
+- Das Wachstum von $$f(n)$$ ist höchstens quadratisch
+- Das Wachstum von $$f(n)$$ ist mindestens quadratisch
+- Das Wacchstum von $$f(n)$$ ist quadratisch. 
+
+
+Größenordnung: höchstens, mindetens, ziemlich genau das, viel geringer als das, viel höher als das, ganz genau das. 
 Man versteht die Konstanten, die man eher nicht kennt. 
 
 $$O,\Omega,\Theta, o , \omega, \sim$$
@@ -41,6 +51,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$. [Primzahlsatz](https://de.wikipedia.org/wiki/Primzahlsatz)
+
 
 
 
