@@ -1,6 +1,8 @@
 
 ## Woche 4
 
+[Notizen Vorlesun 1](It-1-wise-25-26-04-01.pdf)
+
 ### Beweisen durch Fallunterscheidung
 
 ...hatten wir bereits im Beweis der Existenz der Primfaktorzerlegung. Hier noch ein Beispiel. 
@@ -69,4 +71,5 @@ Zur Algorithmik:
 
 - [Karatsuba: The complexity of compuatations](http://www.ccas.ru/personal/karatsuba/divcen.pdf). Ein 23-jähriger Student zeigt, dass die schriftliche Multiplikation, die man der Schule lernt, nicht effizient ist. 
 - [Schönhage-Strassen-Algorithmus](https://de.wikipedia.org/wiki/Sch%C3%B6nhage-Strassen-Algorithmus). Mit der schnellen Fourier-Transformation (d.h. mit Hilfe der komplexen Zahlen) kann man einen noch viel schnelleren Algorithmus entwickeln. 
+
 
