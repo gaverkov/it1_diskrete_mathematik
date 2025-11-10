@@ -1,3 +1,6 @@
+- [Notizen Woche 5, Vorlesung 1](It-1-wise-25-26-woche-05-1.pdf)
+- Notizen Woche 5, Vorlesung 2
+  
 ## Asymptotische Notation 
 
 Bei der asymptotischen Notation geht es uns darum, das Verhalten einer Funktion für das wachsende Argument "qualitativ" zu verstehen, ohne dass man die multiplikativen Konstanten beachtet. Wir haben also mit einer Funktion $$f : \mathbb{N} \to \mathbb{R}$$ zu tun, deren Wachstum wir analysieren. Das kann man auch als eine Kategoriesierung von Funktionen in Wachstumsklassen auffassen. Es gibt zum Beispiel linear wachsende Funktion, quadratisch wachstende Funktion, kubisch wachsende Funktionen und auch viele andere Wachstumsklassen, die relevant sind. Unser $$f(n)$$ hängt vom Argument $$n \in \mathbb{N},$$ wobei $$n$$ wächst. Um das zu verdeutlichen sagt man auch manchmal, dass man $$n$$ gegen Unendlich schickt und schreibt dabei $$n \to \infty$$. Das Wachstumtsverhalten einer Funktion $$f(n)$$ hängt nicht davon ab, wie die Funktion an beliebig gewählten endlich vielen Stellen definiert ist. Ändern wir zum Beispiel die Funktion $$f(n)$$ an endlich vielen Stellen, so hat es keinen Einfluss auf ihr Wachstumsverhalten. Unsere Wachstumsanalyse bezieht sich also auf alle genüngend großen $$n$$. In der Informatik wird die asymptotische Analyse für Funktionen mit nichtnegativen Werten angewandt (die Funktionen in der Informatik beschreiben etwa die Laufzeit und den Speicherbedarf - das sind nichnegative Wert). Es hat sich aber historisch so ergeben, dass man die Bezeichnungen, die wir demnächst einführen für Funktionen mit den Werten in $$\mathbb{R}$$ definiert, dabei aber stets mit den Bedingungen arbeitet, die nur von den Beträgen der Werte $$f(n)$$ abhängig sind. Liegt eine Funktion mit nichtnegativen Werten vor, so kann man in den nachfolgenden Definitionen die Beträge weglassen. 
@@ -54,6 +57,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$. [Primzahlsatz](https://de.wikipedia.org/wiki/Primzahlsatz)
+
 
 
 
