@@ -1,5 +1,5 @@
 - [Notizen Woche 5, Vorlesung 1](It-1-wise-25-26-woche-05-1.pdf)
-- Notizen Woche 5, Vorlesung 2
+- [Tafelbilder Woche 5, Vorlesung 2](it1_wise_25_25_woche_05_2.pdf)
   
 ## Asymptotische Notation 
 
@@ -59,6 +59,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$. [Primzahlsatz](https://de.wikipedia.org/wiki/Primzahlsatz)
+
 
 
 
