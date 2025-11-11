@@ -3,6 +3,8 @@
   
 ## Asymptotische Notation 
 
+### $$O, \Omega$$ und $$\Theta$$
+
 Bei der asymptotischen Notation geht es uns darum, das Verhalten einer Funktion für das wachsende Argument "qualitativ" zu verstehen, ohne dass man die multiplikativen Konstanten beachtet. Wir haben also mit einer Funktion $$f : \mathbb{N} \to \mathbb{R}$$ zu tun, deren Wachstum wir analysieren. Das kann man auch als eine Kategoriesierung von Funktionen in Wachstumsklassen auffassen. Es gibt zum Beispiel linear wachsende Funktion, quadratisch wachstende Funktion, kubisch wachsende Funktionen und auch viele andere Wachstumsklassen, die relevant sind. Unser $$f(n)$$ hängt vom Argument $$n \in \mathbb{N},$$ wobei $$n$$ wächst. Um das zu verdeutlichen sagt man auch manchmal, dass man $$n$$ gegen Unendlich schickt und schreibt dabei $$n \to \infty$$. Das Wachstumtsverhalten einer Funktion $$f(n)$$ hängt nicht davon ab, wie die Funktion an beliebig gewählten endlich vielen Stellen definiert ist. Ändern wir zum Beispiel die Funktion $$f(n)$$ an endlich vielen Stellen, so hat es keinen Einfluss auf ihr Wachstumsverhalten. Unsere Wachstumsanalyse bezieht sich also auf alle genügend großen $$n$$. In der Informatik wird die asymptotische Analyse für Funktionen mit nichtnegativen Werten angewandt (die Funktionen in der Informatik beschreiben etwa die Laufzeit und den Speicherbedarf - das sind nichnegative Wert). Es hat sich aber historisch so ergeben, dass man die Bezeichnungen, die wir demnächst einführen für Funktionen mit den Werten in $$\mathbb{R}$$ definiert, dabei aber stets mit den Bedingungen arbeitet, die nur von den Beträgen der Werte $$f(n)$$ abhängig sind. Liegt eine Funktion mit nichtnegativen Werten vor, so kann man in den nachfolgenden Definitionen die Beträge weglassen. 
 
 Wir beginnen mit der groß-O Notation. Sei $$g: \mathbb{N} \to \mathbb{R}$$ eine Funktion. Die Wachstumsklasse $$O(g(n))$$ besteht, wenn man es intuitiv beschreibt, aus allen Funktionen $$f : \mathbb{N} \to \mathbb{R}$$, die höchstens so schnell wie die Funktion $$g(n)$$ wachsen. Und das, wie gesagt, bezieht sich stets auf die Beträge (nicht auf die Vorzeichen). Die genaue Definition ist wie folgt:  $$f(n)$$ liegt in der Klasse $$O(g(n))$$, wenn eine Konstante $$C \in \mathbb{R}_{>0}$$ und ein Index $$n_0 \in \mathbb{N}$$ existieren derart, dass $$|f(n)| \le C |g(n)|$$ für alle $$n \ge n_0$$ gilt. Man schreibt diese Bedingung als $$f(n) \in O(g(n))$$ auf. Noch häufiger sieht man es in der Literatur in der Form $$f(n) = O(g(n))$$ -- mit dem Gleichheitszeichen. Das ist zwar so nicht ganz formal korrekt als Schreibweise, aber sehr verbreitet. Man interpretiert hier $$O(g(n))$$ als eine anonyme Funktion mit dem Wachstum höchstens $$g(n)$$. 
@@ -57,6 +59,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$. [Primzahlsatz](https://de.wikipedia.org/wiki/Primzahlsatz)
+
 
 
 
