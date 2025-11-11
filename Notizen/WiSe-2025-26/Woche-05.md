@@ -7,7 +7,7 @@ Bei der asymptotischen Notation geht es uns darum, das Verhalten einer Funktion 
 
 Wir beginnen mit der groß-O Notation. Sei $$g: \mathbb{N} \to \mathbb{R}$$ eine Funktion. Die Wachstumsklasse $$O(g(n))$$ besteht, wenn man es intuitiv beschreibt, aus allen Funktionen $$f : \mathbb{N} \to \mathbb{R}$$, die höchstens so schnell wie die Funktion $$g(n)$$ wachsen. Und das, wie gesagt, bezieht sich stets auf die Beträge (nicht auf die Vorzeichen). Die genaue Definition ist wie folgt:  $$f(n)$$ liegt in der Klasse $$O(g(n))$$, wenn eine Konstante $$C \in \mathbb{R}_{>0}$$ und ein Index $$n_0 \in \mathbb{N}$$ existieren derart, dass $$|f(n)| \le C |g(n)|$$ für alle $$n \ge n_0$$ gilt. Man schreibt diese Bedingung als $$f(n) \in O(g(n))$$ auf. Noch häufiger sieht man es in der Literatur in der Form $$f(n) = O(g(n))$$ -- mit dem Gleichheitszeichen. Das ist zwar so nicht ganz formal korrekt als Schreibweise, aber sehr verbreitet. Man interpretiert hier $$O(g(n))$$ als eine anonyme Funktion mit dem Wachstum höchstens $$g(n)$$. 
 
-Wenn wir etwa $$f(n) = O(n^2)$$ schrieben, so meinen wir dabei, dass $$f(n)$$ höchstens quadratisch wächst. Das kann zum Beispiel beideuten, dass $$|f(n)| \le 4 n^2$$ für alle $$n \ge 50$$ gilt. Die $$4$$ und die $$50$$ sind dann die konkreten Konstante und der konkrete Index, die man fixiert, um nachzuweisen, dass $$f(n)$$ tatsächlich $$O(n^2)$$ ist. Bei einer anderen $$O(n^2)$$ Funktion müssen es nicht die selben Werte sein. 
+Wenn wir etwa $$f(n) = O(n^2)$$ schrieben, so meinen wir dabei, dass $$f(n)$$ höchstens quadratisch wächst. Das kann zum Beispiel bedeuten, dass $$|f(n)| \le 4 n^2$$ für alle $$n \ge 50$$ gilt. Die $$4$$ und die $$50$$ sind dann die konkreten Konstante und der konkrete Index, die man fixiert, um nachzuweisen, dass $$f(n)$$ tatsächlich $$O(n^2)$$ ist. Bei einer anderen $$O(n^2)$$ Funktion müssen es nicht die selben Werte sein. 
 
 Die $$O$$-Notation gibt einem die Abschätzungen nach oben an das Wachsum einer Funktion. Genauso kann man untere Abschätzungen betrachten. Das wird durch die $$\Omega$$-Notation festgehalten, welche komplett analog zur $$O$$-Notation eingeführt wird. Das Einzige, was sich ändert, ist die Ungleichungsrelation $$\le$$, die durch $$\ge$$ ausgetauscht wird. Nach der Definition der $$\Omega$$-Notation gehört $$f(n)$$ zur Klasse $$\Omega(g(n))$$, wenn Konsante $c \in \mathbb{R}_{>0}$ und ein Index $$n_0 \in \mathbb{N}$$ existieren derart, dass $$|f(n)| \ge c |g(n)|$$ für alle $n \ge n_0$ erfüllt ist. Schfeibweisen dazu sind $$f(n) \in \Omega(g(n))$$ (formal korrekt) und $$f(n) = \Omega(g(n))$$ (nicht völlig korrekt, aber verbreitet und hoffentlich verständlich). 
 
@@ -57,6 +57,7 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$. [Primzahlsatz](https://de.wikipedia.org/wiki/Primzahlsatz)
+
 
 
 
