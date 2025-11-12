@@ -40,10 +40,15 @@ Stellenwertsystem zur einer anderen Basis als $$10$$ sind genau so funktional wi
 
 Man kann etwa so formiulieren: jede natürliche Zahl ist Summe von endlich vielen verschiedenen Zweierpotenzen, wobei eine Zweierpotenz eine Zahl der Form $$2^i$$ mit $$i \in \mathbb{N}_0$$. 
 
-Das Selbe kann man auch mit mehr Formeln beschreiben: Jedes $$z \in \mathbb{N}$$ lässt sich als 
-$$z =\sum_{i \in S} 2^i$$ für eine endliche Menge $$S \subseteq \mathbb{N}_0$$ darstellen. Oder als eine Gleichung der Mengen: 
+Das Selbe kann man auch mit mehr Formeln beschreiben: Jedes 
+$$z \in \mathbb{N}_0$$ 
+lässt sich als
 
-$$ \mathbb{N} = \lbrace \sum_{i \in S} 2^i \colon S \ \text{endliche Teilmenge von} \ \mathbb{N}_0 \rbrace.
+$$z =\sum_{i \in S} 2^i$$ 
+
+für eine endliche Menge $$S \subseteq \mathbb{N}_0$$ darstellen. Oder, als eine Gleichung der Mengen: 
+
+$$ \mathbb{N}_0 = \lbrace \sum_{i \in S} 2^i \colon S \ \text{endliche Teilmenge von} \ \mathbb{N}_0 \rbrace.
 $$
 
 Die Wahl der konkreten Umsetzung ist eine Geschmackssache. Es ist sinnvoll nicht zu lange und nicht zu kryptische Formulierungen zu nutzen, aber was kryptisch erscheint, hängt stark von dem Background ab. Manchmal hat man einen Konflikt zwischen der Länge und Verständlichkeit: lange und verständlichere Formulierungen vs. kurze aber nicht besonders verständliche. 
@@ -54,6 +59,7 @@ Die Wahl der konkreten Umsetzung ist eine Geschmackssache. Es ist sinnvoll nicht
 
 - [***Woche 3, Vorlesung 1***](It-1-woche-03-1.pdf)
 - [***Woche 3, Vorlesung 2***](It-1-woche-03-2.pdf)
+
 
 
 
