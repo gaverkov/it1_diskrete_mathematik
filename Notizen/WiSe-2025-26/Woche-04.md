@@ -69,8 +69,9 @@ Beispiele:
 
 Zur Algorithmik: 
 
-- [Karatsuba: The complexity of compuatations](http://www.ccas.ru/personal/karatsuba/divcen.pdf). Ein 23-jähriger Student zeigt, dass die schriftliche Multiplikation, die man der Schule lernt, nicht effizient ist. 
+- [Karatsuba: The complexity of compuatations](http://www.ccas.ru/personal/karatsuba/divcen.pdf). Ein 23-jähriger Student zeigt, dass die schriftliche Multiplikation, die man der Schule lernt, nicht effizient ist. Der Karatsuba-Algorithmus wird in Python bei Zahlen ab Größe 70 Bit eingesetzt, bei kleineren Zahlen nutzt man den Schulalgorithmus, vgl. [die Implementierung von Python](https://github.com/python/cpython/blob/main/Objects/longobject.c), insbesondere die Kommentare in den Zeilen 79-85. 
 - [Schönhage-Strassen-Algorithmus](https://de.wikipedia.org/wiki/Sch%C3%B6nhage-Strassen-Algorithmus). Mit der schnellen Fourier-Transformation (d.h. mit Hilfe der komplexen Zahlen) kann man einen noch viel schnelleren Algorithmus entwickeln. 
+
 
 
 
