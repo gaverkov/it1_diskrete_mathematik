@@ -9,7 +9,7 @@ Als Nächstes nahm man diese Menge samt ihrem Inhalt – dem Nichts – in eine 
 So entstand die Menge $$\lbrace \emptyset, \lbrace \emptyset \rbrace \rbrace$$ mit zwei Elementen: Sie enthielt das Nichts und die Menge, die das Nichts enthält.
 
 Und so ging es immer weiter. Es entstanden immer mehr Mengen, die zwar größer wurden, aber stets endlich blieben.
-Man nannte die Anzahl der Elemente in der leeren Menge $$0$$, die Anzahl der Elemente in $${\emptyset}$$ die $$1$$,
+Man nannte die Anzahl der Elemente in der leeren Menge $$0$$, die Anzahl der Elemente in $$\lbrace \emptyset \rbrace$$ die $$1$$,
 die Anzahl der Elemente in $$\lbrace \emptyset,\lbrace \emptyset \rbrace \rbrace $$ die $$2$$ – und so weiter, bis ins Unendliche.
 
 So entstanden die natürlichen Zahlen, auf deren Grundlage nach und nach eine ganze faszinierende und reiche mathematische Welt erschaffen wurde.
@@ -32,5 +32,6 @@ Es bedarf lediglich einer leeren Menge (oder Liste), um alle natürlichen Zahlen
 
 Doch bis heute ist dem Programmierer nicht klar, was die Moral dieser Geschichte ist –
 und wie er den Code des Mathematikers je in einem seiner Projekte sinnvoll einsetzen könnte.
+
 
 
