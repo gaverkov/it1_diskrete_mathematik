@@ -4,13 +4,13 @@ Hier eine künstlerische Aufarbeitung des Unendlichkeitsaxioms der
 ## Eine Legende über die Entstehung der natürlichen Zahlen
 
 Am Anfang gab es nichts. Und dieses Nichts war die leere Menge $$\emptyset$$.
-Dann nahm man die leere Menge in eine Menge auf, und so entstand die Menge $${\emptyset}$$ mit einem Element.
+Dann nahm man die leere Menge in eine Menge auf, und so entstand die Menge $$\lbrace \emptyset \rbrace$$ mit einem Element.
 Als Nächstes nahm man diese Menge samt ihrem Inhalt – dem Nichts – in eine neue Menge auf.
-So entstand die Menge $${\emptyset,{\emptyset}}$$ mit zwei Elementen: Sie enthielt das Nichts und die Menge, die das Nichts enthält.
+So entstand die Menge $$\lbrace \emptyset, \lbrace \emptyset \rbrace \rbrace$$ mit zwei Elementen: Sie enthielt das Nichts und die Menge, die das Nichts enthält.
 
 Und so ging es immer weiter. Es entstanden immer mehr Mengen, die zwar größer wurden, aber stets endlich blieben.
 Man nannte die Anzahl der Elemente in der leeren Menge $$0$$, die Anzahl der Elemente in $${\emptyset}$$ die $$1$$,
-die Anzahl der Elemente in $${\emptyset,{\emptyset}}$$ die $$2$$ – und so weiter, bis ins Unendliche.
+die Anzahl der Elemente in $$\lbrace \emptyset,\lbrace \emptyset \rbrace \rbrace $$ die $$2$$ – und so weiter, bis ins Unendliche.
 
 So entstanden die natürlichen Zahlen, auf deren Grundlage nach und nach eine ganze faszinierende und reiche mathematische Welt erschaffen wurde.
 
@@ -32,4 +32,5 @@ Es bedarf lediglich einer leeren Menge (oder Liste), um alle natürlichen Zahlen
 
 Doch bis heute ist dem Programmierer nicht klar, was die Moral dieser Geschichte ist –
 und wie er den Code des Mathematikers je in einem seiner Projekte sinnvoll einsetzen könnte.
+
 
