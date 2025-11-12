@@ -1,5 +1,9 @@
+# Zur Existenz von natürlichen Zahlen 
+
+Die Mathematik basiert auf der Mengenlehre. Die Mengenlehre postuliert die Extistenz der leeren Menge durch eines seiner Axiome. Das ist die einzige Menge, deren Existenz man direkt fordert. Alle anderen Mengen entstehen im Rahmen der Mengenlehre aus den Axiomen im Format: aus jeder Menge $$A$$ lässt sich die folgende weitere Menge nach dem folgenden "Kochrezept" basteln. Eines der interessantesten Axiome der Mengenlehre ist das Unendlichkeitsaxiom, mit dessen Hilfe man natürliche Zahlen konstrukiert, die bekannterweise in jedem mathematischen Bereich unentberlich sind. Insbesondere zählt man in der Kombiantorik Objekte mit Hilfe von natürlichen Zahlen. Die Mengelehre mag sehr kryptisch und technisch erscheinen, ist aber interessant für alle die jenigen, die in die Tiefe gehen wollen und daran interessiert sind, das zu verstehen was unter der "Oberfläche" liegt. 
+
 Hier eine künstlerische Aufarbeitung des Unendlichkeitsaxioms der 
-[Zermelo-Fraenkel-Mengenlehre](https://de.wikipedia.org/wiki/Zermelo-Fraenkel-Mengenlehre)
+[Zermelo-Fraenkel-Mengenlehre](https://de.wikipedia.org/wiki/Zermelo-Fraenkel-Mengenlehre), die Ihnen helfen könnten, die ersten Einblicke zu diesem Thema zu sammeln (es ist aber kein  Muss - die Mengenlehre wird bei uns weder in den Aufgabenblättern noch in der Klausur diskutiert). 
 
 ## Eine Legende über die Entstehung der natürlichen Zahlen
 
@@ -32,6 +36,7 @@ Es bedarf lediglich einer leeren Menge (oder Liste), um alle natürlichen Zahlen
 
 Doch bis heute ist dem Programmierer nicht klar, was die Moral dieser Geschichte ist –
 und wie er den Code des Mathematikers je in einem seiner Projekte sinnvoll einsetzen könnte.
+
 
 
 
