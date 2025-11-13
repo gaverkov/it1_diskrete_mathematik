@@ -22,7 +22,7 @@ Das bedeutet, das Wachstum von $$f(n)$$ ist mindestens quadratisch und höchsten
 
 
 
-Beispiel mit der Analyse der Laufzeit eines hypothetischen Codes: 
+### Beispiel mit der Analyse der Laufzeit eines hypothetischen Codes: 
 
 ```python
 I # Initialisierung 
@@ -43,8 +43,7 @@ for i in range(n):
 
 Welcher Code wäre besser von der Laufzeit her? 
 
-
-Weitere Bezeichnungen: $$o , \omega, \sim$$
+### Beispiele 
 
 Nicht für jede Größe hat man exakte Formeln. Nicht für jede größe hat man einfache exakte Formeln. In diesen Fällen sind die asymptotischen Formeln hilfreich. 
 
@@ -59,6 +58,12 @@ Beispiele:
 Beispiele: 
 - $$n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n $$
 - $$p_n \sim n \ln n$$. [Primzahlsatz](https://de.wikipedia.org/wiki/Primzahlsatz)
+
+### Literatur zur asymptotischen Notation 
+
+- Cormen et al. Kapitel 3. Verständlich mit Worten, Bildern und Formeln erklärt, mit einem direkten Bezug zur Informatik. 
+- Graham, Knuth, Patashnik. Chapter 9. Auf Englisch. Umfangreich, konkret, ausführlich, mit Worten, Bildern, Beispielen und Nuancen und Verdeutlichung allgemeiner Prinzipien und Techniken. 
+
 
 
 
