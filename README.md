@@ -26,7 +26,7 @@ Weil all diese Themen zu Basics gehören, gibt es richtig viel Literatur zu all 
 - Das Lehrbuch **Diskrete Mathematik von Martin Aigner** hat Kombinatorik, Graphen, Algorithmen auf Graphen.
 - **Stanley Enumerative Combinatorics, Band 1.** Eigentlich ein Lehrbuch, aber nicht für Anfänger. Das Buch ist ein Hammer. Auch wenn Sie "lediglich" die ersten 80 Seiten schaffen, sind Sie wahrscheinlich ein/e Superheld/in aus einem anderen Universum. 
 - [**Cormen, Leiserson, Rivest und Stein, Algorithmen -- Eine Einführung.**](https://en.wikipedia.org/wiki/Introduction_to_Algorithms) Ein Klassiker. In zahlreichen Auflagen erschienen (vor allem auf Englisch). Sehr nutzerfruendliches Buch, aber vom Gewicht her schwer (denn es werden viele Themen diskutiert). Anhänge dieses Buchs (zu Mathematik) sind genau so wertvoll wie der Hauptteil. Ich vermute, dass alle Algorithmen, die Sie in diesem Modul und später in Algorithmieren und Programmieren sehen (und noch viel mehr) in diesem Buch enthalten sind. Die Algorithmen werden im Cormen et al. sehr sorgfältig präsentiert und analysiert.
-- Graham, R. L., Knuth, D. E., Patashnik, O. (1994). Concrete Mathematics: A Foundation for Computer Science. Deutschland: Addison-Wesley.
+- [Graham, R. L., Knuth, D. E., Patashnik, O. (1994). Concrete Mathematics: A Foundation for Computer Science. Deutschland: Addison-Wesley.](https://en.wikipedia.org/wiki/Concrete_Mathematics)
 
 
 
