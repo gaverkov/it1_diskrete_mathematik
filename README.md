@@ -11,7 +11,7 @@ Ihnen stehen zur Verfügung:
 - **Sauber formulieren und argumentieren, insbesondere in Bezug auf Algorithmen**
 - **Mathematischer Formalismus, auch um diskrete Algorithmen sauber präsentieren zu können**
 - **Kombinatorik** — diskrete Objekte und Konfigurationen zählen, um insbesondere die Lafuzeiten von Algorithmen abschätzen zu können
-- **Asymptotische Notation*** - gängige Art den Resourccenverbrauch (Laufzeit/Speicheraufwand) von Algorithmen grob geschätzt anzugeben 
+- **Asymptotische Notation** - gängige Art den Resourccenverbrauch (Laufzeit/Speicheraufwand) von Algorithmen grob geschätzt anzugeben 
 - **Algorithmen** — aber nicht als Kochbuch von Algorithmen, sondern vor allem die *Analysis* (Wieso korrekt? Was ist die Laufzeit?)
 - **Graphen** -- omnipräsente mathematische Struktur bei vielen diskreten Algorithmen 
 - **Algorithmen auf Graphen** -- DFS, BFS, kürzeste Wege und minimale Spannbäume 
