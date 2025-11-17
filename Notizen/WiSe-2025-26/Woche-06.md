@@ -19,6 +19,22 @@ Ein Typisches Muster für kombinatorische Formeln ist wie folgt: man hat ein Fun
 
 Neben den Kombintorik, welche die Zählprinzipien untersucht und die [abzählende Kombinatorik](https://de.wikipedia.org/wiki/Abz%C3%A4hlende_Kombinatorik) genannt wird, gibt es auch andere Teilbereiche der Kombinatorik, wie z.B. die [Extremalkombinatorik](https://en.wikipedia.org/wiki/Extremal_combinatorics), in der es um Ungleichungen für Größen geht, oder die [algebraische Kombinatorik](https://en.wikipedia.org/wiki/Algebraic_combinatorics), die sich mit dem Zählen im Kontext der Algebra und algebraischer Geometrie beschäftigt. 
 
+## Aufzählung des kartesischen Produkts von $n$ Mengen
+
+Der folgende Code illustriert die Idee des Aufzählens (wenn man wirklich das kartesische Produkt braucht, dann man kann itertools nutzen). 
+
+```python
+def cart_prod(L):
+    result = [[]]
+    for A in L:
+        result = [t+[a] for t in result for a in A]
+    return result
+
+print(cart_prod([[1,2,3],[10,20,30]]))
+print(cart_prod([[1,2],['a','b'],[3,4]]))
+print(cart_prod([]))
+```
+
 
 ## Exkurs zur Existenz von natürlichen Zahlen 
 
@@ -60,6 +76,7 @@ Es bedarf lediglich einer leeren Menge (oder Liste), um alle natürlichen Zahlen
 
 Doch bis heute ist dem Programmierer nicht klar, was die Moral dieser Geschichte ist –
 und wie er den Code des Mathematikers je in einem seiner Projekte sinnvoll einsetzen könnte.
+
 
 
 
