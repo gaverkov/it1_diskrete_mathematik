@@ -1,4 +1,5 @@
 - [Tafelbilder, Woche 6, Vorlesung 1](it1_tafelbilder_wise_25_26_woche_06_1.pdf)
+- [Tafelbilder, Woche 6, Vorlesung 2](it1_tafelbilder_wise_25_26_woche_06_2.pdf)
   
 # Kapitel 2 : Kombinatorik 
 
@@ -78,6 +79,7 @@ Es bedarf lediglich einer leeren Menge (oder Liste), um alle natürlichen Zahlen
 
 Doch bis heute ist dem Programmierer nicht klar, was die Moral dieser Geschichte ist –
 und wie er den Code des Mathematikers je in einem seiner Projekte sinnvoll einsetzen könnte.
+
 
 
 
