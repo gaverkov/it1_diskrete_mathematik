@@ -348,7 +348,7 @@ einführen kann. Mit diesen Verknüpfungen ist $\Z / m \Z$ ein kommutativer Ring
 
 \begin{defn}
 % aus Cormen et al.
-Ein \textbf{Algorithmus} ist eine wohldeﬁnierte Rechenvorschrift, die eine
+Ein \textbf{Algorithmus} ist eine wohldefinierte Rechenvorschrift, die eine
 Größe oder eine Menge von Größen als \textbf{Eingabe} verwendet und eine Größe oder eine Menge von Größen als \textbf{Ausgabe} erzeugt.
 
 Somit ist ein Algorithmus eine Folge von Rechenschritten, die die Eingabe in die Ausgabe umwandeln. Jeder Schritt wird dabei \glqq mechanisch\grqq\ ausgeführt und bedarf keiner denkenden Instanz im Hintergrund.
@@ -751,7 +751,7 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 	Auf der praktischen Seite erfolgt die Umsetzung der Aufrufe von Prozeduren und, insbesondere rekursiven Prozeduren, in Betriebssystemen und Programmiersprachen mit Hilfe des sogenannten Programmstacks. Bei jedem Aufruf wird (intern, auf der Ebene der Maschinensprache) die Stelle im Programm notiert, zu der man nach der Ausführung  der Prozedur zurückkehren soll. Außerdem werden durch einen Aufruf potenziell neue Variablen eingeführt (lokale Variablen der Prozedur, Eingabeparameter). All diese Daten werden auf dem sogenannten \textbf{Aufrufstapel} (engl. call stack, procedure stack) aufgehoben. Die Größe des Aufrufstapels ist standardmäßig ziemlich eingeschränkt, sodass es bei der Ausführung von rekursiven Prozeduren mit einer großen Rekursionstiefe zu einem Überlauf des Aufrufstapels kommen kann. 
 	
 	In höheren Programmiersprachen, bei denen die Rekursion nicht unbedingt direkt durch den Aufrufstapel umgesetzt wird, wird oft trotzdem das Maximum der Rekursionstiefe festgelegt. 	Hier ein Beispiel eines Python-Codes, der diese Problematik illustriert: 
-	\lstinputlisting{Code/dive.py}
+	\lstinputlisting{../Code/dive.py}
 	
 	Auf meinem Computer führt der Aufruf von dive auf der Eingabe $0$ zu einem Stacküberlauf in der Rekursionstiefe $995$. Die maximale Rekursionstiefe kann oft manuell erhöht werden, und es gibt auch Sprachen, die in gewissen Situationen die rekursiven Prozeduren in nicht-rekursiven Maschinencode übersetzen können. Generell gilt aber: wenn man eine rekursive Prozedur mit einer hohen Rekursionstiefe hat, sollte man sich Gedanken darüber machen, wie man diese Prozedur nicht-rekursiv umsetzen könnte. Sehr oft kann man dabei seinen eigenen Stapel anlegen. 
 \end{bem} 
@@ -791,7 +791,7 @@ Manche Programmiersprachen (wie C, C++, Go) stellen direkt Zeiger zur Verfügung
 	Hierbei steht $\cc{HS}(k)$ für $\cc{Hanoi-Schritte}(k, s,h,z)$ mit irgendeiner Wahl von $s,h,z$. 
 	
 	Hier Umsetzung in Python mit der Verwendung von Iteratoren: 
-\lstinputlisting{Code/hanoi.py}
+\lstinputlisting{../Code/hanoi.py}
 
 Eine Demo-Datei für $4$ Türme:
 	\begin{center}
