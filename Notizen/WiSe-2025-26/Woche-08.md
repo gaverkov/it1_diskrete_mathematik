@@ -32,6 +32,23 @@ Ergebnis:
 * *|* * *|* *
 ```
 
+## Bemerkung zum Zählen von Multimengen 
+
+Gerade habe ich in der 
+["Einführung in die Kombinatorik" (Seiten 13-16)](https://link.springer.com/book/10.1007/978-3-662-58921-2) von Peter Tittmann eine 
+andere Weise gefunden, Multimengen gegebener Größe zu zählen. 
+In dieser Weise geht man ebenfalls zu Stars und Bars über, allerdings ohne
+den Zwischenschritt mit der Addition der Eins zu den Vielfachheiten. Die Idee ist die $$k$$ Elemente der Multimenge 
+durch Stars zu notieren und dazwischen $$k-1$$ Striche zu Setzen, um den Beginn einer neuer Gruppe zu markieren. 
+Etwa bei der Grundmenge $$\lbrace 1,2,3\rbrace$$ würde man die Multimenge $$\lbrace 1,1,1,3,3\rbrace_{\ne}$$ als \*\*\*\|\|\*\*
+ notieren. 
+Die beiden Striche stehen nebeneinander, weil die zweite Gruppe von Stars leer ist, da unsere Multimenge gar keine Zweien enthält. 
+So ensteht als eine Kodierung mit Strings aus Bars und Stars, welche die Länge $$n+k-1$$ haben. 
+Das String ist eindeutig durch die Angabe der Positionen von $$n$$ stars bestimmt. Daher ist die Anzahl
+der $$k$$-elementigen Multimengen auf einer $$n$$-elementigen Grundmenge gleich $$\binom{n+k-1}{n}$$. 
+
+
+
 ## Doppeltes Abzählen 
 
 Wir haben eine algebraische Gleichung durch das doppelte Abzählen nachgeweisen. 
@@ -51,5 +68,6 @@ einfach aussehen.
 Bei dieser Art der Kombinatorik geht es nicht um Gleichungen, sondern um Ungleichungen. Die Kombinatorik, in der
 man es um Ungleichungen geht nennt man die Extremalkombinatorik. Die Extremalkombinatorik hängt mit der
 abzählenden Kombinatorik zusammen. 
+
 
 
