@@ -44,8 +44,8 @@ Hat man etwa die Multimenge auf der Grundmengen $$\lbrace 1,\ldots,n\rbrace$$ so
 Bei der Grundmenge $$\lbrace 1,2,3\rbrace$$ würde man zum Beispiel die Multimenge $$\lbrace 1,1,1,3,3\rbrace_{\ne}$$ als \*\*\*\|\|\*\*
  notieren;
 die beiden Striche stehen nebeneinander, weil die zweite Gruppe von Stars leer ist, da unsere Multimenge gar keine Zweien enthält. 
-So ensteht als eine Kodierung mit Strings aus Bars und Stars, welche die Länge $$n+k-1$$ haben. 
-So ein String ist eindeutig durch die Angabe der Positionen von $$n$$ stars bestimmt. Daher ist die Anzahl
+So ensteht eine Kodierung mit Strings aus Bars und Stars, welche die Länge $$n+k-1$$ haben. 
+So ein String ist eindeutig durch die Angabe der Positionen von $$n$$ Stars bestimmt. Daher ist die Anzahl
 der $$k$$-elementigen Multimengen auf einer $$n$$-elementigen Grundmenge gleich $$\binom{n+k-1}{n}$$. 
 
 
@@ -69,6 +69,7 @@ einfach aussehen.
 Bei dieser Art der Kombinatorik geht es nicht um Gleichungen, sondern um Ungleichungen. Die Kombinatorik, in der
 man es um Ungleichungen geht nennt man die Extremalkombinatorik. Die Extremalkombinatorik hängt mit der
 abzählenden Kombinatorik zusammen. 
+
 
 
 
