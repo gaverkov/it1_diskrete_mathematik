@@ -41,9 +41,9 @@ der zwei Zählenweisen.
 ## Schubfachprinzip 
 
 Speichert man $$n$$ Objekte in $$m$$ Schubfächern, so liegen in einem Schubfach mindestens $$n / m$$ Objekten. 
-Da die Anzahl der Objekte ganzzahlig ist, lässt sich die Schranke $$n/m$$ aufrunden. 
+Da die Anzahl der Objekte in jedem Schubfach ganzzahlig ist, lässt sich die Schranke $$n/m$$ aufrunden. 
 Bei $$19$$ Objekten und $$3$$ Schubfächern, wissen wir, dass in einem der Schubfächer
-mindestens $$19/3 = 6 1/3$$ und somit mindetens $$7$$ Objekte liegen. 
+mindestens $$\frac{19}{3} = 6 \frac{1}{3}$$ und somit mindetens $$7$$ Objekte liegen. 
 
 Es ist verblüffend, dass dieses einfache Prinzip zu vielen interessanten Resultaten führt, die gar nicht 
 einfach aussehen. 
@@ -51,4 +51,5 @@ einfach aussehen.
 Bei dieser Art der Kombinatorik geht es nicht um Gleichungen, sondern um Ungleichungen. Die Kombinatorik, in der
 man es um Ungleichungen geht nennt man die Extremalkombinatorik. Die Extremalkombinatorik hängt mit der
 abzählenden Kombinatorik zusammen. 
+
 
