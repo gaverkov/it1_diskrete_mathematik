@@ -1,16 +1,46 @@
 \chapter{Algorithmische und Programmiergrundlagen}
 
+\section{Algorithmische Theorie und Programmierung: ein Vergleich} 
+
 
 \begin{bem}
 	Eines der Ziele der Theorie ist typische Situationen aus der realen Welt und der Praxis vereinfacht zu modellieren, um diese dann zu verstehen. Uns interessieren die Algorithmen. Algorithmen werden eigentlich in realen Programmiersprachen umgesetzt und auf realen Rechner ausgeführt. Reale Programmiersprachen sind kompliziert. Beispielsweise umfasst die Spezifikation von C++ 14 Standard 1354 Seiten. Reale Rechner sind kompliziert: sie haben ein kompliziertes Speichermodell mit verschiedenen Arten des Speichers, komplizierten Prozessoren mit mehreren Kernen und vieles Andere. Reale Programme werden durch das Betriebssystem auf dem Rechner ausgeführt. Auch die realen Betriebssysteme sind sehr kompliziert. Sie verwalten z.B. Speicher auf eine sehr komplizierte Weise. Man will sich in der Theorie daher von einigen Aspekten der komplizierten realen Wert abstrahieren, und den realen Code, die realen Programmiersprachen, und die reale Rechner jeweils durch einen vereinfachten Pseudocode einer einfachen theoretischen Programmiersprache und ein theoretisches Rechenmodell ersetzen. 
 	
 	Die Vereinfachungen sind aber so, dass sie immer noch hilfreich sind, um die Situationen aus der Praxis zu analysieren. Denn gewisse Essenz will man in der Theorie auf jeden Fall behalten. Zum Beispiel haben die realen Rechner einen wahlfreien ($=$ direkten) Zugriff auf die Speicherzellen durch deren Adresse. Man kann ein theoretisches Rechenmodell formulieren, das ebenfalls diese Eigenschaft besitzt. So baut man ein theoretisches Fundament auf, in dessen Rahmen man mathematisch präzise Aussagen über die Korrektheit und Effizienz von Algorithmen machen kann. Und diese theoretische Aussage sind oft direkt relevant für die Praxis. 
 	
-	Die Praxis will man aber selbst bei den theoretischen Studien nicht komplett vergessen. Alleine die Tatsache, dass man einen Algorithmus tatsächlich umsetzen und dann wirklich ausführen kann, ist sehr befriedigend. Und für die Umsetzung braucht man praktische Kenntnisse. Es ist zwar nicht das Ziel dieses Moduls, sie in der Praxis des Programmierens einzuführen, trotzdem nutzen wir die Möglichkeit, über einige Aspekte der Programmierung zu reden, und zwar unabhängig von einer konkreten Programmiersprache. 
+	Die Praxis will man aber selbst bei den theoretischen Studien nicht komplett vergessen. Alleine die Tatsache, dass man einen Algorithmus tatsächlich umsetzen und dann wirklich ausführen kann, ist sehr befriedigend. Und für die Umsetzung braucht man praktische Kenntnisse. Es ist zwar nicht das Ziel dieses Moduls, sie in der Praxis des Programmierens einzuführen, trotzdem nutzen wir die Möglichkeit, über einige Aspekte der Programmierung zu reden, und zwar unabhängig von einer konkreten Programmiersprache. Es ist wichtig zu verstehen, dass die Theorie und die Praxis miteinander und nicht gegeneinander spielen. Die beiden beeinflussen sich gegenseitig. Die Praxis wirft neue theoretische Fragen auf. Die Theorie bringt neues Wissen, das in der Praxis eingesetzt wird. 
 \end{bem} 
 
 \begin{bem} Für die theoretische Diskussion von Algorithmen brauchen wir einen abstrakten Rechner. Das nennt man das Rechenmodell. Dann brauchen wir eine abstrakte Programmiersprache. Die nennt man auch oft den Pseudocode. Es gibt Quellen, die die abstrakte Programmiersprache absolut präzise beschreiben. Bei manchen anderen Quellen ist sie etwas informell (daher ``Pseudo'', weil man in so einem Code z.B. auch einen Text in einer natürlichen Sprache nutzen kann). Die Algorithmen werden dann in der abstrakten Sprache formuliert. Mit Python lassen sich heutzutage einige Algorithmen recht gut nicht-technisch beschreiben, weil Python ziemlich oft sehr gut lesbar ist. Python ersetzt also in manchen Situationen eine Alternative zum Pseudocode. Etwas später, wenn wir genug einzelne Algorithmen gesehen haben, die verschiedene Arten von Rechenproblemen lösen, machen wir uns Gedanken darüber, wie verschiedene Rechenprobleme miteinander zusammenhängen und in einander überführt werden können. Solche Art Kategorisierung von Rechenproblemen führt zu sogenannten Komplexitätsklassen. In diesem Modul machen wir nicht sehr viel zu diesem Thema. Denn dafür hat man ein eigenes Modul \emph{Theoretische Informatik}. 
 \end{bem} 
+
+\begin{bem} Hier eine tabellarische Zusammenfassung. 
+\begin{center} 
+\begin{tabular}{|p{0.5\textwidth}|p{0.5\textwidth}|}
+	\hline
+	\textbf{Theorie} & \textbf{Praxis} \\
+	\hline
+	\emph{Rechenmodell.} Formaler Rechner. Aufbau des Speichers und Grundbefehle zur Arbeit mit dem Speicher werden festgelegt. &
+	\emph{Rechner.} Speichermodell, Prozessor mit seinen Grundbefehlen. Ein- und Ausgabe-Geräte. \\
+	\hline
+	\emph{Rechenmodell.} & \emph{Betriebssystem}. Verwaltet die Ressourcen des Rechners, organisiert den Zugang zum Speicher und Geräten. Das Betriebssystem überführt sozusagen den Rechner in der rohen Form in ein freundlicheres Rechenmodell. 
+	\\
+	\hline
+	\emph{Theoretische Sprache oder Pseudocode.} Einfache Sprache zur Beschreibung von Algorithmen. Bei der theoretischen Beschreibung der Algorithmen hat man die Freiheit, Formalismus und Worte zu kombinieren (Pseudocode). Genauso kombiniert man Formeln und Worte in mathematischen Texten. & \emph{Reale Programmiersprache.} Oft sehr groß von der Beschreibung her. Hat technische Aspekte. Wird durch die Compiler und Interpreter umgesetzt. 
+	\\ 
+	\hline 
+	\emph{Algorithmen}. Lösen verschiedene relevante Rechenprobleme. Werden auf Endlichkeit, Korrektheit und Effizienz analysiert. 
+	& 
+	\emph{Code}. Löst verschiedene Aufgaben und Rechenprobleme. Wird auf Korrektheit und Effizienz durch Tests und Reviews analysiert. 
+	\\
+	\hline 
+\end{tabular}
+\end{center} 
+
+Die Rechenprobleme werden am Anfang der algorithmischen Theorie einzeln betrachtet und analysiert und in einem späteren Verlauf in sogenannte Komplexitätsklassen unterteilt. Denn Rechenprobleme hängen miteinander zusammen, manche sind in einem gewissen Sinne äquivalent und bilden Klassen von äquivalenten Problemen. All das diskutiert man in der Komplexitätstheorie (vgl. das Modul \emph{Theoretische Informatik}). 
+\end{bem} 
+
+
 
 \section{Darstellung von Daten in Theorie und Praxis} 
 
@@ -18,9 +48,13 @@
 
 \begin{defn}
 Wir sagen, dass wir die Elemente einer Menge $X$ mit Hilfe der Elemente einer Menge $Y$ \textbf{kodieren}, wenn wir eine  injektive Abbildung $c : X \to Y$ festlegen. Wir nennen dann $c$ eine \textbf{Kodierung} von $X$ mit $Y$, und $y=c(x)$ die \textbf{Kodierung} von $x$ als $y$ bzgl. $c$.  
+
+Die Injektivität ist eine natürliche Forderung hier, weil wir ja anhand von $c(x)$ das dargestellte $x$ eindeutig erkennen wollen. In Python ist für die Rückgabe der Standardkodierung als ein String der Befehl \lstinline|repr| verantwortlich. 
 \end{defn}
 
 \begin{defn} 
+	Aus der mathematischen Sicht können wir Strings der Länge $n$ einfach als $n$-Tupel von Zeichen beschreiben. 
+	
 	Für eine nichtleere Menge $A$ und ein $n \in \N_0$ nennt man die Elemente von 
 	\[
 		A^n = \underbrace{A\times\ldots\times A}_{n \ \text{mal}}
