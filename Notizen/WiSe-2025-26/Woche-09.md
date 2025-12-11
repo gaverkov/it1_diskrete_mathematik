@@ -1,3 +1,5 @@
+- [Tafelbilder Woche 9, Vorlesung 1 (unvollständig)](it1_wise_25_26_woche_09_1.pdf)
+- [Tafelbilder Woche 9, Vorlesung 2](it1_wise_25_26_woche_09_2.pdf)
 
 Die maximale und die minimale Zahl bei ganzzahligen Datentypen mit fester Bit-Größe: 
 ```cpp
@@ -20,3 +22,4 @@ int main()
 ```
 
 Der C++ Code ist auf [OnlineGDB](https://www.onlinegdb.com/online_c++_compiler#) ausführbar. 
+
