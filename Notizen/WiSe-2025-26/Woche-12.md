@@ -1,0 +1,2 @@
+- [Tafelbilder Woche 11, Vorlesung 1](it1_wise_25_26_woche_12_1.pdf)
+- [Tafelbilder Woche 11, Vorlesung 2](it1_wise_25_26_woche_12_2.pdf)
